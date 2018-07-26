@@ -1,0 +1,66 @@
+{
+  "id": "express-zh-CN",
+  "chapters": [
+    {
+      "title": "简介",
+      "entry": "./express/zh-CN/basic.md"
+    },
+    {
+      "title": "安装指南",
+      "entry": "./express/zh-CN/KubeSphere-Installer-Guide.md"
+    },
+    {
+      "title": "应用负载",
+      "entries": [
+        {
+          "entry": "./express/zh-CN/manage-deployments.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-statefulsets.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-daemonsets.md"
+        }
+      ]
+    },
+    {
+      "title": "应用管理",
+      "entries": [
+        {
+          "entry": "./express/zh-CN/manage-applications.md"
+        }
+      ]
+    },
+    {
+      "title": "资源管理",
+      "entries": [
+        {
+          "entry": "./express/zh-CN/manage-imageregistries.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-storages.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-storageclasses.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-nodes.md"
+        }
+      ]
+    },
+    {
+      "title": "平台管理",
+      "entries": [
+        {
+          "entry": "./express/zh-CN/manage-projects.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-roles.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-users.md"
+        }
+      ]
+    }
+  ]
+}

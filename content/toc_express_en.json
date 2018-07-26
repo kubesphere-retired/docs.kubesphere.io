@@ -1,0 +1,13 @@
+{
+  "id": "express-en",
+  "chapters": [
+    {
+      "title": "Installing, Patching, and Upgrading",
+      "entries": [
+        {
+          "entry": "./express/en/KubeSphere-Installer-Guide.md"
+        }
+      ]
+    }
+  ]
+}

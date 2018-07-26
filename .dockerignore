@@ -1,0 +1,6 @@
+.git
+.cache
+.vscode
+src
+node_modules
+yarn-error.log
