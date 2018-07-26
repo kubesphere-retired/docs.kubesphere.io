@@ -21,7 +21,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 }
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+  const { createPage, createRedirect } = boundActionCreators
   return new Promise(resolve => {
     graphql(`
       {
@@ -39,6 +39,13 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     `).then(({ data: { pages: { edges } } }) => {
       // let groups = new Set()
+
+      createRedirect({
+        fromPath: `/`,
+        isPermanent: true,
+        redirectInBrowser: true,
+        toPath: `/express/zh-CN/basic/`,
+      })
 
       edges.forEach(({ node }) => {
         const { version, language, slug } = node.fields
