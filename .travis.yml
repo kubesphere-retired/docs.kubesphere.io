@@ -19,3 +19,9 @@ install:
 script:
   - yarn build
   - docker build -t kubesphere/docs.kubesphere.io .
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master

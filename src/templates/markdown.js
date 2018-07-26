@@ -31,6 +31,7 @@ export default class MarkdownTemplate extends React.Component {
             <ToCContainer>
               <TableOfContents
                 chapters={this.props.data.tableOfContents.edges[0].node.chapters}
+                current={post.id}
               />
             </ToCContainer>
           </NavContainer>
