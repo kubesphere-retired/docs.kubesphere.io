@@ -1,16 +1,27 @@
 import React from 'react'
-import Helmet from 'react-helmet'
+import PropTypes from 'prop-types'
 
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 
 import SiteHeader from '../components/Header'
 import Versions from '../components/Versions'
-import TableOfContents from '../components/TableOfContents'
+import TableOfContents from '../components/TableOfContents/index'
 
 import './markdown.css'
 import './b16-tomorrow-dark.css'
 
 export default class MarkdownTemplate extends React.Component {
+  static childContextTypes = {
+    location: PropTypes.object,
+  }
+
+  getChildContext() {
+    return {
+      location: this.props.location
+    }
+  }
+
   render() {
     const { slug } = this.props.pathContext
     const postNode = this.props.data.postBySlug
@@ -27,11 +38,10 @@ export default class MarkdownTemplate extends React.Component {
         </Helmet>
         <BodyGrid>
           <NavContainer>
-            <Versions />
+            <Versions versions={this.props.data.versions} current={postNode.fields.version}/>
             <ToCContainer>
               <TableOfContents
                 chapters={this.props.data.tableOfContents.edges[0].node.chapters}
-                current={post.id}
               />
             </ToCContainer>
           </NavContainer>
@@ -61,6 +71,7 @@ const NavContainer = styled.div`
   background-color: #242e42;
   box-shadow: 4px 0 8px 0 rgba(101, 125, 149, 0.2);
   color: #fff;
+  overflow-y: scroll;
 `
 
 const MainContainer = styled.div`
@@ -87,7 +98,7 @@ const ToCContainer = styled.div`
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query MarkdownBySlug($slug: String!, $id: String!) {
+  query MarkdownBySlug($slug: String!, $id: String!, $version: String!) {
     site {
       siteMetadata {
         title
@@ -97,6 +108,19 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+      }
+      fields {
+        version
+      }
+    }
+    versions: allMarkdownRemark {
+      group(field: fields___version) {
+        fieldValue
+      }
+    }
+    languages: allMarkdownRemark(filter: {fields: {version: {eq: $version}}}) {
+      group(field: fields___language) {
+        fieldValue
       }
     }
     tableOfContents: allContentJson(filter: {id: {eq: $id}}) {
