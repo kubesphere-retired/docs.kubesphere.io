@@ -54,6 +54,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           component: path.resolve(`./src/templates/markdown.js`),
           context: {
             slug: slug,
+            version: version,
             id: `${version}-${language}`
           }
         });
