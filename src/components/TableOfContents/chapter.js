@@ -30,11 +30,10 @@ class LinkWithHeadings extends React.Component {
   componentDidMount() {
     const { location } = this.context;
     const { fields } = this.props.entry.childMarkdownRemark;
-    setTimeout(() => {
-      this.setState({
-        open: location.pathname === fields.slug
-      })
-    }, 200);
+
+    this.setState({
+      open: location.pathname === fields.slug
+    })
   }
 
   handleClick = () => {
@@ -129,12 +128,12 @@ class ChapterList extends React.Component {
     return (
       <StyledList>
         {title && (
-          <ListItem key={`${title}${level}`} onClick={this.handleClick}>
+          <ListItem key={`${title}${level}`}>
             {
               entry ?
               <LinkWithHeadings entry={entry} level={level} title={title}/>
               : 
-              <Title level={level}>
+              <Title level={level} onClick={this.handleClick}>
                 <Arrow className={classnames({'arrow-open': open})}/>{title}
               </Title>
             }
