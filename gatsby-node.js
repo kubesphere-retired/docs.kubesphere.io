@@ -38,8 +38,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
       }
     `).then(({ data: { pages: { edges } } }) => {
-      // let groups = new Set()
-
       createRedirect({
         fromPath: `/`,
         isPermanent: true,
@@ -58,22 +56,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             id: `${version}-${language}`
           }
         });
-
-        // groups.add(`${version}/${language}`)
       })
-
-      // groups.forEach(group => {
-      //   const [version, language] = group.split('/')
-
-      //   if(version === 'install') {
-      //     createPage({
-      //       path: group,
-      //       component: path.resolve(`./src/templates/install.js`),
-      //       context: { version, language },
-      //     })
-      //   }
-      // })
-
 
       resolve()
     })
