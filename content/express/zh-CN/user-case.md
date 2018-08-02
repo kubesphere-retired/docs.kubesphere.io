@@ -6,7 +6,7 @@ title: "最佳实践"
 
 WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 和 MySQL 数据库的服务器上架设属于自己的网站, 也可以把 WordPress 当作一个内容管理系统（CMS）来使用。在本指南中，将引导用户通过 KubeSphere 控制台部署一个后端为 MySQL 数据库的 WordPress 博客网站。
 
-1、在开始实践之前，请以操作员的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建操作员身份以及成员和角色管理请参考  [用户管理](manage-users.md) 。
+1、在开始实践之前，请以操作员的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建操作员身份以及成员管理请参考  [用户管理说明](manage-users.md)，关于用户角色管理，请参考 [角色管理说明](manage-users.md)。
 ![](images/uc_login.png)
 
 2、登录 KubeSphere 后，通过首页直接点击 “创建项目” ，为项目命名：
@@ -16,7 +16,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createproj.png)
 
-3、分别为 WordPress 和 MySQL 数据库创建项目所需的存储卷，可命名为 wordpress-pv 和 mysql-pv （关于如何创建存储类型请参考 [存储类型管理](manage-storageclasses.md) 通过管理员为其创建 ）：
+> 说明: 项目管理需要管理员身份进行操作，请参考  [项目管理说明](manage-projects.md) 。
+
+3、分别为 WordPress 和 MySQL 数据库创建项目所需的存储卷，可命名为 wordpress-pv 和 mysql-pv （关于如何创建存储类型请参考 [存储类型管理说明](manage-storageclasses.md) 通过管理员为其创建 ）：
 ![](images/uc_createpv.png)
 
 4、创建 WordPress 所需存储卷的基本信息、存储设置和标签设置，请参考以下步骤：
@@ -59,6 +61,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createdeploy.png)
 
+> 说明：关于如何管理部署资源，需要以管理员身份进行操作，详细请参考 [部署管理说明](#manage-deployments)
+
 7、请参考以下步骤创建部署 wordpress :
 
 - 第一步，填写创建部署的基本信息，完成后点下一步：
@@ -99,11 +103,11 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createdeploy9.png)
 
-- 第二步，填写容器组设置，名称可自定义，镜像填写 mysql:5.6， 若不指定版本号将默认为最新版本的镜像：
+- 第二步，填写容器组设置，名称可由用户自定义，镜像填写 `mysql:5.6`， 若不指定版本号将默认为最新版本的镜像：
 
 ![](images/uc_createdeploy10.png)
 
-> 注: 如果 docker 镜像不是来自默认的 dockerhub，请参考 [管理镜像仓库](#manage-imageregistries.md)
+> 注: 如果 docker 镜像不是来自默认的 dockerhub，请参考 [管理镜像仓库说明](#manage-imageregistries.md)
 
 - 在容器组设置中配置 MySQL 的访问端口和 MySQL 的环境变量(root 用户的密码)并保存，完成后点下一步：
 
@@ -152,6 +156,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createsvc4.png)
 
+> 说明： 关于如何管理服务，需要以管理员身份进行操作，详细请参考 [服务管理说明](#manage-services)
+
 11、请参考以下步骤为 WordPress 创建服务：
 
 - 第一步，填写基本信息，选择下一步：
@@ -166,11 +172,11 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createsvc7.png)
 
-- 第四步，设置外网访问中，共有 None、 NodePort、 LoadBalancer 三种访问方式，可根据情景来设置访问方式。本实践以 LoadBalancer 的方式暴露服务，并将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务, 完成后点击创建：
+- 第四步，设置外网访问时，共有 None、 NodePort、 LoadBalancer 三种访问方式，可根据情景来设置访问方式。本实践以 LoadBalancer 的方式暴露服务，并将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务, 完成后点击创建：
 
 ![](images/uc_createsvc8.png)
 
-- 至此，WordPress 与 MySQL 服务都已经成功创建，并且能够通过公网 IP 访问 WordPress 网站（ WordPress 刚创建时外部 IP 显示 Pending 状态是正常的，因为创建负载均衡器需要时间，等待数秒后即可看到公网 IP ）：
+- 至此，WordPress 与 MySQL 服务都已经成功创建，并且能够通过公网 IP 访问 WordPress 网站（ 服务刚创建时外部 IP 显示 Pending 状态是正常的，因为创建负载均衡器需要时间，等待数秒后即可看到公网 IP ）：
 
 ![](images/uc_createsvc9.png)
 
@@ -180,9 +186,12 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 12、通过创建应用路由的方式也可以将 WordPress 暴露到公网可供访问，请参考以下步骤配置应用路由：
 
+> 说明： 关于如何管理应用路由，需要以管理员身份进行操作，详细请参考 [应用路由管理说明](#manage-Ingress)
+
 - 第一步，配置外网访问入口，即应用路由的网关入口：
 
 ![](images/uc_createingress.png)
+
 
 - 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，可根据情景需要来设置访问方式，本实践以 LoadBalancer 为例配置网关入口，将公网 IP 地址的 ID 填入 Annotation，配置完成后点击应用：
 
@@ -209,6 +218,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createingress6.png)
 
-
-
 > 注: 创建应用路由之后应该把公网 IP 和 `kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。
+
+13、在实践完成后，建议删除不需要的部署和服务资源，可参考 [用户指南](#用户指南) 中的应用负载管理、服务与网络和资源管理部分，进一步释放资源。
+
+> 说明：在创建资源后如果遇到报错或资源一直处于 Pending 状态，可通过资源详情页中的事件页面和容器日志查看报错消息，进而排查问题的原因。
+
