@@ -66,7 +66,7 @@ const BodyGrid = styled.div`
 
 const NavContainer = styled.div`
   float: left;
-  width: 300px;
+  width: 280px;
   height: 100%;
   background-color: #242e42;
   box-shadow: 4px 0 8px 0 rgba(101, 125, 149, 0.2);
@@ -76,7 +76,7 @@ const NavContainer = styled.div`
 
 const MainContainer = styled.div`
   height: 100%;
-  margin-left: 300px;
+  margin-left: 280px;
   overflow: scroll;
 
   & > div {

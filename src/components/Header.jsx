@@ -31,8 +31,8 @@ const SearchWrapper = styled.div`
     border-radius: 18px;
     border: none;
     padding: 7px 13px;
-    font-size: 12px;
-    line-height: 2;
+    font-size: 0.875rem;
+    line-height: 1.7;
     color: #657d95;
     &:focus {
       outline: none;
