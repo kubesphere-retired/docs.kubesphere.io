@@ -184,9 +184,10 @@ textarea {
   font: inherit;
 }
 html {
-  font: 112.5%/1.45em georgia, serif;
+  font: 1rem;
   box-sizing: border-box;
   overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
 }
 * {
   box-sizing: inherit;
@@ -198,7 +199,8 @@ html {
   box-sizing: inherit;
 }
 body {
-  font-size: 14px;
+  font-size: 0.875rem;
+  background: #EFF4F9;
   color: #303e5a;
   font-family: "PingFang SC", "Lantinghei SC", "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", 微软雅黑, STHeitiSC-Light, simsun, 宋体, "WenQuanYi Zen Hei", "WenQuanYi Micro Hei", sans-serif;
   font-weight: normal;
@@ -501,7 +503,7 @@ th {
   font-weight: bold;
 }
 li {
-  margin-bottom: calc(1.45rem / 2);
+  margin-bottom: 0.5rem;
 }
 ol li {
   padding-left: 0;

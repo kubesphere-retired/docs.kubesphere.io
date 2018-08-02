@@ -186,7 +186,7 @@ const ListItem = styled.li`
 const Title = styled.h5`
   position: relative;
   font-family: Proxima Nova;
-  font-size: 12px;
+  font-size: 0.725rem;
   font-weight: 600;
   line-height: 1.67;
   text-align: left;

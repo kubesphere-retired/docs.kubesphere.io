@@ -1,9 +1,9 @@
 .md-body {
-  font-family: Proxima Nova, Arial, sans-serif;
-  font-size: 14px;
+  font-family: Proxima Nova, PingFangSC,Arial, sans-serif;
+  font-size: 0.875rem;
   line-height: 2;
   word-wrap: break-word;
-  color: #919aa3;
+  color: #303e5a;
   max-width: 1217px;
 }
 
@@ -27,8 +27,11 @@
 }
 
 .md-body a {
+  font-size: inherit;
+  font-weight: bold;
   color: #55bc8a;
-  text-decoration: none;
+  text-decoration: underline;
+
 }
 
 .md-body .absent {
@@ -59,19 +62,29 @@
 }
 
 .md-body blockquote {
-  padding: 0 1em;
-  border-left: 4px solid #cfd9df;
-  font-size: 1em;
-  line-height: 1.71;
-  color: #8f94a1;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #657d95;
+  background: #fff;
+  padding: 16px;
+  border-left: 8px solid #55bc8a;
+  border-radius: 4px;
 }
 
 .md-body blockquote > p {
-  font-size: 1em;
-  line-height: 1.71;
-  color: #8f94a1;
+  font-size: 0.875rem;
+  font-weight: bold;
+  line-height: 2;
+  color: #303e5a;
+  
 }
-
+.md-body blockquote li+li{
+  margin: 0;
+  margin-bottom: 0.725rem;
+}
+.md-body blockquote ul li:last-child{
+  margin-bottom: 0;
+}
 .md-body blockquote>:first-child {
   margin-top: 0
 }
@@ -98,7 +111,7 @@
   margin-top: 30px;
   margin-bottom: 20px;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 2;
   color: #171c34;
 }
 
@@ -121,29 +134,33 @@
 }
 
 .md-body h1 {
-  padding-bottom: 0.3em;
-  font-size: 2em;
+  font-size: 2rem;
+  line-height: 1;
+  padding-left: 1rem;
+  margin-bottom: 2rem; 
+  border-left: 8px solid #55bc8a; 
 }
 
 .md-body h2 {
-  font-size: 1.6em;
+  font-size: 1.6rem;
   color: #171c34;
 }
 
 .md-body h3 {
-  font-size: 1.4em;
+  font-size: 1.4rem;
 }
 
 .md-body h4 {
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 
 .md-body h5 {
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 .md-body h6 {
-  font-size: 0.85em;
+  font-size: 0.875rem;
+  font-weight: bold;
   color: #6a737d
 }
 
@@ -225,11 +242,13 @@
 }
 
 .md-body img {
-  max-width: 100%;
-  box-sizing: content-box;
+  width: 100%;
+  /*box-sizing: content-box;*/
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 4px 15px 0 rgba(7, 42, 68, 0.1);
+  border: 1px solid #cfd9df;
+  padding: 8px;
+  margin-top: 0.725rem;
 }
 
 .md-body img[align=right] {
@@ -336,10 +355,11 @@
 
 .md-body code,.md-body tt {
   padding: 0.2em 0.4em;
-  margin: 0;
-  font-size: 85%;
-  background-color: rgba(27,31,35,0.05);
-  border-radius: 3px
+  font-size: inherit;
+  color: #369a6a;
+  font-weight: normal;
+  background-color: rgba(85, 188, 138, 0.2);
+  border-radius: 3px;
 }
 
 .md-body code br,.md-body tt br {
@@ -358,9 +378,10 @@
   display: inline-block;
   white-space: pre;
   font-family: Monaco;
-  font-size: 1em;
-  line-height: 1.71;
+  font-size: 0.875rem;
+  line-height: 1.7;
   color: #ffffff;
+  background: none;
 }
 
 .md-body .highlight {
@@ -385,7 +406,7 @@
 .md-body .csv-data td,.md-body .csv-data th {
   padding: 5px;
   overflow: hidden;
-  font-size: 12px;
+  font-size: 0.725rem;
   line-height: 1;
   text-align: left;
   white-space: nowrap
