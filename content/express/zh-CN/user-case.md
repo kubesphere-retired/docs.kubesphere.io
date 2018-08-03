@@ -10,7 +10,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 ## 登录 KubeSphere
 
 1、在开始实践之前，请以操作员的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建操作员身份以及成员管理请参考  [用户管理说明](manage-users.md)，关于用户角色管理，请参考 [角色管理说明](manage-users.md)。
-![](images/uc_login.png)
+![](/static/uc_login.png)
 
 ## 创建项目
 
