@@ -6,8 +6,13 @@ title: "最佳实践"
 
 WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 和 MySQL 数据库的服务器上架设属于自己的网站, 也可以把 WordPress 当作一个内容管理系统（CMS）来使用。在本指南中，将引导用户通过 KubeSphere 控制台部署一个后端为 MySQL 数据库的 WordPress 博客网站。
 
+
+## 登录 KubeSphere
+
 1、在开始实践之前，请以操作员的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建操作员身份以及成员管理请参考  [用户管理说明](manage-users.md)，关于用户角色管理，请参考 [角色管理说明](manage-users.md)。
 ![](images/uc_login.png)
+
+## 创建项目
 
 2、登录 KubeSphere 后，通过首页直接点击 “创建项目” ，为项目命名：
 ![](images/uc_homepage.png)
@@ -17,6 +22,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 ![](images/uc_createproj.png)
 
 > 说明: 项目管理需要管理员身份进行操作，请参考  [项目管理说明](manage-projects.md) 。
+
+## 创建存储卷
 
 3、分别为 WordPress 和 MySQL 数据库创建项目所需的存储卷，可命名为 wordpress-pv 和 mysql-pv （关于如何创建存储类型请参考 [存储类型管理说明](manage-storageclasses.md) 通过管理员为其创建 ）：
 ![](images/uc_createpv.png)
@@ -56,6 +63,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 - 至此，WordPress 和 MySQL 所需的存储卷都创建成功：
 
 ![](images/uc_createpv7.png)
+
+## 创建部署
 
 6、分别为 WordPress 和 MySQL 数据库创部署资源，可命名为 wordpress 和 wordpress-mysql：
 
@@ -138,6 +147,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 9、通过服务或应用路由的方式，可以将部署的资源暴露出去供外网访问，以下将分别介绍如何以服务和应用理由等两种方式介绍如何暴露 WordPress 到外网供访问：
 ![](images/uc_createsvc.png)
 
+
+## 创建服务
+
 10、请参考以下步骤为 MySQL 数据库创建服务：
 
 - 填写基本信息，选择下一步：
@@ -184,6 +196,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createsvc10.png)
 
+## 创建应用路由
+
 12、通过创建应用路由的方式也可以将 WordPress 暴露到公网可供访问，请参考以下步骤配置应用路由：
 
 > 说明： 关于如何管理应用路由，需要以管理员身份进行操作，详细请参考 [应用路由管理说明](#manage-Ingress)
@@ -220,7 +234,21 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 > 注: 创建应用路由之后应该把公网 IP 和 `kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。
 
-13、在实践完成后，建议删除不需要的部署和服务资源，可参考 [用户指南](#用户指南) 中的应用负载管理、服务与网络和资源管理部分，进一步释放资源。
+## 副本数调节
 
-> 说明：在创建资源后如果遇到报错或资源一直处于 Pending 状态，可通过资源详情页中的事件页面和容器日志查看报错消息，进而排查问题的原因。
+13、在实际生产系统中，我们经常会遇到某个服务需要扩容的场景，也可能会遇到由于资源紧张或者工作负载降低而需要减少服务实例数的场景。在 kubectl 中我们可以利用命令 `kubectl scale rc` 来完成这些任务。但是，在 KubeSphere 中只需要通过资源详情页中左下角处的容器组数量加减按钮，来调整容器组数量，进而完成对 Pod 的动态扩容与缩放。
+
+![](images/uc_scalepods.png)
+
+
+## 删除资源
+
+14、在实践完成后，建议删除不需要的部署和服务资源，在资源列表中勾选需要删除的资源，例如下图中点击删除部署按钮可删除选中的部署资源， 详细可参考 [用户指南](#用户指南) 中的应用负载管理、服务与网络和资源管理部分，进一步释放资源。
+![](images/uc_rmresource.png)
+
+## Debug
+
+在创建资源后如果遇到报错或资源一直处于 Pending 状态，可通过资源详情页中的事件页面和容器日志查看报错消息，进而排查问题的原因。例如下图中，由于 wordpress 部署资源中的容器组状态显示 CrashLoopBackOff ，因此可以通过事件详情页中查看具体的错误消息，进一步针对性地解决问题。
+![](images/uc_debug.png)
+
 
