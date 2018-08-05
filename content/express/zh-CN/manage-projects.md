@@ -6,7 +6,7 @@ title: "项目"
 ## 创建项目      
 1. 点击右上角**创建项目**按钮，新建一个项目，项目之间的资源是相互隔离的。  
 3. 在弹出窗口填入项目基本信息并点击确定按钮。  
-![](/project_create.png)  
+![](images/project_create.png)  
 4. 项目创建后，可以进入详情页对项目进行管理，可参考后续步骤。  
 
 ## 查看项目详情  
@@ -19,21 +19,21 @@ title: "项目"
 2. 输入邮箱搜索用户，选中用户并分配合适的成员角色。注：成员角色仅作用于所属项目，请区分于用户角色。默认的成员角色有：admin，有权管理项目内包括成员和成员角色在内的所有资源；editor，有权管理项目内除成员和成员角色之外的所有资源；view，仅有权查看项目内的应用负载、服务和应用路由。
 
 点击**成员**菜单。
-![](/project_member_menu.png)  
+![](images/project_member_menu.png)  
 输入需要添加的成员名称，如存在并检索发现后，点击加号添加。  
-![](/project_member_add.png)  
+![](images/project_member_add.png)  
 为新添加的成员选择合适的成员角色，选中后会立即生效。  
-![](/project_member_role.png)  
+![](images/project_member_role.png)  
 
 ## 创建成员角色
 如项目内预置的成员角色无法满足特定权限限制的要求，则需创建自定义的成员角色。  
 
 1. 进入项目详情页面，点击左侧项目操作菜单，点击**成员**按钮，进入角色创建页面。 
-![](/project_role_add01.png)   
+![](images/project_role_add01.png)   
 2. 输入角色名称后点击下一步，依次勾选权限规则，点击创建。  
 成员角色只在当前项目下生效，是为项目成员赋予权限的一种方式，即此角色授权的覆盖范围为当前项目下的资源和操作，请区别于通过角色管理创建的用户角色。    
-![](/project_role_add02.png)
+![](images/project_role_add02.png)
 
 ## 删除项目
 进入项目详情页面，点击左侧项目操作菜单, 点击**删除**按钮删除项目。项目在删除之后，项目下的资源也会被释放掉。  
-![](/project_delete.png)
+![](images/project_delete.png)

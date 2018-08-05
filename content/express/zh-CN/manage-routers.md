@@ -1,3 +1,7 @@
+---
+title: "应用路由管理"
+---
+
 # 应用路由管理
 
 应用路由是来聚合集群内服务的方式，对应的是 Kubernetes 的 Ingress 资源，后端使用了 Nginx Controller 来处理具体规则。

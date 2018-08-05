@@ -9,8 +9,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ## 登录 KubeSphere
 
-1、在开始实践之前，请以操作员的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建操作员身份以及成员管理请参考  [用户管理说明](manage-users.md)，关于用户角色管理，请参考 [角色管理说明](manage-users.md)。
-![](/static/uc_login.png)
+1、在开始实践之前，请以普通用户（Regular）的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建普通用户（Regular）身份以及成员管理请参考  [用户管理说明](manage-users.md)，关于用户角色管理，请参考 [角色管理说明](manage-users.md)。
+
 
 ## 创建项目
 
@@ -21,64 +21,84 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createproj.png)
 
-> 说明: 项目管理需要管理员身份进行操作，请参考  [项目管理说明](manage-projects.md) 。
+> 说明: 关于项目管理详细介绍，请参考  [项目管理说明](manage-projects.md) 。
 
 ## 创建存储卷
 
-3、分别为 WordPress 和 MySQL 数据库创建项目所需的存储卷，可命名为 wordpress-pv 和 mysql-pv （关于如何创建存储类型请参考 [存储类型管理说明](manage-storageclasses.md) 通过管理员为其创建 ）：
+3、在菜单栏的资源中选择存储卷，点击创建存储卷，分别为 WordPress 和 MySQL 数据库创建存储卷，可命名为 wordpress-volume 和 mysql-volume
 ![](images/uc_createpv.png)
 
-4、创建 WordPress 所需存储卷的基本信息、存储设置和标签设置，请参考以下步骤：
+4、创建 WordPress 存储卷 `wordpress-volume` 需填写基本信息、配置存储设置和标签设置，请参考以下步骤：
 
 - 第一步，填写存储卷基本信息，完成后点下一步：
 
 ![](images/uc_createpv1.png)
 
-- 第二步，填写存储设置，完成后点下一步：
+- 第二步，填写存储设置，完成后点下一步（关于如何创建存储类型,请参考 [存储类型管理说明](manage-storageclasses.md) 通过管理员为其创建 ）：
 
 ![](images/uc_createpv2.png)
 
-- 第三步，填写标签设置并保存，完成存储卷创建：
+- 第三步，填写标签设置并保存，完成存储卷创建。在存储卷列表页，即可看到 WordPress 所需的存储卷 wordpress-volume 创建成功。
 
 ![](images/uc_createpv3.png)
 
-- 第四步，WordPress 所需的存储卷创建成功（刚完成创建时存储卷状态为 Pending 是正常的，等待数秒后状态将自动更新为 Bound）：
 
-![](images/uc_createpv4.png)
 
-5、同上，创建 MySQL 所需存储卷的基本信息、存储设置和标签设置，请参考以下步骤：
-
-- 第一步，填写存储卷基本信息，完成后点下一步：
-
-![](images/uc_createpv5.png)
-
-- 第二步，填写存储设置，完成后点下一步：
-
-![](images/uc_createpv2.png)
-
-- 第三步，填写标签设置并保存，完成存储卷创建：
-
-![](images/uc_createpv6.png)
-
-- 至此，WordPress 和 MySQL 所需的存储卷都创建成功：
+5、同上，创建 MySQL 所需存储卷 `mysql-volume`，参考上述步骤完成基本信息、存储设置和标签设置。至此，WordPress 和 MySQL 所需的存储卷都创建成功 （刚完成创建时存储卷状态为 Pending 是正常的，等待数秒后状态将自动更新为 Bound）
 
 ![](images/uc_createpv7.png)
 
 ## 创建部署
 
-6、分别为 WordPress 和 MySQL 数据库创部署资源，可命名为 wordpress 和 wordpress-mysql：
+6、在菜单栏的应用负载中选择部署，点击创建部署，分别为 WordPress 和 MySQL 数据库创建部署资源，可命名为 wordpress 和 wordpress-mysql：
 
 ![](images/uc_createdeploy.png)
 
-> 说明：关于如何管理部署资源，需要以管理员身份进行操作，详细请参考 [部署管理说明](#manage-deployments)
+> 说明：关于如何管理部署资源，请参考 [部署管理说明](#manage-deployments)
 
-7、请参考以下步骤创建部署 wordpress :
+
+7、请参考以下步骤创建部署 wordpress-mysql：
+
+- 第一步，填写创建部署的基本信息，完成后点下一步：
+
+![](images/uc_createdeploy9.png)
+
+- 第二步，填写容器组设置，名称可由用户自定义，镜像填写 `mysql:5.6` （应指定镜像版本号），CPU 和内存可按需求设置值，此处暂不作设定：
+
+![](images/uc_createdeploy10.png)
+
+> 注: 如果 docker 镜像不是来自默认的 dockerhub，请参考 [镜像仓库管理说明](#manage-imageregistries.md)
+
+- 在容器组设置中配置 MySQL 的访问端口和 MySQL 的环境变量 (root 用户的密码) 并保存，完成后点下一步：
+
+![](images/uc_createdeploy11.png)
+
+- 第三步，存储设置中，点击添加存储卷并选择第一项存储卷，然后选择之前创建好的 mysql-volume 存储卷：
+
+![](images/uc_createdeploy12.png)
+
+- 为存储卷配置挂载点，即该存储卷在容器中的挂载路径，填写后点击挂载，完成后选择下一步：
+
+![](images/uc_createdeploy13.png)
+
+- 第四步，设置标签并保存，标签能够识别、组织或查找 Kubernetes 中的资源对象，完成后选择下一步：
+
+![](images/uc_createdeploy14.png)
+
+- 第五步，节点选择器可根据需要配置，此处不作配置，选择创建，则 wordpress-mysql 部署创建成功:
+
+![](images/uc_createdeploy7.png)
+
+
+> 注: MySQL 数据库还可通过创建有状态副本集的方式完成部署
+
+8、请参考以下步骤创建部署 wordpress :
 
 - 第一步，填写创建部署的基本信息，完成后点下一步：
 
 ![](images/uc_createdeploy1.png)
 
-- 第二步，填写容器组设置，名称可自定义，镜像填写 wordpress 将默认为最新版本的镜像：
+- 第二步，填写容器组设置，名称可自定义，镜像填写 `wordpress` :
 
 ![](images/uc_createdeploy2.png)
 
@@ -86,7 +106,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createdeploy3.png)
 
-- 第三步，存储设置中，点击添加存储卷并选择第一项存储卷，然后选择之前创建好的 wordpress-pv 存储卷：
+- 第三步，存储设置中，点击添加存储卷并选择第一项存储卷，然后选择之前创建好的 wordpress-volume 存储卷：
 
 ![](images/uc_createdeploy4.png)
 
@@ -98,51 +118,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createdeploy6.png)
 
-- 第五步，节点选择器根据需要配置，本实践中暂不作配置，选择创建：
-
-![](images/uc_createdeploy7.png)
-
-- WordPress 部署创建成功（刚完成创建时部署状态为 “更新中” 是正常的，系统为其拉取镜像和调度资源需要时间，等待数秒后状态将自动更新为运行中）：
-
-![](images/uc_createdeploy8.png)
-
-8、请参考以下步骤创建部署 mysql：
-
-- 第一步，填写创建部署的基本信息，完成后点下一步：
-
-![](images/uc_createdeploy9.png)
-
-- 第二步，填写容器组设置，名称可由用户自定义，镜像填写 `mysql:5.6`， 若不指定版本号将默认为最新版本的镜像：
-
-![](images/uc_createdeploy10.png)
-
-> 注: 如果 docker 镜像不是来自默认的 dockerhub，请参考 [管理镜像仓库说明](#manage-imageregistries.md)
-
-- 在容器组设置中配置 MySQL 的访问端口和 MySQL 的环境变量(root 用户的密码)并保存，完成后点下一步：
-
-![](images/uc_createdeploy11.png)
-
-- 第三步，存储设置中，点击添加存储卷并选择第一项存储卷，然后选择之前创建好的 mysql-pv 存储卷：
-
-![](images/uc_createdeploy12.png)
-
-- 为存储卷配置挂载点，即该存储卷在容器中的挂载路径，填写后点击挂载，完成后选择下一步：
-
-![](images/uc_createdeploy13.png)
-
-- 第四步，设置标签并保存，完成后选择下一步：
-
-![](images/uc_createdeploy14.png)
-
-- 第五步，节点选择器根据需要配置，本实践中暂不作配置，选择创建：
-
-![](images/uc_createdeploy7.png)
-
-- 至此，WordPress 和 MySQL 部署都创建成功（刚完成创建时部署状态为 “更新中” 是正常的，系统为其拉取镜像和调度资源需要时间，等待数秒后状态将自动更新为运行中）：
+- 第五步，节点选择器根据需要配置，本实践中暂不作配置，选择创建，则 WordPress 部署创建成功。 至此，WordPress 和 MySQL 部署都创建成功（刚完成创建时部署状态为 “更新中” 是正常的，系统为其拉取镜像和调度资源需要时间，等待数秒后状态将自动更新为运行中）：
 
 ![](images/uc_createdeploy15.png)
-
-> 注: MySQL 数据库还可通过创建有状态副本集的方式完成部署
 
 9、通过服务或应用路由的方式，可以将部署的资源暴露出去供外网访问，以下将分别介绍如何以服务和应用理由等两种方式介绍如何暴露 WordPress 到外网供访问：
 ![](images/uc_createsvc.png)
@@ -168,7 +146,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createsvc4.png)
 
-> 说明： 关于如何管理服务，需要以管理员身份进行操作，详细请参考 [服务管理说明](#manage-services)
+> 说明： 关于如何管理服务，请参考 [服务管理说明](#manage-services)
 
 11、请参考以下步骤为 WordPress 创建服务：
 
@@ -176,7 +154,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createsvc5.png)
 
-- 第二步，参考以下参数完成参数设置，选择下一步：
+- 第二步，参考以下参数配置选择器、wordpress 访问端口完成参数设置，选择下一步：
 
 ![](images/uc_createsvc6.png)
 
@@ -200,7 +178,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 12、通过创建应用路由的方式也可以将 WordPress 暴露到公网可供访问，请参考以下步骤配置应用路由：
 
-> 说明： 关于如何管理应用路由，需要以管理员身份进行操作，详细请参考 [应用路由管理说明](#manage-Ingress)
+> 说明： 关于如何管理应用路由，详细请参考 [应用路由管理说明](#manage-Ingress)
 
 - 第一步，配置外网访问入口，即应用路由的网关入口：
 
@@ -215,7 +193,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](images/uc_createingress2.png)
 
-- 第三步，配置路由规则，这里以 `kubesphere.wp.com` 为例，并且 path 选择之前的部署资源 wordpress，选择下一步：
+- 第三步，配置路由规则，这里以 `kubesphere.wp.com` 为例，并且 path 选择之前的创建成功的服务 wordpress-service，选择下一步：
 
 ![](images/uc_createingress3.png)
 

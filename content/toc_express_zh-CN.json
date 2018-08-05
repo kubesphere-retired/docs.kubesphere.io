@@ -10,7 +10,7 @@
       "entry": "./express/zh-CN/KubeSphere-Installer-Guide.md"
     },
     {
-      "title": "应用负载",
+      "title": "应用负载指南",
       "entries": [
         {
           "entry": "./express/zh-CN/manage-deployments.md"
@@ -24,7 +24,21 @@
       ]
     },
     {
-      "title": "应用管理",
+      "title": "服务与网络指南",
+      "entries": [
+        {
+          "entry": "./express/zh-CN/manage-services.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-routers.md"
+        }
+      ]
+    },
+
+     
+
+    {
+      "title": "应用管理指南",
       "entries": [
         {
           "entry": "./express/zh-CN/manage-applications.md"
@@ -32,7 +46,7 @@
       ]
     },
     {
-      "title": "资源管理",
+      "title": "资源管理指南",
       "entries": [
         {
           "entry": "./express/zh-CN/manage-imageregistries.md"
@@ -49,7 +63,7 @@
       ]
     },
     {
-      "title": "平台管理",
+      "title": "平台管理指南",
       "entries": [
         {
           "entry": "./express/zh-CN/manage-projects.md"
@@ -61,6 +75,15 @@
           "entry": "./express/zh-CN/manage-users.md"
         }
       ]
+    },
+    {
+      "title": "最佳实践",
+      "entries": [
+        {
+          "entry": "./express/zh-CN/user-case.md"
+        }
+      ]
     }
+
   ]
 }
