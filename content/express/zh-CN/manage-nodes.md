@@ -25,15 +25,12 @@ Kubernetes 集群中的计算能力由主机提供，Kubernetes 集群中的 Nod
 ![](/node_taints.png)
 
 > 参数解释:
-- NoSchedule: 表示不允许调度，已调度的不影响
-- PreferNoSchedule: 表示尽量不调度
-- NoExecute: 表示不允许调度，已调度的在 tolerationSeconds（定义在 Tolerations 上）后删除
-
-Node 和 Pod 上都可以定义多个 Taints 和 Tolerations，Scheduler 会根据具体定义进行筛选，Node筛选Pod列表的时候，会保留 Tolerations 定义匹配的，过滤掉没有 Tolerations 定义的，过滤的过程是这样的：
-
-- 如果 Node 中存在一个或多个影响策略为 NoSchedule 的 Taint，该 Pod 不会被调度到该 Node。
-- 如果 Node 中不存在影响策略为 NoSchedule 的 Taint，但是存在一个或多个影响策略为 PreferNoSchedule 的 Taint，该 Pod 会尽量不调度到该 Node。
-- 如果 Node 中存在一个或多个影响策略为 NoExecute 的 Taint，该 Pod 不会被调度到该 Node，并且会驱逐已经调度到该 Node 的 Pod 实例。
+> - NoSchedule: 表示不允许调度，已调度的不影响
+> - PreferNoSchedule: 表示尽量不调度
+> - NoExecute: 表示不允许调度，已调度的在 tolerationSeconds（定义在 Tolerations 上）后删除
+> Node 和 Pod 上都可以定义多个 Taints 和 Tolerations，Scheduler 会根据具体定义进行筛选，Node筛选Pod列表的时候，会保留 Tolerations 定义匹配的，过滤掉没有 Tolerations 定义的，过滤的过程是这样的：
+> - 如果 Node 中不存在影响策略为 NoSchedule 的 Taint，但是存在一个或多个影响策略为 PreferNoSchedule 的 Taint，该 Pod 会尽量不调度到该 Node。
+> - 如果 Node 中存在一个或多个影响策略为 NoExecute 的 Taint，该 Pod 不会被调度到该 Node，并且会驱逐已经调度到该 Node 的 Pod 实例。
 
 
 3. 当对所需一个或者多个主机节点完成相应 Taints 编辑操作后，点击**应用**按钮，完成 Taints 配置的更新。
