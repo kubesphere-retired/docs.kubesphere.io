@@ -10,61 +10,67 @@ const Link = ({ to, ...rest }, { location }) => {
   const selected = location.pathname + location.hash === to
 
   return (
-    <GatsbyLink to={to} {...rest} className={classnames({['selected-link']: selected})}/>
+    <GatsbyLink
+      to={to}
+      {...rest}
+      className={classnames({ ['selected-link']: selected })}
+    />
   )
 }
 
 Link.contextTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
 }
 
 class LinkWithHeadings extends React.Component {
   constructor(props) {
-    super(props);
-    
+    super(props)
+
     this.state = {
       open: false,
     }
   }
 
   componentDidMount() {
-    const { location } = this.context;
-    const { fields } = this.props.entry.childMarkdownRemark;
+    const { location } = this.context
+    const { fields } = this.props.entry.childMarkdownRemark
 
     this.setState({
-      open: location.pathname === fields.slug
+      open: location.pathname === fields.slug,
     })
   }
 
   handleClick = () => {
     this.setState(({ open }) => ({
-      open: !open
+      open: !open,
     }))
   }
 
   render() {
-    const { entry, level, title } = this.props;
-    const { headings, fields, frontmatter } = entry.childMarkdownRemark;
-    const { open } = this.state;
+    const { entry, level, title } = this.props
+    const { headings, fields, frontmatter } = entry.childMarkdownRemark
+    const { open } = this.state
 
-    let heads = [];
+    let heads = []
 
     if (headings) {
       heads = headings.filter(head => head.depth === 2)
     }
-  
+
     return (
       <div>
         <Link to={fields.slug}>
           <Title level={level} onClick={this.handleClick}>
-            <Arrow className={classnames({'arrow-open': open})}/>{title || frontmatter.title}
+            <Arrow className={classnames({ 'arrow-open': open })} />
+            {title || frontmatter.title}
           </Title>
         </Link>
-        <HeadingsWrapper className={classnames('heads-toggle', {'heads-open': open})}>
-          {
-            heads.length > 0 &&
-            <Headings heads={heads} prefix={fields.slug} level={level+1}/>
-          }
+        <HeadingsWrapper
+          className={classnames('heads-toggle', { 'heads-open': open })}
+        >
+          {heads.length > 0 && (
+            <Headings heads={heads} prefix={fields.slug} level={level + 1} />
+          )}
         </HeadingsWrapper>
       </div>
     )
@@ -72,14 +78,23 @@ class LinkWithHeadings extends React.Component {
 }
 
 LinkWithHeadings.contextTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
 }
 
 const Headings = ({ heads, prefix, level }) => (
   <StyledList>
     {heads.map(({ value }, key) => (
       <ListItem key={key}>
-        <Link to={prefix + '#' + value.split(' ').join('-').toLowerCase()} >
+        <Link
+          to={
+            prefix +
+            '#' +
+            value
+              .split(' ')
+              .join('-')
+              .toLowerCase()
+          }
+        >
           <Title level={level}>{value}</Title>
         </Link>
       </ListItem>
@@ -99,49 +114,51 @@ const Links = ({ entries, level }) => (
 
 class ChapterList extends React.Component {
   constructor(props, context) {
-    super(props);
+    super(props)
 
-    let open = false;
+    let open = false
     if (props.entries) {
-      const slugs = props.entries.map(({ entry }) => entry.childMarkdownRemark.fields.slug);
+      const slugs = props.entries.map(
+        ({ entry }) => entry.childMarkdownRemark.fields.slug
+      )
 
-      open = slugs.includes(context.location.pathname);
+      open = slugs.includes(context.location.pathname)
     }
 
     this.state = { open }
   }
 
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   handleClick = () => {
     this.setState(({ open }) => ({
-      open: !open
+      open: !open,
     }))
   }
 
   render() {
-    const { chapters, entry, entries, title, level = 0 } = this.props;
-    const { open } = this.state;
+    const { chapters, entry, entries, title, level = 0 } = this.props
+    const { open } = this.state
 
     return (
       <StyledList>
         {title && (
           <ListItem key={`${title}${level}`}>
-            {
-              entry ?
-              <LinkWithHeadings entry={entry} level={level} title={title}/>
-              : 
+            {entry ? (
+              <LinkWithHeadings entry={entry} level={level} title={title} />
+            ) : (
               <Title level={level} onClick={this.handleClick}>
-                <Arrow className={classnames({'arrow-open': open})}/>{title}
+                <Arrow className={classnames({ 'arrow-open': open })} />
+                {title}
               </Title>
-            }
+            )}
           </ListItem>
         )}
         {
-          <ListItem className={classnames('list-toggle', {'list-open': open})}>
-            {entries && <Links entries={entries} level={level + 1}/>}
+          <ListItem
+            className={classnames('list-toggle', { 'list-open': open })}
+          >
+            {entries && <Links entries={entries} level={level + 1} />}
           </ListItem>
         }
         <ListItem>
@@ -156,7 +173,7 @@ class ChapterList extends React.Component {
 }
 
 ChapterList.contextTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
 }
 
 export default ChapterList
@@ -214,7 +231,7 @@ const Title = styled.h5`
     margin-right: 12px;
     vertical-align: top;
     transform: rotate(-90deg);
-    transition: all .2s ease;
+    transition: all 0.2s ease;
 
     &.arrow-open {
       transform: rotate(0);
