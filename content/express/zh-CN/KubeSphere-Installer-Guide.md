@@ -4,7 +4,7 @@ title: "KubeSphere 安装指南"
 
 ## 简介
 
-本手册适用于 [KubeSphere](https://kubesphere.io) Express Edition 部署场景使用。KubeSphere 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器管理平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
+[KubeSphere](https://kubesphere.io) 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器管理平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
 ## 部署 KubeSphere
 
@@ -15,7 +15,6 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 - 当进行 multi-node 模式部署多节点集群时，可在配置文件中设置集群角色。
 - 由于部署过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。
 
----
 
 ## All-in-One 模式
 
@@ -108,7 +107,7 @@ ks-apiserver-nodeport: 32002
 
 KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://kubesphere.qingcloud.com)。
 
----
+
 
 ## Multi-Node 模式
 
@@ -132,7 +131,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://k
 
 **集群架构：** 单 master 单 etcd 多 node
 
-![](/pic04.png)
+![](/pic04.svg)
 
 > `etcd` 作为一个高可用键值存储系统, etcd 节点个数至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数建议设置为`奇数个`，在当前 KubeSphere Express 版本暂支持单个 etcd 节点，将会在下一个 Advanced Edition 版本中支持 etcd 多节点部署。
 
@@ -317,9 +316,9 @@ ks-apiserver-nodeport: 32002
 
 ![](/pic02.png)
 
-KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://kubesphere.qingcloud.com)。
+KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://docs.kubesphere.io)。
 
----
+
 
 ## 附录1：存储配置说明
 
@@ -342,7 +341,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://k
 | local\_volume\_provisioner\_storage\_class | storage\_class 名称，   默认：local |
 | local\_volume\_is\_default\_class | 是否设定为默认 storage\_class， 是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class |
 
-> 说明： 在您配置好 local Volume (只有 all-in-one 支持这类存储) 并成功安装 KubeSphere 后，请参考 [《KubeSphere 用户指南》](https://kubesphere.qingcloud.com), 在用户指南的附录 1 对如何使用 Local Volume 有详细说明。
+> 说明： 在您配置好 local Volume (只有 all-in-one 支持这类存储) 并成功安装 KubeSphere 后，请参考 [《KubeSphere 用户指南》](https://docs.kubesphere.io), 在用户指南的附录 1 对如何使用 Local Volume 有详细说明。
 
 <br/>
 
@@ -352,13 +351,13 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://k
 | ceph\_rbd\_storage\_class | storage\_class 名称 |
 | ceph\_rbd\_is\_default\_class | 是否设定为默认 storage\_class， 是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class |
 | ceph\_rbd\_monitors | 根据 Ceph RBD 服务端配置填写，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_admin\_id | 能够在存储池中创建 images 的客户端 ID ，默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
+| ceph\_rbd\_admin\_id | 能够在存储池中创建  的客户端 ID ，默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_admin\_secret | Admin_id 的 secret，安装程序将会自动在 kube-system 项目内创建此 secret，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_pool | 可使用的 CephRBD 存储池，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_user\_id | 用于映射 RBD images 的 ceph 客户端 ID 默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
+| ceph\_rbd\_user\_id | 用于映射 RBD  的 ceph 客户端 ID 默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_user\_secret | User_id 的 secret，需注意在所使用 rbd image 的项目内都需创建此 Secret，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_fsType | kubernetes 支持的 fsType，默认：ext4，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_imageFormat | CephRBD images 格式，默认："1"，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
+| ceph\_rbd\_imageFormat | CephRBD  格式，默认："1"，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 |ceph\_rbd\_imageFeatures| 当 ceph_rbd_imageFormat 字段不为 1 时需填写此字段，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd)|
 
 > 注： 存储类型中创建 secret 所需 ceph secret 如 ceph_rbd_admin_secret 和 ceph_rbd_user_secret 可在 ceph 服务端通过以下命令获得：
@@ -390,3 +389,60 @@ $ ceph auth get-key client.admin
 $ export HEKETI_CLI_SERVER=http://localhost:8080
 $ heketi-cli cluster list
 ```
+
+## 附录2：安装 QingCloud CSI 块存储插件
+
+QingCloud CSI 插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。
+目前，QingCloud CSI 插件已经在 Kubernetes v1.10 环境中通过了 CSI 测试。块存储插件部署后, 用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型(超高性能型硬盘只能用在超高性能型主机)、性能型或容量型硬盘的存储卷并挂载至工作负载。
+可参考 [QingCloud-CSI 块存储插件安装指南](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 进行安装和体验块存储插件。
+
+
+## 附录3：离线安装说明
+
+离线安装的方法与在线安装类似，只需要根据主机信息在配置文件中做细微修改即可，详细请参考如下步骤：
+
+1. 下载 [KubeSphere 离线安装包](https://kubesphere.io) (努力 Coding 中)
+
+
+2. 解压安装包并进入安装目录：
+```
+$ tar -zxvf kubesphere-all-offline-express-1.0.0-alpha.tar.gz
+```
+```
+$ cd kubesphere-all-offline-express-1.0.0-alpha
+```
+
+3. 修改配置文件 `conf/var.yml` 的 `LocalIP` 字段为当前待部署主机的 IP 地址, 如：
+```
+LocalIP: 192.168.0.2
+```
+
+4. 离线安装的后续步骤可参考在线部署中的 all-in-one 或 multi-node 模式修改对应的配置文件，最终完成部署单节点或多节点的集群。
+
+5. 执行 `install.sh` 开始安装时，请在菜单中先选择 `1` 初始化安装包，待初始化完成后再选择 `2` 或 `3` 进行 all-in-one 或 multi-node 部署， 此处与在线部署略有不同。
+
+```
+################################################
+         KubeSphere Installer Menu
+################################################
+*   1) InitInstaller
+*   2) All-in-one
+*   3) Multi-node
+*   4) Quit
+################################################
+https://kubesphere.io/               2018-08-01
+################################################
+Please input an option: 1
+```
+
+>注：
+>初始化只需要执行一次，若执行 all-in-one 或 Multi-node 报错后重新执行时，不需要再初始化安装包。
+
+## 附录4：组件版本信息
+
+|  组件 |  版本 |
+|---|---|
+|KubeSphere| 1.0 Alpha (20180705.1800)|
+|KubeSphere Console| Express Edition |
+|Kubernetes| v1.10.5|
+|OpenPitrix| v0.1.6|
