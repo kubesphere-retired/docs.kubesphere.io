@@ -4,7 +4,7 @@ title: "KubeSphere 安装指南"
 
 ## 简介
 
-本手册适用于 [KubeSphere](https://kubesphere.io) Express Edition 部署场景使用。KubeSphere 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器管理平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
+[KubeSphere](https://kubesphere.io) 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器管理平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
 ## 部署 KubeSphere
 
@@ -103,7 +103,7 @@ ks-apiserver-nodeport: 32002
 
 **(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080), 即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
 
-![](images/pic02.png)
+![](/pic02.png)
 
 KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://kubesphere.qingcloud.com)。
 
@@ -131,7 +131,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://k
 
 **集群架构：** 单 master 单 etcd 多 node
 
-![](images/pic04.svg)
+![](/pic04.svg)
 
 > `etcd` 作为一个高可用键值存储系统, etcd 节点个数至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数建议设置为`奇数个`，在当前 KubeSphere Express 版本暂支持单个 etcd 节点，将会在下一个 Advanced Edition 版本中支持 etcd 多节点部署。
 
@@ -314,7 +314,7 @@ ks-apiserver-nodeport: 32002
 
 **(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080), 即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
 
-![](images/pic02.png)
+![](/pic02.png)
 
 KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://docs.kubesphere.io)。
 
@@ -351,13 +351,13 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://d
 | ceph\_rbd\_storage\_class | storage\_class 名称 |
 | ceph\_rbd\_is\_default\_class | 是否设定为默认 storage\_class， 是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class |
 | ceph\_rbd\_monitors | 根据 Ceph RBD 服务端配置填写，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_admin\_id | 能够在存储池中创建 images 的客户端 ID ，默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
+| ceph\_rbd\_admin\_id | 能够在存储池中创建  的客户端 ID ，默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_admin\_secret | Admin_id 的 secret，安装程序将会自动在 kube-system 项目内创建此 secret，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_pool | 可使用的 CephRBD 存储池，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_user\_id | 用于映射 RBD images 的 ceph 客户端 ID 默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
+| ceph\_rbd\_user\_id | 用于映射 RBD  的 ceph 客户端 ID 默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_user\_secret | User_id 的 secret，需注意在所使用 rbd image 的项目内都需创建此 Secret，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_fsType | kubernetes 支持的 fsType，默认：ext4，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_imageFormat | CephRBD images 格式，默认："1"，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
+| ceph\_rbd\_imageFormat | CephRBD  格式，默认："1"，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 |ceph\_rbd\_imageFeatures| 当 ceph_rbd_imageFormat 字段不为 1 时需填写此字段，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd)|
 
 > 注： 存储类型中创建 secret 所需 ceph secret 如 ceph_rbd_admin_secret 和 ceph_rbd_user_secret 可在 ceph 服务端通过以下命令获得：
@@ -390,11 +390,18 @@ $ export HEKETI_CLI_SERVER=http://localhost:8080
 $ heketi-cli cluster list
 ```
 
-### 附录2：离线安装说明
+## 附录2：安装 QingCloud CSI 块存储插件
+
+QingCloud CSI 插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。
+目前，QingCloud CSI 插件已经在 Kubernetes v1.10 环境中通过了 CSI 测试。块存储插件部署后, 用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型(超高性能型硬盘只能用在超高性能型主机)、性能型或容量型硬盘的存储卷并挂载至工作负载。
+可参考 [QingCloud-CSI 块存储插件安装指南](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 进行安装和体验块存储插件。
+
+
+## 附录3：离线安装说明
 
 离线安装的方法与在线安装类似，只需要根据主机信息在配置文件中做细微修改即可，详细请参考如下步骤：
 
-1. 下载 [KubeSphere 离线安装包](https://kubesphere.io)
+1. 下载 [KubeSphere 离线安装包](https://kubesphere.io) (努力 Coding 中)
 
 
 2. 解压安装包并进入安装目录：
@@ -431,7 +438,7 @@ Please input an option: 1
 >注：
 >初始化只需要执行一次，若执行 all-in-one 或 Multi-node 报错后重新执行时，不需要再初始化安装包。
 
-### 附录3：组件版本信息
+## 附录4：组件版本信息
 
 |  组件 |  版本 |
 |---|---|

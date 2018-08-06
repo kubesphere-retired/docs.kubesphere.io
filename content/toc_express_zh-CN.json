@@ -10,6 +10,16 @@
       "entry": "./express/zh-CN/KubeSphere-Installer-Guide.md"
     },
     {
+      "title": "用户指南",
+      "entry": "./express/zh-CN/guide-intro.md"
+
+    },
+    {
+      "title": "首页",
+      "entry": "./express/zh-CN/homepage.md"
+
+    },
+    {
       "title": "应用负载指南",
       "entries": [
         {
@@ -35,13 +45,16 @@
       ]
     },
 
-     
+
 
     {
       "title": "应用管理指南",
       "entries": [
         {
           "entry": "./express/zh-CN/manage-applications.md"
+        },
+        {
+          "entry": "./express/zh-CN/manage-repo.md"
         }
       ]
     },
@@ -73,6 +86,9 @@
         },
         {
           "entry": "./express/zh-CN/manage-users.md"
+        },
+        {
+          "entry": "./express/zh-CN/service-components.md"
         }
       ]
     },
@@ -84,6 +100,7 @@
         }
       ]
     }
+
 
   ]
 }
