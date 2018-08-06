@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "dependencies": {
     "classnames": "^2.2.6",
-    "docsearch.js": "^2.5.2",
     "gatsby": "^1.9.247",
     "gatsby-link": "^1.6.40",
     "gatsby-plugin-catch-links": "^1.0.24",

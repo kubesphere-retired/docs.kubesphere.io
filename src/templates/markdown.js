@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
-import docSearch from 'docsearch.js'
 
 import SiteHeader from '../components/Header'
 import Versions from '../components/Versions'
@@ -19,12 +18,14 @@ export default class MarkdownTemplate extends React.Component {
   componentDidMount() {
     this.scrollToHash()
 
-    docSearch({
-      apiKey: '221332a85783d16a5b930969fe4a934a',
-      indexName: 'kubesphere',
-      inputSelector: '.ks-search > input',
-      debug: false,
-    })
+    if (typeof docsearch !== 'undefined') {
+      docsearch({
+        apiKey: '221332a85783d16a5b930969fe4a934a',
+        indexName: 'kubesphere',
+        inputSelector: '.ks-search > input',
+        debug: false,
+      })
+    }
   }
 
   scrollToHash = () => {
