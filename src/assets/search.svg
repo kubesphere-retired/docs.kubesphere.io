@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Glyph/002.Object/002.Magnifier/Black</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="tutorial" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Glyph/002.Object/002.Magnifier/Black" transform="translate(-3.000000, -3.000000)">
+            <path d="M15.6063847,14.1921711 L20.8456879,19.4314743 L19.4314743,20.8456879 L14.1921711,15.6063847 C14.7282681,15.2048733 15.2048733,14.7282681 15.6063847,14.1921711 Z" id="Combined-Shape" fill="#324558"></path>
+            <path d="M10,17 C6.13400675,17 3,13.8659932 3,10 C3,6.13400675 6.13400675,3 10,3 C13.8659932,3 17,6.13400675 17,10 C17,13.8659932 13.8659932,17 10,17 Z M10,15 C12.7614237,15 15,12.7614237 15,10 C15,7.23857625 12.7614237,5 10,5 C7.23857625,5 5,7.23857625 5,10 C5,12.7614237 7.23857625,15 10,15 Z" id="Shape" fill="#B6C2CD"></path>
+        </g>
+    </g>
+</svg>
