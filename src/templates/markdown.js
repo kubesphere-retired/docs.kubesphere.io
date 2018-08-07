@@ -127,6 +127,18 @@ const ToCContainer = styled.div`
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
+  fragment ChildMarkdownRemark on MarkdownRemark {
+    fields {
+      slug
+    }
+    frontmatter {
+      title
+    }
+    headings {
+      value
+      depth
+    }
+  }
   query MarkdownBySlug($slug: String!, $id: String!, $version: String!) {
     site {
       siteMetadata {
@@ -163,31 +175,30 @@ export const pageQuery = graphql`
             entry {
               id
               childMarkdownRemark {
-                fields {
-                  slug
-                }
-                frontmatter {
-                  title
-                }
-                headings {
-                  value
-                  depth
-                }
+                ...ChildMarkdownRemark
               }
             }
             entries {
               entry {
                 id
                 childMarkdownRemark {
-                  fields {
-                    slug
-                  }
-                  frontmatter {
-                    title
-                  }
-                  headings {
-                    value
-                    depth
+                  ...ChildMarkdownRemark
+                }
+              }
+            }
+            chapters {
+              title
+              entry {
+                id
+                childMarkdownRemark {
+                  ...ChildMarkdownRemark
+                }
+              }
+              entries {
+                entry {
+                  id
+                  childMarkdownRemark {
+                    ...ChildMarkdownRemark
                   }
                 }
               }
