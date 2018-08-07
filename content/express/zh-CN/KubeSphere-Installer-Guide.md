@@ -91,7 +91,7 @@ Please input an option: 1
 ```bash
 PLAY RECAP *********************************************
 KubeSphere     : ok=69 changed=68 unreachable=0 failed=0
-Succesful!
+Successful!
 ########################################################
 KubeSphere is running！
 Matser IP: 121.10.121.111

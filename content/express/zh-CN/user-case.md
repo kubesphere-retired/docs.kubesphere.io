@@ -8,7 +8,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ## 登录 KubeSphere
 
-1、在开始实践之前，请以普通用户（Regular）的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建普通用户（Regular）身份以及成员管理请参考  [用户管理说明](https://docs.kubesphere.io/express/zh-CN/manage-users)，关于用户角色管理的详细介绍，请参考 [角色管理说明](https://docs.kubesphere.io/express/zh-CN/manage-roles)。
+1、在开始实践之前，请以普通用户（Regular）的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建普通用户（Regular）身份以及成员管理请参考  [用户管理说明](/express/zh-CN/manage-users/)，关于用户角色管理的详细介绍，请参考 [角色管理说明](/express/zh-CN/manage-roles/)。
 
 
 ## 创建项目
@@ -20,7 +20,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createproj.png)
 
-> 说明: 关于项目管理的详细介绍，请参考  [项目管理说明](https://docs.kubesphere.io/express/zh-CN/manage-projects) 。
+> 说明: 关于项目管理的详细介绍，请参考  [项目管理说明](/express/zh-CN/manage-projects/) 。
 
 ## 创建存储卷
 
@@ -33,7 +33,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createpv1.png)
 
-- 第二步，填写存储设置，完成后点下一步（关于创建存储类型的详细介绍, 请参考 [存储类型管理说明](https://docs.kubesphere.io/express/zh-CN/manage-storageclasses) 通过管理员为其创建 ）：
+- 第二步，填写存储设置，完成后点下一步（关于创建存储类型的详细介绍, 请参考 [存储类型管理说明](/express/zh-CN/manage-storageclasses/) 通过管理员为其创建 ）：
 
 ![](/uc_createpv2.png)
 
@@ -53,7 +53,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createdeploy.png)
 
-> 说明：关于如何管理部署资源，请参考 [部署管理说明](https://docs.kubesphere.io/express/zh-CN/manage-deployments)
+> 说明：关于如何管理部署资源，请参考 [部署管理说明](/express/zh-CN/manage-deployments/)
 
 
 7、请参考以下步骤创建部署 wordpress-mysql：
@@ -66,9 +66,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createdeploy10.png)
 
-> 注: 如果 docker 镜像不是来自默认的 dockerhub，例如 docker 镜像来自 Harbor 镜像仓库, 请参考 [镜像仓库管理说明](https://docs.kubesphere.io/express/zh-CN/manage-imageregistries)
+> 注: 如果 docker 镜像不是来自默认的 dockerhub，例如 docker 镜像来自 Harbor 镜像仓库, 请参考 [镜像仓库管理说明](/express/zh-CN/manage-imageregistries/)
 
-- 在容器组设置中配置 MySQL 的访问端口和 MySQL 的环境变量 (root 用户的密码) , **端口**用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP, 用户还可以指定端口与主机端口进行绑定。**环境变量**可以指定容器内部使用的环境变量。完成后点下一步：
+- 在容器组设置中配置 MySQL 的访问端口和 MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 和 root 用户的密码 , **端口**用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP, 用户还可以指定端口与主机端口进行绑定。**环境变量**可以指定容器内部使用的环境变量。完成后点下一步：
 
 ![](/uc_createdeploy11.png)
 
@@ -97,11 +97,11 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createdeploy1.png)
 
-- 第二步，填写容器组设置，名称可自定义，镜像填写 `wordpress` :
+- 第二步，填写容器组设置，名称可自定义，镜像填写 `wordpress:4.8-apache` :
 
 ![](/uc_createdeploy2.png)
 
-- 在容器组设置中配置 WordPress 的访问端口和关联 MySQL 的环境变量并保存，完成后点下一步：
+- 在容器组设置中配置 WordPress 的访问端口和关联 MySQL 的环境变量 (`WORDPRESS_DB_HOST` 和 `WORDPRESS_DB_PASSWORD`) 并保存，完成后点下一步：
 
 > 注意:  环境变量中, ``WORDPRESS_DB_HOST`` 的值对应的是 MySQL 服务的名称, 在后续步骤创建 MySQL 服务时, 服务名应该与此处的环境变量值相同, 否则无法连接 MySQL 数据库。
 
@@ -148,7 +148,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createsvc4.png)
 
-> 说明： 关于如何管理服务的详细介绍，请参考 [服务管理说明](https://docs.kubesphere.io/express/zh-CN/manage-services)
+> 说明： 关于如何管理服务的详细介绍，请参考 [服务管理说明](/express/zh-CN/manage-services)
 
 11、请参考以下步骤为 WordPress 创建服务：
 
@@ -164,7 +164,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createsvc7.png)
 
-- 第四步，设置外网访问时，共有 None、 NodePort、 LoadBalancer 三种访问方式，可根据情景来设置访问方式。本实践以 LoadBalancer 的方式暴露服务，并将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务, 完成后点击创建：
+- 第四步，设置外网访问时，共有 None、 NodePort、 LoadBalancer 三种访问方式，可根据情景来设置访问方式。本实践以 LoadBalancer 的方式暴露服务，并将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务, 完成后点击创建：
 
 ![](/uc_createsvc8.png)
 
@@ -180,14 +180,14 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 12、通过创建应用路由的方式也可以将 WordPress 暴露到公网可供访问，请参考以下步骤配置应用路由：
 
-> 说明： 关于如何管理应用路由，详细请参考 [应用路由管理说明](#https://docs.kubesphere.io/express/zh-CN/manage-routers)
+> 说明： 关于如何管理应用路由，详细请参考 [应用路由管理说明](/express/zh-CN/manage-routers/)
 
 - 第一步，配置外网访问入口，即应用路由的网关入口：
 
 ![](/uc_createingress.png)
 
 
-- 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，可根据情景需要来设置访问方式，本实践以 LoadBalancer 为例配置网关入口，将公网 IP 地址的 ID 填入 Annotation，配置完成后点击应用：
+- 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，可根据情景需要来设置访问方式，本实践以 LoadBalancer 为例配置网关入口，将公网 IP 地址的 `ID` 填入 Annotation，配置完成后点击应用：
 
 ![](/uc_createingress1.png)
 
@@ -210,9 +210,11 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 至此，WordPress 就以应用路由的方式通过网关入口暴露到外网以供访问，用户可以通过示例中配置的 `kubesphere.wp.com` 访问 WordPress 博客网站：
 
+> 注: 创建应用路由之后应该把公网 IP 和 `kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。
+
 ![](/uc_createingress6.png)
 
-> 注: 创建应用路由之后应该把公网 IP 和 `kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。
+
 
 ## 副本数调节
 
