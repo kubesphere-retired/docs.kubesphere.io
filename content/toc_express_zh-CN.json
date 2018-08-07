@@ -14,6 +14,16 @@
       "entry": "./express/zh-CN/guide-intro.md"
 
     },
+
+    {
+      "title": "快速入门",
+      "entries": [
+        {
+          "entry": "./express/zh-CN/user-case.md"
+        }
+      ]
+    },
+
     {
       "title": "首页",
       "entry": "./express/zh-CN/homepage.md"
@@ -91,16 +101,6 @@
           "entry": "./express/zh-CN/service-components.md"
         }
       ]
-    },
-    {
-      "title": "最佳实践",
-      "entries": [
-        {
-          "entry": "./express/zh-CN/user-case.md"
-        }
-      ]
     }
-
-
   ]
 }
