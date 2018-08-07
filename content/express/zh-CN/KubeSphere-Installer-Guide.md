@@ -360,7 +360,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://d
 | ceph\_rbd\_imageFormat | CephRBD  格式，默认："1"，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 |ceph\_rbd\_imageFeatures| 当 ceph_rbd_imageFormat 字段不为 1 时需填写此字段，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd)|
 
-> 注： 存储类型中创建 secret 所需 ceph secret 如 ceph_rbd_admin_secret 和 ceph_rbd_user_secret 可在 ceph 服务端通过以下命令获得：
+> 注： 存储类型中创建 secret 所需 ceph secret 如 `ceph_rbd_admin_secret` 和 `ceph_rbd_user_secret` 可在 ceph 服务端通过以下命令获得：
 
 ```bash
 $ ceph auth get-key client.admin
