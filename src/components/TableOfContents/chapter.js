@@ -7,7 +7,7 @@ import classnames from 'classnames'
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 
 const Link = ({ to, ...rest }, { location }) => {
-  const selected = location.pathname + location.hash === to
+  const selected = location.pathname + decodeURIComponent(location.hash) === to
 
   return (
     <GatsbyLink
@@ -90,6 +90,7 @@ const Headings = ({ heads, prefix, level }) => (
             prefix +
             '#' +
             value
+              .replace(/:/g, '')
               .split(' ')
               .join('-')
               .toLowerCase()
@@ -123,6 +124,18 @@ class ChapterList extends React.Component {
       )
 
       open = slugs.includes(context.location.pathname)
+    } else if (props.chapters) {
+      const slugs = [];
+      props.chapters.forEach(chapter => {
+        if (chapter.entry) {
+          slugs.push(chapter.entry.childMarkdownRemark.fields.slug)
+        } else if (chapter.entries) {
+          slugs.push(...chapter.entries.map(
+            ({ entry }) => entry.childMarkdownRemark.fields.slug
+          ))
+        }
+      });
+      open = slugs.includes(context.location.pathname)
     }
 
     this.state = { open }
@@ -154,14 +167,14 @@ class ChapterList extends React.Component {
             )}
           </ListItem>
         )}
-        {
-          <ListItem
-            className={classnames('list-toggle', { 'list-open': open })}
-          >
-            {entries && <Links entries={entries} level={level + 1} />}
-          </ListItem>
-        }
-        <ListItem>
+        <ListItem
+          className={classnames('list-toggle', { 'list-open': open })}
+        >
+          {entries && <Links entries={entries} level={level + 1} />}
+        </ListItem>
+        <ListItem
+          className={classnames('list-toggle', { 'list-open': open })}
+        >
           {chapters &&
             chapters.map((chapter, index) => (
               <ChapterList {...chapter} level={level + 1} key={`${index}`} />
@@ -210,25 +223,31 @@ const Title = styled.h5`
   color: #ffffff;
   padding: 8px 20px;
   padding-left: ${({ level }) => {
-    switch (level % 3) {
+    switch (level % 4) {
       case 1:
-        return '50px'
+        return '40px'
       case 2:
+        return '60px'
+      case 3:
         return '80px'
       default:
         return '20px'
     }
   }};
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover {
     background-color: #55bc8add;
   }
 
   & > svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+    margin-right: 8px;
     vertical-align: top;
     transform: rotate(-90deg);
     transition: all 0.2s ease;

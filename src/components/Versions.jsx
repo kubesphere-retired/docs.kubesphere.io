@@ -12,7 +12,7 @@ const Versions = ({ versions, current }) => {
       <Logo className="version-logo"/>
       <div className="version-text">
         <KubeSphere className="kubesphere-icon"/>
-        <p>{current}</p>
+        <p style={{ textTransform: 'capitalize' }}>{current}</p>
       </div>
       {versions.length > 0 && <Arrow className="version-arrow"/>}
     </VersionsWrapper>
