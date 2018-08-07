@@ -103,7 +103,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 在容器组设置中配置 WordPress 的访问端口和关联 MySQL 的环境变量并保存，完成后点下一步：
 
-> 注意:  环境变量中, WORDPRESS_DB_HOST的值对应的是 MySQL 服务的名称, 在后续步骤创建 MySQL 服务时, 服务名应该与此处的环境变量值相同, 否则无法连接 MySQL 数据库。
+> 注意:  环境变量中, ``WORDPRESS_DB_HOST`` 的值对应的是 MySQL 服务的名称, 在后续步骤创建 MySQL 服务时, 服务名应该与此处的环境变量值相同, 否则无法连接 MySQL 数据库。
 
 ![](/uc_createdeploy3.png)
 
@@ -200,7 +200,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 ![](/uc_createingress3.png)
 
 
-- 第四步，添加注解，选择下一步：
+- 第四步，添加注解，Annotation 可以将 Kubernetes 资源对象关联到任意的非标实性元数据， 完成后选择下一步：
 
 ![](/uc_createingress4.png)
 
