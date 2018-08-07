@@ -105,7 +105,7 @@ ks-apiserver-nodeport: 32002
 
 ![](/pic02.png)
 
-KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://kubesphere.qingcloud.com)。
+KubeSphere 部署成功后，请参考 《KubeSphere 用户指南》。
 
 
 
@@ -316,7 +316,7 @@ ks-apiserver-nodeport: 32002
 
 ![](/pic02.png)
 
-KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://docs.kubesphere.io)。
+KubeSphere 部署成功后，请参考 《KubeSphere 用户指南》。
 
 
 
@@ -341,7 +341,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](https://d
 | local\_volume\_provisioner\_storage\_class | storage\_class 名称，   默认：local |
 | local\_volume\_is\_default\_class | 是否设定为默认 storage\_class， 是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class |
 
-> 说明： 在您配置好 local Volume (只有 all-in-one 支持这类存储) 并成功安装 KubeSphere 后，请参考 [《KubeSphere 用户指南》](https://docs.kubesphere.io), 在用户指南的附录 1 对如何使用 Local Volume 有详细说明。
+> 说明： 在您配置好 local Volume (只有 all-in-one 支持这类存储) 并成功安装 KubeSphere 后，请参考 [存储管理说明](/express/zh-CN/manage-storages/) 的附录 1 使用 Local Volume 。
 
 <br/>
 
@@ -390,9 +390,9 @@ $ export HEKETI_CLI_SERVER=http://localhost:8080
 $ heketi-cli cluster list
 ```
 
-## 附录2：安装 QingCloud CSI 块存储插件
+## 附录2：安装块存储插件
 
-QingCloud CSI 插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。
+QingCloud CSI 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。
 目前，QingCloud CSI 插件已经在 Kubernetes v1.10 环境中通过了 CSI 测试。块存储插件部署后, 用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型(超高性能型硬盘只能用在超高性能型主机)、性能型或容量型硬盘的存储卷并挂载至工作负载。
 可参考 [QingCloud-CSI 块存储插件安装指南](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 进行安装和体验块存储插件。
 

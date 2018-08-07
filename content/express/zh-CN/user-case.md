@@ -1,5 +1,5 @@
 ---
-title: "部署一个 WordPress 博客网站"
+title: "部署 WordPress 博客网站"
 ---
 
 

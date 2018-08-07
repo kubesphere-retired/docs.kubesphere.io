@@ -9,7 +9,7 @@ title: "存储卷"
 - 如何管理存储卷
   - 创建存储卷
   - 查看存储卷
-  - 如何使用存储卷
+  - 使用存储卷
   - 删除存储卷
   - 附录1: Local Volume 使用方法
   - 附录2: Ceph RBD 存储卷缺少密钥无法挂载解决方案
@@ -56,7 +56,7 @@ title: "存储卷"
 ![](/pvc-detail.png)
 
 
-## 如何使用存储卷
+## 使用存储卷
 在创建工作负载时将用到存储卷, 以创建部署并挂载存储卷为例:
 
 > 注：工作负载挂载 Ceph RBD 类型存储卷时需确保工作负载所在项目必须有特定的 Secret ,详情见 附录2
@@ -84,12 +84,14 @@ title: "存储卷"
 
 ![](/pvc-deletepvc.png)
 
-## 附录1：Local Volume 使用方法
+## 附录1
+
+### Local Volume 使用方法
 
 Local Volume 仅用于 all-in-one 单节点部署。
 
 
-### 使用 Local Volume 的流程
+#### 使用 Local Volume 的流程
 
 1.创建Local Volume的存储类型详细步骤
 
@@ -164,7 +166,7 @@ pv-local     10Gi       RWO            Delete           Available               
 
 > 注：Local Volume 存储卷创建成功后为 `Pending` 属于正常状态，当创建工作负载调度 Pod 后存储卷状态即可变化为 Bound
 
-### 删除 Local Volume PV 和文件夹
+#### 删除 Local Volume PV 和文件夹
 1. 删除 Local Volume PV
 
 ```
@@ -179,7 +181,9 @@ $ sudo cd /mnt/disks
 $ sudo rm -rf vol-test
 ```
 
-## 附录2：Ceph RBD 存储卷缺少密钥无法挂载解决方案
+## 附录2 
+
+### CephRBD 存储卷缺少密钥无法挂载解决方案
 
 Ceph RBD 存储卷操作过程中, 如果遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载, 可参考如下解决方案:
 

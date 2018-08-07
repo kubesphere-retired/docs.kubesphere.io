@@ -2,7 +2,6 @@
 title: "存储类型"
 ---
 
-## 简介
 存储类型（StorageClass）是由`Kubernetes 集群管理员`配置存储服务端参数，并按类型提供存储给集群用户使用。KubeSphere目前支持 Ceph RBD 和 Glusterfs 存储类型的创建，并且支持各种存储类型的展示。
 
 本节通过以下几个方面介绍如何管理存储类型：
