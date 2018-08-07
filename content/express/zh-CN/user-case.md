@@ -25,6 +25,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 ## 创建存储卷
 
 3、在菜单栏的资源中选择存储卷，点击创建存储卷，分别为 WordPress 和 MySQL 数据库创建存储卷，可命名为 wordpress-volume 和 mysql-volume
+>关于存储卷管理和使用的详细介绍, 请参考 [存储卷使用说明](/express/zh-CN/manage-storages/)
+
 ![](/uc_createpv.png)
 
 4、创建 WordPress 存储卷 `wordpress-volume` 需填写基本信息、配置存储设置和标签设置，请参考以下步骤：
@@ -51,6 +53,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 6、在菜单栏的应用负载中选择部署，点击创建部署，分别为 WordPress 和 MySQL 数据库创建部署资源，可命名为 wordpress 和 wordpress-mysql：
 
+
 ![](/uc_createdeploy.png)
 
 > 说明：关于如何管理部署资源，请参考 [部署管理说明](/express/zh-CN/manage-deployments/)
@@ -73,6 +76,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 ![](/uc_createdeploy11.png)
 
 - 第三步，存储设置中，点击添加存储卷并选择第一项存储卷，然后选择之前创建好的 mysql-volume 存储卷：
+
+> 注：如果安装 KubeSphere 使用的是 all-in-one 部署在单个主机，使用的存储类型是 Local Volume， 请参考 [存储卷使用说明](/express/zh-CN/manage-storages/) 的 附录1: Local Volume 使用方法。 如果集群配置的存储服务端是 Ceph RBD，则需要通过 Kubectl 命令行工具向 kubernetes 发送命令, 创建 Secret， 若遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载, 请参考 [存储卷使用说明](/express/zh-CN/manage-storages/) 的 附录2: Ceph RBD 存储卷缺少密钥无法挂载解决方案。
 
 ![](/uc_createdeploy12.png)
 
@@ -123,6 +128,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createdeploy15.png)
 
+
+
 9、通过服务或应用路由的方式，可以将部署的资源暴露出去供外网访问，以下将分别介绍如何以服务和应用理由等两种方式介绍如何暴露 WordPress 到外网供访问：
 ![](/uc_createsvc.png)
 
@@ -164,15 +171,17 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createsvc7.png)
 
-- 第四步，设置外网访问时，共有 None、 NodePort、 LoadBalancer 三种访问方式，可根据情景来设置访问方式。本实践以 LoadBalancer 的方式暴露服务，并将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务, 完成后点击创建：
+- 第四步，设置外网访问时，共有 None、 NodePort、 LoadBalancer 三种访问方式，可根据情景来设置访问方式。如果用 LoadBalancer 的方式暴露服务，需要预先安装 LoadBalancer，并将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务。本实践选择 Nodeport 访问方式，集群外部可通过访问集群节点的对应端口来访问服务， 端口将由集群自动创建 (端口号将生成在服务的列表页中)：
 
 ![](/uc_createsvc8.png)
 
-- 至此，WordPress 与 MySQL 服务都已经创建成功，并且能够通过公网 IP 访问 WordPress 网站（ 服务刚创建时外部 IP 显示 Pending 状态是正常的，因为创建负载均衡器需要时间，等待数秒后即可看到公网 IP 显示）：
+- 至此，WordPress 与 MySQL 服务都已经创建成功，可通过浏览器来访问 WordPress 网站：
+
+>注： 如果主机的公网 IP 有防火墙， 应在防火墙下放行自动创建的端口，否则外网无法访问。
 
 ![](/uc_createsvc9.png)
 
-- 第五步，通过公网 IP 可访问 WordPress：
+- 第五步，通过主机的公网 IP 和自动创建的端口号访问 WordPress：
 
 ![](/uc_createsvc10.png)
 
@@ -187,7 +196,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 ![](/uc_createingress.png)
 
 
-- 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，可根据情景需要来设置访问方式，本实践以 LoadBalancer 为例配置网关入口，将公网 IP 地址的 `ID` 填入 Annotation，配置完成后点击应用：
+- 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，可根据情景需要来设置访问方式，本实践以 NodePort 访问方式为例配置网关入口，此方式网关可以通过工作节点对应的端口来访问，配置完成后点击应用 (端口显示在左边的节点端口处)：
 
 ![](/uc_createingress1.png)
 
@@ -196,6 +205,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 ![](/uc_createingress2.png)
 
 - 第三步，配置路由规则，这里以 `kubesphere.wp.com` 为例，并且 path 选择之前的创建成功的服务 wordpress-service，选择下一步：
+
+>Hostname: 应用规则的访问域名，最终使用此域名来访问对应的服务。(如果访问入口是以 NodePort 的方式启用，需要保证 Host 能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证Host正确解析到负载均衡器的 IP 上)<br>
+Paths: 应用规则的路径和对应的后端服务，端口需要填写成服务的端口。
 
 ![](/uc_createingress3.png)
 
@@ -208,9 +220,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createingress5.png)
 
-- 至此，WordPress 就以应用路由的方式通过网关入口暴露到外网以供访问，用户可以通过示例中配置的 `kubesphere.wp.com` 访问 WordPress 博客网站：
+- 至此，WordPress 就以应用路由的方式通过网关入口暴露到外网以供访问，用户可以通过示例中配置的 `kubesphere.wp.com` 和端口号访问 WordPress 博客网站：
 
-> 注: 创建应用路由之后应该把公网 IP 和 `kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。
+> 注: 创建应用路由之后应该把主机的公网 IP 和 配置的域名如：`139.198.17.33 kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。如果主机的公网 IP 有防火墙， 应在防火墙下放行自动创建的端口，否则外网无法访问。
 
 ![](/uc_createingress6.png)
 

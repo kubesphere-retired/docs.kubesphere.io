@@ -84,7 +84,7 @@ title: "存储卷"
 
 ![](/pvc-deletepvc.png)
 
-## 附录1: Local Volume 使用方法
+## 附录1：Local Volume 使用方法
 
 Local Volume 仅用于 all-in-one 单节点部署。
 
@@ -179,7 +179,7 @@ $ sudo cd /mnt/disks
 $ sudo rm -rf vol-test
 ```
 
-## 附录2: Ceph RBD 存储卷缺少密钥无法挂载解决方案
+## 附录2：Ceph RBD 存储卷缺少密钥无法挂载解决方案
 
 Ceph RBD 存储卷操作过程中, 如果遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载, 可参考如下解决方案:
 
