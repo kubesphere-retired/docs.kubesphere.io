@@ -43,39 +43,47 @@ Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜�
 ```
 添加完成以后，需要重启 docker:
 
+```bash
+$ systemctl restart docker
 ```
-systemctl restart docker
-```
-docker 配置完成后，需要对 KubeSphere 集群里面的所有节点执行重启操作。 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
+然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
 
 ![](/createhub1.png)
 
 #### https
-对于 https 协议的镜像仓库，首先需要获取镜像仓库的证书，记为 `ca.crt`，以 `https://harbor.openpitrix.io` 这个镜像仓库的地址为例，根据不同的操作系统，对集群中的所有节点都需要执行以下操作:
+对于 https 协议的镜像仓库，首先需要获取镜像仓库的证书，记为 `ca.crt`，以 `https://harbor.openpitrix.io` 这个镜像仓库的地址为例，对集群中的所有节点都需要执行以下操作:
+
+```bash 
+$ cp ca.crt  /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
+```
+
+如果还是报权限错误，针对不同的操作系统，需要执行以下操作:
 
 **UBUNTU**
 
+```bash
+$ cp ca.crt /usr/local/share/ca-certificates/harbor.openpitrix.io.ca.crt
 ```
-cp ca.crt /usr/local/share/ca-certificates/harbor.openpitrix.io.ca.crt
-```
-```
-update-ca-certificatess
+```bash
+$ update-ca-certificatess
 ```
 **RED HAT ENTERPRISE LINUX**
 
+```bash
+$ cp ca.crt /etc/pki/ca-trust/source/anchors/harbor.openpitrix.io.ca.crt
 ```
-cp ca.crt /etc/pki/ca-trust/source/anchors/harbor.openpitrix.io.ca.crt
-```
-```
-update-ca-trust
+```bash
+$ update-ca-trust
 ```
 
 添加完成以后，需要重启docker：
-```
-systemctl restart docker
+```bash
+$ systemctl restart docker
 ```
 
-docker 配置完成后，需要对 KubeSphere 集群里面的所有节点执行重启操作。然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
+详情可参照 [docker官网](https://docs.docker.com/registry/insecure/#troubleshoot-insecure-registry) 。
+
+然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
 ![](/createhub2.png)
 
 
