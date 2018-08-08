@@ -26,13 +26,18 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| Ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| CentOS 7.4 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 ### 第二步: 准备 KubeSphere 安装文件
 
-**1.**  下载 [KubeSphere Installer](https://drive.yunify.com/s/nI0A2NfFQNywsbU)。
+**1.**  下载 [KubeSphere Installer](http://t.cn/RDVA7ek)。
+
+> 说明： alpha 版是目前在 Ubuntu 16.04 经过测试的版本。 若系统是 CentOS 7.4,  请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此版本也支持 Ubuntu 16.04)
 
 **2.** 获取 KubeSphere 安装包后，执行以下命令解压安装包：
+
+> 说明： 以 alpha 版本的安装包为例，若下载的是 dev 版本，则替换为 dev 对应的包名和目录名。
 
 ```bash
 $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
@@ -54,7 +59,7 @@ $ cd kubesphere-all-express-1.0.0-alpha
 
 KubeSphere 部署过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
-当前节点的系统为 **`Ubuntu 16.04`** ，以下步骤均以 **`ubuntu`** 用户进行操作。
+参考以下步骤开始 all-in-one 部署：
 
 **1.** 进入 `scripts` 目录
 
@@ -103,6 +108,8 @@ ks-apiserver-nodeport: 32002
 
 **(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080), 即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
 
+> 注： 若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
+
 ![](/pic02.png)
 
 KubeSphere 部署成功后，请参考 《KubeSphere 用户指南》。
@@ -120,6 +127,7 @@ KubeSphere 部署成功后，请参考 《KubeSphere 用户指南》。
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
 | ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| CentOS16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 以下用一个示例介绍 multi-node 模式部署多节点，此示例准备了 3 台主机，以主机名为 master 的节点作为任务执行机 taskbox，各节点主机名可由用户自定义。假设主机信息如下所示：
 
@@ -137,9 +145,13 @@ KubeSphere 部署成功后，请参考 《KubeSphere 用户指南》。
 
 ### 第二步: 准备 KubeSphere 安装包
 
-**1.** 下载 [KubeSphere Installer](https://drive.yunify.com/s/nI0A2NfFQNywsbU)。
+**1.** 下载 [KubeSphere Installer](http://t.cn/RDVA7ek)。
+
+> 说明： alpha 版是目前在 Ubuntu 16.04 经过测试的版本。 若系统是 CentOS 7.4,  请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此版本也支持 Ubuntu 16.04)
 
 **2.** 获取 KubeSphere 安装包后，执行以下命令解压安装包：
+
+> 说明： 以 alpha 版本的安装包为例，若下载的是 dev 版本，则替换为 dev 对应的包名和目录名。
 
 ```bash
 $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
@@ -153,7 +165,7 @@ $ cd kubesphere-all-express-1.0.0-alpha
 
 **4.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置：
 
-> 注：每台机器信息占一行，不能分行。
+> 注：以下示例在 Ubuntu 16.04 上使用 Ubuntu 用户安装，每台机器信息占一行，不能分行。
 
 **示例：**
 
@@ -181,18 +193,46 @@ kube-master
 
 > 说明：
 >
-> - [all] 中需要修改集群中各个节点的内网 IP 和主机 ubuntu 用户密码。主机名为 "master" 的节点作为 taskbox 仅需要将 ansible_become_pass 替换为当前任务执行机的 ubuntu 用户登录密码，[all] 中其它参数比如 node1 和 node2 需要分别替换 "ansible_host" 和 "ip" 为当前 node1 和 node2 的内网 IP，node1 和 node2 的 "ansible_become_pass" 即替换为各自主机的 ubuntu 用户登录密码。
+> - [all] 中需要修改集群中各个节点的内网 IP 和主机 ubuntu 用户密码。主机名为 "master" 的节点作为 taskbox 仅需要将 `ansible_become_pass` 替换为当前任务执行机的 ubuntu 用户登录密码，[all] 中其它参数比如 node1 和 node2 需要分别替换 `ansible_host` 和 `ip` 为当前 node1 和 node2 的内网 IP，node1 和 node2 的 `ansible_become_pass` 即替换为各自主机的 ubuntu 用户登录密码。
 > -  "master" 节点作为 taskbox，用来执行整个集群的部署任务，同时 "master" 节点在 kubernetes 集群中也作为 master 和 etcd ，应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分。
 > - 主机名为 "master"，"node1"，"node2" 的节点， 作为 kubernetes 集群的 node 节点，应填入 [kube-node] 部分。<br>
 >
 > 参数解释：<br>
 > 
-> - ansible_host: 集群中将要连接的主机名 
-> - ip: 集群中将要连接的主机 IP 
-> - ansible_user: 默认使用的 SSH 登录用户名 
-> - ansible_become: 是否允许权限升级 (yes/no)
-> - ansible_become_user: 权限升级用户（root） 
-> - ansible_become_pass: 待连接主机的密码. 
+> - `ansible_host`: 集群中将要连接的主机名 
+> - `ip`: 集群中将要连接的主机 IP 
+> - `ansible_user`: 默认使用的 SSH 登录用户名 
+> - `ansible_become`: 是否允许权限升级 (yes/no)
+> - `ansible_become_user`: 权限升级用户（root） 
+> - `ansible_become_pass`: 待连接主机的密码. 
+
+- 若下载的 dev 版本的安装包， 主机配置文件 `conf/hosts.ini` 参考以下示例，使用 root 身份进行安装 （非 root 用户请参考配置文件中的示例修改）：
+
+**示例：**
+
+```ini
+[all]
+master  ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases 
+node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_ssh_pass=password
+node2  ansible_host=192.168.0.30  ip=192.168.0.30  ansible_ssh_pass=password
+
+[kube-master]
+master 	  	 
+
+[kube-node]
+master
+node1 	 
+node2
+
+[etcd]
+master	 
+
+[k8s-cluster:children]
+kube-node
+kube-master 
+```
+
+
 
 **5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储服务器，再参考 [附录1：存储配置说明](#附录1存储配置说明) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。
 
@@ -202,6 +242,7 @@ kube-master
 > - 支持存储类型：`GlusterFS、CephRBD`， 存储配置相关的详细信息请参考 [附录1：存储配置说明](#附录1存储配置说明)
 > - 通常情况您需要配置持久化存储，multi-node 不支持 local storage，因此把 local storage 的配置修改为 false，然后配置持久化存储如 GlusterFS, CephRBD 等。如下所示为配置 CephRBD。
 
+**示例：**
 
 ```yaml
 # Local volume provisioner deployment(Only all-in-one)
@@ -235,7 +276,7 @@ ceph_rbd_imageFormat: 1
 
 KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、`Kubernetes` 和 `etcd` 集群的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
-当前节点的系统为 **`Ubuntu 16.04`** ，以下步骤均以 **`ubuntu`**  用户进行操作。
+参考以下步骤开始 multi-node 部署：
 
 **1.** 进入 `scripts` 目录
 
@@ -269,7 +310,8 @@ Please input an option: 2
 **提示：**
 
 > - 安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [附录1：存储配置说明](#附录1存储配置说明)
-> - taskbox 需配置与待部署集群中所有节点的 `ssh 免密登录`，若还未配置 ssh 免密登录，在执行 `install.sh` 安装脚本时会提示用户是否已经配置免密登录，输入 "no" 安装程序将会帮您自动配置 ssh 免密登录，如下图所示:
+> - dev 版本的安装包不再需要配置 ssh 免密登录，只提示用户是否配置过存储。
+> - 若下载的是 alpha 版本的安装包， taskbox 需配置与待部署集群中所有节点的 `ssh 免密登录`，若还未配置 ssh 免密登录，在执行 `install.sh` 安装脚本时会提示用户是否已经配置免密登录，输入 "no" 安装程序将会帮您自动配置 ssh 免密登录，如下图所示:
 
 ```bash
 ######################################################################
@@ -296,6 +338,8 @@ Your public key has been saved in /home/ubuntu/.ssh/id_rsa.pub.
 
 
 
+
+
 **4.** 测试 KubeSphere 集群部署是否成功：
 
 **(1)** 待 install.sh 执行完后，当看到如下 "Successful" 界面，则说明 KubeSphere 安装成功：
@@ -313,6 +357,8 @@ ks-apiserver-nodeport: 32002
 ```
 
 **(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080), 即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
+
+> 注： 若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
 
 ![](/pic02.png)
 
@@ -421,7 +467,7 @@ LocalIP: 192.168.0.2
 
 5. 执行 `install.sh` 开始安装时，请在菜单中先选择 `1` 初始化安装包，待初始化完成后再选择 `2` 或 `3` 进行 all-in-one 或 multi-node 部署， 此处与在线部署略有不同。
 
-```
+```bash
 ################################################
          KubeSphere Installer Menu
 ################################################
