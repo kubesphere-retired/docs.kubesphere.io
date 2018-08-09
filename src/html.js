@@ -1,5 +1,8 @@
 import React from 'react'
 
+import 'es6-shim'
+import 'promise-polyfill'
+
 let stylesStr
 if (process.env.NODE_ENV === `production`) {
   try {

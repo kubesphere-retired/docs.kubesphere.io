@@ -3644,6 +3644,10 @@ es6-promise@^4.1.0:
   version "4.2.4"
   resolved "http://registry.npm.taobao.org/es6-promise/download/es6-promise-4.2.4.tgz#dc4221c2b16518760bd8c39a52d8f356fc00ed29"
 
+es6-shim@^0.35.3:
+  version "0.35.3"
+  resolved "http://registry.npm.taobao.org/es6-shim/download/es6-shim-0.35.3.tgz#9bfb7363feffff87a6cdb6cd93e405ec3c4b6f26"
+
 es6-symbol@^3.1.1, es6-symbol@~3.1.1:
   version "3.1.1"
   resolved "http://registry.npm.taobao.org/es6-symbol/download/es6-symbol-3.1.1.tgz#bf00ef4fdab6ba1b46ecb7b629b4c7ed5715cc77"
@@ -8460,6 +8464,10 @@ promise-each@^2.2.0:
   resolved "http://registry.npm.taobao.org/promise-each/download/promise-each-2.2.0.tgz#3353174eff2694481037e04e01f77aa0fb6d1b60"
   dependencies:
     any-promise "^0.1.0"
+
+promise-polyfill@^8.0.0:
+  version "8.0.0"
+  resolved "http://registry.npm.taobao.org/promise-polyfill/download/promise-polyfill-8.0.0.tgz#b47c7fc74052cc5b2132b703cca144f1a5eb56ef"
 
 promise@^7.1.1:
   version "7.3.1"
