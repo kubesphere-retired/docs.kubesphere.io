@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 
-import SiteHeader from '../components/Header'
+import Header from '../components/Header'
 import Versions from '../components/Versions'
 import TableOfContents from '../components/TableOfContents/index'
 
@@ -13,6 +13,10 @@ import './b16-tomorrow-dark.css'
 export default class MarkdownTemplate extends React.Component {
   static childContextTypes = {
     location: PropTypes.object,
+  }
+
+  state = {
+    isExpand: false,
   }
 
   componentDidMount() {
@@ -26,6 +30,12 @@ export default class MarkdownTemplate extends React.Component {
         debug: false,
       })
     }
+
+    document.addEventListener('click', this.handleClick)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClick)
   }
 
   scrollToHash = () => {
@@ -41,6 +51,18 @@ export default class MarkdownTemplate extends React.Component {
   getChildContext() {
     return {
       location: this.props.location,
+    }
+  }
+
+  handleExpand = () => {
+    this.setState(({ isExpand }) => ({
+      isExpand: !isExpand,
+    }))
+  }
+
+  handleClick = e => {
+    if (this.markdownRef && this.markdownRef.contains(e.target)) {
+      this.setState({ isExpand: false })
     }
   }
 
@@ -61,7 +83,7 @@ export default class MarkdownTemplate extends React.Component {
           }`}</title>
         </Helmet>
         <BodyGrid>
-          <NavContainer>
+          <NavContainer isExpand={this.state.isExpand}>
             <Versions
               versions={this.props.data.versions}
               current={postNode.fields.version}
@@ -74,14 +96,21 @@ export default class MarkdownTemplate extends React.Component {
               />
             </ToCContainer>
           </NavContainer>
-          <MainContainer>
-            <HeaderContainer>
-              <SiteHeader location={this.props.location} />
-            </HeaderContainer>
-            <div style={{ padding: 40 }} className="md-body">
+          <MainContainer isExpand={this.state.isExpand}>
+            <Header
+              location={this.props.location}
+              isExpand={this.state.isExpand}
+              toggleExpand={this.handleExpand}
+            />
+            <MarkdownBody
+              className="md-body"
+              innerRef={ref => {
+                this.markdownRef = ref
+              }}
+            >
               <h1>{post.title}</h1>
               <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
-            </div>
+            </MarkdownBody>
           </MainContainer>
         </BodyGrid>
       </div>
@@ -90,23 +119,31 @@ export default class MarkdownTemplate extends React.Component {
 }
 
 const BodyGrid = styled.div`
-  height: 100vh;
+  overflow-x: hidden;
 `
 
 const NavContainer = styled.div`
-  float: left;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 280px;
-  height: 100%;
+  height: 100vh;
   background-color: #242e42;
   box-shadow: 4px 0 8px 0 rgba(101, 125, 149, 0.2);
-  color: #fff;
+  transition: left 0.2s ease-in-out;
   overflow-y: auto;
+  color: #fff;
+  z-index: 2;
+
+  @media only screen and (max-width: 768px) {
+    left: ${({ isExpand }) => {
+      return isExpand ? 0 : '-290px'
+    }};
+  }
 `
 
 const MainContainer = styled.div`
-  height: 100%;
   margin-left: 280px;
-  overflow-y: auto;
 
   & > div {
     margin: auto;
@@ -115,14 +152,26 @@ const MainContainer = styled.div`
   & > h1 {
     color: #303e5a;
   }
-`
 
-const HeaderContainer = styled.div`
-  height: 80px;
+  @media only screen and (max-width: 768px) {
+    width: 100vw;
+    margin-left: ${({ isExpand }) => {
+      return isExpand ? '280px' : '0'
+    }};
+    transition: margin-left 0.2s ease-in-out;
+  }
 `
 
 const ToCContainer = styled.div`
   padding: 40px 0;
+`
+
+const MarkdownBody = styled.div`
+  padding: 120px 40px 40px;
+
+  @media only screen and (max-width: 768px) {
+    padding: 100px 24px 24px;
+  }
 `
 
 /* eslint no-undef: "off" */

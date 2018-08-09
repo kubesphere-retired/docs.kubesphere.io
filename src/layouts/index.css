@@ -2,6 +2,7 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  overflow: visible;
 }
 body {
   margin: 0;
@@ -642,4 +643,8 @@ pre tt:after {
 mark {
   background-color: transparent;
   color: #55bc8a;
+}
+
+.header-shadow {
+  box-shadow: 0 4px 8px 0 rgba(9, 18, 26, 0.1);
 }
