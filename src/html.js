@@ -39,6 +39,10 @@ module.exports = class HTML extends React.Component {
             type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"
           />
+          <script src="https://cdn.ravenjs.com/3.10.0/raven.min.js"></script>
+          <script dangerouslySetInnerHTML={{ __html: `
+            Raven.config('http://0b79d4287803433fa8304ebf88d95775@sentry.qingcloud.com/10').install();
+          `}}/>
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
