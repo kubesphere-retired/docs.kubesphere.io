@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="30px" viewBox="0 0 40 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>Glyph/002.Object/004.Documentation/White</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="tutorial" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="tutorial-details-copy" transform="translate(-20.000000, -26.000000)" fill="#FFFFFF">
+            <g id="Glyph/002.Object/004.Documentation/White" transform="translate(16.000000, 16.000000)">
+                <path d="M4,11.046561 C6.87163585,10.2016895 10.2063467,9.86835615 14.0041326,10.046561 C18.1478523,10.2409982 21.4798081,10.9076649 24,12.046561 L24,39.7190424 C20.5179289,38.7428703 17.1747219,38.1437357 13.9703789,37.9216387 C10.3267215,37.6690922 7.00326186,37.6909887 4,37.987328 L4,11.046561 Z" id="Shape" opacity="0.900000036"></path>
+                <path d="M24,11.046561 C26.8716359,10.2016895 30.2063467,9.86835615 34.0041326,10.046561 C38.1478523,10.2409982 41.4798081,10.9076649 44,12.046561 L44,39.7190424 C40.5179289,38.7428703 37.1747219,38.1437357 33.9703789,37.9216387 C30.3267215,37.6690922 27.0032619,37.6909887 24,37.987328 L24,11.046561 Z" id="Shape" opacity="0.400000006" transform="translate(34.000000, 24.859521) scale(-1, 1) translate(-34.000000, -24.859521) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

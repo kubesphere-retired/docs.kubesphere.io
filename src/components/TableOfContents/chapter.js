@@ -125,16 +125,18 @@ class ChapterList extends React.Component {
 
       open = slugs.includes(context.location.pathname)
     } else if (props.chapters) {
-      const slugs = [];
+      const slugs = []
       props.chapters.forEach(chapter => {
         if (chapter.entry) {
           slugs.push(chapter.entry.childMarkdownRemark.fields.slug)
         } else if (chapter.entries) {
-          slugs.push(...chapter.entries.map(
-            ({ entry }) => entry.childMarkdownRemark.fields.slug
-          ))
+          slugs.push(
+            ...chapter.entries.map(
+              ({ entry }) => entry.childMarkdownRemark.fields.slug
+            )
+          )
         }
-      });
+      })
       open = slugs.includes(context.location.pathname)
     }
 
@@ -167,14 +169,10 @@ class ChapterList extends React.Component {
             )}
           </ListItem>
         )}
-        <ListItem
-          className={classnames('list-toggle', { 'list-open': open })}
-        >
+        <ListItem className={classnames('list-toggle', { 'list-open': open })}>
           {entries && <Links entries={entries} level={level + 1} />}
         </ListItem>
-        <ListItem
-          className={classnames('list-toggle', { 'list-open': open })}
-        >
+        <ListItem className={classnames('list-toggle', { 'list-open': open })}>
           {chapters &&
             chapters.map((chapter, index) => (
               <ChapterList {...chapter} level={level + 1} key={`${index}`} />
