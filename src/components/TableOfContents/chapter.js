@@ -7,64 +7,70 @@ import classnames from 'classnames'
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 
 const Link = ({ to, ...rest }, { location }) => {
-  const selected = location.pathname + location.hash === to
+  const selected = location.pathname + decodeURIComponent(location.hash) === to
 
   return (
-    <GatsbyLink to={to} {...rest} className={classnames({['selected-link']: selected})}/>
+    <GatsbyLink
+      to={to}
+      {...rest}
+      className={classnames({ ['selected-link']: selected })}
+    />
   )
 }
 
 Link.contextTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
 }
 
 class LinkWithHeadings extends React.Component {
   constructor(props) {
-    super(props);
-    
+    super(props)
+
     this.state = {
       open: false,
     }
   }
 
   componentDidMount() {
-    const { location } = this.context;
-    const { fields } = this.props.entry.childMarkdownRemark;
+    const { location } = this.context
+    const { fields } = this.props.entry.childMarkdownRemark
 
     this.setState({
-      open: location.pathname === fields.slug
+      open: location.pathname === fields.slug,
     })
   }
 
   handleClick = () => {
     this.setState(({ open }) => ({
-      open: !open
+      open: !open,
     }))
   }
 
   render() {
-    const { entry, level, title } = this.props;
-    const { headings, fields, frontmatter } = entry.childMarkdownRemark;
-    const { open } = this.state;
+    const { entry, level, title } = this.props
+    const { headings, fields, frontmatter } = entry.childMarkdownRemark
+    const { open } = this.state
 
-    let heads = [];
+    let heads = []
 
     if (headings) {
       heads = headings.filter(head => head.depth === 2)
     }
-  
+
     return (
       <div>
         <Link to={fields.slug}>
           <Title level={level} onClick={this.handleClick}>
-            <Arrow className={classnames({'arrow-open': open})}/>{title || frontmatter.title}
+            <Arrow className={classnames({ 'arrow-open': open })} />
+            {title || frontmatter.title}
           </Title>
         </Link>
-        <HeadingsWrapper className={classnames('heads-toggle', {'heads-open': open})}>
-          {
-            heads.length > 0 &&
-            <Headings heads={heads} prefix={fields.slug} level={level+1}/>
-          }
+        <HeadingsWrapper
+          className={classnames('heads-toggle', { 'heads-open': open })}
+        >
+          {heads.length > 0 && (
+            <Headings heads={heads} prefix={fields.slug} level={level + 1} />
+          )}
         </HeadingsWrapper>
       </div>
     )
@@ -72,14 +78,24 @@ class LinkWithHeadings extends React.Component {
 }
 
 LinkWithHeadings.contextTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
 }
 
 const Headings = ({ heads, prefix, level }) => (
   <StyledList>
     {heads.map(({ value }, key) => (
       <ListItem key={key}>
-        <Link to={prefix + '#' + value.split(' ').join('-').toLowerCase()} >
+        <Link
+          to={
+            prefix +
+            '#' +
+            value
+              .replace(/:/g, '')
+              .split(' ')
+              .join('-')
+              .toLowerCase()
+          }
+        >
           <Title level={level}>{value}</Title>
         </Link>
       </ListItem>
@@ -99,52 +115,64 @@ const Links = ({ entries, level }) => (
 
 class ChapterList extends React.Component {
   constructor(props, context) {
-    super(props);
+    super(props)
 
-    let open = false;
+    let open = false
     if (props.entries) {
-      const slugs = props.entries.map(({ entry }) => entry.childMarkdownRemark.fields.slug);
+      const slugs = props.entries.map(
+        ({ entry }) => entry.childMarkdownRemark.fields.slug
+      )
 
-      open = slugs.includes(context.location.pathname);
+      open = slugs.includes(context.location.pathname)
+    } else if (props.chapters) {
+      const slugs = []
+      props.chapters.forEach(chapter => {
+        if (chapter.entry) {
+          slugs.push(chapter.entry.childMarkdownRemark.fields.slug)
+        } else if (chapter.entries) {
+          slugs.push(
+            ...chapter.entries.map(
+              ({ entry }) => entry.childMarkdownRemark.fields.slug
+            )
+          )
+        }
+      })
+      open = slugs.includes(context.location.pathname)
     }
 
     this.state = { open }
   }
 
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   handleClick = () => {
     this.setState(({ open }) => ({
-      open: !open
+      open: !open,
     }))
   }
 
   render() {
-    const { chapters, entry, entries, title, level = 0 } = this.props;
-    const { open } = this.state;
+    const { chapters, entry, entries, title, level = 0 } = this.props
+    const { open } = this.state
 
     return (
       <StyledList>
         {title && (
           <ListItem key={`${title}${level}`}>
-            {
-              entry ?
-              <LinkWithHeadings entry={entry} level={level} title={title}/>
-              : 
+            {entry ? (
+              <LinkWithHeadings entry={entry} level={level} title={title} />
+            ) : (
               <Title level={level} onClick={this.handleClick}>
-                <Arrow className={classnames({'arrow-open': open})}/>{title}
+                <Arrow className={classnames({ 'arrow-open': open })} />
+                {title}
               </Title>
-            }
+            )}
           </ListItem>
         )}
-        {
-          <ListItem className={classnames('list-toggle', {'list-open': open})}>
-            {entries && <Links entries={entries} level={level + 1}/>}
-          </ListItem>
-        }
-        <ListItem>
+        <ListItem className={classnames('list-toggle', { 'list-open': open })}>
+          {entries && <Links entries={entries} level={level + 1} />}
+        </ListItem>
+        <ListItem className={classnames('list-toggle', { 'list-open': open })}>
           {chapters &&
             chapters.map((chapter, index) => (
               <ChapterList {...chapter} level={level + 1} key={`${index}`} />
@@ -156,7 +184,7 @@ class ChapterList extends React.Component {
 }
 
 ChapterList.contextTypes = {
-  location: PropTypes.object
+  location: PropTypes.object,
 }
 
 export default ChapterList
@@ -193,28 +221,34 @@ const Title = styled.h5`
   color: #ffffff;
   padding: 8px 20px;
   padding-left: ${({ level }) => {
-    switch (level % 3) {
+    switch (level % 4) {
       case 1:
-        return '50px'
+        return '40px'
       case 2:
+        return '60px'
+      case 3:
         return '80px'
       default:
         return '20px'
     }
   }};
   cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:hover {
     background-color: #55bc8add;
   }
 
   & > svg {
-    width: 20px;
-    height: 20px;
-    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+    margin-right: 8px;
     vertical-align: top;
     transform: rotate(-90deg);
-    transition: all .2s ease;
+    transition: all 0.2s ease;
 
     &.arrow-open {
       transform: rotate(0);

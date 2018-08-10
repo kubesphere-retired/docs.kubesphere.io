@@ -2,6 +2,7 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  overflow: visible;
 }
 body {
   margin: 0;
@@ -186,7 +187,6 @@ textarea {
 html {
   font: 1rem;
   box-sizing: border-box;
-  overflow-y: scroll;
   -webkit-font-smoothing: antialiased;
 }
 * {
@@ -603,4 +603,48 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.ReactModal__Overlay {
+  transition: opacity .15s linear;
+  opacity: 0;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.ReactModal__Content {
+  transition: opacity .15s, transform .15s;
+  opacity: 0;
+  transform: scale(.9);
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ReactModal__Content--before-close {
+  opacity: 0;
+  transform: scale(.9);
+}
+
+mark {
+  background-color: transparent;
+  color: #55bc8a;
+}
+
+.header-shadow {
+  box-shadow: 0 4px 8px 0 rgba(9, 18, 26, 0.1);
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { ReactComponent as Logo } from '../assets/logo.svg'
+import { ReactComponent as DocsIcon } from '../assets/docs.svg'
 import { ReactComponent as KubeSphere } from '../assets/kubesphere.svg'
 import { ReactComponent as Arrow } from '../assets/arrow.svg'
 
@@ -9,10 +9,10 @@ const Versions = ({ versions, current }) => {
 
   return (
     <VersionsWrapper>
-      <Logo className="version-logo"/>
+      <DocsIcon className="version-logo"/>
       <div className="version-text">
         <KubeSphere className="kubesphere-icon"/>
-        <p>{current}</p>
+        <p style={{ textTransform: 'capitalize' }}>{current}</p>
       </div>
       {versions.length > 0 && <Arrow className="version-arrow"/>}
     </VersionsWrapper>
@@ -23,9 +23,9 @@ const VersionsWrapper = styled.div`
   padding: 25px 20px;
 
   .version-logo {
-    width: 30px; 
-    height: 30px; 
-    margin-right: 20px; 
+    width: 40px; 
+    height: 40px; 
+    margin-right: 16px;
     vertical-align: middle;
   }
 
@@ -40,7 +40,8 @@ const VersionsWrapper = styled.div`
     }
 
     & > p {
-      margin: 0; 
+      margin: 0;
+      margin-top: 8px;
       font-size: 12px; 
       line-height: 17px;
     }
