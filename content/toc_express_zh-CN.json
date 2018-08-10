@@ -17,11 +17,8 @@
 
     {
       "title": "快速入门",
-      "entries": [
-        {
+        
           "entry": "./express/zh-CN/user-case.md"
-        }
-      ]
     },
 
     {
