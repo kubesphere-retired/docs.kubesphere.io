@@ -1,31 +1,35 @@
 ---
-title: "部署 WordPress 博客网站"
+title: "快速入门——部署 WordPress 博客网站"
 ---
 
 
-WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 和 MySQL 数据库的服务器上架设属于自己的网站, 也可以把 WordPress 当作一个内容管理系统（CMS）来使用。在本指南中，将引导用户通过 KubeSphere 控制台部署一个后端为 MySQL 数据库的 WordPress 博客网站。
+WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 和 MySQL 数据库的服务器上架设属于自己的网站, 也可以把 WordPress 当作一个内容管理系统（CMS）来使用。在本指南中，将引导用户通过 KubeSphere 控制台部署一个后端为 MySQL 数据库的 WordPress 博客网站，帮助您快速入门 KubeSphere。
 
 
 ## 登录 KubeSphere
 
-1、在开始实践之前，请以普通用户（Regular）的身份登录 KubeSphere，操作员的身份需要通过管理员创建，关于如何创建普通用户（Regular）身份以及成员管理请参考  [用户管理说明](/express/zh-CN/manage-users/)，关于用户角色管理的详细介绍，请参考 [角色管理说明](/express/zh-CN/manage-roles/)。
+1、在开始实践之前，请以普通用户（Regular）的身份登录 KubeSphere，普通用户的身份需要通过管理员创建，关于如何创建普通用户（Regular）身份以及成员管理请参考  [用户管理说明](/express/zh-CN/manage-users/)，关于用户角色管理的详细介绍，请参考 [角色管理说明](/express/zh-CN/manage-roles/)。
 
 
 ## 创建项目
 
-2、登录 KubeSphere 后，通过首页直接点击 “创建项目” ，为项目命名：
+2、登录 KubeSphere 后，通过首页直接点击 “创建项目” ，为项目命名。
+
+> 说明: 关于项目管理的详细介绍，请参考  [项目管理说明](/express/zh-CN/manage-projects/) 。
+
 ![](/uc_homepage.png)
 
 > 说明：名称和描述信息可由用户自定义。
 
 ![](/uc_createproj.png)
 
-> 说明: 关于项目管理的详细介绍，请参考  [项目管理说明](/express/zh-CN/manage-projects/) 。
+
 
 ## 创建存储卷
 
-3、在菜单栏的资源中选择存储卷，点击创建存储卷，分别为 WordPress 和 MySQL 数据库创建存储卷，可命名为 wordpress-volume 和 mysql-volume
->关于存储卷管理和使用的详细介绍, 请参考 [存储卷使用说明](/express/zh-CN/manage-storages/)
+3、在菜单栏的资源中选择存储卷，点击创建存储卷，分别为 WordPress 和 MySQL 数据库创建存储卷，可命名为 wordpress-volume 和 mysql-volume。
+
+>说明：关于存储卷管理和使用的详细介绍, 请参考 [存储卷使用说明](/express/zh-CN/manage-storages/)。
 
 ![](/uc_createpv.png)
 
@@ -39,13 +43,13 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createpv2.png)
 
-- 第三步，填写标签设置并保存，完成存储卷创建。在存储卷列表页，即可看到 WordPress 所需的存储卷 wordpress-volume 创建成功。
+- 第三步，填写标签设置并保存，完成存储卷创建。在存储卷列表页，即可看到 WordPress 所需的存储卷 wordpress-volume 创建成功：
 
 ![](/uc_createpv3.png)
 
 
 
-5、同上，创建 MySQL 所需存储卷 `mysql-volume`，参考上述步骤完成基本信息、存储设置和标签设置。至此，WordPress 和 MySQL 所需的存储卷都创建成功 （刚完成创建时存储卷状态为 Pending 是正常的，等待数秒当创建工作负载调度 Pod 后状态将自动更新为 Bound）
+5、同上，创建 MySQL 所需存储卷 `mysql-volume`，参考上述步骤完成基本信息、存储设置和标签设置。至此，WordPress 和 MySQL 所需的存储卷都创建成功 （刚完成创建时存储卷状态为 Pending 是正常的，等待数秒当创建工作负载调度 Pod 后状态将自动更新为 Bound）：
 
 ![](/uc_createpv7.png)
 
@@ -53,10 +57,11 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 6、在菜单栏的应用负载中选择部署，点击创建部署，分别为 WordPress 和 MySQL 数据库创建部署资源，可命名为 wordpress 和 wordpress-mysql：
 
+> 说明：关于管理部署资源的详细介绍，请参考 [部署管理说明](/express/zh-CN/manage-deployments/) 。
 
 ![](/uc_createdeploy.png)
 
-> 说明：关于如何管理部署资源，请参考 [部署管理说明](/express/zh-CN/manage-deployments/)
+
 
 
 7、请参考以下步骤创建部署 wordpress-mysql：
@@ -69,7 +74,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createdeploy10.png)
 
-> 注: 如果 docker 镜像不是来自默认的 dockerhub，例如 docker 镜像来自 Harbor 镜像仓库, 请参考 [镜像仓库管理说明](/express/zh-CN/manage-imageregistries/)
+> 注: 如果 docker 镜像不是来自默认的 dockerhub，例如 docker 镜像来自 Harbor 镜像仓库, 请参考 [镜像仓库管理说明](/express/zh-CN/manage-imageregistries/)。
 
 - 在容器组设置中配置 MySQL 的访问端口和 MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 和 root 用户的密码 , **端口**用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP, 用户还可以指定端口与主机端口进行绑定。**环境变量**可以指定容器内部使用的环境变量。完成后点下一步：
 
@@ -77,7 +82,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 第三步，存储设置中，点击添加存储卷并选择第一项存储卷，然后选择之前创建好的 mysql-volume 存储卷：
 
-> 注：如果安装 KubeSphere 使用的是 all-in-one 部署在单个主机，使用的存储类型是 Local Volume， 请参考 [存储卷使用说明](/express/zh-CN/manage-storages/) 的 附录1: Local Volume 使用方法。 如果集群配置的存储服务端是 Ceph RBD，则需要通过 Kubectl 命令行工具向 kubernetes 发送命令, 创建 Secret， 若遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载, 请参考 [存储卷使用说明](/express/zh-CN/manage-storages/) 的 附录2: Ceph RBD 存储卷缺少密钥无法挂载解决方案。
+> 注：如果安装 KubeSphere 使用的是 all-in-one 部署在单个主机，使用的存储类型是 Local Volume， 请参考存储卷使用说明的 [附录1: Local Volume 使用方法](/express/zh-CN/manage-storages/#附录1)。 如果集群配置的存储服务端是 Ceph RBD，则需要通过 Kubectl 命令行工具向 kubernetes 发送命令, 创建 Secret， 若遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载, 请参考存储卷使用说明的 [附录2: Ceph RBD 存储卷缺少密钥无法挂载解决方案](/express/zh-CN/manage-storages/#附录2)。
 
 ![](/uc_createdeploy12.png)
 
@@ -89,52 +94,47 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createdeploy14.png)
 
-- 第五步，节点选择器可根据需要配置，一个为空的选择器会默认选择集合中的每一个对象。此处不作配置，选择创建，则 wordpress-mysql 部署创建成功:
+- 第五步，节点选择器可将容器组调度到期望运行的节点上，节点选择器可根据实际情况配置，一个为空的选择器会默认选择集合中的每一个对象。此处不作配置，选择创建，则 wordpress-mysql 部署创建成功:
 
 ![](/uc_createdeploy7.png)
 
 
 > 注: MySQL 数据库还可通过创建有状态副本集的方式来创建。
 
-8、请参考以下步骤创建部署 wordpress :
+8、同上，请参考以下步骤创建部署 wordpress :
 
-- 第一步，填写创建部署的基本信息，完成后点下一步：
+- 第一步，填写创建部署的基本信息，本示例创建的 wordpress 部署名称 `wordpress`，选择之前创建的项目 `lab`，副本数为 `1`，描述信息可自定义，完成后点下一步。
 
-![](/uc_createdeploy1.png)
 
-- 第二步，填写容器组设置，名称可自定义，镜像填写 `wordpress:4.8-apache` :
-
-![](/uc_createdeploy2.png)
-
-- 在容器组设置中配置 WordPress 的访问端口和关联 MySQL 的环境变量 (`WORDPRESS_DB_HOST` 和 `WORDPRESS_DB_PASSWORD`) 并保存，完成后点下一步：
+- 第二步，填写容器组设置，名称可自定义，镜像填写 `wordpress:4.8-apache` , 配置 WordPress 的访问端口 (80 端口)和关联 MySQL 数据库的环境变量 (`WORDPRESS_DB_HOST` 和 `WORDPRESS_DB_PASSWORD`) 并保存，CPU 和内存暂不作限定，参考如下配置，完成后点下一步。
 
 > 注意:  环境变量中, ``WORDPRESS_DB_HOST`` 的值对应的是 MySQL 服务的名称, 在后续步骤创建 MySQL 服务时, 服务名应该与此处的环境变量值相同, 否则无法连接 MySQL 数据库。
 
-![](/uc_createdeploy3.png)
+![](/uc_createdeploy2.png)
 
-- 第三步，存储设置中，点击添加存储卷并选择第一项存储卷，然后选择之前创建好的 wordpress-volume 存储卷：
 
-![](/uc_createdeploy4.png)
+- 第三步，存储设置中，点击添加存储卷并选择第一项存储卷，然后选择之前创建好的 wordpress-volume 存储卷为存储卷配置挂载点，即该存储卷在容器中的挂载路径，本示例中选择 `读写`，挂载点为 `/var/www/html`，填写后点击挂载，完成后选择下一步。
 
-- 为存储卷配置挂载点，即该存储卷在容器中的挂载路径，填写后点击挂载，完成后选择下一步：
 
-![](/uc_createdeploy5.png)
+- 第四步，设置标签并保存，本示例标签的键值对设置如下，完成后选择下一步。
 
-- 第四步，设置标签并保存，完成后选择下一步：
+> app=wordpress <br>
+> tier=frontend
 
-![](/uc_createdeploy6.png)
 
-- 第五步，节点选择器根据需要配置，选择创建，则 WordPress 部署创建成功。 至此，WordPress 和 MySQL 部署都创建成功（刚完成创建时部署状态为 “更新中” 是正常的，系统为其拉取镜像和调度资源需要时间，等待数秒后状态将自动更新为运行中）：
+- 第五步，节点选择器此处暂不作配置，一个为空的选择器会默认选择集合中的每一个对象。选择创建，则 WordPress 部署创建成功。 至此，WordPress 和 MySQL 部署都创建成功（刚完成创建时部署状态为 “更新中” 是正常的，系统为其拉取镜像和调度资源需要时间，等待数秒后状态将自动更新为运行中）：
 
 ![](/uc_createdeploy15.png)
 
 
 
-9、通过服务或应用路由的方式，可以将部署的资源暴露出去供外网访问，以下将分别介绍如何以服务和应用理由等两种方式介绍如何暴露 WordPress 到外网供访问：
-![](/uc_createsvc.png)
-
-
 ## 创建服务
+
+9、通过服务或应用路由的方式，可以将部署的资源暴露出去以供访问，将分别介绍如何以服务和应用理由等两种方式介绍如何暴露 WordPress 供外部访问。先以创建服务为例，左侧菜单栏处选择服务与网络 → 服务，点击创建服务：
+
+> 说明： 关于管理服务的详细介绍，请参考 [服务管理说明](/express/zh-CN/manage-services)
+
+![](/uc_createsvc.png)
 
 10、请参考以下步骤为 MySQL 数据库创建服务：
 
@@ -142,7 +142,8 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createsvc1.png)
 
-- 参考以下参数完成参数设置。其中服务类型包括 Virtual IP、Headless (selector) 和 Headless (externalname) 三种, 此处我们选择 Virtual IP, 选择器一栏选择已创建的部署: wordpress-mysql, MySQL 端口填写 3306,  选择下一步：
+- 参考以下参数完成参数设置。其中服务类型包括 Virtual IP、Headless (selector) 和 Headless (externalname) 三种, 此处我们选择 Virtual IP， 选择器一栏选择已创建的部署: `wordpress-mysql`, MySQL 端口填写 `3306`,  选择下一步：
+
 > 说明: 若要实现基于客户端 IP 的会话亲和性，可以在会话亲和性下拉框选择 "ClientIP" 或在代码模式将 service.spec.sessionAffinity 的值设置为 "ClientIP" （默认值为 "None"）。
 
 ![](/uc_createsvc2.png)
@@ -155,27 +156,21 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![](/uc_createsvc4.png)
 
-> 说明： 关于如何管理服务的详细介绍，请参考 [服务管理说明](/express/zh-CN/manage-services)
 
-11、请参考以下步骤为 WordPress 创建服务：
+11、同上，请参考以下步骤为 WordPress 创建服务：
 
-- 第一步，填写基本信息，选择下一步：
+- 第一步，填写基本信息，本示例服务名称为 `wordpress-service`，选择之前创建好的项目`lab`，描述信息可自定义，完成后选择下一步。
 
-![](/uc_createsvc5.png)
-
-- 第二步，参考以下参数, 其中类型选择 Virtual IP, 选择器选择之前创建好的 wordpress, 访问端口选择 TCP 协议的 80 端口, 完成参数设置，选择下一步：
+- 第二步，参考以下参数, 其中类型选择 Virtual IP, 选择器选择之前创建好的 wordpress 部署, 访问端口选择 TCP 协议的 80 端口, 完成参数设置，选择下一步。
 
 ![](/uc_createsvc6.png)
 
-- 第三步，添加标签并保存，选择下一步：
+- 第三步，添加标签并保存，本示例标签设置如下，添加后选择下一步。
 
-![](/uc_createsvc7.png)
+> tier=wordpress-service
 
-- 第四步，设置外网访问时，共有 None、 NodePort、 LoadBalancer 三种访问方式，可根据情景来设置访问方式。如果用 LoadBalancer 的方式暴露服务，需要预先安装 LoadBalancer，并将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务。本实践选择 Nodeport 访问方式，集群外部可通过访问集群节点的对应端口来访问服务， 端口将由集群自动创建 (端口号将生成在服务的列表页中)：
 
-![](/uc_createsvc8.png)
-
-- 至此，WordPress 与 MySQL 服务都已经创建成功，可通过浏览器来访问 WordPress 网站：
+- 第四步，设置外网访问时，共有 None、 NodePort、 LoadBalancer 三种访问方式，可根据情景来设置访问方式。如果用 LoadBalancer 的方式暴露服务，需要预先安装 LoadBalancer，并将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务。本实践选择 `Nodeport` 访问方式，集群外部可通过访问集群节点的对应端口来访问服务， 端口将由集群自动创建 (端口号将生成在服务的列表页中) 。至此，WordPress 与 MySQL 服务都已经创建成功。
 
 >注： 如果主机的公网 IP 有防火墙， 应在防火墙下放行自动创建的端口，否则外网无法访问。
 
@@ -187,9 +182,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ## 创建应用路由
 
-12、通过创建应用路由的方式也可以将 WordPress 暴露到公网可供访问，请参考以下步骤配置应用路由：
+12、通过创建应用路由的方式也可以将 WordPress 暴露出去可供外部访问，不同之处是应用路由是通过配置的 Hostname 来访问。请参考以下步骤配置应用路由：
 
-> 说明： 关于如何管理应用路由，详细请参考 [应用路由管理说明](/express/zh-CN/manage-routers/)
+> 说明： 关于如何管理应用路由，详细请参考 [应用路由管理说明](/express/zh-CN/manage-routers/)。
 
 - 第一步，配置外网访问入口，即应用路由的网关入口：
 
@@ -206,19 +201,19 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 第三步，配置路由规则，这里以 `kubesphere.wp.com` 为例，并且 path 选择之前的创建成功的服务 wordpress-service，选择下一步：
 
->Hostname: 应用规则的访问域名，最终使用此域名来访问对应的服务。(如果访问入口是以 NodePort 的方式启用，需要保证 Host 能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证Host正确解析到负载均衡器的 IP 上)<br>
+>Hostname: 应用规则的访问域名，最终使用此域名来访问对应的服务。(如果访问入口是以 NodePort 的方式启用，需要保证 Host  能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证 Host 正确解析到负载均衡器的 IP 上)<br>
 Paths: 应用规则的路径和对应的后端服务，端口需要填写成服务的端口。
 
 ![](/uc_createingress3.png)
 
 
-- 第四步，添加注解，Annotation 可以将 Kubernetes 资源对象关联到任意的非标实性元数据， 完成后选择下一步：
+- 第四步，添加注解，Annotation 是用户任意定义的“附加”信息，以便于外部工具进行查找 （可参见 [Annotation 官方文档](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) ）。本示例注解如下所示，完成后选择下一步：
 
-![](/uc_createingress4.png)
+>hostname=kubesphere.wp.com
 
-- 第五步，添加标签，完成创建：
+- 第五步，添加标签，本示例标签设置如下，添加后选择创建：
 
-![](/uc_createingress5.png)
+>tier=wordpress-ingress
 
 - 至此，WordPress 就以应用路由的方式通过网关入口暴露到外网以供访问，用户可以通过示例中配置的 `kubesphere.wp.com` 和端口号访问 WordPress 博客网站：
 

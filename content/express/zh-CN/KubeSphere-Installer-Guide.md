@@ -112,7 +112,7 @@ ks-apiserver-nodeport: 32002
 
 ![](/pic02.png)
 
-KubeSphere 部署成功后，请参考 《KubeSphere 用户指南》。
+KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/zh-CN/user-case/)。
 
 
 
@@ -362,7 +362,7 @@ ks-apiserver-nodeport: 32002
 
 ![](/pic02.png)
 
-KubeSphere 部署成功后，请参考 《KubeSphere 用户指南》。
+KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express/zh-CN/user-case/)。
 
 
 
@@ -436,7 +436,7 @@ $ export HEKETI_CLI_SERVER=http://localhost:8080
 $ heketi-cli cluster list
 ```
 
-## 附录2：安装块存储插件
+## 附录2：安装 QingCloud 存储插件
 
 QingCloud CSI 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。
 目前，QingCloud CSI 插件已经在 Kubernetes v1.10 环境中通过了 CSI 测试。块存储插件部署后, 用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型(超高性能型硬盘只能用在超高性能型主机)、性能型或容量型硬盘的存储卷并挂载至工作负载。
