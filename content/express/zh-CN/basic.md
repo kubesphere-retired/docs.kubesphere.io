@@ -39,7 +39,7 @@ KubeSphere 为企业用户提供高性能可伸缩的容器应用管理服务，
 |可选的商业网络和存储解决方案|除开源解决方案外，如用户对网络和存储有更高要求，可选用青云作为底层平台，可以使用性价比更高的网络和存储解决方案。|
 
 ### 产品规划
-Community Edition （ [社区版](https://kubesphere.qingcloud.com/) ）=> Express Edition （ [易捷版](https://kubesphere.qingcloud.com/) ）=> Advanced Edition （ [高级版](https://kubesphere.qingcloud.com/) ）
+Community Edition （ [社区版](https://kubesphere.qingcloud.com/#function) ）=> Express Edition （ [易捷版](https://kubesphere.qingcloud.com/#function) ）=> Advanced Edition （ [高级版](https://kubesphere.qingcloud.com/#function) ）
 
 ## 名词解释
 了解和使用 KubeSphere 管理平台，会涉及到以下的基本概念：
