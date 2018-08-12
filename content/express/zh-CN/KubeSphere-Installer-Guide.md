@@ -26,7 +26,7 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| Ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| Ubuntu 16.04.4 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 | CentOS 7.4 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 ### 第二步: 准备 KubeSphere 安装文件
@@ -51,11 +51,12 @@ $ cd kubesphere-all-express-1.0.0-alpha
 
 ### 第三步: 执行部署
 
+> 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
 > - 若您需要自定义配置文件的安装参数，如网络、存储等相关内容需在 **`conf/vars.yml`** 配置文件中指定或修改。
 > - 网络：默认插件 `calico`。
 > - 支持存储类型：`GlusterFS、CephRBD、local-storage`，存储配置相关的详细信息请参考 [附录1：存储配置说明](#附录1：存储配置说明)。
-> - All-in-One 默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，用户安装完毕在 KubeSphere 控制台创建存储卷的时候需要预先创建 persistent volume (PV)，installer 预先创建 8 个可用 10G PV 供测试。
+> - All-in-One 默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，用户安装完毕在 KubeSphere 控制台创建存储卷的时候需要预先创建 Persistent Volume (PV)，installer 会预先创建 8 个可用的 10G PV 供使用。
 
 KubeSphere 部署过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
@@ -126,7 +127,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| ubuntu 16.04.4 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 | CentOS 7.4 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 以下用一个示例介绍 multi-node 模式部署多节点，此示例准备了 3 台主机，以主机名为 master 的节点作为任务执行机 taskbox，各节点主机名可由用户自定义。假设主机信息如下所示：
@@ -151,7 +152,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/
 
 **2.** 获取 KubeSphere 安装包后，执行以下命令解压安装包：
 
-> 说明： 以 alpha 版本的安装包为例，若下载的是 dev 版本，则替换为 dev 对应的包名和目录名。
+> 说明： 以下步骤以 alpha 版本的安装包为例，若下载的是 dev 版本，则替换为 dev 对应的包名和目录名。
 
 ```bash
 $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
@@ -165,7 +166,7 @@ $ cd kubesphere-all-express-1.0.0-alpha
 
 **4.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置：
 
-> 注：以下示例在 Ubuntu 16.04 上使用 Ubuntu 用户安装，每台机器信息占一行，不能分行。
+> 注：以下示例在 Ubuntu 16.04.04 上使用 `ubuntu` 用户安装，每台机器信息占一行，不能分行。
 
 **示例：**
 
@@ -206,7 +207,7 @@ kube-master
 > - `ansible_become_user`: 权限升级用户（root） 
 > - `ansible_become_pass`: 待连接主机的密码. 
 
-- 若下载的 dev 版本的安装包， 主机配置文件 `conf/hosts.ini` 参考以下示例，使用 root 身份进行安装 （非 root 用户请参考配置文件中的示例修改）：
+- 若下载的是 dev 版本的安装包或离线安装包，主机配置文件 `conf/hosts.ini` 参考以下示例，使用 root 身份进行安装：
 
 **示例：**
 
@@ -231,7 +232,16 @@ master
 kube-node
 kube-master 
 ```
+>说明：非 root 用户例如 `ubuntu` 用户安装请参考 `hosts.ini` 主机配置文件注释中的非 root 用户示例修改 [all] 部分的配置：
 
+**示例：**
+
+```ini
+[all]
+master ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases  ansible_user=ubuntu  ansible_become_pass=password 
+node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_user=ubuntu  ansible_become_pass=password
+node2  ansible_host=192.168.0.30  ip=192.168.0.30  ansible_user=ubuntu  ansible_become_pass=password
+```
 
 
 **5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储服务器，再参考 [附录1：存储配置说明](#附录1：存储配置说明) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。
@@ -447,6 +457,8 @@ QingCloud CSI 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能�
 
 离线安装的方法与在线安装类似，只需要根据主机信息在配置文件中做细微修改即可，详细请参考如下步骤：
 
+>说明： 离线安装目前仅支持 `Ubuntu 16.04.4 LTS 64bit`，后续将支持更多的操作系统。
+
 1. 下载 [KubeSphere 离线安装包](https://kubesphere.io) (努力 Coding 中)
 
 
@@ -458,31 +470,14 @@ $ tar -zxvf kubesphere-all-offline-express-1.0.0-alpha.tar.gz
 $ cd kubesphere-all-offline-express-1.0.0-alpha
 ```
 
-3. 修改配置文件 `conf/var.yml` 的 `LocalIP` 字段为当前待部署主机的 IP 地址, 如：
+3. Multi-node 模式部署多节点时，需要修改配置文件 `conf/var.yml` 的 `LocalIP` 字段为当前主机的 IP 地址, 如：
 ```
 LocalIP: 192.168.0.2
 ```
+>说明： 执行 `install.sh` 开始安装时，程序会先提示用户是否已配置 `LocalIP`，若未配置则输入 no 返回目录配置此处。all-in-one 模式部署单节点时此处无需修改。
 
-4. 离线安装的后续步骤可参考在线部署中的 all-in-one 或 multi-node 模式修改对应的配置文件，最终完成部署单节点或多节点的集群。
+至此，离线安装的后续步骤即可参考在线部署中的 all-in-one 或 multi-node 模式修改对应的配置文件，最终完成部署单节点或多节点的集群。
 
-5. 执行 `install.sh` 开始安装时，请在菜单中先选择 `1` 初始化安装包，待初始化完成后再选择 `2` 或 `3` 进行 all-in-one 或 multi-node 部署， 此处与在线部署略有不同。
-
-```bash
-################################################
-         KubeSphere Installer Menu
-################################################
-*   1) InitInstaller
-*   2) All-in-one
-*   3) Multi-node
-*   4) Quit
-################################################
-https://kubesphere.io/               2018-08-01
-################################################
-Please input an option: 1
-```
-
->注：
->初始化只需要执行一次，若执行 all-in-one 或 Multi-node 报错后重新执行时，不需要再初始化安装包。
 
 ## 附录4：组件版本信息
 
