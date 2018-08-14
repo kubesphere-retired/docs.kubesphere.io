@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import Header from '../components/Header'
 import Versions from '../components/Versions'
+import SearchResult from '../components/SearchResult'
 import TableOfContents from '../components/TableOfContents/index'
 
 import './markdown.css'
@@ -17,19 +18,13 @@ export default class MarkdownTemplate extends React.Component {
 
   state = {
     isExpand: false,
+    query: '',
+    showSearchResult: false,
+    results: [],
   }
 
   componentDidMount() {
     this.scrollToHash()
-
-    if (typeof docsearch !== 'undefined') {
-      docsearch({
-        apiKey: '221332a85783d16a5b930969fe4a934a',
-        indexName: 'kubesphere',
-        inputSelector: '.ks-search > input',
-        debug: false,
-      })
-    }
 
     document.addEventListener('click', this.handleClick)
   }
@@ -66,6 +61,35 @@ export default class MarkdownTemplate extends React.Component {
     }
   }
 
+  handleSearch = query => {
+    const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
+    this.setState({
+      results: [...results].reverse(),
+      showSearchResult: true,
+    })
+  }
+
+  hideSearch = () => {
+    this.setState({
+      query: '',
+      results: [],
+      showSearchResult: false,
+    })
+  }
+
+  handleQueryChange = query => {
+    this.setState({ query })
+  }
+
+  getSearchResults(query) {
+    const postNode = this.props.data.postBySlug
+    const index = `${postNode.fields.version}_${postNode.fields.language}`
+    if (!query || !window.__LUNR__) return []
+    const lunrIndex = window.__LUNR__[index]
+    const results = lunrIndex.index.search(query)
+    return results.map(({ ref }) => lunrIndex.store[ref])
+  }
+
   render() {
     const { slug } = this.props.pathContext
     const postNode = this.props.data.postBySlug
@@ -75,6 +99,8 @@ export default class MarkdownTemplate extends React.Component {
       post.id = slug
     }
 
+    const { isExpand, query, showSearchResult, results } = this.state
+
     return (
       <div>
         <Helmet>
@@ -83,7 +109,7 @@ export default class MarkdownTemplate extends React.Component {
           }`}</title>
         </Helmet>
         <BodyGrid>
-          <NavContainer isExpand={this.state.isExpand}>
+          <NavContainer isExpand={isExpand}>
             <Versions
               versions={this.props.data.versions}
               current={postNode.fields.version}
@@ -96,11 +122,14 @@ export default class MarkdownTemplate extends React.Component {
               />
             </ToCContainer>
           </NavContainer>
-          <MainContainer isExpand={this.state.isExpand}>
+          <MainContainer isExpand={isExpand}>
             <Header
+              query={query}
+              isExpand={isExpand}
+              onSearch={this.handleSearch}
               location={this.props.location}
-              isExpand={this.state.isExpand}
               toggleExpand={this.handleExpand}
+              onQueryChange={this.handleQueryChange}
             />
             <MarkdownBody
               className="md-body"
@@ -113,6 +142,14 @@ export default class MarkdownTemplate extends React.Component {
             </MarkdownBody>
           </MainContainer>
         </BodyGrid>
+        <SearchResult
+          query={query}
+          results={results}
+          visible={showSearchResult}
+          onCancel={this.hideSearch}
+          onSearch={this.handleSearch}
+          onQueryChange={this.handleQueryChange}
+        />
       </div>
     )
   }
@@ -201,6 +238,7 @@ export const pageQuery = graphql`
       }
       fields {
         version
+        language
       }
     }
     versions: allMarkdownRemark {

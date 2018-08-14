@@ -14,7 +14,7 @@
       "chapters": [
         {
           "title": "快速入门",
-              "entry": "./express/zh-CN/user-case.md"         
+          "entry": "./express/zh-CN/user-case.md"
         },
         {
           "title": "首页",

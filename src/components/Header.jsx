@@ -4,7 +4,7 @@ import Search from './Search'
 
 import { getScrollTop } from '../utils/index'
 
-import { ReactComponent as Logo2 } from '../assets/logo2.svg'
+import { ReactComponent as Logo } from '../assets/logo.svg'
 
 class Header extends React.Component {
   componentDidMount() {
@@ -32,9 +32,11 @@ class Header extends React.Component {
   }
 
   render() {
+    const { isExpand, ...rest } = this.props;
+
     return (
       <HeaderWrapper
-        isExpand={this.props.isExpand}
+        isExpand={isExpand}
         innerRef={ref => {
           this.headerRef = ref
         }}
@@ -44,9 +46,9 @@ class Header extends React.Component {
           <span className="v-line" />
           <span className="v-line" />
         </div>
-        <a href="//kubesphere.io" target="_blank"><Logo2 className="header-logo"/></a>
+        <a href="//kubesphere.io" target="_blank"><Logo className="header-logo"/></a>
         <SearchWrapper>
-          <Search />
+          <Search {...rest}/>
         </SearchWrapper>
       </HeaderWrapper>
     );

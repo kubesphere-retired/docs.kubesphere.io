@@ -14,9 +14,9 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
     const [version, language] = parts
 
-    createNodeField({ node, name: `slug`, value: slug, })
-    createNodeField({ node, name: `language`, value: language, })
-    createNodeField({ node, name: `version`, value: version, })
+    createNodeField({ node, name: `slug`, value: slug })
+    createNodeField({ node, name: `language`, value: language })
+    createNodeField({ node, name: `version`, value: version })
   }
 }
 
@@ -53,9 +53,9 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           context: {
             slug: slug,
             version: version,
-            id: `${version}-${language}`
-          }
-        });
+            id: `${version}-${language}`,
+          },
+        })
       })
 
       resolve()
