@@ -609,6 +609,10 @@ pre tt:after {
   background: transparent; 
 }
 
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
+
 .ReactModal__Overlay {
   transition: opacity .15s linear;
   opacity: 0;

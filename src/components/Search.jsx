@@ -4,11 +4,29 @@ import styled from 'styled-components'
 import { ReactComponent as SearchIcon } from '../assets/search.svg'
 
 class Search extends React.Component {
+
+  handleKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      const query = e.target.value
+      this.props.onSearch(query)
+    }
+  }
+
+  handleChange = (e) => {
+    this.props.onQueryChange(e.target.value)
+  }
+
   render() {
     return (
       <SearchWrapper className="ks-search">
         <SearchIcon />
-        <input type="text" placeholder="快速查找" />
+        <input 
+          type="text" 
+          value={this.props.query} 
+          placeholder="快速查找" 
+          onKeyUp={this.handleKeyUp}
+          onChange={this.handleChange}
+        />
       </SearchWrapper>
     );
   }
