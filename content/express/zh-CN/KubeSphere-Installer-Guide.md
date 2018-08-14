@@ -18,7 +18,7 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 
 ## All-in-One 模式
 
-`All-in-One` 模式即单节点部署，仅建议您用来测试或熟悉部署流程和了解 KubeSphere 功能特性，在正式使用环境建议使用 `multi-node` 模式，请参考下文的 `multi-node` 模式 。
+`All-in-One` 模式即单节点部署，仅建议您用来测试或熟悉部署流程和了解 KubeSphere 功能特性，在正式使用环境建议使用 `multi-node` 模式，请参考下文的 `multi-node` 模式。
 
 ### 第一步: 准备节点
 
@@ -429,7 +429,7 @@ $ ceph auth get-key client.admin
 | glusterfs\_provisioner\_enabled | 是否使用 GlusterFS 作为持久化存储，是: true; 否: false |
 | glusterfs\_provisioner\_storage\_class | storage\_class 名称 |
 | glusterfs\_is\_default\_class | 是否设定为默认 storage\_class，是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class| --- | --- |glusterfs\_provisioner\_resturl | Heketi 服务 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) | glusterfs\_provisioner\_clusterid | Heketi 服务端输入 heketi-cli cluster list 命令获得，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_restauthenabled | Gluster 启用对 REST 服务器的认证,参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
+| glusterfs\_provisioner\_restauthenabled | Gluster 启用对 REST 服务器的认证, 参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_resturl | Heketi 服务端 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_clusterid | Gluster 集群 id，登录 heketi 服务端输入 heketi-cli cluster list 得到 Gluster 集群 id，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_restuser | 能够在 Gluster pool 中创建 volume 的 Heketi 用户，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
