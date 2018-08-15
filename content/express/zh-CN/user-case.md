@@ -156,14 +156,14 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ## 创建应用路由
 
-12、通过创建应用路由的方式可以将 WordPress 暴露出去供外网访问，与将服务直接通过 NodePort、LoadBalancer 暴露出去不同之处是应用路由是通过配置 Hostname 和路由规则（即 ingress）来访问，请参考以下步骤配置应用路由。关于如何管理应用路由详情请参考 [应用路由管理说明](/express/zh-CN/manage-routers/)。
+12、通过创建应用路由的方式可以将 WordPress 暴露出去供外网访问，与将服务直接通过 NodePort 或 LoadBalancer 暴露出去不同之处是应用路由是通过配置 Hostname 和路由规则（即 ingress）来访问，请参考以下步骤配置应用路由。关于如何管理应用路由详情请参考 [应用路由管理说明](/express/zh-CN/manage-routers/)。
 
 - 12.1. 首先配置外网访问入口，即应用路由的网关入口，每个项目都有一个独立的网关入口：
 
 ![网关入口](/uc_createingress.png)
 
 
-- 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [青云QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务。本实践以 NodePort 访问方式为例配置网关入口，此方式网关可以通过工作节点对应的端口来访问，配置完成后点击应用 (端口显示在左边的节点端口处)：
+- 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [青云QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务。本实践以 NodePort 访问方式为例配置网关入口，此方式网关可以通过工作节点对应的端口来访问，配置完成后点击应用 (端口显示在左边的节点端口处)，然后点击关闭：
 
 ![配置网关](/uc_createingress1.png)
 
@@ -173,7 +173,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 12.3. 配置路由规则，这里以 `kubesphere.wp.com` 为例，并且 path 选择之前的创建成功的服务 wordpress-service，选择下一步：
 
-> - Hostname: 应用规则的访问域名，最终使用此域名来访问对应的服务。(如果访问入口是以 NodePort 的方式启用，需要保证 Host 能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证 Host 正确解析到负载均衡器的 IP 上)。
+> - Hostname: 应用规则的访问域名，最终使用此域名来访问对应的服务。(如果访问入口是以 NodePort 的方式启用，需要保证 Hostname 能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证 Hostname 正确解析到负载均衡器的 IP 上)。
 > - Paths: 应用规则的路径和对应的后端服务，端口需要填写成服务的端口。
 
 ![配置应用路由规则](/uc_createingress3.png)
@@ -187,9 +187,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 > tier=wordpress-ingress
 
-- 12.6. 至此，WordPress 就以应用路由的方式通过网关入口暴露到外部以供访问，用户可以通过示例中配置的 `kubesphere.wp.com` 和端口号访问 WordPress 博客网站：
+- 12.6. 至此，WordPress 就以应用路由的方式通过网关入口暴露到外网，用户可以通过示例中配置的 `kubesphere.wp.com` 和端口号访问 WordPress 博客网站：
 
-> 注: 创建应用路由之后应该把主机的公网 IP 和 配置的域名如：`139.198.17.33 kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。如果主机的公网 IP 有防火墙，应在防火墙下放行自动创建的端口，否则外网无法访问。
+> 注: 创建应用路由之后应该把主机的公网 IP 和 配置的域名如：`139.198.17.33 kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。如果主机的公网 IP 有防火墙，应在防火墙放行对应的端口，否则外网无法访问。
 
 ![web 访问 WordPress](/uc_createingress6.png)
 
@@ -204,7 +204,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ## 删除资源
 
-在实践完成后，建议删除不需要的部署和服务资源，在资源列表中勾选需要删除的资源，例如下图中点击删除部署按钮可删除选中的部署资源，详细可参考 [用户指南](/express/zh-CN/manage-deplyments) 中的应用负载管理、服务与网络和资源管理说明释放资源。
+在实践完成后，建议删除不需要的部署和服务资源，在资源列表中勾选需要删除的资源，例如下图中点击删除部署按钮可删除选中的部署资源，详细可参考用户指南中的 [应用负载管理](/express/zh-CN/manage-deployments)、[服务与网络](/express/zh-CN/manage-services) 和 [资源管理说明](/express/zh-CN/manage-storages) 释放资源。
 
 ![删除资源](/uc_rmresource.png) 
 
