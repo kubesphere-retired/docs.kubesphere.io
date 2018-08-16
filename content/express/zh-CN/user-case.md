@@ -99,9 +99,10 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 8.4. 设置标签并保存，本示例标签的键值对设置如下，完成后选择下一步。
 
-> app=wordpress <br>
-> tier=frontend
-
+```
+app=wordpress
+tier=frontend
+```
 
 - 8.5. 节点选择器此处暂不作配置，点击创建，则 WordPress 部署创建成功。 至此，WordPress 和 MySQL 部署都创建成功：
 
@@ -146,8 +147,9 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 11.3. 添加标签并保存，本示例标签设置如下，添加后选择下一步。
 
-> tier=wordpress-service
-
+```
+tier=wordpress-service
+```
 
 - 11.4. 设置外网访问时，我们将以应用路由的方式暴露服务给外网，所以此处也选择 None。至此，WordPress 与 MySQL 服务都已经创建成功。
 
@@ -181,11 +183,15 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 12.4. 添加注解，Annotation 是用户任意定义的“附加”信息，以便于外部工具进行查找，参见 [Annotation 官方文档](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) 。本示例注解如下所示，完成后选择下一步：
 
-> hostname=kubesphere.wp.com
+```
+hostname=kubesphere.wp.com
+```
 
 - 12.5. 添加标签如下，选择创建：
 
-> tier=wordpress-ingress
+```
+tier=wordpress-ingress
+```
 
 - 12.6. 至此，WordPress 就以应用路由的方式通过网关入口暴露到外网，用户可以通过示例中配置的 `kubesphere.wp.com` 和端口号访问 WordPress 博客网站：
 
