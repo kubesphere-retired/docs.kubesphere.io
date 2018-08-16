@@ -29,7 +29,7 @@ KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服�
 
 ![](/appfactory_create.png)
 
-常用的应用仓库还有 Google 和 Incubator，用户可根据需要添加此类应用仓库 （国内网络需要设置代理）：
+常用的应用仓库还有 Google 和 Incubator，用户可根据需要添加此类应用仓库：
 
 > - Google Helm Repo: https://kubernetes-charts.storage.googleapis.com
 > - Incubator Helm Repo: https://kubernetes-charts-incubator.storage.googleapis.com/
