@@ -1,20 +1,22 @@
 ---
 title: "部署 Ceph RBD 存储服务端"
 ---
- 
-> 此安装方法仅供测试 Kubesphere 存储服务端的搭建，搭建 Ceph 集群请参考 Ceph[官方网站](http://docs.ceph.com/docs/master/)
 
-## 准备节点
-主机规格
+## 简介
+[Ceph](https://ceph.com/) 是一个分布式存储系统，最早致力于开发下一代高性能分布式文件系统的项目。Ceph 具有高可用、高扩展性和特性丰富的优势， Ceph 支持三种调用接口：对象存储，块存储，文件系统挂载。并且 Ceph 的 CRUSH 算法有相当强大的扩展性，理论上支持数千个存储节点。本指南将介绍如何在 Ubuntu 系统部署一个节点数为 2 的 Ceph (v10.2.10) 存储服务端集群。本指南仅供测试 Kubesphere 存储服务端的搭建，正式环境搭建 Ceph 集群请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)
 
-|Hostname        |IP     |OS       | CPU |RAM|Device|
-|:---------------:|:------:|:------:|-----|-----|:---:|
-|ceph1           |172.20.1.7|Ubuntu16.04.4|4 Core|4 GB|/dev/vda 100Gi|
-|ceph2          |172.20.1.8|Ubuntu16.04.4|4 Code|4 GB |/dev/vda 100Gi|
+### Ceph 基本组件
 
-> 如需创建更大容量 Ceph 存储服务端，可将创建更大容量主机磁盘或挂载大容量磁盘至主机并挂载至 ceph1 的 `/osd1`，ceph2 的 `/osd2` 文件夹
+Ceph主要有三个基本进程:
+- OSD
+用于集群中所有数据与对象的存储。处理集群数据的复制、恢复、回填、再均衡。并向其他osd守护进程发送心跳，然后向 Monitor 提供一些监控信息。
 
-### 存储服务端架构图
+- Monitor
+监控整个集群的状态，维护集群的 cluster MAP 二进制表，保证集群数据的一致性。
+
+- MDS (可选)
+为Ceph文件系统提供元数据计算、缓存与同步。MDS进程并不是必须的进程，只有需要使用CEPHFS时，才需要配置MDS节点。
+
 
 ```
 
@@ -30,39 +32,39 @@ title: "部署 Ceph RBD 存储服务端"
 ```
 
 
-## 安装步骤
-- 将要安装ceph 10.2.10
+## 准备节点
+主机规格
 
-### 配置 root 账户登录（ceph1，ceph2）
-- ubuntu账户登录主机后切换root账户
+|Hostname |IP     |OS       | CPU |RAM|Device|
+|-------|:------:|:------:|-----|-----|:---:|
+|ceph1  |172.20.1.7|Ubuntu16.04.4|4 Core|4 GB|/dev/vda 100 GiB|
+|ceph2  |172.20.1.8|Ubuntu16.04.4|4 Core|4 GB |/dev/vda 100 GiB|
+
+> 注：集群中 ceph1 作为管理主机。如需创建更大容量的 Ceph 存储服务端，可将创建更大容量主机磁盘或挂载大容量磁盘至主机并挂载至 ceph1 的 `/osd1` 和 ceph2 的 `/osd2` 文件夹。两个节点的 Hostname 需要与主机规格的列表中一致，因为后续步骤的命令行中有匹配到 Hostname，若与以上列表不一致请注意在后续的命令中对应修改成实际的 Hostname。
+
+
+### 配置 root 登录
+1、参考如下步骤分别为 ceph1 和 ceph2 配置 root 用户登录：
+
+- 1.1. ubuntu 账户登录主机后切换 root 用户
 
 ```
 ubuntu@ceph1:~$ sudo -i
 [sudo] password for ubuntu: 
 root@ceph1:~# 
 ```
-```
-ubuntu@ceph2:~$ sudo -i
-[sudo] password for ubuntu: 
-root@ceph2:~# 
-```
+- 同上，在 ceph2 执行以上命令。
 
-- 设置 root 账户登录密钥
+- 1.2. 设置 root 用户登录密钥
 
 ```
 root@ceph1:~# passwd
-Enter new UNIX password: 
-Retype new UNIX password: 
-passwd: password updated successfully
 ```
-```
-root@ceph2:~# passwd
-Enter new UNIX password: 
-Retype new UNIX password: 
-passwd: password updated successfully
-```
+- 同上，在 ceph2 执行以上命令。
 
-### 修改 hosts 文件（ceph1，ceph2）
+### 修改 hosts 文件
+2、参考如下步骤分别修改 ceph1 和 ceph2 的 `hosts` 文件：
+
 ```
 root@ceph1:~# vim /etc/hosts
 127.0.0.1	localhost
@@ -77,52 +79,19 @@ ff02::2 ip6-allrouters
 172.20.1.8	ceph2
 
 ```
-
-```
-root@ceph2:~# vim /etc/hosts
-127.0.0.1	localhost
-
-# The following lines are desirable for IPv6 capable hosts
-::1     localhost ip6-localhost ip6-loopback
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-
-# hostname loopback address
-172.20.1.7	ceph1
-172.20.1.8	ceph2
-
-```
+- 同上，在 ceph2 执行以上命令并修改 hosts。
 
 
-### 配置 ceph1 无密码登录至 ceph1与ceph2（ceph1）
-- 创建密钥，提示 “Enter passphrase” 时，直接回车，口令即为空
+### 配置 SSH 免密登录
+3、以下为 ceph1 的 root 用户配置无密码登录至 ceph1 与 ceph2：
+
+- 3.1. 创建密钥，提示 “Enter passphrase” 时，直接回车，口令即为空
 
 ```
 root@ceph1:~# ssh-keygen
-Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa): 
-Created directory '/root/.ssh'.
-Enter passphrase (empty for no passphrase): 
-Enter same passphrase again: 
-Your identification has been saved in /root/.ssh/id_rsa.
-Your public key has been saved in /root/.ssh/id_rsa.pub.
-The key fingerprint is:
-SHA256:9SZy/cPQVyU4SHuXN10WHJzlGVCjlvpY+agSqPc5ovE root@ceph1
-The key's randomart image is:
-+---[RSA 2048]----+
-|         ... o**X|
-|          ..o oOB|
-|          o .=oo=|
-|         . +oo..o|
-|        S o.=o. .|
-|       . + o++o. |
-|     ..   .. o+. |
-|     .oo o. .  . |
-|     .oEooo.     |
-+----[SHA256]-----+
 ```
 
-- 拷贝密钥到各个 Ceph 节点，按照提示输入密钥
+- 3.2. 拷贝密钥到两个个 Ceph 节点，按照提示输入密钥
 
 ```
 root@ceph1:~# ssh-copy-id root@ceph1
@@ -131,32 +100,32 @@ root@ceph1:~# ssh-copy-id root@ceph2
 ...
 ```
 
-- 验证，ceph1 无需输入密码可以登录 ceph1，ceph2
+- 3.3. 验证免密登录，即 ceph1 的 root 用户无需输入密码可以登录 ceph1 和 ceph2
 
 ```
 root@ceph1:~# ssh root@ceph1
 root@ceph1:~# ssh root@ceph2
 ```
 
-### 安装 ceph 和 ceph-deploy（ceph1，ceph2）
-unable to get package
+### 安装 Ceph 和 ceph-deploy
 
+4、Ceph 官方推出了一个用 python 写的工具 cpeh-deploy，可以很大程度地简化 ceph 集群的配置过程，参考如下步骤分别为 ceph1 和 ceph2 安装 ceph 和 ceph-deploy：
 ```
 root@ceph1:~# apt-get install -y ceph ceph-deploy
 ```
+- 同上，在 ceph2 执行以上命令。
 
-```
-root@ceph2:~# apt-get install -y ceph ceph-deploy
-```
+### 创建文件夹
 
-### 创建文件夹（ceph1，ceph2）
-- 存放初始化配置
+5、参考如下步骤分别为 ceph1 和 ceph2 创建文件夹
+
+- 5.1. 在 ceph1 创建文件夹存放初始化配置
 
 ```
 root@ceph1:~# mkdir -p  /root/cluster & cd /root/cluster & rm -f /root/cluster/*
 ```
 
-- 存放 ceph 数据
+- 5.2. 分别在 ceph1 和 ceph2 存放 ceph 数据
 
 ```
 root@ceph1:~# mkdir -p /osd1 & rm -rf /osd1/*
@@ -168,20 +137,18 @@ root@ceph2:~# mkdir -p /osd2 & rm -rf /osd2/*
 root@ceph2:~# chown ceph:ceph /osd2
 ```
 
-
-- 创建 ceph 文件夹
+- 5.3. 分别在 ceph1 和 ceph2 创建 ceph 文件夹
 
 ```
 root@ceph1:~# mkdir -p /var/run/ceph/
 root@ceph1:~# chown ceph:ceph /var/run/ceph/
 ```
 
-```
-root@ceph2:~# mkdir -p /var/run/ceph/
-root@ceph2:~# chown ceph:ceph /var/run/ceph/
-```
+- 同上，在 ceph2 执行以上命令。
 
-### 初始化 ceph（ceph1）
+### 初始化 ceph
+
+6、执行以下命令在 ceph1 节点初始化 ceph：
 
 ```
 root@ceph1:~# cd /root/cluster
@@ -198,17 +165,13 @@ rbdmap
 root@ceph1:~/cluster# ls /var/run/ceph/
 ```
 
-### 配置 ceph.conf（ceph1）
+### 修改 Ceph 配置文件
+7、在 ceph1 配置 `ceph.conf`，添加以下参数：
 ```
 root@ceph1:~/cluster# vim ceph.conf 
 [global]
-fsid = 3e15ecfe-d4fb-4d7b-ab6d-70ce1807244c
-mon_initial_members = ceph1
-mon_host = 172.20.1.7
-auth_cluster_required = cephx
-auth_service_required = cephx
-auth_client_required = cephx
-
+···
+···
 osd pool default size = 2
 osd crush chooseleaf type = 0
 osd max object name len = 256
@@ -216,14 +179,16 @@ osd journal size = 128
 
 ```
 
-### 配置 mon（ceph1）
+### 激活 Mon 节点
+8、Mon 节点监控着整个 Ceph 集群的状态信息，监听于 TCP 的 `6789` 端口。每一个 Ceph 集群中至少要有一个 Mon 节点，如下在 ceph1 激活 Monitor：
 ```
 root@ceph1:~/cluster# ceph-deploy mon create-initial
 ...
 [ceph_deploy.gatherkeys][DEBUG ] Got ceph.bootstrap-rgw.keyring key from ceph1.
 ```
 
-### 配置 osd（ceph1）
+### 创建 OSD 节点
+9、OSD 是强一致性的分布式存储，用于集群中所有数据与对象的存储，如下在 ceph1 为集群中两个节点创建 OSD：
 ```
 root@ceph1:~/cluster# ceph-deploy osd prepare ceph1:/osd1 ceph2:/osd2
 ...
@@ -232,77 +197,61 @@ root@ceph1:~/cluster# ceph-deploy osd prepare ceph1:/osd1 ceph2:/osd2
 [ceph_deploy.osd][DEBUG ] Host ceph2 is now ready for osd use.
 ```
 
+- 启动 OSD 节点：
+
 ```
 root@ceph1:~/cluster# ceph-deploy osd activate ceph1:/osd1 ceph2:/osd2
 ```
 
-### 拷贝配置（ceph1，ceph2）
+### 拷贝配置
+10、拷贝配置到 ceph1 和 ceph2：
 ```
 root@ceph1:~/cluster# ceph-deploy admin ceph1 ceph2
-```
+```   
 
 ```
 root@ceph1:~/cluster# chmod +r /etc/ceph/ceph.client.admin.keyring
 root@ceph2:~/cluster# chmod +r /etc/ceph/ceph.client.admin.keyring
 ```
 
-## 验证
-### 查看版本
+### 验证安装结果
+11、至此，一个简单的 Ceph 存储服务集群搭建就完成了，接下来查看所安装的 Ceph 版本和状态信息：
+
+- 11.1. 查看版本
+
 ```
 root@ceph1:~/cluster# ceph -v
 ceph version 10.2.10 (5dc1e4c05cb68dbf62ae6fce3f0700e4654fdbbe)
 ```
 
-### 检查 ceph 状态
-```
-root@ceph1:~/cluster# ceph -s
-    cluster 3e15ecfe-d4fb-4d7b-ab6d-70ce1807244c
-     health HEALTH_OK
-     monmap e1: 1 mons at {ceph1=172.20.1.7:6789/0}
-            election epoch 3, quorum 0 ceph1
-     osdmap e10: 2 osds: 2 up, 2 in
-            flags sortbitwise,require_jewel_osds
-      pgmap v67: 64 pgs, 1 pools, 0 bytes data, 0 objects
-            3783 MB used, 182 GB / 196 GB avail
-                  64 active+clean
+- 11.2. 在两个节点检查 ceph 状态，可以使用 `ceph –s` 查看，如果是 health 显示 `HEALTH_OK` 状态说明配置成功
 
-```
-
-```
-root@ceph2:~# ceph -s
-    cluster 3e15ecfe-d4fb-4d7b-ab6d-70ce1807244c
-     health HEALTH_OK
-     monmap e1: 1 mons at {ceph1=172.20.1.7:6789/0}
-            election epoch 3, quorum 0 ceph1
-     osdmap e10: 2 osds: 2 up, 2 in
-            flags sortbitwise,require_jewel_osds
-      pgmap v71: 64 pgs, 1 pools, 0 bytes data, 0 objects
-            3783 MB used, 182 GB / 196 GB avail
-                  64 active+clean
-
-```
 
 ### 使用 ceph 服务
-#### 创建 rbd image
+12、首先，需要创建 rbd image，image 是 Ceph 块设备中的磁盘映像文件，可使用 `rbd create ...` 命令创建指定大小的映像。
+
+- 12.1. 此处在 ceph1 以创建 foo 为例：
+
 ```
 root@ceph1:~/cluster# rbd create foo --size 4096 --pool rbd --image-format=1
 rbd: image format 1 is deprecated
 ```
 
-> 检查
+- 12.2. 检查 rbd image：
+
 ```
 root@ceph1:~/cluster# rbd ls
 foo
 ```
 
-#### 挂载 rbd image
+- 12.3. 在 ceph1 把 foo image 映射到内核：
 
 ```
 root@ceph1:~/cluster# rbd map foo
 /dev/rbd0
 ```
 
-> 检查
+- 12.4. 检查挂载状态：
 
 ```
 root@ceph1:~/cluster# fdisk -l
@@ -314,30 +263,22 @@ I/O size (minimum/optimal): 4194304 bytes / 4194304 bytes
 
 ```
 
-#### 分区格式化
+### 分区格式化
+13、将 foo image 格式化为 ext4 格式的文件系统：
 ```
 root@ceph1:~/cluster# mkfs.ext4 /dev/rbd0
-mke2fs 1.42.13 (17-May-2015)
-Discarding device blocks: done                            
-Creating filesystem with 1048576 4k blocks and 262144 inodes
-Filesystem UUID: 0921ff0b-d4a3-46eb-a7b3-59fe53019c36
-Superblock backups stored on blocks: 
-	32768, 98304, 163840, 229376, 294912, 819200, 884736
-
-Allocating group tables: done                            
-Writing inode tables: done                            
-Creating journal (32768 blocks): done
-Writing superblocks and filesystem accounting information: done 
 
 ```
 
-#### 挂载至文件夹
+- 13.1. 创建文件夹，然后挂载至目标文件夹：
+
 ```
 root@ceph1:~/cluster# mkdir -p /mnt/rbd
 root@ceph1:~/cluster# mount /dev/rbd0 /mnt/rbd
 ```
 
-> 检查
+- 13.2 在 ceph1 检查挂载结果:
+
 ```
 root@ceph1:~/cluster# df -ah
 ...
@@ -350,23 +291,29 @@ lost+found
 ```
 
 
-#### 从文件夹卸载
+### 释放资源
+14、注意，在使用完毕之后，可参考如下步骤卸载和删除不需要的资源。
+
+- 14.1. 参考如下将文件系统从文件中卸载：
+
 ```
 root@ceph1:~/cluster# umount /mnt/rbd
 ```
 
-> 检查
+- 14.2. 检查卸载结果：
+
 ```
 root@ceph1:~/cluster# df -ah
 ...
 ```
 
-#### 卸载 rbd image
+- 14.3. 卸载 rbd image：
+
 ```
 root@ceph1:~/cluster# rbd unmap foo
 ```
 
-> 检查
+- 14.4. 检查卸载结果：
 
 ```
 root@ceph1:~/cluster# fdisk -l
@@ -388,7 +335,8 @@ I/O size (minimum/optimal): 512 bytes / 512 bytes
 
 ```
 
-#### 删除 rbd image
+- 14.5. 删除 rbd image：
+
 ```
 root@ceph1:~/cluster# rbd remove foo
 Removing image: 100% complete...done.

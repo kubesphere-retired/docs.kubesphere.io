@@ -2,15 +2,15 @@
 title: "部署 Glusterfs 存储服务端"
 ---
 
-> 此安装方法仅供测试 Kubesphere 存储服务端，搭建 Glusterfs 集群请参考 Glusterfs [官方网站](https://docs.gluster.org/en/latest/Install-Guide/Install/#for-ubuntu)，搭建 Heketi 请参考 [官方文档](https://github.com/heketi/heketi/blob/master/docs/admin/readme.md)
+> 此安装方法仅供测试 Kubesphere 存储服务端的搭建，搭建 Glusterfs 集群请参考 Glusterfs [官方网站](https://docs.gluster.org/en/latest/Install-Guide/Install/#for-ubuntu)，搭建 Heketi 请参考 [官方文档](https://github.com/heketi/heketi/blob/master/docs/admin/readme.md)
 
 ## 准备节点
 主机规格
 
 |Hostname        |IP     |OS       |CPU|RAM|Device|
 |:---------------:|:------:|:------:|:---:|:--:|:--:|
-|glusterfs-server1  |172.20.1.5|Ubuntu16.04.4| 4 Core|4 GB|/dev/vda 100Gi, /dev/vdc 300Gi|
-|glusterfs-server2  |172.20.1.6|Ubuntu16.04.4| 4 Core|4 GB|/dev/vda 100Gi, /dev/vdc 300Gi|
+|glusterfs-server1  |172.20.1.5|Ubuntu16.04.4| 4 Core|4 GB|/dev/vda 100GiB, /dev/vdc 300GiB|
+|glusterfs-server2  |172.20.1.6|Ubuntu16.04.4| 4 Core|4 GB|/dev/vda 100GiB, /dev/vdc 300GiB|
 
 
 ```
@@ -29,6 +29,7 @@ title: "部署 Glusterfs 存储服务端"
 - Glusterfs服务端将数据存储至/dev/vdc块设备中，/dev/vdc必须是未经分区格式化的原始块设备
 
 ### 配置 root 账户登录（glusterfs-server1，glusterfs-server2）
+
 - ubuntu账户登录主机后切换root账户
 ```
 ubuntu@glusterfs-server1:~$ sudo -i
@@ -328,46 +329,46 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/heketi.service 
 
 ```
 root@glusterfs-server1:~# vim /etc/heketi/topology.json 
-  1 {
-  2   "clusters": [
-  3     {
-  4       "nodes": [
-  5         {
-  6           "node": {
-  7             "hostnames": {
-  8               "manage": [
-  9                 "172.20.1.5"
- 10               ],
- 11               "storage": [
- 12                 "172.20.1.5"
- 13               ]
- 14             },
- 15             "zone": 1
- 16           },
- 17           "devices": [
- 18             "/dev/vdc"
- 19           ]
- 20         },
- 21         {
- 22           "node": {
- 23             "hostnames": {
- 24               "manage": [
- 25                 "172.20.1.6"
- 26               ],
- 27               "storage": [
- 28                 "172.20.1.6"
- 29               ]
- 30             },
- 31             "zone": 1
- 32           },
- 33           "devices": [
- 34             "/dev/vdc"
- 35           ]
- 36         }
- 37       ]
- 38     }
- 39   ]
- 40 }
+  {
+    "clusters": [
+       {
+         "nodes": [
+           {
+             "node": {
+               "hostnames": {
+                 "manage": [
+                   "172.20.1.5"
+                ],
+                "storage": [
+                  "172.20.1.5"
+                ]
+              },
+              "zone": 1
+            },
+            "devices": [
+              "/dev/vdc"
+            ]
+          },
+          {
+            "node": {
+              "hostnames": {
+                "manage": [
+                  "172.20.1.6"
+                ],
+                "storage": [
+                  "172.20.1.6"
+                ]
+              },
+              "zone": 1
+            },
+            "devices": [
+              "/dev/vdc"
+            ]
+          }
+        ]
+      }
+    ]
+  }
 
 ```
 
