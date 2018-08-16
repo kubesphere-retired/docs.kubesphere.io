@@ -3,7 +3,7 @@ title: "部署 Ceph RBD 存储服务端"
 ---
 
 ## 简介
-[Ceph](https://ceph.com/) 是一个分布式存储系统，最早致力于开发下一代高性能分布式文件系统的项目。Ceph 具有高可用、高扩展性和特性丰富的优势， Ceph 支持三种调用接口：对象存储，块存储，文件系统挂载。并且 Ceph 的 CRUSH 算法有相当强大的扩展性，理论上支持数千个存储节点。本指南将介绍如何在 Ubuntu 系统部署一个节点数为 2 的 Ceph (v10.2.10) 存储服务端集群。本指南仅供测试 Kubesphere 存储服务端的搭建，正式环境搭建 Ceph 集群请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)
+[Ceph](https://ceph.com/) 是一个分布式存储系统，最早致力于开发下一代高性能分布式文件系统的项目。Ceph 具有高可用、高扩展性和特性丰富的优势， Ceph 支持三种调用接口：对象存储，块存储，文件系统挂载。并且 Ceph 的 CRUSH 算法有相当强大的扩展性，理论上支持数千个存储节点。本指南将介绍如何在 Ubuntu 系统部署一个节点数为 2 的 Ceph (v10.2.10) 存储服务端集群。本指南仅供测试 KubeSphere 存储服务端的搭建，正式环境搭建 Ceph 集群请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)。
 
 ### Ceph 基本组件
 
@@ -37,12 +37,15 @@ Ceph主要有三个基本进程:
 
 |Hostname |IP     |OS       | CPU |RAM|Device|
 |-------|:------:|:------:|-----|-----|:---:|
-|ceph1  |172.20.1.7|Ubuntu16.04.4|4 Core|4 GB|/dev/vda 100 GiB|
-|ceph2  |172.20.1.8|Ubuntu16.04.4|4 Core|4 GB |/dev/vda 100 GiB|
+|ceph1  |172.20.1.7|Ubuntu 16.04.4|4 Core|4 GB|/dev/vda 100 GiB|
+|ceph2  |172.20.1.8|Ubuntu 16.04.4|4 Core|4 GB |/dev/vda 100 GiB|
 
-> 注：集群中 ceph1 作为管理主机。如需创建更大容量的 Ceph 存储服务端，可将创建更大容量主机磁盘或挂载大容量磁盘至主机并挂载至 ceph1 的 `/osd1` 和 ceph2 的 `/osd2` 文件夹。两个节点的 Hostname 需要与主机规格的列表中一致，因为后续步骤的命令行中有匹配到 Hostname，若与以上列表不一致请注意在后续的命令中对应修改成实际的 Hostname。
+> 注：
+> - `ceph1` 作为集群的管理主机，用来执行安装任务。
+> - 如需创建更大容量的 Ceph 存储服务端，可将创建更大容量主机磁盘或挂载大容量磁盘至主机并挂载至 ceph1 的 `/osd1` 和 ceph2 的 `/osd2` 文件夹。
+> - 两个节点的 Hostname 需要与主机规格的列表中一致，因为后续步骤的命令行中有匹配到 Hostname，若与以上列表不一致请注意在后续的命令中对应修改成实际的 Hostname。
 
-
+## 预备工作
 ### 配置 root 登录
 1、参考如下步骤分别为 ceph1 和 ceph2 配置 root 用户登录：
 
@@ -106,7 +109,7 @@ root@ceph1:~# ssh-copy-id root@ceph2
 root@ceph1:~# ssh root@ceph1
 root@ceph1:~# ssh root@ceph2
 ```
-
+## 开始安装
 ### 安装 Ceph 和 ceph-deploy
 
 4、Ceph 官方推出了一个用 python 写的工具 cpeh-deploy，可以很大程度地简化 ceph 集群的配置过程，参考如下步骤分别为 ceph1 和 ceph2 安装 ceph 和 ceph-deploy：
@@ -214,7 +217,7 @@ root@ceph1:~/cluster# chmod +r /etc/ceph/ceph.client.admin.keyring
 root@ceph2:~/cluster# chmod +r /etc/ceph/ceph.client.admin.keyring
 ```
 
-### 验证安装结果
+## 验证安装结果
 11、至此，一个简单的 Ceph 存储服务集群搭建就完成了，接下来查看所安装的 Ceph 版本和状态信息：
 
 - 11.1. 查看版本
@@ -227,7 +230,7 @@ ceph version 10.2.10 (5dc1e4c05cb68dbf62ae6fce3f0700e4654fdbbe)
 - 11.2. 在两个节点检查 ceph 状态，可以使用 `ceph –s` 查看，如果是 health 显示 `HEALTH_OK` 状态说明配置成功
 
 
-### 使用 ceph 服务
+## 使用 ceph 服务
 12、首先，需要创建 rbd image，image 是 Ceph 块设备中的磁盘映像文件，可使用 `rbd create ...` 命令创建指定大小的映像。
 
 - 12.1. 此处在 ceph1 以创建 foo 为例：
@@ -291,7 +294,7 @@ lost+found
 ```
 
 
-### 释放资源
+## 释放资源
 14、注意，在使用完毕之后，可参考如下步骤卸载和删除不需要的资源。
 
 - 14.1. 参考如下将文件系统从文件中卸载：
