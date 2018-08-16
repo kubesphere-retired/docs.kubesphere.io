@@ -91,6 +91,19 @@
           ]
         }
       ]
-    }
+    },
+    {
+          "title": "附录",
+          "chapters": [
+            {
+          "title": "部署 Ceph RBD",    
+          "entry": "./express/zh-CN/ceph-ks-install.md"
+            },
+            {
+          "title": "部署 Glusterfs",
+          "entry": "./express/zh-CN/glusterfs-ks-install.md"
+            }
+      ]
+        }
   ]
 }

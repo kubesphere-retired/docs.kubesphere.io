@@ -25,7 +25,12 @@ Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜�
 
 3.验证成功即完成镜像仓库的添加。
 
-![](/image_registries_create.png) 
+以下用 QingCloud 镜像仓库地址 `dockerhub.qingcloud.com` 作为示例，参考如下截图完成此镜像仓库的添加：
+
+![创建 QingCloud](/image_registries_create.png) 
+
+如果需要添加 [Dokcer Hub](https://hub.docker.com/) 中的镜像仓库，请先确保已在 Docker Hub 注册过账号再进行添加，在添加镜像仓库的窗口填写仓库名称并选择授权项目，仓库地址填写 `docker.io`，输入用户名和密码即可。
+
 
 ### 创建Harbor镜像仓库
 
