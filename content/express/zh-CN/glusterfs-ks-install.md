@@ -159,11 +159,13 @@ $ gluster peer status
 ### 安装Hekeit（glusterfs-server1）
 
 - 下载Hekeit
+
 ```
 root@glusterfs-server1:~# wget https://github.com/heketi/heketi/releases/download/v7.0.0/heketi-v7.0.0.linux.amd64.tar.gz
 ```
 
 - 安装Heketi
+
 ```
 root@glusterfs-server1:~# tar -xf heketi-v7.0.0.linux.amd64.tar.gz
 root@glusterfs-server1:~# cd heketi/
@@ -173,7 +175,8 @@ root@glusterfs-server1:~/heketi# cp heketi-cli /usr/bin
 
 ### 配置Heketi（glusterfs-server1）
 
-- 将Heketi纳入systemd管理
+- 将Heketi纳入 systemd 管理
+
 ```
 root@glusterfs-server1:~# vi /lib/systemd/system/heketi.service
 [Unit]
@@ -190,6 +193,7 @@ WantedBy=multi-user.target
 ```
 
 - 创建文件夹
+
 ```
 root@glusterfs-server1:~# mkdir -p /var/lib/heketi
 root@glusterfs-server1:~# mkdir -p /etc/heketi
