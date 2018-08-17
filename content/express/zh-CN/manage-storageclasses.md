@@ -22,15 +22,15 @@ title: "存储类型"
 
 2. 在基本信息页面填入参数，以创建 rbd-sc 存储类型为例
 
-2.1. 填入存储类型名和描述信息:
+- 2.1.  填入存储类型名和描述信息:
 
 ![存储类型 - 基本信息](/sc-create-page1.png)
 
-2.2. 填入参数键值对，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd)
+- 2.2. 填入参数键值对，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd)
 
 ![存储类型 - 参数设置](/sc-create-page2.png)
 
-2.3. 为存储类型设置标签，点击创建:
+- 2.3. 为存储类型设置标签，点击创建:
 
 ![存储类型 - 标签](/sc-create-page3.png)
 
@@ -42,9 +42,8 @@ title: "存储类型"
 ![](/sc-listrbd.png)
 
 2. 进入存储类型详情页
-- 编辑 Yaml 文件按钮：直接编辑存储类型对象文件
-- 删除按钮：删除存储类型
-- 存储卷列表展示与此存储类型相关的存储卷，存储卷介绍请见存储卷说明部分
+
+选择 **编辑 Yaml 文件** 按钮直接编辑存储类型对象文件；选择 **删除** 按钮删除存储类型；存储卷列表展示与此存储类型相关的存储卷，存储卷介绍请见 [存储卷](/express/zh-CN/manage-storages/) 说明部分。
 
 ![存储类型详情](/sc-detail.png)
 
