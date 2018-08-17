@@ -11,7 +11,7 @@ title: "存储卷"
 - 使用存储卷
 - 删除存储卷
 - Local Volume 使用方法
-- Ceph RBD 存储卷缺少密钥无法挂载解决方案
+- Ceph RBD 密钥无法挂载解决方案
 
 
 ## 创建存储卷
@@ -20,7 +20,7 @@ title: "存储卷"
     
 ![存储卷列表](/pvc-pvclist.png)
 
-> 注：使用 KubeSphere 创建 Local 存储类型存储卷，需预先创建 Local 类型 PV，参见 [Local Volume 使用方法]()
+> 注：使用 KubeSphere 创建 Local 存储类型存储卷，需预先创建 Local 类型 PV，参见 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。
 
 1. 点击存储卷列表页的 **创建存储卷** 按钮进入创建存储卷界面，填写存储卷基本信息，完成后点下一步：
 
@@ -34,7 +34,7 @@ title: "存储卷"
 
 ![创建存储卷 - 标签](/pvc-create3.png)
 
-4. 存储卷创建成功
+4. 存储卷创建成功。
 
 ![存储卷列表](/pvc-pvclist.png)
 
@@ -47,28 +47,28 @@ title: "存储卷"
 
 ## 使用存储卷
 
-在创建工作负载时将用到存储卷，以创建部署并挂载存储卷为例:
+在创建工作负载时将用到存储卷，以创建部署并挂载存储卷为例：
 
-> 注：工作负载挂载 Ceph RBD 类型存储卷时需确保工作负载所在项目必须有特定的 Secret，详情见 [Ceph RBD 存储卷缺少密钥无法挂载解决方案]()
+> 注：工作负载挂载 Ceph RBD 类型存储卷时需确保工作负载所在项目必须有特定的 Secret，详情见 [Ceph RBD 无法挂载解决方案](/express/zh-CN/manage-storages/#ceph-rbd-无法挂载解决方案)。
 
-1. 在工作负载中选择创建部署，填写基本信息和容器组设置信息，可参考 [部署管理](/express/zh-CN/manage-demployments/) 部分的指南。存储设置页面可挂载已有的存储卷或创建新的存储卷，在添加存储卷下选择第一项 **存储卷**，然后在右侧选择已经创建的存储卷:
+1. 在工作负载中选择创建部署，填写基本信息和容器组设置信息，可参考 [部署管理](/express/zh-CN/manage-deployments/) 。存储设置页面可挂载已有的存储卷或创建新的存储卷，在添加存储卷下选择第一项 **存储卷**，然后在右侧选择已经创建的存储卷：
 
 
 ![使用存储卷1](/pvc-mount2.png)
 
-2. 输入存储卷在容器内的挂载路径，完成后续步骤即可成功创建部署:
+2. 输入存储卷在容器内的挂载路径，完成后续步骤即可成功创建部署：
 
 ![使用存储卷2](/pvc-mount3.png)
 
 
-3. 当存储卷挂载成功后，部署正常启动，此时存储卷挂载状态变为已挂载
+3. 当存储卷挂载成功后，部署正常启动，说明此时存储卷已成功挂载：
 
 ![使用存储卷3](/pvc-deploylist.png)
 
 
 ## 删除存储卷
 
-> 注：使用 KubeSphere 删除 Local 存储类型存储卷，需手动回收 Local 类型 PV，参见 [Local Volume 使用方法]()
+> 注：使用 KubeSphere 删除 Local 存储类型存储卷，需手动回收 Local 类型 PV，参见 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。
 
 在存储卷列表页可选中存储卷，点击删除按钮删除，删除存储卷前请确保存储卷挂载状态处于未挂载。
 
@@ -79,9 +79,10 @@ title: "存储卷"
 
 Local Volume 仅用于 all-in-one 单节点部署。
 
-1. 创建 Local Volume 的存储类型详细步骤
+1. 创建 Local Volume 的存储类型详细步骤如下：
 
-*  通过 `sc.yaml` 文件定义 Local Volume 的存储类型
+
+- 1.1. 通过 `sc.yaml` 文件定义 Local Volume 的存储类型：
 
 ```
 apiVersion: storage.k8s.io/v1
@@ -92,13 +93,14 @@ provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 ```
 
-*  执行创建命令
+- 1.2. 执行创建命令：
 
 ```
 $ kubectl create -f sc.yaml
 ```
 
-2. 创建 Local Volume 文件夹
+2. 创建 Local Volume 文件夹：
+
 
 *  登录宿主机，创建文件夹，以文件夹 `vol-test` 为例，执行以下命令：
 
@@ -106,9 +108,10 @@ $ kubectl create -f sc.yaml
 sudo mkdir -p /mnt/disks/vol-test
 ```
 
-3. 创建 Local PV
+3. 创建 Local PV：
 
-*  通过 `pv.yaml` 文件定义 Loval PV:
+
+- 3.1. 通过 `pv.yaml` 文件定义 Loval PV：
 
 ```
 apiVersion: v1
@@ -134,13 +137,13 @@ spec:
           operator: Exists
 ```
 
-*  执行创建命令
+- 3.2. 执行创建命令：
 
 ```
 $ kubectl create -f pv-local.yaml
 ```
 
-4. 执行以下命令验证创建结果
+4. 执行以下命令验证创建结果：
 
 ```
 $ kubectl get pv
@@ -148,19 +151,18 @@ NAME         CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM       
 pv-local     10Gi       RWO            Delete           Available                local                     4s
 ```
 
-上述工作完成后可在 KubeSphere 控制台创建存储卷，KubeSphere 控制台创建的存储卷容量不可大于预分配 PV 容量
+上述工作完成后可在 KubeSphere 控制台创建存储卷，KubeSphere 控制台创建的存储卷容量不可大于预分配 PV 容量。
 
-> 注：Local Volume 存储卷创建成功后为 `Pending` 属于正常状态，当创建工作负载调度 Pod 后存储卷状态即可变化为 Bound
+> 注：Local Volume 存储卷创建成功后为 `Pending` 属于正常状态，当创建工作负载调度 Pod 后存储卷状态即可变化为 Bound。
 
 #### 删除 Local Volume PV 和文件夹
-1. 删除 Local Volume PV
+1. 删除 Local Volume PV：
 
 ```
 $ kubectl delete pv pv-local
 ```
 
-2. 删除 Local Volume 文件夹
-> 注：此操作步骤会删除 `vol-test` 文件夹里内容
+2. 删除 Local Volume 文件夹，此操作也会删除 `vol-test` 文件夹里内容：
 
 ```
 $ sudo cd /mnt/disks
@@ -168,22 +170,21 @@ $ sudo rm -rf vol-test
 ```
 
 
-## Ceph RBD 密钥无法挂载解决方案
+## Ceph RBD 无法挂载解决方案
 
-Ceph RBD 存储卷操作过程中, 如果遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载, 可参考如下解决方案:
+Ceph RBD 存储卷操作过程中，如果遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载，可参考如下解决方案：
 
-1.假设工作负载所在项目为 ns1, Ceph RBD 存储卷关联的存储类型为 rbd。
+1. 假设工作负载所在项目为 ns1，Ceph RBD 存储卷关联的存储类型为 rbd。
 
-2.通过 Kubectl 命令行工具向 kubernetes 发送以下命令, 查询要创建 Secret 名称:
+2. 通过 Kubectl 命令行工具向 kubernetes 发送以下命令，查询要创建 Secret 名称，得到应创建的 Secret 名称为 `ceph-rbd-user-secret`。
 
 ```
 $ kubectl get sc rbd | grep userSecretName
 userSecretName: ceph-rbd-user-secret
 ```
 
-则应创建的 Secret 名称为 `ceph-rbd-user-secret`。
 
-3.通过 ceph 命令行工具向 Ceph 集群发送以下命令，得到密钥:
+3. 在 Ceph 集群执行以下命令，得到密钥：
 
 ```
 $ ceph auth get-key client.admin
@@ -191,15 +192,15 @@ AQAnwihbXo+uDxAAD0HmWziVgTaAdai90IzZ6Q==
 ```
 则密钥为 `AQAnwihbXo+uDxAAD0HmWziVgTaAdai90IzZ6Q==`。
 
-4.通过 Kubectl 命令行工具向 kubernetes 发送以下命令,创建 Secret:
+4. 通过 Kubectl 命令行工具执行以下命令，创建 Secret：
 
 
 ```
 kubectl create secret generic ceph-rbd-user-secret --type="kubernetes.io/rbd" --from-literal=key='AQAnwihbXo+uDxAAD0HmWziVgTaAdai90IzZ6Q==' --namespace=ns1
 ```
 
-> 其中, 以下的三个字段根据不同环境的实际状况会有所不同, 应根据您的环境替换成对应的字段:
-        - ceph-rbd-user-secret
-        - AQAnwihbXo+uDxAAD0HmWziVgTaAdai90IzZ6Q==
-        - ns1
+> 其中， 以下的三个字段根据不同环境的实际状况会有所不同， 应根据您的环境替换成对应的字段:
+       > - ceph-rbd-user-secret
+       > - AQAnwihbXo+uDxAAD0HmWziVgTaAdai90IzZ6Q==
+       > - ns1
 

@@ -2,7 +2,7 @@
 title: "存储类型"
 ---
 
-存储类型（StorageClass）是由 `集群管理员` 配置存储服务端参数，并按类型提供存储给集群用户使用。KubeSphere 目前支持 Ceph RBD 和 GlusterFS 存储类型的创建 (更多的存储类型持续更新中)，并且支持各种存储类型的展示。
+存储类型（StorageClass）是由 `集群管理员` 配置存储服务端参数，并按类型提供存储给集群用户使用。KubeSphere 目前支持 [Ceph RBD](http://docs.ceph.com/docs/master/) 和 [GlusterFS](https://www.gluster.org/install/) 存储类型以及青云研发的块存储插件 [QingCloud CSI](https://github.com/yunify/qingcloud-csi) (更多的存储类型持续更新中)，并且支持各种存储类型的展示。
 
 本节通过以下几个方面介绍如何管理存储类型：
 
@@ -27,7 +27,7 @@ title: "存储类型"
 
 ![存储类型 - 基本信息](/sc-create-page1.png)
 
-- 2.2. 填入参数键值对，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd)
+- 2.2. 填入参数键值对，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd)。
 
 ![存储类型 - 参数设置](/sc-create-page2.png)
 
@@ -42,15 +42,15 @@ title: "存储类型"
 
 ![](/sc-listrbd.png)
 
-2. 进入存储类型详情页
+2. 进入存储类型详情页。
 
-选择 **编辑 Yaml 文件** 按钮直接编辑存储类型对象文件；选择 **删除** 按钮删除存储类型；存储卷列表展示与此存储类型相关的存储卷，存储卷介绍请见 [存储卷](/express/zh-CN/manage-storages/) 说明部分。
+选择 **编辑 Yaml 文件** 按钮直接编辑存储类型对象文件；选择 **删除** 按钮删除存储类型；存储卷列表展示与此存储类型相关的存储卷，存储卷介绍请见 [存储卷](/express/zh-CN/manage-storages/)。
 
 ![存储类型详情](/sc-detail.png)
 
 ## 设置默认存储类型
 
-一个 Kubernetes 集群中仅允许设置一个默认存储类型
+一个 Kubernetes 集群中仅允许设置一个默认存储类型。
 
 1. 存储类型列表页点击存储类型名称，进入存储类型详情页。点击编辑 Yaml 文件按钮。
     
@@ -66,6 +66,6 @@ title: "存储类型"
 
 ## 删除存储类型
 
-存储类型删除前需确保当前集群无此存储类型创建的存储卷。
+* 存储类型删除前需确保当前集群无此存储类型创建的存储卷。
 
 ![删除存储类型](/sc-delete.png)
