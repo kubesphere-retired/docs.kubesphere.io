@@ -120,9 +120,6 @@ module.exports = {
         color: '#55BC8A',
       },
     },
-    {
-      resolve: 'gatsby-plugin-no-sourcemaps',
-    },
     'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',
     'gatsby-transformer-json',
