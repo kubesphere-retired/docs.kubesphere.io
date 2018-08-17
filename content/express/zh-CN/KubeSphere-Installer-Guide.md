@@ -33,11 +33,18 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 
 **1.**  下载 [KubeSphere Installer](http://t.cn/RDVA7ek)。
 
-> 说明： alpha 版是目前在 Ubuntu 16.04 经过测试的版本。 若系统是 CentOS 7.4,  请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此版本也支持 Ubuntu 16.04)
+> 说明： 
+> - Alpha 版是目前在 Ubuntu 16.04.4 经过测试的版本。 
+> - 若系统是 CentOS 7.4，请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此 Dev 版本也支持 Ubuntu 16.04.4)
+> - 若需要下载 Offline 版本离线安装包，请输入以下命令获取。目前离线安装包仅支持 Ubuntu 16.04.4，后续将支持更多的操作系统。
+
+```bash
+$ curl -O -k https://139.198.5.33/kubesphere/express/offline/Ubuntu/kubesphere-all-offline-express-1.0.0-alpha_amd64.tar.gz -u kubesphere
+```
 
 **2.** 获取 KubeSphere 安装包后，执行以下命令解压安装包：
 
-> 说明： 以 alpha 版本的安装包为例，若下载的是 dev 版本，则替换为 dev 对应的包名和目录名。
+> 说明：以 Alpha 版本的安装包为例，若下载的是 Dev 或 Offline 版本，则替换为 Dev 或 Offline 对应的包名和目录名。
 
 ```bash
 $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
@@ -148,11 +155,19 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/
 
 **1.** 下载 [KubeSphere Installer](http://t.cn/RDVA7ek)。
 
-> 说明： alpha 版是目前在 Ubuntu 16.04 经过测试的版本。 若系统是 CentOS 7.4,  请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此版本也支持 Ubuntu 16.04)
+> 说明： 
+> - Alpha 版是目前在 Ubuntu 16.04.4 经过测试的版本。 
+> - 若系统是 CentOS 7.4，请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此 Dev 版本也支持 Ubuntu 16.04.4)
+> - 若需要下载离线安装包，请输入以下命令获取。目前离线安装包仅支持 Ubuntu 16.04.4，后续将支持更多的操作系统。
+
+```bash
+$ curl -O -k https://139.198.5.33/kubesphere/express/offline/Ubuntu/kubesphere-all-offline-express-1.0.0-alpha_amd64.tar.gz -u kubesphere
+```
+
 
 **2.** 获取 KubeSphere 安装包后，执行以下命令解压安装包：
 
-> 说明： 以下步骤以 alpha 版本的安装包为例，若下载的是 dev 版本，则替换为 dev 对应的包名和目录名。
+> 说明： 以下步骤以 Alpha 版本的安装包为例，若下载的是 Dev 或 Offline 版本，则替换为 Dev 或 Offline 版本对应的包名和目录名。
 
 ```bash
 $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
@@ -164,11 +179,11 @@ $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
 $ cd kubesphere-all-express-1.0.0-alpha
 ```
 
-**4.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置：
+**4.** 编辑主机配置文件 `conf/hosts.ini`，  为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，目前三个版本的安装包的 `conf/hosts.ini` 配置稍有不同，以下分别介绍 Alpha、Dev 和 Offline 版本的主机配置文件的参数配置：
 
 > 注：以下示例在 Ubuntu 16.04.04 上使用 `ubuntu` 用户安装，每台机器信息占一行，不能分行。
 
-**示例：**
+**Alpha 版示例：**
 
 ```ini
 [all]
@@ -207,11 +222,20 @@ kube-master
 > - `ansible_become_user`: 权限升级用户（root） 
 > - `ansible_become_pass`: 待连接主机的密码. 
 
-- 若下载的是 dev 版本的安装包或离线安装包，主机配置文件 `conf/hosts.ini` 参考以下示例，使用 root 身份进行安装：
+- 若下载的是 Dev 版本的安装包，主机配置文件 `conf/hosts.ini` 参考以下示例，参考当前部署对应的用户身份修改配置参数：
 
-**示例：**
+> 以下示例中的 `ansible_host` 、 `ip` 和 `ansible_become_pass` 和 `ansible_ssh_pass` 替换为实际部署环境中对应的参数。
+
+**Dev 版示例：**
 
 ```ini
+; 非 root 用户配置 [all] 参数
+[all]
+master ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases  ansible_user=ubuntu  ansible_become_pass=password 
+node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_user=ubuntu  ansible_become_pass=password
+node2  ansible_host=192.168.0.30  ip=192.168.0.30  ansible_user=ubuntu  ansible_become_pass=password
+
+; root 用户配置 [all] 参数
 [all]
 master  ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases 
 node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_ssh_pass=password
@@ -232,15 +256,39 @@ master
 kube-node
 kube-master 
 ```
->说明：非 root 用户例如 `ubuntu` 用户安装请参考 `hosts.ini` 主机配置文件注释中的非 root 用户示例修改 [all] 部分的配置：
 
-**示例：**
+- 若下载的是 Offline 版本的离线安装包，主机配置文件 `conf/hosts.ini` 参考以下示例，参考当前部署对应的用户身份修改配置参数：
+
+> 以下示例中的 `ansible_host` 、 `ip` 、 `ansible_become_pass` 和 `ansible_ssh_pass` 替换为实际部署环境中对应的参数。
+
+**Offline 版示例：**
 
 ```ini
-[all]
-master ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases  ansible_user=ubuntu  ansible_become_pass=password 
+; 非 root 用户配置 [all] 参数
+master ansible_connection=local  ip=192.168.0.10  ansible_user=ubuntu  ansible_become_pass=password 
 node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_user=ubuntu  ansible_become_pass=password
 node2  ansible_host=192.168.0.30  ip=192.168.0.30  ansible_user=ubuntu  ansible_become_pass=password
+
+
+; root 用户配置 [all] 参数
+[all]
+master ansible_connection=local  ip=192.168.0.10
+node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_ssh_pass=password
+node2  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_ssh_pass=password
+
+[kube-master]
+master
+
+[kube-node]
+master
+node1
+
+[etcd]
+master
+
+[k8s-cluster:children]
+kube-node
+kube-master
 ```
 
 
@@ -385,8 +433,8 @@ KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express
 在您准备好存储服务端以后，只需要参考以下表中的参数说明，在 `conf` 目录下的 `vars.yml` 中，根据您存储服务端所支持的存储类型，在 `vars.yml` 的 `# Ceph_rbd  deployment` 或 `# GlusterFS  provisioner deployment` 或 `# Local volume provisioner deployment(Only all-in-one)` 部分，参考脚本中的示例修改对应参数，即可完成 Kubernetes 集群存储类型的配置。
 
 > 1. KubeSphere 安装过程中程序将会根据用户在 vars.yml 里选择配置的存储类型如 GlusterFS 或 CephRBD，进行自动化地安装对应 Kubernetes 集群所需的GlusterFS Client 或 CephRBD Client，无需手动安装 Client。KubeSphere 自动安装的 Glusterfs Client 版本为 v3.12.10，可通过 `glusterfs -V` 命令查看，RBD Client 版本为 v12.2.5，可用 `rbd -v` 命令查看。
-> 2. KubeSphere 测试过的存储服务端 `Ceph` Server 版本为 v0.94.10，`Ceph` 服务端集群部署可参考  [Install Ceph](http://docs.ceph.com/docs/master/)。
-> 3. KubeSphere 测试过的存储服务端 `Gluster` Server 版本为 v3.7.6，`Gluster` 服务端集群部署可参考  [Install Gluster](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) 并且需要安装 [Heketi 管理端](https://github.com/heketi/heketi/tree/master/docs/admin)，Heketi 版本为 v3.0.0。
+> 2. KubeSphere 测试过的存储服务端 `Ceph` Server 版本为 v0.94.10，`Ceph` 服务端集群部署可参考 [部署 Ceph 存储集群](https://docs.kubesphere.io/express/zh-CN/ceph-ks-install/)，正式环境搭建 Ceph 存储服务集群请参考 [Install Ceph](http://docs.ceph.com/docs/master/)。
+> 3. KubeSphere 测试过的存储服务端 `Gluster` Server 版本为 v3.7.6，`Gluster` 服务端集群部署可参考 [部署 GlusterFS 存储集群](https://docs.kubesphere.io/express/zh-CN/glusterfs-ks-install/)， 正式环境搭建 GlusterFS集群请参考 [Install Gluster](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) 并且需要安装 [Heketi 管理端](https://github.com/heketi/heketi/tree/master/docs/admin)，Heketi 版本为 v3.0.0。
 > 4. Kubernetes 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
 
 以下对存储相关配置做简要说明(参数详解请参考 [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) )：
@@ -453,33 +501,7 @@ QingCloud CSI 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能�
 可参考 [QingCloud-CSI 块存储插件安装指南](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 进行安装和体验块存储插件。
 
 
-## 附录3：离线安装说明
-
-离线安装的方法与在线安装类似，只需要根据主机信息在配置文件中做细微修改即可，详细请参考如下步骤：
-
->说明： 离线安装目前仅支持 `Ubuntu 16.04.4 LTS 64bit`，后续将支持更多的操作系统。
-
-1. 下载 [KubeSphere 离线安装包](https://kubesphere.io) (努力 Coding 中)
-
-
-2. 解压安装包并进入安装目录：
-```
-$ tar -zxvf kubesphere-all-offline-express-1.0.0-alpha.tar.gz
-```
-```
-$ cd kubesphere-all-offline-express-1.0.0-alpha
-```
-
-3. Multi-node 模式部署多节点时，需要修改配置文件 `conf/var.yml` 的 `LocalIP` 字段为当前主机的 IP 地址, 如：
-```
-LocalIP: 192.168.0.2
-```
->说明： 执行 `install.sh` 开始安装时，程序会先提示用户是否已配置 `LocalIP`，若未配置则输入 no 返回目录配置此处。all-in-one 模式部署单节点时此处无需修改。
-
-至此，离线安装的后续步骤即可参考在线部署中的 all-in-one 或 multi-node 模式修改对应的配置文件，最终完成部署单节点或多节点的集群。
-
-
-## 附录4：组件版本信息
+## 附录3：组件版本信息
 
 |  组件 |  版本 |
 |---|---|
