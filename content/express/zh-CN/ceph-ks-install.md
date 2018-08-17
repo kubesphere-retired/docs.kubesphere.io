@@ -49,7 +49,7 @@ Ceph主要有三个基本进程:
 ### 配置 root 登录
 1、参考如下步骤分别为 ceph1 和 ceph2 配置 root 用户登录：
 
-- 1.1. ubuntu 账户登录主机后切换 root 用户
+- 1.1. ubuntu 账户登录主机后切换 root 用户：
 
 ```
 ubuntu@ceph1:~$ sudo -i
@@ -58,7 +58,7 @@ root@ceph1:~#
 ```
 - 同上，在 ceph2 执行以上命令。
 
-- 1.2. 设置 root 用户登录密钥
+- 1.2. 设置 root 用户登录密钥：
 
 ```
 root@ceph1:~# passwd
@@ -66,7 +66,7 @@ root@ceph1:~# passwd
 - 同上，在 ceph2 执行以上命令。
 
 ### 修改 hosts 文件
-2、参考如下步骤分别修改 ceph1 和 ceph2 的 `hosts` 文件：
+2、参考如下步骤修改 ceph1 和 ceph2 的 `hosts` 文件：
 
 ```
 root@ceph1:~# vim /etc/hosts
@@ -86,15 +86,15 @@ ff02::2 ip6-allrouters
 
 
 ### 配置 SSH 免密登录
-3、以下为 ceph1 的 root 用户配置无密码登录至 ceph1 与 ceph2：
+3、以下为 ceph1 的 root 用户配置无密码登录至 ceph1 与 ceph2。
 
-- 3.1. 创建密钥，提示 “Enter passphrase” 时，直接回车，口令即为空
+- 3.1. 创建密钥，提示 “Enter passphrase” 时，直接回车，口令即为空：
 
 ```
 root@ceph1:~# ssh-keygen
 ```
 
-- 3.2. 拷贝密钥到两个个 Ceph 节点，按照提示输入密钥
+- 3.2. 拷贝密钥到两个个 Ceph 节点，按照提示输入密钥：
 
 ```
 root@ceph1:~# ssh-copy-id root@ceph1
@@ -103,7 +103,7 @@ root@ceph1:~# ssh-copy-id root@ceph2
 ...
 ```
 
-- 3.3. 验证免密登录，即 ceph1 的 root 用户无需输入密码可以登录 ceph1 和 ceph2
+- 3.3. 验证免密登录，即 ceph1 的 root 用户无需输入密码可以登录 ceph1 和 ceph2：
 
 ```
 root@ceph1:~# ssh root@ceph1
@@ -112,7 +112,7 @@ root@ceph1:~# ssh root@ceph2
 ## 开始安装
 ### 安装 Ceph 和 ceph-deploy
 
-4、Ceph 官方推出了一个用 python 写的工具 cpeh-deploy，可以很大程度地简化 ceph 集群的配置过程，参考如下步骤分别为 ceph1 和 ceph2 安装 ceph 和 ceph-deploy：
+4、Ceph 官方推出了一个用 python 写的工具 cpeh-deploy，可以很大程度地简化 Ceph 集群的配置过程，参考如下步骤为 ceph1 和 ceph2 安装 Ceph 和 ceph-deploy：
 ```
 root@ceph1:~# apt-get install -y ceph ceph-deploy
 ```
@@ -120,15 +120,15 @@ root@ceph1:~# apt-get install -y ceph ceph-deploy
 
 ### 创建文件夹
 
-5、参考如下步骤分别为 ceph1 和 ceph2 创建文件夹
+5、参考如下步骤为 ceph1 和 ceph2 创建文件夹。
 
-- 5.1. 在 ceph1 创建文件夹存放初始化配置
+- 5.1. 在 ceph1 创建文件夹存放初始化配置：
 
 ```
 root@ceph1:~# mkdir -p  /root/cluster & cd /root/cluster & rm -f /root/cluster/*
 ```
 
-- 5.2. 分别在 ceph1 和 ceph2 存放 ceph 数据
+- 5.2. 分别在 ceph1 和 ceph2 存放 ceph 数据：
 
 ```
 root@ceph1:~# mkdir -p /osd1 & rm -rf /osd1/*
@@ -140,14 +140,14 @@ root@ceph2:~# mkdir -p /osd2 & rm -rf /osd2/*
 root@ceph2:~# chown ceph:ceph /osd2
 ```
 
-- 5.3. 分别在 ceph1 和 ceph2 创建 ceph 文件夹
+- 5.3. 在 ceph1 创建 ceph 文件夹：
 
 ```
 root@ceph1:~# mkdir -p /var/run/ceph/
 root@ceph1:~# chown ceph:ceph /var/run/ceph/
 ```
 
-- 同上，在 ceph2 执行以上命令。
+- 同上，在 ceph2 执行以上命令创建 ceph 文件夹。
 
 ### 初始化 ceph
 
@@ -158,7 +158,7 @@ root@ceph1:~# cd /root/cluster
 root@ceph1:~/cluster# ceph-deploy new ceph1
 ```
 
-- 查看各文件夹内容
+- 查看各文件夹内容：
 
 ```
 root@ceph1:~/cluster# ls
@@ -218,16 +218,16 @@ root@ceph2:~/cluster# chmod +r /etc/ceph/ceph.client.admin.keyring
 ```
 
 ## 验证安装结果
-11、至此，一个简单的 Ceph 存储服务集群搭建就完成了，接下来查看所安装的 Ceph 版本和状态信息：
+11、至此，一个简单的 Ceph 存储服务集群搭建就完成了，接下来查看安装的 Ceph 版本和状态信息。
 
-- 11.1. 查看版本
+- 11.1. 查看 Ceph 版本：
 
 ```
 root@ceph1:~/cluster# ceph -v
 ceph version 10.2.10 (5dc1e4c05cb68dbf62ae6fce3f0700e4654fdbbe)
 ```
 
-- 11.2. 在两个节点检查 ceph 状态，可以使用 `ceph –s` 查看，如果是 health 显示 `HEALTH_OK` 状态说明配置成功
+- 11.2. 在两个节点检查 ceph 状态，可以使用 `ceph –s` 查看，如果是 health 显示 `HEALTH_OK` 状态说明配置成功。
 
 
 ## 使用 ceph 服务

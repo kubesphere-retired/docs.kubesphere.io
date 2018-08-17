@@ -34,7 +34,7 @@ title: "部署 Glusterfs 存储服务端"
 
 1、参考如下步骤分别为 glusterfs-server1 和 glusterfs-server2 配置 root 用户登录：
 
-- 1.1. ubuntu账户登录主机后切换root账户
+- 1.1. ubuntu 用户登录主机后切换 root 用户：
 
 ```
 ubuntu@glusterfs-server1:~$ sudo -i
@@ -44,7 +44,7 @@ root@glusterfs-server1:~#
 - 同上，在 glusterfs-server2 执行以上命令。
 
 
-- 1.2. 设置 root 用户户登录密钥
+- 1.2. 设置 root 用户登录密钥：
 
 ```
 root@glusterfs-server1:~# passwd
@@ -72,7 +72,7 @@ root@glusterfs-server1:~# vi /etc/hosts
 ### 配置 SSH 免密登录
 3、以下为 glusterfs-server1 的 root 用户配置无密码登录至 glusterfs-server1 与 glusterfs-server2。
 
-- 3.1. 创建密钥，提示 “Enter passphrase” 时，直接回车，口令即为空：
+- 3.1. 创建密钥，提示 “Enter passphrase” 时，直接回车键，口令即为空：
 
 ```
 root@glusterfs-server1:~# ssh-keygen
@@ -135,7 +135,7 @@ root@glusterfs-server1:~# apt-get -y install thin-provisioning-tools
 ```
 - 同上，在 glusterfs-server2 执行以上命令。
 
-### 创建 Glusterfs 集群
+## 创建 Glusterfs 集群
 6、参考如下步骤创建 Glusterfs 集群:
 
 ```
@@ -148,6 +148,7 @@ root@glusterfs-server2:~# gluster peer probe glusterfs-server1
 peer probe: success. Host glusterfs-server1 port 24007 already in peer list
 ```
 
+### 验证安装结果
 - 分别在 glusterfs-server1 和 glusterfs-server2 检查 glusterfs 集群节点间的连接状态，若 State 显示 `Peer in Cluster (Connected)` 则说明 glusterFS 集群已成功搭建：
 
 ```
@@ -156,15 +157,17 @@ $ gluster peer status
 
 
 
-### 安装Hekeit（glusterfs-server1）
+## 安装 Hekeit
 
-- 下载Hekeit
+7、Heketi 提供了一个 RESTful 管理界面，可以用来管理 Glusterfs 的生命周期。 通过 Heketi，Kubernetes 可以动态配置 Glusterfs。以下将介绍如何在 glusterfs-server1 安装 Heketi（v7.0.0）。
+
+- 7.1. 下载 Hekeit Installer：
 
 ```
 root@glusterfs-server1:~# wget https://github.com/heketi/heketi/releases/download/v7.0.0/heketi-v7.0.0.linux.amd64.tar.gz
 ```
 
-- 安装Heketi
+- 7.2. 解压并安装 Heketi：
 
 ```
 root@glusterfs-server1:~# tar -xf heketi-v7.0.0.linux.amd64.tar.gz
@@ -173,9 +176,11 @@ root@glusterfs-server1:~/heketi# cp heketi /usr/bin/
 root@glusterfs-server1:~/heketi# cp heketi-cli /usr/bin
 ```
 
-### 配置Heketi（glusterfs-server1）
+### 配置 Heketi
 
-- 将Heketi纳入 systemd 管理
+8、参考如下步骤配置 Heketi：
+
+- 8.1. 将 Heketi 纳入 `systemd` 管理：
 
 ```
 root@glusterfs-server1:~# vi /lib/systemd/system/heketi.service
@@ -192,16 +197,14 @@ StandardError=syslog
 WantedBy=multi-user.target
 ```
 
-- 创建文件夹
+- 8.2. 创建文件夹：
 
 ```
 root@glusterfs-server1:~# mkdir -p /var/lib/heketi
 root@glusterfs-server1:~# mkdir -p /etc/heketi
 ```
 
-- 创建Heketi配置文件
-
-> jwt.admin.key可配置
+- 8.3. 创建 Heketi 配置文件：
 
 ```
 root@glusterfs-server1:~# vim /etc/heketi/heketi.json
@@ -272,7 +275,9 @@ root@glusterfs-server1:~# vim /etc/heketi/heketi.json
 
 ```
 
-### 启动Heketi（glusterfs-server1）
+### 启动Heketi
+
+9、在 glusterfs-server1 安装 Heketi 后，需要启动 Heketi，Heketi 的状态 "Active" 显示 `active (running) ...` 则说明成功启动：
 
 ```
 root@glusterfs-server1:~# systemctl start heketi
@@ -288,12 +293,14 @@ root@glusterfs-server1:~# systemctl status heketi
            └─6854 /usr/bin/heketi --config=/etc/heketi/heketi.json
 
 Aug 14 13:50:18 glusterfs-server1 systemd[1]: Started Heketi Server.
+```
+```
 root@glusterfs-server1:~# systemctl enable heketi
 Created symlink from /etc/systemd/system/multi-user.target.wants/heketi.service to /lib/systemd/system/heketi.service.
 ```
 
 ### 编辑拓扑文件（glusterfs-server1）
-> 9,12,18,25,28,34行需要按实际情况修改
+10、参考如下步骤编辑 Heketi 的拓扑文件，其中 IP 地址应替换为您安装环境的实际主机 IP 地址。Glusterfs 服务端将数据存储至 `/dev/vdc` 块设备中，以下 `"/dev/vdc"` 可按实际情况修改：
 
 ```
 root@glusterfs-server1:~# vim /etc/heketi/topology.json 
@@ -340,14 +347,16 @@ root@glusterfs-server1:~# vim /etc/heketi/topology.json
 
 ```
 
-### 载入拓扑文件（glusterfs-server1）
+### 载入拓扑文件
+11、执行以下命令为 Heketi 载入拓扑文件：
 
 ```
 root@glusterfs-server1:~# export HEKETI_CLI_SERVER=http://localhost:8080
 root@glusterfs-server1:~# heketi-cli topology load --json=/etc/heketi/topology.json
 ```
 
-> 验证
+## 验证 Heketi 安装
+12、执行以下命令查看 Heketi 安装的节点信息：
 ```
 heketi-cli node list
 ```
