@@ -120,7 +120,7 @@ glusterfs 3.12.12
 
 
 ### 加载内核模块
-5、执行以下步骤为 glusterfs-server1 加载内核模块：
+5、执行以下命令为 glusterfs-server1 加载必需的三个内核模块：
 ```
 root@glusterfs-server1:~# echo dm_thin_pool | sudo tee -a /etc/modules
 dm_thin_pool
@@ -159,7 +159,7 @@ $ gluster peer status
 
 ## 安装 Hekeit
 
-7、Heketi 提供了一个 RESTful 管理界面，可以用来管理 Glusterfs 的生命周期。 通过 Heketi，Kubernetes 可以动态配置 Glusterfs。以下将介绍如何在 glusterfs-server1 安装 Heketi（v7.0.0）。
+7、Heketi 是用来管理 GlusterFS 卷的生命周期的，并提供了一个RESTful API 接口供 Kubernetes 调用，因为 GlusterFS 没有提供 API 调用的方式，所以我们借助 heketi，通过 Heketi，Kubernetes 可以动态配置 GlusterFS 卷。以下将介绍如何在 glusterfs-server1 安装 Heketi（v7.0.0）。
 
 - 7.1. 下载 Hekeit Installer：
 
@@ -299,8 +299,8 @@ root@glusterfs-server1:~# systemctl enable heketi
 Created symlink from /etc/systemd/system/multi-user.target.wants/heketi.service to /lib/systemd/system/heketi.service.
 ```
 
-### 编辑拓扑文件（glusterfs-server1）
-10、参考如下步骤编辑 Heketi 的拓扑文件，其中 IP 地址应替换为您安装环境的实际主机 IP 地址。Glusterfs 服务端将数据存储至 `/dev/vdc` 块设备中，以下 `"/dev/vdc"` 可按实际情况修改：
+### 编辑拓扑文件
+10、参考如下步骤编辑 Heketi 的拓扑文件，以下所有 IP 地址应替换为您安装环境的实际主机 IP 地址。Glusterfs 服务端将数据存储至 `/dev/vdc` 块设备中，以下 `"/dev/vdc"` 可按实际情况修改：
 
 ```
 root@glusterfs-server1:~# vim /etc/heketi/topology.json 
