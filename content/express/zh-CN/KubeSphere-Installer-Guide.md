@@ -279,6 +279,7 @@ master
 [kube-node]
 master
 node1
+node2
 
 [etcd]
 master
