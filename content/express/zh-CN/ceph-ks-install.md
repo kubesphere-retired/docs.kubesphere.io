@@ -3,19 +3,20 @@ title: "部署 Ceph RBD 存储服务端"
 ---
 
 ## 简介
+
 [Ceph](https://ceph.com/) 是一个分布式存储系统，最早致力于开发下一代高性能分布式文件系统的项目。Ceph 具有高可用、高扩展性和特性丰富的优势， Ceph 支持三种调用接口：对象存储，块存储，文件系统挂载。并且 Ceph 的 CRUSH 算法有相当强大的扩展性，理论上支持数千个存储节点。本指南将介绍如何在 Ubuntu 系统部署一个节点数为 2 的 Ceph (v10.2.10) 存储服务端集群。本指南仅供测试 KubeSphere 存储服务端的搭建，正式环境搭建 Ceph 集群请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)。
 
 ### Ceph 基本组件
 
-Ceph主要有三个基本进程:
+Ceph 主要有三个基本进程:
 - OSD
-用于集群中所有数据与对象的存储。处理集群数据的复制、恢复、回填、再均衡。并向其他osd守护进程发送心跳，然后向 Monitor 提供一些监控信息。
+用于集群中所有数据与对象的存储，处理集群数据的复制、恢复、回填、再均衡，并向其他osd守护进程发送心跳，然后向 Monitor 提供一些监控信息。
 
 - Monitor
 监控整个集群的状态，维护集群的 cluster MAP 二进制表，保证集群数据的一致性。
 
 - MDS (可选)
-为Ceph文件系统提供元数据计算、缓存与同步。MDS进程并不是必须的进程，只有需要使用CEPHFS时，才需要配置MDS节点。
+为 Ceph 文件系统提供元数据计算、缓存与同步。MDS 进程并不是必须的进程，只有需要使用 CephFS 时，才需要配置 MDS 节点。
 
 
 ```
@@ -23,7 +24,7 @@ Ceph主要有三个基本进程:
 
   +--------------+               +--------------+
   |              |               |              |
-  |     node1    |_______________|     node2    |
+  |    node1     |_______________|     node2    |
   | MONITOR,OSD  |               |      OSD     |
   |              |               |              |
   +--------------+               +--------------+
@@ -33,6 +34,7 @@ Ceph主要有三个基本进程:
 
 
 ## 准备节点
+
 主机规格
 
 |Hostname |IP     |OS       | CPU |RAM|Device|
@@ -42,11 +44,13 @@ Ceph主要有三个基本进程:
 
 > 注：
 > - `ceph1` 作为集群的管理主机，用来执行安装任务。
-> - 如需创建更大容量的 Ceph 存储服务端，可将创建更大容量主机磁盘或挂载大容量磁盘至主机并挂载至 ceph1 的 `/osd1` 和 ceph2 的 `/osd2` 文件夹。
+> - 如需创建更大容量的 Ceph 存储服务端，可创建更大容量主机磁盘或挂载大容量磁盘至主机并挂载至 ceph1 的 `/osd1` 和 ceph2 的 `/osd2` 文件夹。
 > - 两个节点的 Hostname 需要与主机规格的列表中一致，因为后续步骤的命令行中有匹配到 Hostname，若与以上列表不一致请注意在后续的命令中对应修改成实际的 Hostname。
 
 ## 预备工作
+
 ### 配置 root 登录
+
 1、参考如下步骤分别为 ceph1 和 ceph2 配置 root 用户登录：
 
 - 1.1. ubuntu 账户登录主机后切换 root 用户：
@@ -56,16 +60,17 @@ ubuntu@ceph1:~$ sudo -i
 [sudo] password for ubuntu: 
 root@ceph1:~# 
 ```
-- 同上，在 ceph2 执行以上命令。
 
 - 1.2. 设置 root 用户登录密钥：
 
 ```
 root@ceph1:~# passwd
 ```
-- 同上，在 ceph2 执行以上命令。
+
+- 同上，在 ceph2 修改 root 密码。
 
 ### 修改 hosts 文件
+
 2、参考如下步骤修改 ceph1 和 ceph2 的 `hosts` 文件：
 
 ```
@@ -86,6 +91,7 @@ ff02::2 ip6-allrouters
 
 
 ### 配置 SSH 免密登录
+
 3、以下为 ceph1 的 root 用户配置无密码登录至 ceph1 与 ceph2。
 
 - 3.1. 创建密钥，提示 “Enter passphrase” 时，直接回车，口令即为空：
@@ -110,6 +116,7 @@ root@ceph1:~# ssh root@ceph1
 root@ceph1:~# ssh root@ceph2
 ```
 ## 开始安装
+
 ### 安装 Ceph 和 ceph-deploy
 
 4、Ceph 官方推出了一个用 python 写的工具 cpeh-deploy，可以很大程度地简化 Ceph 集群的配置过程，参考如下步骤为 ceph1 和 ceph2 安装 Ceph 和 ceph-deploy：
@@ -169,7 +176,9 @@ root@ceph1:~/cluster# ls /var/run/ceph/
 ```
 
 ### 修改 Ceph 配置文件
+
 7、在 ceph1 配置 `ceph.conf`，添加以下参数：
+
 ```
 root@ceph1:~/cluster# vim ceph.conf 
 [global]
@@ -183,7 +192,9 @@ osd journal size = 128
 ```
 
 ### 激活 Mon 节点
+
 8、Mon 节点监控着整个 Ceph 集群的状态信息，监听于 TCP 的 `6789` 端口。每一个 Ceph 集群中至少要有一个 Mon 节点，如下在 ceph1 激活 Monitor：
+
 ```
 root@ceph1:~/cluster# ceph-deploy mon create-initial
 ...
@@ -191,7 +202,9 @@ root@ceph1:~/cluster# ceph-deploy mon create-initial
 ```
 
 ### 创建 OSD 节点
+
 9、OSD 是强一致性的分布式存储，用于集群中所有数据与对象的存储，如下在 ceph1 为集群中两个节点创建 OSD：
+
 ```
 root@ceph1:~/cluster# ceph-deploy osd prepare ceph1:/osd1 ceph2:/osd2
 ...
@@ -207,7 +220,9 @@ root@ceph1:~/cluster# ceph-deploy osd activate ceph1:/osd1 ceph2:/osd2
 ```
 
 ### 拷贝配置
+
 10、拷贝配置到 ceph1 和 ceph2：
+
 ```
 root@ceph1:~/cluster# ceph-deploy admin ceph1 ceph2
 ```   
@@ -218,6 +233,7 @@ root@ceph2:~/cluster# chmod +r /etc/ceph/ceph.client.admin.keyring
 ```
 
 ## 验证安装结果
+
 11、至此，一个简单的 Ceph 存储服务集群搭建就完成了，接下来查看安装的 Ceph 版本和状态信息。
 
 - 11.1. 查看 Ceph 版本：
@@ -231,6 +247,7 @@ ceph version 10.2.10 (5dc1e4c05cb68dbf62ae6fce3f0700e4654fdbbe)
 
 
 ## 使用 ceph 服务
+
 12、首先，需要创建 rbd image，image 是 Ceph 块设备中的磁盘映像文件，可使用 `rbd create ...` 命令创建指定大小的映像。
 
 - 12.1. 此处在 ceph1 以创建 foo 为例：
@@ -267,6 +284,7 @@ I/O size (minimum/optimal): 4194304 bytes / 4194304 bytes
 ```
 
 ### 分区格式化
+
 13、将 foo image 格式化为 ext4 格式的文件系统：
 ```
 root@ceph1:~/cluster# mkfs.ext4 /dev/rbd0
@@ -295,6 +313,7 @@ lost+found
 
 
 ## 释放资源
+
 14、注意，在使用完毕之后，可参考如下步骤卸载和删除不需要的资源。
 
 - 14.1. 参考如下将文件系统从文件中卸载：
