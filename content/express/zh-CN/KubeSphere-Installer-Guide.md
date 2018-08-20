@@ -8,12 +8,12 @@ title: "KubeSphere 安装指南"
 
 ## 部署 KubeSphere
 
-KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式， KubeSphere Installer 采用 **Ansible** 对部署目标机器及部署流程进行集中化管理配置。采用预配置模板，可以在部署前通过对相关配置文件进行自定义实现对部署过程的预配置，以适应不同的IT环境，帮助您快速部署 KubeSphere。
+KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式， KubeSphere Installer 采用 **Ansible** 对部署目标机器及部署流程进行集中化管理配置。采用预配置模板，可以在部署前通过对相关配置文件进行自定义实现对部署过程的预配置，以适应不同的 IT 环境，帮助您快速部署 KubeSphere。
 
 - KubeSphere 集群中由于部署服务的不同，分为管理节点和计算节点两个角色。
 - 当进行 all-in-one 模式进行单节点部署时，这个节点既是管理节点，也是计算节点。
 - 当进行 multi-node 模式部署多节点集群时，可在配置文件中设置集群角色。
-- 由于部署过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。
+- 由于部署过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。无外网环境需先下载离线安装包安装。
 - 如果是新装系统，在 Software Selection 界面需要把 OpenSSH Server 选上。
 
 
@@ -37,15 +37,13 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 > 说明： 
 > - Alpha 版是目前在 Ubuntu 16.04.4 经过测试的版本。 
 > - 若系统是 CentOS 7.4，请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此 Dev 版本也支持 Ubuntu 16.04.4)
-> - 若需要下载 Offline 版本离线安装包，请输入以下命令获取。目前离线安装包仅支持 Ubuntu 16.04.4，后续将支持更多的操作系统。
+> - 若需要下载离线安装包，请输入以下命令获取。目前离线安装包仅支持 Ubuntu 16.04.4，后续将支持更多的操作系统。
 
 ```bash
 $ curl -O -k https://139.198.5.33/kubesphere/express/offline/Ubuntu/kubesphere-all-offline-express-1.0.0-alpha_amd64.tar.gz -u kubesphere
 ```
 
-**2.** 获取 KubeSphere 安装包后，执行以下命令解压安装包：
-
-> 说明：以 Alpha 版本的安装包为例，若下载的是 Dev 或 Offline 版本，则替换为 Dev 或 Offline 对应的包名和目录名。
+**2.** 获取 KubeSphere 安装包后，以 Alpha 版本的安装包为例，执行以下命令解压安装包。若下载的是 Dev 或 Offline 版本，则替换为 Dev 或 Offline 对应的包名和目录名。
 
 ```bash
 $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
@@ -108,18 +106,18 @@ KubeSphere     : ok=69 changed=68 unreachable=0 failed=0
 Successful!
 ########################################################
 KubeSphere is running！
-Matser IP: 121.10.121.111
+Matser IP: 192.168.100.10
 ks-console-nodeport: 32117
 ks-apiserver-nodeport: 32002
 ########################################################
 ```
 
 
-**(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080), 即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
+**(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，如上图 [http://192.168.100.10:32117](http://192.168.100.10:32117)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080)，即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
 
 > 注： 若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
 
-![](/pic02.png)
+![KubeSphere console](/pic02.png)
 
 KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/zh-CN/user-case/)。
 
@@ -142,7 +140,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/
 
 | 主机IP | 主机名 | 集群角色 |
 | --- | --- | --- |
-|192.168.0.10|master|master, etcd, node|
+|192.168.0.10|master|master，etcd，node|
 |192.168.0.20|node1|node|
 |192.168.0.30|node2|node|
 
@@ -150,7 +148,7 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/
 
 ![](/pic04.svg)
 
-> `etcd` 作为一个高可用键值存储系统, etcd 节点个数至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数建议设置为`奇数个`，在当前 KubeSphere Express 版本暂支持单个 etcd 节点，将会在下一个 Advanced Edition 版本中支持 etcd 多节点部署。
+> `etcd` 作为一个高可用键值存储系统，etcd 节点个数至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数建议设置为`奇数个`，在当前 KubeSphere Express 版本暂支持单个 etcd 节点，将会在下一个 Advanced Edition 版本中支持 etcd 多节点部署。
 
 ### 第二步: 准备 KubeSphere 安装包
 
@@ -166,9 +164,7 @@ $ curl -O -k https://139.198.5.33/kubesphere/express/offline/Ubuntu/kubesphere-a
 ```
 
 
-**2.** 获取 KubeSphere 安装包后，执行以下命令解压安装包：
-
-> 说明： 以下步骤以 Alpha 版本的安装包为例，若下载的是 Dev 或 Offline 版本，则替换为 Dev 或 Offline 版本对应的包名和目录名。
+**2.** 获取 KubeSphere 安装包后，以 Alpha 版本的安装包为例，执行以下命令解压安装包。若下载的是 Dev 或 Offline 版本，则替换为 Dev 或 Offline 对应的包名和目录名。
 
 ```bash
 $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
@@ -180,7 +176,7 @@ $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
 $ cd kubesphere-all-express-1.0.0-alpha
 ```
 
-**4.** 编辑主机配置文件 `conf/hosts.ini`，  为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，目前三个版本的安装包的 `conf/hosts.ini` 配置稍有不同，以下分别介绍 Alpha、Dev 和 Offline 版本的主机配置文件的参数配置：
+**4.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，目前三个版本的安装包的 `conf/hosts.ini` 配置稍有不同，以下分别介绍 Alpha、Dev 和 Offline 版本的主机配置文件的参数配置：
 
 > 注：以下示例在 Ubuntu 16.04.04 上使用 `ubuntu` 用户安装，每台机器信息占一行，不能分行。
 
@@ -299,7 +295,7 @@ kube-master
 > - 根据配置文件按需修改相关配置项，未做修改将以默认参数执行。
 > - 网络：默认插件 `calico`
 > - 支持存储类型：`GlusterFS、CephRBD`， 存储配置相关的详细信息请参考 [附录1：存储配置说明](#附录1：存储配置说明)
-> - 通常情况您需要配置持久化存储，multi-node 不支持 local storage，因此把 local storage 的配置修改为 false，然后配置持久化存储如 GlusterFS, CephRBD 等。如下所示为配置 CephRBD。
+> - 通常情况您需要配置持久化存储，multi-node 不支持 local storage，因此把 local storage 的配置修改为 false，然后配置持久化存储如 GlusterFS，CephRBD 等。如下所示为配置 CephRBD。
 
 **示例：**
 
@@ -387,7 +383,7 @@ Please input an option: 2
 Have you configured storage parameters in conf/vars.yml yet?  (yes/no) 
 yes
 Password-less SSH communication is necessary，have you configured yet? 
-If not, it will be created automatically. (yes/no) 
+If not，it will be created automatically. (yes/no) 
 no 
 Generating public/private rsa key pair.
 Created directory '/home/ubuntu/.ssh'.
@@ -415,7 +411,7 @@ ks-apiserver-nodeport: 32002
 ########################################################
 ```
 
-**(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080), 即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
+**(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080)，即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
 
 > 注： 若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
 
@@ -476,7 +472,7 @@ $ ceph auth get-key client.admin
 | glusterfs\_provisioner\_enabled | 是否使用 GlusterFS 作为持久化存储，是: true; 否: false |
 | glusterfs\_provisioner\_storage\_class | storage\_class 名称 |
 | glusterfs\_is\_default\_class | 是否设定为默认 storage\_class，是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class| --- | --- |glusterfs\_provisioner\_resturl | Heketi 服务 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) | glusterfs\_provisioner\_clusterid | Heketi 服务端输入 heketi-cli cluster list 命令获得，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_restauthenabled | Gluster 启用对 REST 服务器的认证, 参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
+| glusterfs\_provisioner\_restauthenabled | Gluster 启用对 REST 服务器的认证，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_resturl | Heketi 服务端 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_clusterid | Gluster 集群 id，登录 heketi 服务端输入 heketi-cli cluster list 得到 Gluster 集群 id，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_restuser | 能够在 Gluster pool 中创建 volume 的 Heketi 用户，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
@@ -496,7 +492,7 @@ $ heketi-cli cluster list
 ## 附录2：安装 QingCloud 存储插件
 
 QingCloud CSI 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。
-目前，QingCloud CSI 插件已经在 Kubernetes v1.10 环境中通过了 CSI 测试。块存储插件部署后, 用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型(超高性能型硬盘只能用在超高性能型主机)、性能型或容量型硬盘的存储卷并挂载至工作负载。
+目前，QingCloud CSI 插件已经在 Kubernetes v1.10 环境中通过了 CSI 测试。块存储插件部署后，用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型(超高性能型硬盘只能用在超高性能型主机)、性能型或容量型硬盘的存储卷并挂载至工作负载。
 可参考 [QingCloud-CSI 块存储插件安装指南](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 进行安装和体验块存储插件。
 
 
