@@ -140,7 +140,7 @@ spec:
 - 3.2. 执行创建命令：
 
 ```
-$ kubectl create -f pv-local.yaml
+$ kubectl create -f pv.yaml
 ```
 
 4. 执行以下命令验证创建结果：
