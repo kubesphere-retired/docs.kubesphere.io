@@ -14,6 +14,7 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 - 当进行 all-in-one 模式进行单节点部署时，这个节点既是管理节点，也是计算节点。
 - 当进行 multi-node 模式部署多节点集群时，可在配置文件中设置集群角色。
 - 由于部署过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。
+- 如果是新装系统，在 Software Selection 界面需要把 OpenSSH Server 选上。
 
 
 ## All-in-One 模式
