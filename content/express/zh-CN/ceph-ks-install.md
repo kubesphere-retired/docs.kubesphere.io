@@ -4,7 +4,7 @@ title: "部署 Ceph RBD 存储服务端"
 
 ## 简介
 
-[Ceph](https://ceph.com/) 是一个分布式存储系统，最早致力于开发下一代高性能分布式文件系统的项目。Ceph 具有高可用、高扩展性和特性丰富的优势， Ceph 支持三种调用接口：对象存储，块存储，文件系统挂载。并且 Ceph 的 CRUSH 算法有相当强大的扩展性，理论上支持数千个存储节点。本指南将介绍如何在 Ubuntu 系统部署一个节点数为 2 的 Ceph (v10.2.10) 存储服务端集群。本指南仅供测试 KubeSphere 存储服务端的搭建，正式环境搭建 Ceph 集群请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)。
+[Ceph](https://ceph.com/) 是一个分布式存储系统，本指南将介绍如何在 Ubuntu 系统部署一个节点数为 2 的 Ceph (v10.2.10) 存储服务端集群。本指南仅供测试 KubeSphere 存储服务端的搭建，正式环境搭建 Ceph 集群请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)。
 
 ### Ceph 基本组件
 
