@@ -176,9 +176,7 @@ $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
 $ cd kubesphere-all-express-1.0.0-alpha
 ```
 
-**4.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，目前三个版本的安装包的 `conf/hosts.ini` 配置稍有不同，以下分别介绍 Alpha、Dev 和 Offline 版本的主机配置文件的参数配置：
-
-> 注：以下示例在 Ubuntu 16.04.04 上使用 `ubuntu` 用户安装，每台机器信息占一行，不能分行。
+**4.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，以 Alpha 版本的主机配置文件为例。以下示例在 Ubuntu 16.04.04 上使用 `ubuntu` 用户安装，每台机器信息占一行，不能分行。
 
 **Alpha 版示例：**
 
@@ -219,74 +217,8 @@ kube-master
 > - `ansible_become_user`: 权限升级用户（root） 
 > - `ansible_become_pass`: 待连接主机的密码. 
 
-- 若下载的是 Dev 版本的安装包，主机配置文件 `conf/hosts.ini` 参考以下示例，注意 `[all]` 中参数的配置方式分为 root 和 非 root 用户，根据当前的用户身份修改配置参数：
 
-> 以下示例中的 `ansible_host` 、 `ip` 和 `ansible_become_pass` 和 `ansible_ssh_pass` 替换为实际部署环境中对应的参数。
-
-**Dev 版示例：**
-
-```ini
-; 非 root 用户配置 [all] 参数
-[all]
-master ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases  ansible_user=ubuntu  ansible_become_pass=password 
-node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_user=ubuntu  ansible_become_pass=password
-node2  ansible_host=192.168.0.30  ip=192.168.0.30  ansible_user=ubuntu  ansible_become_pass=password
-
-; root 用户配置 [all] 参数
-[all]
-master  ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases 
-node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_ssh_pass=password
-node2  ansible_host=192.168.0.30  ip=192.168.0.30  ansible_ssh_pass=password
-
-[kube-master]
-master 	  	 
-
-[kube-node]
-master
-node1 	 
-node2
-
-[etcd]
-master	 
-
-[k8s-cluster:children]
-kube-node
-kube-master 
-```
-
-- 若下载的是 Offline 版本的离线安装包，主机配置文件 `conf/hosts.ini` 参考以下示例，注意 `[all]` 中参数的配置方式分为 root 和 非 root 用户，根据当前的用户身份修改配置参数：
-
-> 以下示例中的 `ansible_host` 、 `ip` 、 `ansible_become_pass` 和 `ansible_ssh_pass` 替换为实际部署环境中对应的参数。
-
-**Offline 版示例：**
-
-```ini
-; 非 root 用户配置 [all] 参数
-master ansible_connection=local  ip=192.168.0.10  ansible_user=ubuntu  ansible_become_pass=password 
-node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_user=ubuntu  ansible_become_pass=password
-node2  ansible_host=192.168.0.30  ip=192.168.0.30  ansible_user=ubuntu  ansible_become_pass=password
-
-
-; root 用户配置 [all] 参数
-[all]
-master ansible_connection=local  ip=192.168.0.10
-node1  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_ssh_pass=password
-node2  ansible_host=192.168.0.20  ip=192.168.0.20  ansible_ssh_pass=password
-
-[kube-master]
-master
-
-[kube-node]
-master
-node1
-
-[etcd]
-master
-
-[k8s-cluster:children]
-kube-node
-kube-master
-```
+- 若下载的是 Dev 或 Offline 版本的安装包， 安装包中 `conf/hosts.ini` 的 `[all]` 部分参数如 `ansible_host` 、 `ip` 、 `ansible_become_pass` 和 `ansible_ssh_pass` 需替换为您实际部署环境中各节点对应的参数。注意 `[all]` 中参数的配置方式分为 root 和 非 root 用户，非 root 用户的配置方式在安装包的 `conf/hosts.ini` 的注释部分已给出示例，请根据实际的用户身份修改配置参数。
 
 
 **5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储服务器，再参考 [附录1：存储配置说明](#附录1：存储配置说明) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。
