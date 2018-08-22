@@ -4,6 +4,7 @@ import GatsbyLink from 'gatsby-link'
 import styled from 'styled-components'
 import classnames from 'classnames'
 
+import { formatAnchor } from '../../utils/index'
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 
 const Link = ({ to, ...rest }, { location }) => {
@@ -61,7 +62,9 @@ class LinkWithHeadings extends React.Component {
       <div>
         <Link to={fields.slug}>
           <Title level={level} onClick={this.handleClick}>
-            <Arrow className={classnames({ 'arrow-open': open })} />
+            {heads.length > 0 && (
+              <Arrow className={classnames({ 'arrow-open': open })} />
+            )}
             {title || frontmatter.title}
           </Title>
         </Link>
@@ -85,17 +88,7 @@ const Headings = ({ heads, prefix, level }) => (
   <StyledList>
     {heads.map(({ value }, key) => (
       <ListItem key={key}>
-        <Link
-          to={
-            prefix +
-            '#' +
-            value
-              .replace(/:/g, '')
-              .split(' ')
-              .join('-')
-              .toLowerCase()
-          }
-        >
+        <Link to={`${prefix}#${formatAnchor(value)}`}>
           <Title level={level}>{value}</Title>
         </Link>
       </ListItem>

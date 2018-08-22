@@ -4,6 +4,8 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 
 import Header from '../components/Header'
+import Footer from '../components/Footer'
+import Headings from '../components/Headings'
 import Versions from '../components/Versions'
 import SearchResult from '../components/SearchResult'
 import TableOfContents from '../components/TableOfContents/index'
@@ -21,26 +23,78 @@ export default class MarkdownTemplate extends React.Component {
     query: '',
     showSearchResult: false,
     results: [],
+    prev: {},
+    next: {},
   }
 
   componentDidMount() {
+    document.addEventListener('click', this.handleClick)
+
+    if (this.markdownRef && !this.scroll && typeof SmoothScroll !== 'undefined') {
+      this.scroll = new SmoothScroll('a[href*="#"]', {
+        offset: 100,
+      })
+    }
+
     this.scrollToHash()
 
-    document.addEventListener('click', this.handleClick)
+    this.getPrevAndNext()
   }
 
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClick)
   }
 
+  isCurrentLink = link => {
+    let ret = false
+
+    if (link.classList) {
+      ret = link.classList.contains('selected-link')
+    } else {
+      ret = new RegExp('(^| )selected-link( |$)', 'gi').test(link.className)
+    }
+
+    return ret
+  }
+
+  getPrevAndNext = () => {
+    if (this.tocRef) {
+      const linkDoms = this.tocRef.querySelectorAll('a[href]')
+      const prev = {}
+      const next = {}
+
+      linkDoms.forEach((link, index) => {
+        if (this.isCurrentLink(link)) {
+          if (linkDoms[index - 1]) {
+            prev.text = linkDoms[index - 1].text
+            prev.href = linkDoms[index - 1].pathname
+          }
+
+          if (linkDoms[index + 1]) {
+            next.text = linkDoms[index + 1].text
+            next.href = linkDoms[index + 1].pathname
+          }
+
+          this.setState({ prev, next })
+          return
+        }
+      })
+    }
+  }
+
   scrollToHash = () => {
     setTimeout(() => {
       if (this.props.location.hash) {
-        const id = decodeURIComponent(this.props.location.hash).slice(1)
-        const element = document.getElementById(id)
-        element && element.scrollIntoView()
+        if (this.scroll) {
+          const hash = decodeURIComponent(this.props.location.hash)
+          this.handleHeadClick(hash)
+        } else {
+          const id = decodeURIComponent(this.props.location.hash).slice(1)
+          const element = document.getElementById(id)
+          element && element.scrollIntoView()
+        }
       }
-    }, 100)
+    }, 0)
   }
 
   getChildContext() {
@@ -59,6 +113,12 @@ export default class MarkdownTemplate extends React.Component {
     if (this.markdownRef && this.markdownRef.contains(e.target)) {
       this.setState({ isExpand: false })
     }
+  }
+
+  handleHeadClick = head => {
+    this.scroll.animateScroll(document.querySelector(head), null, {
+      offset: 100,
+    })
   }
 
   handleSearch = query => {
@@ -99,7 +159,14 @@ export default class MarkdownTemplate extends React.Component {
       post.id = slug
     }
 
-    const { isExpand, query, showSearchResult, results } = this.state
+    const {
+      isExpand,
+      query,
+      showSearchResult,
+      results,
+      prev,
+      next,
+    } = this.state
 
     return (
       <div>
@@ -114,7 +181,11 @@ export default class MarkdownTemplate extends React.Component {
               versions={this.props.data.versions}
               current={postNode.fields.version}
             />
-            <ToCContainer>
+            <ToCContainer
+              innerRef={ref => {
+                this.tocRef = ref
+              }}
+            >
               <TableOfContents
                 chapters={
                   this.props.data.tableOfContents.edges[0].node.chapters
@@ -127,19 +198,36 @@ export default class MarkdownTemplate extends React.Component {
               query={query}
               isExpand={isExpand}
               onSearch={this.handleSearch}
-              location={this.props.location}
               toggleExpand={this.handleExpand}
               onQueryChange={this.handleQueryChange}
             />
-            <MarkdownBody
-              className="md-body"
-              innerRef={ref => {
-                this.markdownRef = ref
-              }}
-            >
-              <h1>{post.title}</h1>
-              <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
-            </MarkdownBody>
+            <MarkdownWrapper>
+              <MarkdownBody
+                className="md-body"
+                innerRef={ref => {
+                  this.markdownRef = ref
+                }}
+              >
+                <MarkdownTitle>{post.title}</MarkdownTitle>
+                <div
+                  ref={ref => {
+                    this.markdownRef = ref
+                  }}
+                  dangerouslySetInnerHTML={{ __html: postNode.html }}
+                />
+              </MarkdownBody>
+              <FooterWrapper>
+                <Footer prev={prev} next={next} />
+              </FooterWrapper>
+            </MarkdownWrapper>
+            <HeadingsWrapper>
+              <Headings
+                title={postNode.frontmatter.title}
+                headings={postNode.headings}
+                current={this.props.location.hash}
+                onHeadClick={this.handleHeadClick}
+              />
+            </HeadingsWrapper>
           </MainContainer>
         </BodyGrid>
         <SearchResult
@@ -203,12 +291,42 @@ const ToCContainer = styled.div`
   padding: 40px 0;
 `
 
+const MarkdownWrapper = styled.div`
+  padding-right: 280px;
+
+  @media only screen and (max-width: 1280px) {
+    padding-right: 0;
+  }
+`
+
 const MarkdownBody = styled.div`
-  padding: 120px 40px 40px;
+  margin: 0 auto;
+  padding: 120px 30px 30px;
 
   @media only screen and (max-width: 768px) {
     padding: 100px 24px 24px;
   }
+`
+
+const HeadingsWrapper = styled.div`
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  box-shadow: -1px 0 0 0 #d5dee7;
+
+  @media only screen and (max-width: 1280px) {
+    display: none;
+  }
+`
+
+const MarkdownTitle = styled.h1``
+
+const FooterWrapper = styled.div`
+  max-width: 1217px;
+  padding: 0 30px;
+  margin: 0 auto;
 `
 
 /* eslint no-undef: "off" */
@@ -219,10 +337,6 @@ export const pageQuery = graphql`
     }
     frontmatter {
       title
-    }
-    headings {
-      value
-      depth
     }
   }
   query MarkdownBySlug($slug: String!, $id: String!, $version: String!) {
@@ -235,6 +349,10 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+      }
+      headings {
+        value
+        depth
       }
       fields {
         version
