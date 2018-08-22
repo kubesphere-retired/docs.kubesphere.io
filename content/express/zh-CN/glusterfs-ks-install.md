@@ -2,7 +2,7 @@
 title: "部署 GlusterFS 存储服务端"
 ---
 
-[GlusterFS](https://www.gluster.org/) 是一个开源的分布式文件系统，具有强大的横向扩展能力，通过扩展能够支持数 PB 存储容量和处理数千客户端。GlusterFS 具有高扩展性和高性能，基于可堆叠的用户空间设计，可为各种不同的数据负载提供优异的性能。并且具备高可用性，从而确保数据总是可以访问。本指南将介绍如何在 Ubuntu 系统部署一个节点数为 2 的 GlusterFS (v3.12.12) 存储服务端集群和 Heketi，Heketi 用来管理 GlusterFS，并提供 RESTful API 接口供 Kubernetes 调用。本指南仅供测试 KubeSphere 存储服务端的搭建，正式环境搭建 GlusterFS 集群请参考 [GlusterFS 官方网站](https://docs.gluster.org/en/latest/Install-Guide/Install/#for-ubuntu)，搭建 Heketi 请参考 [官方文档](https://github.com/heketi/heketi/blob/master/docs/admin/readme.md)。
+[GlusterFS](https://www.gluster.org/) 是一个开源的分布式文件系统，本指南将介绍如何在 Ubuntu 系统部署一个节点数为 2 的 GlusterFS (v3.12.12) 存储服务端集群和 Heketi，Heketi 用来管理 GlusterFS，并提供 RESTful API 接口供 Kubernetes 调用。本指南仅供测试 KubeSphere 存储服务端的搭建，正式环境搭建 GlusterFS 集群请参考 [GlusterFS 官方网站](https://docs.gluster.org/en/latest/Install-Guide/Install/#for-ubuntu)，搭建 Heketi 请参考 [官方文档](https://github.com/heketi/heketi/blob/master/docs/admin/readme.md)。
 
 ## 准备节点
 

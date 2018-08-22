@@ -61,8 +61,8 @@ $ cd kubesphere-all-express-1.0.0-alpha
 > - 通常情况您不需要修改任何配置，直接安装即可。
 > - 若您需要自定义配置文件的安装参数，如网络、存储等相关内容需在 **`conf/vars.yml`** 配置文件中指定或修改。
 > - 网络：默认插件 `calico`。
-> - 支持存储类型：`GlusterFS、CephRBD、local-storage`，存储配置相关的详细信息请参考 [附录1：存储配置说明](#附录1：存储配置说明)。
-> - All-in-One 默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，用户安装完毕在 KubeSphere 控制台创建存储卷的时候需要预先创建 Persistent Volume (PV)，installer 会预先创建 8 个可用的 10G PV 供使用。
+> - 支持存储类型：`QingCloud-CSI（Dev 版支持）`、`GlusterFS、CephRBD、local-storage`，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
+> - All-in-One 默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，用户安装完毕在 KubeSphere 控制台创建存储卷的时候需要预先创建 Persistent Volume (PV)，installer 会预先创建 8 个可用的 10G PV 供使用，关于 local storage 的使用请参考 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。
 
 KubeSphere 部署过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
@@ -221,13 +221,13 @@ kube-master
 - 若下载的是 Dev 或 Offline 版本的安装包， 安装包中 `conf/hosts.ini` 的 `[all]` 部分参数如 `ansible_host` 、 `ip` 、 `ansible_become_pass` 和 `ansible_ssh_pass` 需替换为您实际部署环境中各节点对应的参数。注意 `[all]` 中参数的配置方式分为 root 和 非 root 用户，非 root 用户的配置方式在安装包的 `conf/hosts.ini` 的注释部分已给出示例，请根据实际的用户身份修改配置参数。
 
 
-**5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储服务器，再参考 [附录1：存储配置说明](#附录1：存储配置说明) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。
+**5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储服务器，再参考 [存储配置说明](#存储配置说明) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。
 
 > 说明：
 > - 根据配置文件按需修改相关配置项，未做修改将以默认参数执行。
 > - 网络：默认插件 `calico`
-> - 支持存储类型：`GlusterFS、CephRBD`， 存储配置相关的详细信息请参考 [附录1：存储配置说明](#附录1：存储配置说明)
-> - 通常情况您需要配置持久化存储，multi-node 不支持 local storage，因此把 local storage 的配置修改为 false，然后配置持久化存储如 GlusterFS，CephRBD 等。如下所示为配置 CephRBD。
+> - 支持存储类型：`QingCloud-CSI（Dev 版支持）、GlusterFS、CephRBD`等， 存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)
+> - 通常情况您需要配置持久化存储，multi-node 不支持 local storage，因此把 local storage 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI、GlusterFS、CephRBD 等。如下所示为配置 QingCloud-CSI （`qy_access_key_id`、`qy_secret_access_key` 和 `qy_zone` 应替换为您实际环境的参数）。
 
 **示例：**
 
@@ -238,25 +238,31 @@ local_volume_provisioner_storage_class: local
 local_volume_is_default_class: false
 
 
-# Ceph_rbd  deployment
-ceph_rbd_enabled: true
-ceph_rbd_is_default_class: true
-ceph_rbd_storage_class: rbd
-# e.g. ceph_rbd_monitors:
-#   - 172.24.0.1:6789
-#   - 172.24.0.2:6789
-#   - 172.24.0.3:6789
-ceph_rbd_monitors:
-  - 192.168.100.8:6789
-ceph_rbd_admin_id: admin
-# e.g. ceph_rbd_admin_secret: AQAnwihbXo+uDxAAD0HmWziVgTaAdai90IzZ6Q==
-ceph_rbd_admin_secret: AQCU00Zb5YYZAxAA9Med5rbKZT+pA91vMYM0Jg==
-ceph_rbd_pool: rbd
-ceph_rbd_user_id: admin
-# e.g. ceph_rbd_user_secret: AQAnwihbXo+uDxAAD0HmWziVgTaAdai90IzZ6Q==
-ceph_rbd_user_secret: AQCU00Zb5YYZAxAA9Med5rbKZT+pA91vMYM0Jg==
-ceph_rbd_fsType: ext4
-ceph_rbd_imageFormat: 1
+# QingCloud-CSI 
+qy_csi_enabled: true
+qy_csi_is_default_class: true
+# Access key pair can be created in QingCloud console
+qy_access_key_id: ACCESS_KEY_ID
+qy_secret_access_key: ACCESS_KEY_SECRET
+# Zone should be the same as Kubernetes cluster
+qy_zone: ZONE
+# QingCloud IaaS platform service url.
+qy_host: api.qingcloud.com
+qy_port: 443
+qy_protocol: https
+qy_uri: /iaas
+qy_connection_retries: 3
+qy_connection_timeout: 30
+# The type of volume in QingCloud IaaS platform. 
+# 0 represents high performance volume. 
+# 3 respresents super high performance volume. 
+# 1 or 2 represents high capacity volume depending on cluster‘s zone.
+qy_type: 0
+qy_maxSize: 500
+qy_minSize: 10
+qy_stepSize: 10
+qy_fsType: ext4
+
 ```
 
 ### 第三步: 安装 KubeSphere
@@ -296,7 +302,7 @@ Please input an option: 2
 
 **提示：**
 
-> - 安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [附录1：存储配置说明](#附录1：存储配置说明)
+> - 安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [存储配置说明](#存储配置说明)
 > - dev 版本的安装包不再需要配置 ssh 免密登录，只提示用户是否配置过存储。
 > - 若下载的是 alpha 版本的安装包， taskbox 需配置与待部署集群中所有节点的 `ssh 免密登录`，若还未配置 ssh 免密登录，在执行 `install.sh` 安装脚本时会提示用户是否已经配置免密登录，输入 "no" 安装程序将会帮您自动配置 ssh 免密登录，如下图所示:
 
@@ -353,34 +359,50 @@ KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express
 
 
 
-## 附录1：存储配置说明
+## 存储配置说明
 
-### 配置存储类型
 
-可使用 `GlusterFS`、`CephRBD` 作为持久化存储，需提前准备相关存储服务端。
+可使用 `QingCloud-CSI`、`GlusterFS` 或 `CephRBD` 作为持久化存储（更多的存储类型持续更新中），QingCloud-CSI 存储需要有操作 [QingCloud IaaS 平台](https://console.qingcloud.com/login) 资源的权限，GlusterFS 和 CephRBD 需提前准备相关存储服务端。
 
-> 1. KubeSphere 测试过的存储服务端 `Ceph` Server 版本为 v0.94.10，`Ceph` 服务端集群部署可参考 [部署 Ceph 存储集群](/express/zh-CN/ceph-ks-install/)，正式环境搭建 Ceph 存储服务集群请参考 [Install Ceph](http://docs.ceph.com/docs/master/)。
-> 2. KubeSphere 测试过的存储服务端 `Gluster` Server 版本为 v3.7.6，`Gluster` 服务端集群部署可参考 [部署 GlusterFS 存储集群](/express/zh-CN/glusterfs-ks-install/)， 正式环境搭建 GlusterFS集群请参考 [Install Gluster](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) 并且需要安装 [Heketi 管理端](https://github.com/heketi/heketi/tree/master/docs/admin)，Heketi 版本为 v3.0.0。
-> 3. KubeSphere 安装过程中程序将会根据用户在 vars.yml 里选择配置的存储类型如 GlusterFS 或 CephRBD，进行自动化地安装对应 Kubernetes 集群所需的GlusterFS Client 或 CephRBD Client，无需手动安装 Client。KubeSphere 自动安装的 Glusterfs Client 版本为 v3.12.10，可通过 `glusterfs -V` 命令查看，RBD Client 版本为 v12.2.5，可用 `rbd -v` 命令查看。
-> 4. Kubernetes 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
+> 1. [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 插件已通过 KubeSphere 测试，仅需在 `vars.yml` 配置对应的参数，则 Installer 会根据配置项自动安装 QingCloud-CSI。
+> 2. KubeSphere 测试过的存储服务端 `Ceph` Server 版本为 v0.94.10，`Ceph` 服务端集群部署可参考 [部署 Ceph 存储集群](/express/zh-CN/ceph-ks-install/)，正式环境搭建 Ceph 存储服务集群请参考 [Install Ceph](http://docs.ceph.com/docs/master/)。
+> 3. KubeSphere 测试过的存储服务端 `Gluster` Server 版本为 v3.7.6，`Gluster` 服务端集群部署可参考 [部署 GlusterFS 存储集群](/express/zh-CN/glusterfs-ks-install/)， 正式环境搭建 GlusterFS集群请参考 [Install Gluster](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) 并且需要安装 [Heketi 管理端](https://github.com/heketi/heketi/tree/master/docs/admin)，Heketi 版本为 v3.0.0。
+> 4. KubeSphere 安装过程中程序将会根据用户在 vars.yml 里选择配置的存储类型如 GlusterFS 或 CephRBD，进行自动化地安装对应 Kubernetes 集群所需的GlusterFS Client 或 CephRBD Client，无需手动安装 Client。KubeSphere 自动安装的 Glusterfs Client 版本为 v3.12.10，可通过 `glusterfs -V` 命令查看，RBD Client 版本为 v12.2.5，可用 `rbd -v` 命令查看。
+> 5. Kubernetes 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
 
-在您准备好存储服务端以后，只需要参考以下表中的参数说明，在 `conf` 目录下的 `vars.yml` 中，根据您存储服务端所支持的存储类型，在 `vars.yml` 的 `# Ceph_rbd  deployment` 或 `# GlusterFS  provisioner deployment` 或 `# Local volume provisioner deployment(Only all-in-one)` 部分，参考脚本中的示例修改对应参数，即可完成 Kubernetes 集群存储类型的配置。以下对存储相关配置做简要说明 (参数详解请参考 [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) )：
+在您准备好存储服务端以后，只需要参考以下表中的参数说明，在 `conf` 目录下的 `vars.yml` 中，根据您存储服务端所支持的存储类型，在 `vars.yml` 的 `#QingCloud-CSI`、`# Ceph_rbd  deployment` 、 `# GlusterFS  provisioner deployment` 或 `# Local volume provisioner deployment(Only all-in-one)` 部分，参考脚本中的示例修改对应参数，即可完成 Kubernetes 集群存储类型的配置。以下对存储相关配置做简要说明 (参数详解请参考 [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) )：
+
+### Local Volume
 
 | **Local Volume** | **Description** |
 | --- | --- |
-| local\_volume\_provisioner\_enabled | 是否使用 local\_volume 作为持久化存储，  是: true; 否: false |
+| local\_volume\_provisioner\_enabled | 是否使用 local\_volume 作为持久化存储，  是：true；否：false |
 | local\_volume\_provisioner\_storage\_class | storage\_class 名称，   默认：local |
-| local\_volume\_is\_default\_class | 是否设定为默认 storage\_class， 是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class |
+| local\_volume\_is\_default\_class | 是否设定为默认 storage\_class， 是：true；否：false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为 default\_class |
 
-> 说明： 在您配置好 local Volume (只有 all-in-one 支持这类存储) 并成功安装 KubeSphere 后，请参考 [存储管理说明](/express/zh-CN/manage-storages/) 的附录 1 使用 Local Volume 。
+> 说明： 在您配置好 local Volume (只有 all-in-one 支持这类存储) 并成功安装 KubeSphere 后，请参考 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。
 
-<br/>
+### QingCloud-CSI
+
+[QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型 （超高性能型硬盘只能用在超高性能型主机）、性能型或容量型硬盘的存储卷并挂载至工作负载。
+
+|**QingCloud-CSI** | **Description**|
+| --- | ---|
+|qy\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
+|qy\_csi\_is\_default\_class|是否设定为默认 storage\_class， 是：true；否：false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为 default\_class
+| qy\_access\_key\_id   qy\_secret\_access\_key|通过[青云控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
+|qy\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a、 ap2a、 pek3 或 gd2a|
+
+
+
+
+### Ceph RBD
 
 | **Ceph\_RBD** | **Description** |
 | --- | --- |
-| ceph\_rbd\_enabled | 是否使用 ceph\_RBD 作为持久化存储，是: true; 否: false |
+| ceph\_rbd\_enabled | 是否使用 ceph\_RBD 作为持久化存储，是：true；否：false |
 | ceph\_rbd\_storage\_class | storage\_class 名称 |
-| ceph\_rbd\_is\_default\_class | 是否设定为默认 storage\_class， 是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class |
+| ceph\_rbd\_is\_default\_class | 是否设定为默认 storage\_class， 是：true；否：false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为 default\_class |
 | ceph\_rbd\_monitors | 根据 Ceph RBD 服务端配置填写，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_admin\_id | 能够在存储池中创建  的客户端 ID ，默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
 | ceph\_rbd\_admin\_secret | Admin_id 的 secret，安装程序将会自动在 kube-system 项目内创建此 secret，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
@@ -397,13 +419,13 @@ KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express
 $ ceph auth get-key client.admin
 ```
 
-<br/>
+### GlusterFS 
 
 | **GlusterFS（需提供 heketi 所管理的 glusterfs 集群）**| **Description** |
 | --- | --- |
-| glusterfs\_provisioner\_enabled | 是否使用 GlusterFS 作为持久化存储，是: true; 否: false |
+| glusterfs\_provisioner\_enabled | 是否使用 GlusterFS 作为持久化存储，是：true；否：false |
 | glusterfs\_provisioner\_storage\_class | storage\_class 名称 |
-| glusterfs\_is\_default\_class | 是否设定为默认 storage\_class，是: true; 否: false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为：default\_class| --- | --- |glusterfs\_provisioner\_resturl | Heketi 服务 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) | glusterfs\_provisioner\_clusterid | Heketi 服务端输入 heketi-cli cluster list 命令获得，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
+| glusterfs\_is\_default\_class | 是否设定为默认 storage\_class，是：true；否：false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为 default\_class| --- | --- |glusterfs\_provisioner\_resturl | Heketi 服务 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) | glusterfs\_provisioner\_clusterid | Heketi 服务端输入 heketi-cli cluster list 命令获得，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_restauthenabled | Gluster 启用对 REST 服务器的认证，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_resturl | Heketi 服务端 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_clusterid | Gluster 集群 id，登录 heketi 服务端输入 heketi-cli cluster list 得到 Gluster 集群 id，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
@@ -421,14 +443,7 @@ $ export HEKETI_CLI_SERVER=http://localhost:8080
 $ heketi-cli cluster list
 ```
 
-## 附录2：安装 QingCloud 存储插件
-
-QingCloud CSI 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。
-目前，QingCloud CSI 插件已经在 Kubernetes v1.10 环境中通过了 CSI 测试。块存储插件部署后，用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型(超高性能型硬盘只能用在超高性能型主机)、性能型或容量型硬盘的存储卷并挂载至工作负载。
-可参考 [QingCloud-CSI 块存储插件安装指南](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 进行安装和体验块存储插件。
-
-
-## 附录3：组件版本信息
+## 组件版本信息
 
 |  组件 |  版本 |
 |---|---|
