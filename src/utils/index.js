@@ -4,3 +4,11 @@ export function getScrollTop() {
     : (document.documentElement || document.body.parentNode || document.body)
         .scrollTop
 }
+
+export function formatAnchor(str) {
+  return str
+    .replace(/:/g, '')
+    .split(' ')
+    .join('-')
+    .toLowerCase()
+}

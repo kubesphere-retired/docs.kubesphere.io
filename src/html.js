@@ -40,6 +40,7 @@ module.exports = class HTML extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
+          <script src="/smooth-scroll.polyfills.min.js"></script>
         </body>
       </html>
     )
