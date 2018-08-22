@@ -43,20 +43,25 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 ![存储卷列表](/uc_createpv7.png)
 
+## 创建镜像仓库
+
+6、创建镜像仓库需要通过管理员为其创建。在菜单栏的资源下选择镜像仓库，然后点击右上角创建镜像仓库按钮，弹出添加镜像仓库对话框，填写镜像仓库所需要的信息。在创建部署的容器组设置时需要填写镜像名称，将从当前添加的镜像仓库中拉取镜像。用户可以在 KubeSphere 创建 QingCloud 镜像仓库、Docker Hub 和 Harbor 镜像仓库，详细可参考 [镜像仓库管理](/express/zh-CN/manage-imageregistries/#创建镜像仓库)。
+此处以添加 QingCloud 镜像仓库 `dockerhub.qingcloud.com` 为例，参考如下截图完成 QingCloud 镜像仓库的添加：
+
+![创建 QingCloud 仓库](/image_registries_create.png) 
+
 ## 创建部署
 
-6、在菜单栏的应用负载中选择部署，点击创建部署，按照如下步骤分别为 WordPress 和 MySQL 数据库创建部署资源，可命名为 `wordpress` 和 `wordpress-mysql`。关于管理部署资源的详细介绍请参考 [部署管理说明](/express/zh-CN/manage-deployments/)。
+7、在菜单栏的应用负载中选择部署，点击创建部署，按照如下步骤分别为 WordPress 和 MySQL 数据库创建部署资源，可命名为 `wordpress` 和 `wordpress-mysql`。关于管理部署资源的详细介绍请参考 [部署管理说明](/express/zh-CN/manage-deployments/)。
 
 ![创建部署](/uc_createdeploy.png)
 
 
-7、请参考以下步骤创建部署 wordpress-mysql：
-
-- 7.1. 填写创建部署的基本信息，完成后点下一步：
+- 7.1. 填写创建 wordpress-mysql 部署的基本信息，完成后点下一步：
 
 ![参加部署 - 基本信息](/uc_createdeploy9.png)
 
-- 7.2. 填写容器组设置，名称可由用户自定义，镜像填写 `mysql:5.6`（应指定镜像版本号)，高级选项中可以对 CPU 和内存的资源使用进行限定，此处暂不作限定。其中 **requests** 是集群保证分配给容器的资源，**limits** 是容器可以使用的资源的上限。用户可以通过**命令**和**参数** 选项自定义容器的启动命令和启动参数。在容器组设置中配置 MySQL 的访问端口和 MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码，**端口**用于指定容器需要暴露的端口，端口协议此处选择 TCP，主机端口是容器映射到主机上的端口，此处暂不设置主机端口，**环境变量**可以指定容器内部使用的环境变量。完成后点下一步：
+- 7.2. 填写容器组设置，名称可由用户自定义，镜像填写 `mysql:5.6`（应指定镜像版本号)，高级选项中可以对 CPU 和内存的资源使用进行限定，此处暂不作限定。其中 **requests** 是集群保证分配给容器的资源，**limits** 是容器可以使用的资源的上限。用户可以通过**命令**和**参数** 选项自定义容器的启动命令和启动参数。在容器组设置中配置 MySQL 的访问端口（3306）和 MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码，**端口**用于指定容器需要暴露的端口，端口协议此处选择 TCP，主机端口是容器映射到主机上的端口，此处暂不设置主机端口，**环境变量**可以指定容器内部使用的环境变量。完成后点下一步：
 
 ![创建部署 - 配置](/uc_createdeploy10.png)
 
@@ -64,7 +69,7 @@ WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 
 
 - 7.3. 存储设置中，点击添加存储卷并选择已有存储卷，然后选择之前创建好的 mysql-volume 存储卷：
 
-> 注：如果安装 KubeSphere 使用的是 all-in-one 部署在单个主机，使用的存储类型是 Local Volume，请参考存储卷使用说明的 [附录1: Local Volume 使用方法](/express/zh-CN/manage-storages/#附录1)。 如果集群配置的存储服务端是 Ceph RBD，则需要通过 Kubectl 创建 Secret，若遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载，请参考存储卷使用说明的 [附录2: Ceph RBD 存储卷缺少密钥无法挂载解决方案](/express/zh-CN/manage-storages/#附录2)。
+> 注：如果安装 KubeSphere 使用的是 all-in-one 部署在单个主机，使用的存储类型是 Local Volume，请参考存储卷使用说明的 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。 如果集群配置的存储服务端是 Ceph RBD，则需要通过 Kubectl 创建 Secret，若遇到 Ceph RBD 存储卷挂载至工作负载时因缺少密钥无法挂载，请参考存储卷使用说明的 [Ceph RBD 无法挂载解决方案](/express/zh-CN/manage-storages/#ceph-rbd-无法挂载解决方案)。
 
 ![创建部署 - 存储](/uc_createdeploy12.png)
 
