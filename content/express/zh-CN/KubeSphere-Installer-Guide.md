@@ -64,7 +64,7 @@ $ cd kubesphere-all-express-1.0.0-alpha
 > - 支持存储类型：`QingCloud-CSI（Dev 版支持）`、`GlusterFS、CephRBD、local-storage`，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
 > - All-in-One 默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，用户安装完毕在 KubeSphere 控制台创建存储卷的时候需要预先创建 Persistent Volume (PV)，installer 会预先创建 8 个可用的 10G PV 供使用，关于 local storage 的使用请参考 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。
 
-KubeSphere 部署过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 部署过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
 参考以下步骤开始 all-in-one 部署：
 
@@ -267,7 +267,7 @@ qy_fsType: ext4
 
 ### 第三步: 安装 KubeSphere
 
-KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、`Kubernetes` 和 `etcd` 集群的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、`Kubernetes` 和 `etcd` 集群的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
 参考以下步骤开始 multi-node 部署：
 
@@ -303,7 +303,7 @@ Please input an option: 2
 **提示：**
 
 > - 安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [存储配置说明](#存储配置说明)
-> - dev 版本的安装包不再需要配置 ssh 免密登录，只提示用户是否配置过存储。
+> - dev 和 Offline 版本的安装包不再需要配置 ssh 免密登录，只提示用户是否配置过存储。
 > - 若下载的是 alpha 版本的安装包， taskbox 需配置与待部署集群中所有节点的 `ssh 免密登录`，若还未配置 ssh 免密登录，在执行 `install.sh` 安装脚本时会提示用户是否已经配置免密登录，输入 "no" 安装程序将会帮您自动配置 ssh 免密登录，如下图所示:
 
 ```bash
@@ -362,7 +362,7 @@ KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express
 ## 存储配置说明
 
 
-可使用 `QingCloud-CSI`、`GlusterFS` 或 `CephRBD` 作为持久化存储（更多的存储类型持续更新中），QingCloud-CSI 存储需要有操作 [QingCloud IaaS 平台](https://console.qingcloud.com/login) 资源的权限，GlusterFS 和 CephRBD 需提前准备相关存储服务端。
+可使用 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 、[GlusterFS](https://www.gluster.org/) 或 [CephRBD](https://ceph.com)作为持久化存储（更多的存储类型持续更新中），QingCloud-CSI 存储需要有操作 [QingCloud IaaS 平台](https://console.qingcloud.com/login) 资源的权限，GlusterFS 和 CephRBD 需提前准备相关存储服务端。
 
 > 1. [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 插件已通过 KubeSphere 测试，仅需在 `vars.yml` 配置对应的参数，则 Installer 会根据配置项自动安装 QingCloud-CSI。
 > 2. KubeSphere 测试过的存储服务端 `Ceph` Server 版本为 v0.94.10，`Ceph` 服务端集群部署可参考 [部署 Ceph 存储集群](/express/zh-CN/ceph-ks-install/)，正式环境搭建 Ceph 存储服务集群请参考 [Install Ceph](http://docs.ceph.com/docs/master/)。
@@ -390,8 +390,8 @@ KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express
 | --- | ---|
 |qy\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
 |qy\_csi\_is\_default\_class|是否设定为默认 storage\_class， 是：true；否：false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为 default\_class
-| qy\_access\_key\_id   qy\_secret\_access\_key|通过[青云控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
-|qy\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a、 ap2a、 pek3 或 gd2a|
+| qy\_access\_key\_id ， <br> qy\_secret\_access\_key|通过[青云控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
+|qy\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3 （北京3区）、pek3a（北京3区-A）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）、 |
 
 
 
