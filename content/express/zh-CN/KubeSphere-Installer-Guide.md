@@ -362,7 +362,7 @@ KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express
 ## 存储配置说明
 
 
-可使用 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 、[GlusterFS](https://www.gluster.org/) 或 [CephRBD](https://ceph.com) 作为持久化存储（更多的存储类型持续更新中），QingCloud-CSI 存储需要有操作 [QingCloud IaaS 平台](https://console.qingcloud.com/login) 资源的权限，GlusterFS 和 CephRBD 需提前准备相关存储服务端。
+可使用 [青云云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[GlusterFS](https://www.gluster.org/) 或 [CephRBD](https://ceph.com) 作为持久化存储（更多的存储类型持续更新中），使用青云云平台块存储需要安装 [QingCloud-CSI 插件](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md)，且需要有操作 [QingCloud IaaS 平台](https://console.qingcloud.com/login) 资源的权限，GlusterFS 和 CephRBD 需提前准备相关存储服务端。
 
 > 1. [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 插件已通过 KubeSphere 测试，仅需在 `vars.yml` 配置对应的参数，则 Installer 会根据配置项自动安装 QingCloud-CSI。
 > 2. KubeSphere 测试过的存储服务端 `Ceph` Server 版本为 v0.94.10，`Ceph` 服务端集群部署可参考 [部署 Ceph 存储集群](/express/zh-CN/ceph-ks-install/)，正式环境搭建 Ceph 存储服务集群请参考 [Install Ceph](http://docs.ceph.com/docs/master/)。
@@ -384,7 +384,7 @@ KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express
 
 ### QingCloud-CSI
 
-[QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型 （超高性能型硬盘只能用在超高性能型主机）、性能型或容量型硬盘的存储卷并挂载至工作负载。
+[QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 能够使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式（Access Mode）为单节点读写（ReadWriteOnce）的基于 QingCloud 的超高性能型 （超高性能型硬盘只能用在超高性能型主机）、性能型（性能型硬盘只能用在性能型主机）或容量型硬盘的存储卷并挂载至工作负载。
 
 |**QingCloud-CSI** | **Description**|
 | --- | ---|
