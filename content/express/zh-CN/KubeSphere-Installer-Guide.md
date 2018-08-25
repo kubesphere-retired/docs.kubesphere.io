@@ -21,23 +21,26 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 
 `All-in-One` 模式即单节点部署，仅建议您用来测试或熟悉部署流程和了解 KubeSphere 功能特性，在正式使用环境建议使用 `multi-node` 模式，请参考下文的 `multi-node` 模式。
 
-### 第一步: 准备节点
+### 第一步: 准备主机（单节点）
 
 您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的部署。
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| Ubuntu 16.04.4 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| Ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 | CentOS 7.4 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
-### 第二步: 准备 KubeSphere 安装文件
+### 第二步: 准备安装包（单节点）
 
 **1.**  下载 [KubeSphere Installer](http://t.cn/RDVA7ek)。
 
-> 说明： 
-> - Alpha 版是目前在 Ubuntu 16.04.4 经过测试的版本。 
-> - 若系统是 CentOS 7.4，请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此 Dev 版本也支持 Ubuntu 16.04.4)
-> - 若需要下载离线安装包，请输入以下命令获取。目前离线安装包仅支持 Ubuntu 16.04.4，后续将支持更多的操作系统。
+|KubeSphere 版本|支持系统（将支持更多系统）|下载|
+|--------------|-------|----|
+|Dev 版|Ubuntu 16.04 LTS 64bit， <br> CentOS 7.4 64bit| [下载 Dev 版](http://t.cn/RDVA7ek) |
+|Stable (Alpha 版)|Ubuntu 16.04 LTS 64bit| [下载 Alpha 版](http://t.cn/RDVA7ek) |
+|Offline 版|Ubuntu 16.04.4 LTS 64bit，<br> Ubuntu 16.04.5 LTS 64bit|[下载 Offline 版](https://139.198.5.33/kubesphere/express/offline/Ubuntu/kubesphere-all-offline-express-1.0.0-alpha_amd64.tar.gz) |
+
+Offline 版也可以通过以下命令获取：
 
 ```bash
 $ curl -O -k https://139.198.5.33/kubesphere/express/offline/Ubuntu/kubesphere-all-offline-express-1.0.0-alpha_amd64.tar.gz -u kubesphere
@@ -55,13 +58,13 @@ $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
 $ cd kubesphere-all-express-1.0.0-alpha
 ```
 
-### 第三步: 执行部署
+### 第三步: 安装 KubeSphere（单节点）
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
 > - 若您需要自定义配置文件的安装参数，如网络、存储等相关内容需在 **`conf/vars.yml`** 配置文件中指定或修改。
 > - 网络：默认插件 `calico`。
-> - 支持存储类型：`QingCloud-CSI（Dev 版支持）`、`GlusterFS、CephRBD、local-storage`，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
+> - 支持存储类型：QingCloud-CSI（Dev 版支持）、GlusterFS、CephRBD、local-storage，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
 > - All-in-One 默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，用户安装完毕在 KubeSphere 控制台创建存储卷的时候需要预先创建 Persistent Volume (PV)，installer 会预先创建 8 个可用的 10G PV 供使用，关于 local storage 的使用请参考 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。
 
 KubeSphere 部署过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
@@ -119,7 +122,13 @@ ks-apiserver-nodeport: 32002
 
 ![KubeSphere console](/pic02.png)
 
-KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/zh-CN/user-case/)。
+KubeSphere 部署成功后，可以使用以下的用户名和密码登录 KubeSphere 控制台体验：
+
+> Account: admin@kubesphere.io 
+>
+> Password: passw0rd
+
+关于如何使用请参考 [《KubeSphere 用户指南》](/express/zh-CN/user-case/)。
 
 
 
@@ -127,13 +136,13 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/
 
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 `(taskbox)`，为准备部署的集群中其他节点执行部署的任务，且 taskbox 应能够与待部署的其他节点进行 `ssh 通信`。
 
-### 第一步: 准备主机
+### 第一步: 准备主机（多节点）
 
 您可以参考以下节点规格 准备 **`至少 2 台`** 符合要求的主机节点开始 `multi-node` 模式的部署。
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| ubuntu 16.04.4 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 | CentOS 7.4 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 以下用一个示例介绍 multi-node 模式部署多节点，此示例准备了 3 台主机，以主机名为 master 的节点作为任务执行机 taskbox，各节点主机名可由用户自定义。假设主机信息如下所示：
@@ -150,14 +159,17 @@ KubeSphere 部署成功后，请参考 [《KubeSphere 用户指南》](/express/
 
 > `etcd` 作为一个高可用键值存储系统，etcd 节点个数至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数建议设置为`奇数个`，在当前 KubeSphere Express 版本暂支持单个 etcd 节点，将会在下一个 Advanced Edition 版本中支持 etcd 多节点部署。
 
-### 第二步: 准备 KubeSphere 安装包
+### 第二步: 准备安装包（多节点）
 
 **1.** 下载 [KubeSphere Installer](http://t.cn/RDVA7ek)。
 
-> 说明： 
-> - Alpha 版是目前在 Ubuntu 16.04.4 经过测试的版本。 
-> - 若系统是 CentOS 7.4，请下载 `kubesphere-all-express-1.0.0-dev-2018xxxx.tar.gz` 版本的安装包。 (此 Dev 版本也支持 Ubuntu 16.04.4)
-> - 若需要下载离线安装包，请输入以下命令获取。目前离线安装包仅支持 Ubuntu 16.04.4，后续将支持更多的操作系统。
+|KubeSphere 版本|支持系统（将支持更多系统）|下载|
+|--------------|-------|----|
+|Dev 版|Ubuntu 16.04 LTS 64bit， <br> CentOS 7.4 64bit| [下载 Dev 版](http://t.cn/RDVA7ek) |
+|Stable (Alpha 版)|Ubuntu 16.04 LTS 64bit| [下载 Alpha 版](http://t.cn/RDVA7ek) |
+|Offline 版|Ubuntu 16.04.4 LTS 64bit，<br> Ubuntu 16.04.5 LTS 64bit|[下载 Offline 版](https://139.198.5.33/kubesphere/express/offline/Ubuntu/kubesphere-all-offline-express-1.0.0-alpha_amd64.tar.gz) |
+
+Offline 版也可以通过以下命令获取：
 
 ```bash
 $ curl -O -k https://139.198.5.33/kubesphere/express/offline/Ubuntu/kubesphere-all-offline-express-1.0.0-alpha_amd64.tar.gz -u kubesphere
@@ -176,7 +188,7 @@ $ tar -zxvf kubesphere-all-express-1.0.0-alpha.tar.gz
 $ cd kubesphere-all-express-1.0.0-alpha
 ```
 
-**4.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，以 Alpha 版本的主机配置文件为例。以下示例在 Ubuntu 16.04.04 上使用 `ubuntu` 用户安装，每台机器信息占一行，不能分行。
+**4.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，以 Alpha 版本的主机配置文件为例。以下示例在 Ubuntu 16.04 上使用 `ubuntu` 用户安装，每台机器信息占一行，不能分行。
 
 **Alpha 版示例：**
 
@@ -221,12 +233,12 @@ kube-master
 - 若下载的是 Dev 或 Offline 版本的安装包， 安装包中 `conf/hosts.ini` 的 `[all]` 部分参数如 `ansible_host` 、 `ip` 、 `ansible_become_pass` 和 `ansible_ssh_pass` 需替换为您实际部署环境中各节点对应的参数。注意 `[all]` 中参数的配置方式分为 root 和 非 root 用户，非 root 用户的配置方式在安装包的 `conf/hosts.ini` 的注释部分已给出示例，请根据实际的用户身份修改配置参数。
 
 
-**5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储服务器，再参考 [存储配置说明](#存储配置说明) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。
+**5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储端，再参考 [存储配置说明](#存储配置说明) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。
 
 > 说明：
 > - 根据配置文件按需修改相关配置项，未做修改将以默认参数执行。
 > - 网络：默认插件 `calico`
-> - 支持存储类型：`QingCloud-CSI（Dev 版支持）、GlusterFS、CephRBD`等， 存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)
+> - 支持存储类型：QingCloud-CSI（Dev 版支持）、GlusterFS、CephRBD 等， 存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)
 > - 通常情况您需要配置持久化存储，multi-node 不支持 local storage，因此把 local storage 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI、GlusterFS、CephRBD 等。如下所示为配置 QingCloud-CSI （`qy_access_key_id`、`qy_secret_access_key` 和 `qy_zone` 应替换为您实际环境的参数）。
 
 **示例：**
@@ -265,7 +277,7 @@ qy_fsType: ext4
 
 ```
 
-### 第三步: 安装 KubeSphere
+### 第三步: 安装 KubeSphere（多节点）
 
 KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、`Kubernetes` 和 `etcd` 集群的自动化部署，以及存储的自动化配置。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
@@ -303,8 +315,8 @@ Please input an option: 2
 **提示：**
 
 > - 安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [存储配置说明](#存储配置说明)
-> - dev 和 Offline 版本的安装包不再需要配置 ssh 免密登录，只提示用户是否配置过存储。
-> - 若下载的是 alpha 版本的安装包， taskbox 需配置与待部署集群中所有节点的 `ssh 免密登录`，若还未配置 ssh 免密登录，在执行 `install.sh` 安装脚本时会提示用户是否已经配置免密登录，输入 "no" 安装程序将会帮您自动配置 ssh 免密登录，如下图所示:
+> - Dev 和 Offline 版本的安装包不再需要配置 ssh 免密登录，只提示用户是否配置过存储。
+> - 若下载的是 Alpha 版本的安装包， taskbox 需配置与待部署集群中所有节点的 `ssh 免密登录`，若还未配置 ssh 免密登录，在执行 `install.sh` 安装脚本时会提示用户是否已经配置免密登录，输入 "no" 安装程序将会帮您自动配置 ssh 免密登录，如下图所示:
 
 ```bash
 ######################################################################
@@ -355,7 +367,13 @@ ks-apiserver-nodeport: 32002
 
 ![](/pic02.png)
 
-KubeSphere 部署成功后，请参考  [《KubeSphere 用户指南》](/express/zh-CN/user-case/)。
+KubeSphere 部署成功后，可以使用以下的用户名和密码登录 KubeSphere 控制台体验：
+
+> Account: admin@kubesphere.io 
+>
+> Password: passw0rd
+
+关于如何使用请参考  [《KubeSphere 用户指南》](/express/zh-CN/user-case/)。
 
 
 
