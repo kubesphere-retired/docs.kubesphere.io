@@ -122,6 +122,7 @@ root@ceph1:~# ssh root@ceph2
 
 4、Ceph 官方推出了一个用 python 写的工具 cpeh-deploy，可以很大程度地简化 Ceph 集群的配置过程，参考如下步骤为 ceph1 和 ceph2 安装 Ceph 和 ceph-deploy：
 ```
+root@ceph1:~# apt-get update
 root@ceph1:~# apt-get install -y ceph ceph-deploy
 ```
 - 同上，在 ceph2 执行以上命令。
