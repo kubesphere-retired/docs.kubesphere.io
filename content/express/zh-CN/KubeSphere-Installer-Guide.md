@@ -32,7 +32,7 @@ KubeSphere 部署支持 **`all-in-one`** 和 **`multi-node`** 两种部署模式
 
 ### 第二步: 准备安装包（单节点）
 
-**1.**  下载 [KubeSphere Installer](https://kubesphere.io/download/)，跳转到下载页面后可以通过 `curl -O` 或 `wget` 命令获取 Installer。
+**1.**  下载 [KubeSphere Installer](https://kubesphere.io/download/)，跳转到下载页面后也可以通过 `curl -O url` 或 `wget url` 命令获取 Installer。
 
 |KubeSphere 版本|支持系统（将支持更多系统）|
 |--------------|-------|
@@ -156,7 +156,7 @@ KubeSphere 部署成功后，可以使用以下的用户名和密码登录 KubeS
 
 ### 第二步: 准备安装包（多节点）
 
-**1.**  下载 [KubeSphere Installer](https://kubesphere.io/download/)，跳转到下载页面后可以通过 `curl -O` 或 `wget` 命令获取 Installer。
+**1.**  下载 [KubeSphere Installer](https://kubesphere.io/download/)，跳转到下载页面后也可以通过 `curl -O url` 或 `wget url` 命令获取 Installer。
 
 |KubeSphere 版本|支持系统（将支持更多系统）|
 |--------------|-------|
