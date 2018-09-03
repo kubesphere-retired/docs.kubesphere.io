@@ -111,7 +111,7 @@ ks-apiserver-nodeport: 32002
 ```
 
 
-**(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，如上图 [http://192.168.100.10:32117](http://192.168.100.10:32117)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080)，即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
+**(2)** 以上可以看到两个 nodeport，在 Kubernetes 中 nodeport 是提供给集群外部客户访问该 Service 入口的一种方式，Kubernetes 中的 nodeport 一般是高位 30000 - 32767。您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号即 `<NodeIP>:ks-console-nodeport` 访问 KubeSphere 控制台，如上图 [http://192.168.100.10:32117](http://192.168.100.10:32117，)。由于服务的常用访问端口通常是低位，因此也可以通过公网 IP 并将高位端口转发后访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080)， 即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
 
 > 注： 若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
 
@@ -342,16 +342,16 @@ Your public key has been saved in /home/ubuntu/.ssh/id_rsa.pub.
 ```bash
 PLAY RECAP *********************************************
 KubeSphere     : ok=69 changed=68 unreachable=0 failed=0
-Succesful!
+Successful!
 ########################################################
 KubeSphere is running！
-Matser IP: 121.10.121.111
+Matser IP: 192.168.100.10
 ks-console-nodeport: 32117
 ks-apiserver-nodeport: 32002
 ########################################################
 ```
 
-**(2)** 您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号（端口号将显示在脚本执行完之后的界面 "ks-console-nodeport" 处)，也可以通过公网 IP 及端口转发的方式访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080)，即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
+**(2)** 以上可以看到两个 nodeport，在 Kubernetes 中 nodeport 是提供给集群外部客户访问该 Service 入口的一种方式，Kubernetes 中的 nodeport 一般是高位 30000 - 32767。您可以通过浏览器，使用集群中任一节点的 IP 地址和端口号即 `<NodeIP>:ks-console-nodeport` 访问 KubeSphere 控制台，如上图 [http://192.168.100.10:32117](http://192.168.100.10:32117，)。由于服务的常用访问端口通常是低位，因此也可以通过公网 IP 并将高位端口转发后访问控制台，如：[http://139.198.121.143:8080](http://139.198.121.143:8080)， 即可进入 KubeSphere 登录界面，能看到如下用户界面说明 KubeSphere 能够正常访问和使用：
 
 > 注： 若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
 
