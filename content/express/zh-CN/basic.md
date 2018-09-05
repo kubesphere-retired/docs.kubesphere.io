@@ -44,7 +44,6 @@ Community Edition （ [社区版](https://kubesphere.qingcloud.com/#category) �
 ## 名词解释
 了解和使用 KubeSphere 管理平台，会涉及到以下的基本概念：
 
-### KubeSphere 与 Kubernetes 常用概念对照
  
 |  KubeSphere  | Kubernetes |
 |------------|--------------|
@@ -56,7 +55,7 @@ Community Edition （ [社区版](https://kubesphere.qingcloud.com/#category) �
 |应用路由|Ingress，是授权入站连接到达集群服务的规则集合。可通过 Ingress 配置提供外部可访问的 URL、负载均衡、SSL、基于名称的虚拟主机等，详细参考 [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)。|
 |镜像仓库|Image Registries，镜像仓库用于存放 Docker 镜像，Docker 镜像用于部署容器服务， 详细参考 [Images](https://kubernetes.io/docs/concepts/containers/images/)。|
 |存储卷|PersistentVolumeClaim（PVC），满足用户对于持久化存储的需求，用户将 Pod 内需要持久化的数据挂载至存储卷，实现删除 Pod 后，数据仍保留在存储卷内。Kubesphere 推荐使用动态分配存储，当集群管理员配置存储类型后，集群用户可一键式分配和回收存储卷，无需关心存储底层细节。详细参考 [Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)。|
-|存储类型|StorageClass，为管理员提供了描述存储“ class （类）”的方法，包含 Provisioner、 ReclaimPolicy 和 Parameters 。详细参考 [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/)。|
+|存储类型|StorageClass，为管理员提供了描述存储 “Class（类）” 的方法，包含 Provisioner、 ReclaimPolicy 和 Parameters 。详细参考 [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/)。|
 主机|Node，Kubernetes 集群中的计算能力由 Node 提供，Kubernetes 集群中的 Node 是所有 Pod 运行所在的工作主机，可以是物理机也可以是虚拟机。详细参考 [Nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)。|
 
 

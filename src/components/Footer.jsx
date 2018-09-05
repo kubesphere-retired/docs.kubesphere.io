@@ -25,7 +25,7 @@ class Footer extends React.Component {
             </Link>
           )}
         </Pagination>
-        <FooterText>Kubesphere Docs</FooterText>
+        <FooterText>KubeSphere Docs</FooterText>
       </div>
     )
   }
