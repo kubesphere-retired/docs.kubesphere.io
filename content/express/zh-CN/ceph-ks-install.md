@@ -134,7 +134,8 @@ root@ceph1:~# apt-get install -y ceph ceph-deploy
 - 5.1. 在 ceph1 创建文件夹存放初始化配置：
 
 ```
-root@ceph1:~# mkdir -p  /root/cluster & cd /root/cluster & rm -f /root/cluster/*
+root@ceph1:~# mkdir -p /root/cluster 
+root@ceph1:~# rm -f /root/cluster/*
 ```
 
 - 5.2. 分别在 ceph1 和 ceph2 存放 ceph 数据：
