@@ -46,54 +46,69 @@ Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜�
 根据 Harbor 镜像仓库的地址类型，需要分 http 和 https 两种认证方法：
 
 #### http
-首先，需要修改集群中所有节点的 docker 配置。以 http://139.198.16.232 为例，修改 `/etc/docker/daemon.json` 文件，添加如下字段：
+1. 首先，需要修改集群中所有节点的 docker 配置。以 http://139.198.16.232 为例，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=139.198.16.232`：
+
+ 示例：
 
 ```
-"insecure-registries" : ["139.198.16.232"]
+[Service]
+Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --graph=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
+--iptables=false \
+--insecure-registry=139.198.16.232"
 ```
-添加完成以后，需要重启 docker:
+
+2. 添加完成以后，需要重载修改过的配置文件并重启 docker:
 
 ```bash
-$ systemctl restart docker
+$ sudo systemctl systemctl daemon-reload
 ```
-然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
+
+```bash
+$ sudo systemctl restart docker
+```
+
+3. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
 
 ![创建 Harbor 仓库-http](/createhub1.png)
 
 #### https
-对于 https 协议的镜像仓库，首先需要获取镜像仓库的证书，记为 `ca.crt`，以 `https://harbor.openpitrix.io` 这个镜像仓库的地址为例，对集群中的所有节点都需要执行以下操作:
+1. 对于 https 协议的镜像仓库，首先需要获取镜像仓库的证书，记为 `ca.crt`，以 `https://harbor.openpitrix.io` 这个镜像仓库的地址为例，对集群中的所有节点都需要执行以下操作:
 
 ```bash 
-$ cp ca.crt  /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
+$ sudo cp ca.crt  /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
 ```
 
-如果还是报权限错误，针对不同的操作系统，需要执行以下操作:
+- 如果还是报权限错误，针对不同的操作系统，需要执行以下操作:
 
 **UBUNTU**
 
 ```bash
-$ cp ca.crt /usr/local/share/ca-certificates/harbor.openpitrix.io.ca.crt
+$ sudo cp ca.crt /usr/local/share/ca-certificates/harbor.openpitrix.io.ca.crt
 ```
 ```bash
-$ update-ca-certificatess
+$ sudo update-ca-certificates
 ```
 **RED HAT ENTERPRISE LINUX**
 
 ```bash
-$ cp ca.crt /etc/pki/ca-trust/source/anchors/harbor.openpitrix.io.ca.crt
+$ sudo cp ca.crt /etc/pki/ca-trust/source/anchors/harbor.openpitrix.io.ca.crt
 ```
 ```bash
-$ update-ca-trust
+$ sudo update-ca-trust
 ```
 
-添加完成以后，需要重启 docker：
+2. 添加完成以后，需要重载修改过的配置文件并重启 docker （详情可参照 [docker官网](https://docs.docker.com/registry/insecure/#troubleshoot-insecure-registry) ）:
+
 ```bash
-$ systemctl restart docker
+$ sudo systemctl systemctl daemon-reload
 ```
 
-详情可参照 [docker官网](https://docs.docker.com/registry/insecure/#troubleshoot-insecure-registry) 。
+```bash
+$ sudo systemctl restart docker
+```
 
-然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
+
+3. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
 ![创建 Harbor 仓库-https](/createhub2.png)
 
 
