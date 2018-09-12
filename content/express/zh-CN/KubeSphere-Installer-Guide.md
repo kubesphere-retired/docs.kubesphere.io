@@ -459,7 +459,7 @@ $ heketi-cli cluster list
 
 ## 集群节点扩容说明
 
-安装 KubeSphere 后，在正式环境使用时可能会遇到服务器容量不足的情况，这时就需要添加新的服务器，然后将应用系统进行水平扩展来完成对系统的扩容。KubeSphere 对于在 Kubernetes 集群中加入新 Node 是非常简单的，仅需简单两步即可完成集群节点扩容。节点扩容基于 Kubelet 的自动注册机制，新的 Node 将会自动加入现有的 Kubernetes 集群中，以 root 用户增加 node3 的配置为例。
+安装 KubeSphere 后，在正式环境使用时可能会遇到服务器容量不足的情况，这时就需要添加新的服务器，然后将应用系统进行水平扩展来完成对系统的扩容。通过 KubeSphere 控制台，您可以根据实际业务需要对 Kubernetes 集群的 Node 节点进行扩容（暂不支持 Master 节点扩容），KubeSphere 对于在 Kubernetes 集群中加入新 Node 是非常简单的，仅需简单两步即可完成集群节点扩容。节点扩容基于 Kubelet 的自动注册机制，新的 Node 将会自动加入现有的 Kubernetes 集群中，以 root 用户增加 node3 的配置为例。
 
 1. 当申请完新的主机后，在主机配置文件 `conf/hosts.ini` 根据需要增加的主机信息在 [all] 和 [kube-node] 部分对应添加一行参数，若扩容多台主机则依次添加多行参数。需要注意的是，扩容新的节点时不能修改原节点的主机名如 master、node1 和 node2， 如下添加新节点 node3：
 
@@ -478,7 +478,7 @@ node3
 ···
 ```
 
-2. 在 script 目录执行 install.sh 脚本，选择 `3). Cluster-scaling`。待扩容脚本执行成功后，即可看到包含新节点的集群节点信息，可通过 KubeSphere 控制台的菜单选择资源然后进入主机管理页面，或者通过 Kubectl 工具执行 `kubectl get node` 命令，查看扩容后的集群节点详细信息。同样，若需要停用或隔离集群中的节点，比如在硬件升级、硬件维护等情况下需要将某些 Node 进行隔离，可以通过 KubeSphere 控制台菜单中选择资源进入主机管理执行停用或启用主机，可参考主机管理说明的 [停用或启用主机](/express/zh-CN/manage-nodes/#停用或启用主机)。
+2. 在 script 目录执行 install.sh 脚本，选择 `3). Cluster-scaling`。待扩容脚本执行成功后，即可看到包含新节点的集群节点信息，可通过 KubeSphere 控制台的菜单选择 **资源** 然后进入 **主机管理** 页面，或者通过 Kubectl 工具执行 `kubectl get node` 命令，查看扩容后的集群节点详细信息。同样，若需要停用或隔离集群中的节点，比如在硬件升级、硬件维护等情况下需要将某些 Node 进行隔离，可以通过 KubeSphere 控制台菜单中选择 **资源** 进入 **主机管理** 页面执行停用或启用主机，可参考主机管理说明的 [停用或启用主机](/express/zh-CN/manage-nodes/#停用或启用主机)。
 
 
 
