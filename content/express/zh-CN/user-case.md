@@ -172,7 +172,7 @@ tier=wordpress-service
 
 - 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [青云QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务。（如果外网访问方式设置的是 LoadBalancer，可以参考 [访问应用路由说明](/express/zh-CN/manage-routers/#访问应用路由) 的 LoadBalancer 方式。）
 
-- 本实践以 NodePort 访问方式为例配置网关入口，此方式网关可以通过工作节点对应的端口来访问，配置完成后点击 **应用** (端口显示在左边的节点端口处)，然后点击关闭：
+- 本实践以 NodePort 访问方式为例配置网关入口，此方式网关可以通过工作节点对应的端口来访问，配置完成后点击 **应用** (左边节点端口生成的两个端口，分别是 HTTP 协议的 80 端口和 HTTPS 协议的 443 端口)，然后点击关闭：
 
 ![配置网关](/uc_createingress1.png)
 
@@ -200,7 +200,7 @@ hostname=kubesphere.wp.com
 tier=wordpress-ingress
 ```
 
-- 12.6. 至此，WordPress 就以应用路由的方式通过网关入口暴露到外网，用户可以通过示例中配置的 `kubesphere.wp.com` 和端口号访问 WordPress 博客网站：
+- 12.6. 至此，WordPress 就以应用路由的方式通过网关入口暴露到外网，用户可以通过示例中配置的 `kubesphere.wp.com` 和端口号访问 WordPress 博客网站 (此示例中用的是第一个端口 30033，它对应的 HTTP 协议的 80 端口，由于目前应用路由中仅支持 HTTP 协议，将在下个版本中支持 HTTPS 协议) ：
 
 > 注: 创建应用路由之后应该把主机的公网 IP 和 配置的域名如：`139.198.17.33 kubesphere.wp.com` 填入本地的 hosts 配置文件中，即可通过浏览器访问。如果主机的公网 IP 有防火墙，应在防火墙放行对应的端口，否则外网无法访问。
 
