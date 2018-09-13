@@ -28,8 +28,11 @@ title: "应用路由管理"
 
 3. 选择对应的网关启用方式后，点击 **应用** 来创建网关，如下图选择的是 NodePort 的方式，选择关闭。
 
-![网关设置](/router-gateway.png)
+![网关设置-NodePort](/router-gateway.png)
 
+4. 若选择的是 LoadBalancer，则需要将公网 IP 的 ID 填入 Annotation，如下图所示，点击 **应用** 来创建网关。
+
+![网关设置-LoadBalancer](/router-gateway-conf.png)
 
 ## 创建应用路由
 
@@ -58,7 +61,11 @@ title: "应用路由管理"
 |demo.kubesphere.io|/|NodePort|32586,31920|192.168.0.4,192.168.0.3,192.168.0.2|
 |demo2.kubesphere.io|/|LoadBalancer|139.198.1.1|192.168.0.4,192.168.0.3,192.168.0.2
 
-如上表格，创建了两条应用路由规则，分别使用 NodePort 和 LoadBalancer 方式的访问入口。在私有环境下，我们可以直接在主机的 hosts 文件中添加记录来使域名解析到对应的 IP。例如，对于 `demo.kubesphere.io`，我们添加如下记录
+如上表格，创建了两条应用路由规则，分别使用 NodePort 和 LoadBalancer 方式的访问入口。
+
+**NodePort**
+
+对于外网访问方式设置的 NodePort，如果是在私有环境下，我们可以直接在主机的 hosts 文件中添加记录来使域名解析到对应的 IP。例如，对于 `demo.kubesphere.io`，我们添加如下记录：
 
 ```
 192.168.0.4 demo.kubesphere.io
@@ -66,12 +73,24 @@ title: "应用路由管理"
 
 需要保证客户端与集群工作节点 192.168.0.4 网络可通，可以使用其它工作节点的 IP，只要客户端和工作节点网络是通的，设置完之后，在浏览器中使用域名和网关的端口号 (此示例中是 32586) `http://demo.kubesphere.io:32586` 即可访问。
 
-对于 `demo2.kubesphere.io`，添加
+**LoadBalancer**
+
+如果外网访问方式设置的是 LoadBalancer，对于 `demo2.kubesphere.io`，除了参考以上方式在 hosts 文件中添加记录之外，还可以使用 [nip.io](http://nip.io/)  作为应用路由的域名解析。nip.io 是一个免费的域名解析服务，可以将符合下列格式的域名解析对应的ip，可用来作为应用路由的解析服务，省去配置本地 hosts 文件的步骤。
+
+**格式**
 
 ```
-139.198.1.1 demo2.kubesphere.io 
+10.0.0.1.nip.io maps to 10.0.0.1  
+app.10.0.0.1.nip.io maps to 10.0.0.1
+customer1.app.10.0.0.1.nip.io maps to 10.0.0.1
+customer2.app.10.0.0.1.nip.io maps to 10.0.0.1
+otherapp.10.0.0.1.nip.io maps to 10.0.0.1
 ```
 
-设置完成之后，使用 `http://demo2.kubesphere.io` 即可访问。
+例如，应用路由的网关公网IP地址为 139.198.121.154 , 在创建应用路由时，Hostname 一栏填写为 `demo2.kubesphere.139.198.121.154.nip.io`，其它保持原来的设置。
+![路由规则](/router-rules-conf.png)
 
-> 以上是私有环境的示例，如果 DNS 中已存在域名到对应 IP 的记录，则可以跳过上述步骤，直接使用应用规则中设置的域名来访问。
+创建完成后，直接使用 [http://demo2.kubesphere.139.198.121.154.nip.io](http://demo2.kubesphere.139.198.121.154.nip.io)，即可访问对应的服务。
+![访问域名登录页面](/router-login.png)
+
+
