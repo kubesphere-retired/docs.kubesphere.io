@@ -170,7 +170,9 @@ tier=wordpress-service
 ![网关入口](/uc_createingress.png)
 
 
-- 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [青云QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务。本实践以 NodePort 访问方式为例配置网关入口，此方式网关可以通过工作节点对应的端口来访问，配置完成后点击应用 (端口显示在左边的节点端口处)，然后点击关闭：
+- 网关入口提供 NodePort 和 LoadBalancer 两种访问方式，如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [青云QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 `ID` 填入 Annotation 中，即可通过公网 IP 访问该服务。（如果外网访问方式设置的是 LoadBalancer，可以参考 [访问应用路由说明](/express/zh-CN/manage-routers/#访问应用路由) 的 LoadBalancer 方式。）
+
+- 本实践以 NodePort 访问方式为例配置网关入口，此方式网关可以通过工作节点对应的端口来访问，配置完成后点击 **应用** (端口显示在左边的节点端口处)，然后点击关闭：
 
 ![配置网关](/uc_createingress1.png)
 
