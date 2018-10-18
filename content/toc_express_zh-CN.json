@@ -10,12 +10,12 @@
       "entry": "./express/zh-CN/KubeSphere-Installer-Guide.md"
     },
     {
+      "title": "快速入门",
+      "entry": "./express/zh-CN/user-case.md"
+    },
+    {
       "title": "用户指南",
       "chapters": [
-        {
-          "title": "快速入门",
-          "entry": "./express/zh-CN/user-case.md"
-        },
         {
           "title": "首页",
           "entry": "./express/zh-CN/homepage.md"
@@ -104,6 +104,6 @@
           "entry": "./express/zh-CN/glusterfs-ks-install.md"
             }
       ]
-        }
+        }   
   ]
 }
