@@ -1,0 +1,13 @@
+{
+  "id": "advance-en",
+  "chapters": [
+    {
+      "title": "Installing, Patching, and Upgrading",
+      "entries": [
+        {
+          "entry": "./advance/en/test-en.md"
+        }
+      ]
+    }
+  ]
+}
