@@ -25,34 +25,45 @@
    {
     "title": "用户指南",
     "chapters": [
-   { 
+      { 
       "title": "工作负载",
       "entries": [
-    {
-      "entry": "./advance/zh-CN/ae-workload.md"
-    },
-    {
-      "entry": "./advance/zh-CN/ae-deployments.md"
-    },
-    {
-      "entry": "./advance/zh-CN/ae-statefulsets.md"
-    },
-    {
-      "entry": "./advance/zh-CN/ae-daemonsets.md"
-    },
-    {
-      "entry": "./advance/zh-CN/ae-jobs.md"
-    },
-    {
-      "entry": "./advance/zh-CN/ae-cronjobs.md"
-    },
-    {
-      "entry": "./advance/zh-CN/ae-workload-management.md"
-    }
-       ]
-  }
-             ]
-    }
+              {
+                "entry": "./advance/zh-CN/ae-workload.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-deployments.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-statefulsets.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-daemonsets.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-jobs.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-cronjobs.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-workload-management.md"
+              }
+                 ]
+      },
+      {
+      "title": "存储",
+      "entries": [
+              {
+                "entry": "./advance/zh-CN/ae-volume.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-PVC.md"
+              }
+                 ]
+      }
+            ]
+   }
 
                 ]
 }
