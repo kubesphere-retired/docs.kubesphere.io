@@ -2,7 +2,7 @@
 title: "存储卷"
 ---
 
-存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。在 KubeSphere 中创建存储卷之前必须存在相应的存储类型。KubeSphere 推荐使用动态分配方式创建存储卷，即用户在 KubeSphere 控制台发起创建和删除存储卷请求后即可在存储服务端创建和删除存储卷，并可供 KubeSphere 工作负载使用。在 all-in-one 部署方式中，可以使用 Local 存储卷将数据持久化，无需存储服务端支持，但此类型存储卷不支持动态分配方式。如果希望体验 KubeSphere 推荐的动态分配 (Dynamic Provisioning) 方式创建存储卷，请配置 GlusterFS 和 Ceph RBD 存储类型。
+存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。在 KubeSphere 中创建存储卷之前必须存在相应的存储类型。KubeSphere 推荐使用动态分配方式创建存储卷，即用户在 KubeSphere 控制台发起创建和删除存储卷请求后即可在存储服务端创建和删除存储卷，并可供 KubeSphere 工作负载使用。在 all-in-one 部署方式中，可以使用 Local 存储卷将数据持久化，无需存储服务端支持，但此类型存储卷不支持动态分配方式。如果希望体验 KubeSphere 推荐的动态分配 (Dynamic Provisioning) 方式创建存储卷，我们推荐使用 [青云云平台块存储](https://docs.qingcloud.com/product/storage/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件，支持使用青云块存储作为平台的存储服务，免去手动配置存储服务端的繁琐。如果需要手动配置 GlusterFS 或 Ceph RBD，需要准备相应的存储服务端，参考附录中的 [部署 Ceph RBD 存储服务端](../https://docs.kubesphere.io/express/zh-CN/ceph-ks-install/) 或 [部署 GlusterFS 存储服务端](../https://docs.kubesphere.io/express/zh-CN/glusterfs-ks-install/)。
 
 本节通过以下几个方面介绍如何管理存储卷：
 
