@@ -59,6 +59,34 @@
               },
               {
                 "entry": "./advance/zh-CN/ae-PVC.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-storageclass.md"
+              },
+              {
+                "entry": "./advance/zh-CN/qingcloud-storage.md"
+              }
+                 ]
+      },
+      {
+      "title": "网络与服务",
+      "entries": [
+              {
+                "entry": "./advance/zh-CN/ae-services.md"
+              },
+              {
+                "entry": "./advance/zh-CN/ae-ingress.md"
+              }
+                 ]
+      },
+      {
+      "title": "配置中心",
+      "entries": [
+              {
+                "entry": "./advance/zh-CN/secrets.md"
+              },
+              {
+                "entry": "./advance/zh-CN/configmap.md"
               }
                  ]
       }

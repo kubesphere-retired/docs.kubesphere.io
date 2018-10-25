@@ -61,7 +61,7 @@ $ cd kubesphere-all-express-1.0.0-alpha
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 10.233.0.0/18，Pod 的子网网段默认是 10.233.64.0/18，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 > - 网络：默认插件 `calico`。
 > - 支持存储类型：QingCloud-CSI（Dev 版支持）、GlusterFS、CephRBD、local-storage，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
-> - All-in-One 默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，用户安装完毕在 KubeSphere 控制台创建存储卷的时候需要预先创建 Persistent Volume (PV)，installer 会预先创建 8 个可用的 10G PV 供使用，关于 local storage 的使用请参考 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。
+> - All-in-One 默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，installer 会预先创建 8 个可用的 10G PV 供使用，若存储空间不足则需要手动创建 Persistent Volume (PV)，参见 [Local Volume 使用方法](/express/zh-CN/manage-storages/#local-volume-使用方法)。
 
 KubeSphere 部署过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.10.5，目前已支持 v1.11.2，如需安装 v1.11.2 可在配置文件 `conf/vars.yaml` 中修改 `kube_version` 的参数为 v1.11.2，再执行安装，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
@@ -380,8 +380,8 @@ KubeSphere 部署成功后，可以使用以下的用户名和密码登录 KubeS
 
 > 1. [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 插件已通过 KubeSphere 测试，仅需在 `vars.yml` 配置对应的参数，则 Installer 会根据配置项自动安装 QingCloud-CSI。
 > 2. KubeSphere 测试过的存储服务端 `Ceph` Server 版本为 v0.94.10，`Ceph` 服务端集群部署可参考 [部署 Ceph 存储集群](/express/zh-CN/ceph-ks-install/)，正式环境搭建 Ceph 存储服务集群请参考 [Install Ceph](http://docs.ceph.com/docs/master/)。
-> 3. KubeSphere 测试过的存储服务端 `Gluster` Server 版本为 v3.7.6，`Gluster` 服务端集群部署可参考 [部署 GlusterFS 存储集群](/express/zh-CN/glusterfs-ks-install/)， 正式环境搭建 GlusterFS集群请参考 [Install Gluster](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) 并且需要安装 [Heketi 管理端](https://github.com/heketi/heketi/tree/master/docs/admin)，Heketi 版本为 v3.0.0。
-> 4. KubeSphere 安装过程中程序将会根据用户在 vars.yml 里选择配置的存储类型如 GlusterFS 或 CephRBD，进行自动化地安装对应 Kubernetes 集群所需的GlusterFS Client 或 CephRBD Client，无需手动安装 Client。KubeSphere 自动安装的 Glusterfs Client 版本为 v3.12.10，可通过 `glusterfs -V` 命令查看，RBD Client 版本为 v12.2.5，可用 `rbd -v` 命令查看。
+> 3. KubeSphere 测试过的存储服务端 `GlusterFS` Server 版本为 v3.7.6，`GlusterFS` 服务端部署可参考 [部署 GlusterFS 存储集群](/express/zh-CN/glusterfs-ks-install/)， 正式环境搭建 GlusterFS 集群请参考 [Install Gluster](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) 并且需要安装 [Heketi 管理端](https://github.com/heketi/heketi/tree/master/docs/admin)，Heketi 版本为 v3.0.0。
+> 4. KubeSphere 安装过程中程序将会根据用户在 vars.yml 里选择配置的存储类型如 GlusterFS 或 Ceph RBD，进行自动化地安装对应 Kubernetes 集群所需的GlusterFS Client 或 Ceph RBD Client，无需手动安装 Client。KubeSphere 自动安装的 GlusterFS Client 版本为 v3.12.10，可通过 `glusterfs -V` 命令查看，RBD Client 版本为 v12.2.5，可用 `rbd -v` 命令查看。
 > 5. Kubernetes 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
 
 在您准备好存储服务端以后，只需要参考以下表中的参数说明，在 `conf` 目录下的 `vars.yml` 中，根据您存储服务端所支持的存储类型，在 `vars.yml` 的 `#QingCloud-CSI`、`# Ceph_rbd  deployment` 、 `# GlusterFS  provisioner deployment` 或 `# Local volume provisioner deployment(Only all-in-one)` 部分，参考脚本中的示例修改对应参数，即可完成 Kubernetes 集群存储类型的配置。以下对存储相关配置做简要说明 (参数详解请参考 [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) )：
