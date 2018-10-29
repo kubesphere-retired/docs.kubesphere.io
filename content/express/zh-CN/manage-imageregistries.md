@@ -41,7 +41,7 @@ Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜�
 
 **Harbor 简介**
 
-[Harbor](http://vmware.github.io/harbor/) 是一个用于存储和分发 Docker 镜像的企业级 Registry 服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源 Docker Distribution。作为一个企业级私有 Registry 服务器，Harbor 提供了更好的性能和安全。提升用户使用Registry构建和运行环境传输镜像的效率。Harbor 支持安装在多个 Registry 节点的镜像资源复制，镜像全部保存在私有 Registry 中， 确保数据和知识产权在公司内部网络中管控。另外，Harbor 也提供了高级的安全特性，诸如用户管理，访问控制和活动审计等。以下详细介绍如何在 KubeSphere 中创建 Harbor 镜像仓库： 
+[Harbor](http://vmware.github.io/harbor/) 是一个用于存储和分发 Docker 镜像的企业级 Registry 服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源 Docker Distribution。作为一个企业级私有 Registry 服务器，Harbor 提供了更好的性能和安全。以下详细介绍如何在 KubeSphere 中创建 Harbor 镜像仓库，添加之前请确保已创建了 Harbor 镜像仓库服务端。
 
 根据 Harbor 镜像仓库的地址类型，需要分 http 和 https 两种认证方法：
 
@@ -60,7 +60,7 @@ Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --inse
 2. 添加完成以后，需要重载修改过的配置文件并重启 docker:
 
 ```bash
-$ sudo systemctl systemctl daemon-reload
+$ sudo systemctl daemon-reload
 ```
 
 ```bash
@@ -109,6 +109,7 @@ $ sudo systemctl restart docker
 
 
 3. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息，创建 Harbor 镜像仓库。
+
 ![创建 Harbor 仓库-https](/createhub2.png)
 
 
