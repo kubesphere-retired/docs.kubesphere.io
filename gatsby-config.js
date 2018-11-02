@@ -77,6 +77,12 @@ const transformer = ({ data }) => {
 module.exports = {
   siteMetadata: {
     title: 'KubeSphere Documents',
+    versions: [
+      {
+        label: 'Express v1.0.0-alpha',
+        value: 'express',
+      }
+    ]
   },
   plugins: [
     'gatsby-plugin-react-helmet',
