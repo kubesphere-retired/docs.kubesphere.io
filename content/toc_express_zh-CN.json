@@ -93,17 +93,17 @@
       ]
     },
     {
-          "title": "附录",
-          "chapters": [
-            {
-          "title": "部署 Ceph 存储集群",    
+      "title": "附录",
+      "chapters": [
+        {
+          "title": "部署 Ceph 存储集群",
           "entry": "./express/zh-CN/ceph-ks-install.md"
-            },
-            {
+        },
+        {
           "title": "部署 GlusterFS 存储集群",
           "entry": "./express/zh-CN/glusterfs-ks-install.md"
-            }
+        }
       ]
-        }   
+    }
   ]
 }

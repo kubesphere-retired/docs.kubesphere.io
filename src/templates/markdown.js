@@ -178,7 +178,7 @@ export default class MarkdownTemplate extends React.Component {
         <BodyGrid>
           <NavContainer isExpand={isExpand}>
             <Versions
-              versions={this.props.data.versions}
+              versions={this.props.data.site.siteMetadata.versions}
               current={postNode.fields.version}
             />
             <ToCContainer
@@ -343,6 +343,10 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        versions {
+          label
+          value
+        }
       }
     }
     postBySlug: markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -357,11 +361,6 @@ export const pageQuery = graphql`
       fields {
         version
         language
-      }
-    }
-    versions: allMarkdownRemark {
-      group(field: fields___version) {
-        fieldValue
       }
     }
     languages: allMarkdownRemark(

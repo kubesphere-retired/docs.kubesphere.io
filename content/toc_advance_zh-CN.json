@@ -1,143 +1,141 @@
 {
   "id": "advance-zh-CN",
   "chapters": [
-   {
-    "title": "产品介绍",
-    "chapters": [
-      {
-      "title": "产品简介",
-      "entry": "./advance/zh-CN/introduction/intro.md"
-      },
-      {
-      "title": "产品功能",
-      "entry": "./advance/zh-CN/introduction/features.md"
-      },
-      {
-      "title": "产品优势",
-      "entry": "./advance/zh-CN/introduction/advantages.md"
-      },
-      {
-      "title": "名词解释",
-      "entry": "./advance/zh-CN/introduction/specification.md"  
-      }
-    ]
-   },
-   {
-    "title": "用户指南",
-    "chapters": [
-      { 
-      "title": "工作负载",
-      "entries": [
-              {
-                "entry": "./advance/zh-CN/workload/workload.md"
-              },
-              {
-                "entry": "./advance/zh-CN/workload/deployments.md"
-              },
-              {
-                "entry": "./advance/zh-CN/workload/statefulsets.md"
-              },
-              {
-                "entry": "./advance/zh-CN/workload/daemonsets.md"
-              },
-              {
-                "entry": "./advance/zh-CN/workload/jobs.md"
-              },
-              {
-                "entry": "./advance/zh-CN/workload/cronjobs.md"
-              },
-              {
-                "entry": "./advance/zh-CN/workload/workload-management.md"
-              }
-                 ]
-      },
-      {
-      "title": "存储",
-      "entries": [
-              {
-                "entry": "./advance/zh-CN/storage/volume.md"
-              },
-              {
-                "entry": "./advance/zh-CN/storage/PVC.md"
-              },
-              {
-                "entry": "./advance/zh-CN/storage/storageclass.md"
-              },
-              {
-                "entry": "./advance/zh-CN/storage/qingcloud-storage.md"
-              }
-                 ]
-      },
-      {
-      "title": "网络与服务",
-      "entries": [
-              {
-                "entry": "./advance/zh-CN/ingress-service/services.md"
-              },
-              {
-                "entry": "./advance/zh-CN/ingress-service/ingress.md"
-              }
-                 ]
-      },
-      {
-      "title": "配置中心",
-      "entries": [
-              {
-                "entry": "./advance/zh-CN/configuration/secrets.md"
-              },
-              {
-                "entry": "./advance/zh-CN/configuration/configmaps.md"
-              }
-                 ]
-      },
-      {
-      "title": "项目设置",
-      "entries": [
-              {
-                "entry": "./advance/zh-CN/project-setting/project-roles.md"
-              },
-              {
-                "entry": "./advance/zh-CN/project-setting/project-members.md"
-              },
-              {
-                "entry": "./advance/zh-CN/project-setting/project-gateway.md"
-              },
-              {
-                "entry": "./advance/zh-CN/project-setting/project-quota.md"
-              }
-              
-                 ]
-      },
-      {
-      "title": "基础设施",
-      "entries": [
-              {
-                "entry": "./advance/zh-CN/infrastructure/components.md"
-              },
-              {
-                "entry": "./advance/zh-CN/infrastructure/nodes.md"
-              }
-                 ]
-      },
-      {
-      "title": "平台管理",
-      "entries": [
-              {
-                "entry": "./advance/zh-CN/platform-management/overview.md"
-              },
-              {
-                "entry": "./advance/zh-CN/platform-management/image-registry.md"
-              },
-              {
-                "entry": "./advance/zh-CN/platform-management/app-repo.md"
-              },
-              {
-                "entry": "./advance/zh-CN/platform-management/store.md"
-              }
-                 ]
-      }
-            ]
-   }
-
-                ]
+    {
+      "title": "产品介绍",
+      "chapters": [
+        {
+          "title": "产品简介",
+          "entry": "./advance/zh-CN/introduction/intro.md"
+        },
+        {
+          "title": "产品功能",
+          "entry": "./advance/zh-CN/introduction/features.md"
+        },
+        {
+          "title": "产品优势",
+          "entry": "./advance/zh-CN/introduction/advantages.md"
+        },
+        {
+          "title": "名词解释",
+          "entry": "./advance/zh-CN/introduction/specification.md"
+        }
+      ]
+    },
+    {
+      "title": "用户指南",
+      "chapters": [
+        {
+          "title": "工作负载",
+          "entries": [
+            {
+              "entry": "./advance/zh-CN/workload/workload.md"
+            },
+            {
+              "entry": "./advance/zh-CN/workload/deployments.md"
+            },
+            {
+              "entry": "./advance/zh-CN/workload/statefulsets.md"
+            },
+            {
+              "entry": "./advance/zh-CN/workload/daemonsets.md"
+            },
+            {
+              "entry": "./advance/zh-CN/workload/jobs.md"
+            },
+            {
+              "entry": "./advance/zh-CN/workload/cronjobs.md"
+            },
+            {
+              "entry": "./advance/zh-CN/workload/workload-management.md"
+            }
+          ]
+        },
+        {
+          "title": "存储",
+          "entries": [
+            {
+              "entry": "./advance/zh-CN/storage/volume.md"
+            },
+            {
+              "entry": "./advance/zh-CN/storage/PVC.md"
+            },
+            {
+              "entry": "./advance/zh-CN/storage/storageclass.md"
+            },
+            {
+              "entry": "./advance/zh-CN/storage/qingcloud-storage.md"
+            }
+          ]
+        },
+        {
+          "title": "网络与服务",
+          "entries": [
+            {
+              "entry": "./advance/zh-CN/ingress-service/services.md"
+            },
+            {
+              "entry": "./advance/zh-CN/ingress-service/ingress.md"
+            }
+          ]
+        },
+        {
+          "title": "配置中心",
+          "entries": [
+            {
+              "entry": "./advance/zh-CN/configuration/secrets.md"
+            },
+            {
+              "entry": "./advance/zh-CN/configuration/configmaps.md"
+            }
+          ]
+        },
+        {
+          "title": "项目设置",
+          "entries": [
+            {
+              "entry": "./advance/zh-CN/project-setting/project-roles.md"
+            },
+            {
+              "entry": "./advance/zh-CN/project-setting/project-members.md"
+            },
+            {
+              "entry": "./advance/zh-CN/project-setting/project-gateway.md"
+            },
+            {
+              "entry": "./advance/zh-CN/project-setting/project-quota.md"
+            }
+          ]
+        },
+        {
+          "title": "基础设施",
+          "entries": [
+            {
+              "entry": "./advance/zh-CN/infrastructure/components.md"
+            },
+            {
+              "entry": "./advance/zh-CN/infrastructure/nodes.md"
+            }
+          ]
+        },
+        {
+          "title": "平台管理",
+          "entries": [
+            {
+              "entry": "./advance/zh-CN/platform-management/overview.md"
+            },
+            {
+              "entry": "./advance/zh-CN/platform-management/image-registry.md"
+            },
+            {
+              "entry": "./advance/zh-CN/platform-management/app-repo.md"
+            },
+            {
+              "entry": "./advance/zh-CN/platform-management/store.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
