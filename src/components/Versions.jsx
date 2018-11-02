@@ -37,6 +37,10 @@ class Versions extends React.Component {
   renderOptions() {
     const { versions, current } = this.props
 
+    if (versions.length <= 1) {
+      return null
+    }
+
     return (
       <OptionsWrapper showOptions={this.state.showOptions}>
         {versions.map(version => (
@@ -55,21 +59,21 @@ class Versions extends React.Component {
   render() {
     const { versions, current } = this.props
 
-    const currentVersion = versions.find(version => version.value === current)
+    const currentVersion = versions.find(version => version.value === current) || {}
 
     return (
       <VersionsWrapper>
         <VersionPanel
-          onClick={this.handleClick}
+          onClick={versions.length > 1 ? this.handleClick : null}
           showOptions={this.state.showOptions}
-          clickable={versions.length > 0}
+          clickable={versions.length > 1}
         >
           <DocsIcon className="version-logo" />
           <div className="version-text">
             <KubeSphere className="kubesphere-icon" />
             <p>{currentVersion.label}</p>
           </div>
-          {versions.length > 0 && <Arrow className="version-arrow" />}
+          {versions.length > 1 && <Arrow className="version-arrow" />}
         </VersionPanel>
         <div
           ref={ref => {
