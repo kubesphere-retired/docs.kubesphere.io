@@ -2,11 +2,12 @@
 title: "快速入门 - 部署 Wordpress" 
 ---
 
-本文以创建一个部署（Deployment）为例，使用 `wordpress:4.8-apache` 镜像部署一个无状态的 Wordpress 应用，最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [ConfigMap](../../configuration/configmap) 的方式进行创建和保存。
+本文以创建一个部署（Deployment）为例，使用 `wordpress:4.8-apache` 镜像部署一个无状态的 Wordpress 应用，最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [ConfigMap](../../configuration/configmaps) 的方式进行创建和保存。
 
 ## 前提条件
 
-- 用户需在所属企业空间中已创建可用的项目资源。
+- 用户需在所属企业空间中已创建可用的项目资源
+- 已创建了有状态副本集 MySQL，若还未创建请参考 [快速入门 - 部署 MySQL](../mysql-deployment)。
 - 已添加镜像仓库，若还未添加请参考 [添加镜像仓库](../../platform-management/image-registry)。
 
 ## 部署 Wordpress
@@ -17,7 +18,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 1.1. 在当前项目下左侧菜单栏的 **配置中心** 选择 **ConfigMaps**，点击创建，基本信息如下：
 
-- 名称：作为 Wordpress 容器中环境变量的名称，填写 WORDPRESS_DB_PASSWORD。
+- 名称：作为 Wordpress 容器中环境变量的名称，填写 `WORDPRESS_DB_PASSWORD`。
 - 描述信息：Wordpress password。
 
 1.2. ConfigMap 是以键值对的形式存在，因此键值对设置为 `WORDPRESS_DB_PASSWORD: 123456`。
@@ -31,7 +32,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 - 名称：wordpress-pvc
 - 描述信息：Wordpress 持久化存储卷
 
-2.2. 下一步，存储卷设置中，存储类型选择预先为集群创建的存储类型，示例中是 [csi-qingcloud](qingcloud-storage)，访问模式选择单节点读写 (RWO)，存储卷容量默认 10 Gi。
+2.2. 下一步，存储卷设置中，存储类型选择预先为集群创建的存储类型，示例中是 [csi-qingcloud](../../storage/qingcloud-storage)，访问模式选择单节点读写 (RWO)，存储卷容量默认 10 Gi。
 
 2.3. 下一步，设置标签为 `app: wordpress`，点击创建。
 
@@ -60,9 +61,10 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 - CPU Request Target(%) (当CPU使用率超过或低于此目标值时，将添加或删除副本): 50
 - Memory Request Target(Mi): 暂不限定
 
-5.2. 容器组模板中，名称可自定义，镜像填写 `wordpress:4.8-apache`，配置 WordPress 的容器需要暴露的端口：80 端口 (暂不设置主机端口) 和关联 MySQL 数据库的环境变量 (WORDPRESS_DB_HOST 和 WORDPRESS_DB_PASSWORD) 并保存，CPU 和内存设定为 200，镜像拉取策略保持默认选项，参考如下配置，保存后点下一步。
 
-> 注意: 环境变量中， WORDPRESS_DB_HOST 的值对应的是上一篇文档创建 MySQL 服务的名称 "service-7b4k6o"，可在服务列表中查看其服务名， MySQL 服务的名称应该与此处的环境变量值相同， 否则无法连接 MySQL 数据库。而 WORDPRESS_DB_PASSWORD 已经在第一步中以 ConfigMap 的形式创建，点击 **引入配置中心**，变量名填写 WORDPRESS_DB_PASSWORD，然后选择创建的 ConfigMap 作为数据库连接的密码。
+5.2. 容器组模板中，名称可自定义，镜像填写 `wordpress:4.8-apache`，配置 WordPress 的容器需要暴露的端口：80 端口 (暂不设置主机端口) 和关联 MySQL 数据库的环境变量 (`WORDPRESS_DB_HOST` 和 `WORDPRESS_DB_PASSWORD`) 并保存，CPU 和内存设定为 200，镜像拉取策略保持默认选项，参考如下配置，保存后点下一步。
+
+> 注意: 环境变量中， `WORDPRESS_DB_HOST` 的值对应的是上一篇文档创建 MySQL 服务的名称 "service-7b4k6o"，可在服务列表中查看其服务名， MySQL 服务的名称应该与此处的环境变量值相同， 否则无法连接 MySQL 数据库。而 `WORDPRESS_DB_PASSWORD` 已经在第一步中以 ConfigMap 的形式创建，点击 **引入配置中心**，变量名填写 `WORDPRESS_DB_PASSWORD`，然后选择创建的 ConfigMap 作为数据库连接的密码。
 
 ![容器组模板](/wordpress-container-setting.png)
 
@@ -92,28 +94,34 @@ tier: frontend
 - 名称：wordpress-service
 - 描述信息：wordpress 服务
 
+
 8.2. 服务设置选择 **通过集群内部IP来访问服务 Virtual IP**，选择器点击 **Specify Workload** 可以指定上一步创建的 Wordpress deployment，此处的 wordpress 服务的端口和目标端口都填写 TCP 协议的 80 端口，完成参数设置，选择下一步。
+
 
 8.3. 添加标签并保存，本示例标签设置如下，添加后选择下一步。
 
 ```
 tier=wordpress-service
 ```
+
 8.4. 服务暴露给外网访问的访问方式，支持 NodePort 和 LoadBalancer，由于示例将以应用路由 (Ingress) 的方式添加 Hostname 并暴露服务给外网，所以服务的访问方式选择 **不提供外网访问**。
 
 ### 第九步：创建应用路由
 
 通过创建应用路由的方式可以将 WordPress 暴露出去供外网访问，与将服务直接通过 NodePort 或 LoadBalancer 暴露出去不同之处是应用路由是通过配置 Hostname 和路由规则（即 ingress）来访问，请参考以下步骤配置应用路由。关于如何管理应用路由详情请参考 [应用路由](../../ingress-service/ingress)。
 
+
 9.1. 在当前项目中，左侧菜单选择 **网路与服务 → 应用路由**，点击 **创建**。创建应用路由，填入基本信息：
 
 - 名称：wordpress-ingress
 - 描述信息：wordpress 应用路由
 
+
 9.2. 下一步，点击 **添加路由规则**，配置路由规则，这里设置 Hostname 为 `kubesphere.wordpress.com` 作为示例，协议选择 `http`，并且 path 路径填写 "/"，服务选择之前的创建成功的 wordpress 服务名称，端口填写 wordpress 服务端口 `80`，完成后点击下一步：
 
 - Hostname: 应用规则的访问域名，最终使用此域名来访问对应的服务。(如果访问入口是以 NodePort 的方式启用，需要保证 Hostname 能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证 Hostname 正确解析到负载均衡器的 IP 上)。
 - Paths: 应用规则的路径和对应的后端服务，端口需要填写成服务的端口。
+
 
 9.3. 添加注解，Annotation 是用户任意定义的“附加”信息，以便于外部工具进行查找，参见 [Annotation 官方文档](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/)。本示例注解如下所示，完成后选择下一步：
 
@@ -131,7 +139,7 @@ tier=wordpress-ingress
 
 在当前项目中，左侧菜单选择 **项目设置 → 外网访问**，点击 **设置网关**，即应用路由的网关入口，每个项目都有一个独立的网关入口。
 
-网关入口提供 NodePort 和 LoadBalancer 两种访问方式，如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [青云QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。（如果外网访问方式设置的是 LoadBalancer，可以参考 [应用路由说明](../../ingress-service/ingress) 的 LoadBalancer 方式。）
+网关入口提供 NodePort 和 LoadBalancer 两种访问方式，如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [青云QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。（如果外网访问方式设置的是 LoadBalancer，参见 [应用路由](../../ingress-service/ingress) 的 LoadBalancer 方式。）
 
 本示例以 NodePort 访问方式为例配置网关入口，此方式网关可以通过工作节点对应的端口来访问，点击保存，将生产两个 NodePort，分别是 HTTP 协议的 80 端口和 HTTPS 协议的 443 端口。
 
