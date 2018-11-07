@@ -8,13 +8,11 @@ title: "任务"
 
 登录 KubeSphere 控制台，进入 **工作台 → 项目 → 工作负载 → 任务**，进入任务列表页面。左上角为当前所在项目。如果是管理员登录，可以看到集群所有项目的任务情况，如果是普通用户，则只能查看授权项目下的所有任务。列表顶部显示了当前项目的任务 Pod 配额和数量信息。
 
-![任务列表](./ae-job-list.png)
-
 ### 第一步：填写基本信息
 
 1.1. 点击 **创建** 按钮，将弹出创建任务的详情页。创建任务支持三种方式，**页面创建**，**导入 yaml 文件**，**编辑模式** 。以下主要介绍页面创建的方式，若选择以编辑模式，可点击右上角编辑模式进入代码界面，支持 yaml 和 json 格式。左上角显示配置文件列表和导入导出按钮。其中导入 yaml 文件方式会自动将 yaml 文件内容填充到页面上，用户根据需要可以在页面上调整后再行创建。编辑模式可以方便习惯命令行操作的用户直接在页面上编辑 yaml 文件并创建任务。
 
-![创建任务 - 代码模式](./ae-job-command.png)
+![创建任务 - 代码模式](/ae-job-command.png)
 
 基本信息页中，需要填写任务的名称和描述信息。
 
@@ -30,6 +28,8 @@ title: "任务"
 - Parallelism：标志并行运行的 Pod 的个数；如设置为 5 则表示并行 5 个 Pod。
 - Active Deadline Seconds：标志失败 Pod 的重试最大时间，超过这个时间不会继续重试，且 ActiveDeadlineSeconds 优先级高于 Back Off Limit；如设置 100 则表示达到 100s 时 Job 即其所有的 Pod 都会停止。
 
+![任务设置](/job-setting.png)
+
 ### 第三步：配置任务模板
 
 任务模板即设置 Pod 模板，其中 [RestartPolicy](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) 指通过同一节点上的 kubelet 重新启动容器，仅支持 Never 或 OnFailure，当任务未完成的情况下：
@@ -37,8 +37,7 @@ title: "任务"
 - Never：任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失。“.status.failed” 加 1。
 - OnFailure：任务会在容器组出现故障时其内部重启容器，而不是创建新的容器组。“.status.failed” 不变。
 
-
-Service Account 为 Pod 中的进程提供身份信息。例如，Pod 容器中的进程也可以与 apiserver 联系。 当它们在联系 apiserver 的时候，它们会被认证为一个特定的 Service Account（例如 default）。
+**Service Account** 为 Pod 中的进程提供身份信息。例如，Pod 容器中的进程也可以与 apiserver 联系。 当它们在联系 apiserver 的时候，它们会被认证为一个特定的 Service Account（例如 default）。
 
 任务需要基于镜像创建，用户首先需要在 KubeSphere 中添加镜像仓库，详见 [镜像仓库 - 创建镜像仓库](../ae-image-registry/#创建镜像仓库)。
 
@@ -65,7 +64,7 @@ Service Account 为 Pod 中的进程提供身份信息。例如，Pod 容器中�
 - **端口**： 即容器端口，用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP。
 - **目标端口**： 在当前集群下的所有节点上打开一个真实的端口号，映射到容器端口。
 - **环境变量**： 环境变量是指容器运行环境中设定的一个变量，与 Dockerfile 中的 “ENV” 效果相同，为创建的工作负载提供极大的灵活性。
-- **引入配置中心**： ConfigMap 用来保存键值对形式的配置数据，可用于设置环境变量的值。
+- **引入配置中心**： Secret 或 ConfigMap 可用来保存键值对形式的配置数据，可用于设置环境变量的值。
 
 上述配置信息填写完成以后，点击 **保存**。
 
@@ -77,7 +76,7 @@ Service Account 为 Pod 中的进程提供身份信息。例如，Pod 容器中�
 
 引入配置中心支持配置 ConfigMap 或 Secret 中的值添加为卷，支持选择要使用的密钥以及将公开每个密钥的文件路径，最后设置目录在容器中的挂载路径。
 
-其中，Secret 卷用于将敏感信息（如密码）传递到 pod。您可以将 Secret 存储在 Kubernetes API 中，并将它们挂载为文件，以供 Pod 使用，而无需直接连接到 Kubernetes。 Secret 卷由 tmpfs（一个 RAM 支持的文件系统）支持，所以它们永远不会写入非易失性存储器。
+其中，Secret 卷用于将敏感信息（如密码）传递到 Pod。您可以将 Secret 存储在 Kubernetes API 中，并将它们挂载为文件，以供 Pod 使用，而无需直接连接到 Kubernetes。 Secret 卷由 tmpfs（一个 RAM 支持的文件系统）支持，所以它们永远不会写入非易失性存储器。
 
 ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod 里使用，或者被用来为像 Controller 一样的系统组件存储配置数据。虽然 ConfigMap 跟 Secret 类似，但是 ConfigMap 更方便的处理不含敏感信息的字符串。它很像 Linux 中的 /etc 目录，专门用来存储配置文件的目录。ConfigMaps 常用于以下场景：
 

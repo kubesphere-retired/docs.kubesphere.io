@@ -23,6 +23,27 @@
       ]
     },
     {
+      "title": "快速入门",
+      "chapters": [
+        {
+          "title": "入门必读",
+          "entry": "./advance/zh-CN/quick-start/quick-start-guide.md"
+        },
+        {
+          "title": "快速入门 - 部署 MySQL",
+          "entry": "./advance/zh-CN/quick-start/mysql-deployment.md"
+        },
+        {
+          "title": "快速入门 - 部署 Wordpress",
+          "entry": "./advance/zh-CN/quick-start/wordpress-deployment.md"
+        },
+        {
+          "title": "快速入门 - HPA 水平自动伸缩",
+          "entry": "./advance/zh-CN/quick-start/hpa.md"
+        }
+      ]
+    },
+    {
       "title": "用户指南",
       "chapters": [
         {
@@ -131,11 +152,35 @@
               "entry": "./advance/zh-CN/platform-management/app-repo.md"
             },
             {
-              "entry": "./advance/zh-CN/platform-management/store.md"
+              "entry": "./advance/zh-CN/platform-management/app-template.md"
+            }
+          ]
+        },
+        {
+          "title": "DevOps工程",
+          "entries": [
+            {
+              "entry": "./advance/zh-CN/devops/devops-project.md"
+            },
+            {
+              "entry": "./advance/zh-CN/devops/pipeline.md"
+            },
+            {
+              "entry": "./advance/zh-CN/devops/jenkinsfile-in-scm.md"
+            },
+            {
+              "entry": "./advance/zh-CN/devops/jenkinsfile-out-of-scm.md"
+            },
+            {
+              "entry": "./advance/zh-CN/devops/credential.md"
             }
           ]
         }
       ]
+    },
+    {
+      "title": "常见问题",
+      "entry": "./advance/zh-CN/faq.md"
     }
   ]
 }

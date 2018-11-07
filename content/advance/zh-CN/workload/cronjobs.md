@@ -12,7 +12,7 @@ title: "定时任务"
 
 1.1. 点击 **创建** 按钮，将弹出创建定时任务的详情页。创建定时任务支持三种方式，**页面创建**，**导入 yaml 文件**，**编辑模式** 。以下主要介绍页面创建的方式，若选择以编辑模式，可点击右上角编辑模式进入代码界面，支持 yaml 和 json 格式，且支持下载配置文件。其中导入 yaml 文件方式会自动将 yaml 文件内容填充到页面上，用户根据需要可以在页面上调整后再行创建。编辑模式可以方便习惯命令行操作的用户直接在页面上编辑 yaml 文件并创建任务。
 
-![创建任务 - 代码模式](./ae-cronjob-command.png)
+![创建任务 - 代码模式](/ae-cronjob-command.png)
 
 基本信息页中，需要填写任务的名称和描述信息。
 
@@ -30,7 +30,7 @@ title: "定时任务"
    - Forbid：禁止并发运行，如果前一个还没有完成，则直接跳过下一个。
    - Replace：取消当前正在运行的 Job，用一个新的来替换。
 
-![cronjob 基本信息](./ae-cronjob-basic.png)
+![cronjob 基本信息](/ae-cronjob-basic.png)
 
 ### 第二步：任务设置
 
@@ -41,7 +41,7 @@ title: "定时任务"
 - Parallelism：标志并行运行的 Pod 的个数；如设置为 2 则表示并行 2 个 Pod。
 - Active Deadline Seconds：标志失败 Pod 的重试最大时间，超过这个时间不会继续重试，且 ActiveDeadlineSeconds 优先级高于 Back Off Limit；如设置 500 则表示达到 500s 时 Job 即其所有的 Pod 都会停止。
 
-![任务设置](./ae-cronjob-basic.png)
+![任务设置](/ae-cronjob-setting.png)
 
 ### 第三步：配置任务模板
 
@@ -78,7 +78,7 @@ Service Account 为 Pod 中的进程提供身份信息。例如，Pod 容器中�
 - **端口**： 即容器端口，用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP。
 - **目标端口**： 在当前集群下的所有节点上打开一个真实的端口号，映射到容器端口。
 - **环境变量**： 环境变量是指容器运行环境中设定的一个变量，与 Dockerfile 中的 “ENV” 效果相同，为创建的工作负载提供极大的灵活性。
-- **引入配置中心**： ConfigMap 用来保存键值对形式的配置数据，可用于设置环境变量的值。
+- **引入配置中心**： Secret 或 ConfigMap 可用来保存键值对形式的配置数据，可用于设置环境变量的值。
 
 上述配置信息填写完成以后，点击 **保存**。
 
@@ -90,9 +90,9 @@ Service Account 为 Pod 中的进程提供身份信息。例如，Pod 容器中�
 
 引入配置中心支持配置 ConfigMap 或 Secret 中的值添加为卷，支持选择要使用的密钥以及将公开每个密钥的文件路径，最后设置目录在容器中的挂载路径。
 
-其中，Secret 卷用于将敏感信息（如密码）传递到 pod。您可以将 Secret 存储在 Kubernetes API 中，并将它们挂载为文件，以供 Pod 使用，而无需直接连接到 Kubernetes。 Secret 卷由 tmpfs（一个 RAM 支持的文件系统）支持，所以它们永远不会写入非易失性存储器。
+[Secret](../../configuration/secrets) 用于将敏感信息（如密码）传递到 pod。您可以将 Secret 存储在 Kubernetes API 中，并将它们挂载为文件，以供 Pod 使用，而无需直接连接到 Kubernetes。 Secret 卷由 tmpfs（一个 RAM 支持的文件系统）支持，所以它们永远不会写入非易失性存储器。
 
-ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod 里使用，或者被用来为像 Controller 一样的系统组件存储配置数据。虽然 ConfigMap 跟 Secret 类似，但是 ConfigMap 更方便的处理不含敏感信息的字符串。它很像 Linux 中的 /etc 目录，专门用来存储配置文件的目录。ConfigMaps 常用于以下场景：
+[ConfigMap](../../configuration/configmaps) 用来保存键值对形式的配置数据，这个数据可以在 Pod 里使用，或者被用来为像 Controller 一样的系统组件存储配置数据。虽然 ConfigMap 跟 Secret 类似，但是 ConfigMap 更方便的处理不含敏感信息的字符串。它很像 Linux 中的 /etc 目录，专门用来存储配置文件的目录。ConfigMaps 常用于以下场景：
 
 - 设置环境变量的值。
 - 在容器里设置命令行参数。
