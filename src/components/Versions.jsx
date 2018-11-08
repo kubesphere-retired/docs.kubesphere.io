@@ -146,7 +146,7 @@ const OptionsWrapper = styled.div`
   width: 100%;
   left: 0;
   bottom: -1px;
-  padding: 12px 0;
+  
   background-color: rgba(0, 170, 114, 0.99);
   opacity: ${({ showOptions }) => {
     return showOptions ? 1 : 0
@@ -161,7 +161,7 @@ const OptionsWrapper = styled.div`
 `
 
 const Option = styled.div`
-  padding: 10px 20px 10px 32px;
+  padding: 20px 20px 20px 32px;
   cursor: pointer;
   font-family: Proxima Nova;
   transition: all 0.2s ease-in-out;
