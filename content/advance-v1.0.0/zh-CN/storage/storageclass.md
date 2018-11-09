@@ -2,7 +2,7 @@
 title: "存储类型"
 ---
 
-存储类型（StorageClass）是由 `集群管理员` 配置存储服务端的参数，并按类型提供存储给集群用户使用。通常情况下，创建存储卷之前需要先创建存储类型，目前支持的存储类型如 QingCloud 青云块存储、Ceph RBD、GlusterFS、NFS、Local-Storage、EmptyDir 等。
+存储类型（StorageClass）是由 `集群管理员` 配置存储服务端的参数，并按类型提供存储给集群用户使用。通常情况下，创建存储卷之前需要先创建存储类型，目前支持的存储类型如 [青云块存储](https://www.qingcloud.com/products/volume/)、 [企业级分布式存储 NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)、[EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) 等。
 
 ## 创建存储类型
 
@@ -21,7 +21,9 @@ title: "存储类型"
 
 ### 第二步：存储类型设置
 
-设置存储类型的详细参数：
+设置存储类型的详细参数，这一步的参数会根据 供应者 (Provisioner) 不同而变化，以设置青云块存储插件 CSI-QingCloud 为例：
+
+![存储类型 - 参数设置](/ae-sc-setting.png)
 
 - 供应者（Provisioner）：实际上是个存储分配器，用来决定使用哪个卷插件分配 PV，例如选择 csi-qingcloud, Ceph RBD 或 GlusterFS。
 
@@ -33,7 +35,6 @@ title: "存储类型"
 
 - fsType: 支持 ext3, ext4, xfs. 默认为 ext4。
 
-![存储类型 - 参数设置](/ae-sc-setting.png)
 
 ## 设置默认存储类型
 
