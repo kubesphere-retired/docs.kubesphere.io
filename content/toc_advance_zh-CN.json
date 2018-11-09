@@ -115,6 +115,9 @@
             },
             {
               "entry": "./advance-v1.0.0/zh-CN/storage/qingcloud-storage.md"
+            },
+            {
+              "entry": "./advance-v1.0.0/zh-CN/storage/local-volume.md"
             }
           ]
         },
