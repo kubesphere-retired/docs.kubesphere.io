@@ -16,8 +16,8 @@ title: "Multi-node 模式"
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| ubuntu 16.04 LTS 64bit | CPU：12 核 <br/> 内存：24 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
-| CentOS 7.4 64bit | CPU：12 核 <br/> 内存：24 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| CentOS 7.4 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 以下用一个示例介绍 multi-node 模式部署多节点，此示例准备了 3 台主机，以主机名为 master 的节点作为任务执行机 taskbox，各节点主机名可由用户自定义。
 
@@ -52,6 +52,8 @@ $ cd KubeInstaller-advanced-1.0.0
 ```
 
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置。以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。若以 ubuntu 用户进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
+
+> 若安装时需要配置 master 节点高可用，`conf/hosts.ini` 配置请参考 [master 节点高可用配置](../master-ha/#修改主机配置文件)。
 
 **root 配置示例：**
 
