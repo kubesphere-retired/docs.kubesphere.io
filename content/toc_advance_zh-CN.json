@@ -42,6 +42,10 @@
           "entry": "./advance-v1.0.0/zh-CN/installation/master-ha.md"
         },
         {
+          "title": "存储配置说明",
+          "entry": "./advance-v1.0.0/zh-CN/installation/storage-configuration.md"
+        },
+        {
           "title": "集群节点扩容",
           "entry": "./advance-v1.0.0/zh-CN/installation/cluster-scaling.md"
         },
@@ -112,9 +116,6 @@
             },
             {
               "entry": "./advance-v1.0.0/zh-CN/storage/storageclass.md"
-            },
-            {
-              "entry": "./advance-v1.0.0/zh-CN/storage/qingcloud-storage.md"
             },
             {
               "entry": "./advance-v1.0.0/zh-CN/storage/local-volume.md"
