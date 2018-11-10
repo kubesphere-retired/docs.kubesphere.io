@@ -10,16 +10,18 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 ## 前提条件
 
-- 请确保已参阅 [Multi-node 模式](../Multi-node)，本文档仅说明如何配置 master 节点高可用，该配置作为一个可选配置项，完整的安装流程和说明以 [Multi-node 模式](../Multi-node) 为准。
+- 请确保已参阅 [Multi-node 模式](../Multi-node)，本文档仅说明安装过程中如何修改配置文件来配置 master 节点高可用，该配置作为一个可选配置项，完整的安装流程和说明以 [Multi-node 模式](../Multi-node) 为准。
 - 已准备外部的负载均衡器，比如 [青云负载均衡器](https://docs.qingcloud.com/product/network/loadbalancer)，用来给多个 master 节点的做负载均衡。
 
 ## Master 节点高可用架构
 
 ![Master 节点高可用架构](/master-ha-design.png)
 
-以配置 5 台主机中两个 master 节点为例，主机规格参考 [Multi-node 模式 - 节点规格](../Multi-node/#第一步-准备主机)，编辑主机配置文件 `conf/hosts.ini`，详见以下示例。若需要配置 etcd 的高可用，可在 [etcd] 部分填入其它主机名比如 node1 和 node2，etcd 节点个数建议设置为`奇数个`。
+以配置 5 台主机中两个 master 节点为例，主机规格参考 [Multi-node 模式 - 节点规格](../Multi-node/#第一步-准备主机)，编辑主机配置文件 `conf/hosts.ini`。若需要配置 etcd 的高可用，可在 [etcd] 部分填入主机名比如 master、 node1 和 node2 作为 etcd 集群，etcd 节点个数建议设置为`奇数个`。
 
 ### 修改主机配置文件
+
+为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置。以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。若以 ubuntu 用户进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
 
 **host.ini 配置示例**
 
@@ -50,7 +52,7 @@ kube-master
 
 ### 配置负载均衡器
 
-假设负载均衡器的内网 IP 地址是 192.168.0.10，监听的端口为 TCP 协议的 6443 端口，并设置负载均衡器的域名如 "lb.kubesphere.local" 供集群内部访问，那么在 `conf/vars.yml` 中参数配置参考如下：
+准备负载均衡器后，假设负载均衡器的内网 IP 地址是 192.168.0.10，监听的端口为 TCP 协议的 6443 端口，并设置负载均衡器的域名如 "lb.kubesphere.local" 供集群内部访问，那么在 `conf/vars.yml` 中参数配置参考如下。负载均衡器作为可配置项，在配置文件中应取消注释。
 
 **vars.yml 配置示例**
 
