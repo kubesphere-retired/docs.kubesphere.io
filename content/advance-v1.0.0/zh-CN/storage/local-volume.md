@@ -2,11 +2,13 @@
 title: "Local Volume 使用方法"
 ---
 
+[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录，而 Local Volume 只能用作静态创建的 PersistentVolume，与 HostPath 卷相比，Local Volume 可以以持久的方式使用，而无需手动将 pod 调度到节点上，因为系统会通过查看 PersistentVolume 上的节点关联性来了解卷的节点约束。
+
 ## 创建 Local Volume
 
-Local Volume 仅用于 [all-in-one](../../installation/all-in-one) 单节点部署。
+Local Volume 仅用于 [all-in-one](../../installation/all-in-one) 单节点部署，也是单节点部署的默认存储类型，Installer 会预先创建 8 个可用的 10G PV 供使用，若存储空间不足时则需要参考如下步骤手动创建。
 
-1. 创建 Local Volume 的存储类型详细步骤如下：
+1、若 Local Volume 还不是默认的存储类型，可参考创建 Local Volume 的存储类型详细步骤如下：
 
 
 - 1.1. 通过 `sc.yaml` 文件定义 Local Volume 的存储类型：
@@ -26,7 +28,7 @@ volumeBindingMode: WaitForFirstConsumer
 $ kubectl create -f sc.yaml
 ```
 
-2. 创建 Local Volume 文件夹：
+2、创建 Local Volume 文件夹：
 
 
 *  登录宿主机，创建文件夹，以文件夹 `vol-test` 为例，执行以下命令：
@@ -35,7 +37,7 @@ $ kubectl create -f sc.yaml
 sudo mkdir -p /mnt/disks/vol-test
 ```
 
-3. 创建 Local PV：
+3、创建 Local PV：
 
 
 - 3.1. 通过 `pv.yaml` 文件定义 Loval PV：
@@ -70,7 +72,7 @@ spec:
 $ kubectl create -f pv.yaml
 ```
 
-4. 执行以下命令验证创建结果：
+4、执行以下命令验证创建结果：
 
 ```
 $ kubectl get pv
@@ -83,6 +85,8 @@ pv-local     10Gi       RWO            Delete           Available               
 > 注：Local Volume 存储卷创建成功后为 `Pending` 属于正常状态，当创建工作负载调度 Pod 后存储卷状态即可变化为 Bound。
 
 ## 删除 Local Volume PV 和文件夹 
+
+Local Volume 手动创建的 PersistentVolume 也需要手动清理和删除。
 
 1. 删除 Local Volume PV：
 

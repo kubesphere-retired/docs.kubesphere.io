@@ -17,7 +17,7 @@
                     </g>
                 </g>
                 <text id="192.168.0.10" font-family="ProximaNova-Regular, Proxima Nova" font-size="16" font-weight="normal" line-spacing="32" fill="#919AA3">
-                    <tspan x="75" y="16">192.168.0.10</tspan>
+                    <tspan x="75" y="16">192.168.0.1</tspan>
                 </text>
                 <g id="Group" transform="translate(75.000000, 36.000000)">
                     <rect id="Rectangle-11" fill="#F5A623" fill-rule="nonzero" x="0" y="0" width="80" height="24" rx="4"></rect>
@@ -52,7 +52,7 @@
                     </g>
                 </g>
                 <text id="192.168.0.20" font-family="ProximaNova-Regular, Proxima Nova" font-size="16" font-weight="normal" line-spacing="32" fill="#919AA3">
-                    <tspan x="75" y="16">192.168.0.20</tspan>
+                    <tspan x="75" y="16">192.168.0.2</tspan>
                 </text>
                 <g id="Group-Copy-2" transform="translate(77.000000, 36.000000)">
                     <rect id="Rectangle-11" fill="#7E95AD" fill-rule="nonzero" x="0" y="0" width="80" height="24" rx="4"></rect>
@@ -72,7 +72,7 @@
                     </g>
                 </g>
                 <text id="192.168.0.30" font-family="ProximaNova-Regular, Proxima Nova" font-size="16" font-weight="normal" line-spacing="32" fill="#919AA3">
-                    <tspan x="75" y="16">192.168.0.30</tspan>
+                    <tspan x="75" y="16">192.168.0.3</tspan>
                 </text>
                 <g id="Group-Copy-2" transform="translate(77.000000, 36.000000)">
                     <rect id="Rectangle-11" fill="#7E95AD" fill-rule="nonzero" x="0" y="0" width="80" height="24" rx="4"></rect>

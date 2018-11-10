@@ -2,7 +2,7 @@
 title: "Master 节点高可用配置"
 ---
 
-Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节点集群用于开发和测试，但是要应用到实际的生产环境就就不得不考虑 master 节点的高可用问题了，
+Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节点集群用于开发和测试，但是要应用到实际的生产环境就不得不考虑 master 节点的高可用问题了，
 因为目前我们的 master 节点上的几个服务 kube-apiserver、kube-scheduler 和 kube-controller-manager 都是单点的而且都位于同一个节点上，
 一旦 master 节点宕机，虽然不应答当前正在运行的应用，将导致 kubernetes 集群无法变更，对线上业务存在很大的风险。
 
@@ -17,7 +17,7 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 ![Master 节点高可用架构](/master-ha-design.png)
 
-以配置 5 台主机中两个 master 节点为例，主机规格参考 [Multi-node 模式 - 节点规格](../Multi-node/#第一步-准备主机)，编辑主机配置文件 `conf/hosts.ini`。若需要配置 etcd 的高可用，可在 [etcd] 部分填入主机名比如 master、 node1 和 node2 作为 etcd 集群，etcd 节点个数建议设置为`奇数个`。
+以配置 5 台主机中两个 master 节点为例，主机规格参考 [Multi-node 模式 - 节点规格](../Multi-node/#第一步-准备主机)，编辑主机配置文件 `conf/hosts.ini`。若需要配置 etcd 的高可用，可在 [etcd] 部分填入主机名比如 master1、 node1 和 node2 作为 etcd 集群，etcd 节点个数建议设置为`奇数个`。
 
 ### 修改主机配置文件
 
@@ -27,11 +27,11 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 ```ini
 [all]
-master1  ansible_connection=local  ip=192.168.0.2
-master2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD
-node1  ansible_host=192.168.0.4  ip=192.168.0.4  ansible_ssh_pass=PASSWORD
-node2  ansible_host=192.168.0.5  ip=192.168.0.5  ansible_ssh_pass=PASSWORD
-node3  ansible_host=192.168.0.6  ip=192.168.0.6  ansible_ssh_pass=PASSWORD
+master1  ansible_connection=local  ip=192.168.0.1
+master2  ansible_host=192.168.0.2  ip=192.168.0.2  ansible_ssh_pass=PASSWORD
+node1  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD
+node2  ansible_host=192.168.0.4  ip=192.168.0.4  ansible_ssh_pass=PASSWORD
+node3  ansible_host=192.168.0.5  ip=192.168.0.5  ansible_ssh_pass=PASSWORD
 
 [kube-master]
 master1
@@ -52,7 +52,7 @@ kube-master
 
 ### 配置负载均衡器
 
-准备负载均衡器后，假设负载均衡器的内网 IP 地址是 192.168.0.10，监听的端口为 TCP 协议的 6443 端口，并设置负载均衡器的域名如 "lb.kubesphere.local" 供集群内部访问，那么在 `conf/vars.yml` 中参数配置参考如下。负载均衡器作为可配置项，在配置文件中应取消注释。
+准备负载均衡器后，假设负载均衡器的内网 IP 地址是 192.168.0.10，监听的端口为 TCP 协议的 6443 端口，并设置负载均衡器的域名如 "lb.kubesphere.local" 供集群内部访问，那么在 `conf/vars.yml` 中参数配置参考如下 (负载均衡器作为可选配置项，在配置文件中应取消注释)。
 
 **vars.yml 配置示例**
 

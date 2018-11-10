@@ -21,21 +21,19 @@ title: "Multi-node 模式"
 
 以下用一个示例介绍 multi-node 模式部署多节点，此示例准备了 3 台主机，以主机名为 master 的节点作为任务执行机 taskbox，各节点主机名可由用户自定义。
 
-> 说明：高级版支持 Master 节点高可用配置，若需要配置请参阅 [Master 节点高可用配置](../master-ha)。
+> 说明：高级版支持 Master 和 etcd 节点高可用配置，本示例仅演示 etcd 高可用配置，若需要配置请参阅 [Master 节点高可用配置](../master-ha)。
 
 假设主机信息如下所示：
 
 | 主机IP | 主机名 | 集群角色 |
 | --- | --- | --- |
 |192.168.0.1|master|master，etcd，node|
-|192.168.0.2|node1|node|
-|192.168.0.3|node2|node|
+|192.168.0.2|node1|node，etcd|
+|192.168.0.3|node2|node, etcd |
 
-**集群架构：** 单 master 单 etcd 多 node
+**集群架构：** 单 master 多 etcd 多 node
 
-![](/pic04.svg)
-
-> 说明：高级版支持 `etcd` 高可用，etcd 作为一个高可用键值存储系统，etcd 节点个数至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数建议设置为`奇数个`，在 `conf/hosts.ini` 中配置。
+![集群架构图](/pic04.svg)
 
 ### 第二步: 准备安装包
 
@@ -53,7 +51,9 @@ $ cd KubeInstaller-advanced-1.0.0
 
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置。以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。若以 ubuntu 用户进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
 
-> 若安装时需要配置 master 节点高可用，`conf/hosts.ini` 配置请参考 [master 节点高可用配置](../master-ha/#修改主机配置文件)。
+> 注意：
+> - etcd 作为一个高可用键值存储系统，etcd 节点至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数建议设置为奇数个，在 "conf/hosts.ini" 的 `[etcd]` 部分填入主机名即可，示例将在 3 个节点部署 etcd。
+> - 若安装时需要配置 master 节点高可用，"conf/hosts.ini" 请参考 [master 节点高可用 - 修改主机文件配置](../master-ha/#修改主机配置文件)。
 
 **root 配置示例：**
 
@@ -73,6 +73,8 @@ node2
 
 [etcd]
 master
+node1
+node2
 
 [k8s-cluster:children]
 kube-node
@@ -81,25 +83,25 @@ kube-master
 
 > 说明：
 >
-> - [all] 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码。主机名为 "master" 的节点作为 taskbox 无需填写密码，[all] 中其它参数比如 node1 和 node2 需要分别替换 `ansible_host` 和 `ip` 为当前 node1 和 node2 的内网 IP，其 `ansible_ssh_pass` 即替换为各自主机的 root 用户登录密码。
+> - [all] 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码。主机名为 "master" 的节点作为 taskbox 无需填写密码，[all] 中其它参数比如 node1 和 node2 需要分别替换 `ansible_host` 和 `ip` 为当前 node1 和 node2 的内网 IP，`ansible_ssh_pass` 即替换为各自主机的 root 用户登录密码。
 > -  "master" 节点作为 taskbox，用来执行整个集群的部署任务，同时 "master" 节点在 kubernetes 集群中也作为 master 和 etcd ，应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分。
-> - 主机名为 "master"，"node1"，"node2" 的节点， 作为 kubernetes 集群的 node 节点，应填入 [kube-node] 部分。<br>
+> - 主机名为 "master"，"node1"，"node2" 的节点， 作为 kubernetes 集群的 node 节点且将部署 etcd，主机名填入 [kube-node] 和 [etcd] 部分。<br>
 >
 > 参数解释：<br>
-> - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接
-> - `ansible_host`: 集群中将要连接的主机名 
-> - `ip`: 集群中将要连接的主机 IP  
-> - `ansible_ssh_pass`: 待连接主机 root 用户的密码
+> - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接。
+> - `ansible_host`: 集群中将要连接的主机名。
+> - `ip`: 集群中将要连接的主机 IP。
+> - `ansible_ssh_pass`: 待连接主机 root 用户的密码。
 
 
-**5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储端，再参考 [存储配置说明](#存储配置说明) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改，本文档以青云块存储插件 [qingcloud-csi](../../storage/qingcloud-storage) 为例。
+**5.** Multi-Node 模式进行多节点部署时，您需要预先准备好对应的存储端，再参考 [存储配置说明](../storage-configuration) 配置集群的存储类型。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改，本文档以青云块存储插件 [qingcloud-csi](../../storage/qingcloud-storage) 为例。
 
 > 说明：
 > - 根据配置文件按需修改相关配置项，未做修改将以默认参数执行。
 > - 网络：默认插件 `calico`。
-> - 支持存储类型：[青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/)、NFS、local-storage，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
-> - Multi-node 安装时需要配置持久化存储，因为它不支持 local storage，因此把 local storage 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI (青云块存储插件)、GlusterFS、CephRBD 等。如下所示为配置 QingCloud-CSI （`qy_access_key_id`、`qy_secret_access_key` 和 `qy_zone` 应替换为您实际环境的参数，详见 [qingcloud-csi](../../storage/qingcloud-storage)）。
-> - 安装 KubeSphere 后，如果需要对集群节点扩容，可参考 [集群节点扩容说明](#集群节点扩容说明)。
+> - 支持存储类型：[青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
+> - Multi-node 安装时需要配置持久化存储，因为它不支持 Local Volume，因此把 Local Volume 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI (青云块存储插件)、GlusterFS、CephRBD 等。如下所示为配置 QingCloud-CSI （`qy_access_key_id`、`qy_secret_access_key` 和 `qy_zone` 应替换为您实际环境的参数，详见 [qingcloud-csi](../../storage/qingcloud-storage)）。
+> - 安装 KubeSphere 后，如果需要对集群节点扩容，可参考 [集群节点扩容说明](../cluster-scaling)。
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 10.233.0.0/18，Pod 的子网网段默认是 10.233.64.0/18，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
 **示例：**
@@ -140,7 +142,7 @@ qy_fsType: ext4
 
 ### 第三步: 安装 KubeSphere
 
-KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.10.5，目前已支持 v1.11.2，如需安装 v1.11.2 可在配置文件 `conf/vars.yaml` 中修改 `kube_version` 的参数为 v1.11.2，再执行安装，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.2，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
 参考以下步骤开始 multi-node 部署：
 
@@ -156,7 +158,7 @@ $ cd scripts
 $ ./install.sh
 ```
 
-**3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [存储配置说明](#存储配置说明)：
+**3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [存储配置说明](../storage-configuration)：
 
 ```bash
 ################################################
