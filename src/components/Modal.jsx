@@ -1,27 +1,40 @@
-import { omit } from 'lodash';
-import React from 'react';
-import ReactModal from 'react-modal';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { omit } from 'lodash'
+import React from 'react'
+import ReactModal from 'react-modal'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import { ReactComponent as CloseIcon } from '../assets/close.svg'
 
-ReactModal.defaultStyles.overlay = Object.assign({}, ReactModal.defaultStyles.overlay, {
-  padding: 0,
-  backgroundColor: 'rgba(35, 45, 65, 0.7)',
-  zIndex: 2000,
-  overflow: 'auto',
-});
+ReactModal.defaultStyles.overlay = Object.assign(
+  {},
+  ReactModal.defaultStyles.overlay,
+  {
+    padding: 0,
+    backgroundColor: 'rgba(35, 45, 65, 0.7)',
+    zIndex: 2000,
+    overflow: 'auto',
+  }
+)
 
-ReactModal.defaultStyles.content = Object.assign({},
-  omit(ReactModal.defaultStyles.content, ['top', 'left', 'right', 'bottom', 'padding', 'border-radius', 'border']),
+ReactModal.defaultStyles.content = Object.assign(
+  {},
+  omit(ReactModal.defaultStyles.content, [
+    'top',
+    'left',
+    'right',
+    'bottom',
+    'padding',
+    'border-radius',
+    'border',
+  ]),
   {
     width: 744,
     position: 'relative',
     margin: '0 auto',
     marginTop: 160,
-  },
-);
+  }
+)
 
 export default class Modal extends React.Component {
   static propTypes = {
@@ -38,11 +51,11 @@ export default class Modal extends React.Component {
   }
 
   render() {
-    const { header, width, visible, children, onCancel } = this.props;
+    const { header, width, visible, children, onCancel } = this.props
 
     const style = {
       content: { width },
-    };
+    }
 
     return (
       <ReactModal
@@ -55,11 +68,9 @@ export default class Modal extends React.Component {
           {header}
           <CloseIcon onClick={onCancel} />
         </Header>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </ReactModal>
-    );
+    )
   }
 }
 

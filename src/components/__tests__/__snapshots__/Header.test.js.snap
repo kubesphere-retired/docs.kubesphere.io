@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<div
+  className="sc-bwzfXH dDQgAy"
+>
+  <div
+    className="header-expand"
+    onClick={[Function]}
+  >
+    <span
+      className="v-line"
+    />
+    <span
+      className="v-line"
+    />
+    <span
+      className="v-line"
+    />
+  </div>
+  <a
+    href="//kubesphere.io"
+    target="_blank"
+  >
+    <SvgMock
+      className="header-logo"
+    />
+  </a>
+  <span
+    className="sc-htpNat fuRQLw"
+  >
+    <div
+      className="ks-search sc-bdVaJa ewAAcf"
+    >
+      <SvgMock />
+      <input
+        onChange={[Function]}
+        onKeyUp={[Function]}
+        placeholder="快速查找"
+        type="text"
+      />
+    </div>
+  </span>
+</div>
+`;

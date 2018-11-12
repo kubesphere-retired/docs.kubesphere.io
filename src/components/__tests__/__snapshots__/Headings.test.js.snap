@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Headings renders correctly 1`] = `
+<div
+  className="sc-bdVaJa fEwSeM"
+>
+  <h5
+    className="sc-bwzfXH kgOpLn"
+  />
+  <div>
+    <h5
+      className="sc-htpNat uAtax"
+      data-anchor="#title-1"
+      onClick={[Function]}
+      selected={false}
+    >
+      title 1
+    </h5>
+    <h5
+      className="sc-htpNat uAtax"
+      data-anchor="#title-2"
+      onClick={[Function]}
+      selected={false}
+    >
+      title 2
+    </h5>
+    <h5
+      className="sc-htpNat uAtax"
+      data-anchor="#sub-title-1-1"
+      onClick={[Function]}
+      selected={false}
+    >
+      sub title 1-1
+    </h5>
+  </div>
+</div>
+`;

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Versions renders correctly 1`] = `
+<div
+  className="sc-bdVaJa fLDVnG"
+>
+  <div
+    className="sc-bwzfXH fstIjj"
+    onClick={[Function]}
+  >
+    <SvgMock
+      className="version-logo"
+    />
+    <div
+      className="version-text"
+    >
+      <SvgMock
+        className="kubesphere-icon"
+      />
+      <p />
+    </div>
+    <SvgMock
+      className="version-arrow"
+    />
+  </div>
+  <div>
+    <div
+      className="sc-htpNat bOULPv"
+    >
+      <div
+        className="sc-bxivhb gqabTH"
+        onClick={[Function]}
+        selected={false}
+      >
+        Express v1.0.0-alpha
+      </div>
+      <div
+        className="sc-bxivhb gqabTH"
+        onClick={[Function]}
+        selected={false}
+      >
+        Advance v1.0.0
+      </div>
+    </div>
+  </div>
+</div>
+`;
