@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search renders correctly 1`] = `
+<div
+  className="ks-search sc-bdVaJa ewAAcf"
+>
+  <SvgMock />
+  <input
+    onChange={[Function]}
+    onKeyUp={[Function]}
+    placeholder="快速查找"
+    type="text"
+  />
+</div>
+`;

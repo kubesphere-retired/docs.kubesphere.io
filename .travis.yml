@@ -17,7 +17,10 @@ install:
   - yarn
 
 script:
+  - yarn test
   - yarn build
+
+before_deploy:
   - docker build -t kubesphere/docs.kubesphere.io .
 
 deploy:

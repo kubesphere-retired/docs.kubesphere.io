@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders correctly 1`] = `
+<div>
+  <div
+    className="sc-bdVaJa cdzqqD"
+  />
+  <p
+    className="sc-htpNat WqiDM"
+  >
+    KubeSphere Docs
+  </p>
+</div>
+`;
