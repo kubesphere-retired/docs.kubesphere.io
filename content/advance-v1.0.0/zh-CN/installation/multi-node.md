@@ -35,7 +35,7 @@ title: "Multi-node 模式"
 
 ![集群架构图](/pic04.svg)
 
-### 第二步: 准备安装包
+### 第二步: 准备安装配置文件
 
 **1.** 在获取安装包后，执行以下命令。
 
@@ -52,7 +52,7 @@ $ cd KubeInstaller-advanced-1.0.0
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置。以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。若以 ubuntu 用户进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
 
 > 注意：
-> - etcd 作为一个高可用键值存储系统，etcd 节点至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数建议设置为奇数个，在 "conf/hosts.ini" 的 `[etcd]` 部分填入主机名即可，示例将在 3 个节点部署 etcd。
+> - etcd 作为一个高可用键值存储系统，etcd 节点至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个需要设置为奇数个，在 "conf/hosts.ini" 的 `[etcd]` 部分填入主机名即可，示例将在 3 个节点部署 etcd。
 > - 若安装时需要配置 master 节点高可用，"conf/hosts.ini" 请参考 [master 节点高可用 - 修改主机文件配置](../master-ha/#修改主机配置文件)。
 
 **root 配置示例：**
@@ -99,7 +99,7 @@ kube-master
 > 说明：
 > - 根据配置文件按需修改相关配置项，未做修改将以默认参数执行。
 > - 网络：默认插件 `calico`。
-> - 支持存储类型：[青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
+> - 支持存储类型：[青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume (仅支持 all-in-one)](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
 > - Multi-node 安装时需要配置持久化存储，因为它不支持 Local Volume，因此把 Local Volume 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI (青云块存储插件)、GlusterFS、CephRBD 等。如下所示为配置 QingCloud-CSI （`qy_access_key_id`、`qy_secret_access_key` 和 `qy_zone` 应替换为您实际环境的参数，详见 [qingcloud-csi](../../storage/qingcloud-storage)）。
 > - 安装 KubeSphere 后，如果需要对集群节点扩容，可参考 [集群节点扩容说明](../cluster-scaling)。
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 10.233.0.0/18，Pod 的子网网段默认是 10.233.64.0/18，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。

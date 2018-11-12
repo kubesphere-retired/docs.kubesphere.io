@@ -208,6 +208,17 @@
               "entry": "./advance-v1.0.0/zh-CN/devops/credential.md"
             }
           ]
+        },
+        {
+          "title": "监控中心",
+          "entries": [
+            {
+              "entry": "./advance-v1.0.0/zh-CN/monitor/intro.md"
+            },
+            {
+              "entry": "./advance-v1.0.0/zh-CN/monitor/monitor-cluster.md"
+            }
+          ]
         }
       ]
     },

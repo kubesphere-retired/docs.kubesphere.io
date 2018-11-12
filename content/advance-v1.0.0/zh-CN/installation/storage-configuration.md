@@ -2,7 +2,7 @@
 title: "存储配置说明"
 ---
 
-安装 KubeSphere 需配置 Kubernetes 支持的存储服务，并准备相应的存储服务端。Installer 支持 [青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为持久化存储（更多的存储类型持续更新中）。
+安装 KubeSphere 需配置 Kubernetes 支持的存储服务，并准备相应的存储服务端。Installer 支持 [青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume (仅支持 all-in-one)](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为持久化存储（更多的存储类型持续更新中）。
 
 同时，Installer 集成了 [青云块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blb/master/README_zh.md) 和 [企业级分布式存储 NeonSAN 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接青云块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud IaaS 平台](https://console.qingcloud.com/login) 资源的权限或已购买并准备好 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 CephRBD 这类存储的客户端，用户需提前准备相关的存储服务端。
 
@@ -19,7 +19,7 @@ title: "存储配置说明"
 
 ### Local Volume
 
-[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录。
+[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录，仅支持在 all-in-one 模式安装时使用 Local Volume。
 
 | **Local Volume** | **Description** |
 | --- | --- |
