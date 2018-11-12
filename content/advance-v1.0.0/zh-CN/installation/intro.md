@@ -18,15 +18,19 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 ### All-in-One 模式
 
-`All-in-One` 模式即单节点安装，支持一键安装，仅建议您用来测试或熟悉安装流程和了解 KubeSphere 高级版的功能特性，在正式使用环境建议使用 [Multi-node  模式](../multi-node)。
+`All-in-One` 模式即单节点安装，支持一键安装，仅建议您用来测试或熟悉安装流程和了解 KubeSphere 高级版的功能特性，详见 [All-in-One 模式](../all-in-one)。在正式使用环境建议使用 [Multi-node  模式](../multi-node)。
 
 ### Multi-Node 模式
 
 `Multi-Node` 即多节点集群安装，高级版支持 master 节点和 etcd 的高可用，支持在正式环境安装和使用，详见 [Multi-node 模式](../multi-node)。
 
-## Master 节点高可用配置
+#### 存储配置说明
 
-本文档以配置负载均衡器 (Load Banlancer) 为例，引导您如何配置高可用的 master 节点，详见 [Master 节点高可用配置](../master-ha)。
+Multi-Node 模式安装 KubeSphere 需配置 Kubernetes 支持的持久化存储服务，并准备相应的存储服务端。本文档说明如何在 Installer 中配置 [青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 这类持久化存储的安装参数，详见 [存储配置说明](../storage-configuration)。
+
+#### Master 节点高可用配置
+
+Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署环境用于开发和测试，但是要应用到实际的生产环境就不得不考虑 master 节点的高可用问题了。本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 master 节点，详见 [Master 节点高可用配置](../master-ha)。
 
 ## 集群节点扩容
 
@@ -40,7 +44,7 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 |  组件 |  版本 |
 |---|---|
-|KubeSphere| Advance-v1.0.0|
+|KubeSphere| AE-v1.0.0|
 |KubeSphere Console| Advanced Edition |
 |Kubernetes| v1.12.2|
-|OpenPitrix| v0.3.2|
+|OpenPitrix| v0.3.3|

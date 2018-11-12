@@ -1,5 +1,5 @@
 ---
-title: "Secrets"
+title: "密钥"
 ---
 
 Secret 解决了密码、token、密钥等敏感数据的配置问题，配置 Secret 后不需要把这些敏感数据暴露到镜像或者工作负载（Pod）的 Spec 中。Secret 可以以存储卷或者环境变量的方式使用。
