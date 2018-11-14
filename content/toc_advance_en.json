@@ -1,11 +1,11 @@
 {
-  "id": "advance-v1.0.0-en",
+  "id": "advanced-v1.0.0-en",
   "chapters": [
     {
       "title": "Installing, Patching, and Upgrading",
       "entries": [
         {
-          "entry": "./advance-v1.0.0/en/test-en.md"
+          "entry": "./advanced-v1.0.0/en/test-en.md"
         }
       ]
     }
