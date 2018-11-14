@@ -13,8 +13,8 @@ title: "All-in-One 模式"
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| Ubuntu 16.04 LTS 64bit | CPU：12 核 <br/> 内存：24 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
-| CentOS 7.4 64bit | CPU：12 核 <br/> 内存：24 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| Ubuntu 16.04 LTS 64bit | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| CentOS 7.4 64bit | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 ### 第二步: 准备安装包
 
@@ -39,7 +39,7 @@ KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台
 > - 若您需要自定义配置文件的安装参数，如网络、存储等相关内容需在 **`conf/vars.yml`** 配置文件中指定或修改。
 > - 网络：默认插件 `calico`。
 > - 支持存储类型：[青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
-> - All-in-One 默认会用 Local Volume 即本地存储设备作为存储类型，但 Local Volume 不支持动态分配，需手动创建 Persistent Volume (PV)，Installer 会预先创建 8 个可用的 10G PV 供使用。若存储空间不足时则需要手动创建，参见 [Local Volume 使用方法](../manage-storages/#local-volume-使用方法)。
+> - All-in-One 默认会用 Local Volume 即本地存储设备作为存储类型，但 Local Volume 不支持动态分配，需手动创建 Persistent Volume (PV)，Installer 会预先创建 10 个可用的 10G PV 供使用。若存储空间不足时则需要手动创建，参见 [Local Volume 使用方法](../manage-storages/#local-volume-使用方法)。
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 10.233.0.0/18，Pod 的子网网段默认是 10.233.64.0/18，因此安装 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
 参考以下步骤开始 all-in-one 安装：

@@ -73,7 +73,7 @@ $ ceph auth get-key client.admin
 | **NFS** | **Description** |
 | --- | --- |
 | nfs\_client\_enable | 是否使用 nfs 作为持久化存储，是：true；否：false |
-| nfs\_client\_is_default\_class | 存储类型名称 |
+| nfs\_client\_is\_default\_class | 是否设定为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
 | nfs\_server | 允许其访问的 NFS 服务器地址，可以是 IP 或 Hostname |
 | nfs\_path | NFS 共享目录，即服务器上共享出去的文件目录，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
 

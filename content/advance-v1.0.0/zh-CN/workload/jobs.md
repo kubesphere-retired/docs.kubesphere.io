@@ -26,7 +26,7 @@ title: "任务"
 - Back Off Limit：失败尝试次数，若失败次数超过该值，则 Job 不会继续尝试工作；如设置为 5 则表示最多重试 5 次。
 - Completions：标志任务结束需要成功运行的 Pod 个数，如设置为 10 则表示任务结束需要运行 10 个 Pod。
 - Parallelism：标志并行运行的 Pod 的个数；如设置为 5 则表示并行 5 个 Pod。
-- Active Deadline Seconds：标志失败 Pod 的重试最大时间，超过这个时间不会继续重试，且 ActiveDeadlineSeconds 优先级高于 Back Off Limit；如设置 100 则表示达到 100s 时 Job 即其所有的 Pod 都会停止。
+- Active Deadline Seconds：Active Deadline Seconds：指定 Job 可运行的时间期限，超过时间还未结束，系统将会尝试进行终止，且 ActiveDeadlineSeconds 优先级高于 Back Off Limit；如设置 20 则表示超过 20s 后 Job 运行将被终止。
 
 ![任务设置](/job-setting.png)
 
