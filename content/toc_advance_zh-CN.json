@@ -71,6 +71,10 @@
           "entry": "./advance-v1.0.0/zh-CN/quick-start/wordpress-deployment.md"
         },
         {
+          "title": "快速入门 - 创建简单任务",
+          "entry": "./advance-v1.0.0/zh-CN/quick-start/job-quick-start.md"
+        },
+        {
           "title": "快速入门 - HPA 水平自动伸缩",
           "entry": "./advance-v1.0.0/zh-CN/quick-start/hpa.md"
         }
@@ -193,19 +197,22 @@
           "title": "DevOps工程",
           "entries": [
             {
+              "entry": "./advance-v1.0.0/zh-CN/devops/intro.md"
+            },
+            {
               "entry": "./advance-v1.0.0/zh-CN/devops/devops-project.md"
             },
             {
               "entry": "./advance-v1.0.0/zh-CN/devops/pipeline.md"
             },
             {
+              "entry": "./advance-v1.0.0/zh-CN/devops/credential.md"
+            },
+            {
               "entry": "./advance-v1.0.0/zh-CN/devops/jenkinsfile-in-scm.md"
             },
             {
               "entry": "./advance-v1.0.0/zh-CN/devops/jenkinsfile-out-of-scm.md"
-            },
-            {
-              "entry": "./advance-v1.0.0/zh-CN/devops/credential.md"
             }
           ]
         },
@@ -217,6 +224,20 @@
             },
             {
               "entry": "./advance-v1.0.0/zh-CN/monitor/monitor-cluster.md"
+            }
+          ]
+        },
+        {
+          "title": "多租户管理",
+          "entries": [
+            {
+              "entry": "./advance-v1.0.0/zh-CN/multi-tenant/intro.md"
+            },
+            {
+              "entry": "./advance-v1.0.0/zh-CN/multi-tenant/role-overview.md"
+            },
+            {
+              "entry": "./advance-v1.0.0/zh-CN/multi-tenant/admin-guide.md"
             }
           ]
         }

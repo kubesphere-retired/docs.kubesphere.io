@@ -8,7 +8,8 @@ title: "Multi-node 模式"
 
 ## 前提条件
 
-已购买 KubeSphere 高级版，并已下载了高级版的 Installer 至目标安装机器。
+- 已购买 KubeSphere 高级版，并已下载了高级版的 Installer 至目标安装机器。
+- 已准备符合 KubeSphere 要求的存储服务端，KubeSphere 支持的存储服务端详见 [存储配置说明](../storage-configuration)。
 
 ### 第一步: 准备主机
 
@@ -16,8 +17,8 @@ title: "Multi-node 模式"
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| ubuntu 16.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
-| CentOS 7.4 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| ubuntu 16.04/18.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| CentOS 7.4/7.5 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 以下用一个示例介绍 multi-node 模式部署多节点，此示例准备了 3 台主机，以主机名为 master 的节点作为任务执行机 taskbox，各节点主机名可由用户自定义。
 
@@ -52,7 +53,7 @@ $ cd KubeInstaller-advanced-1.0.0
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置。以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。若以 ubuntu 用户进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
 
 > 注意：
-> - etcd 作为一个高可用键值存储系统，etcd 节点至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个需要设置为奇数个，在 "conf/hosts.ini" 的 `[etcd]` 部分填入主机名即可，示例将在 3 个节点部署 etcd。
+> - etcd 作为一个高可用键值存储系统，etcd 节点至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数需要设置为奇数个，在 "conf/hosts.ini" 的 `[etcd]` 部分填入主机名即可，示例将在 3 个节点部署 etcd。
 > - 若安装时需要配置 master 节点高可用，"conf/hosts.ini" 请参考 [master 节点高可用 - 修改主机文件配置](../master-ha/#修改主机配置文件)。
 
 **root 配置示例：**

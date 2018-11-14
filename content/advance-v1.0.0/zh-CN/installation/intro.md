@@ -18,7 +18,7 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 ### All-in-One 模式
 
-`All-in-One` 模式即单节点安装，支持一键安装，仅建议您用来测试或熟悉安装流程和了解 KubeSphere 高级版的功能特性，详见 [All-in-One 模式](../all-in-one)。在正式使用环境建议使用 [Multi-node  模式](../multi-node)。
+`All-in-One` 模式即单节点安装，支持一键安装，仅建议您用来测试或熟悉安装流程和了解 KubeSphere 高级版的功能特性，详见 [All-in-One 模式](../all-in-one)。在正式使用环境建议使用 Multi-node 模式。
 
 ### Multi-Node 模式
 
@@ -47,4 +47,4 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署环境用于
 |KubeSphere| AE-v1.0.0|
 |KubeSphere Console| Advanced Edition |
 |Kubernetes| v1.12.2|
-|OpenPitrix| v0.3.3|
+|OpenPitrix| v0.3.4|

@@ -6,7 +6,7 @@ title: "Local Volume 使用方法"
 
 ## 创建 Local Volume
 
-Local Volume 仅用于 [all-in-one](../../installation/all-in-one) 单节点部署，也是单节点部署的默认存储类型，Installer 会预先创建 8 个可用的 10G PV 供使用，若存储空间不足时则需要参考如下步骤手动创建。
+Local Volume 仅用于 [all-in-one](../../installation/all-in-one) 单节点部署，也是单节点部署的默认存储类型，Installer 会预先创建 10 个可用的 10G PV 供使用，若存储空间不足时则需要参考如下步骤手动创建。
 
 1、若 Local Volume 还不是默认的存储类型，可参考创建 Local Volume 的存储类型详细步骤如下：
 
