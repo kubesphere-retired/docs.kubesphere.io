@@ -47,7 +47,7 @@
         },
         {
           "title": "集群节点扩容",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/cluster-scaling.md"
+          "entry": "./advanced-v1.0.0/zh-CN/installation/add-nodes.md"
         },
         {
           "title": "卸载",

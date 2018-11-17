@@ -26,15 +26,15 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 #### 存储配置说明
 
-Multi-Node 模式安装 KubeSphere 需配置 Kubernetes 支持的持久化存储服务，并准备相应的存储服务端。本文档说明如何在 Installer 中配置 [青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 这类持久化存储的安装参数，详见 [存储配置说明](../storage-configuration)。
+Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行部署测试。若在正式环境使用需配置 KubeSphere 支持的持久化存储服务，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置 [青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/) 这类持久化存储的安装参数，详见 [存储配置说明](../storage-configuration)。
 
 #### Master 节点高可用配置
 
-Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署环境用于开发和测试，但是要应用到实际的生产环境就不得不考虑 master 节点的高可用问题了。本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 master 节点，详见 [Master 节点高可用配置](../master-ha)。
+Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，但是要应用到实际的生产环境就不得不考虑 master 节点的高可用问题了。本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 master 节点，详见 [Master 节点高可用配置](../master-ha)。
 
 ## 集群节点扩容
 
-安装 KubeSphere 后，在正式环境使用时可能会遇到服务器容量不足的情况，这时就需要添加新的节点 (node)，然后将应用系统进行水平扩展来完成对系统的扩容，配置详见 [集群节点扩容](../cluster-scaling)。
+安装 KubeSphere 后，在正式环境使用时可能会遇到服务器容量不足的情况，这时就需要添加新的节点 (node)，然后将应用系统进行水平扩展来完成对系统的扩容，配置详见 [集群节点扩容](../add-nodes)。
 
 ## 卸载
 

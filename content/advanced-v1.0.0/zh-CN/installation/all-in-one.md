@@ -21,13 +21,13 @@ title: "All-in-One 模式"
 在获取安装包后，执行以下命令。
 
 ```bash
-$ tar -zxvf KubeInstaller-advanced-1.0.0.tar.gz
+$ tar -zxvf KubeSphere-Installer-Advanced-v1.0.0.tar.gz
 ```
 
-**3.** 进入 “`KubeInstaller-advanced-1.0.0`” 目录
+**3.** 进入 “`KubeSphere-Installer-Advanced-v1.0.0`” 目录。
 
 ```bash
-$ cd KubeInstaller-advanced-1.0.0
+$ cd KubeSphere-Installer-Advanced-v1.0.0
 ```
 
 ### 第三步: 安装 KubeSphere
@@ -38,8 +38,8 @@ KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台
 > - 通常情况您不需要修改任何配置，直接安装即可。
 > - 若您需要自定义配置文件的安装参数，如网络、存储等相关内容需在 **`conf/vars.yml`** 配置文件中指定或修改。
 > - 网络：默认插件 `calico`。
-> - 支持存储类型：[青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
 > - All-in-One 默认会用 Local Volume 即本地存储设备作为存储类型，但 Local Volume 不支持动态分配，需手动创建 Persistent Volume (PV)，Installer 会预先创建 10 个可用的 10G PV 供使用。若存储空间不足时则需要手动创建，参见 [Local Volume 使用方法](../manage-storages/#local-volume-使用方法)。
+> - 支持存储类型：[青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](#存储配置说明)。
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 10.233.0.0/18，Pod 的子网网段默认是 10.233.64.0/18，因此安装 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
 参考以下步骤开始 all-in-one 安装：
@@ -50,10 +50,10 @@ KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台
 $ cd scripts
 ```
 
-**2.** 执行 `install.sh` 脚本：
+**2.** 执行 `menu.sh` 脚本：
 
 ```bash
-$ ./install.sh
+$ ./menu.sh
 ```
 
 **3.** 输入数字 `1` 选择第一种即 all-in-one 模式开始安装：
@@ -64,11 +64,11 @@ $ ./install.sh
 ################################################
 *   1) All-in-one
 *   2) Multi-node
-*   3) Cluster-scaling
+*   3) Add-node(s)
 *   4) Uninstall
 *   5) Quit
 ################################################
-https://kubesphere.io/               2018-11-08
+https://kubesphere.io/               2018-11-16
 ################################################
 Please input an option: 1
 
@@ -76,7 +76,7 @@ Please input an option: 1
 
 **4.** 测试 KubeSphere 单节点安装是否成功：
 
-**(1)** 待 install.sh 执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
+**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
 
 ```bash
 successsful!
