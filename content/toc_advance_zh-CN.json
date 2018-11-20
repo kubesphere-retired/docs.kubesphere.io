@@ -81,6 +81,62 @@
       ]
     },
     {
+      "title": "管理员指南",
+      "chapters": [
+        {
+          "title": "多租户管理",
+          "entries": [
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/multi-tenant/intro.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/multi-tenant/role-overview.md"
+            }
+          ]
+        },
+        {
+          "title": "平台管理",
+          "entries": [
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/platform-management/workspace-management.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/platform-management/account-management.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/platform-management/role-management.md"
+            }
+          ]
+        },
+        {
+          "title": "基础设施",
+          "entries": [
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/infrastructure/components.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/infrastructure/nodes.md"
+            }
+          ]
+        },
+        {
+          "title": "监控中心",
+          "entries": [
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/monitor/intro.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/monitor/monitor-cluster.md"
+            }
+          ]
+        },
+        {
+          "title": "应用仓库",
+          "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-repo.md"
+        }
+      ]
+    },
+    {
       "title": "用户指南",
       "chapters": [
         {
@@ -145,6 +201,9 @@
             },
             {
               "entry": "./advanced-v1.0.0/zh-CN/configuration/configmaps.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/configuration/image-registry.md"
             }
           ]
         },
@@ -162,34 +221,6 @@
             },
             {
               "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-quota.md"
-            }
-          ]
-        },
-        {
-          "title": "基础设施",
-          "entries": [
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/infrastructure/components.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/infrastructure/nodes.md"
-            }
-          ]
-        },
-        {
-          "title": "平台管理",
-          "entries": [
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/platform-management/overview.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/platform-management/image-registry.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-repo.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-template.md"
             }
           ]
         },
@@ -216,30 +247,9 @@
             }
           ]
         },
-        {
-          "title": "监控中心",
-          "entries": [
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/monitor/intro.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/monitor/monitor-cluster.md"
-            }
-          ]
-        },
-        {
-          "title": "多租户管理",
-          "entries": [
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/multi-tenant/intro.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/multi-tenant/role-overview.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/multi-tenant/admin-guide.md"
-            }
-          ]
+        { 
+          "title": "应用模板",
+          "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-template.md"
         }
       ]
     },
