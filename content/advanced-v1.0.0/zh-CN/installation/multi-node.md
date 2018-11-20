@@ -2,8 +2,6 @@
 title: "Multi-node 模式"
 ---
 
-## Multi-Node 模式
-
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
 ## 前提条件
@@ -17,7 +15,7 @@ title: "Multi-node 模式"
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
 | ubuntu 16.04/18.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
-| CentOS 7.4/7.5 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| CentOS 7.5 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 以下用一个示例介绍 multi-node 模式部署多节点，此示例准备了 3 台主机，以主机名为 master 的节点作为任务执行机 taskbox，各节点主机名可由用户自定义。
 
@@ -40,7 +38,7 @@ title: "Multi-node 模式"
 **1.** 在获取安装包后，执行以下命令。
 
 ```bash
-$ tar -zxvf KubeSphere-Installer-Advanced-v1.0.0.tar.gz
+$ tar -zxf KubeSphere-Installer-Advanced-v1.0.0.tar.gz
 ```
 
 **2.** 进入 “`KubeSphere-Installer-Advanced-v1.0.0`” 目录
@@ -53,7 +51,7 @@ $ cd KubeSphere-Installer-Advanced-v1.0.0
 
 > 注意：
 > - etcd 作为一个高可用键值存储系统，etcd 节点至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数需要设置为奇数个，在 "conf/hosts.ini" 的 `[etcd]` 部分填入主机名即可，示例将在 3 个节点部署 etcd。
-> - 若安装时需要配置 master 节点高可用，"conf/hosts.ini" 请参考 [master 节点高可用 - 修改主机文件配置](../master-ha/#修改主机配置文件)。
+> - 若安装时需要配置 master 节点高可用，"conf/hosts.ini" 的参数配置请参考 [master 节点高可用 - 修改主机文件配置](../master-ha/#修改主机配置文件)。
 
 **root 配置示例：**
 
@@ -101,7 +99,7 @@ kube-master
 > - 网络：默认插件 `calico`。
 > - 支持存储类型：[青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[Local Volume (仅支持 all-in-one)](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
 > - Multi-node 安装时需要配置持久化存储，因为它不支持 Local Volume，因此把 Local Volume 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI (青云块存储插件)、NeonSAN CSI (NeonSAN 存储插件)、NFS、GlusterFS、CephRBD 等。如下所示配置 NFS，将 `nfs_server_enable` 和 `nfs_server_is_default_class` 设置为 true。
-> - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 10.233.0.0/18，Pod 的子网网段默认是 10.233.64.0/18，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
+> - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
 **存储配置示例：**
 
@@ -121,18 +119,18 @@ nfs_server_is_default_class: true
 
 KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.2，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
-参考以下步骤开始 multi-node 部署：
+参考以下步骤开始 multi-node 部署。
 
-**1.** 进入 `scripts` 目录
+**1.** 进入 `scripts` 目录：
 
 ```bash
 $ cd scripts
 ```
 
-**2.** 执行 `menu.sh` 脚本：
+**2.** 执行 `install.sh` 脚本：
 
 ```bash
-$ ./menu.sh
+$ ./install.sh
 ```
 
 **3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [存储配置说明](../storage-configuration)。
@@ -143,9 +141,7 @@ $ ./menu.sh
 ################################################
 *   1) All-in-one
 *   2) Multi-node
-*   3) Add-node(s)
-*   4) Uninstall
-*   5) Quit
+*   3) Quit
 ################################################
 https://kubesphere.io/               2018-11-16
 ################################################
