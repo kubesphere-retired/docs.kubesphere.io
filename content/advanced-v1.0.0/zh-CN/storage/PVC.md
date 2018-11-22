@@ -4,13 +4,13 @@ title: "存储卷"
 
 存储卷，在 KubeSphere 中一般是指基于 PVC 的持久化存储卷，具有单个磁盘的功能，供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。
 
-在 all-in-one 部署方式中，可以使用 Local 存储卷将数据持久化，无需存储服务端支持，但此类型存储卷不支持动态分配方式。如果希望体验 KubeSphere 推荐的动态分配 (Dynamic Provisioning) 方式创建存储卷，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储和 [企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) 插件，支持使用 [青云块存储](https://www.qingcloud.com/products/volume/) 或 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为平台的存储服务，免去手动配置存储服务端的繁琐。
+在 all-in-one 部署方式中，可以使用 Local 存储卷将数据持久化，无需存储服务端支持，但此类型存储卷不支持动态分配方式。如果希望体验 KubeSphere 推荐的动态分配 (Dynamic Provisioning) 方式创建存储卷，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储和 [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) 插件，支持使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 或 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为平台的存储服务，免去手动配置存储服务端的繁琐。
 
-另外，Installer 也已集成了 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/) 等存储的客户端，需在 `conf/vars.yml` 中配置，但需要自行准备和安装相应的存储服务端，参考附录中的 [部署 Ceph RBD 存储服务端](../https://docs.kubesphere.io/express/zh-CN/ceph-ks-install/) 或 [部署 GlusterFS 存储服务端](../https://docs.kubesphere.io/express/zh-CN/glusterfs-ks-install/)。
+另外，Installer 也已集成了 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/) 等存储的客户端，需在 `conf/vars.yml` 中配置，但需要自行准备和安装相应的存储服务端，若用于 KubeSphere 测试存储服务端部署可参考附录中的 [部署 Ceph RBD 存储服务端](https://docs.kubesphere.io/express/zh-CN/ceph-ks-install/) 或 [部署 GlusterFS 存储服务端](https://docs.kubesphere.io/express/zh-CN/glusterfs-ks-install/)。
 
 ## 前提条件
 
-创建存储卷之前必须先创建相应的存储类型，参考 [创建存储类型](../ae-storageclass/#创建存储类型)。
+创建存储卷之前必须先创建相应的存储类型，参考 [创建存储类型](../../infrastructure/storageclass/#创建存储类型)。
 
 ## 创建存储卷
 
@@ -26,23 +26,39 @@ title: "存储卷"
 
 ### 第二步：存储卷设置
 
-存储设置中，选择存储卷的存储类型，存储类型需要预先创建，详见 [创建存储类型](../ae-storageclass/#创建存储类型)。按需填写存储卷的容量大小，存储卷大小和访问模式必须与存储类型和存储服务端能力相适应，访问模式通常选择为 RWO。各类型存储支持的访问模式参见 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)。
-
-![创建存储卷 - 设置](/ae-pvc-setting.png)
+存储设置中，选择存储卷的存储类型，存储类型需要预先创建，详见 [创建存储类型](../../infrastructure/storageclass/#创建存储类型)。按需填写存储卷的容量大小，存储卷大小和访问模式必须与存储类型和存储服务端能力相适应。各类型存储支持的访问模式参见 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)。
 
 访问模式包括：
 
-- ReadWriteOnce — 该卷可以被单个节点以读/写模式挂载。
-- ReadOnlyMany — 该卷可以被多个节点以只读模式挂载。
-- ReadWriteMany — 该卷可以被多个节点以读/写模式挂载。
+- ReadWriteOnce — 可以被单个节点以读/写模式挂载。
+- ReadOnlyMany — 可以被多个节点以只读模式挂载。
+- ReadWriteMany — 可以被多个节点以读/写模式挂载。
+
+![创建存储卷 - 设置](/ae-pvc-setting.png)
 
 ### 第三步：标签设置
 
 为存储卷设置标签，可通过标签来识别、组织和查找资源对象，selector 可以根据标签的键值对来调度资源。
-存储卷创建成功，即可挂载至工作负载。
+
+
+### 第四步：查看存储卷
+
+设置完成后点击创建，即可创建成功，刚创建的存储卷状态显示 “创建中”，待其状态变为 “准备就绪” 就可以将其挂载至工作负载。
+
+> 注意：若以 all-in-one 模式安装 (存储类型为 Local Volume)，创建存储卷后，在存储卷被挂载至工作负载前，存储卷状态将一直显示 “创建中”，直至其被挂载至工作负载之后状态才显示 “准备就绪”，这种情况是正常的，因为 Local Volume 的 [延迟绑定（delay volume binding）](https://kubernetes.io/docs/concepts/storage/storage-classes/#local)  且 Local Volume 暂不支持动态配置。
+
+![查看存储卷](/ae-pvc-status.png)
 
 ## 挂载存储卷
 
 在创建工作负载时可以添加已创建的存储卷，例如，在创建部署时，点击 **添加已有存储卷**，选择存储卷后填写读写方式和挂载路径即可使用存储卷。
 
 ![挂载存储卷](/add-pvc-in-workload.png)
+
+## 删除存储卷
+
+注意，若需要删除存储卷，请确保存储卷挂载状态处于 `未挂载`。如果存储卷已挂载至工作负载，在删除前需要先删除工作负载，然后在存储卷列表页删除存储卷。
+
+在项目下，左侧菜单栏点击 **存储卷**，勾选需要删除的存储卷点击 **删除** 即可，如下所示仅第一个状态为 **未挂载** 的存储卷可以被删除。
+
+![删除存储卷](/ae-delete-pvc.png)

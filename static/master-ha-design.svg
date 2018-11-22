@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="996px" viewBox="0 0 1440 996" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Dark Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="594" height="80" rx="4"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="594" height="80" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="0" y="0" width="594" height="80" rx="4"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="594" height="80" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <rect id="path-5" x="0" y="0" width="594" height="80" rx="4"></rect>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="594" height="80" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+    </defs>
+    <g id="Dark-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="1440" height="996"></rect>
+        <rect id="Rectangle" fill="#242E42" x="0" y="0" width="1440" height="1054"></rect>
+        <g id="Group" transform="translate(40.000000, 32.000000)" fill="#FFFFFF">
+            <text id="KubeSphere---Master" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="28">
+                <tspan x="40" y="21">KubeSphere - Master 节点高可用</tspan>
+            </text>
+            <g id="Glyph/002.Object/054.AppCenter/White">
+                <polygon id="Combined-Shape" opacity="0.400000006" points="11.375 14 14 15.5 16.625 14 24.5 18.5 14 24.5 3.5 18.5"></polygon>
+                <polygon id="Shape" opacity="0.900000036" points="3.5 9.5 14 3.5 24.5 9.5 14 15.5"></polygon>
+            </g>
+        </g>
+        <g id="Group-2" transform="translate(40.000000, 80.000000)">
+            <rect id="Rectangle" fill-opacity="0.6" fill="#36435C" x="0" y="0" width="634" height="120" rx="4"></rect>
+            <g id="Group-8" transform="translate(20.000000, 20.000000)">
+                <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="190" height="80" rx="4"></rect>
+                <text id="Kubectl" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                    <tspan x="70" y="65">Kubectl</tspan>
+                </text>
+                <g id="Glyph/002.Object/078.Components/Green" transform="translate(79.000000, 12.000000)">
+                    <g id="未标题-2" transform="translate(4.000000, 4.000000)">
+                        <rect id="Rectangle-path" fill="#B6C2CD" fill-rule="nonzero" x="13.3333333" y="13.3333333" width="10.6666667" height="10.6666667" rx="1"></rect>
+                        <path d="M10.8,12 L10.8,22.7916 C10.8,23.4588 10.2648,24 9.6024,24 L1.1976,24 C0.5364,24 0,23.46 0,22.7916 L0,1.2084 C0,0.54 0.5352,7e-16 1.1976,7e-16 L9.6024,7e-16 C10.2636,7e-16 10.8,0.54 10.8,1.2084 L10.8,12 Z" id="Path" fill="#324558"></path>
+                        <path d="M13.2,1.1976 C13.2,0.5364 13.7352,0 14.3976,0 L22.8024,0 C23.4636,0 24,0.5352 24,1.1976 L24,9.6024 C24,10.2638162 23.4638162,10.8 22.8024,10.8 L14.3976,10.8 C14.0798791,10.8003188 13.7750796,10.6742459 13.5504168,10.4495832 C13.3257541,10.2249204 13.1996812,9.9201209 13.2,9.6024 L13.2,1.1976 Z" id="Path" fill="#324558"></path>
+                    </g>
+                    <g id="未标题-2" transform="translate(4.000000, 4.000000)" fill="#55BC8A">
+                        <rect id="Rectangle-path" fill-opacity="0.4" fill-rule="nonzero" x="13.3333333" y="13.3333333" width="10.6666667" height="10.6666667" rx="1"></rect>
+                        <path d="M10.8,12 L10.8,22.7916 C10.8,23.4588 10.2648,24 9.6024,24 L1.1976,24 C0.5364,24 0,23.46 0,22.7916 L0,1.2084 C0,0.54 0.5352,7e-16 1.1976,7e-16 L9.6024,7e-16 C10.2636,7e-16 10.8,0.54 10.8,1.2084 L10.8,12 Z" id="Path"></path>
+                        <path d="M13.2,1.1976 C13.2,0.5364 13.7352,0 14.3976,0 L22.8024,0 C23.4636,0 24,0.5352 24,1.1976 L24,9.6024 C24,10.2638162 23.4638162,10.8 22.8024,10.8 L14.3976,10.8 C14.0798791,10.8003188 13.7750796,10.6742459 13.5504168,10.4495832 C13.3257541,10.2249204 13.1996812,9.9201209 13.2,9.6024 L13.2,1.1976 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy" transform="translate(222.000000, 20.000000)">
+                <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="190" height="80" rx="4"></rect>
+                <text id="Clients" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                    <tspan x="72" y="65">Clients</tspan>
+                </text>
+                <g id="Glyph/002.Object/078.Components/Green" transform="translate(79.000000, 12.000000)">
+                    <g id="未标题-2" transform="translate(4.000000, 4.000000)">
+                        <rect id="Rectangle-path" fill="#B6C2CD" fill-rule="nonzero" x="13.3333333" y="13.3333333" width="10.6666667" height="10.6666667" rx="1"></rect>
+                        <path d="M10.8,12 L10.8,22.7916 C10.8,23.4588 10.2648,24 9.6024,24 L1.1976,24 C0.5364,24 0,23.46 0,22.7916 L0,1.2084 C0,0.54 0.5352,7e-16 1.1976,7e-16 L9.6024,7e-16 C10.2636,7e-16 10.8,0.54 10.8,1.2084 L10.8,12 Z" id="Path" fill="#324558"></path>
+                        <path d="M13.2,1.1976 C13.2,0.5364 13.7352,0 14.3976,0 L22.8024,0 C23.4636,0 24,0.5352 24,1.1976 L24,9.6024 C24,10.2638162 23.4638162,10.8 22.8024,10.8 L14.3976,10.8 C14.0798791,10.8003188 13.7750796,10.6742459 13.5504168,10.4495832 C13.3257541,10.2249204 13.1996812,9.9201209 13.2,9.6024 L13.2,1.1976 Z" id="Path" fill="#324558"></path>
+                    </g>
+                    <g id="未标题-2" transform="translate(4.000000, 4.000000)" fill="#55BC8A">
+                        <rect id="Rectangle-path" fill-opacity="0.4" fill-rule="nonzero" x="13.3333333" y="13.3333333" width="10.6666667" height="10.6666667" rx="1"></rect>
+                        <path d="M10.8,12 L10.8,22.7916 C10.8,23.4588 10.2648,24 9.6024,24 L1.1976,24 C0.5364,24 0,23.46 0,22.7916 L0,1.2084 C0,0.54 0.5352,7e-16 1.1976,7e-16 L9.6024,7e-16 C10.2636,7e-16 10.8,0.54 10.8,1.2084 L10.8,12 Z" id="Path"></path>
+                        <path d="M13.2,1.1976 C13.2,0.5364 13.7352,0 14.3976,0 L22.8024,0 C23.4636,0 24,0.5352 24,1.1976 L24,9.6024 C24,10.2638162 23.4638162,10.8 22.8024,10.8 L14.3976,10.8 C14.0798791,10.8003188 13.7750796,10.6742459 13.5504168,10.4495832 C13.3257541,10.2249204 13.1996812,9.9201209 13.2,9.6024 L13.2,1.1976 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-2" transform="translate(424.000000, 20.000000)">
+                <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="190" height="80" rx="4"></rect>
+                <text id="REST API" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                    <tspan x="84" y="65">REST API</tspan>
+                </text>
+                <g id="Glyph/002.Object/078.Components/Green" transform="translate(79.000000, 12.000000)">
+                    <g id="未标题-2" transform="translate(4.000000, 4.000000)">
+                        <rect id="Rectangle-path" fill="#B6C2CD" fill-rule="nonzero" x="13.3333333" y="13.3333333" width="10.6666667" height="10.6666667" rx="1"></rect>
+                        <path d="M10.8,12 L10.8,22.7916 C10.8,23.4588 10.2648,24 9.6024,24 L1.1976,24 C0.5364,24 0,23.46 0,22.7916 L0,1.2084 C0,0.54 0.5352,7e-16 1.1976,7e-16 L9.6024,7e-16 C10.2636,7e-16 10.8,0.54 10.8,1.2084 L10.8,12 Z" id="Path" fill="#324558"></path>
+                        <path d="M13.2,1.1976 C13.2,0.5364 13.7352,0 14.3976,0 L22.8024,0 C23.4636,0 24,0.5352 24,1.1976 L24,9.6024 C24,10.2638162 23.4638162,10.8 22.8024,10.8 L14.3976,10.8 C14.0798791,10.8003188 13.7750796,10.6742459 13.5504168,10.4495832 C13.3257541,10.2249204 13.1996812,9.9201209 13.2,9.6024 L13.2,1.1976 Z" id="Path" fill="#324558"></path>
+                    </g>
+                    <g id="未标题-2" transform="translate(4.000000, 4.000000)" fill="#55BC8A">
+                        <rect id="Rectangle-path" fill-opacity="0.4" fill-rule="nonzero" x="13.3333333" y="13.3333333" width="10.6666667" height="10.6666667" rx="1"></rect>
+                        <path d="M10.8,12 L10.8,22.7916 C10.8,23.4588 10.2648,24 9.6024,24 L1.1976,24 C0.5364,24 0,23.46 0,22.7916 L0,1.2084 C0,0.54 0.5352,7e-16 1.1976,7e-16 L9.6024,7e-16 C10.2636,7e-16 10.8,0.54 10.8,1.2084 L10.8,12 Z" id="Path"></path>
+                        <path d="M13.2,1.1976 C13.2,0.5364 13.7352,0 14.3976,0 L22.8024,0 C23.4636,0 24,0.5352 24,1.1976 L24,9.6024 C24,10.2638162 23.4638162,10.8 22.8024,10.8 L14.3976,10.8 C14.0798791,10.8003188 13.7750796,10.6742459 13.5504168,10.4495832 C13.3257541,10.2249204 13.1996812,9.9201209 13.2,9.6024 L13.2,1.1976 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <path id="Line" d="M355.076615,235.472564 L355.258979,219.970592 L355.288386,217.470765 L360.28804,217.529581 L360.258633,220.029408 L360.076269,235.53138 L372.075439,235.672536 L357.235313,264.499965 L343.077445,235.331407 L355.076615,235.472564 Z" fill="#55BC8A" fill-rule="nonzero"></path>
+        <g id="Group-4" transform="translate(40.000000, 284.000000)">
+            <rect id="Rectangle" fill="#4A90E2" x="0" y="0" width="634" height="72" rx="4"></rect>
+            <g id="Group-3" transform="translate(264.000000, 20.000000)" fill="#FFFFFF">
+                <text id="负载均衡" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18">
+                    <tspan x="52" y="22">负载均衡</tspan>
+                </text>
+                <g id="Glyph/002.Object/045.LoadBalancer/White">
+                    <polygon id="Combined-Shape" opacity="0.400000006" points="16.0003011 9.84168059 5.33348988 15.9997289 15.9983303 22.1590957 5.33333333 28.3165346 5.33364641 3.68346539 16.0003011 9.84168059"></polygon>
+                    <polygon id="Combined-Shape-Copy" opacity="0.400000006" points="15.9996989 9.84168059 26.6663536 3.68346539 26.6666667 28.3165346 16.0016697 22.1590957 26.6665101 15.9997289 15.9996989 9.84168059"></polygon>
+                    <polygon id="Combined-Shape-Copy-2" opacity="0.900000036" points="26.6663536 16 16 22.1600011 5.33333333 15.9997289 16 9.84000015"></polygon>
+                </g>
+            </g>
+        </g>
+        <rect id="Rectangle" fill-opacity="0.6" fill="#36435C" x="81" y="452" width="634" height="442" rx="4"></rect>
+        <g id="Group-5" transform="translate(101.000000, 472.000000)" fill="#FFFFFF">
+            <text id="Master2:-192.168.0.2" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18">
+                <tspan x="44" y="18">Master2: 192.168.0.2</tspan>
+            </text>
+            <g id="Glyph/002.Object/083.Nodes/White-">
+                <g id="Group-2" transform="translate(3.000000, 3.000000)">
+                    <path d="M9.08364293e-17,2.74775 C9.08364293e-17,2.33525 0.36,2 0.819818182,2 L17.1801818,2 C17.6318182,2 18,2.33975 18,2.74775 L18,7.25225 C18,7.66475 17.64,8 17.1801818,8 L0.819818182,8 C0.369006873,7.99918684 0.00314224004,7.66548446 0,7.25225 L9.08364293e-17,2.74775 Z M4,3 L4,5 L6,5 L6,3 L4,3 Z M1,3 L1,5 L3,5 L3,3 L1,3 Z" id="Combined-Shape" fill-rule="nonzero" opacity="0.900000036"></path>
+                    <path d="M9.08364293e-17,10.74775 C9.08364293e-17,10.33525 0.36,10 0.819818182,10 L17.1801818,10 C17.6318182,10 18,10.33975 18,10.74775 L18,15.25225 C18,15.66475 17.64,16 17.1801818,16 L0.819818182,16 C0.369006873,15.9991868 0.00314224004,15.6654845 0,15.25225 L9.08364293e-17,10.74775 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z M1,11 L1,13 L3,13 L3,11 L1,11 Z" id="Combined-Shape-Copy" fill-rule="nonzero" opacity="0.900000036"></path>
+                    <rect id="Rectangle-43" opacity="0.400000006" x="8" y="0" width="2" height="2"></rect>
+                    <rect id="Rectangle-43-Copy" opacity="0.400000006" x="8" y="8" width="2" height="2"></rect>
+                    <rect id="Rectangle-43-Copy-4" opacity="0.400000006" x="8" y="16" width="2" height="2"></rect>
+                </g>
+            </g>
+        </g>
+        <rect id="Rectangle-Copy" fill="#4A5974" x="41" y="516" width="634" height="440" rx="4"></rect>
+        <g id="Group-8-Copy" transform="translate(61.000000, 580.000000)">
+            <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="594" height="80" rx="4"></rect>
+            <g id="Group-10" transform="translate(262.000000, 12.000000)">
+                <text id="API-Server" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                    <tspan x="0" y="53">API Server</tspan>
+                </text>
+                <g id="Glyph/002.Object/017.Column/Green" transform="translate(19.000000, 0.000000)" fill="#55BC8A">
+                    <path d="M3.85111109,6.66666667 L8.5888888,6.66666667 C9.2430394,6.66666667 9.77333323,7.26362033 9.77333323,8 L9.77333323,24 C9.77333323,24.7363797 9.2430394,25.3333333 8.5888888,25.3333333 L3.85111109,25.3333333 C3.1969605,25.3333333 2.66666667,24.7363797 2.66666667,24 L2.66666667,8 C2.66666667,7.26362033 3.1969605,6.66666667 3.85111109,6.66666667 Z" id="Rectangle-4-Copy" fill-opacity="0.4"></path>
+                    <path d="M23.4111112,6.66666667 L28.1488889,6.66666667 C28.8030395,6.66666667 29.3333333,7.26362033 29.3333333,8 L29.3333333,24 C29.3333333,24.7363797 28.8030395,25.3333333 28.1488889,25.3333333 L23.4111112,25.3333333 C22.7569606,25.3333333 22.2266668,24.7363797 22.2266668,24 L22.2266668,8 C22.2266668,7.26362033 22.7569606,6.66666667 23.4111112,6.66666667 Z" id="Rectangle-4-Copy-2"></path>
+                    <path d="M13.6311111,6.66666667 L18.3688889,6.66666667 C19.0230394,6.66666667 19.5533333,7.26362033 19.5533333,8 L19.5533333,24 C19.5533333,24.7363797 19.0230394,25.3333333 18.3688889,25.3333333 L13.6311111,25.3333333 C12.9769606,25.3333333 12.4466667,24.7363797 12.4466667,24 L12.4466667,8 C12.4466667,7.26362033 12.9769606,6.66666667 13.6311111,6.66666667 Z" id="Rectangle-4-Copy-3" fill-opacity="0.4"></path>
+                </g>
+            </g>
+        </g>
+        <g id="Group-8-Copy-3" transform="translate(61.000000, 672.000000)">
+            <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-2)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-1"></use>
+            <g id="Group-10" transform="translate(281.000000, 12.000000)">
+                <text id="Etcd" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                    <tspan x="1" y="53">Etcd</tspan>
+                </text>
+                <g id="Glyph/002.Object/017.Column/Green" fill="#55BC8A">
+                    <path d="M3.85111109,6.66666667 L8.5888888,6.66666667 C9.2430394,6.66666667 9.77333323,7.26362033 9.77333323,8 L9.77333323,24 C9.77333323,24.7363797 9.2430394,25.3333333 8.5888888,25.3333333 L3.85111109,25.3333333 C3.1969605,25.3333333 2.66666667,24.7363797 2.66666667,24 L2.66666667,8 C2.66666667,7.26362033 3.1969605,6.66666667 3.85111109,6.66666667 Z" id="Rectangle-4-Copy" fill-opacity="0.4"></path>
+                    <path d="M23.4111112,6.66666667 L28.1488889,6.66666667 C28.8030395,6.66666667 29.3333333,7.26362033 29.3333333,8 L29.3333333,24 C29.3333333,24.7363797 28.8030395,25.3333333 28.1488889,25.3333333 L23.4111112,25.3333333 C22.7569606,25.3333333 22.2266668,24.7363797 22.2266668,24 L22.2266668,8 C22.2266668,7.26362033 22.7569606,6.66666667 23.4111112,6.66666667 Z" id="Rectangle-4-Copy-2"></path>
+                    <path d="M13.6311111,6.66666667 L18.3688889,6.66666667 C19.0230394,6.66666667 19.5533333,7.26362033 19.5533333,8 L19.5533333,24 C19.5533333,24.7363797 19.0230394,25.3333333 18.3688889,25.3333333 L13.6311111,25.3333333 C12.9769606,25.3333333 12.4466667,24.7363797 12.4466667,24 L12.4466667,8 C12.4466667,7.26362033 12.9769606,6.66666667 13.6311111,6.66666667 Z" id="Rectangle-4-Copy-3" fill-opacity="0.4"></path>
+                </g>
+            </g>
+        </g>
+        <g id="Group-8-Copy-4" transform="translate(61.000000, 764.000000)">
+            <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-4)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-3"></use>
+            <g id="Group-10" transform="translate(264.000000, 12.000000)">
+                <text id="Scheduler" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                    <tspan x="0" y="53">Scheduler</tspan>
+                </text>
+                <g id="Glyph/002.Object/017.Column/Green" transform="translate(17.000000, 0.000000)" fill="#55BC8A">
+                    <path d="M3.85111109,6.66666667 L8.5888888,6.66666667 C9.2430394,6.66666667 9.77333323,7.26362033 9.77333323,8 L9.77333323,24 C9.77333323,24.7363797 9.2430394,25.3333333 8.5888888,25.3333333 L3.85111109,25.3333333 C3.1969605,25.3333333 2.66666667,24.7363797 2.66666667,24 L2.66666667,8 C2.66666667,7.26362033 3.1969605,6.66666667 3.85111109,6.66666667 Z" id="Rectangle-4-Copy" fill-opacity="0.4"></path>
+                    <path d="M23.4111112,6.66666667 L28.1488889,6.66666667 C28.8030395,6.66666667 29.3333333,7.26362033 29.3333333,8 L29.3333333,24 C29.3333333,24.7363797 28.8030395,25.3333333 28.1488889,25.3333333 L23.4111112,25.3333333 C22.7569606,25.3333333 22.2266668,24.7363797 22.2266668,24 L22.2266668,8 C22.2266668,7.26362033 22.7569606,6.66666667 23.4111112,6.66666667 Z" id="Rectangle-4-Copy-2"></path>
+                    <path d="M13.6311111,6.66666667 L18.3688889,6.66666667 C19.0230394,6.66666667 19.5533333,7.26362033 19.5533333,8 L19.5533333,24 C19.5533333,24.7363797 19.0230394,25.3333333 18.3688889,25.3333333 L13.6311111,25.3333333 C12.9769606,25.3333333 12.4466667,24.7363797 12.4466667,24 L12.4466667,8 C12.4466667,7.26362033 12.9769606,6.66666667 13.6311111,6.66666667 Z" id="Rectangle-4-Copy-3" fill-opacity="0.4"></path>
+                </g>
+            </g>
+        </g>
+        <g id="Group-8-Copy-5" transform="translate(61.000000, 856.000000)">
+            <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-6)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-5"></use>
+            <g id="Group-10" transform="translate(232.000000, 12.000000)">
+                <text id="Controller-Manager" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                    <tspan x="0" y="53">Controller Manager</tspan>
+                </text>
+                <g id="Glyph/002.Object/017.Column/Green" transform="translate(49.000000, 0.000000)" fill="#55BC8A">
+                    <path d="M3.85111109,6.66666667 L8.5888888,6.66666667 C9.2430394,6.66666667 9.77333323,7.26362033 9.77333323,8 L9.77333323,24 C9.77333323,24.7363797 9.2430394,25.3333333 8.5888888,25.3333333 L3.85111109,25.3333333 C3.1969605,25.3333333 2.66666667,24.7363797 2.66666667,24 L2.66666667,8 C2.66666667,7.26362033 3.1969605,6.66666667 3.85111109,6.66666667 Z" id="Rectangle-4-Copy" fill-opacity="0.4"></path>
+                    <path d="M23.4111112,6.66666667 L28.1488889,6.66666667 C28.8030395,6.66666667 29.3333333,7.26362033 29.3333333,8 L29.3333333,24 C29.3333333,24.7363797 28.8030395,25.3333333 28.1488889,25.3333333 L23.4111112,25.3333333 C22.7569606,25.3333333 22.2266668,24.7363797 22.2266668,24 L22.2266668,8 C22.2266668,7.26362033 22.7569606,6.66666667 23.4111112,6.66666667 Z" id="Rectangle-4-Copy-2"></path>
+                    <path d="M13.6311111,6.66666667 L18.3688889,6.66666667 C19.0230394,6.66666667 19.5533333,7.26362033 19.5533333,8 L19.5533333,24 C19.5533333,24.7363797 19.0230394,25.3333333 18.3688889,25.3333333 L13.6311111,25.3333333 C12.9769606,25.3333333 12.4466667,24.7363797 12.4466667,24 L12.4466667,8 C12.4466667,7.26362033 12.9769606,6.66666667 13.6311111,6.66666667 Z" id="Rectangle-4-Copy-3" fill-opacity="0.4"></path>
+                </g>
+            </g>
+        </g>
+        <g id="Group-5" transform="translate(61.000000, 536.000000)" fill="#FFFFFF">
+            <text id="Master1:-192.168.0.1" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18">
+                <tspan x="44" y="18">Master1: 192.168.0.1</tspan>
+            </text>
+            <g id="Glyph/002.Object/083.Nodes/White-">
+                <g id="Group-2" transform="translate(3.000000, 3.000000)">
+                    <path d="M9.08364293e-17,2.74775 C9.08364293e-17,2.33525 0.36,2 0.819818182,2 L17.1801818,2 C17.6318182,2 18,2.33975 18,2.74775 L18,7.25225 C18,7.66475 17.64,8 17.1801818,8 L0.819818182,8 C0.369006873,7.99918684 0.00314224004,7.66548446 0,7.25225 L9.08364293e-17,2.74775 Z M4,3 L4,5 L6,5 L6,3 L4,3 Z M1,3 L1,5 L3,5 L3,3 L1,3 Z" id="Combined-Shape" fill-rule="nonzero" opacity="0.900000036"></path>
+                    <path d="M9.08364293e-17,10.74775 C9.08364293e-17,10.33525 0.36,10 0.819818182,10 L17.1801818,10 C17.6318182,10 18,10.33975 18,10.74775 L18,15.25225 C18,15.66475 17.64,16 17.1801818,16 L0.819818182,16 C0.369006873,15.9991868 0.00314224004,15.6654845 0,15.25225 L9.08364293e-17,10.74775 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z M1,11 L1,13 L3,13 L3,11 L1,11 Z" id="Combined-Shape-Copy" fill-rule="nonzero" opacity="0.900000036"></path>
+                    <rect id="Rectangle-43" opacity="0.400000006" x="8" y="0" width="2" height="2"></rect>
+                    <rect id="Rectangle-43-Copy" opacity="0.400000006" x="8" y="8" width="2" height="2"></rect>
+                    <rect id="Rectangle-43-Copy-4" opacity="0.400000006" x="8" y="16" width="2" height="2"></rect>
+                </g>
+            </g>
+        </g>
+        <path id="Line-Copy" d="M356.329349,484.014629 L355.258869,368.013842 L355.245028,366.513906 L358.2449,366.486222 L358.258742,367.986158 L359.329221,483.986946 L367.328881,483.913123 L358.004614,502.999979 L348.32969,484.088452 L356.329349,484.014629 Z" fill="#55BC8A" fill-rule="nonzero"></path>
+        <g id="Group-6" transform="translate(357.000000, 402.000000)">
+            <path id="Line-Copy-2" d="M54.5,26 L54.5,24.5749775 L54.5,16.5749775 L54.5,15.0749775 L57.5,15.0749775 L57.5,16.5749775 L57.5,24.5749775 L57.5,26 L65.5,26 L56,45 L46.5,26 L54.5,26 Z M54.5,0.574977463 L54.5,-0.925022537 L57.5,-0.925022537 L57.5,0.574977463 L57.5,8.57497746 L57.5,10.0749775 L54.5,10.0749775 L54.5,8.57497746 L54.5,0.574977463 Z" fill="#55BC8A" fill-rule="nonzero"></path>
+            <path d="M56,0.574977463 L0.75880562,0.574977463" id="Line-2" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+        </g>
+        <g id="Group-9" transform="translate(880.000000, 226.000000)">
+            <g id="Group-7-Copy-2" transform="translate(80.000000, 0.000000)">
+                <rect id="Rectangle" fill-opacity="0.6" fill="#36435C" x="0" y="0" width="440" height="314" rx="4"></rect>
+                <g id="Group-2" transform="translate(20.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy" transform="translate(112.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy-2" transform="translate(204.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy-3" transform="translate(340.000000, 215.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="…" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="33" y="65">…</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-8-Copy" transform="translate(20.000000, 64.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="400" height="80" rx="4"></rect>
+                    <g id="Group-10" transform="translate(175.000000, 12.000000)">
+                        <text id="Kubelet" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="0" y="53">Kubelet</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/017.Column/Green" transform="translate(9.000000, 0.000000)" fill="#55BC8A">
+                            <path d="M3.85111109,6.66666667 L8.5888888,6.66666667 C9.2430394,6.66666667 9.77333323,7.26362033 9.77333323,8 L9.77333323,24 C9.77333323,24.7363797 9.2430394,25.3333333 8.5888888,25.3333333 L3.85111109,25.3333333 C3.1969605,25.3333333 2.66666667,24.7363797 2.66666667,24 L2.66666667,8 C2.66666667,7.26362033 3.1969605,6.66666667 3.85111109,6.66666667 Z" id="Rectangle-4-Copy" fill-opacity="0.4"></path>
+                            <path d="M23.4111112,6.66666667 L28.1488889,6.66666667 C28.8030395,6.66666667 29.3333333,7.26362033 29.3333333,8 L29.3333333,24 C29.3333333,24.7363797 28.8030395,25.3333333 28.1488889,25.3333333 L23.4111112,25.3333333 C22.7569606,25.3333333 22.2266668,24.7363797 22.2266668,24 L22.2266668,8 C22.2266668,7.26362033 22.7569606,6.66666667 23.4111112,6.66666667 Z" id="Rectangle-4-Copy-2"></path>
+                            <path d="M13.6311111,6.66666667 L18.3688889,6.66666667 C19.0230394,6.66666667 19.5533333,7.26362033 19.5533333,8 L19.5533333,24 C19.5533333,24.7363797 19.0230394,25.3333333 18.3688889,25.3333333 L13.6311111,25.3333333 C12.9769606,25.3333333 12.4466667,24.7363797 12.4466667,24 L12.4466667,8 C12.4466667,7.26362033 12.9769606,6.66666667 13.6311111,6.66666667 Z" id="Rectangle-4-Copy-3" fill-opacity="0.4"></path>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(20.000000, 20.000000)" fill="#FFFFFF">
+                    <text id="Node1:-192.168.0.5" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18">
+                        <tspan x="44" y="18">Node1: 192.168.0.5</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/083.Nodes/White-">
+                        <g id="Group-2" transform="translate(3.000000, 3.000000)">
+                            <path d="M9.08364293e-17,2.74775 C9.08364293e-17,2.33525 0.36,2 0.819818182,2 L17.1801818,2 C17.6318182,2 18,2.33975 18,2.74775 L18,7.25225 C18,7.66475 17.64,8 17.1801818,8 L0.819818182,8 C0.369006873,7.99918684 0.00314224004,7.66548446 0,7.25225 L9.08364293e-17,2.74775 Z M4,3 L4,5 L6,5 L6,3 L4,3 Z M1,3 L1,5 L3,5 L3,3 L1,3 Z" id="Combined-Shape" fill-rule="nonzero" opacity="0.900000036"></path>
+                            <path d="M9.08364293e-17,10.74775 C9.08364293e-17,10.33525 0.36,10 0.819818182,10 L17.1801818,10 C17.6318182,10 18,10.33975 18,10.74775 L18,15.25225 C18,15.66475 17.64,16 17.1801818,16 L0.819818182,16 C0.369006873,15.9991868 0.00314224004,15.6654845 0,15.25225 L9.08364293e-17,10.74775 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z M1,11 L1,13 L3,13 L3,11 L1,11 Z" id="Combined-Shape-Copy" fill-rule="nonzero" opacity="0.900000036"></path>
+                            <rect id="Rectangle-43" opacity="0.400000006" x="8" y="0" width="2" height="2"></rect>
+                            <rect id="Rectangle-43-Copy" opacity="0.400000006" x="8" y="8" width="2" height="2"></rect>
+                            <rect id="Rectangle-43-Copy-4" opacity="0.400000006" x="8" y="16" width="2" height="2"></rect>
+                        </g>
+                    </g>
+                </g>
+                <path d="M60,175.5 L380,175.5" id="Line-3" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M380.5,176.736114 L380.5,206" id="Line-4" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M244.5,177 L244.5,206.263886" id="Line-4-Copy" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M220.5,156 L220.5,175.760651" id="Line-4-Copy-4" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M152.5,175.760651 L152.5,205.024537" id="Line-4-Copy-2" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M60,176.248382 L60,205.512269" id="Line-4-Copy-3" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+            </g>
+            <g id="Group-7-Copy" transform="translate(40.000000, 64.000000)">
+                <rect id="Rectangle" fill-opacity="0.8" fill="#36435C" x="0" y="0" width="440" height="314" rx="4"></rect>
+                <g id="Group-2" transform="translate(20.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy" transform="translate(112.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy-2" transform="translate(204.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy-3" transform="translate(340.000000, 215.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="…" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="33" y="65">…</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-8-Copy" transform="translate(20.000000, 64.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="400" height="80" rx="4"></rect>
+                    <g id="Group-10" transform="translate(175.000000, 12.000000)">
+                        <text id="Kubelet" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="0" y="53">Kubelet</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/017.Column/Green" transform="translate(9.000000, 0.000000)" fill="#55BC8A">
+                            <path d="M3.85111109,6.66666667 L8.5888888,6.66666667 C9.2430394,6.66666667 9.77333323,7.26362033 9.77333323,8 L9.77333323,24 C9.77333323,24.7363797 9.2430394,25.3333333 8.5888888,25.3333333 L3.85111109,25.3333333 C3.1969605,25.3333333 2.66666667,24.7363797 2.66666667,24 L2.66666667,8 C2.66666667,7.26362033 3.1969605,6.66666667 3.85111109,6.66666667 Z" id="Rectangle-4-Copy" fill-opacity="0.4"></path>
+                            <path d="M23.4111112,6.66666667 L28.1488889,6.66666667 C28.8030395,6.66666667 29.3333333,7.26362033 29.3333333,8 L29.3333333,24 C29.3333333,24.7363797 28.8030395,25.3333333 28.1488889,25.3333333 L23.4111112,25.3333333 C22.7569606,25.3333333 22.2266668,24.7363797 22.2266668,24 L22.2266668,8 C22.2266668,7.26362033 22.7569606,6.66666667 23.4111112,6.66666667 Z" id="Rectangle-4-Copy-2"></path>
+                            <path d="M13.6311111,6.66666667 L18.3688889,6.66666667 C19.0230394,6.66666667 19.5533333,7.26362033 19.5533333,8 L19.5533333,24 C19.5533333,24.7363797 19.0230394,25.3333333 18.3688889,25.3333333 L13.6311111,25.3333333 C12.9769606,25.3333333 12.4466667,24.7363797 12.4466667,24 L12.4466667,8 C12.4466667,7.26362033 12.9769606,6.66666667 13.6311111,6.66666667 Z" id="Rectangle-4-Copy-3" fill-opacity="0.4"></path>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(20.000000, 20.000000)" fill="#FFFFFF">
+                    <text id="Node1:-192.168.0.4" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18">
+                        <tspan x="44" y="18">Node1: 192.168.0.4</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/083.Nodes/White-">
+                        <g id="Group-2" transform="translate(3.000000, 3.000000)">
+                            <path d="M9.08364293e-17,2.74775 C9.08364293e-17,2.33525 0.36,2 0.819818182,2 L17.1801818,2 C17.6318182,2 18,2.33975 18,2.74775 L18,7.25225 C18,7.66475 17.64,8 17.1801818,8 L0.819818182,8 C0.369006873,7.99918684 0.00314224004,7.66548446 0,7.25225 L9.08364293e-17,2.74775 Z M4,3 L4,5 L6,5 L6,3 L4,3 Z M1,3 L1,5 L3,5 L3,3 L1,3 Z" id="Combined-Shape" fill-rule="nonzero" opacity="0.900000036"></path>
+                            <path d="M9.08364293e-17,10.74775 C9.08364293e-17,10.33525 0.36,10 0.819818182,10 L17.1801818,10 C17.6318182,10 18,10.33975 18,10.74775 L18,15.25225 C18,15.66475 17.64,16 17.1801818,16 L0.819818182,16 C0.369006873,15.9991868 0.00314224004,15.6654845 0,15.25225 L9.08364293e-17,10.74775 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z M1,11 L1,13 L3,13 L3,11 L1,11 Z" id="Combined-Shape-Copy" fill-rule="nonzero" opacity="0.900000036"></path>
+                            <rect id="Rectangle-43" opacity="0.400000006" x="8" y="0" width="2" height="2"></rect>
+                            <rect id="Rectangle-43-Copy" opacity="0.400000006" x="8" y="8" width="2" height="2"></rect>
+                            <rect id="Rectangle-43-Copy-4" opacity="0.400000006" x="8" y="16" width="2" height="2"></rect>
+                        </g>
+                    </g>
+                </g>
+                <path d="M60,175.5 L380,175.5" id="Line-3" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M380.5,176.736114 L380.5,206" id="Line-4" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M244.5,177 L244.5,206.263886" id="Line-4-Copy" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M220.5,156 L220.5,175.760651" id="Line-4-Copy-4" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M152.5,175.760651 L152.5,205.024537" id="Line-4-Copy-2" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M60,176.248382 L60,205.512269" id="Line-4-Copy-3" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+            </g>
+            <g id="Group-7" transform="translate(0.000000, 128.000000)">
+                <rect id="Rectangle" fill="#36435C" x="0" y="0" width="440" height="314" rx="4"></rect>
+                <g id="Group-2" transform="translate(20.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy" transform="translate(112.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy-2" transform="translate(204.000000, 214.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="19" y="65">容器组</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-2-Copy-3" transform="translate(340.000000, 215.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="80" height="80" rx="4"></rect>
+                    <text id="…" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="33" y="65">…</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/016.Container/Black" transform="translate(24.000000, 12.000000)">
+                        <path d="M27.5257973,8.00166365 L21.7815212,10.6666667 L21.7866669,21.3421632 L15.9954862,24.0039877 L16.005964,29.3336386 L4.45667347,24.0027107 L4.45667347,13.3333333 L10.2402644,10.6665192 L10.2402644,5.33363858 L16.005964,2.66697191 L27.5257973,8.00166365 Z M10.1866665,16 L10.1866665,21.3333333 L16,18.6666667 L16,13.3333333 L10.1866665,16 Z" id="Combined-Shape" fill="#B6C2CD"></path>
+                        <polygon id="Path-5-Copy" fill="#324558" points="21.7815212 10.6666667 27.5257973 8.00166365 27.5257973 24.0027107 16.005964 29.3336386 15.9954862 24.0039877 21.7866669 21.3421632"></polygon>
+                        <polygon id="Path-6" fill="#324558" points="10.1866665 16 10.1866665 21.3333333 16 18.6666667 16 13.3333333"></polygon>
+                    </g>
+                </g>
+                <g id="Group-8-Copy" transform="translate(20.000000, 64.000000)">
+                    <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="400" height="80" rx="4"></rect>
+                    <g id="Group-10" transform="translate(175.000000, 12.000000)">
+                        <text id="Kubelet" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="0" y="53">Kubelet</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/017.Column/Green" transform="translate(9.000000, 0.000000)" fill="#55BC8A">
+                            <path d="M3.85111109,6.66666667 L8.5888888,6.66666667 C9.2430394,6.66666667 9.77333323,7.26362033 9.77333323,8 L9.77333323,24 C9.77333323,24.7363797 9.2430394,25.3333333 8.5888888,25.3333333 L3.85111109,25.3333333 C3.1969605,25.3333333 2.66666667,24.7363797 2.66666667,24 L2.66666667,8 C2.66666667,7.26362033 3.1969605,6.66666667 3.85111109,6.66666667 Z" id="Rectangle-4-Copy" fill-opacity="0.4"></path>
+                            <path d="M23.4111112,6.66666667 L28.1488889,6.66666667 C28.8030395,6.66666667 29.3333333,7.26362033 29.3333333,8 L29.3333333,24 C29.3333333,24.7363797 28.8030395,25.3333333 28.1488889,25.3333333 L23.4111112,25.3333333 C22.7569606,25.3333333 22.2266668,24.7363797 22.2266668,24 L22.2266668,8 C22.2266668,7.26362033 22.7569606,6.66666667 23.4111112,6.66666667 Z" id="Rectangle-4-Copy-2"></path>
+                            <path d="M13.6311111,6.66666667 L18.3688889,6.66666667 C19.0230394,6.66666667 19.5533333,7.26362033 19.5533333,8 L19.5533333,24 C19.5533333,24.7363797 19.0230394,25.3333333 18.3688889,25.3333333 L13.6311111,25.3333333 C12.9769606,25.3333333 12.4466667,24.7363797 12.4466667,24 L12.4466667,8 C12.4466667,7.26362033 12.9769606,6.66666667 13.6311111,6.66666667 Z" id="Rectangle-4-Copy-3" fill-opacity="0.4"></path>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-5" transform="translate(20.000000, 20.000000)" fill="#FFFFFF">
+                    <text id="Node1:-192.168.0.3" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18">
+                        <tspan x="44" y="18">Node1: 192.168.0.3</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/083.Nodes/White-">
+                        <g id="Group-2" transform="translate(3.000000, 3.000000)">
+                            <path d="M9.08364293e-17,2.74775 C9.08364293e-17,2.33525 0.36,2 0.819818182,2 L17.1801818,2 C17.6318182,2 18,2.33975 18,2.74775 L18,7.25225 C18,7.66475 17.64,8 17.1801818,8 L0.819818182,8 C0.369006873,7.99918684 0.00314224004,7.66548446 0,7.25225 L9.08364293e-17,2.74775 Z M4,3 L4,5 L6,5 L6,3 L4,3 Z M1,3 L1,5 L3,5 L3,3 L1,3 Z" id="Combined-Shape" fill-rule="nonzero" opacity="0.900000036"></path>
+                            <path d="M9.08364293e-17,10.74775 C9.08364293e-17,10.33525 0.36,10 0.819818182,10 L17.1801818,10 C17.6318182,10 18,10.33975 18,10.74775 L18,15.25225 C18,15.66475 17.64,16 17.1801818,16 L0.819818182,16 C0.369006873,15.9991868 0.00314224004,15.6654845 0,15.25225 L9.08364293e-17,10.74775 Z M4,11 L4,13 L6,13 L6,11 L4,11 Z M1,11 L1,13 L3,13 L3,11 L1,11 Z" id="Combined-Shape-Copy" fill-rule="nonzero" opacity="0.900000036"></path>
+                            <rect id="Rectangle-43" opacity="0.400000006" x="8" y="0" width="2" height="2"></rect>
+                            <rect id="Rectangle-43-Copy" opacity="0.400000006" x="8" y="8" width="2" height="2"></rect>
+                            <rect id="Rectangle-43-Copy-4" opacity="0.400000006" x="8" y="16" width="2" height="2"></rect>
+                        </g>
+                    </g>
+                </g>
+                <path d="M60,175.5 L380,175.5" id="Line-3" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M380.5,176.736114 L380.5,206" id="Line-4" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M244.5,177 L244.5,206.263886" id="Line-4-Copy" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M220.5,156 L220.5,175.760651" id="Line-4-Copy-4" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M152.5,175.760651 L152.5,205.024537" id="Line-4-Copy-2" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+                <path d="M60,176.248382 L60,205.512269" id="Line-4-Copy-3" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+            </g>
+        </g>
+        <path d="M704,320.5 L794.760417,320.5" id="Line-3" stroke="#55BC8A" stroke-width="3" stroke-linecap="square" stroke-dasharray="8"></path>
+        <g id="Group-11" transform="translate(792.000000, 256.000000)" stroke="#55BC8A" stroke-dasharray="8" stroke-linecap="square" stroke-width="3">
+            <path d="M2.765625,0.5 L147.46875,0.5" id="Line-3-Copy"></path>
+            <path d="M2,0.5 L2,129" id="Line-4-Copy-3"></path>
+            <path d="M2.76041667,64.5 L104.625161,64.5" id="Line-3-Copy-2"></path>
+            <path d="M2.76694309,129 L66.5306457,129" id="Line-3-Copy-3"></path>
+        </g>
+    </g>
+</svg>

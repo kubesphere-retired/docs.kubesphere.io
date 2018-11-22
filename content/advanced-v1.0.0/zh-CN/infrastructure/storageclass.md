@@ -2,7 +2,7 @@
 title: "存储类型"
 ---
 
-存储类型（StorageClass）是由 `集群管理员` 配置存储服务端的参数，并按类型提供存储给集群用户使用。通常情况下，创建存储卷之前需要先创建存储类型，目前支持的存储类型如 [青云块存储](https://www.qingcloud.com/products/volume/)、 [企业级分布式存储 NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)、[EmptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir) 等。
+存储类型（StorageClass）是由 `集群管理员` 配置存储服务端的参数，并按类型提供存储给集群用户使用。通常情况下，创建存储卷之前需要先创建存储类型，目前支持的存储类型如 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/)、 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume (仅 all-in-one 支持)](https://kubernetes.io/docs/concepts/storage/volumes/#local) 等。
 
 ## 创建存储类型
 
@@ -21,11 +21,16 @@ title: "存储类型"
 
 ### 第二步：存储类型设置
 
-设置存储类型的详细参数，这一步的参数会根据 供应者 (Provisioner) 不同而变化，以设置青云块存储插件 CSI-QingCloud 为例：
+设置存储类型的详细参数，这一步的参数会根据 供应者 (Provisioner) 不同而变化，以设置青云块存储插件 CSI-QingCloud 为例，其他存储类型的参数释义参见 [存储配置说明](../../installation/storage-configuration)。
 
 ![存储类型 - 参数设置](/ae-sc-setting.png)
 
 - 供应者（Provisioner）：实际上是个存储分配器，用来决定使用哪个卷插件分配 PV，例如选择 csi-qingcloud, Ceph RBD 或 GlusterFS。
+
+- 访问类型（Access Modes）：指定 PV 的访问模式，每个 PV 都有一套自己的用来描述特定功能的访问模式。注意，一个卷一次只能使用一种访问模式挂载，即使它支持多种访问模式。
+   - ReadWriteOnce——该卷可以被单个节点以读/写模式挂载。
+   - ReadOnlyMany——该卷可以被多个节点以只读模式挂载。
+   - ReadWriteMany——该卷可以被多个节点以读/写模式挂载。
 
 - type: 云平台存储卷类型。比如在青云的公有云上， 0 代表性能型硬盘。3 代表超高性能型硬盘。1 或 2（根据集群所在区不同而参数不同）代表容量型硬盘。 详见 [QingCloud 文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)。
 
