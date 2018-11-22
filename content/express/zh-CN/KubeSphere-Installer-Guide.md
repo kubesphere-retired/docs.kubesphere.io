@@ -65,6 +65,8 @@ $ cd kubesphere-all-express-1.0.0-alpha
 
 KubeSphere 部署过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.10.5，目前已支持 v1.11.2，如需安装 v1.11.2 可在配置文件 `conf/vars.yaml` 中修改 `kube_version` 的参数为 v1.11.2，再执行安装，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
+> 注意，若下载的是离线安装包，安装仅支持默认的 Kubernetes v1.10.5，不支持修改版本号。
+
 参考以下步骤开始 all-in-one 部署：
 
 **1.** 进入 `scripts` 目录

@@ -86,7 +86,7 @@ pv-local     10Gi       RWO            Delete           Available               
 
 ## 删除 Local Volume PV 和文件夹 
 
-Local Volume 手动创建的 PersistentVolume 也需要手动清理和删除。
+若需要 删除 Local Volume，则手动创建的 PersistentVolume 也需要手动清理和删除。
 
 1. 删除 Local Volume PV：
 

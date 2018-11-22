@@ -8,4 +8,4 @@ title: "产品简介"
 
 ## 功能架构
 
-![功能架构图](/feature-overview.png)
+![功能架构图](/feature-architecture.svg)

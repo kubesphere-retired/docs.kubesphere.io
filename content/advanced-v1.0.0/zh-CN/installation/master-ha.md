@@ -15,7 +15,7 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 ## Master 节点高可用架构
 
-![Master 节点高可用架构](/master-ha-design.png)
+![Master 节点高可用架构](/master-ha-design.svg)
 
 以配置 5 台主机中两个 master 节点为例，主机规格参考 [Multi-node 模式 - 节点规格](../Multi-node/#第一步-准备主机)，编辑主机配置文件 `conf/hosts.ini`。若需要配置 etcd 的高可用，可在 [etcd] 部分填入主机名比如 master1、 node1 和 node2 作为 etcd 集群，etcd 节点个数需要设置为 `奇数个`。
 

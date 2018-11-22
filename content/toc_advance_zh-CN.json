@@ -116,6 +116,9 @@
             },
             {
               "entry": "./advanced-v1.0.0/zh-CN/infrastructure/nodes.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/infrastructure/storageclass.md"
             }
           ]
         },
@@ -173,9 +176,6 @@
             },
             {
               "entry": "./advanced-v1.0.0/zh-CN/storage/PVC.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/storage/storageclass.md"
             },
             {
               "entry": "./advanced-v1.0.0/zh-CN/storage/local-volume.md"

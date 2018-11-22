@@ -364,8 +364,8 @@ root@glusterfs-server1:~# heketi-cli topology load --json=/etc/heketi/topology.j
 
 ## 验证 Heketi 安装
 
-12、执行以下命令查看 Heketi 安装的节点信息：
+12、执行以下命令查看 Heketi 的安装信息：
 
 ```
-heketi-cli node list
+heketi-cli volume list --secret 123456 --user admin 
 ```
