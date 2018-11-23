@@ -18,10 +18,11 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 1.1. 在当前项目下左侧菜单栏的 **配置中心** 选择 **ConfigMaps**，点击创建，基本信息如下：
 
-- 名称：作为 Wordpress 容器中环境变量的名称，填写 `WORDPRESS_DB_PASSWORD`。
+- 名称：作为 Wordpress 容器中环境变量的名称，可自定义。
+- 别名：别名可以由任意字符组成，帮助您更好的区分资源，此处填写 `WORDPRESS_DB_PASSWORD`。
 - 描述信息：Wordpress password。
 
-1.2. ConfigMap 是以键值对的形式存在，因此键值对设置为 `WORDPRESS_DB_PASSWORD: 123456`。
+1.2. ConfigMap 是以键值对的形式存在，因此键值对设置为 `WORDPRESS_DB_PASSWORD` 和 `123456`。
 
 ![创建 ConfigMap](/wordpress-configmap.png)
 
