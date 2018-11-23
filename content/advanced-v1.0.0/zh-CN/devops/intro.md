@@ -10,4 +10,14 @@ title: "DevOps 工程概述"
 
 对企业而言，高效可靠的 CI/CD 流水线是一个 IT 组织实现软件应用与服务快速交付的基础，虽然业界流行的 CI/CD 工具很多，比如 Travis CI、Teamcity 和 Jenkins 等，但如今大量企业选择采用 Jenkins 来搭建其交付流水线。谈到 Jenkins，大部分人肯定耳熟能详，持续集成/持续交付，自动化部署工具，测试工具，以及丰富的插件支持，配合目前大多数开发工具, 简直是万能的瑞士军刀。
 
-因此，在经过调研之后，我们的 DevOps 工程选择基于 Jenkins 提供可视化的 CI/CD 流水线构建，正是因为 Jenkins 易配置、支持 JUnit/TestNG 测试报告、支持分布式构建、支持众多第三方插件等特点。
+因此，在经过调研之后，我们的 DevOps 工程选择基于 Jenkins 提供可视化的 CI/CD 流水线构建或基于代码仓库已有的 Jenkinfile 构建流水线，正是因为 Jenkins 易配置、支持 JUnit/TestNG 测试报告、支持分布式构建、支持众多第三方插件等特点。KubeSphere 的 DevOps 工程下 Jenkins 流水线是基于 KubeSphere 的动态 Jenkins Slave，也就是说 Jenkins Slave 是具有动态伸缩的能力，能够根据任务的执行状态进行动态创建或自动注销释放资源。实际上， Jenkins Master 和 Jenkins Slave 以 Pod 形式运行在 KubeSphere 集群的 Node 上，Master 运行在其中一个节点，并且将其配置数据存储到一个 Volume 上去，Slave 运行在各个节点上，并且它不是一直处于运行状态，它会按照需求动态的创建并自动删除。
+
+上述的工作流程可以理解为：当 Jenkins Master 接受到 Build 请求时，会根据配置的 Label 动态创建一个运行在 Pod 中的 Jenkins Slave 并注册到 Master 上，当运行完任务后，这个 Slave 会被注销并且这个 Pod 也会自动删除，恢复到最初状态。
+
+所以，这种动态的 Jenkins Slave 优势就显而易见了：
+
+- 动态伸缩，合理使用资源，每次运行任务时，会自动创建一个 Jenkins Slave，任务完成后，Slave 自动注销并删除容器，资源自动释放，而且 KubeSphere 会根据每个资源的使用情况，动态分配 Slave 到空闲的节点上创建，降低出现因某节点资源利用率高，还排队等待在该节点的情况。
+- 扩展性好，当 KubeSphere 集群的资源严重不足而导致任务排队等待时，可以很容易的添加一个 KubeSphere Node 到集群中，从而实现扩展。
+- 高可用，当 Jenkins Master 出现故障时，KubeSphere 会自动创建一个新的 Jenkins Master 容器，并且将 Volume 分配给新创建的容器，保证数据不丢失，从而达到集群服务高可用。
+
+

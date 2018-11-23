@@ -17,11 +17,12 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 
 1.1. 在当前项目下左侧菜单栏的 **配置中心** 选择 **Secrets**，点击创建，基本信息如下：
 
-- 名称：作为 MySQL 容器中环境变量的名称，填写 `MYSQL_ROOT_PASSWORD`。
+- 名称：作为 MySQL 容器中环境变量的名称，可自定义。
+- 别名：别名可以由任意字符组成，帮助您更好的区分资源，此处填写 `MYSQL_ROOT_PASSWORD`。
 - 描述信息：MySQL password。
 
 
-1.2. Secret 设置页，类型选择默认 (Opaque)，Data 填写 `MYSQL_ROOT_PASSWORD 123456`，完成 Secret 创建。
+1.2. Secret 设置页，类型选择默认 (Opaque)，Data 的键值对填写 `MYSQL_ROOT_PASSWORD` 和 `123456`，完成 Secret 创建。
 
 ![Secret 设置](/mysql-secret-setting.png)
 

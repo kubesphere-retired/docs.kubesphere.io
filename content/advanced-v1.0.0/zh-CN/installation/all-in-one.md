@@ -9,12 +9,13 @@ title: "All-in-One 模式"
 
 ### 第一步: 准备主机
 
-您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的安装，若使用 ubuntu 建议使用其最新的版本 16.04.5。
+您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的安装，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
 | Ubuntu 16.04/18.04 LTS （64 bit） | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 | CentOS 7.5 （64 bit） | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 ### 第二步: 准备安装包
 
@@ -50,7 +51,7 @@ KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台
 $ cd scripts
 ```
 
-**2.** 执行 `install.sh` 脚本：
+**2.** 建议使用 root 用户安装，执行 `install.sh` 脚本：
 
 ```bash
 $ ./install.sh

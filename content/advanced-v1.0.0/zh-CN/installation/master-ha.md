@@ -60,8 +60,8 @@ kube-master
 ## External LB example config
 ## apiserver_loadbalancer_domain_name: "lb.kubesphere.local"
 loadbalancer_apiserver:
-address: 192.168.0.10
-port: 6443
+  address: 192.168.0.10
+  port: 6443
 ```
 
 完成 master 高可用的参数配置后，可继续参阅 [Multi-node 模式](../multi-node) 进行多节点的安装。
