@@ -20,12 +20,12 @@ title: "存储概述"
 
 ### 存储类型
 
-KubeSphere 支持的存储类型有 QingCloud CSI (QingCloud 云平台块存储插件)、NeonSAN CSI (QingStor NeonSAN 分布式存储)、NFS、GlusterFS、Ceph RBD、Local (仅 all-in-one 中使用)。
+KubeSphere 支持的存储类型有 QingCloud CSI (QingCloud 云平台块存储插件)、NeonSAN CSI (QingStor NeonSAN 分布式存储)、NFS、GlusterFS、Ceph RBD、Local (仅 all-in-one 中使用)，安装时配置这类存储服务请参考 [存储配置说明](../../installation/storage-configuration)。
 
 
 ### Local Volume
 
-[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录。本地卷只能用作静态创建的 PersistentVolume。All-in-One 模式安装默认会用 local storage 作为存储类型，由于 local storage 不支持动态分配，installer 会预先创建 10 个可用的 10G PV 供使用，若存储空间不足则需要手动创建 Persistent Volume (PV)，参见 [Local Volume 使用方法](../ae-local-volume/#local-volume-使用方法)。
+[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录。本地卷只能用作静态创建的 PersistentVolume。All-in-One 模式安装默认会用 local volume 作为存储类型，由于 local volume 不支持动态分配，installer 会预先创建 10 个可用的 10G PV 供使用，若存储空间不足则需要手动创建 Persistent Volume (PV)，参见 [Local Volume 使用方法](../ae-local-volume/#local-volume-使用方法)。
 
 
 ### QingCloud 云平台块存储
@@ -34,7 +34,7 @@ KubeSphere 支持的存储类型有 QingCloud CSI (QingCloud 云平台块存储�
 
 ### Ceph RBD
 
-[CephRBD](https://ceph.com/) 是一个分布式存储系统，KubeSphere 测试过的存储服务端 Ceph RBD 服务端版本为 v0.94.10，`Ceph` 服务端集群部署可参考 [部署 Ceph 存储集群](../ae-ceph)，正式环境搭建 Ceph 存储服务集群请参考 [Install Ceph](http://docs.ceph.com/docs/master/)。
+[Ceph RBD](https://ceph.com/) 是一个分布式存储系统，KubeSphere 测试过的存储服务端 Ceph RBD 服务端版本为 v0.94.10，`Ceph` 服务端集群部署可参考 [部署 Ceph 存储集群](../ae-ceph)，正式环境搭建 Ceph 存储服务集群请参考 [Install Ceph](http://docs.ceph.com/docs/master/)。
 
 ### GlusterFS
 

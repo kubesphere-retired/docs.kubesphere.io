@@ -4,7 +4,7 @@ title: "存储配置说明"
 
 Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行部署测试。若在正式环境使用需配置 KubeSphere 支持的持久化存储服务，并准备相应的存储服务端。Installer 支持 [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume (仅支持 all-in-one)](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为持久化存储（更多的存储类型持续更新中）。
 
-同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blb/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的权限或已购买并准备好 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端。
+同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blb/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的权限或已购买并准备好 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端，然后在 `vars.yml` 配置对应的参数即可对接相应的存储服务端。
 
 Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已测试过的版本如下：
 
@@ -13,11 +13,11 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 | Ceph RBD Server | v0.94.10 |若需测试部署可参考 [部署 Ceph 存储集群](/express/zh-CN/ceph-ks-install/)，如果是正式环境搭建请参考 [Install Ceph](http://docs.ceph.com/docs/master/)|
 | Ceph RBD Client | v12.2.5 | Installer 将根据配置自动安装该客户端，仅需在 `vars.yml` 配置对应的参数，参考 [Ceph RBD](../storage-configuration/#ceph-rbd)|
 | GlusterFS Server | v3.7.6 |若需测试部署可参考 [部署 GlusterFS 存储集群](/express/zh-CN/glusterfs-ks-install/)， 如果是正式环境搭建请参考 [Install Gluster](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) 且需要安装 [Heketi 管理端 (v3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin)|
-|GlusterFS Client |v3.12.10|Installer 将根据配置自动安装该客户端，仅需在 `vars.yml` 配置对应的参数，参考 [GlusterFS](../storage-configuration/#glusterfs)|
-|NFS Server | v1.0.9 |Installer 将根据配置自动安装该服务端至当前集群，仅需在 `vars.yml` 配置对应的参数，参考 [NFS Server 配置](../storage-configuration/#nfs) |
-|NFS Client | v3.1.0 |Installer 将根据配置自动安装该客户端，仅需在 `vars.yml` 配置对应的参数，参考 [NFS Client 配置](../storage-configuration/#nfs) |
-| QingCloud-CSI|v0.2.0.1|Installer 将根据配置自动安装该客户端，仅需在 `vars.yml` 配置对应的参数，参考 [QingCloud CSI](../storage-configuration/#qingcloud-csi)|
-| NeonSAN-CSI|v0.3.0|Installer 将根据配置自动安装该客户端，仅需在 `vars.yml` 配置对应的参数，参考 [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
+|GlusterFS Client |v3.12.10|配置详见 [GlusterFS](../storage-configuration/#glusterfs)|
+|NFS Server | v1.0.9 |配置详见 [NFS Server 配置](../storage-configuration/#nfs) |
+|NFS Client | v3.1.0 |配置详见 [NFS Client 配置](../storage-configuration/#nfs) |
+| QingCloud-CSI|v0.2.0.1|参考 [QingCloud CSI](../storage-configuration/#qingcloud-csi)|
+| NeonSAN-CSI|v0.3.0|参考 [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
 
 > 说明：
 > 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
@@ -34,7 +34,7 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 | --- | --- |
 | local\_volume\_provisioner\_enabled | 是否使用 local volume 作为持久化存储，  是：true；否：false |
 | local\_volume\_provisioner\_storage\_class | 存储类型的名称，   默认：local |
-| local\_volume\_is\_default\_class | 是否设定为默认存储类型， 是：true；否：false <br/> 注：系统中存在多种 存储类型时，只能设定一种为默认的存储类型 |
+| local\_volume\_is\_default\_class | 是否设定为默认存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型 |
 
 > 说明： 在您配置好 Local Volume (只有 all-in-one 支持这类存储) 并成功安装 KubeSphere 后，可参阅 [Local Volume 使用方法](../../storage/local-volume)。
 
@@ -47,7 +47,7 @@ KubeSphere 支持使用QingCloud 云平台块存储作为平台的存储服务�
 |**QingCloud-CSI** | **Description**|
 | --- | ---|
 | qy\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
-| qy\_csi\_is\_default\_class|是否设定为默认 storage\_class， 是：true；否：false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为 default\_class|
+| qy\_csi\_is\_default\_class|是否设定为默认的存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型|
 | qy\_access\_key\_id ， <br> qy\_secret\_access\_key|通过[QingCloud 云平台控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
 |qy\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、pek3b （北京3区-B）、pek3c （北京3区-C）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）|
 | type | QingCloud 云平台块存储的类型，0 代表性能型硬盘，1 或 2（根据集群所在区不同而参数不同）代表容量型硬盘，3 代表超高性能型硬盘，详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
@@ -132,7 +132,7 @@ NeonSAN-CSI 插件支持对接 [QingStor NeonSAN](https://docs.qingcloud.com/pro
 | glusterfs\_provisioner\_gidMin | glusterfs\_provisioner\_storage\_class 中 GID 的最小值，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_gidMax | glusterfs\_provisioner\_storage\_class 中 GID 的最大值，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
 | glusterfs\_provisioner\_volumetype | Volume 类型，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| jwt\_admin\_key | heketi 服务器中 /etc/heketi/heketi.json 的 jwt.admin.key 字段 |
+| jwt\_admin\_key | heketi 服务器中 `/etc/heketi/heketi.json` 的 jwt.admin.key 字段 |
 
 > 注： Glusterfs 存储类型中所需的 `glusterfs_provisioner_clusterid` 可在 glusterfs 服务端通过以下命令获得：
 
