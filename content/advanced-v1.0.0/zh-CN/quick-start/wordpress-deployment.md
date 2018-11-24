@@ -22,6 +22,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 - 别名：别名可以由任意字符组成，帮助您更好的区分资源，此处填写 `WORDPRESS_DB_PASSWORD`。
 - 描述信息：Wordpress password。
 
+
 1.2. ConfigMap 是以键值对的形式存在，因此键值对设置为 `WORDPRESS_DB_PASSWORD` 和 `123456`。
 
 ![创建 ConfigMap](/wordpress-configmap.png)
@@ -32,6 +33,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 - 名称：wordpress-pvc
 - 描述信息：Wordpress 持久化存储卷
+
 
 2.2. 下一步，存储卷设置中，存储类型选择预先为集群创建的存储类型，示例中是 [csi-qingcloud](../../storage/qingcloud-storage)，访问模式选择单节点读写 (RWO)，存储卷容量默认 10 Gi。
 
