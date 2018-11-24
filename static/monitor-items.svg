@@ -1,0 +1,1117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="1823px" viewBox="0 0 1440 1823" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>多维度监控</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <rect id="path-5" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+        <rect id="path-7" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-7"></use>
+        </mask>
+        <rect id="path-9" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-10" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-9"></use>
+        </mask>
+        <rect id="path-11" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-12" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-11"></use>
+        </mask>
+        <rect id="path-13" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-14" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-13"></use>
+        </mask>
+        <rect id="path-15" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-16" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-15"></use>
+        </mask>
+        <rect id="path-17" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-18" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-17"></use>
+        </mask>
+        <rect id="path-19" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-20" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-19"></use>
+        </mask>
+        <rect id="path-21" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-22" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-21"></use>
+        </mask>
+        <rect id="path-23" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-24" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-23"></use>
+        </mask>
+        <rect id="path-25" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-26" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-25"></use>
+        </mask>
+        <rect id="path-27" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-28" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-27"></use>
+        </mask>
+        <rect id="path-29" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-30" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-29"></use>
+        </mask>
+        <rect id="path-31" x="0" y="0" width="298" height="48" rx="4"></rect>
+        <mask id="mask-32" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="298" height="48" fill="white">
+            <use xlink:href="#path-31"></use>
+        </mask>
+        <rect id="path-33" x="0" y="0" width="299" height="48" rx="4"></rect>
+        <mask id="mask-34" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="299" height="48" fill="white">
+            <use xlink:href="#path-33"></use>
+        </mask>
+        <rect id="path-35" x="0" y="0" width="299" height="48" rx="4"></rect>
+        <mask id="mask-36" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="299" height="48" fill="white">
+            <use xlink:href="#path-35"></use>
+        </mask>
+        <rect id="path-37" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-38" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-37"></use>
+        </mask>
+        <rect id="path-39" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-40" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-39"></use>
+        </mask>
+        <rect id="path-41" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-42" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-41"></use>
+        </mask>
+        <rect id="path-43" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-44" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-43"></use>
+        </mask>
+        <rect id="path-45" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-46" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-45"></use>
+        </mask>
+        <rect id="path-47" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-48" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-47"></use>
+        </mask>
+        <rect id="path-49" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-50" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-49"></use>
+        </mask>
+        <rect id="path-51" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-52" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-51"></use>
+        </mask>
+        <rect id="path-53" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-54" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-53"></use>
+        </mask>
+        <rect id="path-55" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-56" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-55"></use>
+        </mask>
+        <rect id="path-57" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-58" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-57"></use>
+        </mask>
+        <rect id="path-59" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-60" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-59"></use>
+        </mask>
+        <rect id="path-61" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-62" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-61"></use>
+        </mask>
+        <rect id="path-63" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-64" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-63"></use>
+        </mask>
+        <rect id="path-65" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-66" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-65"></use>
+        </mask>
+        <rect id="path-67" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-68" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-67"></use>
+        </mask>
+        <rect id="path-69" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-70" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-69"></use>
+        </mask>
+        <rect id="path-71" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-72" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-71"></use>
+        </mask>
+        <rect id="path-73" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-74" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-73"></use>
+        </mask>
+        <rect id="path-75" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-76" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-75"></use>
+        </mask>
+        <rect id="path-77" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-78" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-77"></use>
+        </mask>
+        <rect id="path-79" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-80" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-79"></use>
+        </mask>
+        <rect id="path-81" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-82" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-81"></use>
+        </mask>
+        <rect id="path-83" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-84" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-83"></use>
+        </mask>
+        <rect id="path-85" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-86" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-85"></use>
+        </mask>
+        <rect id="path-87" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-88" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-87"></use>
+        </mask>
+        <rect id="path-89" x="0" y="0" width="300" height="40" rx="4"></rect>
+        <mask id="mask-90" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="40" fill="white">
+            <use xlink:href="#path-89"></use>
+        </mask>
+        <rect id="path-91" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-92" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-91"></use>
+        </mask>
+        <rect id="path-93" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-94" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-93"></use>
+        </mask>
+        <rect id="path-95" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-96" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-95"></use>
+        </mask>
+        <rect id="path-97" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-98" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-97"></use>
+        </mask>
+        <rect id="path-99" x="0" y="0" width="298" height="48" rx="4"></rect>
+        <mask id="mask-100" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="298" height="48" fill="white">
+            <use xlink:href="#path-99"></use>
+        </mask>
+        <rect id="path-101" x="0" y="0" width="299" height="48" rx="4"></rect>
+        <mask id="mask-102" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="299" height="48" fill="white">
+            <use xlink:href="#path-101"></use>
+        </mask>
+        <rect id="path-103" x="0" y="0" width="299" height="48" rx="4"></rect>
+        <mask id="mask-104" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="299" height="48" fill="white">
+            <use xlink:href="#path-103"></use>
+        </mask>
+        <rect id="path-105" x="0" y="0" width="285" height="48" rx="4"></rect>
+        <mask id="mask-106" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="285" height="48" fill="white">
+            <use xlink:href="#path-105"></use>
+        </mask>
+        <rect id="path-107" x="0" y="0" width="285" height="48" rx="4"></rect>
+        <mask id="mask-108" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="285" height="48" fill="white">
+            <use xlink:href="#path-107"></use>
+        </mask>
+        <rect id="path-109" x="0" y="0" width="285" height="48" rx="4"></rect>
+        <mask id="mask-110" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="285" height="48" fill="white">
+            <use xlink:href="#path-109"></use>
+        </mask>
+        <rect id="path-111" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-112" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-111"></use>
+        </mask>
+        <rect id="path-113" x="0" y="0" width="300" height="48" rx="4"></rect>
+        <mask id="mask-114" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="300" height="48" fill="white">
+            <use xlink:href="#path-113"></use>
+        </mask>
+    </defs>
+    <g id="多维度监控" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="1440" height="1823"></rect>
+        <rect id="Rectangle" fill="#242E42" x="0" y="0" width="1440" height="1823"></rect>
+        <g id="Group" transform="translate(40.000000, 32.000000)" fill="#FFFFFF">
+            <text id="多维度监控-管理员视角-(集群--&gt;-节" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="28">
+                <tspan x="40" y="21">多维度监控 管理员视角 (集群 -&gt; 节点 -&gt; 容器组 -&gt; 容器)</tspan>
+            </text>
+            <g id="Glyph/002.Object/061.Monitor/White">
+                <path d="M4.66666667,5.83333333 L23.3333333,5.83333333 C24.6219977,5.83333333 25.6666667,6.87800225 25.6666667,8.16666667 L25.6666667,19.8333333 C25.6666667,21.1219977 24.6219977,22.1666667 23.3333333,22.1666667 L4.66666667,22.1666667 C3.37800225,22.1666667 2.33333333,21.1219977 2.33333333,19.8333333 L2.33333333,8.16666667 C2.33333333,6.87800225 3.37800225,5.83333333 4.66666667,5.83333333 Z M22.1748677,15.7949136 C22.844005,15.7949136 23.386448,15.2524707 23.386448,14.5833333 C23.386448,13.914196 22.844005,13.371753 22.1748677,13.371753 C21.5057304,13.371753 20.9632874,13.914196 20.9632874,14.5833333 C20.9632874,15.2524707 21.5057304,15.7949136 22.1748677,15.7949136 Z" id="Combined-Shape" fill-rule="evenodd" opacity="0.400000006"></path>
+                <path d="M21.2010159,13.8624133 C21.05164,14.0638646 20.9632874,14.313281 20.9632874,14.5833333 C20.9632874,14.8932475 21.0796481,15.1759842 21.271064,15.3902378 C20.4205025,15.3789306 19.6781533,14.8106804 19.4452248,13.9924851 L18.8464968,11.889365 L18.4373178,14.2735005 C18.3249565,14.928188 17.8192283,15.4450522 17.167143,15.5716441 C16.4390621,15.7129894 15.7305421,15.3357278 15.4232379,14.6974205 L15.0437483,18.5016151 C14.9719463,19.221394 14.3894115,19.7832578 13.6675091,19.829019 C12.8534345,19.880623 12.1516635,19.2625184 12.1000595,18.4484439 L11.5452088,9.69543603 L11.0171579,15.750046 C10.9650402,16.3476253 10.5322412,16.8427951 9.94701101,16.9744119 C9.20470645,17.1413543 8.46761613,16.6749311 8.30067371,15.9326266 L7.82778113,13.8299237 L7.40059795,14.5054648 C7.04779234,15.0633864 6.43371592,15.4016235 5.77360361,15.4016235 L4.66666667,15.4016235 L4.66666667,13.8849569 L5.77360361,13.8849569 C5.91362743,13.8849569 6.04388607,13.8132096 6.11872362,13.6948626 L6.65004591,12.8546374 C7.07391631,12.1843351 7.96091859,11.9845625 8.63122094,12.4084329 C8.95324145,12.6120649 9.18113692,12.9353231 9.26473542,13.3070414 L9.58399267,14.7266093 L10.034606,9.55989559 C10.1073699,8.7255879 10.8426967,8.10823467 11.6770044,8.18099856 C12.4239621,8.24614424 13.0111644,8.84742457 13.0585984,9.59571577 L13.5828924,17.866679 L13.9537127,14.1493902 C14.0321821,13.3627735 14.7334729,12.7887068 15.5200896,12.8671762 C16.1492184,12.9299353 16.6626474,13.3980242 16.7831394,14.0186879 C16.7916658,14.0626082 16.8341823,14.0913007 16.8781027,14.0827743 C16.9111665,14.0763555 16.9368092,14.0501481 16.9425065,14.0169524 L17.3751967,11.495826 C17.5139307,10.687474 18.2816956,10.1446414 19.0900476,10.2833754 C19.6530574,10.3800024 20.110737,10.7909985 20.2671465,11.3404099 L20.9039319,13.5772122 C20.9448825,13.7210573 21.0600614,13.8284827 21.2010159,13.8624133 Z" id="Combined-Shape" fill-rule="nonzero" opacity="0.900000036"></path>
+            </g>
+        </g>
+        <rect id="Rectangle" fill-opacity="0.6" fill="#36435C" x="40" y="80" width="1360" height="796" rx="4"></rect>
+        <text id="支持按用量排序和自定义时间范围查询，帮助" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="18" fill="#FFFFFF">
+            <tspan x="380" y="787">支持按用量排序和自定义时间范围查询，帮助快速定位问题</tspan>
+        </text>
+        <g id="Group[8v]" transform="translate(60.000000, 144.000000)">
+            <g id="Group-8-Copy-3">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-2)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-1"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="CPU-利用率(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">CPU 利用率(%)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-4" transform="translate(0.000000, 48.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-4)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-3"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">CPU 使用量(核)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-5" transform="translate(0.000000, 144.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-6)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-5"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="内存利用率(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">内存利用率(%)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-16" transform="translate(0.000000, 96.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-8)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-7"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="CPU-平均负载" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">CPU 平均负载</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-6" transform="translate(0.000000, 192.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-10)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-9"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">内存利用量(GiB)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-7" transform="translate(0.000000, 240.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-12)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-11"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="磁盘利用率(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">磁盘利用率(%)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-8" transform="translate(0.000000, 288.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-14)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-13"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="磁盘使用量" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">磁盘使用量</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-17" transform="translate(0.000000, 336.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-16)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-15"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="inode-使用率-(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">inode 使用率 (%)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-9" transform="translate(0.000000, 384.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-18)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-17"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="容器组数量变化" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">容器组数量变化</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-10" transform="translate(0.000000, 432.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-20)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-19"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="磁盘吞吐(KB/s)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">磁盘吞吐(KB/s)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-11" transform="translate(0.000000, 480.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-22)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-21"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="服务组件状态" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">服务组件状态</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-12" transform="translate(0.000000, 528.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-24)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-23"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="IOPS" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">IOPS</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-13" transform="translate(0.000000, 576.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-26)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-25"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="网卡流量(Kbps)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">网卡流量(Kbps)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-14" transform="translate(0.000000, 624.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-28)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-27"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="网卡流量(Kbps)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">网卡流量(Kbps)</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-8-Copy-15" transform="translate(0.000000, 672.000000)">
+                <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-30)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-29"></use>
+                <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                    <text id="容器组运行状态" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="36" y="18">容器组运行状态</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                        <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                        <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <g id="Group-6" transform="translate(380.000000, 144.000000)">
+            <rect id="Rectangle" stroke="#4A5974" fill-opacity="0.6" fill="#36435C" x="0.5" y="0.5" width="999" height="601" rx="4"></rect>
+            <g id="Group-5" transform="translate(20.000000, 300.000000)">
+                <rect id="Rectangle" fill-opacity="0.8" fill="#4A5974" x="0" y="0" width="960" height="282" rx="4"></rect>
+                <g id="Group-4" transform="translate(20.000000, 22.000000)">
+                    <g id="Group[12h]" transform="translate(0.000000, 44.000000)">
+                        <g id="Group-8-Copy-4">
+                            <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-32)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-31"></use>
+                            <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                                <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                    <tspan x="36" y="17">CPU 使用量(核)</tspan>
+                                </text>
+                                <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                    <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                    <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="Group-8-Copy-6" transform="translate(310.000000, 0.000000)">
+                            <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-34)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-33"></use>
+                            <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                                <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                    <tspan x="36" y="17">内存利用量(GiB)</tspan>
+                                </text>
+                                <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                    <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                    <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="Group-8-Copy-13" transform="translate(621.000000, 0.000000)">
+                            <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-36)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-35"></use>
+                            <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                                <text id="网卡流量(Kbps)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                    <tspan x="36" y="17">网卡流量(Kbps)</tspan>
+                                </text>
+                                <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                    <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                    <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-2" fill="#FFFFFF">
+                        <text id="容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="20">
+                            <tspan x="44" y="18">容器组</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/016.Container/White">
+                            <path d="M20.644348,5.75119575 L16.3361409,7.66666667 L16.3400002,15.3396798 L11.9966146,17.2528662 L12.004473,21.0835527 L3.3425051,17.2519483 L3.3425051,9.58333333 L7.68019828,7.66656065 L7.68019828,3.83355273 L12.004473,1.91688606 L20.644348,5.75119575 Z M7.63999987,11.5 L7.63999987,15.3333333 L12,13.4166667 L12,9.58333333 L7.63999987,11.5 Z" id="Combined-Shape" opacity="0.400000006"></path>
+                            <polygon id="Path-5-Copy" opacity="0.900000036" points="16.3361409 7.66666667 20.644348 5.75119575 20.644348 17.2519483 12.004473 21.0835527 11.9966146 17.2528662 16.3400002 15.3396798"></polygon>
+                            <polygon id="Path-6" opacity="0.900000036" points="7.63999987 11.5 7.63999987 15.3333333 12 13.4166667 12 9.58333333"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-3" transform="translate(20.000000, 134.000000)">
+                    <rect id="Rectangle" fill="#242E42" x="0" y="0" width="920" height="128" rx="4"></rect>
+                    <g id="Group-8-Copy-4" transform="translate(20.000000, 60.000000)">
+                        <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-38)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-37"></use>
+                        <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                            <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                <tspan x="36" y="17">CPU 使用量(核)</tspan>
+                            </text>
+                            <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-8-Copy-6" transform="translate(332.000000, 60.000000)">
+                        <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-40)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-39"></use>
+                        <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                            <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                <tspan x="36" y="17">内存利用量(GiB)</tspan>
+                            </text>
+                            <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-2" transform="translate(20.000000, 20.000000)">
+                        <text id="容器" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="20" fill="#FFFFFF">
+                            <tspan x="44" y="17">容器</tspan>
+                        </text>
+                        <g id="Untitled-1-2">
+                            <path d="M17.3541927,18.4245307 C17.8793492,17.9724656 18.4095119,17.5209011 18.9346683,17.0643304 C19.1163955,16.9071339 19.3126408,16.750438 19.4893617,16.5837297 C19.347184,16.4015019 19.1068836,16.2738423 18.905632,16.1957447 C18.4981227,16.0385482 18.0906133,16.0926158 17.7171464,16.3083855 C17.2265332,16.5932416 17.0152691,17.044806 17.0347935,17.6095119 C17.0397997,17.8302879 17.1038798,18.0460576 17.2215269,18.232791 C17.2560701,18.3013767 17.3051314,18.3654568 17.3541927,18.4245307 Z M17.9629537,18.8515645 C18.2232791,18.9396746 18.5176471,18.9301627 18.7824781,18.8811014 C18.9201502,18.8220275 19.2635795,18.6698373 19.391239,18.694368 L19.4112641,18.6993742 L19.4307885,18.7093867 C19.5093867,18.7484355 19.5829787,18.8025031 19.6220275,18.8811014 C19.7156446,19.0673342 19.6710889,19.2540676 19.4893617,19.3566959 L19.4307885,19.3917397 C18.7579474,19.779224 18.0415519,19.7251564 17.3687109,19.3617021 C17.0498123,19.1899875 16.804005,18.9301627 16.6227785,18.6157697 L16.5782228,18.5421777 C16.1461827,17.791239 16.2052566,17.0052566 16.6913642,16.2938673 C16.8580726,16.0485607 17.0793492,15.856821 17.339174,15.709637 L17.4372966,15.6555695 C18.0705882,15.2871089 18.7534418,15.3116395 19.4062578,15.6355444 C19.7534709,15.8040508 20.0423594,16.072541 20.2357947,16.4065081 L20.2703379,16.465582 C20.4125156,16.7108886 20.2257822,16.9271589 20.0395494,17.0743429 C19.8182728,17.2460576 19.5974969,17.4473091 19.3867334,17.6340426 C18.905632,18.0365457 18.4340426,18.4490613 17.9629537,18.8515645 Z M23.0092616,15.4443054 L23.0783479,15.4443054 C23.2891114,15.4443054 23.4317897,15.5869837 23.4317897,15.7977472 C23.4317897,16.0926158 23.1514393,16.1662078 22.9061327,16.1662078 C22.587234,16.1662078 22.2828536,16.3574468 22.0620776,16.5737171 C21.7867334,16.8435544 21.6690864,17.19199 21.6690864,17.5699625 L21.6690864,19.2881101 C21.6690864,19.4848561 21.546433,19.6415519 21.3401752,19.6415519 L21.2866083,19.6415519 C21.0803504,19.6415519 20.9576971,19.4848561 20.9576971,19.2881101 L20.9576971,17.4718398 C20.9576971,16.7749687 21.2961202,16.2052566 21.8658323,15.8027534 C22.2023488,15.5711929 22.6007769,15.4462916 23.0092616,15.4443054 Z M14.1581977,16.6668335 C14.4335419,16.3914894 14.7128911,16.1171464 14.9927409,15.8418023 C15.0713392,15.7682103 15.3657071,15.4443054 15.4833542,15.4443054 L15.6115144,15.4443054 L15.6260325,15.4493116 C15.7882353,15.4838548 15.9108886,15.5869837 15.9108886,15.7586984 L15.9108886,15.8272841 C15.9108886,15.9449312 15.7732165,16.0826033 15.6946183,16.1662078 C15.5329161,16.3379224 15.3607009,16.5046308 15.1939925,16.6768461 L14.3349186,17.5454318 C14.7028786,17.9138924 15.0708385,18.2868586 15.4392991,18.6598248 C15.542428,18.7629537 15.6405507,18.8660826 15.7436796,18.9692115 C15.7782228,19.0082603 15.8322904,19.052816 15.8618273,19.1018773 C15.8926783,19.1502692 15.9096491,19.2062033 15.9108886,19.2635795 L15.9108886,19.3371715 L15.9058824,19.3521902 C15.8668335,19.514393 15.7637046,19.6465582 15.5819775,19.6465582 L15.5229036,19.6465582 C15.4052566,19.6465582 15.2725907,19.514393 15.1939925,19.4357947 C15.0272841,19.2785982 14.8700876,19.1163955 14.7033792,18.9546934 L14.1581977,18.4190238 L14.1581977,19.2740926 C14.1581977,19.4703379 14.0355444,19.6275344 13.8292866,19.6275344 L13.775219,19.6275344 C13.5689612,19.6275344 13.4463079,19.4703379 13.4463079,19.2740926 L13.4463079,14.4530663 C13.4463079,14.256821 13.5689612,14.0996245 13.775219,14.0996245 L13.8292866,14.0996245 C14.0355444,14.0996245 14.1581977,14.256821 14.1581977,14.4530663 L14.1581977,16.6673342 L14.1581977,16.6668335 Z M11.8553191,16.1857322 C11.7476846,16.1366708 11.546433,16.1171464 11.4337922,16.1121402 C10.8395494,16.0871089 10.4125156,16.4260325 10.1571965,16.9466834 C10.0716066,17.124138 10.02793,17.3188842 10.0295369,17.5158949 C10.0295369,18.1246558 10.3484355,18.5521902 10.893617,18.8125156 C11.0898623,18.905632 11.3501877,18.9251564 11.5659574,18.9251564 C11.7576971,18.9251564 12.0275344,18.8070088 12.1947434,18.7289111 L12.2237797,18.7138924 L12.3564456,18.7138924 L12.3714643,18.7188986 C12.5331665,18.7534418 12.6558198,18.8560701 12.6558198,19.0282854 L12.6558198,19.0968711 C12.6558198,19.5289111 11.8653317,19.6270338 11.5659574,19.6515645 C10.5006258,19.7251564 9.70563204,19.1409262 9.40125156,18.1246558 C9.34840543,17.9512075 9.32191048,17.7708056 9.32265332,17.5894869 L9.32265332,17.4473091 C9.32265332,16.6763454 9.70563204,16.0680851 10.3634543,15.6750939 C10.6663588,15.4949139 11.012263,15.3997902 11.3647059,15.3997497 L11.5073842,15.3997497 C11.8786655,15.3983063 12.2416251,15.5096908 12.5481852,15.7191489 L12.5727159,15.739174 L12.587234,15.7637046 C12.6248512,15.8189041 12.6468216,15.8832584 12.6508135,15.9499374 L12.6508135,16.0190238 C12.6508135,16.2002503 12.5136421,16.298373 12.3514393,16.3279099 L12.2928661,16.3279099 C12.1897372,16.3379224 11.9489362,16.2297872 11.8558198,16.1857322 L11.8553191,16.1857322 Z M5.37571965,17.5359199 C5.37571965,18.0755945 5.64105131,18.473592 6.0971214,18.7534418 C6.31339174,18.885607 6.54868586,18.9446809 6.79949937,18.9446809 C7.33416771,18.9446809 7.72715895,18.6743429 8.0020025,18.2227785 C8.13466834,18.0070088 8.19324155,17.771214 8.19324155,17.5209011 C8.19324155,17.0202753 7.95294118,16.6372966 7.54042553,16.3574468 C7.31904089,16.2067596 7.05728778,16.1264887 6.78948686,16.1271589 C6.19524406,16.1271589 5.76821026,16.4260325 5.50788486,16.9612015 C5.41799275,17.1392643 5.3726407,17.336477 5.37571965,17.5359199 Z M6.71589487,15.4197747 L6.81401752,15.4197747 C7.63854819,15.4197747 8.26232791,15.8172716 8.65982478,16.539174 C8.81702128,16.8290363 8.90513141,17.1379224 8.90513141,17.4668335 L8.90513141,17.6095119 C8.90513141,18.3804756 8.52715895,18.9937422 7.85982478,19.3817272 C7.55687033,19.5617318 7.2109694,19.6566816 6.85857322,19.6565707 L6.71589487,19.6565707 C5.94493116,19.6565707 5.33116395,19.273592 4.9436796,18.6157697 C4.76349959,18.3128652 4.66837595,17.966961 4.66833542,17.6145181 L4.66833542,17.4718398 C4.66833542,16.7008761 5.05181477,16.0926158 5.70963705,15.6996245 C6.01183271,15.5130369 6.36075699,15.4159977 6.71589487,15.4197747 Z M0.725907384,17.5359199 C0.725907384,18.0906133 0.996245307,18.5076345 1.48185232,18.7774718 C1.67697687,18.8864826 1.89664065,18.9440259 2.12015019,18.9446809 C2.66533166,18.9446809 3.07284105,18.6893617 3.35269086,18.2227785 C3.48035044,18.0070088 3.54392991,17.771214 3.54392991,17.5209011 C3.54392991,17.0403004 3.31364205,16.6618273 2.92515645,16.3819775 C2.68986233,16.2102628 2.42453066,16.1266583 2.13516896,16.1266583 C1.54092616,16.1266583 1.11389237,16.4260325 0.853566959,16.9612015 C0.767338973,17.1403926 0.723651013,17.3370741 0.725907384,17.5359199 Z M3.53942428,15.9499374 L3.53942428,14.4480601 C3.53942428,14.2513141 3.66157697,14.0941176 3.86783479,14.0941176 L3.92690864,14.0941176 C4.13316646,14.0941176 4.25581977,14.2513141 4.25581977,14.4480601 L4.25581977,17.6045056 C4.25581977,18.3754693 3.87284105,18.9887359 3.21001252,19.3767209 C2.90710799,19.5569009 2.56120384,19.6520246 2.20876095,19.6520651 L2.06157697,19.6520651 C1.29061327,19.6520651 0.676846058,19.2685857 0.289361702,18.6107635 C0.109181693,18.3078589 0.0140580526,17.9619548 0.0140175219,17.6095119 L0.0140175219,17.4668335 C0.0140175219,16.6958698 0.396996245,16.0826033 1.05531915,15.6946183 C1.3582736,15.5146136 1.70417453,15.4196638 2.05657071,15.4197747 L2.19874844,15.4197747 C2.72440551,15.4197747 3.16595745,15.6210263 3.53892365,15.950438 L3.53942428,15.9499374 Z M13.5193992,4.1922403 L15.6155194,4.1922403 L15.6155194,6.33291615 L16.6763454,6.33291615 C17.1669587,6.33291615 17.6675845,6.24430538 18.1341677,6.08760951 C18.379401,6.0038254 18.6160975,5.89687613 18.8410513,5.76821026 C18.5466834,5.38072591 18.3944931,4.89461827 18.350438,4.4135169 C18.2913642,3.76070088 18.42403,2.90663329 18.8660826,2.39599499 L19.0863579,2.14067584 L19.3466834,2.3514393 C20.0095119,2.88210263 20.5642053,3.62302879 20.6623279,4.47209011 C21.4578223,4.23679599 22.3904881,4.29536921 23.0923655,4.69787234 L23.3822278,4.86508135 L23.2300375,5.15944931 C22.6357947,6.318398 21.3937422,6.67634543 20.1812265,6.61276596 C18.3649562,11.1339174 14.4180225,13.2745932 9.62653317,13.2745932 C7.15244055,13.2745932 4.87909887,12.3514393 3.58798498,10.1521902 L3.56846058,10.1181477 L3.38172716,9.73516896 C2.94518148,8.76795995 2.7979975,7.70763454 2.89612015,6.65181477 L2.92515645,6.33291615 L4.71739675,6.33291615 L4.71739675,4.1922403 L6.8135169,4.1922403 L6.8135169,2.09612015 L11.0057572,2.09612015 L11.0057572,0 L13.5193992,0 L13.5193992,4.1922403 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                            <path d="M20.3093867,4.98272841 C20.4515645,3.89286608 19.6320401,3.03379224 19.126408,2.62628285 C18.5421777,3.30413016 18.453567,5.07133917 19.3667084,5.81727159 C18.8560701,6.2738423 17.7762203,6.68135169 16.6768461,6.68135169 L3.24005006,6.68135169 C3.13191489,7.83529412 3.33316646,8.89561952 3.79474343,9.80375469 L3.94693367,10.0836045 C4.04505632,10.2453066 4.14818523,10.4075094 4.26633292,10.5596996 C4.81602003,10.5942428 5.32665832,10.608761 5.79324155,10.5992491 C6.70588235,10.579224 7.45732165,10.4715895 8.02152691,10.2748436 C8.1055577,10.2453938 8.1976188,10.2891898 8.22778473,10.3729662 C8.2572345,10.456997 8.21343845,10.5490581 8.12966208,10.579224 C8.05607009,10.6042553 7.97747184,10.6282854 7.89436796,10.652816 C7.44730914,10.7804756 6.97121402,10.8640801 6.35244055,10.9031289 C6.38698373,10.9031289 6.31339174,10.9081352 6.31339174,10.9081352 C6.29336671,10.9081352 6.26433041,10.9131414 6.24430538,10.9131414 C6.00400501,10.9281602 5.73867334,10.9281602 5.47334168,10.9281602 C5.17947434,10.9281602 4.89461827,10.9231539 4.57071339,10.9081352 L4.56070088,10.9131414 C5.68010013,12.1697121 7.42778473,12.9256571 9.62202753,12.9256571 C14.2663329,12.9256571 18.2032541,10.8690864 19.9459324,6.24931164 C21.1834793,6.37697121 22.3714643,6.06307885 22.9111389,5.0077597 C22.0570713,4.50713392 20.9476846,4.66382979 20.3093867,4.98272841 Z" id="Path" fill="#00AADA"></path>
+                            <path d="M20.3093867,4.98272841 C20.4515645,3.89286608 19.6320401,3.03379224 19.126408,2.62628285 C18.5421777,3.30413016 18.453567,5.07133917 19.3667084,5.81727159 C18.8560701,6.2738423 17.7762203,6.68135169 16.6768461,6.68135169 L4.0350438,6.68135169 C3.98097622,8.44355444 4.63379224,9.78423029 5.7922403,10.5942428 C6.70538173,10.5742178 7.45682103,10.4665832 8.02102628,10.2698373 C8.10519946,10.240436 8.19732259,10.2844852 8.22728411,10.3684606 C8.2564085,10.4523424 8.21267407,10.5440509 8.12916145,10.5742178 C8.05556946,10.5992491 7.97697121,10.6237797 7.89386733,10.6483104 C7.44680851,10.77597 6.9261577,10.873592 6.31289111,10.9086358 L6.29787234,10.893617 C7.87884856,11.7036295 10.171214,11.7036295 12.7979975,10.6923655 C15.743179,9.56295369 18.4826033,7.40325407 20.3974969,4.93867334 C20.3629537,4.95869837 20.338423,4.97321652 20.3088861,4.98272841 L20.3093867,4.98272841 Z" id="Path" fill="#24B8EB"></path>
+                            <path d="M3.26908636,8.08510638 C3.35319149,8.70387985 3.53441802,9.27859825 3.79974969,9.80876095 L3.95193992,10.0886108 C4.05006258,10.2503129 4.15319149,10.4125156 4.27083855,10.5642053 C4.82553191,10.5992491 5.33116395,10.6137672 5.79774718,10.6042553 C6.71088861,10.5842303 7.46182728,10.4760951 8.02653317,10.2798498 C8.11056396,10.2504 8.20262506,10.2941961 8.23279099,10.3779725 C8.26224076,10.4620033 8.2184447,10.5540644 8.13466834,10.5842303 C8.06107635,10.6092616 7.9824781,10.6332916 7.89937422,10.6578223 C7.45231539,10.7854819 6.93667084,10.8740926 6.318398,10.9131414 C6.29837297,10.9131414 6.25932416,10.9131414 6.23979975,10.9181477 C5.99949937,10.9331665 5.73917397,10.9381727 5.46883605,10.9381727 C5.17446809,10.9381727 4.87509387,10.9331665 4.55569462,10.9181477 C5.67509387,12.1747184 7.43729662,12.9306633 9.63204005,12.9306633 C13.6085106,12.9306633 17.0643304,11.4237797 19.0723404,8.09061327 L3.26908636,8.09061327 L3.26908636,8.08560701 L3.26908636,8.08510638 Z" id="Path" fill="#008BB8"></path>
+                            <path d="M4.15819775,8.08510638 C4.39349186,9.17046308 4.96821026,10.0195244 5.79774718,10.5992491 C6.71088861,10.579224 7.46182728,10.4715895 8.02653317,10.2748436 C8.11056396,10.2453938 8.20262506,10.2891898 8.23279099,10.3729662 C8.26224076,10.456997 8.2184447,10.5490581 8.13466834,10.579224 C8.06107635,10.6042553 7.9824781,10.6282854 7.89937422,10.652816 C7.45231539,10.7804756 6.92665832,10.8690864 6.30838548,10.9081352 C7.8893617,11.7181477 10.1717146,11.7086358 12.7984981,10.6973717 C14.3889862,10.0886108 15.9158949,9.18047559 17.2901126,8.08560701 L4.15819775,8.08560701 L4.15819775,8.08510638 Z" id="Path" fill="#039BC6"></path>
+                            <path d="M6.58823529,4.69336671 L6.73041302,4.69336671 L6.73041302,6.20525657 L6.58823529,6.20525657 L6.58823529,4.69336671 Z M6.31289111,4.69336671 L6.46057572,4.69336671 L6.46057572,6.20525657 L6.31339174,6.20525657 L6.31339174,4.69336671 L6.31289111,4.69336671 Z M6.03854819,4.69336671 L6.18573217,4.69336671 L6.18573217,6.20525657 L6.03854819,6.20525657 L6.03854819,4.69336671 Z M5.76320401,4.69336671 L5.91088861,4.69336671 L5.91088861,6.20525657 L5.76320401,6.20525657 L5.76320401,4.69336671 Z M5.48836045,4.69336671 L5.63554443,4.69336671 L5.63554443,6.20525657 L5.48836045,6.20525657 L5.48836045,4.69336671 Z M5.21852315,4.69336671 L5.36070088,4.69336671 L5.36070088,6.20525657 L5.21852315,6.20525657 L5.21852315,4.69336671 Z M5.06633292,4.54117647 L6.88260325,4.54117647 L6.88260325,6.35744681 L5.06633292,6.35744681 L5.06633292,4.54117647 Z M8.68435544,2.59674593 L8.82653317,2.59674593 L8.82653317,4.10863579 L8.68435544,4.10863579 L8.68435544,2.59674593 Z M8.40951189,2.59674593 L8.55669587,2.59674593 L8.55669587,4.10863579 L8.40951189,4.10863579 L8.40951189,2.59674593 Z M8.13416771,2.59674593 L8.28185232,2.59674593 L8.28185232,4.10863579 L8.13466834,4.10863579 L8.13466834,2.59674593 L8.13416771,2.59674593 Z M7.85982478,2.59674593 L8.00700876,2.59674593 L8.00700876,4.10863579 L7.85982478,4.10863579 L7.85982478,2.59674593 Z M7.5844806,2.59674593 L7.73216521,2.59674593 L7.73216521,4.10863579 L7.58498123,4.10863579 L7.58498123,2.59674593 L7.5844806,2.59674593 Z M7.3146433,2.59674593 L7.45732165,2.59674593 L7.45732165,4.10863579 L7.3146433,4.10863579 L7.3146433,2.59674593 Z M7.16245307,2.44455569 L8.9787234,2.44455569 L8.9787234,4.26132666 L7.16245307,4.26132666 L7.16245307,2.44455569 Z" id="Shape" fill="#00ACD3" fill-rule="nonzero"></path>
+                            <path d="M8.68435544,4.69336671 L8.82653317,4.69336671 L8.82653317,6.20525657 L8.68435544,6.20525657 L8.68435544,4.69336671 Z M8.40951189,4.69336671 L8.55669587,4.69336671 L8.55669587,6.20525657 L8.40951189,6.20525657 L8.40951189,4.69336671 Z M8.13416771,4.69336671 L8.28185232,4.69336671 L8.28185232,6.20525657 L8.13466834,6.20525657 L8.13466834,4.69336671 L8.13416771,4.69336671 Z M7.85982478,4.69336671 L8.00700876,4.69336671 L8.00700876,6.20525657 L7.85982478,6.20525657 L7.85982478,4.69336671 Z M7.5844806,4.69336671 L7.73216521,4.69336671 L7.73216521,6.20525657 L7.58498123,6.20525657 L7.58498123,4.69336671 L7.5844806,4.69336671 Z M7.3146433,4.69336671 L7.45732165,4.69336671 L7.45732165,6.20525657 L7.3146433,6.20525657 L7.3146433,4.69336671 Z M7.16245307,4.54117647 L8.9787234,4.54117647 L8.9787234,6.35744681 L7.16245307,6.35744681 L7.16245307,4.54117647 Z" id="Shape" fill="#20C2EF" fill-rule="nonzero"></path>
+                            <path d="M10.7804756,4.69336671 L10.9231539,4.69336671 L10.9231539,6.20525657 L10.7804756,6.20525657 L10.7804756,4.69336671 Z M10.505632,4.69336671 L10.652816,4.69336671 L10.652816,6.20525657 L10.505632,6.20525657 L10.505632,4.69336671 Z M10.2307885,4.69336671 L10.3779725,4.69336671 L10.3779725,6.20525657 L10.2307885,6.20525657 L10.2307885,4.69336671 Z M9.95544431,4.69336671 L10.1031289,4.69336671 L10.1031289,6.20525657 L9.95594493,6.20525657 L9.95594493,4.69336671 L9.95544431,4.69336671 Z M9.67609512,4.69336671 L9.8232791,4.69336671 L9.8232791,6.20525657 L9.67609512,6.20525657 L9.67609512,4.69336671 Z M9.41076345,4.69336671 L9.5534418,4.69336671 L9.5534418,6.20525657 L9.41076345,6.20525657 L9.41076345,4.69336671 Z M9.25857322,4.54117647 L11.0753442,4.54117647 L11.0753442,6.35744681 L9.25857322,6.35744681 L9.25857322,4.54117647 Z" id="Shape" fill="#00ACD3" fill-rule="nonzero"></path>
+                            <path d="M10.7804756,2.59674593 L10.9231539,2.59674593 L10.9231539,4.10863579 L10.7804756,4.10863579 L10.7804756,2.59674593 Z M10.505632,2.59674593 L10.652816,2.59674593 L10.652816,4.10863579 L10.505632,4.10863579 L10.505632,2.59674593 Z M10.2307885,2.59674593 L10.3779725,2.59674593 L10.3779725,4.10863579 L10.2307885,4.10863579 L10.2307885,2.59674593 Z M9.95544431,2.59674593 L10.1031289,2.59674593 L10.1031289,4.10863579 L9.95594493,4.10863579 L9.95594493,2.59674593 L9.95544431,2.59674593 Z M9.67609512,2.59674593 L9.8232791,2.59674593 L9.8232791,4.10863579 L9.67609512,4.10863579 L9.67609512,2.59674593 Z M9.41076345,2.59674593 L9.5534418,2.59674593 L9.5534418,4.10863579 L9.41076345,4.10863579 L9.41076345,2.59674593 Z M9.25857322,2.44455569 L11.0753442,2.44455569 L11.0753442,4.26132666 L9.25857322,4.26132666 L9.25857322,2.44455569 Z M12.8770964,4.69336671 L13.0192741,4.69336671 L13.0192741,6.20525657 L12.8770964,6.20525657 L12.8770964,4.69336671 Z M12.6017522,4.69336671 L12.7494368,4.69336671 L12.7494368,6.20525657 L12.6017522,6.20525657 L12.6017522,4.69336671 Z M12.3269086,4.69336671 L12.4740926,4.69336671 L12.4740926,6.20525657 L12.3269086,6.20525657 L12.3269086,4.69336671 Z M12.0470588,4.69336671 L12.1947434,4.69336671 L12.1947434,6.20525657 L12.0470588,6.20525657 L12.0470588,4.69336671 Z M11.7722153,4.69336671 L11.9193992,4.69336671 L11.9193992,6.20525657 L11.7722153,6.20525657 L11.7722153,4.69336671 Z M11.5068836,4.69336671 L11.649562,4.69336671 L11.649562,6.20525657 L11.5073842,6.20525657 L11.5073842,4.69336671 L11.5068836,4.69336671 Z M11.355194,4.54117647 L13.1714643,4.54117647 L13.1714643,6.35744681 L11.355194,6.35744681 L11.355194,4.54117647 Z" id="Shape" fill="#20C2EF" fill-rule="nonzero"></path>
+                            <path d="M12.8770964,2.59674593 L13.0192741,2.59674593 L13.0192741,4.10863579 L12.8770964,4.10863579 L12.8770964,2.59674593 Z M12.6017522,2.59674593 L12.7494368,2.59674593 L12.7494368,4.10863579 L12.6017522,4.10863579 L12.6017522,2.59674593 Z M12.3269086,2.59674593 L12.4740926,2.59674593 L12.4740926,4.10863579 L12.3269086,4.10863579 L12.3269086,2.59674593 Z M12.0470588,2.59674593 L12.1947434,2.59674593 L12.1947434,4.10863579 L12.0470588,4.10863579 L12.0470588,2.59674593 Z M11.7722153,2.59674593 L11.9193992,2.59674593 L11.9193992,4.10863579 L11.7722153,4.10863579 L11.7722153,2.59674593 Z M11.5068836,2.59674593 L11.649562,2.59674593 L11.649562,4.10863579 L11.5073842,4.10863579 L11.5073842,2.59674593 L11.5068836,2.59674593 Z M11.355194,2.44455569 L13.1714643,2.44455569 L13.1714643,4.26132666 L11.355194,4.26132666 L11.355194,2.44455569 Z" id="Shape" fill="#00ACD3" fill-rule="nonzero"></path>
+                            <path d="M12.8770964,0.500625782 L13.0192741,0.500625782 L13.0192741,2.01251564 L12.8770964,2.01251564 L12.8770964,0.500625782 Z M12.6017522,0.500625782 L12.7494368,0.500625782 L12.7494368,2.01251564 L12.6017522,2.01251564 L12.6017522,0.500625782 Z M12.3269086,0.500625782 L12.4740926,0.500625782 L12.4740926,2.01251564 L12.3269086,2.01251564 L12.3269086,0.500625782 Z M12.0470588,0.500625782 L12.1947434,0.500625782 L12.1947434,2.01251564 L12.0470588,2.01251564 L12.0470588,0.500625782 Z M11.7722153,0.500625782 L11.9193992,0.500625782 L11.9193992,2.01251564 L11.7722153,2.01251564 L11.7722153,0.500625782 Z M11.5068836,0.500625782 L11.649562,0.500625782 L11.649562,2.01251564 L11.5073842,2.01251564 L11.5073842,0.500625782 L11.5068836,0.500625782 Z M11.355194,0.348435544 L13.1714643,0.348435544 L13.1714643,2.16520651 L11.355194,2.16520651 L11.355194,0.348435544 Z" id="Shape" fill="#20C2EF" fill-rule="nonzero"></path>
+                            <path d="M14.9732165,4.69336671 L15.1153942,4.69336671 L15.1153942,6.20525657 L14.9732165,6.20525657 L14.9732165,4.69336671 Z M14.6978723,4.69336671 L14.8455569,4.69336671 L14.8455569,6.20525657 L14.698373,6.20525657 L14.698373,4.69336671 L14.6978723,4.69336671 Z M14.4185232,4.69336671 L14.5657071,4.69336671 L14.5657071,6.20525657 L14.4180225,6.20525657 L14.4180225,4.69336671 L14.4185232,4.69336671 Z M14.143179,4.69336671 L14.2908636,4.69336671 L14.2908636,6.20525657 L14.1436796,6.20525657 L14.1436796,4.69336671 L14.143179,4.69336671 Z M13.8683354,4.69336671 L14.01602,4.69336671 L14.01602,6.20525657 L13.8683354,6.20525657 L13.8683354,4.69336671 Z M13.5984981,4.69336671 L13.7406758,4.69336671 L13.7406758,6.20525657 L13.5984981,6.20525657 L13.5984981,4.69336671 Z M13.4513141,4.54117647 L15.2675845,4.54117647 L15.2675845,6.35744681 L13.4518148,6.35744681 L13.4518148,4.54117647 L13.4513141,4.54117647 Z" id="Shape" fill="#00ACD3" fill-rule="nonzero"></path>
+                            <path d="M8.8660826,9.30312891 C9.14142678,9.30312891 9.36670839,9.52841051 9.36670839,9.80375469 C9.36670839,10.0790989 9.14142678,10.3043805 8.8660826,10.3043805 C8.59073842,10.3043805 8.36545682,10.0790989 8.36545682,9.80375469 C8.36545682,9.52841051 8.58623279,9.30312891 8.8660826,9.30312891" id="Path" fill="#D4EDF1"></path>
+                            <path d="M8.8660826,9.44530663 C8.91013767,9.44530663 8.95419274,9.45531915 8.99374218,9.47033792 C8.93614422,9.50383897 8.90811293,9.5717599 8.92531797,9.6361325 C8.94252301,9.7005051 9.00070267,9.7453842 9.06733417,9.7456821 C9.12162362,9.74579954 9.17120621,9.71488334 9.19499374,9.6660826 C9.21501877,9.7106383 9.22453066,9.75469337 9.22453066,9.80375469 C9.2234364,10.0012651 9.06359297,10.1611085 8.8660826,10.1622028 C8.66857224,10.1611085 8.50872881,10.0012651 8.50763454,9.80375469 C8.50763454,9.60750939 8.66483104,9.44530663 8.8660826,9.44530663 M-3.55271368e-15,8.26232791 L23.3141427,8.26232791 C22.8085106,8.13466834 21.7086358,7.95794743 21.890363,7.2951189 C20.967209,8.36545682 18.7434293,8.04605757 18.1787234,7.51589487 C17.5554443,8.42403004 13.9128911,8.08060075 13.657572,7.37371715 C12.8715895,8.29186483 10.4420526,8.29186483 9.65657071,7.37371715 C9.40125156,8.08060075 5.75869837,8.42403004 5.13491865,7.51589487 C4.57521902,8.04155194 2.34643304,8.36045056 1.42377972,7.2951189 C1.60550688,7.96295369 0.50563204,8.13466834 -3.55271368e-15,8.26232791" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                            <path d="M10.1962453,12.9161452 C8.95469337,12.3269086 8.2718398,11.5269086 7.89386733,10.6533166 C7.43279099,10.7854819 6.877597,10.8685857 6.23479349,10.9036295 C5.99449312,10.9181477 5.73917397,10.9231539 5.46883605,10.9231539 C5.15944931,10.9231539 4.83554443,10.9131414 4.49211514,10.8931164 C5.6310388,12.0325407 7.03028786,12.9061327 9.62202753,12.9206508 C9.81827284,12.9256571 10.0050063,12.9206508 10.1962453,12.9161452 Z" id="Path" fill="#BFDBE0"></path>
+                            <path d="M8.35544431,11.4583229 C8.17293549,11.2072852 8.01817278,10.9372058 7.89386733,10.652816 C7.43279099,10.7854819 6.877597,10.8690864 6.23479349,10.9031289 C6.67634543,11.1439299 7.30963705,11.3647059 8.35544431,11.4583229 Z" id="Path" fill="#D4EDF1"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-2" transform="translate(20.000000, 20.000000)" fill="#FFFFFF">
+                <text id="节点" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="24">
+                    <tspan x="44" y="21.52">节点</tspan>
+                </text>
+                <g id="Glyph/002.Object/083.Nodes/White-" transform="translate(0.000000, 0.960000)">
+                    <g id="Group-2" transform="translate(3.000000, 2.875000)">
+                        <path d="M9.08364293e-17,2.63326042 C9.08364293e-17,2.23794792 0.36,1.91666667 0.819818182,1.91666667 L17.1801818,1.91666667 C17.6318182,1.91666667 18,2.24226042 18,2.63326042 L18,6.95007292 C18,7.34538542 17.64,7.66666667 17.1801818,7.66666667 L0.819818182,7.66666667 C0.369006873,7.66588739 0.00314224004,7.34608928 0,6.95007292 L9.08364293e-17,2.63326042 Z M4,2.875 L4,4.79166667 L6,4.79166667 L6,2.875 L4,2.875 Z M1,2.875 L1,4.79166667 L3,4.79166667 L3,2.875 L1,2.875 Z" id="Combined-Shape" fill-rule="nonzero" opacity="0.900000036"></path>
+                        <path d="M9.08364293e-17,10.2999271 C9.08364293e-17,9.90461458 0.36,9.58333333 0.819818182,9.58333333 L17.1801818,9.58333333 C17.6318182,9.58333333 18,9.90892708 18,10.2999271 L18,14.6167396 C18,15.0120521 17.64,15.3333333 17.1801818,15.3333333 L0.819818182,15.3333333 C0.369006873,15.3325541 0.00314224004,15.0127559 0,14.6167396 L9.08364293e-17,10.2999271 Z M4,10.5416667 L4,12.4583333 L6,12.4583333 L6,10.5416667 L4,10.5416667 Z M1,10.5416667 L1,12.4583333 L3,12.4583333 L3,10.5416667 L1,10.5416667 Z" id="Combined-Shape-Copy" fill-rule="nonzero" opacity="0.900000036"></path>
+                        <rect id="Rectangle-43" opacity="0.400000006" x="8" y="0" width="2" height="1.91666667"></rect>
+                        <rect id="Rectangle-43-Copy" opacity="0.400000006" x="8" y="7.66666667" width="2" height="1.91666667"></rect>
+                        <rect id="Rectangle-43-Copy-4" opacity="0.400000006" x="8" y="15.3333333" width="2" height="1.91666667"></rect>
+                    </g>
+                </g>
+            </g>
+            <g id="Group" transform="translate(20.000000, 64.000000)">
+                <g id="Group-8-Copy-3">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-42)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-41"></use>
+                    <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                        <text id="CPU-利用率(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">CPU 利用率(%)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-4" transform="translate(0.000000, 56.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-44)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-43"></use>
+                    <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                        <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">CPU 使用量(核)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-5" transform="translate(312.000000, 0.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-46)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-45"></use>
+                    <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                        <text id="内存利用率(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">内存利用率(%)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-16" transform="translate(0.000000, 112.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-48)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-47"></use>
+                    <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                        <text id="CPU-平均负载" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">CPU 平均负载</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-6" transform="translate(312.000000, 56.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-50)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-49"></use>
+                    <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                        <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">内存利用量(GiB)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-9" transform="translate(624.000000, 0.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-52)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-51"></use>
+                    <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                        <text id="容器组使用情况" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">容器组使用情况</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-10" transform="translate(312.000000, 112.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-54)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-53"></use>
+                    <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                        <text id="磁盘吞吐(KB/s)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">磁盘吞吐(KB/s)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-12" transform="translate(312.000000, 168.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-56)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-55"></use>
+                    <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                        <text id="IOPS" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">IOPS</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-13" transform="translate(0.000000, 168.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-58)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-57"></use>
+                    <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                        <text id="网卡流量(Kbps)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">网卡流量(Kbps)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-15" transform="translate(624.000000, 56.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-60)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-59"></use>
+                    <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                        <text id="容器组运行状态" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">容器组运行状态</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <g id="Group-2" transform="translate(60.000000, 100.000000)" fill="#FFFFFF">
+            <text id="集群" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="24">
+                <tspan x="44" y="21">集群</tspan>
+            </text>
+            <g id="Glyph/002.Object/076.Cluster/White">
+                <g id="Page-1" stroke-width="1" transform="translate(6.570000, 6.000000)">
+                    <g id="Group-2">
+                        <polygon id="Fill-1" opacity="0.5" points="5.4 -0.0003 0 3.0007 0 3.8827 5.411 6.8707 5.411 6.8997 5.413 6.8997 5.421 11.9887 10.8 8.9997 10.8 3.0007"></polygon>
+                        <polygon id="Fill-2" points="0 8.9997 3.931 11.1837 3.926 7.7497 0 5.5837"></polygon>
+                    </g>
+                </g>
+                <path d="M12,2 L3,6.999 L3,16.999 L12,22 L21,16.999 L21,6.999 L12,2 Z M5,15.823 L5,8.177 L12,4.288 L19,8.177 L19,15.823 L12,19.712 L5,15.823 Z" id="Page-1"></path>
+            </g>
+        </g>
+        <g id="Group-7" transform="translate(40.000000, 912.000000)">
+            <g id="Group" fill="#FFFFFF">
+                <text id="多维度监控-用户视角-(集群--&gt;-企业" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="28">
+                    <tspan x="40" y="21">多维度监控 用户视角  (集群 -&gt; 企业空间 -&gt; 项目 -&gt; 工作负载/容器组 -&gt; 容器)</tspan>
+                </text>
+                <g id="Glyph/002.Object/061.Monitor/White">
+                    <path d="M4.66666667,5.83333333 L23.3333333,5.83333333 C24.6219977,5.83333333 25.6666667,6.87800225 25.6666667,8.16666667 L25.6666667,19.8333333 C25.6666667,21.1219977 24.6219977,22.1666667 23.3333333,22.1666667 L4.66666667,22.1666667 C3.37800225,22.1666667 2.33333333,21.1219977 2.33333333,19.8333333 L2.33333333,8.16666667 C2.33333333,6.87800225 3.37800225,5.83333333 4.66666667,5.83333333 Z M22.1748677,15.7949136 C22.844005,15.7949136 23.386448,15.2524707 23.386448,14.5833333 C23.386448,13.914196 22.844005,13.371753 22.1748677,13.371753 C21.5057304,13.371753 20.9632874,13.914196 20.9632874,14.5833333 C20.9632874,15.2524707 21.5057304,15.7949136 22.1748677,15.7949136 Z" id="Combined-Shape" fill-rule="evenodd" opacity="0.400000006"></path>
+                    <path d="M21.2010159,13.8624133 C21.05164,14.0638646 20.9632874,14.313281 20.9632874,14.5833333 C20.9632874,14.8932475 21.0796481,15.1759842 21.271064,15.3902378 C20.4205025,15.3789306 19.6781533,14.8106804 19.4452248,13.9924851 L18.8464968,11.889365 L18.4373178,14.2735005 C18.3249565,14.928188 17.8192283,15.4450522 17.167143,15.5716441 C16.4390621,15.7129894 15.7305421,15.3357278 15.4232379,14.6974205 L15.0437483,18.5016151 C14.9719463,19.221394 14.3894115,19.7832578 13.6675091,19.829019 C12.8534345,19.880623 12.1516635,19.2625184 12.1000595,18.4484439 L11.5452088,9.69543603 L11.0171579,15.750046 C10.9650402,16.3476253 10.5322412,16.8427951 9.94701101,16.9744119 C9.20470645,17.1413543 8.46761613,16.6749311 8.30067371,15.9326266 L7.82778113,13.8299237 L7.40059795,14.5054648 C7.04779234,15.0633864 6.43371592,15.4016235 5.77360361,15.4016235 L4.66666667,15.4016235 L4.66666667,13.8849569 L5.77360361,13.8849569 C5.91362743,13.8849569 6.04388607,13.8132096 6.11872362,13.6948626 L6.65004591,12.8546374 C7.07391631,12.1843351 7.96091859,11.9845625 8.63122094,12.4084329 C8.95324145,12.6120649 9.18113692,12.9353231 9.26473542,13.3070414 L9.58399267,14.7266093 L10.034606,9.55989559 C10.1073699,8.7255879 10.8426967,8.10823467 11.6770044,8.18099856 C12.4239621,8.24614424 13.0111644,8.84742457 13.0585984,9.59571577 L13.5828924,17.866679 L13.9537127,14.1493902 C14.0321821,13.3627735 14.7334729,12.7887068 15.5200896,12.8671762 C16.1492184,12.9299353 16.6626474,13.3980242 16.7831394,14.0186879 C16.7916658,14.0626082 16.8341823,14.0913007 16.8781027,14.0827743 C16.9111665,14.0763555 16.9368092,14.0501481 16.9425065,14.0169524 L17.3751967,11.495826 C17.5139307,10.687474 18.2816956,10.1446414 19.0900476,10.2833754 C19.6530574,10.3800024 20.110737,10.7909985 20.2671465,11.3404099 L20.9039319,13.5772122 C20.9448825,13.7210573 21.0600614,13.8284827 21.2010159,13.8624133 Z" id="Combined-Shape" fill-rule="nonzero" opacity="0.900000036"></path>
+                </g>
+            </g>
+            <rect id="Rectangle" fill-opacity="0.6" fill="#36435C" x="0" y="48" width="1360" height="796" rx="4"></rect>
+            <g id="Group[8v]" transform="translate(20.000000, 112.000000)">
+                <g id="Group-8-Copy-3">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-62)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-61"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="CPU-利用率(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">CPU 利用率(%)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-4" transform="translate(0.000000, 48.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-64)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-63"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">CPU 使用量(核)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-5" transform="translate(0.000000, 144.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-66)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-65"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="内存利用率(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">内存利用率(%)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-16" transform="translate(0.000000, 96.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-68)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-67"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="CPU-平均负载" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">CPU 平均负载</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-6" transform="translate(0.000000, 192.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-70)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-69"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">内存利用量(GiB)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-7" transform="translate(0.000000, 240.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-72)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-71"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="磁盘利用率(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">磁盘利用率(%)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-8" transform="translate(0.000000, 288.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-74)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-73"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="磁盘使用量" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">磁盘使用量</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-17" transform="translate(0.000000, 336.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-76)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-75"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="inode-使用率-(%)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">inode 使用率 (%)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-9" transform="translate(0.000000, 384.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-78)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-77"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="容器组数量变化" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">容器组数量变化</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-10" transform="translate(0.000000, 432.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-80)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-79"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="磁盘吞吐(KB/s)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">磁盘吞吐(KB/s)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-11" transform="translate(0.000000, 480.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-82)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-81"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="服务组件状态" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">服务组件状态</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-12" transform="translate(0.000000, 528.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-84)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-83"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="IOPS" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">IOPS</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-13" transform="translate(0.000000, 576.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-86)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-85"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="网卡流量(Kbps)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">网卡流量(Kbps)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-14" transform="translate(0.000000, 624.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-88)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-87"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="网卡流量(Kbps)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">网卡流量(Kbps)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-15" transform="translate(0.000000, 672.000000)">
+                    <use id="Rectangle" stroke="#55BC8A" mask="url(#mask-90)" stroke-width="4" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-89"></use>
+                    <g id="Group-10" transform="translate(12.000000, 8.000000)">
+                        <text id="容器组运行状态" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="18">容器组运行状态</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-6" transform="translate(340.000000, 112.000000)">
+                <rect id="Rectangle" stroke="#4A5974" fill-opacity="0.6" fill="#36435C" x="0.5" y="0.5" width="999" height="711" rx="4"></rect>
+                <g id="Group-2" transform="translate(20.000000, 20.000000)" fill="#FFFFFF">
+                    <text id="企业空间" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="24">
+                        <tspan x="44" y="21">企业空间</tspan>
+                    </text>
+                    <g id="Glyph/002.Object/022.Enterprise/White">
+                        <polygon id="Combined-Shape" opacity="0.900000036" points="10 3.83333333 12 3.83333333 12 21.0833333 10 21.0833333 10 16.2916667 7 16.2916667 7 21.0833333 5 21.0833333 5 3.83333333 7 3.83333333 7 1.91666667 10 1.91666667"></polygon>
+                        <path d="M15.5,11.5 C17.4329966,11.5 19,13.0017116 19,14.8541667 L19,21.0833333 L12,21.0833333 L12,14.8541667 C12,13.0017116 13.5670034,11.5 15.5,11.5 Z M15.5,16.2916667 C16.3284271,16.2916667 17,15.648076 17,14.8541667 C17,14.0602573 16.3284271,13.4166667 15.5,13.4166667 C14.6715729,13.4166667 14,14.0602573 14,14.8541667 C14,15.648076 14.6715729,16.2916667 15.5,16.2916667 Z" id="Combined-Shape" opacity="0.400000006"></path>
+                        <polygon id="Rectangle-11" opacity="0.400000006" points="7 16.2916667 10 16.2916667 10 21.0833333 7 21.0833333"></polygon>
+                    </g>
+                </g>
+                <g id="Group" transform="translate(20.000000, 64.000000)">
+                    <g id="Group-8-Copy-4">
+                        <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-92)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-91"></use>
+                        <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                            <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                <tspan x="36" y="17">CPU 使用量(核)</tspan>
+                            </text>
+                            <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-8-Copy-6" transform="translate(312.000000, 0.000000)">
+                        <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-94)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-93"></use>
+                        <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                            <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                <tspan x="36" y="17">内存利用量(GiB)</tspan>
+                            </text>
+                            <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-8-Copy-9" transform="translate(624.000000, 0.000000)">
+                        <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-96)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-95"></use>
+                        <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                            <text id="项目变化趋势" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                <tspan x="36" y="17">项目变化趋势</tspan>
+                            </text>
+                            <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-8-Copy-15" transform="translate(0.000000, 56.000000)">
+                        <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-98)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-97"></use>
+                        <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                            <text id="资源用量趋势" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                <tspan x="36" y="17">资源用量趋势</tspan>
+                            </text>
+                            <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <rect id="Rectangle" fill-opacity="0.4" fill="#4A5974" x="360" y="300" width="960" height="504" rx="4"></rect>
+            <text id="支持按用量排序和自定义时间范围查询，帮助" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                <tspan x="380" y="755">支持按用量排序和自定义时间范围查询，帮助快速定位问题</tspan>
+            </text>
+            <g id="Group[12h]" transform="translate(380.000000, 364.000000)">
+                <g id="Group-8-Copy-4">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-100)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-99"></use>
+                    <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                        <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">CPU 使用量(核)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-6" transform="translate(310.000000, 0.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-102)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-101"></use>
+                    <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                        <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">内存利用量(GiB)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-8-Copy-13" transform="translate(621.000000, 0.000000)">
+                    <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-104)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-103"></use>
+                    <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                        <text id="网卡流量(Kbps)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="36" y="17">网卡流量(Kbps)</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                            <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                            <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-2" transform="translate(380.000000, 320.000000)" fill="#FFFFFF">
+                <text id="项目" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="20">
+                    <tspan x="44" y="18">项目</tspan>
+                </text>
+                <g id="Glyph/002.Object/055.Project/White">
+                    <path d="M7,4.79166667 L21,4.79166667 L21,20.125 L5,20.125 C3.8954305,20.125 3,19.2668791 3,18.2083333 C3,17.1497876 3.8954305,16.2916667 5,16.2916667 C6.1045695,16.2916667 7,17.1497876 7,18.2083333 L7,4.79166667 Z M10.704834,11.0285543 L10.704834,16.2916667 L17.295166,16.2916667 L17.295166,11.0285543 L14,7.87068685 L10.704834,11.0285543 Z" id="Combined-Shape" opacity="0.400000006"></path>
+                    <path d="M7,18.2083333 C7,17.1497876 6.1045695,16.2916667 5,16.2916667 C3.8954305,16.2916667 3,17.1497876 3,18.2083333 L3,4.79166667 C3,3.7331209 3.8954305,2.875 5,2.875 C6.1045695,2.875 7,3.7331209 7,4.79166667 L7,18.2083333 Z" id="Combined-Shape" opacity="0.900000036"></path>
+                    <polygon id="Rectangle-18" opacity="0.900000036" points="10.704834 11.0285543 14 7.87068685 17.295166 11.0285543 17.295166 16.2916667 10.704834 16.2916667"></polygon>
+                </g>
+            </g>
+            <g id="Group-2" transform="translate(20.000000, 68.000000)" fill="#FFFFFF">
+                <text id="集群" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="24">
+                    <tspan x="44" y="21">集群</tspan>
+                </text>
+                <g id="Glyph/002.Object/076.Cluster/White">
+                    <g id="Page-1" stroke-width="1" transform="translate(6.570000, 6.000000)">
+                        <g id="Group-2">
+                            <polygon id="Fill-1" opacity="0.5" points="5.4 -0.0003 0 3.0007 0 3.8827 5.411 6.8707 5.411 6.8997 5.413 6.8997 5.421 11.9887 10.8 8.9997 10.8 3.0007"></polygon>
+                            <polygon id="Fill-2" points="0 8.9997 3.931 11.1837 3.926 7.7497 0 5.5837"></polygon>
+                        </g>
+                    </g>
+                    <path d="M12,2 L3,6.999 L3,16.999 L12,22 L21,16.999 L21,6.999 L12,2 Z M5,15.823 L5,8.177 L12,4.288 L19,8.177 L19,15.823 L12,19.712 L5,15.823 Z" id="Page-1"></path>
+                </g>
+            </g>
+            <g id="Group-5" transform="translate(380.000000, 432.000000)">
+                <rect id="Rectangle" fill-opacity="0.8" fill="#4A5974" x="0" y="0" width="920" height="282" rx="4"></rect>
+                <g id="Group-4" transform="translate(20.000000, 22.000000)">
+                    <g id="Group[12h]" transform="translate(0.000000, 44.000000)">
+                        <g id="Group-8-Copy-4">
+                            <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-106)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-105"></use>
+                            <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                                <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                    <tspan x="36" y="17">CPU 使用量(核)</tspan>
+                                </text>
+                                <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                    <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                    <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="Group-8-Copy-6" transform="translate(297.000000, 0.000000)">
+                            <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-108)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-107"></use>
+                            <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                                <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                    <tspan x="36" y="17">内存利用量(GiB)</tspan>
+                                </text>
+                                <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                    <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                    <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                        <g id="Group-8-Copy-13" transform="translate(594.000000, 0.000000)">
+                            <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-110)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-109"></use>
+                            <g id="Group-10" transform="translate(14.000000, 12.000000)">
+                                <text id="网卡流量(Kbps)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                    <tspan x="36" y="17">网卡流量(Kbps)</tspan>
+                                </text>
+                                <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                    <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                    <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-2" fill="#FFFFFF">
+                        <text id="工作负载/容器组" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="20">
+                            <tspan x="44" y="18">工作负载/容器组</tspan>
+                        </text>
+                        <g id="Glyph/002.Object/016.Container/White">
+                            <path d="M20.644348,5.75119575 L16.3361409,7.66666667 L16.3400002,15.3396798 L11.9966146,17.2528662 L12.004473,21.0835527 L3.3425051,17.2519483 L3.3425051,9.58333333 L7.68019828,7.66656065 L7.68019828,3.83355273 L12.004473,1.91688606 L20.644348,5.75119575 Z M7.63999987,11.5 L7.63999987,15.3333333 L12,13.4166667 L12,9.58333333 L7.63999987,11.5 Z" id="Combined-Shape" opacity="0.400000006"></path>
+                            <polygon id="Path-5-Copy" opacity="0.900000036" points="16.3361409 7.66666667 20.644348 5.75119575 20.644348 17.2519483 12.004473 21.0835527 11.9966146 17.2528662 16.3400002 15.3396798"></polygon>
+                            <polygon id="Path-6" opacity="0.900000036" points="7.63999987 11.5 7.63999987 15.3333333 12 13.4166667 12 9.58333333"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-3" transform="translate(20.000000, 134.000000)">
+                    <rect id="Rectangle" fill="#242E42" x="0" y="0" width="880" height="128" rx="4"></rect>
+                    <g id="Group-8-Copy-4" transform="translate(20.000000, 60.000000)">
+                        <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-112)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-111"></use>
+                        <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                            <text id="CPU-使用量(核)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                <tspan x="36" y="17">CPU 使用量(核)</tspan>
+                            </text>
+                            <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-8-Copy-6" transform="translate(332.000000, 60.000000)">
+                        <use id="Rectangle" stroke-opacity="0.6" stroke="#55BC8A" mask="url(#mask-114)" stroke-width="2" fill-opacity="0.6" fill="#242E42" stroke-dasharray="4" xlink:href="#path-113"></use>
+                        <g id="Group-10" transform="translate(12.000000, 12.000000)">
+                            <text id="内存利用量(GiB)" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                                <tspan x="36" y="17">内存利用量(GiB)</tspan>
+                            </text>
+                            <g id="Glyph/002.Object/072.Pin/Green" fill="#55BC8A">
+                                <path d="M8.81170788,9.83437112 L12.1335165,4.08082982 C11.6334706,3.7921282 11.4621423,3.15272204 11.7508439,2.65267617 C12.0395455,2.15263031 12.6789517,1.98130194 13.1789975,2.27000355 L18.6114763,5.40644665 C19.1115222,5.69514826 19.2828506,6.33455443 18.9941489,6.8346003 C18.7054473,7.33464616 18.0660412,7.50597453 17.5659953,7.21727291 L14.2441867,12.9708142 C15.1712119,14.2643662 15.3147823,16.0325025 14.4672868,17.5004078 L4.77741468,11.9059576 C5.62491022,10.4380522 7.22794639,9.6783197 8.81170788,9.83437112 Z" id="Combined-Shape"></path>
+                                <polygon id="Rectangle-27" fill-opacity="0.4" points="8.16652777 13.8626629 11.0781737 15.5437025 5.44042662 21.9464878"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-2" transform="translate(20.000000, 20.000000)">
+                        <text id="容器" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="20" fill="#FFFFFF">
+                            <tspan x="44" y="17">容器</tspan>
+                        </text>
+                        <g id="Untitled-1-2">
+                            <path d="M17.3541927,18.4245307 C17.8793492,17.9724656 18.4095119,17.5209011 18.9346683,17.0643304 C19.1163955,16.9071339 19.3126408,16.750438 19.4893617,16.5837297 C19.347184,16.4015019 19.1068836,16.2738423 18.905632,16.1957447 C18.4981227,16.0385482 18.0906133,16.0926158 17.7171464,16.3083855 C17.2265332,16.5932416 17.0152691,17.044806 17.0347935,17.6095119 C17.0397997,17.8302879 17.1038798,18.0460576 17.2215269,18.232791 C17.2560701,18.3013767 17.3051314,18.3654568 17.3541927,18.4245307 Z M17.9629537,18.8515645 C18.2232791,18.9396746 18.5176471,18.9301627 18.7824781,18.8811014 C18.9201502,18.8220275 19.2635795,18.6698373 19.391239,18.694368 L19.4112641,18.6993742 L19.4307885,18.7093867 C19.5093867,18.7484355 19.5829787,18.8025031 19.6220275,18.8811014 C19.7156446,19.0673342 19.6710889,19.2540676 19.4893617,19.3566959 L19.4307885,19.3917397 C18.7579474,19.779224 18.0415519,19.7251564 17.3687109,19.3617021 C17.0498123,19.1899875 16.804005,18.9301627 16.6227785,18.6157697 L16.5782228,18.5421777 C16.1461827,17.791239 16.2052566,17.0052566 16.6913642,16.2938673 C16.8580726,16.0485607 17.0793492,15.856821 17.339174,15.709637 L17.4372966,15.6555695 C18.0705882,15.2871089 18.7534418,15.3116395 19.4062578,15.6355444 C19.7534709,15.8040508 20.0423594,16.072541 20.2357947,16.4065081 L20.2703379,16.465582 C20.4125156,16.7108886 20.2257822,16.9271589 20.0395494,17.0743429 C19.8182728,17.2460576 19.5974969,17.4473091 19.3867334,17.6340426 C18.905632,18.0365457 18.4340426,18.4490613 17.9629537,18.8515645 Z M23.0092616,15.4443054 L23.0783479,15.4443054 C23.2891114,15.4443054 23.4317897,15.5869837 23.4317897,15.7977472 C23.4317897,16.0926158 23.1514393,16.1662078 22.9061327,16.1662078 C22.587234,16.1662078 22.2828536,16.3574468 22.0620776,16.5737171 C21.7867334,16.8435544 21.6690864,17.19199 21.6690864,17.5699625 L21.6690864,19.2881101 C21.6690864,19.4848561 21.546433,19.6415519 21.3401752,19.6415519 L21.2866083,19.6415519 C21.0803504,19.6415519 20.9576971,19.4848561 20.9576971,19.2881101 L20.9576971,17.4718398 C20.9576971,16.7749687 21.2961202,16.2052566 21.8658323,15.8027534 C22.2023488,15.5711929 22.6007769,15.4462916 23.0092616,15.4443054 Z M14.1581977,16.6668335 C14.4335419,16.3914894 14.7128911,16.1171464 14.9927409,15.8418023 C15.0713392,15.7682103 15.3657071,15.4443054 15.4833542,15.4443054 L15.6115144,15.4443054 L15.6260325,15.4493116 C15.7882353,15.4838548 15.9108886,15.5869837 15.9108886,15.7586984 L15.9108886,15.8272841 C15.9108886,15.9449312 15.7732165,16.0826033 15.6946183,16.1662078 C15.5329161,16.3379224 15.3607009,16.5046308 15.1939925,16.6768461 L14.3349186,17.5454318 C14.7028786,17.9138924 15.0708385,18.2868586 15.4392991,18.6598248 C15.542428,18.7629537 15.6405507,18.8660826 15.7436796,18.9692115 C15.7782228,19.0082603 15.8322904,19.052816 15.8618273,19.1018773 C15.8926783,19.1502692 15.9096491,19.2062033 15.9108886,19.2635795 L15.9108886,19.3371715 L15.9058824,19.3521902 C15.8668335,19.514393 15.7637046,19.6465582 15.5819775,19.6465582 L15.5229036,19.6465582 C15.4052566,19.6465582 15.2725907,19.514393 15.1939925,19.4357947 C15.0272841,19.2785982 14.8700876,19.1163955 14.7033792,18.9546934 L14.1581977,18.4190238 L14.1581977,19.2740926 C14.1581977,19.4703379 14.0355444,19.6275344 13.8292866,19.6275344 L13.775219,19.6275344 C13.5689612,19.6275344 13.4463079,19.4703379 13.4463079,19.2740926 L13.4463079,14.4530663 C13.4463079,14.256821 13.5689612,14.0996245 13.775219,14.0996245 L13.8292866,14.0996245 C14.0355444,14.0996245 14.1581977,14.256821 14.1581977,14.4530663 L14.1581977,16.6673342 L14.1581977,16.6668335 Z M11.8553191,16.1857322 C11.7476846,16.1366708 11.546433,16.1171464 11.4337922,16.1121402 C10.8395494,16.0871089 10.4125156,16.4260325 10.1571965,16.9466834 C10.0716066,17.124138 10.02793,17.3188842 10.0295369,17.5158949 C10.0295369,18.1246558 10.3484355,18.5521902 10.893617,18.8125156 C11.0898623,18.905632 11.3501877,18.9251564 11.5659574,18.9251564 C11.7576971,18.9251564 12.0275344,18.8070088 12.1947434,18.7289111 L12.2237797,18.7138924 L12.3564456,18.7138924 L12.3714643,18.7188986 C12.5331665,18.7534418 12.6558198,18.8560701 12.6558198,19.0282854 L12.6558198,19.0968711 C12.6558198,19.5289111 11.8653317,19.6270338 11.5659574,19.6515645 C10.5006258,19.7251564 9.70563204,19.1409262 9.40125156,18.1246558 C9.34840543,17.9512075 9.32191048,17.7708056 9.32265332,17.5894869 L9.32265332,17.4473091 C9.32265332,16.6763454 9.70563204,16.0680851 10.3634543,15.6750939 C10.6663588,15.4949139 11.012263,15.3997902 11.3647059,15.3997497 L11.5073842,15.3997497 C11.8786655,15.3983063 12.2416251,15.5096908 12.5481852,15.7191489 L12.5727159,15.739174 L12.587234,15.7637046 C12.6248512,15.8189041 12.6468216,15.8832584 12.6508135,15.9499374 L12.6508135,16.0190238 C12.6508135,16.2002503 12.5136421,16.298373 12.3514393,16.3279099 L12.2928661,16.3279099 C12.1897372,16.3379224 11.9489362,16.2297872 11.8558198,16.1857322 L11.8553191,16.1857322 Z M5.37571965,17.5359199 C5.37571965,18.0755945 5.64105131,18.473592 6.0971214,18.7534418 C6.31339174,18.885607 6.54868586,18.9446809 6.79949937,18.9446809 C7.33416771,18.9446809 7.72715895,18.6743429 8.0020025,18.2227785 C8.13466834,18.0070088 8.19324155,17.771214 8.19324155,17.5209011 C8.19324155,17.0202753 7.95294118,16.6372966 7.54042553,16.3574468 C7.31904089,16.2067596 7.05728778,16.1264887 6.78948686,16.1271589 C6.19524406,16.1271589 5.76821026,16.4260325 5.50788486,16.9612015 C5.41799275,17.1392643 5.3726407,17.336477 5.37571965,17.5359199 Z M6.71589487,15.4197747 L6.81401752,15.4197747 C7.63854819,15.4197747 8.26232791,15.8172716 8.65982478,16.539174 C8.81702128,16.8290363 8.90513141,17.1379224 8.90513141,17.4668335 L8.90513141,17.6095119 C8.90513141,18.3804756 8.52715895,18.9937422 7.85982478,19.3817272 C7.55687033,19.5617318 7.2109694,19.6566816 6.85857322,19.6565707 L6.71589487,19.6565707 C5.94493116,19.6565707 5.33116395,19.273592 4.9436796,18.6157697 C4.76349959,18.3128652 4.66837595,17.966961 4.66833542,17.6145181 L4.66833542,17.4718398 C4.66833542,16.7008761 5.05181477,16.0926158 5.70963705,15.6996245 C6.01183271,15.5130369 6.36075699,15.4159977 6.71589487,15.4197747 Z M0.725907384,17.5359199 C0.725907384,18.0906133 0.996245307,18.5076345 1.48185232,18.7774718 C1.67697687,18.8864826 1.89664065,18.9440259 2.12015019,18.9446809 C2.66533166,18.9446809 3.07284105,18.6893617 3.35269086,18.2227785 C3.48035044,18.0070088 3.54392991,17.771214 3.54392991,17.5209011 C3.54392991,17.0403004 3.31364205,16.6618273 2.92515645,16.3819775 C2.68986233,16.2102628 2.42453066,16.1266583 2.13516896,16.1266583 C1.54092616,16.1266583 1.11389237,16.4260325 0.853566959,16.9612015 C0.767338973,17.1403926 0.723651013,17.3370741 0.725907384,17.5359199 Z M3.53942428,15.9499374 L3.53942428,14.4480601 C3.53942428,14.2513141 3.66157697,14.0941176 3.86783479,14.0941176 L3.92690864,14.0941176 C4.13316646,14.0941176 4.25581977,14.2513141 4.25581977,14.4480601 L4.25581977,17.6045056 C4.25581977,18.3754693 3.87284105,18.9887359 3.21001252,19.3767209 C2.90710799,19.5569009 2.56120384,19.6520246 2.20876095,19.6520651 L2.06157697,19.6520651 C1.29061327,19.6520651 0.676846058,19.2685857 0.289361702,18.6107635 C0.109181693,18.3078589 0.0140580526,17.9619548 0.0140175219,17.6095119 L0.0140175219,17.4668335 C0.0140175219,16.6958698 0.396996245,16.0826033 1.05531915,15.6946183 C1.3582736,15.5146136 1.70417453,15.4196638 2.05657071,15.4197747 L2.19874844,15.4197747 C2.72440551,15.4197747 3.16595745,15.6210263 3.53892365,15.950438 L3.53942428,15.9499374 Z M13.5193992,4.1922403 L15.6155194,4.1922403 L15.6155194,6.33291615 L16.6763454,6.33291615 C17.1669587,6.33291615 17.6675845,6.24430538 18.1341677,6.08760951 C18.379401,6.0038254 18.6160975,5.89687613 18.8410513,5.76821026 C18.5466834,5.38072591 18.3944931,4.89461827 18.350438,4.4135169 C18.2913642,3.76070088 18.42403,2.90663329 18.8660826,2.39599499 L19.0863579,2.14067584 L19.3466834,2.3514393 C20.0095119,2.88210263 20.5642053,3.62302879 20.6623279,4.47209011 C21.4578223,4.23679599 22.3904881,4.29536921 23.0923655,4.69787234 L23.3822278,4.86508135 L23.2300375,5.15944931 C22.6357947,6.318398 21.3937422,6.67634543 20.1812265,6.61276596 C18.3649562,11.1339174 14.4180225,13.2745932 9.62653317,13.2745932 C7.15244055,13.2745932 4.87909887,12.3514393 3.58798498,10.1521902 L3.56846058,10.1181477 L3.38172716,9.73516896 C2.94518148,8.76795995 2.7979975,7.70763454 2.89612015,6.65181477 L2.92515645,6.33291615 L4.71739675,6.33291615 L4.71739675,4.1922403 L6.8135169,4.1922403 L6.8135169,2.09612015 L11.0057572,2.09612015 L11.0057572,0 L13.5193992,0 L13.5193992,4.1922403 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                            <path d="M20.3093867,4.98272841 C20.4515645,3.89286608 19.6320401,3.03379224 19.126408,2.62628285 C18.5421777,3.30413016 18.453567,5.07133917 19.3667084,5.81727159 C18.8560701,6.2738423 17.7762203,6.68135169 16.6768461,6.68135169 L3.24005006,6.68135169 C3.13191489,7.83529412 3.33316646,8.89561952 3.79474343,9.80375469 L3.94693367,10.0836045 C4.04505632,10.2453066 4.14818523,10.4075094 4.26633292,10.5596996 C4.81602003,10.5942428 5.32665832,10.608761 5.79324155,10.5992491 C6.70588235,10.579224 7.45732165,10.4715895 8.02152691,10.2748436 C8.1055577,10.2453938 8.1976188,10.2891898 8.22778473,10.3729662 C8.2572345,10.456997 8.21343845,10.5490581 8.12966208,10.579224 C8.05607009,10.6042553 7.97747184,10.6282854 7.89436796,10.652816 C7.44730914,10.7804756 6.97121402,10.8640801 6.35244055,10.9031289 C6.38698373,10.9031289 6.31339174,10.9081352 6.31339174,10.9081352 C6.29336671,10.9081352 6.26433041,10.9131414 6.24430538,10.9131414 C6.00400501,10.9281602 5.73867334,10.9281602 5.47334168,10.9281602 C5.17947434,10.9281602 4.89461827,10.9231539 4.57071339,10.9081352 L4.56070088,10.9131414 C5.68010013,12.1697121 7.42778473,12.9256571 9.62202753,12.9256571 C14.2663329,12.9256571 18.2032541,10.8690864 19.9459324,6.24931164 C21.1834793,6.37697121 22.3714643,6.06307885 22.9111389,5.0077597 C22.0570713,4.50713392 20.9476846,4.66382979 20.3093867,4.98272841 Z" id="Path" fill="#00AADA"></path>
+                            <path d="M20.3093867,4.98272841 C20.4515645,3.89286608 19.6320401,3.03379224 19.126408,2.62628285 C18.5421777,3.30413016 18.453567,5.07133917 19.3667084,5.81727159 C18.8560701,6.2738423 17.7762203,6.68135169 16.6768461,6.68135169 L4.0350438,6.68135169 C3.98097622,8.44355444 4.63379224,9.78423029 5.7922403,10.5942428 C6.70538173,10.5742178 7.45682103,10.4665832 8.02102628,10.2698373 C8.10519946,10.240436 8.19732259,10.2844852 8.22728411,10.3684606 C8.2564085,10.4523424 8.21267407,10.5440509 8.12916145,10.5742178 C8.05556946,10.5992491 7.97697121,10.6237797 7.89386733,10.6483104 C7.44680851,10.77597 6.9261577,10.873592 6.31289111,10.9086358 L6.29787234,10.893617 C7.87884856,11.7036295 10.171214,11.7036295 12.7979975,10.6923655 C15.743179,9.56295369 18.4826033,7.40325407 20.3974969,4.93867334 C20.3629537,4.95869837 20.338423,4.97321652 20.3088861,4.98272841 L20.3093867,4.98272841 Z" id="Path" fill="#24B8EB"></path>
+                            <path d="M3.26908636,8.08510638 C3.35319149,8.70387985 3.53441802,9.27859825 3.79974969,9.80876095 L3.95193992,10.0886108 C4.05006258,10.2503129 4.15319149,10.4125156 4.27083855,10.5642053 C4.82553191,10.5992491 5.33116395,10.6137672 5.79774718,10.6042553 C6.71088861,10.5842303 7.46182728,10.4760951 8.02653317,10.2798498 C8.11056396,10.2504 8.20262506,10.2941961 8.23279099,10.3779725 C8.26224076,10.4620033 8.2184447,10.5540644 8.13466834,10.5842303 C8.06107635,10.6092616 7.9824781,10.6332916 7.89937422,10.6578223 C7.45231539,10.7854819 6.93667084,10.8740926 6.318398,10.9131414 C6.29837297,10.9131414 6.25932416,10.9131414 6.23979975,10.9181477 C5.99949937,10.9331665 5.73917397,10.9381727 5.46883605,10.9381727 C5.17446809,10.9381727 4.87509387,10.9331665 4.55569462,10.9181477 C5.67509387,12.1747184 7.43729662,12.9306633 9.63204005,12.9306633 C13.6085106,12.9306633 17.0643304,11.4237797 19.0723404,8.09061327 L3.26908636,8.09061327 L3.26908636,8.08560701 L3.26908636,8.08510638 Z" id="Path" fill="#008BB8"></path>
+                            <path d="M4.15819775,8.08510638 C4.39349186,9.17046308 4.96821026,10.0195244 5.79774718,10.5992491 C6.71088861,10.579224 7.46182728,10.4715895 8.02653317,10.2748436 C8.11056396,10.2453938 8.20262506,10.2891898 8.23279099,10.3729662 C8.26224076,10.456997 8.2184447,10.5490581 8.13466834,10.579224 C8.06107635,10.6042553 7.9824781,10.6282854 7.89937422,10.652816 C7.45231539,10.7804756 6.92665832,10.8690864 6.30838548,10.9081352 C7.8893617,11.7181477 10.1717146,11.7086358 12.7984981,10.6973717 C14.3889862,10.0886108 15.9158949,9.18047559 17.2901126,8.08560701 L4.15819775,8.08560701 L4.15819775,8.08510638 Z" id="Path" fill="#039BC6"></path>
+                            <path d="M6.58823529,4.69336671 L6.73041302,4.69336671 L6.73041302,6.20525657 L6.58823529,6.20525657 L6.58823529,4.69336671 Z M6.31289111,4.69336671 L6.46057572,4.69336671 L6.46057572,6.20525657 L6.31339174,6.20525657 L6.31339174,4.69336671 L6.31289111,4.69336671 Z M6.03854819,4.69336671 L6.18573217,4.69336671 L6.18573217,6.20525657 L6.03854819,6.20525657 L6.03854819,4.69336671 Z M5.76320401,4.69336671 L5.91088861,4.69336671 L5.91088861,6.20525657 L5.76320401,6.20525657 L5.76320401,4.69336671 Z M5.48836045,4.69336671 L5.63554443,4.69336671 L5.63554443,6.20525657 L5.48836045,6.20525657 L5.48836045,4.69336671 Z M5.21852315,4.69336671 L5.36070088,4.69336671 L5.36070088,6.20525657 L5.21852315,6.20525657 L5.21852315,4.69336671 Z M5.06633292,4.54117647 L6.88260325,4.54117647 L6.88260325,6.35744681 L5.06633292,6.35744681 L5.06633292,4.54117647 Z M8.68435544,2.59674593 L8.82653317,2.59674593 L8.82653317,4.10863579 L8.68435544,4.10863579 L8.68435544,2.59674593 Z M8.40951189,2.59674593 L8.55669587,2.59674593 L8.55669587,4.10863579 L8.40951189,4.10863579 L8.40951189,2.59674593 Z M8.13416771,2.59674593 L8.28185232,2.59674593 L8.28185232,4.10863579 L8.13466834,4.10863579 L8.13466834,2.59674593 L8.13416771,2.59674593 Z M7.85982478,2.59674593 L8.00700876,2.59674593 L8.00700876,4.10863579 L7.85982478,4.10863579 L7.85982478,2.59674593 Z M7.5844806,2.59674593 L7.73216521,2.59674593 L7.73216521,4.10863579 L7.58498123,4.10863579 L7.58498123,2.59674593 L7.5844806,2.59674593 Z M7.3146433,2.59674593 L7.45732165,2.59674593 L7.45732165,4.10863579 L7.3146433,4.10863579 L7.3146433,2.59674593 Z M7.16245307,2.44455569 L8.9787234,2.44455569 L8.9787234,4.26132666 L7.16245307,4.26132666 L7.16245307,2.44455569 Z" id="Shape" fill="#00ACD3" fill-rule="nonzero"></path>
+                            <path d="M8.68435544,4.69336671 L8.82653317,4.69336671 L8.82653317,6.20525657 L8.68435544,6.20525657 L8.68435544,4.69336671 Z M8.40951189,4.69336671 L8.55669587,4.69336671 L8.55669587,6.20525657 L8.40951189,6.20525657 L8.40951189,4.69336671 Z M8.13416771,4.69336671 L8.28185232,4.69336671 L8.28185232,6.20525657 L8.13466834,6.20525657 L8.13466834,4.69336671 L8.13416771,4.69336671 Z M7.85982478,4.69336671 L8.00700876,4.69336671 L8.00700876,6.20525657 L7.85982478,6.20525657 L7.85982478,4.69336671 Z M7.5844806,4.69336671 L7.73216521,4.69336671 L7.73216521,6.20525657 L7.58498123,6.20525657 L7.58498123,4.69336671 L7.5844806,4.69336671 Z M7.3146433,4.69336671 L7.45732165,4.69336671 L7.45732165,6.20525657 L7.3146433,6.20525657 L7.3146433,4.69336671 Z M7.16245307,4.54117647 L8.9787234,4.54117647 L8.9787234,6.35744681 L7.16245307,6.35744681 L7.16245307,4.54117647 Z" id="Shape" fill="#20C2EF" fill-rule="nonzero"></path>
+                            <path d="M10.7804756,4.69336671 L10.9231539,4.69336671 L10.9231539,6.20525657 L10.7804756,6.20525657 L10.7804756,4.69336671 Z M10.505632,4.69336671 L10.652816,4.69336671 L10.652816,6.20525657 L10.505632,6.20525657 L10.505632,4.69336671 Z M10.2307885,4.69336671 L10.3779725,4.69336671 L10.3779725,6.20525657 L10.2307885,6.20525657 L10.2307885,4.69336671 Z M9.95544431,4.69336671 L10.1031289,4.69336671 L10.1031289,6.20525657 L9.95594493,6.20525657 L9.95594493,4.69336671 L9.95544431,4.69336671 Z M9.67609512,4.69336671 L9.8232791,4.69336671 L9.8232791,6.20525657 L9.67609512,6.20525657 L9.67609512,4.69336671 Z M9.41076345,4.69336671 L9.5534418,4.69336671 L9.5534418,6.20525657 L9.41076345,6.20525657 L9.41076345,4.69336671 Z M9.25857322,4.54117647 L11.0753442,4.54117647 L11.0753442,6.35744681 L9.25857322,6.35744681 L9.25857322,4.54117647 Z" id="Shape" fill="#00ACD3" fill-rule="nonzero"></path>
+                            <path d="M10.7804756,2.59674593 L10.9231539,2.59674593 L10.9231539,4.10863579 L10.7804756,4.10863579 L10.7804756,2.59674593 Z M10.505632,2.59674593 L10.652816,2.59674593 L10.652816,4.10863579 L10.505632,4.10863579 L10.505632,2.59674593 Z M10.2307885,2.59674593 L10.3779725,2.59674593 L10.3779725,4.10863579 L10.2307885,4.10863579 L10.2307885,2.59674593 Z M9.95544431,2.59674593 L10.1031289,2.59674593 L10.1031289,4.10863579 L9.95594493,4.10863579 L9.95594493,2.59674593 L9.95544431,2.59674593 Z M9.67609512,2.59674593 L9.8232791,2.59674593 L9.8232791,4.10863579 L9.67609512,4.10863579 L9.67609512,2.59674593 Z M9.41076345,2.59674593 L9.5534418,2.59674593 L9.5534418,4.10863579 L9.41076345,4.10863579 L9.41076345,2.59674593 Z M9.25857322,2.44455569 L11.0753442,2.44455569 L11.0753442,4.26132666 L9.25857322,4.26132666 L9.25857322,2.44455569 Z M12.8770964,4.69336671 L13.0192741,4.69336671 L13.0192741,6.20525657 L12.8770964,6.20525657 L12.8770964,4.69336671 Z M12.6017522,4.69336671 L12.7494368,4.69336671 L12.7494368,6.20525657 L12.6017522,6.20525657 L12.6017522,4.69336671 Z M12.3269086,4.69336671 L12.4740926,4.69336671 L12.4740926,6.20525657 L12.3269086,6.20525657 L12.3269086,4.69336671 Z M12.0470588,4.69336671 L12.1947434,4.69336671 L12.1947434,6.20525657 L12.0470588,6.20525657 L12.0470588,4.69336671 Z M11.7722153,4.69336671 L11.9193992,4.69336671 L11.9193992,6.20525657 L11.7722153,6.20525657 L11.7722153,4.69336671 Z M11.5068836,4.69336671 L11.649562,4.69336671 L11.649562,6.20525657 L11.5073842,6.20525657 L11.5073842,4.69336671 L11.5068836,4.69336671 Z M11.355194,4.54117647 L13.1714643,4.54117647 L13.1714643,6.35744681 L11.355194,6.35744681 L11.355194,4.54117647 Z" id="Shape" fill="#20C2EF" fill-rule="nonzero"></path>
+                            <path d="M12.8770964,2.59674593 L13.0192741,2.59674593 L13.0192741,4.10863579 L12.8770964,4.10863579 L12.8770964,2.59674593 Z M12.6017522,2.59674593 L12.7494368,2.59674593 L12.7494368,4.10863579 L12.6017522,4.10863579 L12.6017522,2.59674593 Z M12.3269086,2.59674593 L12.4740926,2.59674593 L12.4740926,4.10863579 L12.3269086,4.10863579 L12.3269086,2.59674593 Z M12.0470588,2.59674593 L12.1947434,2.59674593 L12.1947434,4.10863579 L12.0470588,4.10863579 L12.0470588,2.59674593 Z M11.7722153,2.59674593 L11.9193992,2.59674593 L11.9193992,4.10863579 L11.7722153,4.10863579 L11.7722153,2.59674593 Z M11.5068836,2.59674593 L11.649562,2.59674593 L11.649562,4.10863579 L11.5073842,4.10863579 L11.5073842,2.59674593 L11.5068836,2.59674593 Z M11.355194,2.44455569 L13.1714643,2.44455569 L13.1714643,4.26132666 L11.355194,4.26132666 L11.355194,2.44455569 Z" id="Shape" fill="#00ACD3" fill-rule="nonzero"></path>
+                            <path d="M12.8770964,0.500625782 L13.0192741,0.500625782 L13.0192741,2.01251564 L12.8770964,2.01251564 L12.8770964,0.500625782 Z M12.6017522,0.500625782 L12.7494368,0.500625782 L12.7494368,2.01251564 L12.6017522,2.01251564 L12.6017522,0.500625782 Z M12.3269086,0.500625782 L12.4740926,0.500625782 L12.4740926,2.01251564 L12.3269086,2.01251564 L12.3269086,0.500625782 Z M12.0470588,0.500625782 L12.1947434,0.500625782 L12.1947434,2.01251564 L12.0470588,2.01251564 L12.0470588,0.500625782 Z M11.7722153,0.500625782 L11.9193992,0.500625782 L11.9193992,2.01251564 L11.7722153,2.01251564 L11.7722153,0.500625782 Z M11.5068836,0.500625782 L11.649562,0.500625782 L11.649562,2.01251564 L11.5073842,2.01251564 L11.5073842,0.500625782 L11.5068836,0.500625782 Z M11.355194,0.348435544 L13.1714643,0.348435544 L13.1714643,2.16520651 L11.355194,2.16520651 L11.355194,0.348435544 Z" id="Shape" fill="#20C2EF" fill-rule="nonzero"></path>
+                            <path d="M14.9732165,4.69336671 L15.1153942,4.69336671 L15.1153942,6.20525657 L14.9732165,6.20525657 L14.9732165,4.69336671 Z M14.6978723,4.69336671 L14.8455569,4.69336671 L14.8455569,6.20525657 L14.698373,6.20525657 L14.698373,4.69336671 L14.6978723,4.69336671 Z M14.4185232,4.69336671 L14.5657071,4.69336671 L14.5657071,6.20525657 L14.4180225,6.20525657 L14.4180225,4.69336671 L14.4185232,4.69336671 Z M14.143179,4.69336671 L14.2908636,4.69336671 L14.2908636,6.20525657 L14.1436796,6.20525657 L14.1436796,4.69336671 L14.143179,4.69336671 Z M13.8683354,4.69336671 L14.01602,4.69336671 L14.01602,6.20525657 L13.8683354,6.20525657 L13.8683354,4.69336671 Z M13.5984981,4.69336671 L13.7406758,4.69336671 L13.7406758,6.20525657 L13.5984981,6.20525657 L13.5984981,4.69336671 Z M13.4513141,4.54117647 L15.2675845,4.54117647 L15.2675845,6.35744681 L13.4518148,6.35744681 L13.4518148,4.54117647 L13.4513141,4.54117647 Z" id="Shape" fill="#00ACD3" fill-rule="nonzero"></path>
+                            <path d="M8.8660826,9.30312891 C9.14142678,9.30312891 9.36670839,9.52841051 9.36670839,9.80375469 C9.36670839,10.0790989 9.14142678,10.3043805 8.8660826,10.3043805 C8.59073842,10.3043805 8.36545682,10.0790989 8.36545682,9.80375469 C8.36545682,9.52841051 8.58623279,9.30312891 8.8660826,9.30312891" id="Path" fill="#D4EDF1"></path>
+                            <path d="M8.8660826,9.44530663 C8.91013767,9.44530663 8.95419274,9.45531915 8.99374218,9.47033792 C8.93614422,9.50383897 8.90811293,9.5717599 8.92531797,9.6361325 C8.94252301,9.7005051 9.00070267,9.7453842 9.06733417,9.7456821 C9.12162362,9.74579954 9.17120621,9.71488334 9.19499374,9.6660826 C9.21501877,9.7106383 9.22453066,9.75469337 9.22453066,9.80375469 C9.2234364,10.0012651 9.06359297,10.1611085 8.8660826,10.1622028 C8.66857224,10.1611085 8.50872881,10.0012651 8.50763454,9.80375469 C8.50763454,9.60750939 8.66483104,9.44530663 8.8660826,9.44530663 M-3.55271368e-15,8.26232791 L23.3141427,8.26232791 C22.8085106,8.13466834 21.7086358,7.95794743 21.890363,7.2951189 C20.967209,8.36545682 18.7434293,8.04605757 18.1787234,7.51589487 C17.5554443,8.42403004 13.9128911,8.08060075 13.657572,7.37371715 C12.8715895,8.29186483 10.4420526,8.29186483 9.65657071,7.37371715 C9.40125156,8.08060075 5.75869837,8.42403004 5.13491865,7.51589487 C4.57521902,8.04155194 2.34643304,8.36045056 1.42377972,7.2951189 C1.60550688,7.96295369 0.50563204,8.13466834 -3.55271368e-15,8.26232791" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                            <path d="M10.1962453,12.9161452 C8.95469337,12.3269086 8.2718398,11.5269086 7.89386733,10.6533166 C7.43279099,10.7854819 6.877597,10.8685857 6.23479349,10.9036295 C5.99449312,10.9181477 5.73917397,10.9231539 5.46883605,10.9231539 C5.15944931,10.9231539 4.83554443,10.9131414 4.49211514,10.8931164 C5.6310388,12.0325407 7.03028786,12.9061327 9.62202753,12.9206508 C9.81827284,12.9256571 10.0050063,12.9206508 10.1962453,12.9161452 Z" id="Path" fill="#BFDBE0"></path>
+                            <path d="M8.35544431,11.4583229 C8.17293549,11.2072852 8.01817278,10.9372058 7.89386733,10.652816 C7.43279099,10.7854819 6.877597,10.8690864 6.23479349,10.9031289 C6.67634543,11.1439299 7.30963705,11.3647059 8.35544431,11.4583229 Z" id="Path" fill="#D4EDF1"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -20,7 +20,7 @@ title: "存储概述"
 
 ### 存储类型
 
-KubeSphere 支持的存储类型有 QingCloud CSI (QingCloud 云平台块存储插件)、NeonSAN CSI (QingStor NeonSAN 分布式存储)、NFS、GlusterFS、Ceph RBD、Local (仅 all-in-one 中使用)，安装时配置这类存储服务请参考 [存储配置说明](../../installation/storage-configuration)。
+KubeSphere 支持的存储类型有 QingCloud CSI (QingCloud 云平台块存储插件)、NeonSAN CSI (QingStor NeonSAN 分布式存储)、NFS、GlusterFS、Ceph RBD、Local (仅 all-in-one 中使用)，这类存储类型都支持创建和使用持久化存储卷，安装时配置这类存储服务请参考 [存储配置说明](../../installation/storage-configuration)。
 
 
 ### Local Volume
@@ -44,9 +44,9 @@ KubeSphere 支持的存储类型有 QingCloud CSI (QingCloud 云平台块存储�
 
 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本地 NFS 的客户端应用可以透明地读写位于远端 NFS 服务器上的文件，就像访问本地文件一样，详见 [NFS 配置](../../installation/)
 
-> 注意：Ceph RBD、GlusterFS、NFS 这类网络文件系统必须先准备好相应的服务端才能使用。
+> 注意：使用 KubeSphere 动态分配存储卷功能前，必须预先准备好相应的服务端。
 
 
 ## 存储卷
 
-存储卷，具有单个磁盘的功能，供用户创建的工作负载使用。在创建存储类型后，即可创建存储卷，详见 [存储卷 - 创建存储卷](../ae-PVC/#创建存储卷)。
+存储卷，具有单个磁盘的功能，供用户创建的工作负载使用。在创建存储类型后，即可创建存储卷，并挂载至工作负载，详见 [存储卷 - 创建存储卷](../PVC/#创建存储卷)。

@@ -2,7 +2,7 @@
 title: "Multi-node 模式"
 ---
 
-`Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
+`Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
 ## 前提条件
 
@@ -18,19 +18,19 @@ title: "Multi-node 模式"
 | CentOS 7.5 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 |Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
-以下用一个示例介绍 multi-node 模式部署多节点，此示例准备了 3 台主机，以主机名为 master 的节点作为任务执行机 taskbox，各节点主机名可由用户自定义。
+以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 3 台主机，以主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在 KubeSphere 中 Worker 节点跟 Master 节点几乎是相同的，它们都运行着一个 **kubelet** 组件。最大的区别在于，在 kubeadm init 的过程中，kubelet 启动后，Master 节点上还会自动运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
 
-> 说明：高级版支持 master 和 etcd 节点高可用配置，本示例仅演示 etcd 高可用配置，若需要配置请参阅 [Master 节点高可用配置](../master-ha)。
+> 说明：高级版支持 Master 和 etcd 节点高可用配置，但本示例仅作为测试部署的演示，因此 3 台主机中仅部署单个 Master 和单个 etcd，正式环境建议配置 Master 和 etcd 节点的高可用，请参阅 [Master 和 etcd 节点高可用配置](../master-ha)。
 
 假设主机信息如下所示：
 
-| 主机IP | 主机名 | 集群角色 |
+| 主机 IP | 主机名 | 集群角色 |
 | --- | --- | --- |
-|192.168.0.1|master|master，etcd，node|
-|192.168.0.2|node1|node，etcd|
-|192.168.0.3|node2|node, etcd |
+|192.168.0.1|master|master，etcd|
+|192.168.0.2|node1|node|
+|192.168.0.3|node2|node|
 
-**集群架构：** 单 master 多 etcd 多 node
+**集群架构：** 单 master 单 etcd 双 node
 
 ![集群架构图](/pic04.svg)
 
@@ -48,11 +48,7 @@ $ tar -zxf KubeSphere-Installer-Advanced-v1.0.0.tar.gz
 $ cd KubeSphere-Installer-Advanced-v1.0.0
 ```
 
-**3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。若以 ubuntu 用户进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
-
-> 注意：
-> - etcd 作为一个高可用键值存储系统，etcd 节点至少需要 1 个，部署多个 etcd 能够使集群更可靠，etcd 节点个数需要设置为奇数个，在 "conf/hosts.ini" 的 `[etcd]` 部分填入主机名即可，示例将在 3 个节点部署 etcd。
-> - 若安装时需要配置 master 节点高可用，"conf/hosts.ini" 的参数配置请参考 [master 节点高可用 - 修改主机文件配置](../master-ha/#修改主机配置文件)。
+**3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。若以非 root 用户 (如 ubuntu) 进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
 
 **root 配置示例：**
 
@@ -66,14 +62,11 @@ node2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD
 master
 
 [kube-node]
-master
 node1
 node2
 
 [etcd]
 master
-node1
-node2
 
 [k8s-cluster:children]
 kube-node
@@ -82,13 +75,13 @@ kube-master
 
 > 说明：
 >
-> - [all] 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码。主机名为 "master" 的节点作为 taskbox 无需填写密码，[all] 中其它参数比如 node1 和 node2 需要分别替换 `ansible_host` 和 `ip` 为当前 node1 和 node2 的内网 IP，`ansible_ssh_pass` 即替换为各自主机的 root 用户登录密码。
-> -  "master" 节点作为 taskbox，用来执行整个集群的部署任务，同时 "master" 节点在 KubeSphere 集群中也作为 master 和 etcd ，应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分。
-> - 主机名为 "master"，"node1"，"node2" 的节点， 作为 KubeSphere 集群的 node 节点且将部署 etcd，主机名填入 [kube-node] 和 [etcd] 部分。<br>
+> - [all] 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码。主机名为 "master" 的节点作为已通过 SSH 连接的 Taskbox 所以无需填写密码，[all] 中其它节点的参数比如 node1 和 node2 的 `ansible_host` 和 `ip` 都替换为当前 node1 和 node2 的内网 IP，将 `ansible_ssh_pass` 替换为您准备的主机的实际 root 用户登录密码。
+> -  应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分，因为 "master" 节点作为 taskbox，用来执行整个集群的安装任务，同时 "master" 节点在 KubeSphere 集群架构中也将作为管理节点 Master 和负责保存持久化数据的 etcd。
+> - 将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
 >
 > 参数解释：<br>
 > - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接。
-> - `ansible_host`: 集群中将要连接的主机名。
+> - `ansible_host`: 集群中将要连接的主机地址或域名。
 > - `ip`: 集群中将要连接的主机 IP。
 > - `ansible_ssh_pass`: 待连接主机 root 用户的密码。
 
@@ -168,7 +161,7 @@ NOTE：Please modify the default password after login.
 #####################################################
 ```
 
-> 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat  kubesphere/kubesphere_running` 命令查看。
+> 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat kubesphere/kubesphere_running` 命令查看。
 
 **(2)** 安装成功后，浏览器访问对应的 url，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 

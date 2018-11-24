@@ -27,7 +27,7 @@ title: "存储类型"
 
 - 供应者（Provisioner）：实际上是个存储分配器，用来决定使用哪个卷插件分配 PV，例如选择 csi-qingcloud, Ceph RBD 或 GlusterFS。
 
-- 访问类型（Access Modes）：指定 PV 的访问模式，每个 PV 都有一套自己的用来描述特定功能的访问模式。注意，一个卷一次只能使用一种访问模式挂载，即使它支持多种访问模式。
+- 访问模式（Access Modes）：指定 PV 的访问模式，每个 PV 都有一套自己的用来描述特定功能的访问模式。注意，一个卷一次只能使用一种访问模式挂载，即使它支持多种访问模式。
    - ReadWriteOnce——该卷可以被单个节点以读/写模式挂载。
    - ReadOnlyMany——该卷可以被多个节点以只读模式挂载。
    - ReadWriteMany——该卷可以被多个节点以读/写模式挂载。
@@ -38,7 +38,7 @@ title: "存储类型"
 
 - stepSize: 设置用户所创建存储卷容量的增量，单位为 GiB。
 
-- fsType: 支持 ext3, ext4, xfs. 默认为 ext4。
+- fsType: 卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4。
 
 
 ## 设置默认存储类型

@@ -90,7 +90,7 @@ Password: passw0rd
 NOTE：Please modify the default password after login.
 #####################################################
 ```
-> 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat  kubesphere/kubesphere_running` 命令查看。
+> 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat kubesphere/kubesphere_running` 命令查看。
 
 **(2)** 安装成功后，浏览器访问对应的 url，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 

@@ -38,7 +38,7 @@
           "entry": "./advanced-v1.0.0/zh-CN/installation/multi-node.md"
         },
         {
-          "title": "Master 节点高可用",
+          "title": "Master 和 etcd 节点高可用",
           "entry": "./advanced-v1.0.0/zh-CN/installation/master-ha.md"
         },
         {
