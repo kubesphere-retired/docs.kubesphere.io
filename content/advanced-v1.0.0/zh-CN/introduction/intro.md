@@ -8,4 +8,6 @@ title: "产品简介"
 
 ## 功能架构
 
+KubeSphere 高级版 (v1.0.0) 的核心功能可以概括在以下的功能架构图中，了解高级版的具体功能说明，可以在 [产品功能](../features) 进行查看，或访问 KubeSphere 的 [商业网站](https://kubesphere.qingcloud.com/)。
+
 ![功能架构图](/feature-architecture.svg)

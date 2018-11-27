@@ -8,7 +8,7 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 负载均衡器（Load Balancer） 可以将来自多个公网地址的访问流量分发到多台主机上，并支持自动检测并隔离不可用的主机，从而提高业务的服务能力和可用性。除此之外，还可以通过 Keepalived 和 Haproxy 的方式实现多个 master 节点的高可用部署。
 
-而 etcd 作为一个高可用键值存储系统，整个集群的持久化数据，则由 kube-apiserver 处理后保存到 etcd 中。etcd 节点至少需要 1 个，但部署多个 etcd (奇数个) 能够使集群更可靠。本文档以配置负载均衡器 (Load Balancer) 为例，引导您如何配置高可用的 master 节点，并说明如何配置和部署高可用的 etcd 集群。
+而 etcd 作为一个高可用键值存储系统，整个集群的持久化数据，则由 kube-apiserver 处理后保存到 etcd 中。etcd 节点至少需要 1 个，但部署多个 etcd (奇数个) 能够使集群更可靠。本文档以配置 QingCloud 云平台的 [负载均衡器 (Load Balancer)](https://docs.qingcloud.com/product/network/loadbalancer) 为例，引导您如何配置高可用的 master 节点，并说明如何配置和部署高可用的 etcd 集群。
 
 
 
@@ -62,7 +62,7 @@ kube-master
 
 ### 配置负载均衡器
 
-准备好负载均衡器后，请为负载均衡器创建监听器并添加后端为三台 master 节点，监听的端口为 `TCP` 协议的 `6443` 端口。假设负载均衡器的内网 IP 地址是 192.168.0.10，负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问 (若需要修改域名则先取消注释再自行修改)，那么在 `conf/vars.yml` 中参数配置参考如下示例 (负载均衡器的 apiserver 作为可选配置项，在配置文件中应取消注释)。注意，address 和 port 在配置文件中应缩进两个空格。
+准备好负载均衡器后，请为负载均衡器创建监听器并添加后端为三台 master 节点，负载均衡器设置监听的端口为 `TCP` 协议的 `6443` 端口。假设负载均衡器的内网 IP 地址是 192.168.0.10，负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问 (若需要修改域名则先取消注释再自行修改)，那么在 `conf/vars.yml` 中参数配置参考如下示例 (负载均衡器的 apiserver 作为可选配置项，在配置文件中应取消注释)。注意，address 和 port 在配置文件中应缩进两个空格。
 
 **vars.yml 配置示例**
 
