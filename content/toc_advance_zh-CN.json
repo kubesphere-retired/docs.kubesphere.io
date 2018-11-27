@@ -38,7 +38,7 @@
           "entry": "./advanced-v1.0.0/zh-CN/installation/multi-node.md"
         },
         {
-          "title": "Master 节点高可用",
+          "title": "Master 和 etcd 节点高可用",
           "entry": "./advanced-v1.0.0/zh-CN/installation/master-ha.md"
         },
         {
@@ -231,6 +231,12 @@
               "entry": "./advanced-v1.0.0/zh-CN/devops/intro.md"
             },
             {
+              "entry": "./advanced-v1.0.0/zh-CN/devops/jenkinsfile-in-scm.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/devops/jenkinsfile-out-of-scm.md"
+            },
+            {
               "entry": "./advanced-v1.0.0/zh-CN/devops/devops-project.md"
             },
             {
@@ -238,12 +244,6 @@
             },
             {
               "entry": "./advanced-v1.0.0/zh-CN/devops/credential.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/devops/jenkinsfile-in-scm.md"
-            },
-            {
-              "entry": "./advanced-v1.0.0/zh-CN/devops/jenkinsfile-out-of-scm.md"
             }
           ]
         },
