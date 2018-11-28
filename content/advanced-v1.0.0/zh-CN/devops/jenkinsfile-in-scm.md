@@ -7,14 +7,14 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境且能够通过公网访问，那么这个流水线需要完成哪些流程呢？
 
 > 流程说明：
-> - **Stage 1. Checkout SCM**: 拉取 GitHub 仓库代码
-> - **Stage 2. Get dependencies**: 通过包管理器 [yarn](https://yarnpkg.com/zh-Hans/) 安装项目的所有依赖
-> - **Stage 3. Unit test**: 单元测试，如果测试通过了才继续下面的任务
-> - **Stage 4. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 DockerHub (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
-> - **Stage 5. push latest image**: 将 master 分支打上 tag 为 latest，并推送至 DockerHub。
-> - **Stage 6. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
-> - **Stage 7. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 DockerHub。
-> - **Stage 8. Deploy to production**: 将发布的 tag 部署到 Production 环境。
+> - **阶段一. Checkout SCM**: 拉取 GitHub 仓库代码
+> - **阶段二. Get dependencies**: 通过包管理器 [yarn](https://yarnpkg.com/zh-Hans/) 安装项目的所有依赖
+> - **阶段三. Unit test**: 单元测试，如果测试通过了才继续下面的任务
+> - **阶段四. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 DockerHub (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
+> - **阶段五. push latest image**: 将 master 分支打上 tag 为 latest，并推送至 DockerHub。
+> - **阶段六. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
+> - **阶段七. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 DockerHub。
+> - **阶段八. Deploy to production**: 将发布的 tag 部署到 Production 环境。
 
 为演示方便，本示例就以添加本文档网站的 GitHub 仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) 为例，可预先将其 Fork 至您的代码仓库中，并修改环境变量为实际参数。
 

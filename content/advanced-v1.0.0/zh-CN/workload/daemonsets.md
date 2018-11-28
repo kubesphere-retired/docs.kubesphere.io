@@ -24,7 +24,7 @@ title: "守护进程集"
 
 1.2. 在基本信息页，需要输入守护进程集的名称，用户可以根据需求填写守护进程集的描述信息。在 Kubernetes 中策略是指定新的 Pod 替换旧的 Pod 的策略，守护进程集的更新策略分为 `RollingUpdate` 和 `OnDelete` 两种类型：
 
-- RollingUpdate：Deployment 使用滚动更新（[Rolling-update](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update)）的方式更新 Pod。您可以指定 maxUnavailable 和 MinReadySeconds 来控制滚动更新的进程。
+- RollingUpdate：使用滚动更新（[Rolling-update](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update)）的方式更新 Pod。您可以指定 maxUnavailable 和 MinReadySeconds 来控制滚动更新的进程。
 
    - MaxUnavailable 是可选配置项，当前默认值是 1。用来指定在升级过程中不可用 Pod 的最大数量。该值可以是一个绝对值，也可以是期望 Pod 数量的百分比（例如 10% ）。通过计算百分比的绝对值向下取整。
    - MinReadySeconds 是一个可选配置项，默认是0（Pod在ready后就会被认为是可用状态）。用来指定没有任何容器 crash 的 Pod 并被认为是可用状态的最小秒数。进一步了解什么情况下 Pod 会被认为是 ready 状态，参阅 [Kubernetes 官方文档 - Container Probes](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes)。
