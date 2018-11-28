@@ -69,4 +69,4 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，但
 |KubeSphere| AE-v1.0.0|
 |KubeSphere Console| Advanced Edition |
 |Kubernetes| v1.12.2|
-|OpenPitrix| v0.3.4|
+|OpenPitrix| v0.3.5|
