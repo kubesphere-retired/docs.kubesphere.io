@@ -164,6 +164,9 @@
               "entry": "./advanced-v1.0.0/zh-CN/workload/cronjobs.md"
             },
             {
+              "entry": "./advanced-v1.0.0/zh-CN/workload/health-check.md"
+            },
+            {
               "entry": "./advanced-v1.0.0/zh-CN/workload/workload-management.md"
             }
           ]

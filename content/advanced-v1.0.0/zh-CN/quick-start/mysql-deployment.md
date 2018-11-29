@@ -96,4 +96,4 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 
 至此，有状态应用 MySQL 已经创建成功，将作为 Wordpress 网站的后端数据库。下一步需要创建 Wordpress 部署并通过外网访问该应用，参见 [快速入门 - 部署 Wordpress](../wordpress-deployment)。
 
-![创建成功](mysql-created-result)
+![创建成功](/mysql-created-result.png)
