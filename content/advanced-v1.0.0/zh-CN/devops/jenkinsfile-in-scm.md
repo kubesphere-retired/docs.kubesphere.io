@@ -20,7 +20,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 
 ## 前提条件
 
-- 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考时前确保已有 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号，已 Fork 本文档网站的代码仓库。
+- 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考时前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
 - 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../devops-project)。
 
 <!-- ## 演示视频
@@ -62,7 +62,17 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 
 ## 修改 Jenkinsfile
 
-在示例仓库的 **Jenkinsfile** 中，需要修改如下参数和环境变量：
+### 第一步：Fork 项目
+
+将本示例用到的 GitHub 仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) Fork 至您个人的 GitHub。
+
+![Fork 项目](/fork-repo.png)
+
+### 第二步：修改 Jenkinsfile
+
+Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**， 在  GitHub UI 点击编辑图标，需要修改如下参数 (parameters) 和环境变量 (environment)，完成后提交更新到当前的 master 分支：
+
+![修改 Jenkinsfile](/modify-jenkinsfile.png)
 
 |修改项|值|含义|
 |---|---|---|
@@ -130,17 +140,17 @@ environment {
 - 保留构建的天数：如果构建达到一定的天数，则丢弃构建。 
 - 保留构建的个数：如果已经存在一定数量的构建，则丢弃最旧的构建。 这两个选项可以同时对构建进行作用，如果超出任一限制，则将丢弃超出该限制的任何构建。
 
-2、行为策略中，支持添加三种类型的发现策略，点击 **添加操作 → 发现分支** 选择 `排除也作为 PR 提交的分支`，再次点击 **添加操作 → 从原仓库中发现 PR** 选择 `将 PR 与目标分支合并的版本`。
+2、行为策略中，支持添加三种类型的发现策略。需要明白一点，在 Jenkins 流水线 trigger 时，开发者提交的 PR (Pull Request) 也被视为一个单独的分支。点击 **添加操作 → 发现分支** 选择 `排除也作为 PR 提交的分支`，再次点击 **添加操作 → 从原仓库中发现 PR** 选择 `将 PR 与目标分支合并的版本`。
 
 **发现分支**
 
-- 排除也作为 PR 提交的分支
-- 只有被提交为 PR 的分支
-- 所有分支
+- 排除也作为 PR 提交的分支：选择此项表示 CI 将不会扫描源分支 (比如 Origin 的 master branch)，也就是需要被 merge 的分支。
+- 只有被提交为 PR 的分支：仅扫描 PR 分支
+- 所有分支：拉取的仓库 (origin) 中所有的分支
 
 **从原仓库中发现 PR**
 
-- 将PR与目标分支合并的版本：一次发现操作，找到要合并到当前目标分支的 Pull Request。
+- 发现 PR 与目标分支 merge 后的源代码版本：一次发现操作，找到要合并到当前目标分支的 Pull Request。
 - 当前 PR 的版本：一次发现操作，找到相对于其自己修改的 Pull Request。
 - 同时发现 PR 的版本与将 PR 与目标分支合并的版本：两次发现操作，第一次找到要合并到当前目标分支的 Pull Request，紧接着第二次并行的找到相对于其自己修改的 Pull Request。
 
