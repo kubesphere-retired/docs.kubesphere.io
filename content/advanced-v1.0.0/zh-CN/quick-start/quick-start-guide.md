@@ -28,8 +28,8 @@ HPA 是高级版独有的功能，支持 Pod 的水平自动伸缩，本示例�
 
 - [示例一 - Jenkinsfile in SCM](../../devops/jenkinsfile-in-scm)
 
-本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线将仓库的代码打包成 docker 镜像并推送到 DockerHub
+本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境，并且能够通过公网访问。
 
 - [示例二 - Jenkinsfile out of SCM](../../devops/jenkinsfile-out-of-scm)
 
-本示例以文档和视频演示如何通过手动创建流水线将仓库的代码打包成 Docker 镜像，并通过 archiveArtifacts (保存制品) 生成压缩文件可供下载，常见的制品一般是编译好的代码或者测试报告。
+本示例以文档和视频演示如何基于 [示例一 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，以可视化的方式构建 CI/CD 流水线 (包含示例一的前六个阶段)，最终将本文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。
