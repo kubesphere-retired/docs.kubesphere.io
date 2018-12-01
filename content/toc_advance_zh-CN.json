@@ -247,7 +247,14 @@
             },
             {
               "entry": "./advanced-v1.0.0/zh-CN/devops/credential.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/devops/jenkins-setting.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/devops/jenkins-agent.md"
             }
+
           ]
         },
         { 
