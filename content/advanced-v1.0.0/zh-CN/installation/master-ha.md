@@ -27,7 +27,7 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户安装。
 
-以下示例在 CentOS 7.5 上使用 `root` 用户安装，若以非 root 用户 (如 ubuntu ) 进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。以下配置方式
+以下示例在 CentOS 7.5 上使用 `root` 用户安装，若以非 root 用户 (如 ubuntu ) 进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
 
 **host.ini 配置示例**
 
@@ -62,7 +62,7 @@ kube-master
 
 ### 配置负载均衡器
 
-在 [QingCloud 云平台](https://console.qingcloud.com/login) 准备好 [负载均衡器](https://docs.qingcloud.com/product/network/loadbalancer) 后，请为负载均衡器创建监听器并添加后端为以上三台 master 节点，负载均衡器设置监听的端口为 `TCP` 协议的 `6443` 端口。假设负载均衡器的内网 IP 地址是 192.168.0.10，负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问 (若需要修改域名则先取消注释再自行修改)，那么在 `conf/vars.yml` 中参数配置参考如下示例 (负载均衡器的 apiserver 作为可选配置项，在配置文件中应取消注释)。注意，address 和 port 在配置文件中应缩进两个空格。
+在 [QingCloud 云平台](https://console.qingcloud.com/login) 准备好 [负载均衡器](https://docs.qingcloud.com/product/network/loadbalancer) 后，请为负载均衡器 **创建监听器** 并添加后端为以上三台 master 节点，负载均衡器设置监听的端口为 `TCP` 协议的 `6443` 端口。假设负载均衡器的内网 IP 地址是 192.168.0.10 (address 需替换为您的负载均衡器实际 IP 地址)，负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问 (若需要修改域名则先取消注释再自行修改)，那么在 `conf/vars.yml` 中参数配置参考如下示例 (负载均衡器的 apiserver 作为可选配置项，在配置文件中应取消注释)。注意，address 和 port 在配置文件中应缩进两个空格。
 
 **vars.yml 配置示例**
 
@@ -74,5 +74,5 @@ loadbalancer_apiserver:
   port: 6443
 ```
 
-完成 master 高可用的参数配置后，可继续参阅 [Multi-node 模式](../multi-node) 进行多节点的安装。
+完成 master 高可用的参数配置后，可继续参阅 [Multi-node 模式](../multi-node) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。
 

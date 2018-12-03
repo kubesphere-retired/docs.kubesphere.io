@@ -4,7 +4,7 @@ title: "Jenkins Agent 说明"
 
 ## 简介
 
-Agent 部分指定了整个流水线或特定的部分, 将会在 Jenkins 环境中执行的位置，这取决于 agent 区域的位置。该部分必须在 pipeline 的顶层 或 Stage 中被定义。
+Agent 部分指定了整个流水线或特定的部分, 将会在 Jenkins 环境中执行的位置，这取决于 agent 区域的位置，该部分必须在 pipeline 的顶层 或 Stage 中被定义。
 
 ## 内置的 podTemplate
 
@@ -40,11 +40,13 @@ spec:
 }
 ```
 
-同时为了减少降低用户的使用成本，我们内置了一些podTemplate，使用户可以避免yaml文件的编写。
+同时为了减少降低用户的使用成本，我们内置了一些 podTemplate，使用户可以避免 yaml 文件的编写。
 
-在目前版本当中我们内置了4种类型的podTemplate，`base`、`nodejs`、`maven`、`go`。并且在pod当中提供了隔离的docker环境。
+在目前版本当中我们内置了 4 种类型的 podTemplate，`base`、`nodejs`、`maven`、`go`，并且在 Pod 中提供了隔离的 docker 环境。
 
-可以通过指定 agent 的 label 使用内置的 podTempalte
+可以通过指定 agent 的 label 使用内置的 podTempalte，例如要使用 nodejs 的 podTemplate，可以在创建 pipeline 时指定 label 为 `nodejs`，如下给出示例。
+
+![nodejs-podtemplate](/nodejs-podtemplate.png)
 
 ```groovy
 pipeline {
@@ -73,84 +75,58 @@ pipeline {
 
 ### podTemplate base
 
-Jenkins Agent Label: base
-
-Container Name:base
-
-操作系统版本: centos-7
-
-内置工具: unzip、which、make、wget、zip、bzip2、git
-
-docker 18.06.0
-
-Helm 2.11.0
-
-Kubectl stable release
-
+| 名称 | 类型 / 版本 |
+| --- | --- |
+|Jenkins Agent Label | base |
+|Container Name | base |
+| 操作系统| centos-7 |
+|Docker| 18.06.0|
+|Helm | 2.11.0 |
+|Kubectl| Stable release|
+|内置工具 | unzip、which、make、wget、zip、bzip2、git |
 
 
 ### podTemplate nodejs
 
-Jenkins Agent Label: nodejs
-
-Container Name:nodejs
-
-操作系统版本: centos-7
-
-Node版本: 9.11.2
-
-Yarn版本: 1.3.2
-
-内置工具: unzip、which、make、wget、zip、bzip2、git
-
-docker 18.06.0
-
-Helm 2.11.0
-
-Kubectl stable release
-
+| 名称 | 类型 / 版本 |
+| --- | --- |
+|Jenkins Agent Label | nodejs |
+|Container Name | nodejs |
+| 操作系统| centos-7 |
+|Node  | 9.11.2 |
+|Yarn  | 1.3.2 |
+| Docker | 18.06.0 |
+| Helm | 2.11.0 |
+|Kubectl | stable release|
+|内置工具| unzip、which、make、wget、zip、bzip2、git|
 
 
 ### podTemplate maven
 
-Jenkins Agent Label: maven
-
-Container Name:maven
-
-操作系统版本: centos-7
-
-Jdk版本:  openjdk-1.8.0
-
-Maven版本: 3.5.3
-
-内置工具: unzip、which、make、wget、zip、bzip2、git
-
-docker 18.06.0
-
-Helm 2.11.0
-
-Kubectl stable release
-
+| 名称 | 类型 / 版本 |
+| --- | --- |
+|Jenkins Agent Label | maven |
+|Container Name | maven |
+| 操作系统| centos-7 |
+|Jdk | openjdk-1.8.0 |
+|Maven | 3.5.3|
+|Docker| 18.06.0 |
+|Helm | 2.11.0 |
+| Kubectl| stable release |
+| 内置工具 | unzip、which、make、wget、zip、bzip2、git |
 
 
 ### podTemplate go
 
-Jenkins Agent Label: go
-
-Container Name:go
-
-操作系统版本: centos-7
-
-Go版本:  1.11
-
-GOPATH: /home/jenkins/go
-
-GOROOT: /usr/local/go
-
-内置工具: unzip、which、make、wget、zip、bzip2、git
-
-docker 18.06.0
-
-Helm 2.11.0
-
-Kubectl stable release
+| 名称 | 类型 / 版本 |
+| --- | --- |
+|Jenkins Agent Label | go |
+|Container Name | go |
+| 操作系统| centos-7 |
+|Go |  1.11 |
+| GOPATH | /home/jenkins/go |
+| GOROOT | /usr/local/go |
+|Docker | 18.06.0 |
+| Helm | 2.11.0 |
+| Kubectl | stable release |
+| 内置工具 | unzip、which、make、wget、zip、bzip2、git |
