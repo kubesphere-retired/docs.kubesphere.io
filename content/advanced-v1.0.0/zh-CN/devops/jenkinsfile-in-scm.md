@@ -4,14 +4,16 @@ title: "示例一 - Jenkinsfile in SCM"
 
 Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Source Control Management）的一部分，因此可使用 `git clone` 或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，如阶段（Stage）、任务（Job）等。因此，在 GitHub 的代码仓库中应包含 Jenkinsfile。
 
-本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境且能够通过公网访问，那么这个流水线需要完成哪些流程呢？
+本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境且能够通过公网访问，那么这个流水线需要完成哪些流程呢？先通过一个流程图简单说明一下整个 pipeline 的工作流：
+
+![流程图](/cicd-pipeline-01.svg)
 
 > 流程说明：
 > - **阶段一. Checkout SCM**: 拉取 GitHub 仓库代码
 > - **阶段二. Get dependencies**: 通过包管理器 [yarn](https://yarnpkg.com/zh-Hans/) 安装项目的所有依赖
 > - **阶段三. Unit test**: 单元测试，如果测试通过了才继续下面的任务
 > - **阶段四. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 DockerHub (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
-> - **阶段五. push latest image**: 将 master 分支打上 tag 为 latest，并推送至 DockerHub。
+> - **阶段五. Push latest image**: 将 master 分支打上 tag 为 latest，并推送至 DockerHub。
 > - **阶段六. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
 > - **阶段七. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 DockerHub。
 > - **阶段八. Deploy to production**: 将发布的 tag 部署到 Production 环境。
@@ -80,8 +82,8 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**， �
 |DOCKERHUB\_CREDENTIAL\_ID|dockerhub-id|上一步创建的 DockerHub 凭证 ID|
 |GITHUB\_CREDENTIAL\_ID|github-id|上一步创建的 GitHub 凭证 ID|
 |KUBECONFIG\_CREDENTIAL\_ID|demo-kubeconfig| KubeConfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群 |
-|DOCKERHUB_ORG|your-dockerhub-account| 替换为您的 DockerHub 账号名(组织名)|
-|GITHUB_ORG|your-github-account | 替换为您的 GitHub 账号名(组织名)
+|DOCKERHUB_ORG|your-dockerhub-account| 替换为您的 DockerHub 账号名 (组织名)|
+|GITHUB_ORG|your-github-account | 替换为您的 GitHub 账号名 (组织名)
 |APP_NAME|devops-docs-sample |应用名称|
 
 ```bash

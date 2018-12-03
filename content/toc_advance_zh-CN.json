@@ -126,10 +126,10 @@
           "title": "监控中心",
           "entries": [
             {
-              "entry": "./advanced-v1.0.0/zh-CN/monitor/intro.md"
+              "entry": "./advanced-v1.0.0/zh-CN/monitoring/intro.md"
             },
             {
-              "entry": "./advanced-v1.0.0/zh-CN/monitor/monitor-cluster.md"
+              "entry": "./advanced-v1.0.0/zh-CN/monitoring/physical-resources.md"
             }
           ]
         },

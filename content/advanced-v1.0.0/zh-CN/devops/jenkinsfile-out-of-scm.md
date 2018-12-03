@@ -6,7 +6,11 @@ title: "示例二 - Jenkinsfile out of SCM"
 
 本示例演示基于 [示例一 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，通过可视化构建流水线 (包含示例一的前六个阶段)，最终将一个文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。若熟悉了示例一的流程后，对于示例二的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) 为例，可预先将其 Fork 至您的代码仓库中。
 
-> 构建可视化流水线共包含以下 6 个阶段 (stage)：
+构建可视化流水线共包含以下 6 个阶段 (stage)，先通过一个流程图简单说明一下整个 pipeline 的工作流：
+
+![流程图](/cicd-pipeline-02.svg)
+
+> 详细说明每个阶段所执行的任务：
 > - **阶段一. Checkout SCM**: 拉取 GitHub 仓库代码
 > - **阶段二. Get dependencies**: 通过包管理器 [yarn](https://yarnpkg.com/zh-Hans/) 安装项目的所有依赖
 > - **阶段三. Unit test**: 单元测试，如果测试通过了才继续下面的任务
@@ -89,6 +93,21 @@ title: "示例二 - Jenkinsfile out of SCM"
 
 ![高级设置](/pipeline-advanced-setting.png)
 
+3、设置 **构建触发器**，此处勾选 **定时构建**，日程表 (cron) 填写 `H H * * *`，表示每天构建一次 (不限具体时刻)。这里的定时构建是提供类似 Linux cron 的功能来定期执行此流水线，定时构建的语法以下作一个简单释义，语法详见 [Jenkins 官方文档](https://jenkins.io/doc/book/pipeline/syntax/#cron-syntax)。
+
+> 定时构建语法：
+> `* * * * *`
+> - 第一个 * : 表示分钟，取值 0~59
+> - 第二个 * : 表示小时，取值 0~23
+> - 第三个 * : 表示一个月的第几天，取值 1~31
+> - 第四个 * : 表示第几月，取值 1~12
+> - 第五个 * : 表示一周中的第几天，取值 0~7，其中 0 和 7 代表的都是周日
+>
+> 常用的定时构建比如：
+> - `H H/2 * * *`: 每两小时构建一次
+> - `0 18 * * *`: 每天 18:00 下班前定时构建一次
+> - `H H(9-18)/2 * * 1-5`: 在工作日的 9 AM ~ 6 PM 期间每两个小时构建一次 (或许在 10:38 AM, 12:38 PM, 2:38 PM, 4:38 PM)
+
 ## 可视化编辑流水线
 
 可视化流水线共包含 6 个阶段 (stage)，以下依次说明每个阶段中分别执行了哪些步骤和任务。
@@ -127,14 +146,19 @@ title: "示例二 - Jenkinsfile out of SCM"
 
 ### 阶段四：Build
 
-同上，新添加一个阶段用于在容器中执行生成静态网站的命令，名称为 `build`。点击 **添加步骤** 选择 `container`，命名为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写 `yarn build`，用于执行项目中 `package.json` 的 scripts 里的 build 命令。如果测试通过了才允许继续下面的任务。
+同上，新添加一个阶段 `build` 用于在容器中执行生成静态网站的命令，名称为 `build`。点击 **添加步骤** 选择 `container`，命名为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写 `yarn build`，用于执行项目中 `package.json` 的 scripts 里的 build 命令。如果测试通过了才允许继续下面的任务。
 
 ![创建发布包](/pipeline-build.png)
 
-### 阶段五：Build & push snapshot image
+### 阶段五：Build and push snapshot image
 1、新添加一个阶段，该阶段用于在容器中构建 snapshot 镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 DockerHub (其中 `$BRANCH_NAME` 为分支名称，`$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
 
-2、点击 **添加步骤** 选择 `container`，名称为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写 `docker build -t docker.io/$DOCKERHUB_ORG/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .`。
+2、点击 **添加步骤** 选择 `container`，名称为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写如下一行 docker 命令：
+
+```shell
+docker build -t docker.io/$DOCKERHUB_ORG/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .
+
+```
 
 ![构建镜像](/docker-build-image.png)
 
@@ -163,19 +187,19 @@ docker push docker.io/$DOCKERHUB_ORG/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 - id：可选，填写步骤的名称
 - 消息 (message)：必填，在用户人工审核时呈现给用户，此处可填 `Deploy to dev?`
-- 审核者 (submitter)：不填，则默认当前用户具有审核权限
+- 审核者 (submitter)：此处为演示方便暂使用当前用户审核，审核者为空则默认此工程下包括当前用户在内的所有用户 (不限角色) 都具有审核权限。注意，在正式环境中可输入 **用户名** 来指定用户来人工审核。
 
 ![审核流水线](/deploy-to-dev-info.png)
 
 3、在当前阶段点击 **添加步骤**，右侧选择 `kubernetesDeploy`，这是 [Kubernetes Continuous Deploy Plugin](https://jenkins.io/doc/pipeline/steps/kubernetes-cd/#kubernetes-continuous-deploy-plugin) 中的函数，该步骤可将项目中指定路径的 yaml 模板部署到 Kubernetes 中，配置信息如下：
 
 - Kubeconfig：选择之前创建的 kubeconfig 凭证
-- 配置文件路径 (configs)：yaml 模板所在的相对路径，填写 `deploy/no-branch-dev/**`
+- 配置文件路径 (configs)：yaml 模板在项目中的相对路径，填写 `deploy/no-branch-dev/**`
 - 在配置中启用变量替换 (enableConfigSubstitution)：勾选，允许在流水线中通过变量动态传值 (比如以上用到的 `$DOCKER_PASSWORD`、`$APP_NAME` )
 
 ![部署到 Kubernetes 配置](/Kubernetes-deploy-info.png)
 
-至此，流水线的 6 个阶段都已构建完成，点击 **保存**。
+至此，流水线的 6 个阶段都已构建完成，点击 **保存**，可视化创建的 pipeline 会默认生成为 Jenkinsfile 文件。
 
 ![流水线总览](/pipeline-overview.png)
 
@@ -186,6 +210,8 @@ docker push docker.io/$DOCKERHUB_ORG/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 ![运行流水线](/run-pipeline.png)
 
 在 **活动** 列表中可以看到流水线的运行状态，点击活动项可查看其运行活动的具体情况，例如以下查看 **运行序号** 为 `2` 的活动。
+
+> 说明：流水线刚启动时可能仅显示其日志输出而无法看到其图形化运行的页面，这是因为它有个初始化的过程，流水线刚开始运行时，slave 启动并开始解析和执行流水线自动生成的 jenkinsfile，待初始化完成即可看到图形化流水线运行的页面。
 
 ![](/pipeline-status.png)
 
