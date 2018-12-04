@@ -8,7 +8,7 @@ title: "角色权限概览"
 
 从图中就可以看出，权限等级的划分主要是集群、企业空间、项目/ DevOps 工程共三个层级。
 
-![角色权限管理关系](/role-management-design.png)
+![角色权限管理关系](/role-management-design.svg)
 
 ### 集群角色
 
