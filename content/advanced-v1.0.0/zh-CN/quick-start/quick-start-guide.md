@@ -8,28 +8,28 @@ title: "入门必读"
 
 ## 工作负载快速入门
 
-- [快速入门 - 部署 MySQL](../mysql-deployment)
+- [示例一 - 部署 MySQL](../mysql-deployment)
 
-本文以创建一个有状态副本集（statefulset）为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。
+本文以创建一个有状态副本集（statefulset）为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。示例二依赖于示例一，请按顺序完成这两个示例。
 
-- [快速入门 - 部署 Wordpress](../wordpress-deployment)
+- [示例二 - 部署 Wordpress](../wordpress-deployment)
 
-本文以创建一个部署（deployment）为例，使用 `Wordpress:4.6-apache` 镜像部署一个无状态的 Wordpress 应用，即一个最终可通过公网访问的 [Wordpress](https://wordpress.org/) 网站，其后端为上一篇文档所演示的 MySQL 应用。
+本文以创建一个部署（deployment）为例，使用 `Wordpress:4.6-apache` 镜像部署一个无状态的 Wordpress 应用，最终可通过公网访问的 [Wordpress](https://wordpress.org/) 网站，其后端为示例一所演示的 MySQL 应用。
 
-- [快速入门 - 创建简单任务](../job-quick-start)
+- [示例三 - 创建简单任务](../job-quick-start)
 
 任务 (Job) 是 Kubernetes 中用来控制批处理型任务的资源对象，定时任务 (CronJob) 是基于时间的任务，可以定时地执行 Job，当您熟悉了任务的使用示例，那么上手定时任务也就不是一件难事了。本文以创建一个并行任务去执行简单的命令计算并输出圆周率到小数点后 2000 位作为示例，说明任务的基本功能。
 
-- [快速入门 - HPA 水平自动伸缩](../hpa)
+- [示例四 - 设置弹性伸缩 (HPA)](../hpa)
 
 HPA 是高级版独有的功能，支持 Pod 的水平自动伸缩，本示例以文档和视频的方式演示平台中如何设置 Pod 水平自动伸缩的功能。
 
 ## DevOps 工程快速入门
 
-- [示例一 - Jenkinsfile in SCM](../../devops/jenkinsfile-in-scm)
+- [示例五 - Jenkinsfile in SCM](../jenkinsfile-in-scm)
 
-本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境，并且能够通过公网访问。
+本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，包括拉取代码、单元测试、构建镜像、推送和发布版本，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境，并且能够通过公网访问。
 
-- [示例二 - Jenkinsfile out of SCM](../../devops/jenkinsfile-out-of-scm)
+- [示例六 - Jenkinsfile out of SCM](../jenkinsfile-out-of-scm)
 
-本示例以文档和视频演示如何基于 [示例一 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，以可视化的方式构建 CI/CD 流水线 (包含示例一的前六个阶段)，最终将本文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。
+本示例以文档和视频演示如何基于 [示例五 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，以可视化的方式构建 CI/CD 流水线 (包含示例一的前六个阶段)，最终将本文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。
