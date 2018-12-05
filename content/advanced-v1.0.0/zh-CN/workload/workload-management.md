@@ -63,7 +63,7 @@ title: "工作负载管理"
 
 ### 配置弹性伸缩
 
-弹性伸缩 (Horizontal Pod Autoscaling) 顾名思义就是使 Pod 能够水平自动伸缩，利用弹性伸缩，KubeSphere 能够根据监测到的 CPU 利用率或内存使用率自动地扩容或缩容部署 (Deployment)，也只有部署才可以配置弹性伸缩。部署看似简单，然而它实现了 Kubernetes 中非常重要的功能 - 弹性伸缩。关于如何配置弹性伸缩，详见 [弹性伸缩](../HPA)。
+弹性伸缩 (Horizontal Pod Autoscaling) 顾名思义就是使 Pod 能够水平自动伸缩，利用弹性伸缩，KubeSphere 能够根据监测到的 CPU 利用率或内存使用率自动地扩容或缩容部署 (Deployment)，也只有部署才可以配置弹性伸缩。部署看似简单，然而它实现了 Kubernetes 中非常重要的功能 - 弹性伸缩。关于如何配置弹性伸缩，详见 [弹性伸缩](../../quick-start/HPA)。
 
 ### 编辑配置模板
 

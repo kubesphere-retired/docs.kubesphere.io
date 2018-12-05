@@ -15,3 +15,6 @@ title: "常见问题"
 ![查看日志](/faq-pipeline-log.png)
 
 <!-- 3、如果创建了某个工作负载比如部署，副本数设置为 2  -->
+
+> 说明：
+> 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
