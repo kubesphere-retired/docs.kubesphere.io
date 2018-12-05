@@ -1,5 +1,5 @@
 ---
-title: "示例一 - Jenkinsfile in SCM" 
+title: "示例五 - Jenkinsfile in SCM" 
 ---
 
 Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Source Control Management）的一部分，因此可使用 `git clone` 或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，如阶段（Stage）、任务（Job）等。因此，在 GitHub 的代码仓库中应包含 Jenkinsfile。
@@ -23,13 +23,13 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 ## 前提条件
 
 - 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考时前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
-- 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../devops-project)。
+- 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../../devops/devops-project/#创建-devops-工程)。
 
-<!-- ## 演示视频
+## 演示视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="http://kubesphere-docs.pek3b.qingstor.com/video/cicd-demo-github.mp4">
-</video> -->
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/jenkinsfile-in-scm.mp4">
+</video>
 
 ## 创建凭证
 
@@ -43,10 +43,10 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 
 2、点击创建按钮，创建一个用于 DockerHub 登录的凭证。
 
-- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，可自定义，此处命名为 **dockerhub-id**。
-- 类型：选择 **账户凭证**。
-- 用户名/密码：输入您个人的 DockerHub 用户名和密码。
-- 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证。
+- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，可自定义，此处命名为 **dockerhub-id**
+- 类型：选择 **账户凭证**
+- 用户名/密码：输入您个人的 DockerHub 用户名和密码
+- 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证
 
 ![Dockerhub 凭证](/dockerhub-credential.png)
 
@@ -113,9 +113,9 @@ environment {
 ![create-pipeline](/pipeline_create.png)
 
 2、在弹出的窗口中，输入流水线的基本信息。
-- 名称：为创建的流水线起一个简洁明了的名称，便于理解和搜索。
-- 描述信息：简单介绍流水线的主要特性，帮助进一步了解流水线的作用。
-- 代码仓库：点击选择代码仓库，代码仓库需已存在 Jenkinsfile。
+- 名称：为创建的流水线起一个简洁明了的名称，便于理解和搜索
+- 描述信息：简单介绍流水线的主要特性，帮助进一步了解流水线的作用
+- 代码仓库：点击选择代码仓库，代码仓库需已存在 Jenkinsfile
 
 ![basic_info](/pipeline_info.png)
 
@@ -133,7 +133,7 @@ environment {
 
 完成代码仓库相关设置后，进入高级设置页面，高级设置支持对流水线的构建记录、行为策略、定期扫描等设置的定制化，以下对用到的相关配置作简单释义，完成设置后点击创建。
 
-1、此处勾选 `丢弃旧的构建`。
+1、此处勾选 `丢弃旧的构建`，**保留构建的天数** 和 **保持构建的最大个数** 默认为 1，如果分支被删除了也就没必要继续保存了。
 
 **构建设置**
 
@@ -146,15 +146,15 @@ environment {
 
 **发现分支**
 
-- 排除也作为 PR 提交的分支：选择此项表示 CI 将不会扫描源分支 (比如 Origin 的 master branch)，也就是需要被 merge 的分支。
+- 排除也作为 PR 提交的分支：选择此项表示 CI 将不会扫描源分支 (比如 Origin 的 master branch)，也就是需要被 merge 的分支
 - 只有被提交为 PR 的分支：仅扫描 PR 分支
 - 所有分支：拉取的仓库 (origin) 中所有的分支
 
 **从原仓库中发现 PR**
 
-- 发现 PR 与目标分支 merge 后的源代码版本：一次发现操作，找到要合并到当前目标分支的 Pull Request。
-- 当前 PR 的版本：一次发现操作，找到相对于其自己修改的 Pull Request。
-- 同时发现 PR 的版本与将 PR 与目标分支合并的版本：两次发现操作，第一次找到要合并到当前目标分支的 Pull Request，紧接着第二次并行的找到相对于其自己修改的 Pull Request。
+- 发现 PR 与目标分支 merge 后的源代码版本：一次发现操作，找到要合并到当前目标分支的 Pull Request
+- 当前 PR 的版本：一次发现操作，找到相对于其自己修改的 Pull Request
+- 同时发现 PR 的版本与将 PR 与目标分支合并的版本：两次发现操作，第一次找到要合并到当前目标分支的 Pull Request，紧接着第二次并行的找到相对于其自己修改的 Pull Request
 
 3、默认的 **脚本路径** 为 Jenkinsfile。
 

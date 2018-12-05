@@ -36,7 +36,7 @@ title: "部署"
 
 ![创建部署-设置HPA](/ae_deployment_HPA_setting.png)
 
-然后根据需求添加容器，Pod 可以包含一个或者多个容器，添加容器前需要先在平台添加镜像仓库，参见 [镜像仓库 - 添加镜像仓库](../ae-image-registry/#添加镜像仓库)。点击 **添加容器**，将从添加到平台的镜像仓库中拉取镜像，输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 wordpress:4.8-apache。
+然后根据需求添加容器，Pod 可以包含一个或者多个容器，添加容器前需要先在平台添加镜像仓库，参见 [镜像仓库 - 添加镜像仓库](../../platform-management/image-registry/#添加镜像仓库)。点击 **添加容器**，将从添加到平台的镜像仓库中拉取镜像，输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 wordpress:4.8-apache。
 
 2.2. 如果用户有更进一步的需求，可以点击 **高级选项**。高级选项中可以对 CPU 和内存的资源使用进行限定。
 
@@ -69,9 +69,9 @@ title: "部署"
 
 ### 第三步：添加存储卷
 
-在存储卷页面可以添加 **持久化存储卷**， **临时存储卷** 和 **引用配置中心**。持久化存储卷可用于持久化存储用户数据，需要预先创建存储卷，参考 [存储卷 - 创建存储卷](../ae-pvc/#创建存储卷)。
+在存储卷页面可以添加 **持久化存储卷**， **临时存储卷** 和 **引用配置中心**。持久化存储卷可用于持久化存储用户数据，需要预先创建存储卷，参考 [存储卷 - 创建存储卷](../../storage/pvc/#创建存储卷)。
 
-临时存储卷是 [emptyDir](https://kubernetes.cn/docs/concepts/storage/volumes/#emptydir) 类型，随 Pod 被分配在主机上。当 Pod 从主机上被删除时，临时存储卷也同时会删除，存储卷的数据也将永久删除，容器崩溃不会从节点中移除 Pod，因此 emptyDir 类型的卷中数据在容器崩溃时是安全的。关于存储卷的更多解释参见 [存储卷管理](../ae-pv-management)。
+临时存储卷是 [emptyDir](https://kubernetes.cn/docs/concepts/storage/volumes/#emptydir) 类型，随 Pod 被分配在主机上。当 Pod 从主机上被删除时，临时存储卷也同时会删除，存储卷的数据也将永久删除，容器崩溃不会从节点中移除 Pod，因此 emptyDir 类型的卷中数据在容器崩溃时是安全的。
 
 引入配置中心支持配置 ConfigMap 或 Secret 中的值添加为卷，支持选择要使用的密钥以及将公开每个密钥的文件路径，最后设置目录在容器中的挂载路径。
 
@@ -83,7 +83,7 @@ ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod
 - 在容器里设置命令行参数。
 - 在数据卷里面创建 config 文件。
 
-重要提示：您必须先在配置中心创建 Secret 或 ConfigMap，然后才能使用它，详见 [创建 Secret](../secret/#创建-secret) 和 [创建 ConfigMap](../ConfigMap/#创建-configmap)。
+重要提示：您必须先在配置中心创建 Secret 或 ConfigMap，然后才能使用它，详见 [创建 Secret](../../configuration/secrets/#创建-secret) 和 [创建 ConfigMap](../../configuration/ConfigMaps/#创建-configmap)。
 
 
 ![创建部署 - 临时存储卷](/ae_deployment_pvc_create1.png)
