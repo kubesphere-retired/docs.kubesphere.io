@@ -1,5 +1,5 @@
 ---
-title: "快速入门 - 部署 Wordpress" 
+title: "示例二 - 部署 Wordpress" 
 ---
 
 本文以创建一个部署（Deployment）为例，部署一个无状态的 Wordpress 应用，最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
@@ -37,7 +37,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 2.2. 下一步，存储卷设置中，参考如下填写：
 
-- 存储类型：选择预先为集群创建的存储类型，示例中是 [csi-qingcloud](../../storage/qingcloud-storage)
+- 存储类型：选择预先为集群创建的存储类型，示例中是 **csi-qingcloud**
 - 访问模式：选择单节点读写 (RWO)
 - 存储卷容量：默认 10 Gi
 

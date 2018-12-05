@@ -15,7 +15,7 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 ## 前提条件
 
 - 请确保已参阅 [Multi-node 模式](../Multi-node)，本文档仅说明安装过程中如何修改配置文件来配置 master 节点高可用，该配置作为一个可选配置项，完整的安装流程和配置文件中的参数解释说明以 [Multi-node 模式](../Multi-node) 为准。
-- 已准备外部的负载均衡器，比如 [青云负载均衡器](https://docs.qingcloud.com/product/network/loadbalancer)，用来给多个 master 节点的做负载均衡。
+- 已有 [QingCloud 云平台](https://console.qingcloud.com/login) 账号，用于申请负载均衡器给多个 master 节点的做负载均衡。
 
 ## Master 节点高可用架构
 
@@ -60,9 +60,40 @@ kube-node
 kube-master
 ```
 
-### 配置负载均衡器
+### 准备负载均衡器
 
-在 [QingCloud 云平台](https://console.qingcloud.com/login) 准备好 [负载均衡器](https://docs.qingcloud.com/product/network/loadbalancer) 后，请为负载均衡器 **创建监听器** 并添加后端为以上三台 master 节点，负载均衡器设置监听的端口为 `TCP` 协议的 `6443` 端口。假设负载均衡器的内网 IP 地址是 192.168.0.10 (address 需替换为您的负载均衡器实际 IP 地址)，负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问 (若需要修改域名则先取消注释再自行修改)，那么在 `conf/vars.yml` 中参数配置参考如下示例 (负载均衡器的 apiserver 作为可选配置项，在配置文件中应取消注释)。注意，address 和 port 在配置文件中应缩进两个空格。
+以创建 QingCloud 云平台负载均衡器为例，简单说明其创建步骤，详细介绍可参考 [QingCloud 官方文档](https://docs.qingcloud.com/product/network/loadbalancer)。
+
+#### 第一步：创建负载均衡器
+
+登录 [QingCloud 云平台](https://console.qingcloud.com/login)，在 **网络与 CDN** 选择 **负载均衡器**，填写基本信息。如下示例在北京 3 区 - C 创建一个负载均衡器，部署方式选择 `单可用区`，网络选择了集群主机所在的 VPC 网络的私有网络 (例如本示例的六台主机都在 kubesphere 私有网络中)，其它设置保持默认即可。填写基本信息后，点击 **提交** 完成创建。
+
+![负载均衡器基本信息](/lb-info.png)
+
+#### 第二步：创建监听器
+
+进入上一步创建成功的负载均衡器，为其创建一个监听器，用于监听 TCP 协议的 6443 端口，因此监听器的基本信息应参考如下填写。
+
+- 监听协议：选择 TCP 协议
+- 端口：填写 6443 端口
+- 负载方式：选择轮询
+
+![创建监听器](/create-monitor.png)
+
+
+#### 第三步：添加后端
+
+在当前的负载均衡器中点击 **添加后端**，私有网络选择集群主机所在的私有网络，点击 **高级搜索**，可以一次勾选多台后端主机，例如要通过负载均衡器实现 Master 节点的高可用，此处则勾选 master1、master2、master3 这三台 Master 主机，注意这里端口填写 `6443`，它是 api-server 的默认端口 (Secure Port)，添加完成后点击 **提交**。
+
+![添加后端](/add-backend-node.png)
+
+添加后端后，需请点击 **应用修改** 使之生效，可以在列表查看目前负载均衡器的添加的三台 Master 节点。注意，刚添加完的后端主机状态在监听器中可能显示 “不可用”，是因为 api-server 对应的 6443 服务端口还未运行开放，这属于正常现象。待安装成功后，后端主机上的 api-server 的服务端口 6443 将被暴露出来，后端状态变为 “活跃”，说明负载均衡器已在正常工作。
+
+![添加后端完成](/lb-list.png)
+
+### 配置负载均衡器参数
+
+在 QingCloud 云平台准备好负载均衡器后，需在 `vars.yaml` 配置文件中修改相关参数。假设负载均衡器的内网 IP 地址是 192.168.0.10 (address 需替换为您的负载均衡器实际 IP 地址)，负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问 (若需要修改域名则先取消注释再自行修改)，那么在 `conf/vars.yml` 中参数配置参考如下示例 (负载均衡器的 apiserver 作为可选配置项，在配置文件中应取消注释)。注意，address 和 port 在配置文件中应缩进两个空格。
 
 **vars.yml 配置示例**
 
@@ -74,5 +105,5 @@ loadbalancer_apiserver:
   port: 6443
 ```
 
-完成 master 高可用的参数配置后，可继续参阅 [Multi-node 模式](../multi-node) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。
+完成 master 和 etcd 高可用的参数配置后，可继续参阅 [Multi-node 模式 - 存储配置示例](../multi-node/#第二步-准备安装配置文件) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。
 

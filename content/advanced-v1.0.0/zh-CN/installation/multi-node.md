@@ -16,7 +16,7 @@ title: "Multi-node 模式"
 | --- | --- | --- |
 | ubuntu 16.04/18.04 LTS 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 | CentOS 7.5 64bit | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：8 核 <br/> 内存：12 G <br/> 磁盘：40 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
 
 以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 3 台主机，以主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在 KubeSphere 中 Worker 节点跟 Master 节点几乎是相同的，它们都运行着一个 **kubelet** 组件。最大的区别在于，在 kubeadm init 的过程中，kubelet 启动后，Master 节点上还会自动运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
 
@@ -86,7 +86,9 @@ kube-master
 > - `ansible_ssh_pass`: 待连接主机 root 用户的密码。
 
 
-**5.** Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 到当前集群来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行部署测试。若在正式环境使用需准备相应的存储服务端，并配置 KubeSphere 支持的持久化存储服务。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。本文档以配置 NFS Server 为例，仅需在 `vars.yml` 简单配置即可安装 NFS 作为默认存储类型，参数释义详见 [存储配置说明](../storage-configuration)。
+**5.** Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 到当前集群来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行部署测试。若在正式环境使用需准备相应的存储服务端，并配置 KubeSphere 支持的持久化存储服务。网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改。为方便演示，本文档以配置 NFS Server 为例，仅需在 `vars.yml` 简单配置即可安装 NFS 作为默认存储类型，参数释义详见 [存储配置说明](../storage-configuration)。
+
+注意，由于 NFS Server in Kubernetes 和 NFS Client 这两个项目仍处于孵化阶段，因此，目前 NFS 作为持久化存储只建议用于测试环境。
 
 > 说明：
 > - 根据配置文件按需修改相关配置项，未做修改将以默认参数执行。
@@ -115,7 +117,7 @@ KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依
 
 参考以下步骤开始 multi-node 部署。
 
-> 说明：Multi-node 的安装时间跟网络情况和带宽、机器配置、安装节点个数等因素都有关，此处暂不提供时间标准。
+> 说明：由于 Multi-node 的安装时间跟网络情况和带宽、机器配置、安装节点个数等因素都有关，此处暂不提供时间标准。
 
 **1.** 进入 `scripts` 目录：
 

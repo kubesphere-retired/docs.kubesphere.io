@@ -1,5 +1,5 @@
 ---
-title: "示例二 - Jenkinsfile out of SCM" 
+title: "示例六 - Jenkinsfile out of SCM" 
 ---
 
 示例一通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
@@ -22,13 +22,13 @@ title: "示例二 - Jenkinsfile out of SCM"
 
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号。
 - 本示例的代码仓库以 GitHub 为例，确保已有 [GitHub](https://github.com/) 账号，且已 Fork 了示例代码仓库。
-- 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../devops-project)。
+- 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../../devops/devops-project/#创建-devops-工程)。
 
-<!-- ## 演示视频
+## 演示视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="http://kubesphere-docs.pek3b.qingstor.com/video/cicd-demo-no-github.mp4">
-</video> -->
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/jenkinsfile-out-of-scm.mp4">
+</video>
 
 ## 创建凭证
 
@@ -81,6 +81,10 @@ title: "示例二 - Jenkinsfile out of SCM"
 ### 第二步：高级设置
 
 1、填写基本信息后，进入高级设置页面。高级设置支持对流水线的构建记录、参数化构建、定期扫描等设置的定制化。例如 **丢弃旧的构建** 可以决定何时应丢弃项目的构建记录。构建记录包括控制台输出，存档工件以及与特定构建相关的其他元数据。保持较少的构建可以节省 Jenkins 所使用的磁盘空间。
+
+因此，此处需勾选 `丢弃旧的构建`，本示例中 **保留构建的天数** 设置为 `1`，**保持构建的最大个数** 设置为 `3` (这个数值大小可根据团队习惯来设置)。
+
+![丢弃旧的构建](/pipeline-advanced-setting-1.png)
 
 2、参数化构建过程允许您在进行构建时传入一个或多个参数，此处定义的每个参数应具有唯一的名称。当参数化项目时，构建会被替换为参数化构建，将提示用户为每个定义的参数输入值。如果不输入任何内容，构建将以每个参数的默认值进行。如果项目的构建是自动启动，例如，由定时触发器启动，这时将使用参数的默认值进行触发。本示例在参数化构建中添加 **字符串参数 (String)** 为例，演示如何在流水线中使用该参数。
 

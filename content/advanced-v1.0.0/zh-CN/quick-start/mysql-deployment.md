@@ -1,5 +1,5 @@
 ---
-title: "快速入门 - 部署 MySQL 有状态应用" 
+title: "示例一 - 部署 MySQL 有状态应用" 
 ---
 
 本文以创建一个有状态副本集（Statefulset）为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。MySQL 应用的初始密码将以 [密钥 (Secret)](../../configuration/secrets) 的方式进行创建和保存。为方便演示，本示例仅说明流程，关于参数和字段的详细释义参见 [密钥](../../configuration/secrets) 和 [有状态副本集](../../workload/statefulsets)。

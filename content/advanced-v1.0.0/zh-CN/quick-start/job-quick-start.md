@@ -1,5 +1,5 @@
 ---
-title: "快速入门 - 创建简单任务"
+title: "示例三 - 创建简单任务"
 ---
 
 实际工作中，我们经常需要进行批量数据处理和分析，以及按照时间进行调度执行。可以在 KubeSphere 中使用容器技术完成，也就是使用 Job (任务) 和 CronJob (定时任务) 来执行。这样方便维护较为干净的执行环境，减少不同任务工具的相互干扰。同时可以在集群上按照任务要求和资源状况进行动态伸缩执行。
@@ -35,7 +35,7 @@ Job 负责批处理任务，即仅执行一次的任务。任务具有并发的�
 
 ### 第三步：配置任务模板
 
-任务模板即设置 Pod 模板，其中 [RestartPolicy](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) 指通过同一节点上的 kubelet 重新启动容器，仅支持 Never 或 OnFailure，此处 RestartPolicy 选择 **Never**，Service Account 选择 **default**，详见 [任务](../../workload/job)。
+任务模板即设置 Pod 模板，其中 [RestartPolicy](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) 指通过同一节点上的 kubelet 重新启动容器，仅支持 Never 或 OnFailure，此处 RestartPolicy 选择 **Never**，Service Account 选择 **default**，详见 [任务](../../workload/jobs)。
 
 > 说明：
 > RestartPolicy 表示当任务未完成的情况下：
