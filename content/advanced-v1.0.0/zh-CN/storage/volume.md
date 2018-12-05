@@ -25,7 +25,7 @@ KubeSphere 支持的存储类型有 QingCloud CSI (QingCloud 云平台块存储�
 
 ### Local Volume
 
-[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录。本地卷只能用作静态创建的 PersistentVolume。All-in-One 模式安装默认会用 local volume 作为存储类型，由于 local volume 不支持动态分配，installer 会预先创建 10 个可用的 10G PV 供使用，若存储空间不足则需要手动创建 Persistent Volume (PV)，参见 [Local Volume 使用方法](../ae-local-volume/#local-volume-使用方法)。
+[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录。本地卷只能用作静态创建的 PersistentVolume。All-in-One 模式安装默认会用 local volume 作为存储类型，由于 local volume 不支持动态分配，installer 会预先创建 10 个可用的 10G PV 供使用，若存储空间不足则需要手动创建 Persistent Volume (PV)，参见 [Local Volume 使用方法](../local-volume)。
 
 
 ### QingCloud 云平台块存储
@@ -42,11 +42,11 @@ KubeSphere 支持的存储类型有 QingCloud CSI (QingCloud 云平台块存储�
 
 ### NFS
 
-[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本地 NFS 的客户端应用可以透明地读写位于远端 NFS 服务器上的文件，就像访问本地文件一样，详见 [NFS 配置](../../installation/)
+[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本地 NFS 的客户端应用可以透明地读写位于远端 NFS 服务器上的文件，就像访问本地文件一样，详见 [NFS 配置](../../installation/storage-configuration/#nfs)
 
 > 注意：使用 KubeSphere 动态分配存储卷功能前，必须预先准备好相应的服务端。
 
 
 ## 存储卷
 
-存储卷，具有单个磁盘的功能，供用户创建的工作负载使用。在创建存储类型后，即可创建存储卷，并挂载至工作负载，详见 [存储卷 - 创建存储卷](../PVC/#创建存储卷)。
+存储卷，具有单个磁盘的功能，供用户创建的工作负载使用。在创建存储类型后，即可创建存储卷，并挂载至工作负载，详见 [存储卷 - 创建存储卷](../../storage/PVC/#创建存储卷)。
