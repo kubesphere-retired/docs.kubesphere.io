@@ -2,7 +2,7 @@
 title: "应用模板"
 ---
 
-应用模板可以查看来自所有应用仓库的应用，应用模板相当于 [Helm Chart](https://docs.helm.sh/developing_charts/) 模板，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，用户可以基于应用模板快速地一键部署应用到 KubeSphere 中。
+应用模板可以查看来自所有应用仓库的应用，应用模板相当于 [Helm Chart](https://docs.helm.sh/developing_charts/) 模板，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，常用来提供开发和测试使用的场景所需的中间件服务。用户可以基于应用模板快速地一键部署常用的应用到 KubeSphere 中。
 
 ## 部署应用
 

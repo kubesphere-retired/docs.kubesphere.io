@@ -68,5 +68,5 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 |---|---|
 |KubeSphere| AE-v1.0.0|
 |KubeSphere Console| Advanced Edition |
-|Kubernetes| v1.12.2|
+|Kubernetes| v1.12.3|
 |OpenPitrix| v0.3.5|
