@@ -25,7 +25,7 @@ KubeSphere 为企业用户提供高性能可伸缩的容器应用管理服务，
 |内置 DevOps 工程|开箱即用的 DevOps 功能，无需对 Jenkins 进行复杂的插件配置<br>独立 DevOps 工程，提供访问可控、安全隔离的 CI/CD 操作空间<br>兼容 Jenkinsfile in & out of SCM（Source Code Management）两种模式<br>可视化流水线编辑工具，降低 CI/CD 学习成本<br>使用 KubeSphere 提供弹性、干净、可定制的构建环境|
 |极简体验，向导 UI|面向开发、测试、运维友好的 UI ，向导式用户体验，降低 Kubernetes 学习成本的设计理念。|
 |松耦合功能模块设计| 除提供基于原生 k8s 的管理功能之外，用户可以使用 KubeSphere 集成的诸如镜像仓库、应用仓库、监控、日志模块，也可通过配置的方式集成自建的相关服务。 |
-|可选的商业网络解决方案|除开源解决方案外，如用户对网络有更高要求，可选用青云作为底层平台，可以使用性价比更高的网络解决方案。|
+|可选的商业网络解决方案|除了支持 Calico、Flannel 等开源解决方案外，如用户对网络有更高要求，可选用青云作为底层平台，可以使用性价比更高的网络解决方案如青云 SDN 。|
 
 ### 产品规划
 Community Edition （ [社区版](https://kubesphere.qingcloud.com/#category) ）=> Express Edition （ [易捷版](https://kubesphere.qingcloud.com/#category) ）=> Advanced Edition （ [高级版](https://kubesphere.qingcloud.com/#category) ）
