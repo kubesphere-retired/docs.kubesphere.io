@@ -5,7 +5,7 @@ title: "管理 DevOps 工程"
 
 ## 创建 DevOps 工程
 
-1、登录控制台，进入指定企业空间，点击左侧的 DevOps 工程菜单，进入 DevOps 工程管理页面，页面中显示当前用户可查看的 DevOps 工程列表。 
+1、登录控制台，进入指定企业空间，点击左侧的 **DevOps 工程**，进入 DevOps 工程管理页面，页面中显示当前用户可查看的 DevOps 工程列表。 
 
 ![devops_page](/devops_page.png)
 

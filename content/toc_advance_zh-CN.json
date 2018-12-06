@@ -63,6 +63,10 @@
           "entry": "./advanced-v1.0.0/zh-CN/quick-start/quick-start-guide.md"
         },
         {
+          "title": "管理员快速入门",
+          "entry": "./advanced-v1.0.0/zh-CN/quick-start/admin-quick-start.md"
+        },
+        {
           "title": "示例一 - 部署 MySQL",
           "entry": "./advanced-v1.0.0/zh-CN/quick-start/mysql-deployment.md"
         },

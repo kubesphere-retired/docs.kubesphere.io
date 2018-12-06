@@ -580,8 +580,8 @@
             <g id="Group-3-Copy" transform="translate(12.000000, 126.000000)">
                 <g id="Group-2">
                     <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="214" height="56" rx="4"></rect>
-                    <text id="项目成员" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="18" fill="#FFFFFF">
-                        <tspan x="56" y="34">项目成员</tspan>
+                    <text id="工程成员" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                        <tspan x="56" y="34">工程成员</tspan>
                     </text>
                     <g id="Glyph/002.Object/008.Human/White" transform="translate(12.000000, 12.000000)" fill="#FFFFFF">
                         <path d="M6.66666667,27.7797445 L6.66666667,22.6776175 C6.66666667,20.6689423 7.95200711,18.8856277 9.85760376,18.2504288 L13.6666667,16.9807411 L18.3333333,16.9807411 L22.1423962,18.2504288 C24.0479929,18.8856277 25.3333333,20.6689423 25.3333333,22.6776175 L25.3333333,27.7797445 C22.5385592,28.3341931 19.364794,28.6474078 16,28.6474078 C12.635206,28.6474078 9.46144084,28.3341931 6.66666667,27.7797445 Z" id="Shape" opacity="0.400000006"></path>
