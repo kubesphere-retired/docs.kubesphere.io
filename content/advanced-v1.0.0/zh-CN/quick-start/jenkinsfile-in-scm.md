@@ -31,9 +31,70 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/jenkinsfile-in-scm.mp4">
 </video>
 
+## 修改 Jenkinsfile
+
+### 第一步：Fork 项目
+
+登录 GitHub，将本示例用到的 GitHub 仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) Fork 至您个人的 GitHub。
+
+![Fork 项目](/fork-repo.png)
+
+### 第二步：修改 Jenkinsfile
+
+Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**， 在  GitHub UI 点击编辑图标，需要修改如下参数 (parameters) 和环境变量 (environment)，完成后提交更新到当前的 master 分支：
+
+![修改 Jenkinsfile](/modify-jenkinsfile.png)
+![提交更新](/commit-jenkinsfile.png)
+
+|修改项|值|含义|
+|---|---|---|
+|defaultValue|v0.0.1|用于生成 GitHub 和 DockerHub 的 tag|
+|DOCKERHUB\_CREDENTIAL\_ID|dockerhub-id|上一步创建的 DockerHub 凭证 ID|
+|GITHUB\_CREDENTIAL\_ID|github-id|上一步创建的 GitHub 凭证 ID|
+|KUBECONFIG\_CREDENTIAL\_ID|demo-kubeconfig| KubeConfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群 |
+|DOCKERHUB_NAMESPACE|your-dockerhub-account| 替换为您的 DockerHub 账号名 |
+|GITHUB_ACCOUNT|your-github-account | 替换为您的 GitHub 账号名 |
+|APP_NAME|devops-docs-sample |应用名称|
+
+```bash
+      ···
+parameters{
+     string(name:'TAG_NAME',defaultValue: 'v0.0.1',description:'')
+  }
+environment {
+    DOCKERHUB_CREDENTIAL_ID = 'dockerhub-id'
+    GITHUB_CREDENTIAL_ID = 'github-id'
+    KUBECONFIG_CREDENTIAL_ID = 'demo-kubeconfig'
+    DOCKERHUB_NAMESPACE = 'your-dockerhub-account'
+    GITHUB_ACCOUNT = 'your-github-account'
+    APP_NAME = 'devops-docs-sample'
+  }
+      ···
+```
+
+## 创建项目
+
+CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy)，最终将文档网站部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-system-dev` 和 `kubesphere-system`，其中 `kubesphere-system-dev` 项目需要预先在控制台创建，参考如下步骤创建该项目。
+
+### 第一步：填写基本信息
+
+登录 KubeSphere，在已创建的企业空间下，点击 **项目管理 → 创建项目**，填写项目的基本信息。
+
+- 名称：固定为 `kubesphere-system-dev`，若需要修改项目名称则需在 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy) 中修改 namespace
+- 别名：可自定义，比如 **开发环境**
+- 描述信息：可简单介绍该项目，方便用户进一步了解
+
+![创建 Dev 项目](/create-dev-namespace.png)
+
+### 第二步：高级设置
+
+本示例暂无资源请求和限制，因此高级设置中无需修改默认值，点击 **创建**。当 CI/CD 流水线后续执行成功后，在 `kubesphere-system-dev` 和 `kubesphere-system` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
+
+![项目创建成功](/dev-namespace-list.png)
+
 ## 创建凭证
 
-本示例代码仓库中的 Jenkinsfile 需要 DockerHub、GitHub 和 Kubernetes (KubeConfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，先依次创建这三个凭证。
+进入已创建的 DevOps 工程，开始创建凭证。本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (KubeConfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
 
 ### 第一步：创建 DockerHub 凭证
 
@@ -43,7 +104,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 
 2、点击创建按钮，创建一个用于 DockerHub 登录的凭证。
 
-- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，可自定义，此处命名为 **dockerhub-id**
+- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，此处命名为 **dockerhub-id**
 - 类型：选择 **账户凭证**
 - 用户名/密码：输入您个人的 DockerHub 用户名和密码
 - 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证
@@ -61,46 +122,6 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 至此，3 个凭证已经创建完成，下一步需要在示例仓库中修改对应的三个凭证 ID 为用户自己创建的凭证 ID。
 
 ![凭证列表](/credential-list-demo.png)
-
-## 修改 Jenkinsfile
-
-### 第一步：Fork 项目
-
-将本示例用到的 GitHub 仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) Fork 至您个人的 GitHub。
-
-![Fork 项目](/fork-repo.png)
-
-### 第二步：修改 Jenkinsfile
-
-Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**， 在  GitHub UI 点击编辑图标，需要修改如下参数 (parameters) 和环境变量 (environment)，完成后提交更新到当前的 master 分支：
-
-![修改 Jenkinsfile](/modify-jenkinsfile.png)
-
-|修改项|值|含义|
-|---|---|---|
-|defaultValue|v0.0.1|用于生成 GitHub 和 DockerHub 的 tag|
-|DOCKERHUB\_CREDENTIAL\_ID|dockerhub-id|上一步创建的 DockerHub 凭证 ID|
-|GITHUB\_CREDENTIAL\_ID|github-id|上一步创建的 GitHub 凭证 ID|
-|KUBECONFIG\_CREDENTIAL\_ID|demo-kubeconfig| KubeConfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群 |
-|DOCKERHUB_ORG|your-dockerhub-account| 替换为您的 DockerHub 账号名 (组织名)|
-|GITHUB_ORG|your-github-account | 替换为您的 GitHub 账号名 (组织名)
-|APP_NAME|devops-docs-sample |应用名称|
-
-```bash
-      ···
-parameters{
-     string(name:'TAG_NAME',defaultValue: 'v0.0.1',description:'')
-  }
-environment {
-    DOCKERHUB_CREDENTIAL_ID = 'dockerhub-id'
-    GITHUB_CREDENTIAL_ID = 'github-id'
-    KUBECONFIG_CREDENTIAL_ID = 'demo-kubeconfig'
-    DOCKERHUB_ORG = 'your-dockerhub-account'
-    GITHUB_ORG = 'your-github-account'
-    APP_NAME = 'devops-docs-sample'
-  }
-      ···
-```
 
 ## 创建流水线
 
