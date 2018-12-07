@@ -27,7 +27,7 @@ title: "示例六 - Jenkinsfile out of SCM"
 ## 演示视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/jenkinsfile-out-of-scm.mp4">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video1/jenkinsfile-out-of-scm.mp4">
 </video>
 
 ## 创建凭证
