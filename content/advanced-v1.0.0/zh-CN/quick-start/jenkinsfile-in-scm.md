@@ -2,7 +2,7 @@
 title: "示例五 - Jenkinsfile in SCM" 
 ---
 
-Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Source Control Management）的一部分，因此可使用 `git clone` 或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，如阶段（Stage）、任务（Job）等。因此，在 GitHub 的代码仓库中应包含 Jenkinsfile。
+Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Source Control Management）的一部分，因此可使用 `git clone` 或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在 GitHub 的代码仓库中应包含 Jenkinsfile。
 
 本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境且能够通过公网访问，那么这个流水线需要完成哪些流程呢？先通过一个流程图简单说明一下整个 pipeline 的工作流：
 

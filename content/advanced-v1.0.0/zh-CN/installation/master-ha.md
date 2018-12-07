@@ -17,7 +17,7 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 - 请确保已参阅 [Multi-node 模式](../Multi-node)，本文档仅说明安装过程中如何修改配置文件来配置 master 节点高可用，该配置作为一个可选配置项，完整的安装流程和配置文件中的参数解释说明以 [Multi-node 模式](../Multi-node) 为准。
 - 已有 [QingCloud 云平台](https://console.qingcloud.com/login) 账号，用于申请负载均衡器给多个 master 节点做负载均衡。
 
-## Master 节点高可用架构
+## Master 和 etcd 节点高可用架构
 
 ![Master 和 etcd 节点高可用架构](/master-ha-design.svg)
 

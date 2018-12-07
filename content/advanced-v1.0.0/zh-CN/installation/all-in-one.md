@@ -5,7 +5,8 @@ title: "All-in-One 模式"
 
 ## 前提条件
 
-已购买 KubeSphere 高级版，并已下载了高级版的 Installer 至目标安装机器。
+- 已购买 KubeSphere 高级版，并已下载了高级版的 Installer 至目标安装机器。
+- All-in-One 模式安装时，将使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储类型方便用户测试部署，主机磁盘容量请参考主机规格表中的推荐配置。若使用其他 KubeSphere 支持的存储服务，需要提前准备相应的存储服务端。
 
 ### 第一步: 准备主机
 
@@ -13,9 +14,9 @@ title: "All-in-One 模式"
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| Ubuntu 16.04/18.04 LTS （64 bit） | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
-| CentOS 7.5 （64 bit） | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：100 G |
+| Ubuntu 16.04/18.04 LTS （64 bit） | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：500 G |
+| CentOS 7.5 （64 bit） | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：500 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：12 核 <br/> 内存：16 G <br/> 磁盘：100 G | CPU：16 核 <br/> 内存：32 G <br/> 磁盘：500 G |
 
 ### 第二步: 准备安装包
 
@@ -53,7 +54,7 @@ KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台
 $ cd scripts
 ```
 
-**2.** 建议使用 root 用户安装，执行 `install.sh` 脚本：
+**2.** 建议使用 `root` 用户安装，执行 `install.sh` 脚本：
 
 ```bash
 $ ./install.sh
