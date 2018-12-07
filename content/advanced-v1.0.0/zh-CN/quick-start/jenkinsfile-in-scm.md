@@ -94,7 +94,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ## 创建凭证
 
-本示例代码仓库中的 Jenkinsfile 需要 DockerHub、GitHub 和 Kubernetes (KubeConfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
+进入已创建的 DevOps 工程，开始创建凭证。本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (KubeConfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
 
 ### 第一步：创建 DockerHub 凭证
 
