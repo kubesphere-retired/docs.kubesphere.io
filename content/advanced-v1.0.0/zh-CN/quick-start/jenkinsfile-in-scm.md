@@ -24,6 +24,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 
 - 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考时前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
 - 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../../devops/devops-project/#创建-devops-工程)。
+- 熟悉 Git 分支管理和版本控制相关的基础知识，参考 [Git 官方文档](https://git-scm.com/book/zh/v2)
 
 ## 演示视频
 
@@ -74,9 +75,9 @@ environment {
 
 ## 创建项目
 
-CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy)，最终将文档网站部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-system-dev` 和 `kubesphere-system`，其中 `kubesphere-system-dev` 项目需要预先在控制台创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy)，最终将文档网站分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-system-dev` 和 `kubesphere-system`，其中 `kubesphere-system-dev` 项目需要预先在控制台创建，参考如下步骤创建该项目。
 
-### 第一步：填写基本信息
+### 第一步：填写项目信息
 
 登录 KubeSphere，在已创建的企业空间下，点击 **项目管理 → 创建项目**，填写项目的基本信息。
 
@@ -154,7 +155,9 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 完成代码仓库相关设置后，进入高级设置页面，高级设置支持对流水线的构建记录、行为策略、定期扫描等设置的定制化，以下对用到的相关配置作简单释义，完成设置后点击创建。
 
-1、此处勾选 `丢弃旧的构建`，**保留构建的天数** 和 **保持构建的最大个数** 默认为 1，如果分支被删除了也就没必要继续保存了。
+1、此处勾选 `丢弃旧的构建`，此处 **保留构建的天数** 和 **保持构建的最大个数** 默认为 1，表示如果分支被删除后也就没必要继续保存了。
+
+![构建设置](/build-setting.png)
 
 **构建设置**
 
@@ -163,7 +166,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 - 保留构建的天数：如果构建达到一定的天数，则丢弃构建。 
 - 保留构建的个数：如果已经存在一定数量的构建，则丢弃最旧的构建。 这两个选项可以同时对构建进行作用，如果超出任一限制，则将丢弃超出该限制的任何构建。
 
-2、行为策略中，支持添加三种类型的发现策略。需要明白一点，在 Jenkins 流水线 trigger 时，开发者提交的 PR (Pull Request) 也被视为一个单独的分支。点击 **添加操作 → 发现分支** 选择 `排除也作为 PR 提交的分支`，再次点击 **添加操作 → 从原仓库中发现 PR** 选择 `将 PR 与目标分支合并的版本`。
+2、行为策略中，支持添加三种类型的发现策略。需要明白一点，在 Jenkins 流水线 trigger 时，开发者提交的 PR (Pull Request) 也被视为一个单独的分支。点击 **添加操作 → 发现分支** 选择 `排除也作为 PR 提交的分支`，再次点击 **添加操作 → 从原仓库中发现 PR** 选择 `PR 与目标分支合并后的源代码版本`。
 
 **发现分支**
 
@@ -173,25 +176,29 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 **从原仓库中发现 PR**
 
-- 发现 PR 与目标分支 merge 后的源代码版本：一次发现操作，找到要合并到当前目标分支的 Pull Request
-- 当前 PR 的版本：一次发现操作，找到相对于其自己修改的 Pull Request
-- 同时发现 PR 的版本与将 PR 与目标分支合并的版本：两次发现操作，第一次找到要合并到当前目标分支的 Pull Request，紧接着第二次并行的找到相对于其自己修改的 Pull Request
+- PR 与目标分支合并后的源代码版本：一次发现操作，基于 PR 与目标分支合并后的源代码版本创建并运行流水线
+- PR 本身的源代码版本：一次发现操作，基于 PR 本身的源代码版本创建并运行流水线
+- 当 PR 被发现时会创建两个流水线， 一个流水线使用 PR 本身的源代码版本， 一个流水线使用 PR 与目标分支合并后的源代码版本：两次发现操作，将分别创建两条流水线，第一条流水线使用 PR 本身的源代码版本，第二条流水线使用 PR 与目标分支合并后的源代码版本
+
+![advance](/pipeline_advance.png)
 
 3、默认的 **脚本路径** 为 Jenkinsfile。
 
 - 路径：是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
-4、勾选 **定期扫描 Repo Trigger**，扫描时间间隔设置为 `5 minutes`。
+4、勾选 **定期扫描 Repo Trigger**，扫描时间间隔设置为 `5 minutes`。完成高级设置后，点击 **创建**。
    
-![advance](/pipeline_advance.png)
+![advance](/pipeline_advance-schedule.png)
 
 ### 第四步：运行流水线
 
-流水线创建后，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile（默认是根目录下的 Jenkinsfile），Tag 将自动获取 Jenkinsfile 中的 `TAG_NAME: defaultValue`，点击确定，流水线开始运行。
+流水线创建后，点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile（默认是根目录下的 Jenkinsfile），Tag 将自动获取 Jenkinsfile 中的 `TAG_NAME: defaultValue`，此处无需修改。点击确定，流水线开始运行。
 
-至此 Jenkinsfile in SCM 的创建完成，可查看具体的状态。  
+![运行流水线](/run-pipeline-demo1.png)
+
+至此 Jenkinsfile in SCM 的创建完成，可查看流水线运行的具体状态，点击 **分支** 切换到分支列表，查看流水线具体是基于哪些分支运行，这里的分支则取决于上一步 **行为策略** 的发现分支策略。
    
-![branch_scan](/pipeline_scan.png)
+![查看流水线](/pipeline_scan.png)
 
 ### 第五步：审核流水线
 
@@ -211,18 +218,20 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ## 验证运行结果
 
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 Docker 镜像仓库，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag，最终以 deployment 和 service 部署到 KubeSphere 的 dev 和 production 环境中。若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页。
+若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 kubesphere-system-dev 和 kubesphere-system 项目环境中，可通过 KubeSphere 查看这两个项目中的部署和服务的状态，正常情况下，部署的状态应该显示 **运行中**。
 
-|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |
-|---|---|---|---|
-|Dev| 公网IP (EIP) + 30880| kubesphere-system-dev| ks-docs-sample-dev|
-|Production|公网IP (EIP) + 30980|kubesphere-system|ks-docs-sample |
+![验证运行结果](/verify-docs-deployment.png)
+
+|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
+|---|---|---|---|---|
+|Dev| 公网IP (EIP) + 端口号 (Nodeport: 30880)| kubesphere-system-dev| ks-docs-sample-dev|ks-docs-sample-dev|
+|Production|公网IP (EIP) + 端口号 (Nodeport: 30980)|kubesphere-system|ks-docs-sample |ks-docs-sample|
 
 查看推送到 DockerHub 的镜像，可以看到 `devops-docs-sample` 就是 APP_NAME 的值。
   
-![](/deveops-dockerhub.png)
+![查看 DockerHub](/deveops-dockerhub.png)
 
-访问部署到 KubeSphere 的 Dev 和 Production 环境的服务。
+若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页。如下访问部署到 KubeSphere 的 Dev 和 Production 环境的服务。
 
 **Dev 环境**
 ![](/docs-home-dev-preview.png)
