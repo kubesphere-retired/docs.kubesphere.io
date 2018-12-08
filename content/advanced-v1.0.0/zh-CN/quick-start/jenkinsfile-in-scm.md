@@ -188,7 +188,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 - 路径：是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
-4、勾选 **定期扫描 Repo Trigger**，扫描时间间隔设置为 `5 minutes`。完成高级设置后，点击 **创建**。
+4、勾选 **定期扫描 Repo Trigger**，扫描时间间隔设置为 `5 minutes`。定期扫描是设定一个周期让流水线周期性地扫描远程仓库，查看仓库有没有新 PR。完成高级设置后，点击 **创建**。
    
 ![advance](/pipeline_advance-schedule.png)
 
@@ -226,8 +226,8 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 |环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
 |---|---|---|---|---|
-|Dev| 公网IP (EIP) + 端口号 (Nodeport: 30880)| kubesphere-system-dev| ks-docs-sample-dev|ks-docs-sample-dev|
-|Production|公网IP (EIP) + 端口号 (Nodeport: 30980)|kubesphere-system|ks-docs-sample |ks-docs-sample|
+|Dev| 公网IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-system-dev| ks-docs-sample-dev|ks-docs-sample-dev|
+|Production|公网 IP : 30980 (`${EIP}:${NODEPORT}`)|kubesphere-system|ks-docs-sample |ks-docs-sample|
 
 查看推送到 DockerHub 的镜像，可以看到 `devops-docs-sample` 就是 APP_NAME 的值。
   

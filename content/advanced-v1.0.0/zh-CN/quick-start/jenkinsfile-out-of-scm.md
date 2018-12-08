@@ -21,9 +21,9 @@ title: "示例六 - Jenkinsfile out of SCM"
 ## 前提条件
 
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号。
-- 本示例的代码仓库以 GitHub 为例，确保已有 [GitHub](https://github.com/) 账号，且已 Fork 了 [示例代码仓库](https://github.com/kubesphere/devops-docs-sample)。
 - 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../../devops/devops-project/#创建-devops-工程)。
-- 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。 
+- 熟悉 Dockerfile 常用命令，参考 [Docker 官方文档](https://docs.docker.com/engine/reference/builder/#usage)。
+
 
 ## 演示视频
 
@@ -145,7 +145,7 @@ CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/k
 
 1、可视化编辑页面，分为结构编辑区域和内容编辑区域。通过构建流水线的每个阶段 (stage) 和步骤 (step) 即可自动生成 Jenkinsfile，用户无需学习 Jenkinsfile 的语法，非常方便。当然，平台也支持手动编辑 Jenkinsfile 的方式，流水线分为 “声明式流水线” 和 “脚本化流水线”，可视化编辑支持声明式流水线。Pipeline 语法参见 [Jenkins 官方文档](https://jenkins.io/doc/book/pipeline/syntax/)。
 
-如下，代理 (Agent) Agent 部分指定整个 Pipeline 或特定阶段将在 Jenkins 环境中执行的位置， 具体取决于该 agent 部分的放置位置。此处代理的类型选择 `node`，label 填写 `nodejs`。
+如下，此处代理的类型选择 `node`，label 填写 `nodejs`。代理 (Agent) 部分指定整个 Pipeline 或特定阶段将在 Jenkins 环境中执行的位置，具体取决于该 agent 部分的放置位置，详见 [Jenkins Agent 说明](../../devops/jenkins-agent)。
 
 ![代理设置](/pipeline_agent.png)
 
@@ -163,24 +163,24 @@ CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/k
 
 ![获取依赖](/get-dependencies.png)
 
-2、然后在右侧内容编辑区域点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写 `yarn`，`yarn` 等同于 `yarn install`。本文档网站使用包管理器 [yarn](https://yarnpkg.com/zh-Hans/) 管理依赖，执行该命令安装项目的所有依赖。
+2、然后在右侧内容编辑区域点击 **添加嵌套步骤**，选择 `shell`，用于在创建的容器中执行 shell 命令，命令填写 `yarn`，`yarn` 等同于 `yarn install`。本文档网站使用包管理器 [yarn](https://yarnpkg.com/zh-Hans/) 管理依赖，执行该命令可以安装项目的所有依赖。
 
 ![添加嵌套步骤](/pipeline-shell.png)
 
 ### 阶段三：Unit test
 
-同上，新添加一个阶段用于在容器中执行单元测试，名称为 `unit test`。点击 **添加步骤** 选择 `container`，命名为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写 `yarn test`。如果测试通过了才允许继续下面的任务。
+同上，新添加一个阶段用于在容器中执行单元测试，名称为 `unit test`。点击 **添加步骤** 选择 `container`，命名为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写 `yarn test`，如果测试通过了才允许继续下面的任务。由于本文档网站是静态网页，测试环节仅包含了单元测试。对于复杂的项目除了单元测试，通常还有端到端测试、集成测试、功能测试等步骤，这些都是项目持续部署的基础。
 
 ![添加单元测试](/yarn-test.png)
 
 ### 阶段四：Build
 
-同上，新添加一个阶段 `build` 用于在容器中执行生成静态网站的命令，名称为 `build`。点击 **添加步骤** 选择 `container`，命名为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写 `yarn build`，用于执行项目中 `package.json` 的 scripts 里的 build 命令。如果测试通过了才允许继续下面的任务。
+同上，新添加一个阶段 `build` 用于在容器中执行生成静态网站的命令，名称为 `build`。点击 **添加步骤** 选择 `container`，命名为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写 `yarn build`，用于执行项目中 `package.json` 的 scripts 里的 build 命令。如果 build 通过了流水线才会继续执行下面的任务。
 
 ![创建发布包](/pipeline-build.png)
 
 ### 阶段五：Build and push snapshot image
-1、新添加一个阶段，该阶段用于在容器中构建 snapshot 镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 DockerHub (其中 `$BRANCH_NAME` 为分支名称，`$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
+1、新添加一个阶段，名称为 `Build and push snapshot image`。该阶段用于在容器中构建 snapshot 镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 DockerHub (其中 `$BRANCH_NAME` 为分支名称，`$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
 
 2、点击 **添加步骤** 选择 `container`，名称为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写如下一行 docker 命令：
 
@@ -193,7 +193,7 @@ docker build -t docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER 
 
 3、考虑用户信息安全，账号类信息都不以明文出现在脚本中，而以变量的方式。点击 **添加步骤** 在右侧选择 `withCredentials`，并填写如下信息用于登录 DockerHub。
 
-- 凭证 ID：选择之前创建的 DockerHub 凭证
+- 凭证 ID：选择之前创建的 DockerHub 凭证，如 `dockerhub-id`
 - 密码变量：`DOCKER_PASSWORD`
 - 用户名变量：`DOCKER_USERNAME`
 
@@ -202,8 +202,10 @@ docker build -t docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER 
 4、注意，下一步需要在 **withCredentials** 中依次添加两个 **嵌套步骤**，并且都选择 `shell`，用于登录 DockerHub 并推送镜像。两条 shell 命令填写依次如下：
 
 ```bash
+#1
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
+#2
 docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 ```
 ![推送 snapshot](/build-push-snapshot.png)
@@ -216,7 +218,7 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 - id：可选，填写步骤的名称
 - 消息 (message)：必填，在用户人工审核时呈现给用户，此处可填 `Deploy to dev?`
-- 审核者 (submitter)：此处为演示方便暂使用当前用户审核，审核者为空则默认此工程下包括当前用户在内的所有用户 (不限角色) 都具有审核权限。注意，在正式环境中可输入 **用户名** 来指定用户来人工审核。
+- 审核者 (submitter)：本示例指定用户名为 `tester` 的用户，支持输入 **用户名** 指定用户人工审核。注意，此处审核者如果为空则默认此工程下包括当前用户在内的所有用户 (不限角色) 都具有审核权限。
 
 ![审核流水线](/deploy-to-dev-info.png)
 
@@ -224,11 +226,11 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 - Kubeconfig：选择之前创建的 kubeconfig 凭证
 - 配置文件路径 (configs)：yaml 模板在项目中的相对路径，填写 `deploy/no-branch-dev/**`
-- 在配置中启用变量替换 (enableConfigSubstitution)：勾选，允许在流水线中通过变量动态传值 (比如以上用到的 `$DOCKER_PASSWORD`、`$APP_NAME` )
+- 在配置中启用变量替换 (enableConfigSubstitution)：勾选，允许在流水线中通过变量动态传值 (比如以上用到的 `$DOCKER_PASSWORD`、`$APP_NAME`)
 
 ![部署到 Kubernetes 配置](/Kubernetes-deploy-info.png)
 
-至此，流水线的 6 个阶段都已构建完成，点击 **保存**，可视化创建的 pipeline 会默认生成为 Jenkinsfile 文件。
+至此，流水线的 6 个阶段都已构建完成，点击 **保存**，可视化创建的 pipeline 会默认生成 Jenkinsfile 文件。
 
 ![流水线总览](/pipeline-overview.png)
 
@@ -244,13 +246,13 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 ![](/pipeline-status.png)
 
-在活动运行序号 `2` 中，由于我们在最后一个阶段添加了 `input` 即人工审核步骤，因此流水线运行至此将停止等待人工手动触发，此时审核者可以测试构建的镜像并进一步审核整个流程，若审核通过则点击 **继续**，最终将部署到 Kubernetes 的 dev 环境中。
+在活动运行序号 `2` 中，由于我们在最后一个阶段添加了 `input` 即人工审核步骤，并指定了用户名为 `tester` 的用户。因此流水线运行至此将停止，等待审核者 `tester` 登录进入该流水线运行页面来手动触发。此时审核者可以测试构建的镜像并进一步审核整个流程，若审核通过则点击 **继续**，最终将部署到 Kubernetes 的 dev 环境中。
 
 ![审核部署阶段](/pipeline-deploy-to-dev.png)
 
 ## 查看流水线
    
-1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态。黑色框标注了流水线的步骤名称，示例中流水线的 6 个 stage 就是以上创建的六个阶段。
+1、点击流水线中 `活动` 列表下查看当前正在运行的流水线序列号，页面展示了流水线中每一步骤的运行状态。黑色框标注了流水线的步骤名称，示例中流水线的 6 个 stage 就是以上创建的六个阶段。
    
 ![run_status](/pipeline_status.png)
 
@@ -262,9 +264,9 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 Docker 镜像仓库，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag，最终以 deployment 和 service 部署到 KubeSphere 的开发环境中。
 
-|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
-|---|---|---|---|
-|Dev| 公网IP (EIP) + 30880| kubesphere-system-dev| ks-docs-sample-dev| ks-docs-sample-dev|
+|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
+|---|---|---|---|---|
+|Dev| 公网IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-system-dev| ks-docs-sample-dev|ks-docs-sample-dev|
 
 查看推送到 DockerHub 的镜像，可以看到 `devops-docs-sample` 就是 **APP_NAME** 的值，而 **Tag Name** 则是 `SNAPSHOT-$BUILD_NUMBER` 的值 (`$BUILD_NUMBER` 对应活动的运行序号 **2**)。
   
