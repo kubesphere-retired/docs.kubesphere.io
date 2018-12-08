@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon-Scale Copy 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-380.000000, -3035.000000)">
+            <g id="Group-9" transform="translate(-34.000000, 2701.000000)">
+                <g id="Group-4" transform="translate(413.000000, 332.000000)">
+                    <g id="Icon-Scale-Copy-3">
+                        <rect id="Bound" x="0" y="0" width="28" height="28"></rect>
+                        <rect id="Rectangle" fill="#55BC8A" x="2.8" y="2.8" width="22.4" height="22.4" rx="3"></rect>
+                        <path d="M17.85,8.05 L15.4,5.6 L21.4,5.6 C21.9522847,5.6 22.4,6.04771525 22.4,6.6 L22.4,12.6 L19.95,10.15 L15.05,13.9399495 L14.0600505,12.95 L17.85,8.05 Z" id="Combined-Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                        <rect id="Rectangle" fill="#242E42" x="1.4" y="14" width="12.6" height="12.6" rx="3"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

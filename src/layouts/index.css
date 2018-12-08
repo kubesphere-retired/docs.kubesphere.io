@@ -616,8 +616,18 @@ pre tt:after {
 }
 
 .ReactModal__Overlay {
+  text-align: center;
+  white-space: nowrap;
   transition: opacity 0.15s linear;
   opacity: 0;
+}
+
+.ReactModal__Overlay::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 100%;
 }
 
 .ReactModal__Overlay--after-open {
@@ -644,6 +654,16 @@ pre tt:after {
 .ReactModal__Content--before-close {
   opacity: 0;
   transform: scale(0.9);
+}
+
+.ks-modal {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  text-align: left;
+  border-radius: 8px;
+  vertical-align: middle;
+  outline: none;
 }
 
 mark {

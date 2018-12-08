@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo renders correctly 1`] = `
+<div
+  className="sc-bdVaJa kjfxgG"
+>
+  <a
+    href="//kubesphere.io/"
+    target="_blank"
+  >
+    <SvgMock
+      className="logo"
+    />
+  </a>
+  <a
+    href="/"
+  >
+    <p>
+      文档中心
+    </p>
+  </a>
+</div>
+`;

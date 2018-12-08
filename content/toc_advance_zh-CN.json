@@ -1,8 +1,11 @@
 {
-  "id": "advanced-v1.0.0-zh-CN",
+  "version": "advanced-v1.0.0",
+  "lang": "zh-CN",
   "chapters": [
     {
       "title": "产品介绍",
+      "icon" : "/product.svg",
+      "desc": "通过直观的视频资料与简单的介绍帮助您了解 Kubesphere",
       "chapters": [
         {
           "title": "产品简介",
@@ -24,6 +27,8 @@
     },
     {
       "title": "安装指南",
+      "icon" : "/install.svg",
+      "desc": "KubeSphere Installer 采用 Ansible 对部署目标机器及部署流程进行集中化管理配置",
       "chapters": [
         {
           "title": "安装说明",
@@ -57,6 +62,8 @@
     },
     {
       "title": "快速入门",
+      "icon" : "/access.svg",
+      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器管理平台的基本使用流程，带您快速上手 KubeSphere",
       "chapters": [
         {
           "title": "入门必读",
@@ -94,6 +101,8 @@
     },
     {
       "title": "管理员指南",
+      "icon" : "/admin_reffer.svg",
+      "desc": "指导管理员如何使用平台提供的管理功能",
       "chapters": [
         {
           "title": "多租户管理",
@@ -162,6 +171,8 @@
     },
     {
       "title": "用户指南",
+      "icon" : "/reffer.svg",
+      "desc": "指导用户如何使用平台提供的基本功能",
       "chapters": [
         {
           "title": "工作负载",
@@ -269,10 +280,9 @@
             {
               "entry": "./advanced-v1.0.0/zh-CN/devops/jenkins-agent.md"
             }
-
           ]
         },
-        { 
+        {
           "title": "应用模板",
           "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-template.md"
         }
@@ -280,6 +290,8 @@
     },
     {
       "title": "常见问题",
+      "icon" : "/problem.svg",
+      "desc": "总结实际应用场景中可能遇到的问题并给出通用解决方案。",
       "entry": "./advanced-v1.0.0/zh-CN/faq.md"
     }
   ]

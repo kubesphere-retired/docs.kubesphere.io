@@ -2,7 +2,7 @@
 
 exports[`Header renders correctly 1`] = `
 <div
-  className="sc-bwzfXH dDQgAy"
+  className="sc-bxivhb cwcnTU"
 >
   <div
     className="header-expand"
@@ -18,25 +18,39 @@ exports[`Header renders correctly 1`] = `
       className="v-line"
     />
   </div>
-  <a
-    href="//kubesphere.io"
-    target="_blank"
-  >
-    <SvgMock
-      className="header-logo"
-    />
-  </a>
-  <span
-    className="sc-htpNat fuRQLw"
+  <div
+    className="sc-htpNat gujRNj"
   >
     <div
-      className="ks-search sc-bdVaJa ewAAcf"
+      className="sc-bwzfXH gpGprg"
+    >
+      <a
+        href="//kubesphere.io/"
+        target="_blank"
+      >
+        <SvgMock
+          className="logo"
+        />
+      </a>
+      <a
+        href="/"
+      >
+        <p>
+          文档中心
+        </p>
+      </a>
+    </div>
+  </div>
+  <span
+    className="sc-ifAKCX fqSaAM"
+  >
+    <div
+      className="ks-search sc-bdVaJa jCORor"
     >
       <SvgMock />
       <input
         onChange={[Function]}
         onKeyUp={[Function]}
-        placeholder="快速查找"
         type="text"
       />
     </div>

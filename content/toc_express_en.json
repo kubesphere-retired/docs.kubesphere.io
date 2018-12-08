@@ -1,5 +1,6 @@
 {
-  "id": "express-en",
+  "version": "express",
+  "lang": "en",
   "chapters": [
     {
       "title": "Installing, Patching, and Upgrading",

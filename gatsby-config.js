@@ -3,11 +3,10 @@ const fs = require('fs')
 const indexes = []
 fs.readdirSync('./content').forEach(file => {
   if (/^toc_.*.json$/.test(file)) {
-    const [_, version, language] = file.replace('.json', '').split('_')
-
+    const data = require('./content/' + file)
     indexes.push({
-      name: `${version}_${language}`,
-      filter: obj => obj.version === version && obj.language === language,
+      name: `${data.version}_${data.lang}`,
+      filter: obj => obj.version === data.version && obj.language === data.lang,
     })
   }
 })
@@ -81,8 +80,8 @@ module.exports = {
       {
         label: 'Express v1.0.0-alpha',
         value: 'express',
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     'gatsby-plugin-react-helmet',

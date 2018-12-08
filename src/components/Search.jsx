@@ -13,17 +13,19 @@ class Search extends React.Component {
   }
 
   handleChange = (e) => {
-    this.props.onQueryChange(e.target.value)
+    this.props.onQueryChange && this.props.onQueryChange(e.target.value)
   }
 
   render() {
+    const { placeholder } = this.props
+
     return (
       <SearchWrapper className="ks-search">
         <SearchIcon />
         <input 
           type="text" 
           value={this.props.query} 
-          placeholder="快速查找" 
+          placeholder={placeholder} 
           onKeyUp={this.handleKeyUp}
           onChange={this.handleChange}
         />
@@ -33,35 +35,18 @@ class Search extends React.Component {
 }
 
 const SearchWrapper = styled.div`
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 350px;
-  height: 36px;
-  
-
-  .algolia-autocomplete {
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-  }
-
-  .algolia-autocomplete .ds-dropdown-menu {
-    transform: translateY(6px);
-  }
+  position: relative;
+  display: inline-block;
 
   input {
-    width: 100%;
-    height: 100%;
     padding: 7px 20px 7px 40px;
-    font-size: 0.875rem;
+    font-size: 14px;
     font-family: Proxima Nova;
     font-weight: 600;
     line-height: 1.7;
     color: #303e5a;
     border-radius: 18px;
-    border: solid 1px #cfd9df;
+    border: solid 1px #d8dee5;
     background-color: transparent;
     transition: all .2s ease;
 
@@ -79,9 +64,10 @@ const SearchWrapper = styled.div`
   & > svg {
     position: absolute;
     top: 50%;
-    left: 14px;
-    width: 14px;
-    height: 14px;
+    left: 24px;
+    width: 16px;
+    height: 16px;
+    padding: 1px;
     transform: translateY(-50%);
     z-index: 2;
   }

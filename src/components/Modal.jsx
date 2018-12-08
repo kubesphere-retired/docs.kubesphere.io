@@ -59,6 +59,7 @@ export default class Modal extends React.Component {
 
     return (
       <ReactModal
+        className="ks-modal"
         style={style}
         isOpen={visible}
         onRequestClose={onCancel}
@@ -77,6 +78,8 @@ export default class Modal extends React.Component {
 const Header = styled.div`
   position: relative;
   border-radius: 8px 8px 0 0;
+  overflow: hidden;
+
   & > svg {
     position: absolute;
     width: 16px;

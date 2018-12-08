@@ -9,10 +9,6 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
     const parts = slug.split('/').filter(p => !!p)
 
-    // if (parts.length !== 3) {
-    //   throw new Error(`Unexpected node path of length !== 3: ${slug}`)
-    // }
-
     const [version, language] = parts
 
     createNodeField({ node, name: `slug`, value: slug })
@@ -39,23 +35,33 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
       }
     `).then(({ data: { pages: { edges } } }) => {
-      createRedirect({
-        fromPath: `/`,
-        isPermanent: true,
-        redirectInBrowser: true,
-        toPath: `/express/zh-CN/basic/`,
-      })
-
       edges.forEach(({ node }) => {
         const { version, language, slug } = node.fields
+
         createPage({
           path: slug,
           component: path.resolve(`./src/templates/markdown.js`),
           context: {
             slug: slug,
             version: version,
-            id: `${version}-${language}`,
+            lang: language,
           },
+        })
+      })
+
+      const redirects = {
+        '/express/zh-CN/': '/express/zh-CN/basic/',
+        '/express/en/': '/express/en/KubeSphere-Installer-Guide/',
+        '/advanced-v1.0.0/zh-CN/': '/advanced-v1.0.0/zh-CN/introduction/intro/',
+        '/advanced-v1.0.0/en/': '/advanced-v1.0.0/en/test-en/',
+      }
+
+      Object.entries(redirects).forEach(([key, value]) => {
+        createRedirect({
+          fromPath: key,
+          isPermanent: true,
+          redirectInBrowser: true,
+          toPath: value,
         })
       })
 

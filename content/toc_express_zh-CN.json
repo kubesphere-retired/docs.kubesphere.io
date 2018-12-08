@@ -1,20 +1,29 @@
 {
-  "id": "express-zh-CN",
+  "version": "express",
+  "lang": "zh-CN",
   "chapters": [
     {
       "title": "简介",
+      "icon" : "/product.svg",
+      "desc": "通过直观的视频资料与简单的介绍帮助您了解 Kubesphere",
       "entry": "./express/zh-CN/basic.md"
     },
     {
       "title": "安装指南",
+      "icon" : "/install.svg",
+      "desc": "KubeSphere Installer 采用 Ansible 对部署目标机器及部署流程进行集中化管理配置",
       "entry": "./express/zh-CN/KubeSphere-Installer-Guide.md"
     },
     {
       "title": "快速入门",
+      "icon" : "/access.svg",
+      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器管理平台的基本使用流程，带您快速上手 KubeSphere",
       "entry": "./express/zh-CN/user-case.md"
     },
     {
       "title": "用户指南",
+      "icon" : "/reffer.svg",
+      "desc": "指导用户如何使用平台提供的基本功能",
       "chapters": [
         {
           "title": "首页",
@@ -94,6 +103,7 @@
     },
     {
       "title": "附录",
+      "icon" : "/problem.svg",
       "chapters": [
         {
           "title": "部署 Ceph 存储服务端",
