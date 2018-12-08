@@ -110,13 +110,26 @@ class ChapterList extends React.Component {
   constructor(props, context) {
     super(props)
 
+    this.state = {
+      open: this.getOpenState(props, context),
+    }
+  }
+
+  getOpenState = (props, context) => {
     let open = false
+
+    let pathname = context.location.pathname
+    if (!/\/$/.test(pathname)) {
+      context.location.pathname = context.location.pathname + '/'
+      pathname = context.location.pathname
+    }
+
     if (props.entries) {
       const slugs = props.entries.map(
         ({ entry }) => entry.childMarkdownRemark.fields.slug
       )
 
-      open = slugs.includes(context.location.pathname)
+      open = slugs.includes(pathname)
     } else if (props.chapters) {
       const slugs = []
       props.chapters.forEach(chapter => {
@@ -130,13 +143,11 @@ class ChapterList extends React.Component {
           )
         }
       })
-      open = slugs.includes(context.location.pathname)
+      open = slugs.includes(pathname)
     }
 
-    this.state = { open }
+    return open
   }
-
-  componentDidMount() {}
 
   handleClick = () => {
     this.setState(({ open }) => ({

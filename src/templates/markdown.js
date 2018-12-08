@@ -111,7 +111,9 @@ export default class MarkdownTemplate extends React.Component {
 
   handleClick = e => {
     if (this.markdownRef && this.markdownRef.contains(e.target)) {
-      this.setState({ isExpand: false })
+      if (this.state.isExpand) {
+        this.setState({ isExpand: false })
+      }
     }
   }
 
