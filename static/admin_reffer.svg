@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="18px" viewBox="0 0 20 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>KA Icon Copy</title>
+    <desc>Created with Sketch.</desc>
+    <g id="tutorial" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="tutorial-home" transform="translate(-232.000000, -872.000000)">
+            <g id="Group-20" transform="translate(0.000000, 326.000000)">
+                <g id="Group-15">
+                    <g id="Group-5-Copy-2" transform="translate(230.000000, 540.000000)">
+                        <g id="Group-4-Copy-2">
+                            <g id="KA-Icon-Copy" transform="translate(2.000000, 5.000000)">
+                                <g id="window">
+                                    <g id="Group">
+                                        <g>
+                                            <rect id="bound" x="0" y="0" width="20" height="20"></rect>
+                                            <path d="M18.5,1.5 L18.5,13.9990608 C18.5,15.104149 17.6073772,16 16.5049107,16 L2.4950893,16 C1.3932319,16 0.5,15.1039027 0.5,13.9990608 L0.5,1.5 L18.5,1.5 Z" id="Shape" fill="#86DBA2"></path>
+                                            <rect id="Rectangle-3" fill="#443D4E" x="0.5" y="1.5" width="18" height="3"></rect>
+                                            <rect id="Rectangle-6" fill="#FFFFFF" x="1.5" y="2.5" width="1.5" height="1"></rect>
+                                            <rect id="Rectangle-6" fill="#FFFFFF" x="4" y="2.5" width="1.5" height="1"></rect>
+                                            <rect id="Rectangle-6" fill="#FFFFFF" x="6.5" y="2.5" width="1.5" height="1"></rect>
+                                            <g id="cursor" transform="translate(13.500000, 8.000000)" fill="#443D4E">
+                                                <polygon id="Shape" points="2.53846154 6.54545455 0 9 0 0 6 6.54545455"></polygon>
+                                                <path d="M1.75,6.42910955 L2.96708245,6 L4.25,10.0708905 L3.03291755,10.5 L1.75,6.42910955 Z M2.96708245,6 L4.25,10.0708905 L3.03291755,10.5 L1.75,6.42910955 L2.96708245,6 Z" id="Shape" fill-rule="nonzero"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

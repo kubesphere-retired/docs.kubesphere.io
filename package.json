@@ -21,6 +21,7 @@
     "gatsby-source-filesystem": "^1.5.39",
     "gatsby-transformer-json": "^1.0.20",
     "gatsby-transformer-remark": "^1.7.44",
+    "lodash": "^4.17.11",
     "lunr": "^2.3.1",
     "lunr-languages": "^1.0.0",
     "mark.js": "^8.11.1",
@@ -28,6 +29,7 @@
     "promise-polyfill": "^8.0.0",
     "react-helmet": "^5.2.0",
     "react-modal": "^3.5.1",
+    "react-select": "^2.1.2",
     "smooth-scroll": "^14.2.1",
     "styled-components": "^3.3.3"
   },

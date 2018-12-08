@@ -198,6 +198,7 @@ export default class MarkdownTemplate extends React.Component {
               query={query}
               isExpand={isExpand}
               onSearch={this.handleSearch}
+              placeholder={"快速查找"}
               toggleExpand={this.handleExpand}
               onQueryChange={this.handleQueryChange}
             />
@@ -339,7 +340,7 @@ export const pageQuery = graphql`
       title
     }
   }
-  query MarkdownBySlug($slug: String!, $id: String!, $version: String!) {
+  query MarkdownBySlug($slug: String!, $lang: String!, $version: String!) {
     site {
       siteMetadata {
         title
@@ -370,10 +371,11 @@ export const pageQuery = graphql`
         fieldValue
       }
     }
-    tableOfContents: allContentJson(filter: { id: { eq: $id } }) {
+    tableOfContents: allContentJson(filter: { version: { eq: $version }, lang: { eq: $lang } }) {
       edges {
         node {
-          id
+          version
+          lang
           chapters {
             title
             entry {

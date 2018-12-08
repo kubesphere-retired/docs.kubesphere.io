@@ -28,11 +28,11 @@ class Header extends React.Component {
   }
 
   handleExpand = () => {
-    this.props.toggleExpand();
+    this.props.toggleExpand()
   }
 
   render() {
-    const { isExpand, ...rest } = this.props;
+    const { isExpand, ...rest } = this.props
 
     return (
       <HeaderWrapper
@@ -46,12 +46,14 @@ class Header extends React.Component {
           <span className="v-line" />
           <span className="v-line" />
         </div>
-        <a href="//kubesphere.io" target="_blank"><Logo className="header-logo"/></a>
+        <a href="//kubesphere.io" target="_blank">
+          <Logo className="header-logo" />
+        </a>
         <SearchWrapper>
-          <Search {...rest}/>
+          <Search {...rest} />
         </SearchWrapper>
       </HeaderWrapper>
-    );
+    )
   }
 }
 
@@ -63,13 +65,13 @@ const HeaderWrapper = styled.div`
   height: 80px;
   opacity: 0.92;
   background: #eff4f9;
-  transition: left .2s cubic-bezier(0.79, 0.33, 0.14, 0.53);
+  transition: left 0.2s cubic-bezier(0.79, 0.33, 0.14, 0.53);
 
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: 60px;
     left: ${({ isExpand }) => {
-      return isExpand ? '280px' : 0;
+      return isExpand ? '280px' : 0
     }};
   }
 
@@ -97,7 +99,7 @@ const HeaderWrapper = styled.div`
   }
 
   .header-logo {
-    display: block;
+    display: inline-block;
     height: 30px;
     width: 150px;
     margin-top: 25px;
@@ -115,8 +117,43 @@ const HeaderWrapper = styled.div`
 `
 
 const SearchWrapper = styled.span`
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
   @media only screen and (max-width: 768px) {
     display: none;
+  }
+
+  .ks-search {
+    & > input {
+      width: 350px;
+      height: 37px;
+      font-size: 12px;
+      line-height: 2;
+      color: #657d95;
+      padding: 6px 30px 6px 40px;
+      background-color: transparent;
+      border-color: transparent;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        border-color: #cfd9df;
+      }
+
+      &:focus {
+        background-color: #fff;
+        border-color: #cfd9df;
+      }
+    }
+
+    & > svg {
+      left: 13px;
+      width: 20px;
+      height: 20px;
+      padding: 3px;
+    }
   }
 `
 

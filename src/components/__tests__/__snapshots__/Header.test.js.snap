@@ -2,7 +2,7 @@
 
 exports[`Header renders correctly 1`] = `
 <div
-  className="sc-bwzfXH dDQgAy"
+  className="sc-bwzfXH hFsjfK"
 >
   <div
     className="header-expand"
@@ -27,16 +27,15 @@ exports[`Header renders correctly 1`] = `
     />
   </a>
   <span
-    className="sc-htpNat fuRQLw"
+    className="sc-htpNat dHujvN"
   >
     <div
-      className="ks-search sc-bdVaJa ewAAcf"
+      className="ks-search sc-bdVaJa jCORor"
     >
       <SvgMock />
       <input
         onChange={[Function]}
         onKeyUp={[Function]}
-        placeholder="快速查找"
         type="text"
       />
     </div>

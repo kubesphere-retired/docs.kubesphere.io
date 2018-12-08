@@ -2,13 +2,12 @@
 
 exports[`Search renders correctly 1`] = `
 <div
-  className="ks-search sc-bdVaJa ewAAcf"
+  className="ks-search sc-bdVaJa jCORor"
 >
   <SvgMock />
   <input
     onChange={[Function]}
     onKeyUp={[Function]}
-    placeholder="快速查找"
     type="text"
   />
 </div>

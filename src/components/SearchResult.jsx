@@ -8,7 +8,7 @@ import Search from './Search'
 
 import { ReactComponent as RightIcon } from '../assets/right.svg'
 
-const Header = (props) => (
+const Header = props => (
   <HeaderWrapper>
     <Search {...props} />
   </HeaderWrapper>
@@ -17,52 +17,55 @@ const Header = (props) => (
 export default class SearchResult extends React.Component {
   componentDidMount() {
     setTimeout(() => {
-      this.doMark();
-    }, 500);
+      this.doMark()
+    }, 500)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.results !== this.props.results) {
       setTimeout(() => {
-        this.doMark();
-      }, 500);
+        this.doMark()
+      }, 500)
     }
   }
 
   doMark = () => {
     if (this.ref) {
-      new Mark(this.ref).mark(this.props.query);
+      new Mark(this.ref).mark(this.props.query)
     }
   }
 
   render() {
-    const { results, onCancel, visible, ...search } = this.props;
+    const { results, onCancel, visible, ...search } = this.props
 
     return (
       <Modal
         width={756}
         visible={visible}
         onCancel={onCancel}
-        header={<Header {...search}/>}
+        header={<Header {...search} />}
       >
         <Wrapper>
-          <p>共找到 { results.length } 条相关信息</p>
-          <div ref={(ref) => { this.ref = ref; }}>
+          <p>共找到 {results.length} 条相关信息</p>
+          <div
+            ref={ref => {
+              this.ref = ref
+            }}
+          >
             <Results>
-              {
-                results.map((result, index) => (
-                  <Link key={index} to={result.slug} onClick={onCancel}>
-                    <ResultItem>
-                      <p className="result-title">
-                        KubeSphere Docs: {result.title || result.head_prefix}&nbsp;&nbsp;
-                        <span className="font-normal">{result.head}</span>
-                      </p>
-                      <p className="result-desc">{result.excerpt}</p>
-                      <RightIcon />
-                    </ResultItem>
-                  </Link>
-                ))
-              }
+              {results.map((result, index) => (
+                <Link key={index} to={result.slug} onClick={onCancel}>
+                  <ResultItem>
+                    <p className="result-title">
+                      KubeSphere Docs: {result.title || result.head_prefix}
+                      &nbsp;&nbsp;
+                      <span className="font-normal">{result.head}</span>
+                    </p>
+                    <p className="result-desc">{result.excerpt}</p>
+                    <RightIcon />
+                  </ResultItem>
+                </Link>
+              ))}
             </Results>
           </div>
         </Wrapper>
@@ -72,7 +75,8 @@ export default class SearchResult extends React.Component {
 }
 
 const Wrapper = styled.div`
-  height: 475px;
+  min-height: 475px;
+  max-height: calc(100vh - 140px);
   padding: 14px 20px;
   overflow-y: auto;
 
@@ -90,7 +94,16 @@ const HeaderWrapper = styled.div`
     height: 50px;
     transform: none;
 
-    & > input{
+    & > svg {
+      left: 20px;
+      width: 20px;
+      height: 20px;
+      padding: 2px;
+    }
+
+    & > input {
+      width: 100%;
+      padding: 13px 20px 13px 50px;
       border-radius: 0;
       border: none;
       border-bottom: 1px solid #cfd9df;

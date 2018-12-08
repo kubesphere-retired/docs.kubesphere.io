@@ -31,7 +31,7 @@ class Versions extends React.Component {
   }
 
   changeVersion = (version) => {
-    location.href=`/${version}/zh-CN/basic/`
+    location.href=`/${version}/zh-CN/`
   }
 
   renderOptions() {

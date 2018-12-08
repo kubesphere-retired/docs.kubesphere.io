@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon-Connect</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-380.000000, -3639.000000)">
+            <g id="Group-9" transform="translate(-34.000000, 2701.000000)">
+                <g id="Group-5-Copy-2" transform="translate(373.000000, 895.000000)">
+                    <g id="Group-4-Copy" transform="translate(40.000000, 42.000000)">
+                        <g id="Icon-Connect">
+                            <rect id="Bound" x="0" y="0" width="28" height="28"></rect>
+                            <path d="M6.3,13.3 L6.3,19.6 C6.3,21.1463973 7.5536027,22.4 9.1,22.4 L14.7,22.4 L14.7,21 L9.1,21 C8.32680135,21 7.7,20.3731986 7.7,19.6 L7.7,13.3 L6.3,13.3 Z" id="Shape" fill="#242E42" fill-rule="nonzero"></path>
+                            <path d="M13.3,5.6 L13.3,11.9 C13.3,13.4463973 14.5536027,14.7 16.1,14.7 L21.7,14.7 L21.7,13.3 L16.1,13.3 C15.3268014,13.3 14.7,12.6731986 14.7,11.9 L14.7,5.6 L13.3,5.6 Z" id="Shape" fill="#242E42" fill-rule="nonzero" transform="translate(17.500000, 10.150000) rotate(-180.000000) translate(-17.500000, -10.150000) "></path>
+                            <rect id="Rectangle" fill="#55BC8A" x="1.4" y="1.4" width="12.6" height="12.6" rx="3"></rect>
+                            <rect id="Rectangle" fill="#ADEBB5" x="14" y="14" width="12.6" height="12.6" rx="3"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
