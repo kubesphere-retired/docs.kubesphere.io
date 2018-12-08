@@ -22,6 +22,13 @@ title: "工作负载管理"
 
 ![监控](/deployment-monitoring.png)
 
+值得一提的是，当容器组 (Pod) 数量有数十个以上时，监控数据曲线也不会因此而重叠凌乱，当超过五个副本时，可以单击 **查看全部副本** 查看更多的副本监控。例如，查看一个副本数为 203 的守护进程集 `node-exporter` (部署在集群的所有主机上用于监控集群物理主机的 CPU、内存、网络、磁盘等情况)，点击 **查看全部副本**：
+
+![node-exporter 监控](/node-exporter-monitoring.png)
+
+弹窗将显示 203 个副本的监控数据，左侧可以选择多个容器组，每个容器组监控的数据将以单个曲线图显示。这对于集群规模较大的情景而言，是非常适用的。
+
+![node-exporter 全部副本](/node-exporter-monitoring-lists.png)
 
 ### 环境变量页
 
@@ -56,7 +63,7 @@ title: "工作负载管理"
 
 ### 配置弹性伸缩
 
-弹性伸缩 (Horizontal Pod Autoscaling) 顾名思义就是使 Pod 能够水平自动伸缩，利用弹性伸缩，KubeSphere 能够根据监测到的 CPU 利用率或内存使用率自动地扩容或缩容部署 (Deployment)，也只有部署才可以配置弹性伸缩。部署看似简单，然而它实现了 Kubernetes 中非常重要的功能 - 弹性伸缩。关于如何配置弹性伸缩，详见 [弹性伸缩](../HPA)。
+弹性伸缩 (Horizontal Pod Autoscaling) 顾名思义就是使 Pod 能够水平自动伸缩，利用弹性伸缩，KubeSphere 能够根据监测到的 CPU 利用率或内存使用率自动地扩容或缩容部署 (Deployment)，也只有部署才可以配置弹性伸缩。部署看似简单，然而它实现了 Kubernetes 中非常重要的功能 - 弹性伸缩。关于如何配置弹性伸缩，详见 [弹性伸缩](../../quick-start/HPA)。
 
 ### 编辑配置模板
 

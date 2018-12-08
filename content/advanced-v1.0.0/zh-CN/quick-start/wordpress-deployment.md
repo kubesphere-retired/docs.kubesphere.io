@@ -1,5 +1,5 @@
 ---
-title: "快速入门 - 部署 Wordpress" 
+title: "示例二 - 部署 Wordpress" 
 ---
 
 本文以创建一个部署（Deployment）为例，部署一个无状态的 Wordpress 应用，最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
@@ -37,7 +37,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 2.2. 下一步，存储卷设置中，参考如下填写：
 
-- 存储类型：选择预先为集群创建的存储类型，示例中是 [csi-qingcloud](../../storage/qingcloud-storage)
+- 存储类型：选择预先为集群创建的存储类型，示例中是 **csi-qingcloud**
 - 访问模式：选择单节点读写 (RWO)
 - 存储卷容量：默认 10 Gi
 
@@ -68,15 +68,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 ### 第五步：容器组模板
 
-5.1. 副本数量设置为 `2`，弹性伸缩的设置如下：
-
-- Min Replicas (副本数量的下限): 2
-- Max Replicas (副本数量的上限): 10
-- CPU Request Target(%) (当 CPU 使用率超过或低于此目标值时，将添加或删除副本): 50
-- Memory Request Target(Mi): 暂不限定
-
-
-5.2. 容器组模板中，名称可自定义，镜像填写 `wordpress:4.8-apache`，展开高级设置，参考如下填写，完成后点击 **保存**：
+容器组模板中，名称可自定义，镜像填写 `wordpress:4.8-apache`，展开高级设置，对 **端口** 和 **环境变量** 进行设置，其它项暂不作设置。参考如下填写，完成后点击 **保存**：
 
 - CPU 和内存：此处暂不作限定，将使用在创建项目时指定的默认请求值。
 - 端口：名称可自定义，选择 `TCP` 协议，填写 Wordpress 在容器内的端口 `80`。主机端口是容器映射到主机上的端口，此处暂不设置主机端口。

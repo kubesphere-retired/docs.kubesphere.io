@@ -8,6 +8,8 @@ title: "存储卷"
 
 另外，Installer 也已集成了 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/) 等存储的客户端，需在 `conf/vars.yml` 中配置，但需要自行准备和安装相应的存储服务端，若用于 KubeSphere 测试存储服务端部署可参考附录中的 [部署 Ceph RBD 存储服务端](https://docs.kubesphere.io/express/zh-CN/ceph-ks-install/) 或 [部署 GlusterFS 存储服务端](https://docs.kubesphere.io/express/zh-CN/glusterfs-ks-install/)。
 
+存储卷生命周期包括存储卷创建、挂载、卸载、删除等操作，如下演示一个存储卷完整生命周期的操作。
+
 ## 前提条件
 
 创建存储卷之前必须先创建相应的存储类型，参考 [创建存储类型](../../infrastructure/storageclass/#创建存储类型)。
@@ -43,7 +45,7 @@ title: "存储卷"
 
 ### 第四步：查看存储卷
 
-设置完成后点击创建，即可创建成功，刚创建的存储卷状态显示 “创建中”，待其状态变为 “准备就绪” 就可以将其挂载至工作负载。
+设置完成后点击创建，即可创建成功，刚创建的存储卷 `pvc-demo` 状态显示 “创建中”，待其状态变为 “准备就绪” 就可以将其挂载至工作负载。
 
 > 注意：若以 all-in-one 模式安装 (存储类型为 Local Volume)，创建存储卷后，在存储卷被挂载至工作负载前，存储卷状态将一直显示 “创建中”，直至其被挂载至工作负载之后状态才显示 “准备就绪”，这种情况是正常的，因为 Local Volume 的 [延迟绑定（delay volume binding）](https://kubernetes.io/docs/concepts/storage/storage-classes/#local)  且 Local Volume 暂不支持动态配置。
 
@@ -53,7 +55,7 @@ title: "存储卷"
 
 在创建工作负载时可以添加已创建的存储卷。参考如下，以创建一个 Wordpress 部署并挂载存储卷为示例。
 
-### 第一步：填写基本信息
+### 第一步：填写部署基本信息
 
 选择已有项目，点击 **工作负载 → 部署 → 创建部署**，填写基本信息。
 
@@ -85,14 +87,18 @@ title: "存储卷"
 
 ### 查看挂载状态
 
-待部署创建完成后，在存储卷列表中可以看到 pvc-demo 卷显示挂载状态为 **已挂载**。
+待部署创建完成后，在存储卷列表中可以看到 `pvc-demo` 卷显示挂载状态为 **已挂载**。
 
 ![挂载状态](/pvc-status-validation.png)
 
+## 卸载存储卷
+
+注意，若需要删除存储卷，请确保存储卷挂载状态处于 `未挂载`。如果存储卷已挂载至工作负载，在删除前需要先在工作负载中卸载 (删除) 存储卷或删除工作负载，完成卸载操作。如下，将挂载在工作负载 Wordpress 的存储卷进行删除 (卸载) 操作。
+
+![卸载存储卷](/delete-pvc-in-wordpress.png)
+
 ## 删除存储卷
 
-注意，若需要删除存储卷，请确保存储卷挂载状态处于 `未挂载`。如果存储卷已挂载至工作负载，在删除前需要先删除工作负载，然后在存储卷列表页删除存储卷。
-
-在项目下，左侧菜单栏点击 **存储卷**，勾选需要删除的存储卷点击 **删除** 即可，如下所示仅第一个状态为 **未挂载** 的存储卷可以被删除。
+在项目下，左侧菜单栏点击 **存储卷**，如下所示 **pvc-demo** 存储卷的状态为 **未挂载** ，说明可以被删除。勾选需在上一步卸载的存储卷 **pvc-demo**，点击 **删除** 即可。
 
 ![删除存储卷](/ae-delete-pvc.png)

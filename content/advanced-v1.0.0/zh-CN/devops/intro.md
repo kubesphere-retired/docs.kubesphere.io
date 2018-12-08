@@ -51,13 +51,13 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 我们提供了两个具有代表性的示例和文档，帮助您快速上手 CI/CD。
 
-- [示例一 - Jenkinsfile in SCM](../../devops/jenkinsfile-in-scm)
+- [示例五 - Jenkinsfile in SCM](../../quick-start/jenkinsfile-in-scm)
 
 本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境，并且能够通过公网访问。
 
-- [示例二 - Jenkinsfile out of SCM](../../devops/jenkinsfile-out-of-scm)
+- [示例六 - Jenkinsfile out of SCM](../../quick-start/jenkinsfile-out-of-scm)
 
-本示例以文档和视频演示如何基于 [示例一 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，以可视化的方式构建 CI/CD 流水线 (包含示例一的前六个阶段)，最终将本文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。
+本示例以文档和视频演示如何基于 [示例一 - Jenkinsfile in SCM](../../quick-start/jenkinsfile-in-scm)，以可视化的方式构建 CI/CD 流水线 (包含示例一的前六个阶段)，最终将本文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。
 
 ### Jenkins Agent 说明
 
@@ -65,7 +65,7 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 ### 高级设置
 
-- KubeSphere 使用了 Configuration-as-Code 进行 Jenkins 的系统设置，详见 [Jenkins 系统设置](../jenkins-setting)。
+KubeSphere 使用了 Configuration-as-Code 进行 Jenkins 的系统设置，详见 [Jenkins 系统设置](../jenkins-setting)。
 
 
 

@@ -10,12 +10,12 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 **说明:**
 
+> - 由于安装过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。
 > - KubeSphere 集群的架构中，由于各自服务的不同，分为管理节点和工作节点两个角色，即 Master 和 Node。
 > - Master 节点由三个紧密协作的组件组合而成，即负责 API 服务的 kube-apiserver、负责调度的 kube-scheduler、负责容器编排的 kube-controller-manager。
 > - 集群的持久化数据，由 kube-apiserver 处理后保存至 etcd 中。
 > - 当进行 all-in-one 模式进行单节点安装时，这个节点既是管理节点，也是工作节点。
 > - 当进行 multi-node 模式安装多节点集群时，可在配置文件中设置集群各节点的角色。
-> - 由于安装过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。
 > - 如果是新安装的系统，在 Software Selection 界面需要把 OpenSSH Server 选上。
 
 ### All-in-One 模式
@@ -28,7 +28,7 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 #### 存储配置说明
 
-Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行部署测试。若在正式环境使用需配置 KubeSphere 支持的持久化存储服务，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置 [青云块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/) 这类持久化存储的安装参数，详见 [存储配置说明](../storage-configuration)。
+Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行部署测试。若在正式环境使用需配置 KubeSphere 支持的持久化存储服务，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置 [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/) 这类持久化存储的安装参数，详见 [存储配置说明](../storage-configuration)。
 
 #### Master 和 etcd 节点高可用配置
 
@@ -68,5 +68,5 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 |---|---|
 |KubeSphere| AE-v1.0.0|
 |KubeSphere Console| Advanced Edition |
-|Kubernetes| v1.12.2|
+|Kubernetes| v1.12.3|
 |OpenPitrix| v0.3.5|
