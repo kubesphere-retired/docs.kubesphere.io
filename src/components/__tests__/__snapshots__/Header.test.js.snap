@@ -2,7 +2,7 @@
 
 exports[`Header renders correctly 1`] = `
 <div
-  className="sc-bwzfXH hFsjfK"
+  className="sc-bxivhb cwcnTU"
 >
   <div
     className="header-expand"
@@ -18,16 +18,31 @@ exports[`Header renders correctly 1`] = `
       className="v-line"
     />
   </div>
-  <a
-    href="//kubesphere.io"
-    target="_blank"
+  <div
+    className="sc-htpNat gujRNj"
   >
-    <SvgMock
-      className="header-logo"
-    />
-  </a>
+    <div
+      className="sc-bwzfXH gpGprg"
+    >
+      <a
+        href="//kubesphere.io/"
+        target="_blank"
+      >
+        <SvgMock
+          className="logo"
+        />
+      </a>
+      <a
+        href="/"
+      >
+        <p>
+          文档中心
+        </p>
+      </a>
+    </div>
+  </div>
   <span
-    className="sc-htpNat dHujvN"
+    className="sc-ifAKCX fqSaAM"
   >
     <div
       className="ks-search sc-bdVaJa jCORor"

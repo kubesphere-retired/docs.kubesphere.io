@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Search from './Search'
+import Logo from './Logo'
 
 import { getScrollTop } from '../utils/index'
-
-import { ReactComponent as Logo } from '../assets/logo.svg'
 
 class Header extends React.Component {
   componentDidMount() {
@@ -46,9 +45,9 @@ class Header extends React.Component {
           <span className="v-line" />
           <span className="v-line" />
         </div>
-        <a href="//kubesphere.io" target="_blank">
-          <Logo className="header-logo" />
-        </a>
+        <LogoWrapper>
+          <Logo />
+        </LogoWrapper>
         <SearchWrapper>
           <Search {...rest} />
         </SearchWrapper>
@@ -56,6 +55,13 @@ class Header extends React.Component {
     )
   }
 }
+
+const LogoWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 200;
+`
 
 const HeaderWrapper = styled.div`
   position: fixed;

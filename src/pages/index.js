@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
 
-import Search from '../components/Search'
+import Logo from '../components/Logo'
 import Select from '../components/Select'
+import Search from '../components/Search'
 import SearchResult from '../components/SearchResult'
 
-import { ReactComponent as LogoIcon } from '../assets/logo.svg'
 import { ReactComponent as RoadMapIcon } from '../assets/icon-roadmap.svg'
 import { ReactComponent as ChatIcon } from '../assets/icon-chat.svg'
 import { ReactComponent as BugIcon } from '../assets/icon-bug.svg'
@@ -84,18 +84,11 @@ export default class IndexPage extends React.Component {
   }
 }
 
-const Logo = () => (
-  <LogoWrapper>
-    <a href="https://kubesphere.io/" target="_blank">
-      <LogoIcon className="logo" />
-    </a>
-    <p>文档中心</p>
-  </LogoWrapper>
-)
-
 const Header = ({ query, onSearch, onQueryChange }) => (
   <HeaderWrapper>
-    <Logo />
+    <LogoWrapper>
+      <Logo />
+    </LogoWrapper>
     <Wrapper>
       <h1>欢迎使用 KubeSphere 文档</h1>
       <p>
@@ -249,36 +242,6 @@ const LogoWrapper = styled.div`
   top: 20px;
   left: 20px;
   z-index: 200;
-
-  .logo {
-    display: inline-block;
-    vertical-align: middle;
-    height: 32px;
-    width: 150px;
-  }
-
-  p {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 0;
-    margin-left: 30px;
-    font-size: 16px;
-    line-height: 1.75;
-    color: #303e5a;
-
-    &::before {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: -14px;
-      content: '|';
-      color: #00aa72;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.75;
-    }
-  }
 `
 
 const HeaderWrapper = styled.div`
