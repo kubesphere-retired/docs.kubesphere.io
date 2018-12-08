@@ -2,9 +2,9 @@
 title: "示例六 - Jenkinsfile out of SCM" 
 ---
 
-示例一通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
+示例五通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
 
-本示例演示基于 [示例一 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，通过可视化构建流水线 (包含示例一的前六个阶段)，最终将一个文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。若熟悉了示例一的流程后，对于示例二的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) 为例，可预先将其 Fork 至您的代码仓库中。
+本示例演示基于 [示例五 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，通过可视化构建流水线 (包含示例五的前六个阶段)，最终将一个文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问，这里所谓的开发环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例五的流程后，对于示例六的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) 为例，可预先将其 Fork 至您的代码仓库中。
 
 构建可视化流水线共包含以下 6 个阶段 (stage)，先通过一个流程图简单说明一下整个 pipeline 的工作流：
 
@@ -21,8 +21,9 @@ title: "示例六 - Jenkinsfile out of SCM"
 ## 前提条件
 
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号。
-- 本示例的代码仓库以 GitHub 为例，确保已有 [GitHub](https://github.com/) 账号，且已 Fork 了示例代码仓库。
+- 本示例的代码仓库以 GitHub 为例，确保已有 [GitHub](https://github.com/) 账号，且已 Fork 了 [示例代码仓库](https://github.com/kubesphere/devops-docs-sample)。
 - 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../../devops/devops-project/#创建-devops-工程)。
+- 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。 
 
 ## 演示视频
 
@@ -30,13 +31,35 @@ title: "示例六 - Jenkinsfile out of SCM"
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video1/jenkinsfile-out-of-scm.mp4">
 </video>
 
+## 创建项目
+
+CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将文档网站部署到开发环境 `kubesphere-system-dev`，它对应的是 KubeSphere 中的一个项目 (Namespace)，该项目需要预先在控制台创建。注意，若您已在 [示例五](../jenkinsfile-in-scm) 创建过该项目，则无需再次创建，可跳过创建项目步骤。
+
+### 第一步：填写项目信息
+
+登录 KubeSphere，在已创建的企业空间下，点击 **项目管理 → 创建项目**，填写项目的基本信息。
+
+- 名称：固定为 `kubesphere-system-dev`，若需要修改项目名称则需在 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy) 中修改 namespace
+- 别名：可自定义，比如 **开发环境**
+- 描述信息：可简单介绍该项目，方便用户进一步了解
+
+![创建 Dev 项目](/create-dev-namespace.png)
+
+### 第二步：高级设置
+
+本示例暂无资源请求和限制，因此高级设置中无需修改默认值，点击 **创建**，项目可创建成功。
+
+![项目创建成功](/dev-namespace-list.png)
+
+> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-system-dev` 和 `kubesphere-system` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
+
 ## 创建凭证
 
-本示例创建流水线时需要 DockerHub 和 Kubernetes (创建 KubeConfig 用于接入正在运行的 Kubernetes 集群) 的 2 个凭证 (credentials) ，先依次创建这 2 个凭证。
+本示例创建流水线时需要访问 DockerHub 和 Kubernetes (创建 KubeConfig 用于接入正在运行的 Kubernetes 集群) 的 2 个凭证 (credentials) ，先依次创建这 2 个凭证。
 
 > 注意：
-> - 若示例二与示例一在同一 DevOps 工程，且示例一已创建了这两个凭证，则无需再次创建，因为同一 DevOps 工程下的凭证对流水线是共用的。
-> - 若代码仓库属于私有仓库如 Gitlab，可能还需要创建这类账户的凭证。
+> - 若示例六与示例五在同一 DevOps 工程，且示例五已创建了这两个凭证，则无需再次创建，可跳过创建凭证步骤，因为同一 DevOps 工程下的凭证对多个流水线是共用的。
+> - 若代码仓库属于私有仓库如 Gitlab 或 SVN，可能还需要创建这类账户的凭证。
 
 ### 第一步：创建 DockerHub 凭证
 
@@ -92,12 +115,14 @@ title: "示例六 - Jenkinsfile out of SCM"
 
 |名称|默认值|描述信息|
 |---|---|---|
-|DOCKERHUB_ORG|您的 DockerHub 账号|DockerHub 账号|
-|APP_NAME|devops-docs-sample|应用名称|
+|DOCKERHUB_NAMESPACE|填写您的 DockerHub 账号|DockerHub 账号|
+|APP_NAME|填写 devops-docs-sample|应用名称|
 
 ![高级设置](/pipeline-advanced-setting.png)
 
 3、设置 **构建触发器**，此处勾选 **定时构建**，日程表 (cron) 填写 `H H * * *`，表示每天构建一次 (不限具体时刻)。这里的定时构建是提供类似 Linux cron 的功能来定期执行此流水线，定时构建的语法以下作一个简单释义，语法详见 [Jenkins 官方文档](https://jenkins.io/doc/book/pipeline/syntax/#cron-syntax)。
+
+![定时构建](/advanced-setting-schedule.png)
 
 > 定时构建语法：
 > `* * * * *`
@@ -120,7 +145,7 @@ title: "示例六 - Jenkinsfile out of SCM"
 
 1、可视化编辑页面，分为结构编辑区域和内容编辑区域。通过构建流水线的每个阶段 (stage) 和步骤 (step) 即可自动生成 Jenkinsfile，用户无需学习 Jenkinsfile 的语法，非常方便。当然，平台也支持手动编辑 Jenkinsfile 的方式，流水线分为 “声明式流水线” 和 “脚本化流水线”，可视化编辑支持声明式流水线。Pipeline 语法参见 [Jenkins 官方文档](https://jenkins.io/doc/book/pipeline/syntax/)。
 
-如下，代理 (Agent) 的类型选择 `node`，label 填写 nodejs。
+如下，代理 (Agent) Agent 部分指定整个 Pipeline 或特定阶段将在 Jenkins 环境中执行的位置， 具体取决于该 agent 部分的放置位置。此处代理的类型选择 `node`，label 填写 `nodejs`。
 
 ![代理设置](/pipeline_agent.png)
 
@@ -160,7 +185,7 @@ title: "示例六 - Jenkinsfile out of SCM"
 2、点击 **添加步骤** 选择 `container`，名称为 `nodejs`；然后点击 **添加嵌套步骤**，选择 `shell`，shell 命令填写如下一行 docker 命令：
 
 ```shell
-docker build -t docker.io/$DOCKERHUB_ORG/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .
+docker build -t docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .
 
 ```
 
@@ -179,7 +204,7 @@ docker build -t docker.io/$DOCKERHUB_ORG/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .
 ```bash
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-docker push docker.io/$DOCKERHUB_ORG/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
+docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 ```
 ![推送 snapshot](/build-push-snapshot.png)
 
@@ -235,17 +260,17 @@ docker push docker.io/$DOCKERHUB_ORG/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 ## 验证运行结果
 
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 Docker 镜像仓库，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag，最终以 deployment 和 service 部署到 KubeSphere 的 dev 和 production 环境中。若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页。
+若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 Docker 镜像仓库，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag，最终以 deployment 和 service 部署到 KubeSphere 的开发环境中。
 
-|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |
+|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 |---|---|---|---|
-|Dev| 公网IP (EIP) + 30880| kubesphere-system-dev| ks-docs-sample-dev|
+|Dev| 公网IP (EIP) + 30880| kubesphere-system-dev| ks-docs-sample-dev| ks-docs-sample-dev|
 
 查看推送到 DockerHub 的镜像，可以看到 `devops-docs-sample` 就是 **APP_NAME** 的值，而 **Tag Name** 则是 `SNAPSHOT-$BUILD_NUMBER` 的值 (`$BUILD_NUMBER` 对应活动的运行序号 **2**)。
   
 ![查看镜像](/deveops-dockerhub.png)
 
-访问部署到 KubeSphere 的 Dev 环境的服务。
+若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页。如下在浏览器访问部署到 KubeSphere 的开发环境的服务： `http://127.0.0.1:30880/`。
 
 **Dev 环境**
 ![](/docs-home-dev-preview.png)
