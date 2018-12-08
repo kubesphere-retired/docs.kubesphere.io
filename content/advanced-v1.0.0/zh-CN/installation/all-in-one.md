@@ -6,7 +6,7 @@ title: "All-in-One 模式"
 ## 前提条件
 
 - 已购买 KubeSphere 高级版，并已下载了高级版的 Installer 至目标安装机器。
-- All-in-One 模式安装时，将使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储类型方便用户测试部署，主机磁盘容量请参考主机规格表中的推荐配置。若使用其他 KubeSphere 支持的存储服务，需要提前准备相应的存储服务端。
+- 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。若还未准备存储服务端，为方便测试部署，也可使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储。
 
 ### 第一步: 准备主机
 
