@@ -4,7 +4,7 @@ title: "示例五 - Jenkinsfile in SCM"
 
 Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Source Control Management）的一部分，因此可使用 `git clone` 或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在 GitHub 的代码仓库中应包含 Jenkinsfile。
 
-本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和产品环境且能够通过公网访问，那么这个流水线需要完成哪些流程呢？先通过一个流程图简单说明一下整个 pipeline 的工作流：
+本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境 (Dev) 和产品环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。那么这个流水线需要完成哪些流程呢？先通过一个流程图简单说明一下整个 pipeline 的工作流：
 
 ![流程图](/cicd-pipeline-01.svg)
 
@@ -24,7 +24,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 
 - 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考时前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
 - 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../../devops/devops-project/#创建-devops-工程)。
-- 熟悉 Git 分支管理和版本控制相关的基础知识，参考 [Git 官方文档](https://git-scm.com/book/zh/v2)
+- 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。
 
 ## 演示视频
 
@@ -42,7 +42,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 
 ### 第二步：修改 Jenkinsfile
 
-Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**， 在  GitHub UI 点击编辑图标，需要修改如下参数 (parameters) 和环境变量 (environment)，完成后提交更新到当前的 master 分支：
+Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**，在  GitHub UI 点击编辑图标，需要修改如下参数 (parameters) 和环境变量 (environment)，完成后提交更新到当前的 master 分支：
 
 ![修改 Jenkinsfile](/modify-jenkinsfile.png)
 ![提交更新](/commit-jenkinsfile.png)
@@ -89,9 +89,11 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ### 第二步：高级设置
 
-本示例暂无资源请求和限制，因此高级设置中无需修改默认值，点击 **创建**。当 CI/CD 流水线后续执行成功后，在 `kubesphere-system-dev` 和 `kubesphere-system` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
+本示例暂无资源请求和限制，因此高级设置中无需修改默认值，点击 **创建**，项目可创建成功。
 
 ![项目创建成功](/dev-namespace-list.png)
+
+> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-system-dev` 和 `kubesphere-system` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
 
 ## 创建凭证
 
@@ -218,7 +220,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ## 验证运行结果
 
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 kubesphere-system-dev 和 kubesphere-system 项目环境中，可通过 KubeSphere 查看这两个项目中的部署和服务的状态，正常情况下，部署的状态应该显示 **运行中**。
+若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-system-dev` 和 `kubesphere-system` 项目环境中，可通过 KubeSphere 查看这两个项目中的部署和服务的状态，正常情况下，部署的状态应该显示 **运行中**。
 
 ![验证运行结果](/verify-docs-deployment.png)
 
@@ -231,12 +233,22 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
   
 ![查看 DockerHub](/deveops-dockerhub.png)
 
-若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页。如下访问部署到 KubeSphere 的 Dev 和 Production 环境的服务。
+查看在 GitHub 中生成的一个 `v0.0.1` 的 tag 和 release。
+ß
+![查看 release](/verify-github-release.png)
+
+若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页。如下在浏览器访问部署到 KubeSphere 的 Dev 和 Production 环境的服务。
 
 **Dev 环境**
+
+如下访问 `http://127.0.0.1:30880/`。
+
 ![](/docs-home-dev-preview.png)
 
 **Prodcution 环境**
+
+如下访问 `http://127.0.0.1:30980/`。
+
 ![](/docs-home-production-preview.png)
 
 
