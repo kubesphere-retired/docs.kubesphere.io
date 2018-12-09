@@ -78,12 +78,12 @@ module.exports = {
     title: 'KubeSphere Documents',
     versions: [
       {
-        label: 'Express v1.0.0-alpha',
-        value: 'express',
-      },
-      {
         label: 'Advanced v1.0.0',
         value: 'advanced-v1.0.0',
+      },
+      {
+        label: 'Express v1.0.0',
+        value: 'express',
       },
     ],
   },

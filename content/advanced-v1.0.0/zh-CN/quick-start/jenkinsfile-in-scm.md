@@ -184,13 +184,19 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 - 路径：是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
-4、勾选 **定期扫描 Repo Trigger**，扫描时间间隔设置为 `5 minutes`。定期扫描是设定一个周期让流水线周期性地扫描远程仓库，查看仓库有没有新 PR。完成高级设置后，点击 **创建**。
+4、在 **扫描 Repo Trigger** 勾选 `如果没有扫描触发，则定期扫描`，扫描时间间隔可根据团队习惯设定，本示例设置为 `5 minutes`。定期扫描是设定一个周期让流水线周期性地扫描远程仓库，根据 **行为策略** 查看仓库有没有代码更新或新的 PR。完成高级设置后，点击 **创建**。
+
+> **Webhook 推送：**
+>
+> Webhook 是一种高效的方式可以让流水线发现远程仓库的变化并自动触发新的运行，GitHub 和 Git (如 Gitlab) 触发 Jenkins 自动扫描应该以 Webhook 为主，以上一步在 KubeSphere 设置定期扫描为辅。在本示例中，可以通过手动运行流水线，如需设置自动扫描远端分支并触发运行，详见 [设置自动触发扫描 - GitHub SCM](../../devops/auto-trigger)。
    
 ![advance](/pipeline_advance-schedule.png)
 
 ### 第四步：运行流水线
 
-流水线创建后，点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile（默认是根目录下的 Jenkinsfile），Tag 将自动获取 Jenkinsfile 中的 `TAG_NAME: defaultValue`，此处无需修改。点击确定，流水线开始运行。
+流水线创建后，点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile（默认是根目录下的 Jenkinsfile）。
+
+由于仓库的 Jenkinsfile 中 `TAG_NAME: defaultValue` 没有设置默认值，因此在这里的 `TAG_NAME` 可以输入一个 tag 编号，比如输入 v0.0.1，tag 用于在 GitHub 和 DockerHub 中分别生成带有 tag 的 release 和镜像。点击确定，流水线开始运行。
 
 ![运行流水线](/run-pipeline-demo1.png)
 
@@ -200,7 +206,15 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ### 第五步：审核流水线
 
-在实际的开发生产场景下，可能需要更高权限的管理员或运维人员来审核流水线和镜像，并决定是否允许将其推送至代码或镜像仓库，以及部署至开发或生产环境。Jenkinsfile 中的 `input` 步骤支持指定用户审核流水线。为方便演示，此处默认用当前账户来通过审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 jenkinsfile 中分别定义了三个 stage 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中需要审核 `3` 次，若不审核或点击 **终止** 则流水线将不会继续运行。
+在实际的开发生产场景下，可能需要更高权限的管理员或运维人员来审核流水线和镜像，并决定是否允许将其推送至代码或镜像仓库，以及部署至开发或生产环境。Jenkinsfile 中的 `input` 步骤支持指定用户审核流水线，比如要指定用户名为 Jeff 和 Calvin 的用户来审核，可以在 Jenkinsfile 的 input 函数中追加一个字段，如果是多个用户则通过逗号分隔，如下所示：
+
+```groovy
+···
+input(id: 'release-image-with-tag', message: 'release image with tag?', submitter: 'Jeff,Calvin')
+···
+```
+
+为方便演示，此处默认用当前账户来审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 jenkinsfile 中分别定义了三个 stage 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中需要审核 `3` 次，若不审核或点击 **终止** 则流水线将不会继续运行。
 
 ![审核流水线](/devops_input.png)
 
