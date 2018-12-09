@@ -2,29 +2,28 @@
 title: "存储配置说明"
 ---
 
-目前，Installer 支持以下类型的存储作为持久化存储 (更多的存储类型持续更新中)：
+目前，Installer 支持以下类型的存储作为存储服务端，为 KubeSphere 提供持久化存储 (更多的存储类型持续更新中)：
 
 - [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)
-- [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)
+- [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/)
+- [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) ( 比如 [QingCloud 文件存储 (NAS) ](https://www.qingcloud.com/products/nas/))
 - [GlusterFS](https://www.gluster.org/)
 - [Ceph RBD](https://ceph.com/)
-- [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)
-- [Local Volume (仅 all-in-one 支持)](https://kubernetes.io/docs/concepts/storage/volumes/#local) 
 
-同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接 QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的权限或已购买并准备好 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端，然后在 `vars.yml` 配置对应的参数即可对接相应的存储服务端。
+同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接 QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的操作权限或已购买并准备好 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端，然后在 `vars.yml` 配置对应的参数即可对接相应的存储服务端。
 
 Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已测试过的版本如下：
 
 | **名称** | **版本** | **参考** |
 | ----------- | --- |---|
-| Ceph RBD Server | v0.94.10 |若用于测试部署可参考 [部署 Ceph 存储集群](/express/zh-CN/ceph-ks-install/)，如果是正式环境搭建请参考 [Install Ceph](http://docs.ceph.com/docs/master/)|
-| Ceph RBD Client | v12.2.5 | Installer 将根据配置自动安装该客户端，仅需在 `vars.yml` 配置对应的参数，参考 [Ceph RBD](../storage-configuration/#ceph-rbd)|
-| GlusterFS Server | v3.7.6 |若用于测试部署可参考 [部署 GlusterFS 存储集群](/express/zh-CN/glusterfs-ks-install/)， 如果是正式环境搭建请参考 [Install Gluster](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) 且需要安装 [Heketi 管理端 (v3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin)|
-|GlusterFS Client |v3.12.10|配置详见 [GlusterFS](../storage-configuration/#glusterfs)|
-|NFS Server | v1.0.9 |配置详见 [NFS Server 配置](../storage-configuration/#nfs) |
-|NFS Client | v3.1.0 |配置详见 [NFS Client 配置](../storage-configuration/#nfs) |
-| QingCloud-CSI|v0.2.0.1|参考 [QingCloud CSI](../storage-configuration/#qingcloud-csi)|
-| NeonSAN-CSI|v0.3.0|参考 [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
+| Ceph RBD Server | v0.94.10 |若用于测试部署可参考 [部署 Ceph 存储服务端](/express/zh-CN/ceph-ks-install/)，如果是正式环境搭建请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)|
+| Ceph RBD Client | v12.2.5 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，参考 [Ceph RBD](../storage-configuration/#ceph-rbd)|
+| GlusterFS Server | v3.7.6 |若用于测试部署可参考 [部署 GlusterFS 存储服务端](/express/zh-CN/glusterfs-ks-install/)， 如果是正式环境搭建请参考 [Gluster 官方文档](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) ，并且需要安装 [Heketi 管理端 (v3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin)|
+|GlusterFS Client |v3.12.10|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，配置详见 [GlusterFS](../storage-configuration/#glusterfs)|
+|NFS Server in Kubernetes| v1.0.9 |配置详见 [NFS Server 配置](../storage-configuration/#nfs) |
+|NFS Client | v3.1.0 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，详见 [NFS Client](../storage-configuration/#nfs)  |
+| QingCloud-CSI|v0.2.0.1|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [QingCloud CSI](../storage-configuration/#qingcloud-csi)|
+| NeonSAN-CSI|v0.3.0|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
 
 > 说明：
 > 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
@@ -35,7 +34,7 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 
 ### Local Volume
 
-[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录，仅支持在 all-in-one 模式安装时使用 Local Volume。
+[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录，仅支持在 all-in-one 模式安装时使用 Local Volume，由于该类型暂不支持动态分配，因此仅建议用于测试部署，方便初次安装和体验。
 
 | **Local Volume** | **Description** |
 | --- | --- |
@@ -90,8 +89,8 @@ $ ceph auth get-key client.admin
 
 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。在 `vars/yml` 配置分两种情况,根据实际情况选择配置其中一种即可：
 
-- 若初次安装没有准备存储服务端，可选择配置部署 NFS Server 至当前集群，仅建议用于部署测试，参考 **NFS Server 配置**
-- 正式环境请预先准备 NFS 服务端并参考 **NFS Client 配置** 对接存储服务端
+- 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。如果初次安装没有准备存储服务端，可选择配置部署 NFS Server 至当前集群，仅建议用于部署测试，参考 **NFS Server 配置**。
+- 正式环境请预先准备 NFS 服务端并参考 **NFS Client 配置** 对接存储服务端。
 
 **NFS Server 配置**
 
