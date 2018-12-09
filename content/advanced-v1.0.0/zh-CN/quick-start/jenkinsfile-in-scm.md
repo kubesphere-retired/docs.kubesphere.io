@@ -42,14 +42,13 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Sou
 
 ### 第二步：修改 Jenkinsfile
 
-Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**，在  GitHub UI 点击编辑图标，需要修改如下参数 (parameters) 和环境变量 (environment)，完成后提交更新到当前的 master 分支：
+Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**，在  GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值，完成后提交更新到当前的 master 分支：
 
 ![修改 Jenkinsfile](/modify-jenkinsfile.png)
 ![提交更新](/commit-jenkinsfile.png)
 
 |修改项|值|含义|
 |---|---|---|
-|defaultValue|v0.0.1|用于生成 GitHub 和 DockerHub 的 tag|
 |DOCKERHUB\_CREDENTIAL\_ID|dockerhub-id|上一步创建的 DockerHub 凭证 ID|
 |GITHUB\_CREDENTIAL\_ID|github-id|上一步创建的 GitHub 凭证 ID|
 |KUBECONFIG\_CREDENTIAL\_ID|demo-kubeconfig| KubeConfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群 |
@@ -59,9 +58,6 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**，在
 
 ```bash
       ···
-parameters{
-     string(name:'TAG_NAME',defaultValue: 'v0.0.1',description:'')
-  }
 environment {
     DOCKERHUB_CREDENTIAL_ID = 'dockerhub-id'
     GITHUB_CREDENTIAL_ID = 'github-id'
