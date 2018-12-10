@@ -30,4 +30,4 @@ KubeSphere 为企业用户提供高性能可伸缩的容器应用管理服务，
 ### 产品规划
 **Community Edition** （ [社区版](https://kubesphere.qingcloud.com/#category) ）=> **Express Edition** （ [易捷版](https://kubesphere.qingcloud.com/#category) ）=> **Advanced Edition** （ [高级版](https://kubesphere.qingcloud.com/#category) ）
 
-![Roadmap](/ae-roadmap.png)
+![Roadmap](/roadmap.svg)

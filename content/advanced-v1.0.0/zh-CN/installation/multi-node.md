@@ -6,7 +6,7 @@ title: "Multi-node 模式"
 
 ## 前提条件
 
-- 已购买 KubeSphere 高级版，并已下载了高级版的 Installer 至目标安装机器。
+- 需下载 KubeSphere 高级版的 Installer 至目标安装机器，若还未获取请前往 [官网](https://kubesphere.io/download) 下载。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端，存储服务端的磁盘容量参考主机规格表中的推荐配置或选择更高的容量。为方便初次安装但没有准备存储服务端时进行部署测试，也可配置部署 NFS Server 到当前集群。
 
 ### 第一步: 准备主机
@@ -40,13 +40,13 @@ title: "Multi-node 模式"
 **1.** 在获取安装包后，执行以下命令。
 
 ```bash
-$ tar -zxf KubeSphere-Installer-Advanced-v1.0.0.tar.gz
+$ tar -zxf kubesphere-all-advanced-1.0.0.tar.gz
 ```
 
-**2.** 进入 “`KubeSphere-Installer-Advanced-v1.0.0`” 目录
+**2.** 进入 “`kubesphere-all-advanced-1.0.0`” 目录
 
 ```bash
-$ cd KubeSphere-Installer-Advanced-v1.0.0
+$ cd kubesphere-all-advanced-1.0.0
 ```
 
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
@@ -146,7 +146,7 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-11-16
+https://kubesphere.io/               2018-12-08
 ################################################
 Please input an option: 2
 
@@ -154,7 +154,7 @@ Please input an option: 2
 
 **4.** 测试 KubeSphere 集群部署是否成功：
 
-**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口，外部才能够访问。
+**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 32130)，保证外网流量可以通过该端口，外部才能够访问。
 
 ```bash
 successsful!
