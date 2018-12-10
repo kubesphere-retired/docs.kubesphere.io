@@ -19,7 +19,7 @@ title: "Multi-node 模式"
 | ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 |Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 
-以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台主机，以主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在底层的 Kubernetes 中 Worker 节点跟 Master 节点都运行着一个 **kubelet** 组件，但 Master 节点上还会运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
+以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 root 准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在底层的 Kubernetes 中 Worker 节点跟 Master 节点都运行着一个 **kubelet** 组件，但 Master 节点上还会运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
 
 > 说明：高级版支持 Master 和 etcd 节点高可用配置，但本示例仅作为测试部署的演示，因此 3 台主机中仅部署单个 Master 和单个 etcd，正式环境建议配置 Master 和 etcd 节点的高可用，请参阅 [Master 和 etcd 节点高可用配置](../master-ha)。
 
@@ -53,7 +53,7 @@ $ cd KubeSphere-Installer-Advanced-v1.0.0
 
 > 说明：
 > - 若以非 root 用户 (如 ubuntu 用户) 进行安装，可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
-> - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户。如果遇到问题可参考 [常见问题 - 问题 3](../../faq)。
+> - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [常见问题 - 问题 2](../../faq)。
 
 以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。
 

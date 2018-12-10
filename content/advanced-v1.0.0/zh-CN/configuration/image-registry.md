@@ -2,45 +2,59 @@
 title: "镜像仓库"
 ---
 
-Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜像有特定的唯一标识 （镜像的 Registry 地址+镜像名称+镜像 Tag）。例如：一个镜像可以包含一个完整的 Ubuntu 操作系统环境，里面仅安装了 Apache 或用户需要的其它应用程序。而镜像仓库，是集中存放镜像文件的场所，镜像仓库用于存放 Docker 镜像。
+Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜像有特定的唯一标识 （镜像的 Registry 地址 + 镜像名称+镜像 Tag）。例如：一个镜像可以包含一个完整的 Ubuntu 操作系统环境，里面仅安装了 Apache 或用户需要的其它应用程序。而镜像仓库，是集中存放镜像文件的场所，镜像仓库用于存放 Docker 镜像。
+
+## 前提条件
+
+添加镜像仓库需要预先创建企业空间和项目，若还未创建请参考 [管理员快速入门](../../quick-start/admin-quick-start)。
 
 ## 添加镜像仓库
-登录 KubeSphere 管理控制台，进入 **工作台 → 企业空间**，访问左侧菜单栏，选择镜像仓库。
+
+登录 KubeSphere 管理控制台，在已创建的项目中，左侧菜单栏中选择 **配置中心 → 密钥**，点击 **创建**。
+
 ![镜像仓库](/image-registry-list.png) 
 
 
 ### 添加 QingCloud 镜像仓库
 
-QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户提供 Docker 镜像集中存储和分发服务，请参考 [QingCloud 容器镜像仓库](https://docs.qingcloud.com/product/container/docker_hub.html) 预先创建。
+QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户提供 Docker 镜像集中存储和分发服务，请参考 [QingCloud 容器镜像仓库](https://docs.qingcloud.com/product/container/docker_hub.html) 预先创建。若还未创建 QingCloud 镜像仓库，可以先参考文档添加一个示例仓库。
 
-1、 点击右上角 **创建镜像仓库** 按钮，弹出添加镜像仓库对话框，填写镜像仓库所需要的信息。该过程中有个验证，验证用户所填写的镜像地址、用户名和密码是否正确，如果认证错误请检查镜像仓库所填写的地址信息或用户名和密码是否有误。
+1、填写镜像仓库的基本信息
 
-- 仓库名称：为镜像仓库起一个简洁明了的名称，便于浏览和搜索。
-- 仓库地址：用 QingCloud 镜像仓库地址 `dockerhub.qingcloud.com` 作为示例。
-- 用户名/密码：guest / guest 。
+- 名称：为镜像仓库起一个简洁明了的名称，便于浏览和搜索。
+- 别名：帮助您更好的区分资源，并支持中文名称。
 - 描述信息：简单介绍镜像仓库的主要特性，让用户进一步了解该镜像仓库。
 
 ![创建 QingCloud 仓库](/ae-image-registry-basic.png) 
 
-2、 将镜像仓库授权给项目，点击项目右侧 ”+“ 完成授权。
+2、密钥设置中，类型选择 `镜像仓库密钥`，填写镜像仓库的登录信息。
 
-![授权项目](/ae-grant-to-project.png)
+- 仓库地址：用 QingCloud 镜像仓库地址 `dockerhub.qingcloud.com` 作为示例。
+- 用户名/密码：填写 guest / guest 。
+- 邮箱：填写个人邮箱
+
+![密钥设置](/dockerhub-advanced-setting.png)
+
+3、点击 **创建**，即可查看创建结果。
+
+![密钥列表](/dockerhub-created-successfully.png)
 
 
 ### 添加 Docker Hub 镜像仓库
-如果需要添加 [Dokcer Hub](https://hub.docker.com/) 中的镜像仓库，请先确保已在 Docker Hub 注册过账号再进行添加，在添加镜像仓库的窗口填写仓库名称并选择授权项目，仓库地址填写 `docker.io`，输入用户名和密码即可。
 
+如果需要添加 [Dokcer Hub](https://hub.docker.com/) 中的镜像仓库，请先确保已在 Docker Hub 注册过账号再进行添加。添加步骤同上，仓库地址填写 `docker.io`，输入个人的 DockerHub 用户名和密码即可。
 
 ### 添加 Harbor 镜像仓库
 
 **Harbor 简介**
 
-[Harbor](http://vmware.github.io/harbor/) 是一个用于存储和分发 Docker 镜像的企业级 Registry 服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源 Docker Distribution，作为一个企业级私有 Registry 服务器，Harbor 提供了更好的性能和安全。以下详细介绍如何在 KubeSphere 中添加 Harbor 镜像仓库，添加之前请确保已创建了 Harbor 镜像仓库服务端。
+[Harbor](http://vmware.github.io/harbor/) 是一个用于存储和分发 Docker 镜像的企业级 Registry 服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源 Docker Distribution，作为一个企业级私有 Registry 服务器，Harbor 提供了更好的性能和安全。注意，添加之前请确保已创建了 Harbor 镜像仓库服务端，以下详细介绍如何在 KubeSphere 中添加 Harbor 镜像仓库。
 
 根据 Harbor 镜像仓库的地址类型，需要分 http 和 https 两种认证方法：
 
 #### http
-1. 首先，需要修改集群中所有节点的 docker 配置。以 http://139.198.16.232 为例，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=139.198.16.232`：
+
+1. 首先，需要修改集群中所有节点的 docker 配置。以 `http://139.198.16.232` 为例 (用户操作时镜像仓库的地址应替换为您实际创建的仓库地址)，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=139.198.16.232`：
 
  示例：
 
@@ -61,11 +75,12 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
-3. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息如仓库地址和用户认证，选择授权项目，创建 Harbor 镜像仓库。
+3. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息如仓库地址和用户认证，创建 Harbor 镜像仓库。
 
 ![创建 Harbor 仓库-http](/ae-harbor-http.png)
 
 #### https
+
 1. 对于 https 协议的镜像仓库，首先需要获取镜像仓库的证书，记为 `ca.crt`，以 `https://harbor.openpitrix.io` 这个镜像仓库的地址为例，对集群中的所有节点都需要执行以下操作:
 
 ```bash 
@@ -101,9 +116,7 @@ $ sudo systemctl systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
-
-3. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息如仓库地址和用户认证，选择授权项目，创建 Harbor 镜像仓库。
-
+3. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息如仓库地址和用户认证，参考添加 Docker Hub 的步骤，创建 Harbor 镜像仓库。
 
 ## 使用镜像仓库
 
