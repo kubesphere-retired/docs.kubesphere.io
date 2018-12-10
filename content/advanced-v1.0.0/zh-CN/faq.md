@@ -86,3 +86,9 @@ nameserver 100.64.9.5
 
 > 说明：
 > 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
+
+6、如何查看 Kubeconfig 文件？
+
+用户可以通过打开 Kubectl UI 查看 Kubeconfig 文件，仅管理员或拥有 Kubectl UI 权限的用户有权限。
+
+![查看 Kubeconfig 文件](/view-kubeconfig.png)
