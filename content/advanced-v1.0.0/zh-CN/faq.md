@@ -10,7 +10,7 @@ title: "常见问题"
 
 可通过命令 `sudo su` 切换为 root 用户后，在该节点查看是否能 ssh 连接到其他机器，如果 ssh 无法连接，则需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，如下面第二步 `hosts.ini` 配置示例所示，而最终执行安装脚本 `install.sh` 时建议以 `root` 用户执行安装。
 
-第一步，查看是否能 ssh 连接到其他机器，若无法连接，则参考第二步配置示例。相反，如果 root 用户能够 ssh 成功连接到其它机器，则可以参考 `[all]` 默认的 root 用户配置方式。
+第一步，查看是否能 ssh 连接到其他机器，若无法连接，则参考第二步配置示例。相反，如果 root 用户能够 ssh 成功连接到其它机器，则可以参考 Installer 中默认的 root 用户配置方式。
 
 ```
 root@192.168.0.3 # ssh 192.168.0.2
@@ -18,7 +18,7 @@ Warning: Permanently added 'node1,192.168.0.2' (ECDSA) to the list of known host
 root@192.168.0.2's password: 
 Permission denied, please try again.
 ```
-第二步，参考以下示例修改主机配置文件 `hosts.ini`。
+第二步，如下示例使用 3 台机器，参考以下示例修改主机配置文件 `hosts.ini`。
 
 **hosts.ini 配置示例**
 ```ini

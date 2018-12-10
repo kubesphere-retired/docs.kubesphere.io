@@ -4,6 +4,10 @@ title: "安装说明"
 
 [KubeSphere](https://kubesphere.io) 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器管理平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台，以及细粒度的资源监控和 CI/CD 流水线等。
 
+## 前提条件
+
+需下载 KubeSphere 高级版的 Installer 至目标安装机器，若还未获取请前往 [官网](https://kubesphere.io/download) 下载。
+
 ## 安装 KubeSphere
 
 KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 两种模式，即支持单节点和多节点安装两种安装方式。 KubeSphere Installer 采用 [Ansible](https://www.ansible.com/) 对安装目标机器及安装流程进行集中化管理配置。采用预配置模板，可以在安装前通过对相关配置文件进行自定义实现对安装过程的预配置，以适应不同的 IT 环境，帮助您快速安装 KubeSphere。
