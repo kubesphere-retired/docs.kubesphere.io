@@ -27,7 +27,11 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户安装。
 
-以下示例在 CentOS 7.5 上使用 `root` 用户安装，若以非 root 用户 (如 ubuntu ) 进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
+以下示例在 **CentOS 7.5** 上使用 `root` 用户安装，若以非 root 用户 (如 ubuntu ) 进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
+
+> 说明：
+> - 若以非 root 用户 (如 ubuntu 用户) 进行安装，可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
+> - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [常见问题 - 问题 2](../../faq)。
 
 **host.ini 配置示例**
 
@@ -109,5 +113,5 @@ loadbalancer_apiserver:
   port: 6443
 ```
 
-完成 master 和 etcd 高可用的参数配置后，可继续参阅 [Multi-node 模式 - 存储配置示例](../multi-node/#第二步-准备安装配置文件) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。
+完成 master 和 etcd 高可用的参数配置后，请继续参阅 [Multi-node 模式 - 存储配置示例](../multi-node/#第二步-准备安装配置文件) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。
 

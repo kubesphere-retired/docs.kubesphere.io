@@ -27,7 +27,3 @@ KubeSphere 为企业用户提供高性能可伸缩的容器应用管理服务，
 |松耦合功能模块设计| 除提供基于原生 k8s 的管理功能之外，用户可以使用 KubeSphere 集成的诸如镜像仓库、应用仓库、监控、日志模块，也可通过配置的方式集成自建的相关服务。 |
 |可选的商业网络解决方案|除了支持 Calico、Flannel 等开源解决方案外，如用户对网络有更高要求，可选用青云作为底层平台，可以使用性价比更高的网络解决方案如青云 SDN 。|
 
-### 产品规划
-**Community Edition** （ [社区版](https://kubesphere.qingcloud.com/#category) ）=> **Express Edition** （ [易捷版](https://kubesphere.qingcloud.com/#category) ）=> **Advanced Edition** （ [高级版](https://kubesphere.qingcloud.com/#category) ）
-
-![Roadmap](/roadmap.svg)
