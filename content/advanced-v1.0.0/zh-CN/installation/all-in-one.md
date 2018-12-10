@@ -5,7 +5,7 @@ title: "All-in-One 模式"
 
 ## 前提条件
 
-- 需下载 KubeSphere 高级版的 Installer 至目标安装机器，若还未获取请前往 [官网](https://kubesphere.io/download) 下载。
+- 请下载 [KubeSphere 高级版](https://kubesphere.io/download) 至待安装机器中。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。若还未准备存储服务端，为方便测试部署，也可使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储。
 
 ### 第一步: 准备主机
@@ -20,7 +20,7 @@ title: "All-in-One 模式"
 
 ### 第二步: 准备安装包
 
-在获取安装包后，执行以下命令。
+[下载安装包](https://kubesphere.io/download) 至待安装机器，并执行以下命令。
 
 ```bash
 $ tar -zxf kubesphere-all-advanced-1.0.0.tar.gz
