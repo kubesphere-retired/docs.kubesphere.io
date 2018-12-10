@@ -6,7 +6,44 @@ title: "常见问题"
 
 答：我们提供了多个快速入门的示例包括工作负载和 DevOps 工程，建议从 [快速入门](../../zh-CN/quick-start/quick-start-guide) 入手，参考 **快速入门** 并实践和操作每一个示例。
 
-2、安装过程中，如果遇到安装失败并且发现错误日志中有这类信息： `The following packages have pending transactions` ，这种情况应该如何处理？
+2、[Multi-node 模式](../installation/multi-node) 安装时，如果某些服务器的 **Ubuntu** 系统默认管理员用户为 `ubuntu`，若切换为 `root` 用户进行安装，应该如何配置和操作？
+
+可通过命令 `sudo su` 切换为 root 用户后，在该节点查看是否能 ssh 连接到其他机器，如果 ssh 无法连接，则需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，如下面第二步 `hosts.ini` 配置示例所示，而最终执行安装脚本 `install.sh` 时建议以 `root` 用户执行安装。
+
+第一步，查看是否能 ssh 连接到其他机器，若无法连接，则参考第二步配置示例。相反，如果 root 用户能够 ssh 成功连接到其它机器，则可以参考 `[all]` 默认的 root 用户配置方式。
+
+```
+root@192.168.0.3 # ssh 192.168.0.2
+Warning: Permanently added 'node1,192.168.0.2' (ECDSA) to the list of known hosts.
+root@192.168.0.2's password: 
+Permission denied, please try again.
+```
+第二步，参考以下示例修改主机配置文件 `hosts.ini`。
+
+**hosts.ini 配置示例**
+```ini
+[all]
+master ansible_connection=local  ip=192.168.0.1  ansible_user=ubuntu  ansible_become_pass=Qcloud@123
+node1  ansible_host=192.168.0.2  ip=192.168.0.2  ansible_user=ubuntu  ansible_become_pass=Qcloud@123
+node2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_user=ubuntu  ansible_become_pass=Qcloud@123
+
+[kube-master]
+master 	  	 
+
+[kube-node]
+node1 	 
+node2
+
+[etcd]
+master	 
+
+[k8s-cluster:children]
+kube-node
+kube-master 
+
+```
+
+3、安装过程中，如果遇到安装失败并且发现错误日志中有这类信息： `The following packages have pending transactions` ，这种情况应该如何处理？
 
 ![安装问题](/faq-installation-1.png)
 
@@ -30,18 +67,7 @@ $ yum-complete-transaction --cleanup-only
 nameserver 100.64.9.5
 ···
 ``` -->
-3、如果某些服务器的 Ubuntu 系统默认管理员用户为 `ubuntu`，如果要使用 root 用户安装，应该如何操作？
 
-可通过命令 `sudo su` 成为 root 用户后，在该节点查看是否能 ssh 连接到其他机器，如果 ssh 无法连接，则需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户执行安装。
-
-```
-root@192.168.0.3 # ssh 192.168.0.2
-Warning: Permanently added 'node1,192.168.0.2' (ECDSA) to the list of known hosts.
-root@192.168.0.2's password: 
-Permission denied, please try again.
-```
-
-相反，如果 ssh 连接成功则可以参考 `[all]` 默认的 root 用户配置方式。
 
 4、创建 Jenkins 流水线后，运行时报错怎么处理？
 
