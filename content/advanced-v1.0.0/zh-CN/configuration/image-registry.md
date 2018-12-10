@@ -44,6 +44,8 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 
 如果需要添加 [Dokcer Hub](https://hub.docker.com/) 中的镜像仓库，请先确保已在 Docker Hub 注册过账号再进行添加。添加步骤同上，仓库地址填写 `docker.io`，输入个人的 DockerHub 用户名和密码即可。
 
+![Docker Hub 镜像仓库](/add-dockerhub.png)
+
 ### 添加 Harbor 镜像仓库
 
 **Harbor 简介**
@@ -120,7 +122,7 @@ $ sudo systemctl restart docker
 
 ## 使用镜像仓库
 
-以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 QingCloud 镜像仓库中有 `mysql:5.6` 的 docker 镜像，镜像地址为 `dockerhub.qingcloud.com/mysql/mysql:5.6`。在镜像仓库已经授权的项目中，创建 Deployment，在容器组模板中填写镜像仓库地址和镜像名称 + tag。
+以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 QingCloud 镜像仓库中有 `mysql:5.6` 的 docker 镜像，镜像地址为 `dockerhub.qingcloud.com/mysql:5.6`。创建 Deployment，在容器组模板中需要填写 `镜像仓库地址 / 镜像名称:tag`。
    
 ![创建部署](/ae-docker-hub-setting.png)
 
