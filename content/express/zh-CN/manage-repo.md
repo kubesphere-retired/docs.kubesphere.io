@@ -27,9 +27,9 @@ KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服�
 
 Google 有两个应用仓库可以试用，QingStor 对其中稳定的仓库做了一个 mirror (后续我们会开发商业版的应用仓库供企业使用)，用户可根据需要添加所需应用仓库：
 
-> - Google Stable Helm Repo: https://kubernetes-charts.storage.googleapis.com/
-> - Google Incubator Helm Repo: https://kubernetes-charts-incubator.storage.googleapis.com/
-> - QingStor Helm Repo: https://helm-chart-repo.pek3a.qingstor.com/kubernetes-charts/
+> - Google Stable Helm Repo: `https://kubernetes-charts.storage.googleapis.com/`
+> - Google Incubator Helm Repo: `https://kubernetes-charts-incubator.storage.googleapis.com/`
+> - QingStor Helm Repo: `https://helm-chart-repo.pek3a.qingstor.com/kubernetes-charts/`
 
 在企业内私有云场景下，用户可以基于 [Helm](https://helm.sh) 规范去构建自己的应用仓库，并且可以开发和上传满足企业业务需求的应用到自己的应用仓库中，然后基于 KubeSphere 完成应用的分发部署。
 
