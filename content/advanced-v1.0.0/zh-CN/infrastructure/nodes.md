@@ -37,6 +37,16 @@ Kubernetes 集群中的计算能力由主机 (Node) 提供，Kubernetes 集群�
 
 在主机列表页，点击某个主机节点打开其详情页，可以看到当前主机下所有资源的概况，包括主机的 CPU 、内存和容器组资源运行和使用状态，并且支持查看主机上所有容器组的资源使用情况和数量变化，以及注解 (Annotation) 和事件 (Events) 信息。
 
+### 节点状态
+
+节点状态 (Conditions) 描述了所有运行中节点的状态，KubeSphere 对主机的管理有以下五种状态，集群管理员通过以下五种状态可以判断当前节点的负载和能力，更合理地管理主机资源。
+
+- OutOfDisk：表示当前节点是否有足够的空间添加和运行新的 Pods
+- MemoryPressure：表示当前节点的内存压力的高低
+- DiskPressure：表示当前节点的磁盘压力高低
+- PIDPressure：表示当前节点的进程是否存在压力
+- Ready：表示当前节点的状态是否健康和能够准备接收新的 Pods 运行，Node Controller 如果 40 秒 内没有收到节点的状态报告则为 Unknown
+
 ![节点详情](/ae-node_detail.png) 
 
 ### 查看监控
