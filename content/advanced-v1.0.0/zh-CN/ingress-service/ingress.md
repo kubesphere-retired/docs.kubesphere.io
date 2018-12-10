@@ -32,7 +32,7 @@ title: "应用路由"
 > - 协议：支持 http 和 https 协议；
 >
 >    - http：一个 Host 配置项（Hostname）和一个 Path 列表，每个 Path 都关联一个后端服务，若使用 loadbalancer 将流量转发到 backend 之前，所有的入站请求都要先匹配 Host 和 Path。
->    - https：除了 http 所包含的配置，还需要 [secret](../secrets)，在 secret 中可指定包含 TLS 私钥和证书来加密 Ingress，并且 TLS secret 中必须包含名为 tls.crt 和 tls.key 的密钥。
+>    - https：除了 http 所包含的配置，还需要 [secret](../../configuration/secrets)，在 secret 中可指定包含 TLS 私钥和证书来加密 Ingress，并且 TLS secret 中必须包含名为 tls.crt 和 tls.key 的密钥。
 > - Path：应用规则的路径和对应的后端服务，端口需要填写成服务的端口。
 
 ![创建应用路由](/ae-ingress-rules.png)
