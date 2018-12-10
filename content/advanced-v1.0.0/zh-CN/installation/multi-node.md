@@ -15,8 +15,8 @@ title: "Multi-node 模式"
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 | CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
+| ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 |Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 
 以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台主机，以主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在底层的 Kubernetes 中 Worker 节点跟 Master 节点都运行着一个 **kubelet** 组件，但 Master 节点上还会运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。

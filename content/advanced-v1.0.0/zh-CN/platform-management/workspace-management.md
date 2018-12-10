@@ -89,6 +89,6 @@ title: "企业空间管理"
 
 #### 成员管理
 
-admin 可以邀请集群中的成员加入到企业空间并分配角色，注意，集群中的 cluster-operator 只有被邀请到企业空间内，才能够被邀请加入同一企业空间下的项目和 DevOps 工程。
+admin 可以邀请集群中的成员加入到企业空间并分配角色，注意，集群中的 cluster-regular 只有被邀请到企业空间内，才能够被邀请加入同一企业空间下的项目和 DevOps 工程。
 
 ![](/invite-members-workspace.png)

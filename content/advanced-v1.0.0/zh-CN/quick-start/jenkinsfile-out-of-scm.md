@@ -33,13 +33,13 @@ title: "示例六 - Jenkinsfile out of SCM"
 
 ## 创建项目
 
-CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将文档网站部署到开发环境 `kubesphere-system-dev`，它对应的是 KubeSphere 中的一个项目 (Namespace)，该项目需要预先在控制台创建。注意，若您已在 [示例五](../jenkinsfile-in-scm) 创建过该项目，则无需再次创建，可跳过创建项目步骤。
+CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将文档网站部署到开发环境 `kubesphere-docs-dev`，它对应的是 KubeSphere 中的一个项目 (Namespace)，该项目需要预先在控制台创建。注意，若您已在 [示例五](../jenkinsfile-in-scm) 创建过该项目，则无需再次创建，可跳过创建项目步骤。
 
 ### 第一步：填写项目信息
 
 登录 KubeSphere，在已创建的企业空间下，点击 **项目管理 → 创建项目**，填写项目的基本信息。
 
-- 名称：固定为 `kubesphere-system-dev`，若需要修改项目名称则需在 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy) 中修改 namespace
+- 名称：固定为 `kubesphere-docs-dev`，若需要修改项目名称则需在 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
 - 描述信息：可简单介绍该项目，方便用户进一步了解
 
@@ -51,7 +51,7 @@ CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/k
 
 ![项目创建成功](/dev-namespace-list.png)
 
-> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-system-dev` 和 `kubesphere-system` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
+> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-docs-dev` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
 
 ## 创建凭证
 
@@ -264,9 +264,9 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 Docker 镜像仓库，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag，最终以 deployment 和 service 部署到 KubeSphere 的开发环境中。
 
-|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
+|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)|
 |---|---|---|---|---|
-|Dev| 公网IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-system-dev| ks-docs-sample-dev|ks-docs-sample-dev|
+|Dev| 公网IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
 
 查看推送到 DockerHub 的镜像，可以看到 `devops-docs-sample` 就是 **APP_NAME** 的值，而 **Tag Name** 则是 `SNAPSHOT-$BUILD_NUMBER` 的值 (`$BUILD_NUMBER` 对应活动的运行序号 **2**)。
   
