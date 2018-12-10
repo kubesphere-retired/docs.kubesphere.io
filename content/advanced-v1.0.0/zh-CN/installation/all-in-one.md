@@ -14,8 +14,8 @@ title: "All-in-One 模式"
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| Ubuntu 16.04/18.04 LTS （64 bit） | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
-| CentOS 7.5 （64 bit） | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
+| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 |Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 
 ### 第二步: 准备安装包

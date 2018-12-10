@@ -71,13 +71,13 @@ environment {
 
 ## 创建项目
 
-CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy)，最终将文档网站分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-system-dev` 和 `kubesphere-system`，其中 `kubesphere-system-dev` 项目需要预先在控制台创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy)，最终将文档网站分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-docs-dev` 和 `kubesphere-docs-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
 ### 第一步：填写项目信息
 
 登录 KubeSphere，在已创建的企业空间下，点击 **项目管理 → 创建项目**，填写项目的基本信息。
 
-- 名称：固定为 `kubesphere-system-dev`，若需要修改项目名称则需在 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy) 中修改 namespace
+- 名称：固定为 `kubesphere-docs-dev`，若需要修改项目名称则需在 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
 - 描述信息：可简单介绍该项目，方便用户进一步了解
 
@@ -89,7 +89,11 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ![项目创建成功](/dev-namespace-list.png)
 
-> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-system-dev` 和 `kubesphere-system` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
+### 创建第二个项目
+
+同上，参考上一步创建一个名称为 `kubesphere-docs-prod` 的项目，作为生产环境。
+
+> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-docs-dev` 和 `kubesphere-docs-prod` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
 
 ## 创建凭证
 
@@ -230,14 +234,14 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 验证运行结果
 
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-system-dev` 和 `kubesphere-system` 项目环境中，可通过 KubeSphere 查看这两个项目中的部署和服务的状态，正常情况下，部署的状态应该显示 **运行中**。
+若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-docs-dev` 和 `kubesphere-docs-prod` 项目环境中，可通过 KubeSphere 查看这两个项目中的部署和服务的状态，正常情况下，部署的状态应该显示 **运行中**。
 
 ![验证运行结果](/verify-docs-deployment.png)
 
 |环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
 |---|---|---|---|---|
-|Dev| 公网IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-system-dev| ks-docs-sample-dev|ks-docs-sample-dev|
-|Production|公网 IP : 30980 (`${EIP}:${NODEPORT}`)|kubesphere-system|ks-docs-sample |ks-docs-sample|
+|Dev| 公网IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
+|Production|公网 IP : 30980 (`${EIP}:${NODEPORT}`)|kubesphere-docs-prod|ks-docs-sample |ks-docs-sample|
 
 查看推送到 DockerHub 的镜像，可以看到 `devops-docs-sample` 就是 APP_NAME 的值。
   

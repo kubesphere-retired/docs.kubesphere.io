@@ -648,8 +648,8 @@
             <g id="Group-8-Copy" transform="translate(449.000000, 0.000000)">
                 <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="437" height="80" rx="4"></rect>
                 <g id="Group-10" transform="translate(58.000000, 12.000000)" fill="#FFFFFF">
-                    <text id="Cluster-operator" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="18">
-                        <tspan x="94.784" y="53.768">Cluster-operator</tspan>
+                    <text id="Cluster-regular" font-family="PingFangSC-Medium, PingFang SC" font-size="16" font-weight="400" line-spacing="18">
+                        <tspan x="94.784" y="53.768">Cluster-regular</tspan>
                     </text>
                     <g id="Glyph/002.Object/062.Role/White" transform="translate(145.000000, 0.000000)">
                         <path d="M11.3281853,3.80658205 L14,5.33333333 L20.9412189,3.19757368 C21.6450351,2.98101484 22.3911465,3.376015 22.6077053,4.07983123 C22.6467932,4.20686669 22.6666667,4.33903269 22.6666667,4.47194569 L22.6666667,11.4666665 L9.33333333,11.4666665 L9.33333333,4.96423957 C9.33333333,4.2278599 9.930287,3.63090624 10.6666667,3.63090624 C10.8987026,3.63090624 11.1267217,3.69145999 11.3281853,3.80658205 Z" id="Rectangle-26" fill-rule="evenodd" opacity="0.400000006"></path>

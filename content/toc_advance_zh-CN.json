@@ -5,7 +5,7 @@
     {
       "title": "产品介绍",
       "icon" : "/product.svg",
-      "desc": "通过直观的视频资料与简单的介绍帮助您了解 Kubesphere",
+      "desc": "通过简单的图文介绍帮助您了解 Kubesphere",
       "chapters": [
         {
           "title": "产品简介",
@@ -275,6 +275,9 @@
               "entry": "./advanced-v1.0.0/zh-CN/devops/credential.md"
             },
             {
+              "entry": "./advanced-v1.0.0/zh-CN/devops/add-scm.md"
+            },
+            {
               "entry": "./advanced-v1.0.0/zh-CN/devops/auto-trigger.md"
             },
             {
@@ -282,6 +285,9 @@
             },
             {
               "entry": "./advanced-v1.0.0/zh-CN/devops/jenkins-agent.md"
+            },
+            {
+              "entry": "./advanced-v1.0.0/zh-CN/devops/devops-faq.md"
             }
           ]
         },
