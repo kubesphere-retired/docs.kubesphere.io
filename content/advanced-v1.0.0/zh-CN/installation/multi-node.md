@@ -6,7 +6,7 @@ title: "Multi-node 模式"
 
 ## 前提条件
 
-- 需下载 KubeSphere 高级版的 Installer 至目标安装机器，若还未获取请前往 [官网](https://kubesphere.io/download) 下载。
+- 请下载 [KubeSphere 高级版](https://kubesphere.io/download) 至待安装机器中。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端，存储服务端的磁盘容量参考主机规格表中的推荐配置或选择更高的容量。为方便初次安装但没有准备存储服务端时进行部署测试，也可配置部署 NFS Server 到当前集群。
 
 ### 第一步: 准备主机
@@ -37,7 +37,7 @@ title: "Multi-node 模式"
 
 ### 第二步: 准备安装配置文件
 
-**1.** 在获取安装包后，执行以下命令。
+**1.** [下载安装包](https://kubesphere.io/download) 至待安装机器，执行以下命令。
 
 ```bash
 $ tar -zxf kubesphere-all-advanced-1.0.0.tar.gz
