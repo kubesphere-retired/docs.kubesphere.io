@@ -291,6 +291,7 @@
   border: 1px solid #cfd9df;
   padding: 8px;
   margin-top: 0.725rem;
+  cursor: zoom-in;
 }
 
 .md-body img[align='right'] {
@@ -473,4 +474,8 @@
   font-weight: 600;
   background: #f6f8fa;
   border-top: 0;
+}
+
+.viewer-backdrop {
+  background-color: rgba(0, 0, 0, .8);
 }

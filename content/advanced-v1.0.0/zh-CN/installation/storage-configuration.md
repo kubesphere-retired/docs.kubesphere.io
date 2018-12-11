@@ -46,9 +46,9 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 
 ### QingCloud-CSI
 
-KubeSphere 支持使用QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用QingCloud 云平台各种性能的块存储服务。
+KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务。
 
-[QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式（Access Mode）为 **单节点读写（ReadWriteOnce）** 的基于 QingCloud 的超高性能型 （超高性能型硬盘只能用在超高性能型主机）、性能型（性能型硬盘只能用在性能型主机）或容量型硬盘的存储卷并挂载至工作负载。在安装 KubeSphere 时配置 QingCloud-CSI 插件的参数说明如下。
+[QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式 (Access Mode) 为 **单节点读写（ReadWriteOnce）** 的基于 QingCloud 的超高性能型 (超高性能型硬盘只能用在超高性能型主机)、性能型 (性能型硬盘只能用在性能型主机) 或容量型硬盘的存储卷并挂载至工作负载。在安装 KubeSphere 时配置 QingCloud-CSI 插件的参数说明如下。
 
 |**QingCloud-CSI** | **Description**|
 | --- | ---|
@@ -63,7 +63,7 @@ KubeSphere 支持使用QingCloud 云平台块存储作为平台的存储服务�
 
 ### Ceph RBD
 
-[Ceph RBD](https://ceph.com/) 是一个分布式存储系统，在 `vars/yml` 配置的释义如下。
+[Ceph RBD](https://ceph.com/) 是一个分布式存储系统，在 `conf/vars.yml` 配置的释义如下。
 
 | **Ceph\_RBD** | **Description** |
 | --- | --- |
@@ -87,7 +87,7 @@ $ ceph auth get-key client.admin
 ```
 ### NFS
 
-[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。在 `vars/yml` 配置分两种情况,根据实际情况选择配置其中一种即可：
+[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。在 `conf/vars.yml` 配置分两种情况，根据实际情况选择配置其中一种即可：
 
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。如果初次安装没有准备存储服务端，可选择配置部署 NFS Server 至当前集群，仅建议用于部署测试，参考 **NFS Server 配置**。
 - 正式环境请预先准备 NFS 服务端并参考 **NFS Client 配置** 对接存储服务端。
@@ -110,7 +110,7 @@ $ ceph auth get-key client.admin
 
 ### NeonSAN-CSI
 
-NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) 作为存储服务，若您准备好 NeonSAN 服务端后，即可在 `vars/yml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
+NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) 作为存储服务，若您准备好 NeonSAN 服务端后，即可在 `conf/vars.yml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
 
 | **NeonSAN** | **Description** |
 | --- | --- |
@@ -126,7 +126,7 @@ NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor 
 
 ### GlusterFS 
 
-[GlusterFS](https://www.gluster.org/) 是一个开源的分布式文件系统，配置时需提供 heketi 所管理的 glusterfs 集群，在 `vars/yml` 配置的释义如下。
+[GlusterFS](https://www.gluster.org/) 是一个开源的分布式文件系统，配置时需提供 heketi 所管理的 glusterfs 集群，在 `conf/vars.yml` 配置的释义如下。
 
 | **GlusterFS**| **Description** |
 | --- | --- |
