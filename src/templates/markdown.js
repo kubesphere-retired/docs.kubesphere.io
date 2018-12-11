@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import Viewer from 'viewerjs'
+import 'viewerjs/dist/viewer.css'
 
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -39,10 +41,23 @@ export default class MarkdownTemplate extends React.Component {
     this.scrollToHash()
 
     this.getPrevAndNext()
+
+    if (this.markdownRef) {
+      const viewer = new Viewer(this.markdownRef, {
+        rotatable: false,
+        scalable: false,
+        transition: false,
+      });
+
+      this.viewer = viewer
+    }
   }
 
   componentWillUnmount() {
     document.removeEventListener('click', this.handleClick)
+    if (this.viewer) {
+      this.viewer.destroy()
+    }
   }
 
   isCurrentLink = link => {
