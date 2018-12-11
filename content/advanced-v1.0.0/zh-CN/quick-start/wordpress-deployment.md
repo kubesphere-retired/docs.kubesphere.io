@@ -2,7 +2,7 @@
 title: "示例二 - 部署 Wordpress" 
 ---
 
-本文以创建一个部署（Deployment）为例，部署一个无状态的 Wordpress 应用，最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
+本文以创建一个部署 (Deployment) 为例，部署一个无状态的 Wordpress 应用，最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
 
 ## 前提条件
 
@@ -87,7 +87,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 ### 第七步：标签设置
 
-为方便识别此应用，我们标签设置如下。节点选择器可以指定容器组调度到期望运行的节点上，此处暂不作设置，点击创建，部署创建完成。
+为方便识别此应用，我们标签设置如下。下一步的节点选择器可以指定容器组调度到期望运行的节点上，此处暂不作设置，点击创建，部署创建完成。
 
 ```
 app: wordpress-mysql
@@ -170,7 +170,7 @@ app=wordpress-ingress
  
 - NodePort：使用 NodePort 方式可以通过访问工作节点对应的端口来访问服务
 
-- LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。（如果外网访问方式设置的是 LoadBalancer，参见 [应用路由](../../ingress-service/ingress) 的 LoadBalancer 方式。）
+- LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。(如果外网访问方式设置的是 LoadBalancer，参见 [应用路由](../../ingress-service/ingress) 的 LoadBalancer 方式。)
 
 本示例以 `NodePort` 访问方式为例配置网关入口，点击保存，将产生两个 NodePort，分别是 HTTP 协议的 80 端口和 HTTPS 协议的 443 端口。
 

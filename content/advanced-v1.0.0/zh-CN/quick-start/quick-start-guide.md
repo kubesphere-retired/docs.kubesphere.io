@@ -2,7 +2,7 @@
 title: "入门必读" 
 ---
 
-相比较易捷版，KubeSphere 高级版提供了更强大灵活的功能，满足企业更复杂的业务需求，比如新增 HPA (水平自动伸缩)、 CI/CD、监控日志、LDAP 集成、多租户管理、Job/CronJob 等功能，以及 Secrets、ConfigMaps 的配置管理。
+相比较易捷版，KubeSphere 高级版提供了更强大更灵活的功能，满足企业更复杂的业务需求，比如新增 HPA (水平自动伸缩)、 CI/CD、监控日志、LDAP 集成、多租户管理、Job/CronJob 等功能，以及 Secrets、ConfigMaps 配置管理。
 
 本文旨在通过几个快速入门的示例帮助您了解 KubeSphere 容器管理平台的基本使用流程，带您快速上手 KubeSphere。快速入门包含六个示例，建议参考文档示例的步骤实践操作一遍。
 
@@ -14,11 +14,11 @@ title: "入门必读"
 
 - [示例一 - 部署 MySQL](../mysql-deployment)
 
-本文以创建一个有状态副本集（statefulset）为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。示例二依赖于示例一，请按顺序完成这两个示例。
+本文以创建一个有状态副本集 (statefulset) 为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。示例二依赖于示例一，请按顺序完成这两个示例。
 
 - [示例二 - 部署 Wordpress](../wordpress-deployment)
 
-本文以创建一个部署（deployment）为例，使用 `Wordpress:4.6-apache` 镜像部署一个无状态的 Wordpress 应用，最终可通过公网访问的 [Wordpress](https://wordpress.org/) 网站，其后端为示例一所演示的 MySQL 应用。
+本文以创建一个部署 (deployment) 为例，使用 `Wordpress:4.6-apache` 镜像部署一个无状态的 Wordpress 应用，最终可通过公网访问的 [Wordpress](https://wordpress.org/) 网站，其后端为示例一所演示的 MySQL 应用。
 
 - [示例三 - 创建简单任务](../job-quick-start)
 

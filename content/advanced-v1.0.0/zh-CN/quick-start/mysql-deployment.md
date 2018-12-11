@@ -2,7 +2,7 @@
 title: "示例一 - 部署 MySQL 有状态应用" 
 ---
 
-本文以创建一个有状态副本集（Statefulset）为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。MySQL 应用的初始密码将以 [密钥 (Secret)](../../configuration/secrets) 的方式进行创建和保存。为方便演示，本示例仅说明流程，关于参数和字段的详细释义参见 [密钥](../../configuration/secrets) 和 [有状态副本集](../../workload/statefulsets)。
+本文以创建一个有状态副本集 (Statefulset) 为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。MySQL 应用的初始密码将以 [密钥 (Secret)](../../configuration/secrets) 的方式进行创建和保存。为方便演示，本示例仅说明流程，关于参数和字段的详细释义参见 [密钥](../../configuration/secrets) 和 [有状态副本集](../../workload/statefulsets)。
 
 ## 前提条件
 
@@ -85,7 +85,7 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 
 ### 第七步：标签设置
 
-为方便识别此应用，我们标签设置为 `app: wordpress-mysql`。节点选择器可以指定容器组调度到期望运行的节点上，此处暂不作设置，点击创建。
+为方便识别此应用，我们标签设置为 `app: wordpress-mysql`。下一步的节点选择器可以指定容器组调度到期望运行的节点上，此处暂不作设置，点击创建。
 
 
 ## 查看 MySQL 有状态应用
