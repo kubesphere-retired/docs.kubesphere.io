@@ -39,7 +39,7 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 根据 Harbor 镜像仓库的地址类型，需要分 http 和 https 两种认证方法：
 
 #### http
-1. 首先，需要修改集群中所有节点的 docker 配置。以 http://139.198.16.232 为例，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=139.198.16.232`：
+1. 首先，需要修改集群中所有节点的 docker 配置。以 `http://139.198.16.232` 为例，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=139.198.16.232`：
 
  示例：
 
