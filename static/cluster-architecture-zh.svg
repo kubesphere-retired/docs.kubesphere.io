@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="760px" height="380px" viewBox="0 0 760 380" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="760" height="380"></rect>
+        <g id="cluster-architecture" transform="translate(113.000000, 36.000000)">
+            <g id="Group-4">
+                <g id="Group-2">
+                    <g id="Glyph/002.Object/083.Nodes/Black-" transform="translate(0.000000, 6.000000)">
+                        <g id="Group-2" transform="translate(0.500000, 0.500000)">
+                            <path d="M2.27091073e-16,6.869375 C2.27091073e-16,5.838125 0.9,5 2.04954545,5 L42.9504545,5 C44.0795455,5 45,5.849375 45,6.869375 L45,18.130625 C45,19.161875 44.1,20 42.9504545,20 L2.04954545,20 C0.922517183,19.9979671 0.00785560011,19.1637112 0,18.130625 L2.27091073e-16,6.869375 Z M10,7.5 L10,12.5 L15,12.5 L15,7.5 L10,7.5 Z M2.5,7.5 L2.5,12.5 L7.5,12.5 L7.5,7.5 L2.5,7.5 Z" id="Combined-Shape" fill="#324558" fill-rule="nonzero"></path>
+                            <path d="M2.27091073e-16,26.869375 C2.27091073e-16,25.838125 0.9,25 2.04954545,25 L42.9504545,25 C44.0795455,25 45,25.849375 45,26.869375 L45,38.130625 C45,39.161875 44.1,40 42.9504545,40 L2.04954545,40 C0.922517183,39.9979671 0.00785560011,39.1637112 0,38.130625 L2.27091073e-16,26.869375 Z M10,27.5 L10,32.5 L15,32.5 L15,27.5 L10,27.5 Z M2.5,27.5 L2.5,32.5 L7.5,32.5 L7.5,27.5 L2.5,27.5 Z" id="Combined-Shape-Copy" fill="#324558" fill-rule="nonzero"></path>
+                            <rect id="Rectangle-43" fill="#B6C2CD" x="20" y="0" width="5" height="5"></rect>
+                            <rect id="Rectangle-43-Copy" fill="#B6C2CD" x="20" y="20" width="5" height="5"></rect>
+                            <rect id="Rectangle-43-Copy-4" fill="#B6C2CD" x="20" y="40" width="5" height="5"></rect>
+                        </g>
+                    </g>
+                    <text id="192.168.0.1" fill="#919AA3" font-family="Helvetica" font-size="16" font-weight="normal">
+                        <tspan x="68" y="15">192.168.0.1</tspan>
+                    </text>
+                    <g id="Group" transform="translate(68.000000, 35.000000)">
+                        <rect id="Rectangle-11" fill="#F5A623" x="0" y="0" width="80" height="24" rx="4"></rect>
+                        <g id="Master" transform="translate(19.000000, 2.000000)" fill="#FFFFFF" font-family="Helvetica" font-size="14" font-weight="normal">
+                            <g id="Group">
+                                <text id="Master">
+                                    <tspan x="0" y="14">Master</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                    <g id="Group-Copy" transform="translate(156.000000, 35.000000)">
+                        <rect id="Rectangle-11" fill="#F5A623" x="0" y="0" width="80" height="24" rx="4"></rect>
+                        <g id="Etcd" transform="translate(26.000000, 2.000000)" fill="#FFFFFF" font-family="Helvetica" font-size="14" font-weight="normal">
+                            <g id="Group">
+                                <text id="Etcd">
+                                    <tspan x="0" y="14">Etcd</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Start-to-deploy-a-3-" transform="translate(43.000000, 174.000000)" fill="#55BC8A" font-family="PingFangSC-Regular, PingFang SC" font-size="14" font-weight="normal">
+                    <g id="Start-to-deploy-a-3-node-cluster-from-taskbox">
+                        <text id="以-Taskbox开始部署3节点集群">
+                            <tspan x="0" y="15">以 Taskbox开始部署3节点集群</tspan>
+                        </text>
+                    </g>
+                </g>
+                <g id="Group-3" transform="translate(0.000000, 207.000000)">
+                    <g id="Glyph/002.Object/083.Nodes/Black-" transform="translate(0.000000, 6.000000)">
+                        <g id="Group-2" transform="translate(0.500000, 0.500000)">
+                            <path d="M2.27091073e-16,6.869375 C2.27091073e-16,5.838125 0.9,5 2.04954545,5 L42.9504545,5 C44.0795455,5 45,5.849375 45,6.869375 L45,18.130625 C45,19.161875 44.1,20 42.9504545,20 L2.04954545,20 C0.922517183,19.9979671 0.00785560011,19.1637112 0,18.130625 L2.27091073e-16,6.869375 Z M10,7.5 L10,12.5 L15,12.5 L15,7.5 L10,7.5 Z M2.5,7.5 L2.5,12.5 L7.5,12.5 L7.5,7.5 L2.5,7.5 Z" id="Combined-Shape" fill="#324558" fill-rule="nonzero"></path>
+                            <path d="M2.27091073e-16,26.869375 C2.27091073e-16,25.838125 0.9,25 2.04954545,25 L42.9504545,25 C44.0795455,25 45,25.849375 45,26.869375 L45,38.130625 C45,39.161875 44.1,40 42.9504545,40 L2.04954545,40 C0.922517183,39.9979671 0.00785560011,39.1637112 0,38.130625 L2.27091073e-16,26.869375 Z M10,27.5 L10,32.5 L15,32.5 L15,27.5 L10,27.5 Z M2.5,27.5 L2.5,32.5 L7.5,32.5 L7.5,27.5 L2.5,27.5 Z" id="Combined-Shape-Copy" fill="#324558" fill-rule="nonzero"></path>
+                            <rect id="Rectangle-43" fill="#B6C2CD" x="20" y="0" width="5" height="5"></rect>
+                            <rect id="Rectangle-43-Copy" fill="#B6C2CD" x="20" y="20" width="5" height="5"></rect>
+                            <rect id="Rectangle-43-Copy-4" fill="#B6C2CD" x="20" y="40" width="5" height="5"></rect>
+                        </g>
+                    </g>
+                    <g id="192.168.0.20" transform="translate(68.000000, 0.000000)" fill="#919AA3" font-family="Helvetica" font-size="16" font-weight="normal">
+                        <g id="192.168.0.2">
+                            <text>
+                                <tspan x="0" y="15">192.168.0.2</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="Group-Copy-2" transform="translate(70.000000, 35.000000)">
+                        <rect id="Rectangle-11" fill="#7E95AD" x="0" y="0" width="80" height="24" rx="4"></rect>
+                        <g id="Node1" transform="translate(20.000000, 2.000000)" fill="#FFFFFF" font-family="Helvetica" font-size="14" font-weight="normal">
+                            <g id="Group">
+                                <text id="Node1">
+                                    <tspan x="0" y="14">Node1</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-3-Copy" transform="translate(381.000000, 207.000000)">
+                    <g id="Glyph/002.Object/083.Nodes/Black-" transform="translate(0.000000, 6.000000)">
+                        <g id="Group-2" transform="translate(0.500000, 0.500000)">
+                            <path d="M2.27091073e-16,6.869375 C2.27091073e-16,5.838125 0.9,5 2.04954545,5 L42.9504545,5 C44.0795455,5 45,5.849375 45,6.869375 L45,18.130625 C45,19.161875 44.1,20 42.9504545,20 L2.04954545,20 C0.922517183,19.9979671 0.00785560011,19.1637112 0,18.130625 L2.27091073e-16,6.869375 Z M10,7.5 L10,12.5 L15,12.5 L15,7.5 L10,7.5 Z M2.5,7.5 L2.5,12.5 L7.5,12.5 L7.5,7.5 L2.5,7.5 Z" id="Combined-Shape" fill="#324558" fill-rule="nonzero"></path>
+                            <path d="M2.27091073e-16,26.869375 C2.27091073e-16,25.838125 0.9,25 2.04954545,25 L42.9504545,25 C44.0795455,25 45,25.849375 45,26.869375 L45,38.130625 C45,39.161875 44.1,40 42.9504545,40 L2.04954545,40 C0.922517183,39.9979671 0.00785560011,39.1637112 0,38.130625 L2.27091073e-16,26.869375 Z M10,27.5 L10,32.5 L15,32.5 L15,27.5 L10,27.5 Z M2.5,27.5 L2.5,32.5 L7.5,32.5 L7.5,27.5 L2.5,27.5 Z" id="Combined-Shape-Copy" fill="#324558" fill-rule="nonzero"></path>
+                            <rect id="Rectangle-43" fill="#B6C2CD" x="20" y="0" width="5" height="5"></rect>
+                            <rect id="Rectangle-43-Copy" fill="#B6C2CD" x="20" y="20" width="5" height="5"></rect>
+                            <rect id="Rectangle-43-Copy-4" fill="#B6C2CD" x="20" y="40" width="5" height="5"></rect>
+                        </g>
+                    </g>
+                    <g id="192.168.0.30" transform="translate(68.000000, 0.000000)" fill="#919AA3" font-family="Helvetica" font-size="16" font-weight="normal">
+                        <g id="192.168.0.3">
+                            <text>
+                                <tspan x="0" y="15">192.168.0.3</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="Group-Copy-2" transform="translate(70.000000, 35.000000)">
+                        <rect id="Rectangle-11" fill="#7E95AD" x="0" y="0" width="80" height="24" rx="4"></rect>
+                        <g id="Node2" transform="translate(19.000000, 2.000000)" fill="#FFFFFF" font-family="Helvetica" font-size="14" font-weight="normal">
+                            <g id="Group">
+                                <text id="Node2">
+                                    <tspan x="0" y="14">Node2</tspan>
+                                </text>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <path d="M23.5,199 L33,180 L14,180 L23.5,199 Z M22,64.5 L22,181.5 L22,183 L25,183 L25,181.5 L25,64.5 L25,63 L22,63 L22,64.5 Z" id="Line-3" fill="#55BC8A" fill-rule="nonzero"></path>
+                <path d="M404.721506,198.666379 L389.965477,183.385358 L383.643072,201.30259 L404.721506,198.666379 Z M23.275875,65.6573483 L387.834055,194.297998 L389.248573,194.797135 L390.246847,191.968098 L388.832329,191.468961 L24.2741494,62.8283117 L22.8596311,62.3291745 L21.8613567,65.1582111 L23.275875,65.6573483 Z" id="Line-3-Copy" fill="#55BC8A" fill-rule="nonzero"></path>
+            </g>
+            <text id="Taskbox-可以为集群中任意节点" fill="#919AA3" font-family="PingFangSC-Regular, PingFang SC" font-size="16" font-weight="normal">
+                <tspan x="117.836" y="303">Taskbox 可以为集群中任意节点</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
