@@ -24,11 +24,11 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 ### All-in-One 模式
 
-`All-in-One` 模式即单节点安装，支持一键安装，仅建议您用来测试或熟悉安装流程和了解 KubeSphere 高级版的功能特性，详见 [All-in-One 模式](../all-in-one)。在正式使用环境建议使用 Multi-node 模式。
+`All-in-One` 模式即单节点安装，支持一键安装，仅建议您用来测试或熟悉安装流程和了解 KubeSphere 高级版的功能特性，详见 [All-in-One 模式](../all-in-one)。在正式使用环境建议使用 Multi-Node 模式。
 
 ### Multi-Node 模式
 
-`Multi-Node` 即多节点集群安装，高级版支持 master 节点和 etcd 的高可用，支持在正式环境安装和使用，详见 [Multi-node 模式](../multi-node)。
+`Multi-Node` 即多节点集群安装，高级版支持 master 节点和 etcd 的高可用，支持在正式环境安装和使用，详见 [Multi-Node 模式](../multi-node)。
 
 #### 存储配置说明
 
@@ -36,7 +36,7 @@ Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持
 
 #### Master 和 etcd 节点高可用配置
 
-Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，但是要应用到实际的生产环境就不得不考虑 master 节点的高可用问题了。本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 呢 etcd 节点，详见 [Master 和 etcd 节点高可用配置](../master-ha)。
+Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，而且实际的生产环境需要考虑 master 节点的高可用问题。本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点，详见 [Master 和 etcd 节点高可用配置](../master-ha)。
 
 ## 集群节点扩容
 
@@ -44,7 +44,7 @@ Multi-node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，但
 
 ## 高危操作
 
-KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，同时，基于 kubernetes 底层调度机制，可以保证容器服务的可持续性及稳定性，但并不推荐无理由关闭或者重启节点，因为这类后台操作均属于高危操作，可能会造成相关服务不可用，请谨慎操作。执行高危操作需将风险告知用户，并由用户以及现场运维人员同意之后，由运维人员进行后台操作。比如以下列表包含了高危操作和禁止操作，可能造成节点或集群不可用：
+KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，同时基于 kubernetes 底层调度机制，可以保证容器服务的可持续性及稳定性，但并不推荐无理由关闭或者重启节点，因为这类后台操作均属于高危操作，可能会造成相关服务不可用，请谨慎操作。执行高危操作需将风险告知用户，并由用户以及现场运维人员同意之后，由运维人员进行后台操作。比如以下列表包含了高危操作和禁止操作，可能造成节点或集群不可用：
 
 **高危操作列表**
 
@@ -64,7 +64,7 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 
 ## 卸载
 
-卸载将从机器中删除 KubeSphere，该卸载操作不可逆，详见 [卸载说明](../uninstall)。
+卸载将从机器中删除 KubeSphere，该操作不可逆，详见 [卸载说明](../uninstall)。
 
 ## 组件版本信息
 
