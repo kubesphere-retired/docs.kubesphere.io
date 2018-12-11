@@ -33,7 +33,7 @@ title: "Multi-node 模式"
 
 **集群架构：** 单 master 单 etcd 双 node
 
-![集群架构图](/pic04.svg)
+![集群架构图](/cluster-architecture-zh.svg)
 
 ## 第二步: 准备安装配置文件
 
