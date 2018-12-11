@@ -197,7 +197,11 @@ const Footer = () => {
               <RoadMapIcon />
               获取 KubeSphere
             </h3>
-            <p>我们提供了多种版本的 KubeSphere，您只需选择适合您的即可</p>
+            <p>推荐您免费下载和使用最新的{' '}
+            <a href="https://kubesphere.io/download">
+            KubeSphere 高级版
+            </a>{' '}
+            </p>
           </li>
           <li>
             <h3>

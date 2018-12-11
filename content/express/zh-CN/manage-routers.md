@@ -90,7 +90,7 @@ otherapp.10.0.0.1.nip.io maps to 10.0.0.1
 例如，应用路由的网关公网IP地址为 139.198.121.154 , 在创建应用路由时，Hostname 一栏填写为 `demo2.kubesphere.139.198.121.154.nip.io`，其它保持原来的设置。
 ![路由规则](/router-rules-conf.png)
 
-创建完成后，直接使用 [http://demo2.kubesphere.139.198.121.154.nip.io](http://demo2.kubesphere.139.198.121.154.nip.io)，即可访问对应的服务。
+创建完成后，直接使用 `http://demo2.kubesphere.139.198.121.154.nip.io`，即可访问对应的服务。
 ![访问域名登录页面](/router-login.png)
 
 

@@ -92,3 +92,7 @@ nameserver 100.64.9.5
 用户可以通过打开 Kubectl UI 查看 Kubeconfig 文件，仅管理员或拥有 Kubectl UI 权限的用户有权限。
 
 ![查看 Kubeconfig 文件](/view-kubeconfig.png)
+
+7、如何访问和登录 Jenkins 服务端？
+
+Installer 安装将会同时部署 Jenkins Dashboard，该服务暴露的端口 (NodePort) 为 `30180`，访问公网 IP 和端口号 (${EIP}:${NODEPORT}) 即可。Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard。
