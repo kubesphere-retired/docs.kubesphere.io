@@ -61,6 +61,11 @@ const LogoWrapper = styled.div`
   top: 20px;
   left: 20px;
   z-index: 200;
+
+  @media only screen and (max-width: 768px) {
+    top: 14px;
+    left: 84px;
+  }
 `
 
 const HeaderWrapper = styled.div`
