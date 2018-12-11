@@ -70,7 +70,8 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 
 |  组件 |  版本 |
 |---|---|
-|KubeSphere| v1.0.0|
-|KubeSphere Console| Advanced Edition |
+|KubeSphere| Advanced Edition v1.0.0|
 |Kubernetes| v1.12.3|
 |OpenPitrix| v0.3.5|
+|Prometheus| v2.3.1|
+|Jenkins| v2.138 |
