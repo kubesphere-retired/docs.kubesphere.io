@@ -8,7 +8,7 @@ title: "All-in-One 模式"
 - 请下载 [KubeSphere 高级版](https://kubesphere.io/download) 至待安装机器中。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。若还未准备存储服务端，为方便测试部署，也可使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储。
 
-### 第一步: 准备主机
+## 第一步: 准备主机
 
 您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的安装，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
 
@@ -18,23 +18,23 @@ title: "All-in-One 模式"
 | Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 |Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
 
-### 第二步: 准备安装包
+## 第二步: 准备安装包
 
-[下载安装包](https://kubesphere.io/download) 至待安装机器，并执行以下命令。
+**1.** [下载安装包](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
 
 ```bash
 $ tar -zxf kubesphere-all-advanced-1.0.0.tar.gz
 ```
 
-**3.** 进入 “`kubesphere-all-advanced-1.0.0`” 目录。
+**2.** 进入 “`kubesphere-all-advanced-1.0.0`” 目录。
 
 ```bash
 $ cd kubesphere-all-advanced-1.0.0
 ```
 
-### 第三步: 安装 KubeSphere
+## 第三步: 安装 KubeSphere
 
-KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.2，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.3，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
