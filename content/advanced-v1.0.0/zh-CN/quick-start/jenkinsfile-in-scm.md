@@ -2,9 +2,9 @@
 title: "示例五 - Jenkinsfile in SCM" 
 ---
 
-Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理（Source Control Management）的一部分，因此可使用 `git clone` 或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在 GitHub 的代码仓库中应包含 Jenkinsfile。
+Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Source Control Management) 的一部分，因此可使用 `git clone` 或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在代码仓库中应包含 Jenkinsfile。
 
-本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境 (Dev) 和产品环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。那么这个流水线需要完成哪些流程呢？先通过一个流程图简单说明一下整个 pipeline 的工作流：
+本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。下面的流程图简单说明了整个 pipeline 的工作过程：
 
 ![流程图](/cicd-pipeline-01.svg)
 
@@ -93,7 +93,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 同上，参考上一步创建一个名称为 `kubesphere-docs-prod` 的项目，作为生产环境。
 
-> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-docs-dev` 和 `kubesphere-docs-prod` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
+> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-docs-dev` 和 `kubesphere-docs-prod` 项目中将看到流水线创建的部署 (Deployment)和服务 (Service)。
 
 ## 创建凭证
 
@@ -157,7 +157,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 完成代码仓库相关设置后，进入高级设置页面，高级设置支持对流水线的构建记录、行为策略、定期扫描等设置的定制化，以下对用到的相关配置作简单释义，完成设置后点击创建。
 
-1、此处勾选 `丢弃旧的构建`，此处 **保留构建的天数** 和 **保持构建的最大个数** 默认为 1，表示如果分支被删除后也就没必要继续保存了。
+1、此处勾选 `丢弃旧的构建`，此处 **保留构建的天数** 和 **保持构建的最大个数** 默认为 -1，表示如果分支被删除后也就没必要继续保存了。
 
 ![构建设置](/build-setting.png)
 
@@ -168,7 +168,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 - 保留构建的天数：如果构建达到一定的天数，则丢弃构建。 
 - 保留构建的个数：如果已经存在一定数量的构建，则丢弃最旧的构建。 这两个选项可以同时对构建进行作用，如果超出任一限制，则将丢弃超出该限制的任何构建。
 
-2、行为策略中，支持添加三种类型的发现策略。需要明白一点，在 Jenkins 流水线 trigger 时，开发者提交的 PR (Pull Request) 也被视为一个单独的分支。点击 **添加操作 → 发现分支** 选择 `排除也作为 PR 提交的分支`，再次点击 **添加操作 → 从原仓库中发现 PR** 选择 `PR 与目标分支合并后的源代码版本`。
+2、行为策略中，支持添加三种类型的发现策略。需要说明的是，在 Jenkins 流水线 trigger 时，开发者提交的 PR (Pull Request) 也被视为一个单独的分支。点击 **添加操作 → 发现分支** 选择 `排除也作为 PR 提交的分支`，再次点击 **添加操作 → 从原仓库中发现 PR** 选择 `PR 与目标分支合并后的源代码版本`。
 
 **发现分支**
 
@@ -180,7 +180,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 - PR 与目标分支合并后的源代码版本：一次发现操作，基于 PR 与目标分支合并后的源代码版本创建并运行流水线
 - PR 本身的源代码版本：一次发现操作，基于 PR 本身的源代码版本创建并运行流水线
-- 当 PR 被发现时会创建两个流水线， 一个流水线使用 PR 本身的源代码版本， 一个流水线使用 PR 与目标分支合并后的源代码版本：两次发现操作，将分别创建两条流水线，第一条流水线使用 PR 本身的源代码版本，第二条流水线使用 PR 与目标分支合并后的源代码版本
+- 当 PR 被发现时会创建两个流水线，一个流水线使用 PR 本身的源代码版本，一个流水线使用 PR 与目标分支合并后的源代码版本：两次发现操作，将分别创建两条流水线，第一条流水线使用 PR 本身的源代码版本，第二条流水线使用 PR 与目标分支合并后的源代码版本
 
 ![advance](/pipeline_advance.png)
 
@@ -198,7 +198,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ### 第四步：运行流水线
 
-流水线创建后，点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile（默认是根目录下的 Jenkinsfile）。
+流水线创建后，点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile (默认是根目录下的 Jenkinsfile)。
 
 由于仓库的 Jenkinsfile 中 `TAG_NAME: defaultValue` 没有设置默认值，因此在这里的 `TAG_NAME` 可以输入一个 tag 编号，比如输入 v0.0.1，tag 用于在 GitHub 和 DockerHub 中分别生成带有 tag 的 release 和镜像。点击确定，流水线开始运行。
 
@@ -218,13 +218,13 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 ···
 ```
 
-为方便演示，此处默认用当前账户来审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 jenkinsfile 中分别定义了三个 stage 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中需要审核 `3` 次，若不审核或点击 **终止** 则流水线将不会继续运行。
+为方便演示，此处默认用当前账户来审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile 中分别定义了三个 stage 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中需要审核 `3` 次，若不审核或点击 **终止** 则流水线将不会继续运行。
 
 ![审核流水线](/devops_input.png)
 
 ## 查看流水线
    
-1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [jenkinsfile](https://github.com/kubesphere/devops-docs-sample/blob/master/Jenkinsfile) 中被定义。
+1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile](https://github.com/kubesphere/devops-docs-sample/blob/master/Jenkinsfile) 中被定义。
    
 ![run_status](/pipeline_status.png)
 
@@ -248,7 +248,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 ![查看 DockerHub](/deveops-dockerhub.png)
 
 查看在 GitHub 中生成的一个 `v0.0.1` 的 tag 和 release。
-ß
+
 ![查看 release](/verify-github-release.png)
 
 若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页。如下在浏览器访问部署到 KubeSphere 的 Dev 和 Production 环境的服务。
