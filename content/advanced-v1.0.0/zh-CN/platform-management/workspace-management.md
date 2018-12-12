@@ -2,7 +2,7 @@
 title: "企业空间管理"
 ---
 
-企业空间（workspace）是 KubeSphere 实现多租户模式的基础，是您管理项目、 DevOps 工程和企业成员的基本单位。当用户创建企业空间后，该用户即是此企业空间的管理员（admin），有权查看和管理这个企业空间内的所有对象（项目、DevOps 工程），同时管理员将继承该企业空间内项目和工程的管理权限。集群中的 cluster-admin 和 workspaces-manager 角色拥有企业空间管理的权限，支持查看、创建、编辑或删除企业空间。本文档说明管理企业空间的常用功能。
+企业空间 (workspace) 是 KubeSphere 实现多租户模式的基础，是您管理项目、DevOps 工程和企业成员的基本单位。当用户创建企业空间后，该用户即是此企业空间的管理员 (admin)，有权查看和管理这个企业空间内的所有对象 (项目、DevOps 工程)，同时管理员将继承该企业空间内项目和工程的管理权限。集群中的 cluster-admin 和 workspaces-manager 角色拥有企业空间管理的权限，支持查看、创建、编辑或删除企业空间。本文档说明管理企业空间的常用功能。
 
 ## 前提条件
 
@@ -63,7 +63,7 @@ title: "企业空间管理"
 
 ### DevOps 工程
 
-企业空间下的 admin 可以创建和管理 DevOps 工程，详见 [管理 DevOps 工程](../../devops/devops-project)。
+企业空间下的 admin 和赋予适当权限的用户可以创建和管理 DevOps 工程，详见 [管理 DevOps 工程](../../devops/devops-project)。
 
 ### 企业空间管理
  
@@ -77,7 +77,7 @@ title: "企业空间管理"
 
 #### 企业角色
 
-平台预置了三个常用的企业角色 admin、operator 和 viewer，预置角色拥有的权限见下表。
+平台预置了三个常用的企业角色 workspace-admin、workspace-regular 和 workspace-viewer，预置角色拥有的权限见下表。
 
 **预置的企业空间角色：**
 

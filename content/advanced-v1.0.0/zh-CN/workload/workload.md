@@ -2,7 +2,7 @@
 title: "工作负载概述"
 ---
 
-Kubernetes 中对一组 Pod 的抽象模型即工作负载，用于描述业务的运行载体，包括 部署（Deployment）、有状态副本集（Statefulset）、守护进程集（Deamonset）、任务（Job）、定时任务（CronJob）等。KubeSphere 控制台提供向导式的用户界面引导用户快速创建工作负载。
+Kubernetes 中对一组 Pod 的抽象模型即工作负载，用于描述业务的运行载体，包括 部署 (Deployment)、有状态副本集 (Statefulset)、守护进程集 (Deamonset)、任务 (Job)、定时任务 (CronJob) 等。KubeSphere 控制台提供向导式的用户界面引导用户快速创建工作负载。
 
 - [创建部署](../deployments)
 
@@ -22,7 +22,7 @@ Kubernetes 中对一组 Pod 的抽象模型即工作负载，用于描述业务�
 
 - [创建定时任务](../cronjobs)
 
-定时任务管理基于时间的任务（Job），如设定指定时间点只运行一次或周期性地在给定时间点运行。
+定时任务管理基于时间的任务 (Job)，如设定指定时间点只运行一次或周期性地在给定时间点运行。
 
 ## 工作负载基本操作
 

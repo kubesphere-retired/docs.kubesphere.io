@@ -2,9 +2,9 @@
 title: "部署"
 ---
 
-部署（ Deployment ）为 Pod 和 ReplicaSet 提供了一个声明式定义 ( declarative ) 方法来管理应用。典型的应用场景包括定义 Deployment 来创建 Pod 和 ReplicaSet、滚动升级和回滚应用、扩容和缩容以及暂停和继续 Deployment。
+部署 (Deployment) 为 Pod 和 ReplicaSet 提供了一个声明式定义 (declarative) 方法来管理应用。典型的应用场景包括定义 Deployment 来创建 Pod 和 ReplicaSet、滚动升级和回滚应用、扩容和缩容以及暂停和继续 Deployment。
 
-本文档仅说明创建部署中的可能用到的参数或字段意义，创建工作负载后应如何管理，请参考 [工作负载管理](../../workload/workload-management/)。同时，快速入门 [部署 Wordpress](../../quick-start/wordpress-deployment/) 也可帮助您基于部署 (Deployment) 快速创建一个 Wordpress 应用。
+本文档仅说明创建部署中的可能用到的参数或字段意义，创建工作负载后应如何管理，请参考 [工作负载管理](../../workload/workload-management/)。同时，[部署 Wordpress 示例](../../quick-start/wordpress-deployment/) 也可帮助您快速理解 Deployment。
 
 ## 创建部署
 
@@ -26,12 +26,12 @@ title: "部署"
 - 名称：为创建的任务起一个简洁明了的名称，便于用户浏览和搜索。
 - 别名：帮助您更好的区分资源，并支持中文名称。
 - 描述信息：简单介绍部署，让用户进一步了解部署的作用。
-- RollingUpdate：Deployment 使用滚动更新（[Rolling-update](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update)）的方式更新 Pod。您可以指定 maxUnavailable 和 maxSurge 来控制滚动更新的进程。
+- RollingUpdate：Deployment 使用滚动更新 ([Rolling-update](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update)) 的方式更新 Pod，您可以指定 maxUnavailable 和 maxSurge 来控制滚动更新的进程。
 
-   - MaxUnavailable 是可选配置项，当前默认值是 25%。用来指定在升级过程中不可用 Pod 的最大数量。该值可以是一个绝对值（例如 5 ），也可以是期望 Pod 数量的百分比（例如 10% ）。通过计算百分比的绝对值向下取整。如果 MaxSurge 为 0 时，MaxUnavailable 不可以为 0。
-   - MaxSurge 是可选配置项，当前默认值是 25%。用来指定可以超过期望的 Pod 数量的最大个数。该值可以是一个绝对值（例如 5 ）或者是期望的 Pod 数量的百分比（例如 10% ）。当 MaxUnavailable 为 0 时 MaxSurge 不可以为 0。通过百分比计算的绝对值向上取整。
+   - MaxUnavailable 是可选配置项，当前默认值是 25%。用来指定在升级过程中不可用 Pod 的最大数量。该值可以是一个绝对值 (例如 5)，也可以是期望 Pod 数量的百分比 (例如 10%)。通过计算百分比的绝对值向下取整。如果 MaxSurge 为 0 时，MaxUnavailable 不可以为 0。
+   - MaxSurge 是可选配置项，当前默认值是 25%。用来指定可以超过期望的 Pod 数量的最大个数。该值可以是一个绝对值 (例如 5) 或者是期望的 Pod 数量的百分比 (例如 10%)。当 MaxUnavailable 为 0 时 MaxSurge 不可以为 0。通过百分比计算的绝对值向上取整。
 
-- Recreate：在创建出新的 Pod 之前会先 kill 掉所有已存在的 Pod。   
+- Recreate：在创建出新的 Pod 之前会先杀掉所有已存在的 Pod。   
 
 ![创建部署 - 基础信息](/ae_deployment_create_basic.png)
 
@@ -90,13 +90,13 @@ title: "部署"
 
 支持配置 ConfigMap 或 Secret 中的值添加为卷，支持选择要使用的密钥以及将公开每个密钥的文件路径，最后设置目录在容器中的挂载路径。
 
-其中，Secret 卷用于将敏感信息（如密码）传递到 pod。Secret 卷由 tmpfs（一个 RAM 支持的文件系统）支持，所以它们永远不会写入非易失性存储器。
+其中 Secret 卷用于将敏感信息 (如密码) 传递到 Pod。Secret 卷由 tmpfs (一个 RAM 支持的文件系统) 支持，所以它们永远不会写入非易失性存储器。
 
 ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod 里使用，或者被用来为像 Controller 一样的系统组件存储配置数据。虽然 ConfigMap 跟 Secret 类似，但是 ConfigMap 更方便的处理不含敏感信息的字符串。它很像 Linux 中的 /etc 目录，专门用来存储配置文件的目录。ConfigMaps 常用于以下场景：
 
-- 设置环境变量的值。
-- 在容器里设置命令行参数。
-- 在数据卷里面创建 config 文件。
+- 设置环境变量的值
+- 在容器里设置命令行参数
+- 在数据卷里面创建 config 文件
 
 重要提示：您必须先在配置中心创建 Secret 或 ConfigMap，然后才能使用它，详见 [创建 Secret](../../configuration/secrets/#创建-secret) 和 [创建 ConfigMap](../../configuration/ConfigMaps/#创建-configmap)。
 
@@ -105,7 +105,7 @@ ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod
 
 ### 第四步：添加标签
 
-标签设置页用于指定资源对应的一组或者多组标签（Label）。Label 以键值对的形式附加到任何对象上，如 Pod，Service，Node 等，定义好标签后，其他对象就可以通过标签来对对象进行引用，最常见的用法便是通过节点选择器来引用对象。一般来说，我们可以为一个 Pod（或其他对象）定义多个标签，以便于配置、部署等管理工作。例如，部署不同版本的应用到不同的环境中；或者监控和分析应用（日志记录，监控，报警等）。通过多个标签的设置，我们就可以多维度地对对象进行精细化管理，如 `relase: stable ; tier: frontend`。
+标签设置页用于指定资源对应的一组或者多组标签 (Label)。Label 以键值对的形式附加到任何对象上，如 Pod，Service，Node 等，定义好标签后，其他对象就可以通过标签来对对象进行引用，最常见的用法便是通过节点选择器来引用对象。一般来说，我们可以为一个 Pod（或其他对象）定义多个标签，以便于配置、部署等管理工作。例如，部署不同版本的应用到不同的环境中；或者监控和分析应用 (日志记录，监控，报警等)。通过多个标签的设置，我们就可以多维度地对对象进行精细化管理，如 `relase: stable ; tier: frontend`。
 
 ![创建部署 - 标签](/ae_deployment_label.png)
 
@@ -115,5 +115,5 @@ ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod
 
 ![创建部署 - 节点选择器](/ae_deployment_nodeselector.png)
 
-点击创建，即可完成部署资源的创建，状态显示 “更新中” 是由于拉取大小不同的镜像需要一定时间，待镜像 pull 成功后状态将显示“运行中”。
+点击创建，即可完成部署资源的创建，状态显示 “更新中” 是由于拉取镜像需要一定时间，待镜像 pull 成功后状态将显示“运行中”。
  

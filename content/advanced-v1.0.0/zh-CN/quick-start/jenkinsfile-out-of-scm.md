@@ -51,7 +51,7 @@ CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/k
 
 ![项目创建成功](/dev-namespace-list.png)
 
-> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-docs-dev` 项目中将看到流水线创建的 **部署 (Deployment)** 和 **服务 (Service)**。
+> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-docs-dev` 项目中将看到流水线创建的部署 (Deployment) 和服务 (Service)。
 
 ## 创建凭证
 
@@ -159,7 +159,7 @@ CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/k
 
 ### 阶段二：Get dependencies
 
-1、在第一个阶段右侧点击  **“+”**  继续增加一个阶段，此阶段用于获取依赖，命名为 **get dependencies**。由于这个阶段需要在容器中执行 shell 脚本，因此点击 **添加步骤**，在右侧内容编辑区域首先选择 `container` 并命名为 **nodejs**。
+1、在第一个阶段右侧点击 **“+”** 继续增加一个阶段，此阶段用于获取依赖，命名为 **get dependencies**。由于这个阶段需要在容器中执行 shell 脚本，因此点击 **添加步骤**，在右侧内容编辑区域首先选择 `container` 并命名为 **nodejs**。
 
 ![获取依赖](/get-dependencies.png)
 
@@ -242,7 +242,7 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 在 **活动** 列表中可以看到流水线的运行状态，点击活动项可查看其运行活动的具体情况，例如以下查看 **运行序号** 为 `2` 的活动。
 
-> 说明：流水线刚启动时可能仅显示其日志输出而无法看到其图形化运行的页面，这是因为它有个初始化的过程，流水线刚开始运行时，slave 启动并开始解析和执行流水线自动生成的 jenkinsfile，待初始化完成即可看到图形化流水线运行的页面。
+> 说明：流水线刚启动时可能仅显示其日志输出而无法看到其图形化运行的页面，这是因为它有个初始化的过程，流水线刚开始运行时，slave 启动并开始解析和执行流水线自动生成的 Jenkinsfile，待初始化完成即可看到图形化流水线运行的页面。
 
 ![](/pipeline-status.png)
 
