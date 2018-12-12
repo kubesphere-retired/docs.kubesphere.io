@@ -32,7 +32,11 @@ export default class MarkdownTemplate extends React.Component {
   componentDidMount() {
     document.addEventListener('click', this.handleClick)
 
-    if (this.markdownRef && !this.scroll && typeof SmoothScroll !== 'undefined') {
+    if (
+      this.markdownRef &&
+      !this.scroll &&
+      typeof SmoothScroll !== 'undefined'
+    ) {
       this.scroll = new SmoothScroll('a[href*="#"]', {
         offset: 100,
       })
@@ -47,7 +51,7 @@ export default class MarkdownTemplate extends React.Component {
         rotatable: false,
         scalable: false,
         transition: false,
-      });
+      })
 
       this.viewer = viewer
     }
@@ -70,6 +74,10 @@ export default class MarkdownTemplate extends React.Component {
     }
 
     return ret
+  }
+
+  get isFullscreen() {
+    return this.props.location.search.indexOf('fullscreen') !== -1
   }
 
   getPrevAndNext = () => {
@@ -176,6 +184,25 @@ export default class MarkdownTemplate extends React.Component {
       post.id = slug
     }
 
+    if (this.isFullscreen) {
+      return (
+        <MarkdownBody
+          className="md-body"
+          innerRef={ref => {
+            this.markdownRef = ref
+          }}
+        >
+          <MarkdownTitle>{post.title}</MarkdownTitle>
+          <div
+            ref={ref => {
+              this.markdownRef = ref
+            }}
+            dangerouslySetInnerHTML={{ __html: postNode.html }}
+          />
+        </MarkdownBody>
+      )
+    }
+
     const {
       isExpand,
       query,
@@ -215,7 +242,7 @@ export default class MarkdownTemplate extends React.Component {
               query={query}
               isExpand={isExpand}
               onSearch={this.handleSearch}
-              placeholder={"快速查找"}
+              placeholder={'快速查找'}
               toggleExpand={this.handleExpand}
               onQueryChange={this.handleQueryChange}
             />
@@ -388,7 +415,9 @@ export const pageQuery = graphql`
         fieldValue
       }
     }
-    tableOfContents: allContentJson(filter: { version: { eq: $version }, lang: { eq: $lang } }) {
+    tableOfContents: allContentJson(
+      filter: { version: { eq: $version }, lang: { eq: $lang } }
+    ) {
       edges {
         node {
           version
