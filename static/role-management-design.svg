@@ -48,9 +48,6 @@
     <g id="多租户管理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <rect fill="#FFFFFF" x="0" y="0" width="1440" height="1054"></rect>
         <rect id="Rectangle" fill="#242E42" x="0" y="0" width="1440" height="1054"></rect>
-        <path id="Line-2" d="M133.5,844.5 L133.5,856 L133.5,856.5 L132.5,856.5 L132.5,856 L132.5,844.5 L128.5,844.5 L133,835.5 L137.5,844.5 L133.5,844.5 Z" fill="#979797" fill-rule="nonzero"></path>
-        <path id="Line-2" d="M133.5,844.5 L133.5,856 L133.5,856.5 L132.5,856.5 L132.5,856 L132.5,844.5 L128.5,844.5 L133,835.5 L137.5,844.5 L133.5,844.5 Z" fill="#979797" fill-rule="nonzero"></path>
-        <path id="Line-3" d="M724.5,844.5 L724.5,856 L724.5,856.5 L723.5,856.5 L723.5,856 L723.5,844.5 L719.5,844.5 L724,835.5 L728.5,844.5 L724.5,844.5 Z" fill="#979797" fill-rule="nonzero"></path>
         <g id="Group" transform="translate(40.000000, 32.000000)" fill="#FFFFFF">
             <text id="多租户管理" font-family="PingFangSC-Medium, PingFang SC" font-size="20" font-weight="400" line-spacing="28">
                 <tspan x="40" y="21">多租户管理</tspan>
@@ -496,8 +493,8 @@
                     <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="214" height="212" rx="4"></rect>
                     <g id="Group-5" transform="translate(10.000000, 52.000000)">
                         <use id="Rectangle" stroke-opacity="0.6" stroke="#242E42" mask="url(#mask-11)" stroke-width="2" stroke-dasharray="4" xlink:href="#path-10"></use>
-                        <text id="Admin" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
-                            <tspan x="46" y="23">Admin</tspan>
+                        <text id="Owner" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                            <tspan x="46" y="23">Owner</tspan>
                         </text>
                     </g>
                     <g id="Group-5-Copy-3" transform="translate(10.000000, 90.000000)">
@@ -533,7 +530,6 @@
             </text>
         </g>
         <path d="M40,856 L1400,856 L1400,1014 L40,1014 L40,856 Z" id="Rectangle" fill="#36435C"></path>
-        <path id="Line-4" d="M1302.5,844.5 L1302.5,856 L1302.5,856.5 L1301.5,856.5 L1301.5,856 L1301.5,844.5 L1297.5,844.5 L1302,835.5 L1306.5,844.5 L1302.5,844.5 Z" fill="#979797" fill-rule="nonzero"></path>
         <g id="Group[12h]" transform="translate(52.000000, 914.000000)">
             <g id="Group-8">
                 <rect id="Rectangle" fill-opacity="0.6" fill="#242E42" x="0" y="0" width="437" height="80" rx="4"></rect>
@@ -575,8 +571,8 @@
                 </g>
             </g>
         </g>
-        <text id="平台内置角色" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
-            <tspan x="52" y="891">平台内置角色</tspan>
+        <text id="集群内置角色" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+            <tspan x="52" y="891">集群内置角色</tspan>
         </text>
         <path id="Line-7" d="M246.5,341.5 L236,341.5 L235.5,341.5 L235.5,340.5 L236,340.5 L246.5,340.5 L246.5,336.5 L255.5,341 L246.5,345.5 L246.5,341.5 Z" fill="#979797" fill-rule="nonzero"></path>
         <path id="Line-7" d="M246.5,341.5 L236,341.5 L235.5,341.5 L235.5,340.5 L236,340.5 L246.5,340.5 L246.5,336.5 L255.5,341 L246.5,345.5 L246.5,341.5 Z" fill="#979797" fill-rule="nonzero"></path>
