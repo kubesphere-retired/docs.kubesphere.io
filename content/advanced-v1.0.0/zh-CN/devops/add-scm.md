@@ -2,7 +2,7 @@
 title: "添加代码仓库" 
 ---
 
-KubeSphere 的 DevOps 工程中，目前已支持了以下几种主流的源代码管理工具 (Source Code Management)，可以在创建 enkinsfile-in-SCM 这类流水线的高级设置添加这类源代码仓库，添加代码仓库之前需要预先创建一个账户凭证 (Credentials)。
+KubeSphere 的 DevOps 工程中，目前已支持了以下几种主流的源代码管理工具 (Source Code Management)，可以在创建 Jenkinsfile-in-SCM 这类流水线的高级设置添加这类源代码仓库，添加代码仓库之前需要预先创建一个账户凭证 (Credentials)。
 
 - GitHub
 - SVN
