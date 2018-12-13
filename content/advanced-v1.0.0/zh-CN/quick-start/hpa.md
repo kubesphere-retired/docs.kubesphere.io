@@ -11,9 +11,9 @@ title: "示例四 - 弹性伸缩"
 </video> -->
 ## 弹性伸缩工作原理
 
-HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中通过简单的设置或通过 UI 的 `kubectl autoscale` 命令来创建。HPA Controller 默认每 `30 秒` 轮询一次，检查工作负载中指定的部署（Deployment）的资源使用率，如 CPU 使用率或内存使用量，同时与创建部署时设定的值和指标做比较，从而实现 Pod 副本数自动伸缩的功能。
+HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中通过简单的设置或通过 UI 的 `kubectl autoscale` 命令来创建。HPA Controller 默认每 `30 秒` 轮询一次，检查工作负载中指定的部署 (Deployment) 的资源使用率，如 CPU 使用率或内存使用量，同时与创建部署时设定的值和指标做比较，从而实现 Pod 副本数自动伸缩的功能。
 
-在部署中创建了 HPA 后，Controller Manager 将会访问用户自定义的 REST 客户端或 Heapster，获取用户定义的资源中每一个容器组的利用率或原始值（取决于指定的目标类型）的平均值，然后，与 HPA 中设置的指标进行对比，同时计算部署中的 Pod 需要弹性伸缩的具体值并实现操作。在底层 Kubernetes 中的 Pod 的 CPU 和内存资源，实际上还分为 limits 和 requests 两种情况，在调度的时候，kube-scheduler 将会根据 requests 的值进行计算。因此，当 Pod 没有设置资源请求值 (request) 时，弹性伸缩功能将不会工作。
+在部署中创建了 HPA 后，Controller Manager 将会访问用户自定义的 REST 客户端或 Heapster，获取用户定义的资源中每一个容器组的利用率或原始值 (取决于指定的目标类型) 的平均值，然后，与 HPA 中设置的指标进行对比，同时计算部署中的 Pod 需要弹性伸缩的具体值并实现操作。在底层 Kubernetes 中的 Pod 的 CPU 和内存资源，实际上还分为 limits 和 requests 两种情况，在调度的时候，kube-scheduler 将会根据 requests 的值进行计算。因此，当 Pod 没有设置资源请求值 (request) 时，弹性伸缩功能将不会工作。
 
 ![弹性伸缩工作原理](/hpa.svg)
 
@@ -93,7 +93,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 另外创建一个部署 (Deployment) 用于向上一步创建的服务发送无限的查询请求，增加 CPU 负载。
 
-### 第一步：填写基本信息
+### 第一步：基本信息
 
 左侧菜单栏选择 **工作负载 → 部署**，点击创建部署，填写部署的基本信息，创建镜像为 busybox 的容器，其它项保持默认。
 
@@ -105,7 +105,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 ### 第二步：容器组模板
 
-1、创建 `busybox` 容器，并设置多个副本数使容器启动后同时循环地向上一步创建的服务发送请求。为了快速地看到弹性伸缩的效果，副本数可设置为 `30 ~ 50` 个。
+1、创建 `busybox` 容器，并设置多个副本数使容器启动后同时循环地向上一步创建的服务发送请求。为了快速地看到弹性伸缩的效果，副本数可设置为 `30 ~ 50` 个。展开 **高级选项**，填写用于对 nginx 服务增加 CPU 负载的命令和参数，其它设置暂无需配置，参考如下提示填写。
 
 - 容器名称：必填，起一个简洁明了的名称，比如 busybox-container
 - 镜像名称：填写 `busybox`
@@ -116,7 +116,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 sh
 -c
 
-# 参数 (地址参考：http://{$服务名称}.{$项目名称}.svc.cluster.local)
+# 参数 (http 地址参考：http://{$服务名称}.{$项目名称}.svc.cluster.local)
 while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 ```
 
@@ -128,7 +128,7 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 
 ### 第三步：标签设置
 
-本示例暂未用到存储因此跳过存储卷设置，为方便识别此资源，我们标签设置为 `app: hpa-example`，点击创建，以上共创建了两个部署和一个服务。
+本示例暂未用到存储因此跳过存储卷设置，为方便识别此资源，我们标签设置为 `app: hpa-example`。点击创建，以上一共创建了两个部署和一个服务。
 
 ![查看创建结果](/hpa-deployment-list.png)
 
@@ -139,22 +139,37 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 
 在部署的列表中，点击创建的部署 `hpe-example`，进入资源详情页，可以看到当前部署中的实际运行副本和期望副本数都为 2，并且重点关注一下此时容器组的弹性伸缩状态和当前的 CPU 使用率以及它的监控情况。
 
+![负载工作前](/hpa-details-page.png)
+
 ### 第二步：查看弹性伸缩情况
 
-待 `load-generator` 的所有副本的容器都创建成功并开始访问 `hpe-example` 服务时，如下图所示，刷新页面后可以发现 CPU 使用率明显有升高，并且期望副本和实际运行副本数都变成了 4，这是由于我们之前设置的 Horizontal Pod Autoscaler 开始工作了，正好也证明了弹性伸缩的工作原理。
+待 `load-generator` 的所有副本的容器都创建成功并开始访问 `hpe-example` 服务时，如下图所示，刷新页面后可以发现 CPU 使用率明显有升高，目前上升至 62 %，并且期望副本和实际运行副本数都变成了 4，这是由于我们之前设置的 Horizontal Pod Autoscaler 开始工作了，`load-generator` 循环地请求该 `hpa-example` 服务使得 CPU 使用率迅速升高，HPA 开始工作后使得该服务的后端 Pod 副本数增加共同处理大量的请求，`hpa-example` 的副本数会随 CPU 的使用率升高而继续增加，正好也证明了弹性伸缩的工作原理。
 
-> 说明：HPA 工作后，Deployment 最终副本的数量可能需要几分钟才能稳定下来，删除负载后 Pod 数量回缩至正常状态也需要几分钟。 由于环境的差异，不同环境中最终的副本数量可能与本示例中的数量不同。
+![负载工作后](/hpa-working-result.png)
+
+理论上，从容器组的 CPU 监控曲线中可以看到最初创建的 2 个容器组的 CPU 使用量有一个明显的升高趋势，待 HPA 开始工作时可以发现 CPU 使用量有明显降低的趋势，最终趋于平稳，此时新增的 Pod 上也可以看到 CPU 使用量在增加。
+
+![Pod 监控](/pod-hpa-monitoring.png)
+
+> 说明：HPA 工作后，Deployment 最终的副本数量可能需要几分钟才能稳定下来，删除负载后 Pod 数量回缩至正常状态也需要几分钟。 由于环境的差异，不同环境中最终的副本数量可能与本示例中的数量不同。
 
 ### 停止负载
 
-将 `load-generator` 删除或将之前设置的循环请求命令删除，都可以停止负载。本示例删除 `load-generator` 后，再次查看 `hpe-example` 的运行状况，可以发现几分钟后它的 CPU 利用率已缓慢降到 0，并且 HPA 将其副本数量最终减少至最小副本数 2，恢复了正常状态。
+1、将 `load-generator` 删除或将之前设置的循环请求命令删除，都可以停止负载。本示例删除 `load-generator` 后，再次查看 `hpe-example` 的运行状况，可以发现几分钟后它的 CPU 利用率已缓慢降到 18 %，并且 HPA 将其副本数量最终减少至最小副本数 2，最终恢复了正常状态，从 CPU 使用量监控曲线反映的趋势也可以帮助用户进一步理解弹性伸缩的工作原理。
+
+![停止负载](/hpa-remove-load.png)
+
+2、在 Deployment 页面可以下钻到每个 Pod 的单个容器的监控详情，对比该容器的 CPU 使用量和网络流入、出速率监控曲线，与本示例的操作流程正好相符。
+
+![容器监控](/hpa-container-monitoring.png)
 
 ## 修改弹性伸缩
 
-至此，您已经熟悉了在部署中弹性伸缩的基本设置操作。创建后若需要修改弹性伸缩的参数，可以在部署详情页，点击 **更多操作 → 弹性伸缩**，如下页面支持修改其参数。
+创建后若需要修改弹性伸缩的参数，可以在部署详情页，点击 **更多操作 → 弹性伸缩**，如下页面支持修改其参数。
 
 ![修改弹性伸缩](/update-hpa.png)
 
+至此，您已经熟悉了如何在创建部署时设置弹性伸缩的基本操作。
 
 
 

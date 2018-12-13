@@ -163,14 +163,6 @@
               "entry": "./advanced-v1.0.0/zh-CN/monitoring/physical-resources.md"
             },
             {
-              "title": "查看历史监控",
-              "entry": "./advanced-v1.0.0/zh-CN/monitoring/history.md"
-            },
-            {
-              "title": "节点用量排行",
-              "entry": "./advanced-v1.0.0/zh-CN/monitoring/node-ranking.md"
-            },
-            {
               "title": "应用资源监控",
               "entry": "./advanced-v1.0.0/zh-CN/monitoring/application-resources.md"
             }
