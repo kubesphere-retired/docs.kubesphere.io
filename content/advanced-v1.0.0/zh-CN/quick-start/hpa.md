@@ -79,7 +79,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 由于是在集群内部访问该服务，因此服务设置选择第一项 **通过集群内部 IP 来访问服务 Virtual IP**，服务信息参考以下填写。
 
-- 选择器：点击 **指定工作负载** 可以指定上一步创建的部署 Wordpress 
+- 选择器：点击 **指定工作负载** 可以指定上一步创建的部署 hpa-example
 - 端口：端口名称可自定义，服务的端口和目标端口都填写 `TCP` 协议的 `80` 端口，完成参数设置，选择下一步。
 - 会话亲和性：None
 
@@ -117,7 +117,7 @@ sh
 -c
 
 # 参数 (地址参考：http://{$服务名称}.{$项目名称}.svc.cluster.local)
-while true; do wget -q -O- http://hpa-example.hpa-demo.svc.cluster.local; done
+while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 ```
 
 ![设置详情](/hpa-load-cmd.png)
