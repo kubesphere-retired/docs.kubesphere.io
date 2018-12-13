@@ -2,7 +2,7 @@
 title: "镜像仓库"
 ---
 
-Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜像有特定的唯一标识 （镜像的 Registry 地址 + 镜像名称+镜像 Tag）。例如：一个镜像可以包含一个完整的 Ubuntu 操作系统环境，里面仅安装了 Apache 或用户需要的其它应用程序。而镜像仓库，是集中存放镜像文件的场所，镜像仓库用于存放 Docker 镜像。
+Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜像有特定的唯一标识 (镜像的 Registry 地址 + 镜像名称+镜像 Tag)。例如：一个镜像可以包含一个完整的 Ubuntu 操作系统环境，里面仅安装了 Apache 或用户需要的其它应用程序。而镜像仓库是集中存放镜像文件的场所，镜像仓库用于存放 Docker 镜像。
 
 ## 前提条件
 
@@ -29,8 +29,8 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 
 2、密钥设置中，类型选择 `镜像仓库密钥`，填写镜像仓库的登录信息。
 
-- 仓库地址：用 QingCloud 镜像仓库地址 `dockerhub.qingcloud.com` 作为示例。
-- 用户名/密码：填写 guest / guest 。
+- 仓库地址：用 QingCloud 镜像仓库地址 `dockerhub.qingcloud.com` 作为示例
+- 用户名/密码：填写 guest / guest
 - 邮箱：填写个人邮箱
 
 ![密钥设置](/dockerhub-advanced-setting.png)
@@ -42,7 +42,7 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 
 ### 添加 Docker Hub 镜像仓库
 
-如果需要添加 [Dokcer Hub](https://hub.docker.com/) 中的镜像仓库，请先确保已在 Docker Hub 注册过账号再进行添加。添加步骤同上，仓库地址填写 `docker.io`，输入个人的 DockerHub 用户名和密码即可。
+如果需要添加 [Dokcer Hub](https://hub.docker.com/) 中的镜像仓库，请先确保已在 Docker Hub 注册过账号。添加步骤同上，仓库地址填写 `docker.io`，输入个人的 DockerHub 用户名和密码即可。
 
 ![Docker Hub 镜像仓库](/add-dockerhub.png)
 
@@ -86,7 +86,7 @@ $ sudo systemctl restart docker
 1. 对于 https 协议的镜像仓库，首先需要获取镜像仓库的证书，记为 `ca.crt`，以 `https://harbor.openpitrix.io` 这个镜像仓库的地址为例，对集群中的所有节点都需要执行以下操作:
 
 ```bash 
-$ sudo cp ca.crt  /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
+$ sudo cp ca.crt /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
 ```
 
 - 如果还是报权限错误，针对不同的操作系统，需要执行以下操作:
@@ -108,7 +108,7 @@ $ sudo cp ca.crt /etc/pki/ca-trust/source/anchors/harbor.openpitrix.io.ca.crt
 $ sudo update-ca-trust
 ```
 
-2. 添加完成以后，需要重载修改过的配置文件并重启 docker （详情可参照 [docker官网](https://docs.docker.com/registry/insecure/#troubleshoot-insecure-registry) ）:
+2. 添加完成以后，需要重载修改过的配置文件并重启 docker (详情可参照 [docker官网](https://docs.docker.com/registry/insecure/#troubleshoot-insecure-registry)):
 
 ```bash
 $ sudo systemctl systemctl daemon-reload
