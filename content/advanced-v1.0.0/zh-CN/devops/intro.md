@@ -2,13 +2,15 @@
 title: "DevOps 工程概述"
 ---
 
-当今互联网产品研发的世界里唯快不破，迭代速度往往很快，有些企业甚至在一天时间内有多次迭代。在产品快速发展与迭代中，如何让项目产品平稳的落地，一套完善且可靠的持续集成 CI/CD 和 DevOps 解决方案就是多数企业和 IT 团队所期待的。
+对企业而言，高效可靠的 CI/CD 流水线是一个 IT 组织实现软件应用与服务快速交付的基础，同时也是 DevOps 在企业落地的最佳实践。虽然业界流行的 CI/CD 工具很多，比如 Travis CI、Teamcity 和 Jenkins 等，但如今大量企业选择采用 Jenkins 来搭建其交付流水线。谈到 Jenkins，大部分人肯定耳熟能详，持续集成/持续交付，自动化部署工具，测试工具，以及丰富的插件支持，配合目前大多数开发工具, 简直是万能的瑞士军刀。因此，KubeSphere DevOps 工程选择基于 Jenkins 来实现高效的 CI / CD 流水线。
 
 ### KubeSphere DevOps 特点
 
-相较于 Express Edition (易捷版)，DevOps 工程是 Advanced Edition (高级版) 独有的功能，针对企业实际的快速迭代和快速交付业务需求和场景，可以发现很多企业和 IT 团队都有持续集成和持续交付的需求。DevOps 工程提供从仓库 (SVN/Git)、代码编译、镜像制作、镜像安全、推送到仓库、应用版本、到定时构建的端到端流水线设置，支持用户在开发、测试等环境下的端到端高效流水线能力，支持用户成员管理，同时提供完整的日志功能，记录 CI/CD 流水线的每个过程。
+相较于易捷版，DevOps 工程是高级版独有的功能，针对企业实际的快速迭代和快速交付业务需求和场景，可以发现很多企业和 IT 团队都有持续集成和持续交付的需求。DevOps 工程提供从仓库 (SVN/Git/GitHub)、代码编译、镜像制作、镜像安全、推送到仓库、应用版本、到定时构建的端到端流水线设置，支持用户在开发、测试等环境下的端到端高效流水线能力，支持用户成员管理，同时提供完整的日志功能，记录 CI/CD 流水线的每个过程。
+
 
 KubeSphere 高级版 v1.0.0 提供的 DevOps 具有以下功能：
+
 
 - 开箱即用的 DevOps 功能，无需对 Jenkins 进行复杂的插件配置；
 - 独立 DevOps 工程，提供访问可控、安全隔离的 CI/CD 操作空间；
@@ -18,18 +20,13 @@ KubeSphere 高级版 v1.0.0 提供的 DevOps 具有以下功能：
 
 KubeSphere 高级版下一个版本 v2.0.0 将增加如下新的功能：
 
+
 - 支持 Source to Image (S2I)，快速交付容器镜像；
 - 多语言代码静态检查，持续提升代码质量。
 
-### 为什么要落地 DevOps
-
-由于软件开发复杂度的增高和更多的协同工作，团队开发成员间如何更好地在协同工作中确保软件开发和交付质量，逐渐成为研发过程中不可回避的问题。众所周知，敏捷开发 (Agile) 在业内日趋流行，团队如何在不断变化的需求中快速适应和保证软件质量就变得极其重要了。而 CI/CD 就是专门为解决上述需求的软件开发实践。CI/CD 要求每次的集成都是通过自动化的构建来验证，包括自动编译、发布和测试，从而尽快地发现集成错误，让团队能够更快的开发内聚的软件，减轻了软件发布时的压力。
-
-对企业而言，高效可靠的 CI/CD 流水线是一个 IT 组织实现软件应用与服务快速交付的基础，同时也是 DevOps 在企业落地的最佳实践。虽然业界流行的 CI/CD 工具很多，比如 Travis CI、Teamcity 和 Jenkins 等，但如今大量企业选择采用 Jenkins 来搭建其交付流水线。
-
 ### 理解 KubeSphere DevOps
 
-因此，在经过调研之后，KubeSphere 的 DevOps 工程选择基于 Jenkins 提供可视化的 CI/CD 流水线构建，或基于代码仓库已有的 Jenkinfile 构建流水线，正是因为 Jenkins 易配置、支持 Unit/TestNG 测试报告、支持分布式构建、支持众多第三方插件等特点。
+KubeSphere 的 DevOps 工程目前支持 GitHub、Git 和 SVN 这一类源代码管理工具，提供可视化的 CI/CD 流水线构建，或基于代码仓库已有的 Jenkinfile 构建流水线。
 
 软件开发的生命周期中，持续构建和发布是 IT 团队在日常工作中必不可少的步骤，目前很多公司也都选择 Jenkins 集群来搭建符合企业需求的 CI/CD 流程。但是，相比较传统的 Jenkins 集群一主多从的方式必然存在一些痛点：
 
@@ -61,11 +58,25 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 ### Jenkins Agent 说明
 
-在 DevOps 工程中，KubeSphere 使用 Kubernetes Jenkins agent 来执行具体的构建。Agent 部分指定整个 Pipeline 或特定阶段将在 Jenkins 环境中执行的位置，具体取决于该 Agent 部分的放置位置。该部分必须在 Pipeline 块内的顶层或 stage 内部定义，详见 [Jenkins agent 说明](../jenkins-agent)。
+在 DevOps 工程中，KubeSphere 使用 Kubernetes Jenkins Agent 来执行具体的构建。Agent 部分指定整个 Pipeline 或特定阶段将在 Jenkins 环境中执行的位置，具体取决于该 Agent 部分的放置位置。该部分必须在 Pipeline 块内的顶层或 Stage 内部定义，详见 [Jenkins Agent 说明](../jenkins-agent)。
+
+### 添加代码仓库
+
+在创建 Jenkinsfile in SCM 这类流水线时，可参考 [添加代码仓库](../add-scm) 选择添加 Git 或 SVN 这类代码仓库。
+
+### 设置自动触发扫描
+
+在构建已有 SCM (Source Code Management) 的流水线中，用户如果需要为流水线设置自动发现远程分支的变化，以生成新的流水线并使其自动地重新运行，可参考 [设置自动触发扫描](../auto-trigger)。
 
 ### 高级设置
 
 KubeSphere 使用了 Configuration-as-Code 进行 Jenkins 的系统设置，详见 [Jenkins 系统设置](../jenkins-setting)。
+
+### 流水线常见问题
+
+本篇文档总结了流水线运行可能遇到的问题以及如何排错，详见 [流水线常见问题](../devops-faq)。
+
+
 
 
 

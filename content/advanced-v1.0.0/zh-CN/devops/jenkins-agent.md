@@ -105,13 +105,13 @@ pipeline {
 
 | 名称 | 类型 / 版本 |
 | --- | --- |
-|Jenkins Agent Label | maven |
-|Container Name | maven |
+| Jenkins Agent Label | maven |
+| Container Name | maven |
 | 操作系统| centos-7 |
-|Jdk | openjdk-1.8.0 |
-|Maven | 3.5.3|
-|Docker| 18.06.0 |
-|Helm | 2.11.0 |
+| Jdk | openjdk-1.8.0 |
+| Maven | 3.5.3|
+| Docker| 18.06.0 |
+| Helm | 2.11.0 |
 | Kubectl| stable release |
 | 内置工具 | unzip、which、make、wget、zip、bzip2、git |
 
@@ -120,13 +120,13 @@ pipeline {
 
 | 名称 | 类型 / 版本 |
 | --- | --- |
-|Jenkins Agent Label | go |
-|Container Name | go |
+| Jenkins Agent Label | go |
+| Container Name | go |
 | 操作系统| centos-7 |
-|Go |  1.11 |
+| Go |  1.11 |
 | GOPATH | /home/jenkins/go |
 | GOROOT | /usr/local/go |
-|Docker | 18.06.0 |
+| Docker | 18.06.0 |
 | Helm | 2.11.0 |
 | Kubectl | stable release |
 | 内置工具 | unzip、which、make、wget、zip、bzip2、git |
