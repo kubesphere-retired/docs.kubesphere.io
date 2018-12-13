@@ -2,7 +2,7 @@
 title: "存储概述"
 ---
 
-存储是为 KubeSphere 平台的容器运行的工作负载（Pod) 提供存储的组件，支持多种类型的存储，并且同一个工作负载中可以挂载任意数量的存储卷。
+存储是为 KubeSphere 平台的容器运行的工作负载 (Pod) 提供存储的组件，支持多种类型的存储，并且同一个工作负载中可以挂载任意数量的存储卷。
 
 ## 存储分类
 
@@ -16,7 +16,7 @@ title: "存储概述"
 
 #### HostPath
 
-[HostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) 这种会把宿主机上的指定卷加载到容器之中，这种卷一般和有状态副本集（DaemonSet）搭配使用，用来操作主机文件，例如进行日志采集的 FLK 中的 FluentD 就采用这种方式，加载主机的容器日志目录，达到收集本主机所有日志的目的。
+[HostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) 这种会把宿主机上的指定卷加载到容器之中，这种卷一般和有状态副本集 (DaemonSet) 搭配使用，用来操作主机文件，例如进行日志采集的 FLK 中的 FluentD 就采用这种方式，加载主机的容器日志目录，达到收集本主机所有日志的目的。
 
 ### 存储类型
 
