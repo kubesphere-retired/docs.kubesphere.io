@@ -4,11 +4,11 @@ title: "Jenkins 系统设置"
 
 Jenkins 功能强大的同时其本身也非常灵活，如今已成为 CI / CD 的事实标准，拥有一个活跃的社区来维护几乎任何工具和用例组合的插件。但灵活性需要付出代价：因为除 Jenkins 核心外，许多插件还需要设置一些系统级的配置才能完成工作。
 
-Kubesphere 的 DevOps 工程底层基于 Jenkins 实现了容器化的 CI / CD 功能。为了给用户提供一个可调度的 Jenkins 环境，KubeSphere 使用了 **Configuration-as-Code** 进行 Jenkins 的系统设置，该设置需要用户在 KubeSphere 修改配置文件后再登录到 Jenkins Dashboard 的系统管理中执行重新加载。在当前的版本当中，在控制台中还未提供 Jenkins 的系统设置选项，将在后续版本中支持。
+KubeSphere 的 DevOps 工程底层基于 Jenkins 实现了容器化的 CI / CD 功能。为了给用户提供一个可调度的 Jenkins 环境，KubeSphere 使用了 **Configuration-as-Code** 进行 Jenkins 的系统设置，该设置需要用户在 KubeSphere 修改配置文件后再登录到 Jenkins Dashboard 的系统管理中执行重新加载。在当前的版本当中，在控制台中还未提供 Jenkins 的系统设置选项，将在后续版本中支持。
 
 ### 修改 ConfigMap
 
-如果您是 Kubesphere 的系统管理员，若需要修改 Jenkins 的系统配置，建议您在 KubeSphere 使用 Configuration-as-Code (CasC) 进行系统设置，需要先在 KubeSphere 的配置 (ConfigMap) 中修改 `jenkins-casc-config`，然后再登录 Jenkins Dashboard 执行 **重新加载**。（因为通过 Jenkins Dashborad 直接写入的系统设置在 Jenkins 重新调度以后可能会被 CasC 配置所覆盖）。
+如果您是 KubeSphere 的系统管理员，若需要修改 Jenkins 的系统配置，建议您在 KubeSphere 使用 Configuration-as-Code (CasC) 进行系统设置，需要先在 KubeSphere 的配置 (ConfigMap) 中修改 `jenkins-casc-config`，然后再登录 Jenkins Dashboard 执行 **重新加载**。(因为通过 Jenkins Dashborad 直接写入的系统设置在 Jenkins 重新调度以后可能会被 CasC 配置所覆盖)。
 
 系统内置的 Jenkins CasC 文件以 **ConfigMap** 的形式存储在 `/system-workspace/kubesphere-devops-system/configmaps/jenkins-casc-config/` 中，如下所示，若需修改可点击 **编辑 ConfigMap**。
 

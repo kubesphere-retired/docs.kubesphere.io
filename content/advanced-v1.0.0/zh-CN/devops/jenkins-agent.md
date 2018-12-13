@@ -8,7 +8,7 @@ Agent 部分指定了整个流水线或特定的部分, 将会在 Jenkins 环境
 
 ## 内置的 podTemplate
 
-在使用过程当中，每个 Pod 至少包含 jnlp 容器用于 Jenkins Master 与 Jenkins Agent 的通信。除此之外用户可以自行添加 podTemplate 当中的容器，以满足自己的需求。用户可以选择使用自己传入 pod yaml 的形式来灵活的控制构建的运行环境，通过 `container` 指令可以进行容器的切换。
+在使用过程当中，每个 Pod 至少包含 jnlp 容器用于 Jenkins Master 与 Jenkins Agent 的通信。除此之外用户可以自行添加 podTemplate 当中的容器，以满足自己的需求。用户可以选择使用自己传入 Pod yaml 的形式来灵活的控制构建的运行环境，通过 `container` 指令可以进行容器的切换。
 
 ```groovy
 pipeline {
@@ -44,7 +44,7 @@ spec:
 
 在目前版本当中我们内置了 4 种类型的 podTemplate，`base`、`nodejs`、`maven`、`go`，并且在 Pod 中提供了隔离的 Docker 环境。
 
-可以通过指定 Agent 的 Label 使用内置的 podTempalte，例如要使用 Nodejs 的 podTemplate，可以在创建 Pipeline 时指定 Label 为 `nodejs`，如下给出示例。
+可以通过指定 Agent 的 label 使用内置的 podTempalte，例如要使用 nodejs 的 podTemplate，可以在创建 Pipeline 时指定 label 为 `nodejs`，如下给出示例。
 
 ![nodejs-podtemplate](/nodejs-podtemplate.png)
 

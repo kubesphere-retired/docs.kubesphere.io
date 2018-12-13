@@ -2,7 +2,7 @@
 title: "添加代码仓库" 
 ---
 
-KubeSphere 的 DevOps 工程中，目前已支持了以下这几种主流的源代码管理工具 (Source Code Management)，可以在创建 jenkinsfile-in-SCM 这类流水线的高级设置添加这类源代码仓库，添加代码仓库之前需要预先创建一个账户凭证 (Credentials)。
+KubeSphere 的 DevOps 工程中，目前已支持了以下几种主流的源代码管理工具 (Source Code Management)，可以在创建 Jenkinsfile-in-SCM 这类流水线的高级设置添加这类源代码仓库，添加代码仓库之前需要预先创建一个账户凭证 (Credentials)。
 
 - GitHub
 - SVN
@@ -30,13 +30,13 @@ KubeSphere 的 DevOps 工程中，目前已支持了以下这几种主流的源�
 
 ## 添加 SVN
 
-Subversion(SVN) 是一个开源的版本控制系統，它的版本控制与 Git 协议类型的代码仓库有很大区别，如下所示：
+Subversion (SVN) 是一个开源的版本控制系統，它的版本控制与 Git 协议类型的代码仓库有很大区别，如下所示：
 
-### SVN仓库目录结构
+### SVN 仓库目录结构
 
-- branch(分支)：分支开发和主线开发是可以同时并行开发，分支常用于修复 bug 时使用
-- truck (主线|主分支)：可以理解为开发分支，新功能的开发应放在主线中，当各部分功能开发完后，如需修改代码就用 branch。
-- tag(标记)：类似 GitHub 中的 tag，用于标记某个可用的版本，可以标记已经上线发布的版本，也可以标记正在测试的版本，一般是只读的
+- branch (分支)：分支开发和主线开发是可以同时并行开发，分支常用于修复 bug 时使用。
+- truck (主线 | 主分支)：可以理解为开发分支，新功能的开发应放在主线中，当各部分功能开发完后，如需修改代码就用 branch。
+- tag (标记)：类似 GitHub 中的 tag，用于标记某个可用的版本，可以标记已经上线发布的版本，也可以标记正在测试的版本，一般是只读的。
 
 ![SVN 目录结构](/svn-directory.png)
 
