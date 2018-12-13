@@ -4,7 +4,7 @@ title: "凭证管理"
 
 # 凭证
 
-凭证 (Credential) 是包含了敏感数据的对象，例如用户名密码，SSH 密钥和一些 Token 等。流水线运行中，会与很多外部环境交互，如拉取代码，push/pull 镜像，SSH 连接至相关环境中执行脚本等，此过程中需提供一系列凭证，而这些凭证不应明文出现在流水线中，用户需统一管理这些凭证，在流水线中只需要提供凭证的 ID。目前支持以下四种凭证类型：
+凭证 (Credential) 是包含了敏感数据的对象，例如用户名密码、SSH 密钥和一些 Token 等。流水线运行中，会与很多外部环境交互，如拉取代码，push/pull 镜像，SSH 连接至相关环境中执行脚本等，此过程中需提供一系列凭证，而这些凭证不应明文出现在流水线中，尤其是代码仓库管理 Jenkinsfile 文件的情况，用户需统一管理这些凭证，在流水线中只需要提供凭证的 ID。目前支持以下四种凭证类型：
 
 - 账户凭证：常用于用户名和密码验证登录的代码仓库
 - SSH：通过用户名、密码和私钥的方式
@@ -17,7 +17,7 @@ title: "凭证管理"
 
    ![credential_page](/devops_credentials.png)
 
-2. 点击创建按钮，创建一个用于拉取私人代码的 git 代码仓库的用户名和密码。页面中会显示此凭证 ID，在流水线中需要用此 ID 获取凭证。
+2. 点击创建按钮，创建一个用于拉取私人代码的 Git 代码仓库的用户名和密码。页面中会显示此凭证 ID，在流水线中需要用此 ID 获取凭证。
 
    ![create_credential](/devops_create_credential.png)
 
@@ -25,7 +25,7 @@ title: "凭证管理"
 
     ![credential_create_pipeline](/devops_create_credential_pipeline.png)
 
-4. Jenkinsfile 中 `git` 的定义如下，这里说明一下，此 git 为一个 gitlab 上的私有仓库，需使用对应的用户名和密码才可拉取代码，在凭证 ID 一栏填入刚才的 ID，如下图：
+4. Jenkinsfile 中 `git` 的定义如下，这里说明一下，此 Git 为一个 GitLab 上的私有仓库，需使用对应的用户名和密码才可拉取代码，在凭证 ID 一栏填入刚才的 ID，如下图：
 
     ![git_step](/credential_git.png)
 
