@@ -2,7 +2,7 @@
 title: "密钥"
 ---
 
-密钥 (Secret) 解决了密码、token、密钥等敏感数据的配置问题，配置密钥后不需要把这些敏感数据暴露到镜像或者工作负载（Pod）的 Spec 中。密钥可以在创建工作负载时以存储卷或者环境变量的方式使用。
+密钥 (Secret) 解决了密码、token、密钥等敏感数据的配置问题，配置密钥后不需要把这些敏感数据暴露到镜像或者工作负载 (Pod) 的 Spec 中。密钥可以在创建工作负载时以存储卷或者环境变量的方式使用。
 
 登录 KubeSphere 控制台，在所属的企业空间中选择已有 **项目** 或新建项目，访问左侧菜单栏，点击 **配置中心 ➡ 密钥**，进入密钥列表页。
 
@@ -27,7 +27,7 @@ title: "密钥"
 
 密钥有三种类型：
 
-- 默认（Opaque）：base64 编码格式的 Secret，用来存储密码、密钥等，这种类型应用得比较多。
+- 默认 (Opaque)：base64 编码格式的 Secret，用来存储密码、密钥等，这种类型应用得比较多。
 例如：
 
 ```yaml
@@ -36,7 +36,7 @@ data:
   username: guest
 ```
 
-- TLS（kubernetes.io/tls） ：常用于保存 TLS 证书和私钥等信息，可用来加密 Ingress，TLS secret中必须包含名为 tls.crt 和 tls.key 的密钥，以 Credential 和 Private Key 保存。
+- TLS (kubernetes.io/tls)：常用于保存 TLS 证书和私钥等信息，可用来加密 Ingress，TLS secret 中必须包含名为 tls.crt 和 tls.key 的密钥，以 Credential 和 Private Key 保存。
 例如：
 
 ```yaml
@@ -51,14 +51,14 @@ metadata:
 type: kubernetes.io/tls
 ```
 
-- 镜像仓库密钥（kubernetes.io/dockerconfigjson）：用来存储镜像仓库的认证信息，比如下面这类信息，详见 [镜像仓库](../image-registry)：
+- 镜像仓库密钥 (kubernetes.io/dockerconfigjson)：用来存储镜像仓库的认证信息，比如下面这类信息，详见 [镜像仓库](../image-registry)：
    - 仓库地址: dockerhub.qingcloud.com
    - 用户名: guest
    - 密码: 'guest'
    - 邮箱: 123@test.com
 
 
-- 自定义：支持用户自己创建一种密钥类型 (type)，格式与默认（Opaque）类型相似，都是键值对的形式。
+- 自定义：支持用户自己创建一种密钥类型 (type)，格式与默认 (Opaque) 类型相似，都是键值对的形式。
 
 ![secret 设置](/secret-setting.png)
 

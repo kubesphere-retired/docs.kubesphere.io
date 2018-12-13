@@ -525,8 +525,8 @@
                     </g>
                 </g>
             </g>
-            <text id="DevOps工程" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
-                <tspan x="12" y="35">DevOps工程</tspan>
+            <text id="DevOps 工程" font-family="PingFangSC-Medium, PingFang SC" font-size="14" font-weight="400" line-spacing="18" fill="#FFFFFF">
+                <tspan x="12" y="35">DevOps 工程</tspan>
             </text>
         </g>
         <path d="M40,856 L1400,856 L1400,1014 L40,1014 L40,856 Z" id="Rectangle" fill="#36435C"></path>
