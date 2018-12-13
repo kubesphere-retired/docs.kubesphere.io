@@ -80,7 +80,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 由于是在集群内部访问该服务，因此服务设置选择第一项 **通过集群内部 IP 来访问服务 Virtual IP**，服务信息参考以下填写。
 
 - 选择器：点击 **指定工作负载** 可以指定上一步创建的部署 hpa-example
-- 端口：端口名称可自定义，服务的端口和目标端口都填写 `TCP` 协议的 `80` 端口，完成参数设置，选择下一步。
+- 端口：端口名称可自定义，服务的端口和目标端口都填写 `TCP` 协议的 `80` 端口，完成参数设置，选择下一步
 - 会话亲和性：None
 
 ![服务设置](/hpa-service-setting.png)
@@ -147,7 +147,7 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 
 ![负载工作后](/hpa-working-result.png)
 
-理论上，从容器组的 CPU 监控曲线中可以看到最初创建的 2 个容器组的 CPU 使用量有一个明显的升高趋势，待 HPA 开始工作时可以发现 CPU 使用量有明显降低的趋势，最终趋于平稳，此时新增的 Pod 上也可以看到 CPU 使用量在增加。
+理论上，从容器组的 CPU 监控曲线中可以看到最初创建的 2 个容器组的 CPU 使用量有一个明显的升高趋势，待 HPA 开始工作时可以发现 CPU 使用量有明显降低的趋势，最终趋于平稳，而此时新增的 Pod 上可以看到 CPU 使用量在增加。
 
 ![Pod 监控](/pod-hpa-monitoring.png)
 
