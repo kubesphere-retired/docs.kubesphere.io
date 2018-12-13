@@ -2,7 +2,7 @@
 title: "应用路由"
 ---
 
-应用路由（Ingress）是用来聚合集群内服务的方式，对应的是 Kubernetes 的 Ingress 资源，后端使用了 Nginx Controller 来处理具体规则。Ingress 可以给 service 提供集群外部访问的 URL、负载均衡、SSL termination、HTTP 路由等。
+应用路由 (Ingress) 是用来聚合集群内服务的方式，对应的是 Kubernetes 的 Ingress 资源，后端使用了 Nginx Controller 来处理具体规则。Ingress 可以给 service 提供集群外部访问的 URL、负载均衡、SSL termination、HTTP 路由等。
 
 ## 前提条件
 
@@ -47,7 +47,7 @@ nginx.ingress.kubernetes.io/rewrite-target: /
 
 ### 第四步：添加标签
 
-标签设置页用于指定资源对应的一组或者多组标签（Label）。Label 以键值对的形式附加到任何对象上，定义好标签后，其他对象就可以通过标签来对对象进行引用，最常见的用法便是通过节点选择器来引用对象。
+标签设置页用于指定资源对应的一组或者多组标签 (Label)。Label 以键值对的形式附加到任何对象上，定义好标签后，其他对象就可以通过标签来对对象进行引用，最常见的用法便是通过节点选择器来引用对象。
 
 
 ## 访问应用路由
@@ -85,7 +85,7 @@ customer2.app.10.0.0.1.nip.io maps to 10.0.0.1
 otherapp.10.0.0.1.nip.io maps to 10.0.0.1
 ```
 
-例如，应用路由的网关公网 IP 地址为 139.198.121.154 , 在创建应用路由时，Hostname 一栏填写为 `demo2.kubesphere.139.198.121.154.nip.io`，其它保持原来的设置。
+例如，应用路由的网关公网 IP 地址为 139.198.121.154，在创建应用路由时，Hostname 一栏填写为 `demo2.kubesphere.139.198.121.154.nip.io`，其它保持原来的设置。
 ![路由规则](/ae-ingress-demo.png)
 
 创建完成后，直接使用 `http://demo2.kubesphere.139.198.121.154.nip.io`，即可访问对应的服务。

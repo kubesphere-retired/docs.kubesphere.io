@@ -27,17 +27,17 @@ title: "服务管理"
 
 2.1. 选择需要创建服务的类型，每种服务类型适合不同的场景:
 
-> - VirtualIP: 以集群为服务生成的集群内唯一的 IP 为基础，集群内部可以通过此 IP 来访问服务，集群外部可以通过 NodePort 和 LoadBalancer 方式来访问服务。此类型适合绝大多数服务。
-> - Headless (selector): 集群不为服务生成 IP，集群内部通过服务的后端 Pod IP 直接访问服务。此类型适合后端异构的服务，比如需要区分主从的服务。
-> - Headless (externalname): 将集群或者项目外部服务映射到集群或项目内。
+> - VirtualIP：以集群为服务生成的集群内唯一的 IP 为基础，集群内部可以通过此 IP 来访问服务，集群外部可以通过 NodePort 和 LoadBalancer 方式来访问服务。此类型适合绝大多数服务。
+> - Headless (selector)：集群不为服务生成 IP，集群内部通过服务的后端 Pod IP 直接访问服务。此类型适合后端异构的服务，比如需要区分主从的服务。
+> - Headless (externalname)：将集群或者项目外部服务映射到集群或项目内。
 
 
-2.2. 若选择 VIP 或 Headless (selector)，填写服务设置：
+2.2. 若选择 VIP 或 Headless (selector)，需填写服务设置：
 
 - 选择器：选择器来选择不同的后端，使用键值对 (Label Selector) 或 **指定工作负载** 可以选择多个部署。
 - 端口：服务的端口号和目标端口，目标端口是对应的后端工作负载的端口号，如 MySQL 的 3306 端口。
 - 会话亲和性
-   - None：以 Round robin的方式轮询后端的 Pods。
+   - None：以 Round robin 的方式轮询后端的 Pods。
    - ClientIP：以 ClientIP 的方式固定 request 到同一台机器。
 
 ![创建服务](/ae-svc-setting.png)
@@ -46,7 +46,7 @@ title: "服务管理"
 
 ### 第三步：添加标签
 
-标签设置页用于指定资源对应的一组或者多组标签（Label）。Label 以键值对的形式附加到任何对象上，如 Pod，Service，Node 等，定义好标签后，其他对象就可以通过标签来对对象进行引用，最常见的用法便是通过节点选择器来引用对象。
+标签设置页用于指定资源对应的一组或者多组标签 (Label)。Label 以键值对的形式附加到任何对象上，如 Pod，Service，Node 等，定义好标签后，其他对象就可以通过标签来对对象进行引用，最常见的用法便是通过节点选择器来引用对象。
 
 ![添加标签](/ae-svc-label.png)
 

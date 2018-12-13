@@ -4,8 +4,8 @@ title: "守护进程集"
 
 守护进程集 (DaemonSet)，保证在每个 Node 上都运行一个容器副本，常用来部署一些集群的日志、监控或者其他系统管理应用。典型的应用场景包括：
 
-- 日志收集，比如 Fluentd，Logstash 等。
-- 系统监控，比如 Prometheus Node Exporter，collectd，New Relic agent，Ganglia gmond 等。
+- 日志收集，比如 Fluentd, Logstash 等。
+- 系统监控，比如 Prometheus Node Exporter, collectd, New Relic agent, Ganglia gmond 等。
 - 系统程序，比如 kube-proxy, kube-dns, Gluster, Ceph 等。
 
 ## 创建守护进程集 
@@ -26,10 +26,10 @@ title: "守护进程集"
 
 - RollingUpdate：使用滚动更新（[Rolling-update](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update)）的方式更新 Pod。您可以指定 maxUnavailable 和 MinReadySeconds 来控制滚动更新的进程。
 
-   - MaxUnavailable 是可选配置项，当前默认值是 1。用来指定在升级过程中不可用 Pod 的最大数量。该值可以是一个绝对值，也可以是期望 Pod 数量的百分比（例如 10% ）。通过计算百分比的绝对值向下取整。
-   - MinReadySeconds 是一个可选配置项，默认是0（Pod在ready后就会被认为是可用状态）。用来指定没有任何容器 crash 的 Pod 并被认为是可用状态的最小秒数。进一步了解什么情况下 Pod 会被认为是 ready 状态，参阅 [Kubernetes 官方文档 - Container Probes](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes)。
+   - MaxUnavailable 是可选配置项，当前默认值是 1，用来指定在升级过程中不可用 Pod 的最大数量。该值可以是一个绝对值，也可以是期望 Pod 数量的百分比 (例如 10%)，通过计算百分比的绝对值向下取整。
+   - MinReadySeconds 是一个可选配置项，默认是 0 (Pod在ready后就会被认为是可用状态)，用来指定没有任何容器 crash 的 Pod 并被认为是可用状态的最小秒数。进一步了解什么情况下 Pod 会被认为是 ready 状态，请参阅 [Kubernetes 官方文档 - Container Probes](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes)。
 
-- OnDelete：设置为 OnDelete 时，StatefulSet 控制器将不会自动更新 StatefulSet 中的 Pod。用户必须手动删除旧版本 Pod 以触发控制器创建新的 Pod。
+- OnDelete：设置为 OnDelete 时，StatefulSet 控制器将不会自动更新 StatefulSet 中的 Pod，用户必须手动删除旧版本 Pod 以触发控制器创建新的 Pod。
 
 
 ![创建守护进程集](/ae_daemonset_create_basic.png)
@@ -39,6 +39,7 @@ title: "守护进程集"
 2.1. 在 **容器组模板** 页面，用户可以根据需求对容器组进行配置，添加容器前需要先在平台添加镜像仓库，参见 [镜像仓库 - 添加镜像仓库](../../platform-management/image-registry/#添加镜像仓库)。点击 **添加容器**，容器组可以包含一个或者多个容器，将从添加到平台的镜像仓库中拉取镜像，要求输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 node-exporter:v0.15.2。
 
 2.2. 如果用户有更进一步的需求，可以点击 **高级选项**。高级选项中可以对 CPU 和内存的资源使用进行限定。
+
 **表1：CPU 配额说明**
 
 |参数|说明|
@@ -85,13 +86,13 @@ title: "守护进程集"
 
 支持配置 ConfigMap 或 Secret 中的值添加为卷，支持选择要使用的密钥以及将公开每个密钥的文件路径，最后设置目录在容器中的挂载路径。
 
-其中，Secret 卷用于将敏感信息（如密码）传递到 pod。Secret 卷由 tmpfs（一个 RAM 支持的文件系统）支持，所以它们永远不会写入非易失性存储器。
+其中，Secret 卷用于将敏感信息 (如密码) 传递到 pod。Secret 卷由 tmpfs (一个 RAM 支持的文件系统) 支持，所以它们永远不会写入非易失性存储器。
 
 ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod 里使用，或者被用来为像 Controller 一样的系统组件存储配置数据。虽然 ConfigMap 跟 Secret 类似，但是 ConfigMap 更方便的处理不含敏感信息的字符串。它很像 Linux 中的 /etc 目录，专门用来存储配置文件的目录。ConfigMaps 常用于以下场景：
 
-- 设置环境变量的值。
-- 在容器里设置命令行参数。
-- 在数据卷里面创建 config 文件。
+- 设置环境变量的值
+- 在容器里设置命令行参数
+- 在数据卷里面创建 config 文件
 
 重要提示：您必须先在配置中心创建 Secret 或 ConfigMap，然后才能使用它，详见 [创建 Secret](../../configuration/secrets/#创建-secret) 和 [创建 ConfigMap](../../configuration/ConfigMaps/#创建-configmap)。
 
@@ -103,15 +104,15 @@ HostPath 允许将宿主机上的指定卷加载到容器之中。这种卷一�
 
 ### 第四步：添加标签
 
-标签设置页用于指定资源对应的一组或者多组标签（Label）。Label 以键值对的形式附加到任何对象上，如 Pod，Service，Node 等，定义好标签后，其他对象就可以通过标签来对对象进行引用，最常见的用法便是通过节点选择器来引用对象。一般来说，我们可以为一个 Pod（或其他对象）定义多个标签，以便于配置、部署等管理工作。例如，部署不同版本的应用到不同的环境中；或者监控和分析应用（日志记录，监控，报警等）。通过多个标签的设置，我们就可以多维度地对对象进行精细化管理，如 `relase: stable ; tier: frontend`。
+标签设置页用于指定资源对应的一组或者多组标签 (Label)。Label 以键值对的形式附加到任何对象上，如 Pod，Service，Node 等，定义好标签后，其他对象就可以通过标签来对对象进行引用，最常见的用法便是通过节点选择器来引用对象。一般来说，我们可以为一个 Pod (或其他对象) 定义多个标签，以便于配置、部署等管理工作。例如，部署不同版本的应用到不同的环境中；或者监控和分析应用 (日志记录、监控、报警等)。通过多个标签的设置，我们就可以多维度地对对象进行精细化管理，如 `relase: stable ; tier: frontend`。
 
 ![创建守护进程集 - 标签](/ae_daemonset_create_label.png)
 
 ### 第五步：添加节点选择器
 
-带有标签的对象创建好之后，我们就可以通过节点选择器（Selector）来引用这些对象。节点选择器页面，用户可以通过按节点选择或通过 Selector 设置一组或者多组键值对来指定期望运行容器组的主机。当不指定时，将会在集群内的所有节点上启动容器组。点击右下角的创建后，集群就会按照用户的配置创建对应的守护进程集。
+带有标签的对象创建好之后，我们就可以通过节点选择器 (Selector) 来引用这些对象。节点选择器页面，用户可以通过按节点选择或通过 Selector 设置一组或者多组键值对来指定期望运行容器组的主机。当不指定时，将会在集群内的所有节点上启动容器组。点击右下角的创建后，集群就会按照用户的配置创建对应的守护进程集。
 
 ![创建守护进程集 - 节点选择器](/ae_daemonset_create_nodeselector.png)
  
-点击创建，即可完成守护进程集的创建，状态显示 “更新中” 是由于拉取大小不同的镜像需要一定时间，待镜像 pull 成功后状态将显示“运行中”。
+点击创建，即可完成守护进程集的创建，状态显示 “更新中” 是由于拉取镜像需要一定时间，待镜像 pull 成功后状态将显示“运行中”。
 
