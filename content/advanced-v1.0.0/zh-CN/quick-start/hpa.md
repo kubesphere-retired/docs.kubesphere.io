@@ -85,7 +85,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 ![服务设置](/hpa-service-setting.png)
 
-## 第三步：标签设置
+### 第三步：标签设置
 
 为方便识别此服务，我们标签设置为 `app: hpa-example`。下一步的外网访问方式选择 `None`，仅在集群内部访问该服务。
 
@@ -148,7 +148,7 @@ while true; do wget -q -O- http://hpa-example.hpa-demo.svc.cluster.local; done
 
 将 `load-generator` 删除或将之前设置的循环请求命令删除，都可以停止负载。本示例删除 `load-generator` 后，再次查看 `hpe-example` 的运行状况，可以发现几分钟后它的 CPU 利用率已缓慢降到 0，并且 HPA 将其副本数量最终减少至最小副本数 2。
 
-
+## 修改弹性伸缩
 
 至此，您已经熟悉了在部署中弹性伸缩的基本设置操作。创建后若需要修改弹性伸缩的参数，可以在部署详情页，点击 **更多操作 → 弹性伸缩**，如下页面支持修改其参数。
 
