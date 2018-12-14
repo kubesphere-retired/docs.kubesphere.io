@@ -1,10 +1,10 @@
 ---
-title: "示例六 - Jenkinsfile out of SCM" 
+title: "示例七 - Jenkinsfile out of SCM" 
 ---
 
-示例五通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
+示例六通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
 
-本示例演示基于 [示例五 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，通过可视化构建流水线 (包含示例五的前六个阶段)，最终将一个文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问，这里所谓的开发环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例五的流程后，对于示例六的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) 为例，可预先将其 Fork 至您的代码仓库中。
+本示例演示基于 [示例六 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，通过可视化构建流水线 (包含示例六的前六个阶段)，最终将一个文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问，这里所谓的开发环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例六的流程后，对于示例七的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) 为例，可预先将其 Fork 至您的代码仓库中。
 
 构建可视化流水线共包含以下 6 个阶段 (stage)，先通过一个流程图简单说明一下整个 pipeline 的工作流：
 
@@ -33,7 +33,7 @@ title: "示例六 - Jenkinsfile out of SCM"
 
 ## 创建项目
 
-CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将文档网站部署到开发环境 `kubesphere-docs-dev`，它对应的是 KubeSphere 中的一个项目 (Namespace)，该项目需要预先在控制台创建。注意，若您已在 [示例五](../jenkinsfile-in-scm) 创建过该项目，则无需再次创建，可跳过创建项目步骤。
+CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将文档网站部署到开发环境 `kubesphere-docs-dev`，它对应的是 KubeSphere 中的一个项目 (Namespace)，该项目需要预先在控制台创建。注意，若您已在 [示例六](../jenkinsfile-in-scm) 创建过该项目，则无需再次创建，可跳过创建项目步骤。
 
 ### 第一步：填写项目信息
 
@@ -58,7 +58,7 @@ CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/k
 本示例创建流水线时需要访问 DockerHub 和 Kubernetes (创建 KubeConfig 用于接入正在运行的 Kubernetes 集群) 的 2 个凭证 (credentials) ，先依次创建这 2 个凭证。
 
 > 注意：
-> - 若示例六与示例五在同一 DevOps 工程，且示例五已创建了这两个凭证，则无需再次创建，可跳过创建凭证步骤，因为同一 DevOps 工程下的凭证对多个流水线是共用的。
+> - 若示例七与示例六在同一 DevOps 工程，且示例六已创建了这两个凭证，则无需再次创建，可跳过创建凭证步骤，因为同一 DevOps 工程下的凭证对多个流水线是共用的。
 > - 若代码仓库属于私有仓库如 Gitlab 或 SVN，可能还需要创建这类账户的凭证。
 
 ### 第一步：创建 DockerHub 凭证

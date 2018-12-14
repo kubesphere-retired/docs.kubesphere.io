@@ -2,11 +2,11 @@
 title: "DevOps 工程概述"
 ---
 
-对企业而言，高效可靠的 CI/CD 流水线是一个 IT 组织实现软件应用与服务快速交付的基础，同时也是 DevOps 在企业落地的最佳实践。虽然业界流行的 CI/CD 工具很多，比如 Travis CI、Teamcity 和 Jenkins 等，但如今大量企业选择采用 Jenkins 来搭建其交付流水线。谈到 Jenkins，大部分人肯定耳熟能详，持续集成/持续交付，自动化部署工具，测试工具，以及丰富的插件支持，配合目前大多数开发工具, 简直是万能的瑞士军刀。因此，KubeSphere DevOps 工程选择基于 Jenkins 来实现高效的 CI / CD 流水线。
+由于软件开发复杂度的增高和更多的协同工作，团队开发成员间如何更好地在协同工作中确保软件开发和交付质量，逐渐成为研发过程中不可回避的问题。众所周知，敏捷开发 (Agile) 在业内日趋流行，团队如何在不断变化的需求中快速适应和保证软件质量就变得极其重要了。而 CI/CD 就是专门为解决上述需求的软件开发实践。CI/CD 要求每次的集成都是通过自动化的构建来验证，包括自动编译、发布和测试，从而尽快地发现集成错误，让团队能够更快的开发内聚的软件，减轻了软件发布时的压力。
 
 ### KubeSphere DevOps 特点
 
-相较于易捷版，DevOps 工程是高级版独有的功能，针对企业实际的快速迭代和快速交付业务需求和场景，可以发现很多企业和 IT 团队都有持续集成和持续交付的需求。DevOps 工程提供从仓库 (SVN/Git/GitHub)、代码编译、镜像制作、镜像安全、推送到仓库、应用版本、到定时构建的端到端流水线设置，支持用户在开发、测试等环境下的端到端高效流水线能力，支持用户成员管理，同时提供完整的日志功能，记录 CI/CD 流水线的每个过程。
+相较于易捷版，DevOps 工程是高级版独有的功能，针对企业实际的快速迭代和快速交付业务需求和场景，可以发现很多企业和 IT 团队都有持续集成和持续交付的需求。DevOps 工程提供 Jenkinsfile in & out of SCM 两种模式，从仓库 (SVN/Git/GitHub)、代码编译、镜像制作、镜像安全、推送到仓库、应用版本、到定时构建的端到端流水线设置，支持用户在开发、测试等环境下的端到端高效流水线能力，支持用户成员管理，同时提供完整的日志功能，记录 CI/CD 流水线的每个过程。
 
 
 KubeSphere 高级版 v1.0.0 提供的 DevOps 具有以下功能：
@@ -28,7 +28,7 @@ KubeSphere 高级版下一个版本 v2.0.0 将增加如下新的功能：
 
 KubeSphere 的 DevOps 工程目前支持 GitHub、Git 和 SVN 这一类源代码管理工具，提供可视化的 CI/CD 流水线构建，或基于代码仓库已有的 Jenkinfile 构建流水线。
 
-软件开发的生命周期中，持续构建和发布是 IT 团队在日常工作中必不可少的步骤，目前很多公司也都选择 Jenkins 集群来搭建符合企业需求的 CI/CD 流程。但是，相比较传统的 Jenkins 集群一主多从的方式必然存在一些痛点：
+软件开发的生命周期中，持续构建和发布是 IT 团队在日常工作中必不可少的步骤。但是，相比较传统的 Jenkins 集群一主多从的方式必然存在一些痛点：
 
 - Master 一旦发生单点故障，那么整个 CI/CD 流水线就崩溃了；
 - 资源分配不均衡，有的 Slave 要运行的 job 出现排队等待，而有的 Slave 处于空闲状态；
@@ -48,11 +48,11 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 我们提供了两个具有代表性的示例和文档，帮助您快速上手 CI/CD。
 
-- [示例五 - Jenkinsfile in SCM](../../quick-start/jenkinsfile-in-scm)
+- [示例六 - Jenkinsfile in SCM](../../quick-start/jenkinsfile-in-scm)
 
 本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和生产环境，并且能够通过公网访问。
 
-- [示例六 - Jenkinsfile out of SCM](../../quick-start/jenkinsfile-out-of-scm)
+- [示例七 - Jenkinsfile out of SCM](../../quick-start/jenkinsfile-out-of-scm)
 
 本示例以文档和视频演示如何基于 [示例一 - Jenkinsfile in SCM](../../quick-start/jenkinsfile-in-scm)，以可视化的方式构建 CI/CD 流水线 (包含示例一的前六个阶段)，最终将本文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。
 
