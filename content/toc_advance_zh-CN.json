@@ -326,7 +326,7 @@
           ]
         },
         {
-          "title": "应用模板",
+          "title": "一键部署应用",
           "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-template.md"
         }
       ]
