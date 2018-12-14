@@ -55,7 +55,7 @@ $ yum-complete-transaction
 $ yum-complete-transaction --cleanup-only
 ```
 
-<!-- 3、如果在操作 [示例五](../../devops/jenkinsfile-in-scm) 运行流水线时，遇到 `Could not resolve host: github.com` 这类情况造成流水线运行失败了，应该如何处理？
+<!-- 3、如果在操作 [示例六](../../devops/jenkinsfile-in-scm) 运行流水线时，遇到 `Could not resolve host: github.com` 这类情况造成流水线运行失败了，应该如何处理？
 
 ![无法解析github](/could-not-resolve-github.png)
 

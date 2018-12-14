@@ -86,15 +86,19 @@
           "entry": "./advanced-v1.0.0/zh-CN/quick-start/job-quick-start.md"
         },
         {
-          "title": "示例四 - 设置弹性伸缩 (HPA)",
+          "title": "示例四 - 一键部署应用",
+          "entry": "./advanced-v1.0.0/zh-CN/quick-start/one-click-deploy.md"
+        },
+        {
+          "title": "示例五 - 设置弹性伸缩 (HPA)",
           "entry": "./advanced-v1.0.0/zh-CN/quick-start/hpa.md"
         },
         {
-          "title": "示例五 - Jenkinsfile-in-SCM",
+          "title": "示例六 - Jenkinsfile-in-SCM",
           "entry": "./advanced-v1.0.0/zh-CN/quick-start/jenkinsfile-in-scm.md"
         },
         {
-          "title": "示例六 - Jenkinsfile-out-of-SCM",
+          "title": "示例七 - Jenkinsfile-out-of-SCM",
           "entry": "./advanced-v1.0.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
         }
       ]
@@ -324,10 +328,6 @@
               "entry": "./advanced-v1.0.0/zh-CN/devops/devops-faq.md"
             }
           ]
-        },
-        {
-          "title": "一键部署应用",
-          "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-template.md"
         }
       ]
     },

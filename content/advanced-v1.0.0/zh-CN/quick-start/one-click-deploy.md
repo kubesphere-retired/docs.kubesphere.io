@@ -1,10 +1,12 @@
 ---
-title: "一键部署应用"
+title: "示例四 - 一键部署应用"
 ---
 
-一键部署应用基于 KubeSphere 应用模板，应用模板可以查看来自所有应用仓库的应用，应用模板相当于 [Helm Chart](https://docs.helm.sh/developing_charts/) 模板，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，常用来提供开发和测试使用的场景所需的中间件服务。用户可以基于应用模板快速地一键部署常用的应用到 KubeSphere 中，部署的应用一般包含相应的工作负载和服务，通过编辑服务的外网访问方式，用户可以通过 NodePort 或 URL 访问该应用。KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服务，在使用应用模板前应先添加一个包含应用的应用仓库，详见 [添加应用仓库](../app-repo) 来添加应用仓库，KubeSphere 会自动加载此仓库下的所有应用。
+应用为用户提供完整的业务功能，由一个或多个特定功能的组件组成。KubeSphere 应用模板所纳管的应用基于 Helm 打包规范构建，并通过统一的公有或私有的应用仓库交付使用，应用可根据自身特性由一个或多个 Kubernetes 工作负载 (workload) 和服务组成。
 
-通过应用模板部署的应用可以在项目下的 **应用** 页面查看该应用的详情，如部署 (Deployment), 有状态副本集 (Statefulset), 和服务 (Service)。在 **应用** 中也可以点击 **部署新应用** 进入 **应用模板** 完成一键部署。本示例通过导入一个包含测试模板的应用仓库，演示如何在 KubeSphere 中一键部署应用，并通过外网访问该应用。
+一键部署应用基于 KubeSphere 应用模板，应用模板可以查看来自所有应用仓库的应用，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，常用来提供开发和测试使用的场景所需的中间件服务。用户可以基于应用模板快速地一键部署常用的应用到 KubeSphere 中，部署的应用一般包含相应的工作负载和服务，通过编辑服务的外网访问方式，用户可以通过 NodePort 或 URL 访问该应用。KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服务，在使用应用模板前应先添加一个包含应用的应用仓库，详见 [添加应用仓库](../app-repo)，KubeSphere 会自动加载此仓库下的所有应用。
+
+通过应用模板部署的应用可以在项目下的 **应用** 页面查看该应用的详情，如部署 (Deployment), 有状态副本集 (Statefulset) 和服务 (Service)。在 **应用** 中也可以点击 **部署新应用** 进入 **应用模板** 完成一键部署。本示例通过导入一个包含测试模板的应用仓库，演示如何在 KubeSphere 中一键部署应用，并通过外网访问该应用。
 
 ![应用模板](/app-lists.png)
 
@@ -60,7 +62,7 @@ title: "一键部署应用"
 
 - None: 只在集群内部访问服务，集群外部无法访问。
 - NodePort：使用 NodePort 方式可以通过访问工作节点对应的端口来访问服务
-- LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。(如果外网访问方式设置的是 LoadBalancer，参见 [应用路由](../../ingress-service/ingress) 的 LoadBalancer 方式。)
+- LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。
 
 ![选择访问方式](/select-nodeport.png)
 
