@@ -240,7 +240,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 |环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
 |---|---|---|---|---|
-|Dev| 公网IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
+|Dev| 公网 IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
 |Production|公网 IP : 30980 (`${EIP}:${NODEPORT}`)|kubesphere-docs-prod|ks-docs-sample |ks-docs-sample|
 
 查看推送到 DockerHub 的镜像，可以看到 `devops-docs-sample` 就是 APP_NAME 的值。
