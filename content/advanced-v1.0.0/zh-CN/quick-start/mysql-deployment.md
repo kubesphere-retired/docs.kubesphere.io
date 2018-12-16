@@ -6,8 +6,7 @@ title: "示例一 - 部署 MySQL 有状态应用"
 
 ## 前提条件
 
-- 用户需在所属企业空间中已创建可用的项目资源，若还未创建项目，参考 [创建项目](../../platform-management/workspace-management/#创建项目)。
-- 已添加镜像仓库，若还未添加请参考 [添加镜像仓库](../../platform-management/image-registry)。
+已创建了企业空间和项目，若还未创建请参考 [管理员快速入门](../../quick-start/admin-quick-start)。
 
 ## 部署 MySQL
 

@@ -69,7 +69,7 @@ NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor 
 
 ### NFS
 
-[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS]((https://www.qingcloud.com/products/nas/)) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
+[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS](https://www.qingcloud.com/products/nas/) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
 
 | **NFS** | **Description** |
 | --- | --- |
