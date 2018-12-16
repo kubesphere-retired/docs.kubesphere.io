@@ -13,12 +13,12 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 ## 前提条件
 
-- 请确保已参阅 [Multi-Node 模式](../Multi-node)，本文档仅说明安装过程中如何修改配置文件来配置 master 节点高可用，该配置作为一个可选配置项，完整的安装流程和配置文件中的参数解释说明以 [Multi-Node 模式](../Multi-node) 为准。
+- 请确保已参阅 [Multi-Node 模式](../multi-node)，本文档仅说明安装过程中如何修改配置文件来配置 master 节点高可用，该配置作为一个可选配置项，完整的安装流程和配置文件中的参数解释说明以 [Multi-Node 模式](../multi-node) 为准。
 - 已有 [QingCloud 云平台](https://console.qingcloud.com/login) 账号，用于申请负载均衡器给多个 master 节点做负载均衡。
 
 ## Master 和 etcd 节点高可用架构
 
-本示例准备了 6 台主机，主机规格参考 [Multi-Node 模式 - 节点规格](../Multi-node/#第一步-准备主机)，将在其中 3 台部署 Master 和 etcd 集群，可编辑主机配置文件 `conf/hosts.ini` 来配置 Master 和 etcd 的高可用。
+本示例准备了 6 台主机，主机规格参考 [Multi-Node 模式 - 节点规格](../multi-node)，将在其中 3 台部署 Master 和 etcd 集群，可编辑主机配置文件 `conf/hosts.ini` 来配置 Master 和 etcd 的高可用。
 
 ![Master 和 etcd 节点高可用架构](/master-ha-design.svg)
 
@@ -112,5 +112,5 @@ loadbalancer_apiserver:
   port: 6443
 ```
 
-完成 master 和 etcd 高可用的参数配置后，请继续参阅 [Multi-node 模式 - 存储配置示例](../multi-node/#第二步-准备安装配置文件) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。
+完成 master 和 etcd 高可用的参数配置后，请继续参阅 [Multi-Node 模式 - 存储配置示例](../multi-node) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。
 

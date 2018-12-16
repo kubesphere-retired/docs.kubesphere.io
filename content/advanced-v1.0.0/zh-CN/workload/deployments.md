@@ -80,7 +80,7 @@ title: "部署"
 
 #### 持久化存储卷
 
-持久化存储卷可用于持久化存储用户数据，需要预先创建存储卷，参考 [存储卷 - 创建存储卷](../../storage/pvc/#创建存储卷)。
+持久化存储卷可用于持久化存储用户数据，需要预先创建存储卷，参考 [存储卷 - 创建存储卷](../../storage/pvc)。
 
 #### 临时存储卷
 
@@ -98,7 +98,7 @@ ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod
 - 在容器里设置命令行参数
 - 在数据卷里面创建 config 文件
 
-重要提示：您必须先在配置中心创建 Secret 或 ConfigMap，然后才能使用它，详见 [创建 Secret](../../configuration/secrets/#创建-secret) 和 [创建 ConfigMap](../../configuration/ConfigMaps/#创建-configmap)。
+重要提示：您必须先在配置中心创建 Secret 或 ConfigMap，然后才能使用它，详见 [创建 Secret](../../configuration/secrets/#创建-secret) 和 [创建 ConfigMap](../../configuration/ConfigMaps)。
 
 
 ![创建部署 - 临时存储卷](/ae_deployment_pvc_create1.png)

@@ -6,7 +6,7 @@ title: "示例二 - 部署 Wordpress"
 
 ## 前提条件
 
-- 已创建了有状态副本集 MySQL，若还未创建请参考 [快速入门 - 部署 MySQL](../mysql-deployment)。
+已创建了有状态副本集 MySQL，若还未创建请参考 [快速入门 - 部署 MySQL](../mysql-deployment)。
 
 ## 部署 Wordpress
 

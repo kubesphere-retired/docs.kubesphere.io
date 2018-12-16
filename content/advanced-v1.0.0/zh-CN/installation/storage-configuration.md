@@ -67,6 +67,7 @@ NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor 
 | neonsan\_server\_stepSize|用户所创建存储卷容量的增量，单位为 GiB，默认为 1|
 | neonsan\_server\_fsType|存储卷的文件系统格式，默认为 ext4|
 
+
 ### Ceph RBD
 
 [Ceph RBD](https://ceph.com/) 是一个分布式存储系统，在 `conf/vars.yml` 配置的释义如下。
@@ -120,7 +121,7 @@ $ heketi-cli cluster list
 
 ### NFS
 
-[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS]((https://www.qingcloud.com/products/nas/)) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
+[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS](https://www.qingcloud.com/products/nas/) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
 
 | **NFS** | **Description** |
 | --- | --- |
@@ -131,7 +132,7 @@ $ heketi-cli cluster list
 
 ### NFS in Kubernetes（仅限 multi-node 部署测试使用）
 
-NFS 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本安装方法将会在 Kubernetes 集群内安装[容器化的 NFS 服务端](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner)，要求 Kubernetes 节点有足够的硬盘空间。在 `conf/vars.yml` 配置的释义如下。
+NFS 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本安装方法将会在 Kubernetes 集群内安装 [容器化的 NFS 服务端](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner)，要求 Kubernetes 节点有足够的硬盘空间。在 `conf/vars.yml` 配置的释义如下。
 
 | **NFS** | **Description** |
 | --- | --- |

@@ -46,11 +46,11 @@ Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜�
 根据 Harbor 镜像仓库的地址类型，需要分 http 和 https 两种认证方法：
 
 #### http
-1. 首先，需要修改集群中所有节点的 docker 配置。以 http://139.198.16.232 为例，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=139.198.16.232`：
+1. 首先，需要修改集群中所有节点的 docker 配置。以 `http://139.198.16.232` 为例，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=139.198.16.232`：
 
  示例：
 
-```
+```bash
 [Service]
 Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --graph=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
 --iptables=false \
