@@ -98,7 +98,7 @@ ConfigMap 用来保存键值对形式的配置数据，这个数据可以在 Pod
 - 在容器里设置命令行参数
 - 在数据卷里面创建 config 文件
 
-重要提示：您必须先在配置中心创建 Secret 或 ConfigMap，然后才能使用它，详见 [创建 Secret](../../configuration/secrets/#创建-secret) 和 [创建 ConfigMap](../../configuration/ConfigMaps)。
+重要提示：您必须先在配置中心创建 Secret 或 ConfigMap，然后才能使用它，详见 [创建 Secret](../../configuration/secrets/#创建-secret) 和 [创建 ConfigMap](../../configuration/configmaps)。
 
 
 ![创建部署 - 临时存储卷](/ae_deployment_pvc_create1.png)
