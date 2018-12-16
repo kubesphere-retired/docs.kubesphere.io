@@ -4,13 +4,13 @@ title: "存储配置说明"
 
 目前，Installer 支持以下类型的存储作为存储服务端，为 KubeSphere 提供持久化存储 (更多的存储类型持续更新中)：
 
-- [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)
-- [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/)
-- [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)
-- [Ceph RBD](https://ceph.com/)
-- [GlusterFS](https://www.gluster.org/)
-- [NFS in Kubernetes](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner) (仅限 multi-node 部署测试使用)
-- [Local Volume](https://kubernetes.io/docs/concepts/storage/storage-classes/#local) (仅限 all-in-one 部署测试使用)
+- QingCloud 云平台块存储
+- QingStor NeonSAN
+- Ceph RBD
+- GlusterFS
+- NFS
+- NFS in Kubernetes (仅限 multi-node 部署测试使用)
+- Local Volume (仅限 all-in-one 部署测试使用)
 
 同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接 QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的权限或已有 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端，然后在 `vars.yml` 配置对应的参数即可对接相应的存储服务端。
 
@@ -53,7 +53,7 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 
 ### QingStor NeonSAN
 
-NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) 作为存储服务，若您准备好 NeonSAN 服务端后，即可在 `conf/vars.yml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
+NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为存储服务，若您准备好 NeonSAN 服务端后，即可在 `conf/vars.yml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
 
 | **NeonSAN** | **Description** |
 | --- | --- |
@@ -67,16 +67,6 @@ NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor 
 | neonsan\_server\_stepSize|用户所创建存储卷容量的增量，单位为 GiB，默认为 1|
 | neonsan\_server\_fsType|存储卷的文件系统格式，默认为 ext4|
 
-### NFS
-
-[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS](https://www.qingcloud.com/products/nas/) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
-
-| **NFS** | **Description** |
-| --- | --- |
-| nfs\_client\_enable | 是否使用 NFS 作为持久化存储，是：true；否：false |
-| nfs\_client\_is\_default\_class | 是否设定为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
-| nfs\_server | 允许其访问的 NFS 服务端地址，可以是 IP 或 Hostname |
-| nfs\_path | NFS 共享目录，即服务器上共享出去的文件目录，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
 
 ### Ceph RBD
 
@@ -129,9 +119,20 @@ $ export HEKETI_CLI_SERVER=http://localhost:8080
 $ heketi-cli cluster list
 ```
 
+### NFS
+
+[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS](https://www.qingcloud.com/products/nas/) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
+
+| **NFS** | **Description** |
+| --- | --- |
+| nfs\_client\_enable | 是否使用 NFS 作为持久化存储，是：true；否：false |
+| nfs\_client\_is\_default\_class | 是否设定为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
+| nfs\_server | 允许其访问的 NFS 服务端地址，可以是 IP 或 Hostname |
+| nfs\_path | NFS 共享目录，即服务器上共享出去的文件目录，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
+
 ### NFS in Kubernetes（仅限 multi-node 部署测试使用）
 
-NFS 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本安装方法将会在 Kubernetes 集群内安装[容器化的 NFS 服务端](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner)，要求 Kubernetes 节点有足够的硬盘空间。在 `conf/vars.yml` 配置的释义如下。
+NFS 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本安装方法将会在 Kubernetes 集群内安装 [容器化的 NFS 服务端](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner)，要求 Kubernetes 节点有足够的硬盘空间。在 `conf/vars.yml` 配置的释义如下。
 
 | **NFS** | **Description** |
 | --- | --- |
