@@ -229,7 +229,7 @@
             },
             {
               "title": "存储卷",
-              "entry": "./advanced-v1.0.0/zh-CN/storage/PVC.md"
+              "entry": "./advanced-v1.0.0/zh-CN/storage/pvc.md"
             },
             {
               "title": "Local Volume 使用方法",
