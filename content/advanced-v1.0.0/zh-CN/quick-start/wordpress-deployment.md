@@ -2,11 +2,17 @@
 title: "示例二 - 部署 Wordpress" 
 ---
 
-本文以创建一个部署 (Deployment) 为例，部署一个无状态的 Wordpress 应用，最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
+## 目的
+
+本文以创建一个部署 (Deployment) 为例，部署一个无状态的 Wordpress 应用，基于示例一的 MySQL 应用最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
 
 ## 前提条件
 
-已创建了有状态副本集 MySQL，若还未创建请参考 [快速入门 - 部署 MySQL](../mysql-deployment)。
+已创建了有状态副本集 MySQL，若还未创建请参考 [示例一 - 部署 MySQL](../mysql-deployment)。
+
+## 预估时间
+
+约 15 分钟。
 
 ## 部署 Wordpress
 
