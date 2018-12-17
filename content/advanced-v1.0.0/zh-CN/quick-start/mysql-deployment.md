@@ -9,7 +9,7 @@ title: "示例一 - 部署 MySQL 有状态应用"
 ## 前提条件
 
 - 已创建了企业空间和项目，若还未创建请参考 [管理员快速入门](../admin-quick-start)
-- 以上一篇文档创建的 `demo` 用户登录 KubeSphere，选择 `demo-namespace`
+- 以上一篇文档创建的 `demo` 用户登录 KubeSphere，选择上一步创建的企业空间和项目
 
 ## 预估时间
 
