@@ -9,7 +9,7 @@ title: "示例一 - 部署 MySQL 有状态应用"
 ## 前提条件
 
 - 已创建了企业空间和项目，若还未创建请参考 [管理员快速入门](../admin-quick-start)
-- 以上一篇文档创建的 `demo` 用户登录 KubeSphere，选择上一步创建的企业空间和项目
+- 以上一篇文档创建的 `demo` 用户登录 KubeSphere，进入已创建的企业空间下的项目
 
 ## 预估时间
 
@@ -41,7 +41,6 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 - Data：Data 键值对填写 `MYSQL_ROOT_PASSWORD` 和 `123456`
 
 ![Secret 设置](/mysql-secret-setting.png)
-
 
 #### 第二步：创建有状态副本集
 
