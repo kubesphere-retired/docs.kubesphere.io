@@ -1,6 +1,17 @@
+body {
+  background-color: #fff;
+}
+
+.md-body {
+  font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
+    PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+}
+
 .md-body img {
   width: auto;
-  max-height: 960px;
+  max-height: 900px;
 
   prince-image-magic: recompress-jpeg(50%) convert-to-jpeg(50%)
     snap-to-integer-coords;
@@ -14,6 +25,43 @@
 
 @page:first {
   margin-top: 10cm;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 2cm;
+}
+
+@page {
+  @bottom-left {
+    margin: 10pt 0 30pt 0;
+    border-top: 0.25pt solid #666;
+    content: 'KubeSphere';
+    font-size: 9pt;
+    color: #333;
+    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
+      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+      sans-serif;
+  }
+  @bottom-right {
+    margin: 10pt 0 30pt 0;
+    border-top: 0.25pt solid #666;
+    content: counter(page) ' /  ' counter(pages);
+    font-size: 9pt;
+    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
+      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+      sans-serif;
+  }
+  @bottom-center {
+    margin: 10pt 0 30pt 0;
+    border-top: 0.25pt solid #666;
+    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
+      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+      sans-serif;
+  }
 }
 
 h1 {

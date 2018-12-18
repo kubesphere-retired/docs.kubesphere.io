@@ -1,9 +1,8 @@
-
 language: node_js
 sudo: false
 dist: trusty
 node_js:
-  - "9"
+  - '9'
 
 services:
   - docker
@@ -11,7 +10,7 @@ services:
 cache:
   yarn: true
   directories:
-    - "node_modules"
+    - 'node_modules'
 
 install:
   - yarn
@@ -22,13 +21,13 @@ script:
   - yarn build
   - yarn serve
   - sleep 5
-  - prince --javascript --page-margin 0 http://localhost:9000/advanced-v1.0.0/zh-CN/all/ -o public/KubeSphere-advanced-v1.0.0.pdf
+  - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/advanced-v1.0.0/zh-CN/all/ -o public/KubeSphere-advanced-v1.0.0.pdf
 
 before_deploy:
   - docker build -t kubesphere/docs.kubesphere.io .
 
 deploy:
   provider: script
-  script: bash docker_push 
+  script: bash docker_push
   on:
     branch: master

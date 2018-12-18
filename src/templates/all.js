@@ -1,13 +1,10 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import cheerio from 'cheerio'
 
 import './markdown.css'
 import './prince.css'
 import './b16-tomorrow-dark.css'
-
-let id = 1
 
 export default class MarkdownTemplate extends React.Component {
   renderEntry(entry) {
@@ -79,13 +76,6 @@ export default class MarkdownTemplate extends React.Component {
     )
     return (
       <div className="markdown-all">
-        <Helmet>
-          <script type="text/javascript">
-            {`window.onload = function() {
-                document.body.style.backgroundColor = "white"
-              }`}
-          </script>
-        </Helmet>
         <div className="first-page">KubeSphere 文档 {version.label}</div>
         {tableOfContents.edges[0].node.chapters.map(chapter =>
           this.renderChapter(chapter)
@@ -97,7 +87,7 @@ export default class MarkdownTemplate extends React.Component {
 
 const MarkdownBody = styled.div`
   margin: 0 auto;
-  padding: 30px;
+  padding: 12px 0;
 `
 
 /* eslint no-undef: "off" */
