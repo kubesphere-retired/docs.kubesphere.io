@@ -3,6 +3,7 @@
   "description": "KubeSphere Documents",
   "version": "1.0.0",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "classnames": "^2.2.6",
     "es6-shim": "^0.35.3",
     "gatsby": "^1.9.247",
@@ -46,6 +47,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "gatsby build",
+    "serve": "gatsby serve &",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.?(js|css)'",
     "test": "jest"

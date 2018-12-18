@@ -1,0 +1,122 @@
+body {
+  background-color: #fff;
+}
+
+.md-body {
+  font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
+    PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+    sans-serif;
+}
+
+.md-body img {
+  width: auto;
+  max-height: 900px;
+
+  prince-image-magic: recompress-jpeg(50%) convert-to-jpeg(50%)
+    snap-to-integer-coords;
+}
+
+.first-page {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+@page:first {
+  margin-top: 10cm;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 2cm;
+}
+
+@page {
+  @bottom-left {
+    margin: 10pt 0 30pt 0;
+    border-top: 0.25pt solid #666;
+    content: 'KubeSphere';
+    font-size: 9pt;
+    color: #333;
+    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
+      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+      sans-serif;
+  }
+  @bottom-right {
+    margin: 10pt 0 30pt 0;
+    border-top: 0.25pt solid #666;
+    content: counter(page) ' /  ' counter(pages);
+    font-size: 9pt;
+    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
+      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+      sans-serif;
+  }
+  @bottom-center {
+    margin: 10pt 0 30pt 0;
+    border-top: 0.25pt solid #666;
+    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
+      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
+      sans-serif;
+  }
+}
+
+h1 {
+  prince-bookmark-level: none;
+}
+h2 {
+  prince-bookmark-level: none;
+}
+h3 {
+  prince-bookmark-level: none;
+}
+h4 {
+  prince-bookmark-level: none;
+}
+h5 {
+  prince-bookmark-level: none;
+}
+
+.h1 {
+  prince-bookmark-level: 1;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.h2 {
+  prince-bookmark-level: 2;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.md-body h1 {
+  font-size: 1.6rem;
+  break-before: page;
+  prince-bookmark-level: 3;
+}
+
+.md-body h2 {
+  font-size: 1.4rem;
+  prince-bookmark-level: 4;
+}
+
+.md-body h3 {
+  font-size: 1.2rem;
+}
+
+.md-body h4 {
+  font-size: 1.1rem;
+}
+
+.md-body h5 {
+  font-size: 1rem;
+}
+
+.md-body h6 {
+  font-size: 0.875rem;
+}

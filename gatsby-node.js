@@ -35,8 +35,14 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
       }
     `).then(({ data: { pages: { edges } } }) => {
+      const versions = []
+
       edges.forEach(({ node }) => {
         const { version, language, slug } = node.fields
+
+        if (!versions.includes(`${version}---${language}`)) {
+          versions.push(`${version}---${language}`)
+        }
 
         createPage({
           path: slug,
@@ -45,6 +51,19 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             slug: slug,
             version: version,
             lang: language,
+          },
+        })
+      })
+
+      versions.forEach(version => {
+        const [ver, lang] = version.split('---')
+
+        createPage({
+          path: `/${ver}/${lang}/all`,
+          component: path.resolve(`./src/templates/all.js`),
+          context: {
+            version: ver,
+            lang,
           },
         })
       })
