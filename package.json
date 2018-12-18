@@ -47,7 +47,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "gatsby build",
-    "serve": "gatsby serve",
+    "serve": "gatsby serve &",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.?(js|css)'",
     "test": "jest"
