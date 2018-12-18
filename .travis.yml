@@ -15,16 +15,19 @@ cache:
 
 install:
   - yarn
+  - bash ./princexml/install.sh
 
 script:
   - yarn test
   - yarn build
+  - yarn serve
+  - prince --javascript --page-margin 0 http://localhost:9000/advanced-v1.0.0/zh-CN/all/ -o public/KubeSphere-advanced-v1.0.0.pdf
 
 before_deploy:
   - docker build -t kubesphere/docs.kubesphere.io .
 
 deploy:
   provider: script
-  script: bash docker_push
+  script: bash docker_push 
   on:
     branch: master

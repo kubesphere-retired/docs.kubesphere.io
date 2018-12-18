@@ -1,5 +1,7 @@
 .md-body {
-  font-family: Proxima Nova, PingFangSC, Arial, sans-serif;
+  font-family: Proxima Nova, 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue',
+    Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
+    'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
   font-size: 0.875rem;
   line-height: 2;
   word-wrap: break-word;
@@ -477,5 +479,5 @@
 }
 
 .viewer-backdrop {
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
 }

@@ -76,10 +76,6 @@ export default class MarkdownTemplate extends React.Component {
     return ret
   }
 
-  get isFullscreen() {
-    return this.props.location.search.indexOf('fullscreen') !== -1
-  }
-
   getPrevAndNext = () => {
     if (this.tocRef) {
       const linkDoms = this.tocRef.querySelectorAll('a[href]')
@@ -182,25 +178,6 @@ export default class MarkdownTemplate extends React.Component {
     const post = postNode.frontmatter
     if (!post.id) {
       post.id = slug
-    }
-
-    if (this.isFullscreen) {
-      return (
-        <MarkdownBody
-          className="md-body"
-          innerRef={ref => {
-            this.markdownRef = ref
-          }}
-        >
-          <MarkdownTitle>{post.title}</MarkdownTitle>
-          <div
-            ref={ref => {
-              this.markdownRef = ref
-            }}
-            dangerouslySetInnerHTML={{ __html: postNode.html }}
-          />
-        </MarkdownBody>
-      )
     }
 
     const {
