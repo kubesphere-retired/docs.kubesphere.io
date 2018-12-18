@@ -1,12 +1,17 @@
+@font-face {
+  font-family: PingFang;
+  src: url('./PingFang-SC-Bold.ttf') format('truetype');
+}
+
+html,
 body {
+  font-family: PingFang, prince-no-fallback;
   background-color: #fff;
 }
 
-.md-body {
-  font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
-    PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
+.md-body,
+.md-body pre > code {
+  font-family: PingFang, prince-no-fallback;
 }
 
 .md-body img {
@@ -39,28 +44,19 @@ body {
     content: 'KubeSphere';
     font-size: 9pt;
     color: #333;
-    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
-      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
-      sans-serif;
+    font-family: PingFang, prince-no-fallback;
   }
   @bottom-right {
     margin: 10pt 0 30pt 0;
     border-top: 0.25pt solid #666;
     content: counter(page) ' /  ' counter(pages);
     font-size: 9pt;
-    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
-      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
-      sans-serif;
+    font-family: PingFang, prince-no-fallback;
   }
   @bottom-center {
     margin: 10pt 0 30pt 0;
     border-top: 0.25pt solid #666;
-    font-family: Proxima Nova, SF Pro SC, SF Pro Display, SF Pro Icons,
-      PingFang SC, BlinkMacSystemFont, -apple-system, Segoe UI, Microsoft Yahei,
-      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Helvetica, Arial,
-      sans-serif;
+    font-family: PingFang, prince-no-fallback;
   }
 }
 
@@ -119,4 +115,11 @@ h5 {
 
 .md-body h6 {
   font-size: 0.875rem;
+}
+
+pre[class*='language-'] {
+  font-family: Consolas, Menlo, Monaco, 'Andale Mono WT', 'Andale Mono',
+    'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L',
+    'Courier New', Courier, monospace, PingFang;
 }
