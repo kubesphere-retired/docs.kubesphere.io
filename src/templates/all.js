@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Helmet from 'react-helmet'
 import cheerio from 'cheerio'
 
 import './markdown.css'
@@ -40,7 +41,7 @@ export default class MarkdownTemplate extends React.Component {
     if (chapter.chapters) {
       return (
         <div key={chapter.title}>
-          <div className="h1" id={chapter.title}>
+          <div className={`h${level}`} id={chapter.title}>
             {chapter.title}
           </div>
           {chapter.chapters.map(_chapter =>
@@ -53,7 +54,7 @@ export default class MarkdownTemplate extends React.Component {
     if (chapter.entries) {
       return (
         <div key={chapter.title}>
-          <div className="h2" id={chapter.title}>
+          <div className={`h${level}`} id={chapter.title}>
             {chapter.title}
           </div>
           {chapter.entries.map(entry => this.renderEntry(entry.entry))}
@@ -63,6 +64,11 @@ export default class MarkdownTemplate extends React.Component {
 
     return (
       <div key={chapter.title}>
+        {level === 1 && (
+          <div className="h1" id={chapter.title}>
+            {chapter.title}
+          </div>
+        )}
         {chapter.entry && this.renderEntry(chapter.entry)}
       </div>
     )
@@ -76,6 +82,16 @@ export default class MarkdownTemplate extends React.Component {
     )
     return (
       <div className="markdown-all">
+        <Helmet>
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href="/PingFangSC/stylesheet.css"
+          />
+          <script>{`
+            document.body.style.backgroundColor = 'white'
+          `}</script>
+        </Helmet>
         <div className="first-page">KubeSphere 文档 {version.label}</div>
         {tableOfContents.edges[0].node.chapters.map(chapter =>
           this.renderChapter(chapter)
