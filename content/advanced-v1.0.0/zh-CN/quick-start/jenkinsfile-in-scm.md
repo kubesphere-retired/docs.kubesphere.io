@@ -32,6 +32,37 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/jenkinsfile-in-scm.mp4">
 </video>
 
+## 创建凭证
+
+进入已创建的 DevOps 工程，开始创建凭证。本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (KubeConfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
+
+### 第一步：创建 DockerHub 凭证
+
+1、进入已创建的 DevOps 工程，在左侧的工程管理菜单下。点击 `凭证管理`，进入凭证管理界面，界面会展示当前工程所需的所有可用凭证。
+
+![credential_page](/devops_credentials.png)
+
+2、点击创建按钮，创建一个用于 DockerHub 登录的凭证。
+
+- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，此处命名为 **dockerhub-id**
+- 类型：选择 **账户凭证**
+- 用户名/密码：输入您个人的 DockerHub 用户名和密码
+- 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证
+
+![Dockerhub 凭证](/dockerhub-credential.png)
+
+### 第二步：创建 GitHub 凭证
+
+同上，创建一个用于 GitHub 的凭证，凭证 ID 命名为 **github-id**，类型选择 **账户凭证**，输入您个人的 GitHub 用户名和密码，备注描述信息。
+
+### 第三步：创建 kubeconfig 凭证
+
+创建一个类型为 **kubeconfig** 的凭证，凭证 ID 命名为 **demo-kubeconfig**，用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
+
+至此，3 个凭证已经创建完成，下一步需要在示例仓库中修改对应的三个凭证 ID 为用户自己创建的凭证 ID。
+
+![凭证列表](/credential-list-demo.png)
+
 ## 修改 Jenkinsfile
 
 ### 第一步：Fork 项目
@@ -49,11 +80,11 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**，在
 
 |修改项|值|含义|
 |---|---|---|
-|DOCKERHUB\_CREDENTIAL\_ID|dockerhub-id|上一步创建的 DockerHub 凭证 ID|
-|GITHUB\_CREDENTIAL\_ID|github-id|上一步创建的 GitHub 凭证 ID|
+|DOCKERHUB\_CREDENTIAL\_ID|dockerhub-id|填写创建凭证步骤中的 DockerHub 凭证 ID，用于登录您的 DockerHub|
+|GITHUB\_CREDENTIAL\_ID|github-id|填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库|
 |KUBECONFIG\_CREDENTIAL\_ID|demo-kubeconfig| KubeConfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群 |
-|DOCKERHUB_NAMESPACE|your-dockerhub-account| 替换为您的 DockerHub 账号名 |
-|GITHUB_ACCOUNT|your-github-account | 替换为您的 GitHub 账号名 |
+|DOCKERHUB_NAMESPACE|your-dockerhub-account| 替换为您的 DockerHub 账号名 <br> (它也可以是账户下的 Organization 名称)|
+|GITHUB_ACCOUNT|your-github-account | 替换为您的 GitHub 账号名 <br> (它也可以是账户下的 Organization 名称) |
 |APP_NAME|devops-docs-sample |应用名称|
 
 ```bash
@@ -94,37 +125,6 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 同上，参考上一步创建一个名称为 `kubesphere-docs-prod` 的项目，作为生产环境。
 
 > 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-docs-dev` 和 `kubesphere-docs-prod` 项目中将看到流水线创建的部署 (Deployment)和服务 (Service)。
-
-## 创建凭证
-
-进入已创建的 DevOps 工程，开始创建凭证。本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (KubeConfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
-
-### 第一步：创建 DockerHub 凭证
-
-1、在左侧的工程管理菜单下。点击 `凭证管理`，进入凭证管理界面，界面会展示当前工程所需的所有可用凭证。
-
-![credential_page](/devops_credentials.png)
-
-2、点击创建按钮，创建一个用于 DockerHub 登录的凭证。
-
-- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，此处命名为 **dockerhub-id**
-- 类型：选择 **账户凭证**
-- 用户名/密码：输入您个人的 DockerHub 用户名和密码
-- 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证
-
-![Dockerhub 凭证](/dockerhub-credential.png)
-
-### 第二步：创建 GitHub 凭证
-
-同上，创建一个用于 GitHub 的凭证，凭证 ID 命名为 **github-id**，类型选择 **账户凭证**，输入您个人的 GitHub 用户名和密码，备注描述信息。
-
-### 第三步：创建 kubeconfig 凭证
-
-创建一个类型为 **kubeconfig** 的凭证，凭证 ID 命名为 **demo-kubeconfig**，用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
-
-至此，3 个凭证已经创建完成，下一步需要在示例仓库中修改对应的三个凭证 ID 为用户自己创建的凭证 ID。
-
-![凭证列表](/credential-list-demo.png)
 
 ## 创建流水线
 

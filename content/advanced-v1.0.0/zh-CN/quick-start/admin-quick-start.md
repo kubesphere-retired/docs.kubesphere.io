@@ -4,7 +4,7 @@ title: "管理员快速入门"
 
 ## 目的
 
-本文档面向初次使用 KubeSphere 的集群管理员用户，引导新手用户创建企业空间、创建新的账户角色，然后通过新用户来创建项目和 DevOps 工程，帮助用户快速上手 KubeSphere。
+本文档面向初次使用 KubeSphere 的集群管理员用户，引导新手用户创建企业空间、创建新的角色和账户，然后通过新用户来创建项目和 DevOps 工程，帮助用户快速上手 KubeSphere。
 
 ## 前提条件
 
@@ -12,7 +12,7 @@ title: "管理员快速入门"
 
 ## 预估时间
 
-约 5 分钟。
+约 10 分钟。
 
 ## 操作示例
 
@@ -22,25 +22,59 @@ title: "管理员快速入门"
 
 ![资源概览](/admin-overview.png)
 
-### 第一步：创建账号
+### 集群用户管理
 
-平台中的 cluster-admin 角色可以为其他用户创建账号并分配平台角色，平台内置了 cluster-admin、cluster-regular 和 workspaces-manager 三个常用的角色，同时支持自定义新的角色。本示例以创建一个用户名为 `demo` 的 `cluster-regular` 角色为例，该角色是集群中的普通用户，在被邀请加入企业空间之前没有任何资源操作权限。后续示例的操作都将以 `demo` 用户登录进行操作。
+#### 第一步：创建角色和账号
 
-1.1. 点击控制台左上角 **平台管理 → 账号管理**，可以看到当前集群中所有用户的列表，支持通过用户名进行搜索，点击 **创建** 按钮。
+平台中的 cluster-admin 角色可以为其他用户创建账号并分配平台角色，平台内置了 cluster-admin、cluster-regular 和 workspaces-manager 三个常用的角色，同时支持自定义新的角色。
+
+本示例首先新建一个角色 (user-manager) 和一个账号，并给这个账号授予 user-manager 角色。然后用 user-manager 来创建两个角色为 workspace-manager 和 cluster-regular 的账号，workspace-manager 将创建一个企业空间并指定 cluster-regular 的用户为企业空间管理员。
+
+|账号名|集群角色|职责|
+|---|---|---|
+|user-manager|user-manager|管理集群的账户和角色|
+
+1.1. 点击控制台左上角 **平台管理 → 平台角色**，可以看到当前的角色列表，点击 **创建**，创建一个角色用于管理所有账户和角色。
+
+![创建角色](/admin-create-role.png)
+
+1.2. 填写角色的基本信息和权限设置。
+
+- 名称：起一个简洁明了的名称，便于用户浏览和搜索，如 `user-manager`
+- 描述信息：简单介绍该角色的职责，如 `管理账户和角色`
+
+![基本信息](/role-basic.png)
+
+1.3. 权限设置中，勾选账户管理和角色管理的所有权限，点击 **创建**。
+
+![权限列表](/authority-list.png)
+
+1.4. 点击控制台左上角 **平台管理 → 账号管理**，可以看到当前集群中所有用户的列表，点击 **创建** 按钮。
 
 ![创建账号](/account-list.png)
 
-1.2. 填写新用户的基本信息，角色选择 `cluster-regular`，其它信息可自定义。
+1.5. 填写新用户的基本信息，如用户名设置为 `user-manager`，角色选择 `user-manager`，其它信息可自定义，点击 **创建**。
 
 > 说明：上述步骤仅简单地说明创建流程，关于账号管理与角色权限管理的详细说明，请参考 [角色权限概览](../../multi-tenant/role-overview) 和 [账号管理](../../platform-management/account-management)。
 
 ![添加用户](/demo-account.png)
 
+1.6. 切换成上一步创建的 `user-manager` 账号登录 KubeSphere，在 **账号管理** 下，新建两个角色为 workspace-manager 和 cluster-regular 的账号，步骤同上，参考如下信息创建。
+
+|账号名|集群角色|企业空间角色|职责|
+|---|---|---|---|
+|ws-manager|workspaces-manager|默认 workspace-admin|创建和管理企业空间|
+|ws-admin|cluster-regular|workspace-admin|管理企业空间下所有的资源|
+
+1.7. 查看新建的两个账号信息：
+
+![查看账号列表](/user-manager-list.png)
+
 ### 第二步：创建企业空间
 
-企业空间 (workspace) 是 KubeSphere 实现多租户模式的基础，是用户管理项目、DevOps 工程和企业成员的基本单位。因此，账号创建成功后，下一步需要创建企业空间。
+企业空间 (workspace) 是 KubeSphere 实现多租户模式的基础，是用户管理项目、DevOps 工程和企业成员的基本单位。因此，上一步的两个账号创建成功后，则需要 workspaces-manager 创建企业空间并指定 ws-admin 为企业空间的管理员。
 
-2.1. 点击控制台左上角 **平台管理 → 企业空间**，可以看到当前集群中所有企业空间的列表，新安装的环境只有 **system-workspace** 一个系统默认的企业空间，用于运行 KubeSphere 平台相关组件和服务，禁止删除该企业空间。在右侧点击 **创建** 按钮，企业空间的创建者同时默认为它的管理员 (workspace-admin)，拥有企业空间的最高管理权限。
+2.1. 切换为 ws-manager 登录 KubeSphere，点击控制台左上角 **平台管理 → 企业空间**，可以看到当前集群中所有企业空间的列表，新安装的环境只有 **system-workspace** 一个系统默认的企业空间，用于运行 KubeSphere 平台相关组件和服务，禁止删除该企业空间。在右侧点击 **创建** 按钮，企业空间的创建者同时默认为它的管理员 (workspace-admin)，拥有企业空间的最高管理权限。
 
 ![企业空间列表](/how-to-create-workspace.png)
 
