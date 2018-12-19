@@ -1,20 +1,20 @@
-@font-face {
-  font-family: PingFang;
-  src: url('./PingFang-SC-Bold.ttf') format('truetype');
-}
-
-html,
-body {
-  font-family: PingFang, prince-no-fallback;
+.markdown-all {
+  font-family: PingFang SC;
   background-color: #fff;
 }
 
-.md-body,
-.md-body pre > code {
-  font-family: PingFang, prince-no-fallback;
+.markdown-all .md-body,
+.markdown-all code, 
+.markdown-all tt,
+.markdown-all .md-body pre > code {
+  font-family: PingFang SC;
 }
 
-.md-body img {
+b, dt, strong, th{
+  font-weight: 600;
+}
+
+.markdown-all .md-body img {
   width: auto;
   max-height: 900px;
 
@@ -22,7 +22,7 @@ body {
     snap-to-integer-coords;
 }
 
-.first-page {
+.markdown-all .first-page {
   text-align: center;
   font-size: 2em;
   font-weight: 600;
@@ -44,19 +44,19 @@ body {
     content: 'KubeSphere';
     font-size: 9pt;
     color: #333;
-    font-family: PingFang, prince-no-fallback;
+    font-family: PingFang SC;
   }
   @bottom-right {
     margin: 10pt 0 30pt 0;
     border-top: 0.25pt solid #666;
     content: counter(page) ' /  ' counter(pages);
     font-size: 9pt;
-    font-family: PingFang, prince-no-fallback;
+    font-family: PingFang SC;
   }
   @bottom-center {
     margin: 10pt 0 30pt 0;
     border-top: 0.25pt solid #666;
-    font-family: PingFang, prince-no-fallback;
+    font-family: PingFang SC;
   }
 }
 
@@ -76,50 +76,50 @@ h5 {
   prince-bookmark-level: none;
 }
 
-.h1 {
+.markdown-all .h1 {
   prince-bookmark-level: 1;
   width: 0;
   height: 0;
   overflow: hidden;
 }
 
-.h2 {
+.markdown-all .h2 {
   prince-bookmark-level: 2;
   width: 0;
   height: 0;
   overflow: hidden;
 }
 
-.md-body h1 {
+.markdown-all .md-body h1 {
   font-size: 1.6rem;
   break-before: page;
   prince-bookmark-level: 3;
 }
 
-.md-body h2 {
+.markdown-all .md-body h2 {
   font-size: 1.4rem;
   prince-bookmark-level: 4;
 }
 
-.md-body h3 {
+.markdown-all .md-body h3 {
   font-size: 1.2rem;
 }
 
-.md-body h4 {
+.markdown-all .md-body h4 {
   font-size: 1.1rem;
 }
 
-.md-body h5 {
+.markdown-all .md-body h5 {
   font-size: 1rem;
 }
 
-.md-body h6 {
+.markdown-all .md-body h6 {
   font-size: 0.875rem;
 }
 
-pre[class*='language-'] {
+.markdown-all pre[class*='language-'] {
   font-family: Consolas, Menlo, Monaco, 'Andale Mono WT', 'Andale Mono',
     'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono',
     'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L',
-    'Courier New', Courier, monospace, PingFang;
+    'Courier New', Courier, monospace, 'PingFang SC';
 }
