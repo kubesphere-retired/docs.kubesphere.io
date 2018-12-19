@@ -11,6 +11,7 @@ import SearchResult from '../components/SearchResult'
 import { ReactComponent as RoadMapIcon } from '../assets/icon-roadmap.svg'
 import { ReactComponent as ChatIcon } from '../assets/icon-chat.svg'
 import { ReactComponent as BugIcon } from '../assets/icon-bug.svg'
+import { ReactComponent as DownloadIcon } from '../assets/download.svg'
 
 export default class IndexPage extends React.Component {
   state = {
@@ -107,24 +108,37 @@ const Header = ({ query, onSearch, onQueryChange }) => (
   </HeaderWrapper>
 )
 
-const Versions = ({ current, versions, onChange }) => (
-  <VersionsWrapper>
-    <Wrapper>
-      <div className="version-text">
-        <div>当前文档适用于 KubeSphere {current.label}</div>
-        <p>
-          这里将提供适用于当前版本的帮助文档，如果需要其它版本文档请选择右侧版本
-        </p>
-      </div>
-      <Select
-        className="version-select"
-        defaultValue={current}
-        options={versions}
-        onChange={onChange}
-      />
-    </Wrapper>
-  </VersionsWrapper>
-)
+const Versions = ({ current, versions, onChange }) => {
+  const handleDownload = current => {
+    const a = document.createElement('a')
+    a.target = '_blank'
+    a.href = `${window.location.origin}/KubeSphere-${current.value}.pdf`
+    a.click()
+  }
+
+  return (
+    <VersionsWrapper>
+      <Wrapper>
+        <div className="version-text">
+          <div>当前文档适用于 KubeSphere {current.label}</div>
+          <p>
+            这里将提供适用于当前版本的帮助文档，如果需要其它版本文档请选择右侧版本
+          </p>
+        </div>
+        <div className="version-select">
+          <Select
+            defaultValue={current}
+            options={versions}
+            onChange={onChange}
+          />
+          <Button onClick={() => handleDownload(current)}>
+            <DownloadIcon />
+          </Button>
+        </div>
+      </Wrapper>
+    </VersionsWrapper>
+  )
+}
 
 const getTitleLink = chapter => {
   const entry =
@@ -197,10 +211,9 @@ const Footer = () => {
               <RoadMapIcon />
               获取 KubeSphere
             </h3>
-            <p>推荐您免费下载和使用最新的{' '}
-            <a href="https://kubesphere.io/download">
-            KubeSphere 高级版
-            </a>{' '}
+            <p>
+              推荐您免费下载和使用最新的{' '}
+              <a href="https://kubesphere.io/download">KubeSphere 高级版</a>{' '}
             </p>
           </li>
           <li>
@@ -254,6 +267,11 @@ const HeaderWrapper = styled.div`
   padding-bottom: 60px;
   text-align: center;
 
+  @media only screen and (max-width: 768px) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
   h1 {
     margin-bottom: 8px;
     font-size: 32px;
@@ -278,6 +296,10 @@ const HeaderWrapper = styled.div`
     border-radius: 22px;
     transition: all 0.2s ease-in-out;
 
+    @media only screen and (max-width: 768px) {
+      width: calc(100vw - 40px);
+    }
+
     &:hover {
       background-color: #f4f4f4;
     }
@@ -298,7 +320,16 @@ const VersionsWrapper = styled.div`
   box-shadow: 0 1px 0 0 #d5dee7, 0 -1px 0 0 #d5dee7;
   background-color: #ffffff;
 
+  @media only screen and (max-width: 768px) {
+    padding: 12px 0;
+    height: 62px;
+  }
+
   .version-text {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+
     div {
       font-size: 16px;
       font-weight: 600;
@@ -320,6 +351,12 @@ const VersionsWrapper = styled.div`
     top: 50%;
     right: 0;
     transform: translateY(-50%);
+
+    @media only screen and (max-width: 768px) {
+      top: auto;
+      right: 24px;
+      transform: none;
+    }
   }
 `
 
@@ -328,6 +365,10 @@ const DocumentWrapper = styled.div`
   border: solid 0 #e4ebf1;
   border-top-width: 1px;
   background-color: #ffffff;
+
+  @media only screen and (max-width: 768px) {
+    padding: 40px 24px;
+  }
 
   .chapter-list {
     list-style: none;
@@ -379,9 +420,13 @@ const DocumentWrapper = styled.div`
 
     & > li {
       display: inline-block;
-      padding: 0 20px;
-      margin: 4px 0;
+      padding-right: 20px;
+      margin: 4px 20px 4px 0;
       border-right: solid 1px #d5dee7;
+
+      @media only screen and (max-width: 768px) {
+        margin: 12px 20px 12px 0;
+      }
 
       &:first-of-type {
         padding-left: 0;
@@ -410,10 +455,19 @@ const FooterWrapper = styled.div`
     list-style: none;
     padding: 80px 0;
 
+    @media only screen and (max-width: 768px) {
+      padding: 40px 24px;
+    }
+
     & > li {
       display: inline-block;
       width: calc(33% - 66px);
       vertical-align: top;
+
+      @media only screen and (max-width: 768px) {
+        display: block;
+        width: 100%;
+      }
 
       h3 {
         font-size: 16px;
@@ -446,6 +500,10 @@ const FooterWrapper = styled.div`
 
       & + li {
         margin-left: 100px;
+
+        @media only screen and (max-width: 768px) {
+          margin-left: 0;
+        }
       }
     }
   }
@@ -456,6 +514,34 @@ const FooterWrapper = styled.div`
     font-weight: 500;
     color: #303e5a;
     margin-bottom: 33px;
+  }
+`
+
+const Button = styled.a`
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 38px;
+  height: 38px;
+  margin-left: 12px;
+  border-radius: 4px;
+  background-color: #1d2b3a;
+  padding: 8px;
+  cursor: pointer;
+
+  & > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+  }
+
+  &:active {
+    & > svg {
+      opacity: 0.5;
+    }
   }
 `
 
