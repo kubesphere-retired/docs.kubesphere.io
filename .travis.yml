@@ -21,6 +21,7 @@ script:
   - yarn build
   - yarn serve
   - sleep 5
+  - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/express/zh-CN/all/ -o public/KubeSphere-express.pdf
   - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/advanced-v1.0.0/zh-CN/all/ -o public/KubeSphere-advanced-v1.0.0.pdf
 
 before_deploy:

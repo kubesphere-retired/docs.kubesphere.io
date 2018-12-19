@@ -20,6 +20,7 @@ export default class Select extends React.Component {
 
 const Wrapper = styled.div`
   display: inline-block;
+  vertical-align: middle;
 
   .react-select__control {
     border: none;

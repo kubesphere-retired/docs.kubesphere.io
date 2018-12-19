@@ -664,6 +664,11 @@ pre tt:after {
   border-radius: 8px;
   vertical-align: middle;
   outline: none;
+
+  @media only screen and (max-width: 768px) {
+    width: calc(100vw - 24px) !important;
+    border-radius: 0;
+  }
 }
 
 mark {
