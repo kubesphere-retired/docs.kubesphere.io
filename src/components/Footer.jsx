@@ -60,6 +60,7 @@ const FooterText = styled.p`
   font-size: 14px;
   color: #5d6b79;
   text-align: center;
+  font-family: Proxima Nova;
 `
 
 export default Footer
