@@ -4,7 +4,7 @@ title: "管理员快速入门"
 
 ## 目的
 
-本文档面向初次使用 KubeSphere 的集群管理员用户，引导新手用户创建企业空间、创建新的角色和账户，然后通过新用户来创建项目和 DevOps 工程，帮助用户快速上手 KubeSphere。
+本文档面向初次使用 KubeSphere 的集群管理员用户，引导新手用户创建企业空间、创建新的角色和账户，然后邀请新用户进入企业空间后，创建项目和 DevOps 工程，帮助用户熟悉多租户下的用户和角色管理，快速上手 KubeSphere。
 
 ## 前提条件
 
@@ -12,15 +12,9 @@ title: "管理员快速入门"
 
 ## 预估时间
 
-约 10 分钟。
+约 15 分钟。
 
 ## 操作示例
-
-### 查看概览页
-
-登录 KubeSphere 后，集群管理员将看到整个集群的资源运行概览和监控，以及集群的资源使用情况和组件状态。这对了解集群的资源消耗和使用情况是非常有帮助的。比如节点和企业空间的资源用量排行，管理员通过按指标进行排序即可快速发现潜在问题或定位某台节点资源不足的情况。
-
-![资源概览](/admin-overview.png)
 
 ### 集群用户管理
 
@@ -28,7 +22,7 @@ title: "管理员快速入门"
 
 平台中的 cluster-admin 角色可以为其他用户创建账号并分配平台角色，平台内置了 cluster-admin、cluster-regular 和 workspaces-manager 三个常用的角色，同时支持自定义新的角色。
 
-本示例首先新建一个角色 (user-manager) 和一个账号，并给这个账号授予 user-manager 角色。然后用 user-manager 来创建两个角色为 workspace-manager 和 cluster-regular 的账号，workspace-manager 将创建一个企业空间并指定 cluster-regular 的用户为企业空间管理员。
+本示例首先新建一个角色 (user-manager)，为该角色授予账号管理和角色管理的权限，然后新建一个账号并给这个账号授予 user-manager 角色。
 
 |账号名|集群角色|职责|
 |---|---|---|
@@ -59,50 +53,62 @@ title: "管理员快速入门"
 
 ![添加用户](/demo-account.png)
 
-1.6. 切换成上一步创建的 `user-manager` 账号登录 KubeSphere，在 **账号管理** 下，新建两个角色为 workspace-manager 和 cluster-regular 的账号，步骤同上，参考如下信息创建。
+1.6. 然后用 user-manager 来创建下表的一个 workspace-manager 和三个 cluster-regular 角色的账号，workspace-manager 将用于创建一个企业空间，并指定其中一个用户名为 `ws-admin` 作为企业空间管理员。切换成上一步创建的 `user-manager` 账号登录 KubeSphere，在 **账号管理** 下，新建四个账号，创建步骤同上，参考如下信息创建。
 
 |账号名|集群角色|企业空间角色|职责|
 |---|---|---|---|
-|ws-manager|workspaces-manager|默认 workspace-admin|创建和管理企业空间|
-|ws-admin|cluster-regular|workspace-admin|管理企业空间下所有的资源|
+|ws-manager|workspaces-manager|workspace-admin (默认)|创建和管理企业空间|
+|ws-admin|cluster-regular|workspace-admin|管理企业空间下所有的资源<br> (本示例用于邀请新成员加入企业空间)|
+|project-admin|cluster-regular|workspace-regular|创建和管理项目、DevOps 工程，邀请新成员加入|
+|project-regular|cluster-regular|workspace-regular|将被 project-admin 邀请加入项目和 DevOps 工程，<br>用于创建项目和工程下的工作负载、Pipeline 等资源|
 
-1.7. 查看新建的两个账号信息：
+1.7. 查看新建的四个账号信息。
 
 ![查看账号列表](/user-manager-list.png)
 
-### 第二步：创建企业空间
+### 企业空间用户管理
 
-企业空间 (workspace) 是 KubeSphere 实现多租户模式的基础，是用户管理项目、DevOps 工程和企业成员的基本单位。因此，上一步的两个账号创建成功后，则需要 workspaces-manager 创建企业空间并指定 ws-admin 为企业空间的管理员。
+#### 第二步：创建企业空间
 
-2.1. 切换为 ws-manager 登录 KubeSphere，点击控制台左上角 **平台管理 → 企业空间**，可以看到当前集群中所有企业空间的列表，新安装的环境只有 **system-workspace** 一个系统默认的企业空间，用于运行 KubeSphere 平台相关组件和服务，禁止删除该企业空间。在右侧点击 **创建** 按钮，企业空间的创建者同时默认为它的管理员 (workspace-admin)，拥有企业空间的最高管理权限。
+企业空间 (workspace) 是 KubeSphere 实现多租户模式的基础，是用户管理项目、DevOps 工程和企业成员的基本单位。因此，上一步的 ws-admin 账号创建成功后，则需要 ws-manager 创建企业空间并指定 ws-admin 为企业空间的管理员。
+
+2.1. 切换为 `ws-manager` 登录 KubeSphere，ws-manager 有权限查看平台的所有企业空间。新安装的环境只有一个系统默认的企业空间 **system-workspace** ，用于运行 KubeSphere 平台相关组件和服务，禁止删除该企业空间。在企业空间列表点击 **创建**。
 
 ![企业空间列表](/how-to-create-workspace.png)
 
-2.2. 填写企业空间的基本信息。
+2.2. 参考如下提示填写企业空间的基本信息，然后点击 **确定**。企业空间的创建者同时默认为该企业空间的管理员 (workspace-admin)，拥有企业空间的最高管理权限。
 
-- 企业空间名称：请尽量保持企业名称简短，便于用户浏览和搜索
-- 企业空间管理员：可从当前的集群成员中指定，这里指定上一步创建的 `demo` 用户为管理员，相当于邀请 demo 用户进入该企业空间
+- 企业空间名称：请尽量保持企业名称简短，便于用户浏览和搜索，本示例是 `demo-workspace`
+- 企业空间管理员：可从当前的集群成员中指定，这里指定上一步创建的 `ws-admin` 用户为管理员，相当于同时邀请了 `ws-admin` 用户进入该企业空间
 - 描述信息：简单介绍该企业空间
 
 ![填写基本信息](/demo-workspace.png)
 
 > 说明：企业空间管理的详细说明请参考 [企业空间管理](../../platform-management/workspace-management)。
 
-### 第三步：创建项目和 DevOps 工程
+2.3. 企业空间 `demo-workspace` 创建完成后，切换为 `ws-admin` 登录 KubeSphere，如果用户只有一个企业空间，登录进去后会直接进入该企业空间，可看到该企业空间的概览页。`ws-admin` 可以从集群成员中邀请新成员加入当前企业空间，然后创建项目和 DevOps 工程。在左侧菜单栏选择 **企业空间管理 → 成员管理**，点击 **邀请成员**。 
 
-#### 创建项目
+![邀请成员](/workspace-member-list.png)
+
+2.4. 这一步需要邀请在 **步骤 1.6.** 创建的两个用户 `project-admin` 和 `project-regular` 进入企业空间，并且都授予 `workspace-regular` 的角色。
+
+![邀请 project-regular](/invite-operator-user.png)
+
+### 项目和 DevOps 工程用户管理
+
+#### 第三步：创建项目
 
 创建工作负载、服务和 CI/CD 流水线等资源，需要先创建好项目和 DevOps 工程。
 
-3.1. 当创建企业空间后，使用 `demo` 账号登录 KubeSphere，可以看到 cluster-admin 为其创建的企业空间。如果用户只有一个企业空间，登录进去后会直接进入该空间。左侧菜单栏选择 **项目管理**，点击 **创建项目**。
+3.1. 上一步将用户 `project-admin` 邀请进入企业空间后，可切换为 `project-admin` 账号登录 KubeSphere，默认进入 demo-workspace 企业空间下，点击 **创建**，选择 **创建资源型项目**。
 
 ![企业空间列表](/workspace-list-demo.png)
 
 3.2. 填写项目的基本信息和高级设置。
 
 **基本信息**
-- 名称：为项目起一个简洁明了的名称，便于用户浏览和搜索
-- 别名：帮助您更好的区分资源，并支持中文名称
+- 名称：为项目起一个简洁明了的名称，便于用户浏览和搜索，比如 `demo-namespace`
+- 别名：帮助您更好的区分资源，并支持中文名称，比如 `示例项目`
 - 描述信息：简单介绍该项目
 
 ![创建项目](/create-project-basic.png)
@@ -117,22 +123,37 @@ title: "管理员快速入门"
 
 > 说明：项目管理和设置的详细说明，请参考用户指南下的项目设置系列文档。
 
-3.4. 示例项目创建成功，下一步需要创建 DevOps 工程。
+3.4. 示例项目 demo-namespace 创建成功后，点击进入示例项目。在 **步骤 2.4.** 已邀请用户 `project-regular` 加入了当前企业空间 `demo-workspace`，下一步则需要邀请 project-regular 进入该企业空间下的项目 demo-namespace。点击项目列表中的 demo-namespace 进入该项目。
 
-![示例项目](/demo-namespace-list.png)
+![项目列表](/create-demo-namespace.png)
 
-#### 创建 DevOps 工程
+3.5. 在项目的左侧菜单栏选择 **项目设置 → 项目成员**，点击 **邀请成员**。
 
-3.5. 在当前企业空间下，菜单栏选择 **DevOps 工程**，点击 **创建 DevOps 工程**，在弹窗中选择 **创建一个 DevOps 工程**。 
+![邀请成员](/invite-operator-to-ns.png)
+
+3.6. 在弹窗中的 `project-regular` 点击 `"+"`，在项目的内置角色中选择 `operator` 角色。因此，后续在项目中创建和管理资源，都可以由 `project-regular` 用户登录后进行操作。
+
+![邀请 operator](/grant-role-to-operator.png)
+
+#### 第四步：创建 DevOps 工程
+
+4.1. 继续使用 `project-admin` 用户创建 DevOps 工程。点击 **工作台**，在当前企业空间下，点击 **创建**，在弹窗中选择 **创建一个 DevOps 工程**。DevOps 工程的创建者 `project-admin` 将默认为该工程的 Owner，拥有 DevOps 工程的最高权限。
 
 ![创建 DevOps](/docs-demo-devops.png)
 
-3.6. 输入 DevOps 工程的基本信息，点击 **创建**，注意创建一个 DevOps 有一个初始化环境的过程需要几秒钟。
+4.2. 输入 DevOps 工程的名称和描述信息，比如名称为 `demo-devops`。点击 **创建**，注意创建一个 DevOps 有一个初始化环境的过程需要几秒钟。
 
 ![devops_create_project](/devops_create_project-1.png)
 
 > 说明：DevOps 工程管理的详细说明请参考 [管理 DevOps 工程](../../devops/devops-project)。
 
+4.3. 点击 DevOps 工程列表中的 `demo-devops` 进入该工程的详情页。
+
 ![创建成功](/demo-devops-list1.png)
 
-至此，项目和 DevOps 工程都已经创建完毕，当前 demo 用户可以在项目或工程下面再邀请成员并授予角色来参与项目或工程的协作，请参考 [快速入门](../quick-start-guide) 系列文档的 7 个示例，动手实践操作一遍，创建具体的工作负载、服务和 CI / CD 流水线。
+4.4. 同上，这一步需要在 `demo-devops` 工程中邀请用户 `project-regular`，并设置角色为 `maintainer`，用于对工程内的 Pipeline、凭证等创建和配置等操作。菜单栏选择 **工程管理 → 工程成员**，然后点击 **邀请成员**，为用户 `project-regular` 设置角色为 `maintainer`。后续在 DevOps 工程中创建 Pipeline 和凭证等资源，都可以由 `project-regular` 用户登录后进行操作。
+
+![邀请成员进入工程](/invite-member-to-devops.png)
+![设置角色](/devops-member-management.png)
+
+至此，本文档为您演示了如何在多租户的基础上，使用账户管理和角色管理的功能，以示例的方式介绍了常用内置角色的用法，以及创建项目和 DevOps 工程。请参考 [快速入门](../quick-start-guide) 系列文档的 7 个示例，使用 project-regular 用户登录 KubeSphere 动手实践操作一遍，创建具体的工作负载、服务和 CI / CD 流水线。
