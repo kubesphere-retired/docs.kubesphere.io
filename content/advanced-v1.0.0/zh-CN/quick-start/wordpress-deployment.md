@@ -95,7 +95,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 5.2. 展开高级选项，对 **端口** 和 **环境变量** 进行设置，其它项暂不作设置。参考如下填写，完成后点击 **保存**，然后点击 **下一步**：
 
 - CPU 和内存：此处暂不作限定，将使用在创建项目时指定的默认请求值。
-- 端口：名称可自定义，选择 `TCP` 协议，填写 Wordpress 在容器内的端口 `80`。主机端口是容器映射到主机上的端口，此处暂不设置主机端口。
+- 端口：名称可自定义，选择 `TCP` 协议，填写 Wordpress 在容器内的端口 `80`。主机端口是容器映射到主机上的端口，此处无需设置主机端口。
 - 环境变量：这里需要添加两个环境变量
    -  点击 **引用配置中心**，名称填写 `WORDPRESS_DB_PASSWORD`，选择在第一步创建的配置 (ConfigMap) `wordpress-configmap` 和 `WORDPRESS_DB_PASSWORD`。
    -  点击 **添加环境变量**，名称填写 `WORDPRESS_DB_HOST`，值填写 `mysql-service`，对应的是 [示例一 - 部署 MySQL](../mysql-deployment/#第六步：服务配置) 创建 MySQL 服务的名称，否则无法连接 MySQL 数据库，可在服务列表中查看其服务名。
