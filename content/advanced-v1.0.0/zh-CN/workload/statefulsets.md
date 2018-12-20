@@ -61,7 +61,7 @@ title: "有状态副本集"
 - **命令**： 可自定义容器的启动命令，Kubernetes 的容器启动命令可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell)。
 - **参数**： 可自定义容器的启动参数，Kubernetes 的容器启动的参数可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)。
 - **端口**： 即容器端口，用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP，如 MySQL 端口为 TCP 协议的 3306。
-- **目标端口**： 在当前集群下的所有节点上打开一个真实的端口号，映射到容器端口。
+- **主机端口**： 主机端口是容器映射到主机上的端口，一般情况下无需设置主机端口。
 - **环境变量**： 环境变量是指容器运行环境中设定的一个变量，与 Dockerfile 中的 “ENV” 效果相同，为创建的工作负载提供极大的灵活性。
 - **引入配置中心**： ConfigMap 用来保存键值对形式的配置数据，可用于设置环境变量的值，详见 [配置 - Configmap](../../configuration/configmaps)。
 
