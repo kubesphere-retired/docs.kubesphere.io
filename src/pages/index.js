@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
+import 'react-tippy/dist/tippy.css'
+import { Tooltip } from 'react-tippy'
 
 import Logo from '../components/Logo'
 import Select from '../components/Select'
@@ -132,9 +134,17 @@ const Versions = ({ current, versions, onChange }) => {
             options={versions}
             onChange={onChange}
           />
-          <Button onClick={() => handleDownload(current)}>
-            <DownloadIcon />
-          </Button>
+          <Tooltip
+            style={{ marginLeft: 12 }}
+            title={`下载 ${current.label} 离线文档`}
+            position="top"
+            distance={16}
+            arrow
+          >
+            <Button onClick={() => handleDownload(current)}>
+              <DownloadIcon />
+            </Button>
+          </Tooltip>
         </div>
       </Wrapper>
     </VersionsWrapper>
@@ -243,7 +253,7 @@ const Footer = () => {
             </p>
           </li>
         </ul>
-        <p className="icp">© 2018 KubeSphere All rights reserved.</p>
+        <p className="icp">KubeSphere™ 2018 All Rights Reserved.</p>
       </Wrapper>
     </FooterWrapper>
   )
@@ -468,6 +478,7 @@ const FooterWrapper = styled.div`
       @media only screen and (max-width: 768px) {
         display: block;
         width: 100%;
+        margin-bottom: 1.5rem;
       }
 
       h3 {
@@ -511,10 +522,12 @@ const FooterWrapper = styled.div`
 
   .icp {
     text-align: center;
-    font-size: 12px;
-    font-weight: 500;
-    color: #303e5a;
-    margin-bottom: 33px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: Proxima Nova;
+    line-height: 1.43;
+    letter-spacing: 1.1px;
+    color: #242e42;
   }
 `
 
@@ -522,9 +535,8 @@ const Button = styled.a`
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  width: 38px;
-  height: 38px;
-  margin-left: 12px;
+  width: 36px;
+  height: 36px;
   border-radius: 4px;
   background-color: #1d2b3a;
   padding: 8px;
