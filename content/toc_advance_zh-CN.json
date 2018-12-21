@@ -163,6 +163,10 @@
               "entry": "./advanced-v1.0.0/zh-CN/monitoring/intro.md"
             },
             {
+              "title": "应用资源监控",
+              "entry": "./advanced-v1.0.0/zh-CN/monitoring/monitoring-demo.md"
+            },
+            {
               "title": "物理资源监控",
               "entry": "./advanced-v1.0.0/zh-CN/monitoring/physical-resources.md"
             },
