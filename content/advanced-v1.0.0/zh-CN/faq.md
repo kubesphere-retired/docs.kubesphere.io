@@ -84,9 +84,6 @@ nameserver 100.64.9.5
 答：可能由于网络问题造成，建议尝试再次运行该流水线。
 
 
-> 说明：
-> 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
-
 6、如何查看 Kubeconfig 文件？
 
 用户可以通过打开 Kubectl UI 查看 Kubeconfig 文件，仅管理员或拥有 Kubectl UI 权限的用户有权限。
@@ -95,4 +92,7 @@ nameserver 100.64.9.5
 
 7、如何访问和登录 Jenkins 服务端？
 
-Installer 安装将会同时部署 Jenkins Dashboard，该服务暴露的端口 (NodePort) 为 `30180`，访问公网 IP 和端口号 (${EIP}:${NODEPORT}) 即可。Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard。
+Installer 安装将会同时部署 Jenkins Dashboard，该服务暴露的端口 (NodePort) 为 `30180`，确保外网流量能够正常通过该端口，然后访问公网 IP 和端口号 (${EIP}:${NODEPORT}) 即可。Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard。
+
+> 说明：
+> 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
