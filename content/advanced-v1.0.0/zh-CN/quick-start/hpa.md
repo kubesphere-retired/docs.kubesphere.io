@@ -4,8 +4,6 @@ title: "示例五 - 设置弹性伸缩"
 
 [Pod 弹性伸缩 (HPA)](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) 是高级版新增的功能，应用的资源使用率通常都有高峰和低谷的时候，如何动态地根据资源使用率来削峰填谷，提高集群的平台和集群资源利用率，让 Pod 副本数自动调整呢？这就有赖于 Horizontal Pod Autoscaling 了，顾名思义，能够使 Pod 水平自动伸缩，也是最能体现 KubeSphere 之于传统运维价值的地方，用户无需对 Pod 手动地水平扩缩容 (Scale out/in)。HPA 仅适用于创建部署 (Deployment) 时或创建部署后设置，支持根据集群的监控指标如 CPU 使用率和内存使用量来设置弹性伸缩，当业务需求增加时，KubeSphere 能够无缝地自动水平增加 Pod 数量，提高系统的稳定性。
 
-本示例详细说明 HPA 的工作原理以及如何在部署中设置 Pod 水平自动伸缩。
-
 <!-- <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/hpa.mp4">
 </video> -->
@@ -17,26 +15,37 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 ![弹性伸缩工作原理](/hpa.svg)
 
+## 目的
+
+本示例演示创建一个设置了弹性伸缩的应用，通过另外创建的多个 Pod 循环向该应用发送无限的查询请求访问应用的服务，相当于手动增加 CPU 负载，即模拟多个用户同时访问该服务，演示其弹性伸缩的功能，详细说明 HPA 的工作原理以及如何在部署中设置 Pod 水平自动伸缩。
+
 ## 前提条件
 
 已创建了企业空间和项目，若还未创建请参考 [管理员快速入门](../../quick-start/admin-quick-start)。
 
-## 创建 HPA
+## 预估时间
 
-本示例演示创建一个设置了弹性伸缩的应用，通过另外创建的多个 Pod 循环向该应用发送无限的查询请求访问应用的服务，相当于手动增加 CPU 负载，即模拟多个用户同时访问该服务，演示其弹性伸缩的功能。
+约 25 分钟。
 
-### 第一步：创建部署
+## 操作示例
 
-在项目中，左侧菜单栏选择 **工作负载 → 部署**，点击创建部署，填写部署的基本信息，以创建镜像为 nginx 的容器作为示例，其它项保持默认。
+### 创建 HPA
+
+#### 第一步：创建部署
+
+1、以 `project-regular` 登录 KubeSphere。在当前项目中，左侧菜单栏选择 **工作负载 → 部署**，点击 **创建部署**。
+
+![创建部署](/demo5-create-deployment.png)
+
+2、填写部署的基本信息，以创建镜像为 nginx 的容器作为示例，其它项保持默认。
 
 - 名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，如 `hpa-example`
 - 别名：可选，更好的区分资源，并支持中文名称
 - 更新策略：选择 RollingUpdate
 
-
 ![填写基本信息](/hpa-demo-1.png)
 
-### 第二步：配置弹性伸缩参数
+#### 第二步：配置弹性伸缩参数
 
 容器组模板中可以设置 HPA 相关参数，以设置 CPU 目标值作为弹性伸缩的计算参考，如下填写信息，实际上会为部署创建一个 `Horizontal Pod Autoscaler` 来调度其弹性伸缩。
 
@@ -50,7 +59,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 ![设置详情](/hpa-info.png)
 
 
-### 第三步：添加容器
+#### 第三步：添加容器
 
 完成 HPA 的参数设置后，点击 **添加容器**，填写容器的基本信息，容器名称可自定义，镜像填写 `nginx`，将默认拉取 **latest** 的镜像。高级设置暂不作设置，点击 **保存**。
 
@@ -58,15 +67,15 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 ![添加容器](/add-nginx-container.png)
 
-### 第四步：标签设置
+#### 第四步：标签设置
 
 标签是一个或多个关联到资源如容器组上的键值对，通过标签来识别、组织或查找资源对象，此处标签设置为 `app : nginx-hpa`。
 
 节点选择器无需设置，kube-scheduler 将根据各主机 (Node) 的负载状态，将 Pod 随机调度到各台主机上。点击 **创建**，即可查看 Nginx 的运行状态详情。
 
-## 创建服务
+### 创建服务
 
-### 第一步：填写基本信息
+#### 第一步：填写基本信息
 
 访问左侧菜单栏，点击 **网络与服务 → 服务** 进入服务列表页，点击 **创建**。
 
@@ -75,7 +84,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 ![创建服务](/hpa-service.png)
 
-### 第二步：服务设置
+#### 第二步：服务设置
 
 由于是在集群内部访问该服务，因此服务设置选择第一项 **通过集群内部 IP 来访问服务 Virtual IP**，服务信息参考以下填写。
 
@@ -85,7 +94,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 ![服务设置](/hpa-service-setting.png)
 
-### 第三步：标签设置
+#### 第三步：标签设置
 
 为方便识别此服务，我们标签设置为 `app: hpa-example`。下一步的外网访问方式选择 `None`，仅在集群内部访问该服务。
 
@@ -93,7 +102,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 另外创建一个部署 (Deployment) 用于向上一步创建的服务发送无限的查询请求，增加 CPU 负载。
 
-### 第一步：基本信息
+#### 第一步：基本信息
 
 左侧菜单栏选择 **工作负载 → 部署**，点击创建部署，填写部署的基本信息，创建镜像为 busybox 的容器，其它项保持默认。
 
@@ -103,7 +112,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 ![填写基本信息](/hpa-load-basic.png)
 
-### 第二步：容器组模板
+#### 第二步：容器组模板
 
 1、创建 `busybox` 容器，并设置多个副本数使容器启动后同时循环地向上一步创建的服务发送请求。为了快速地看到弹性伸缩的效果，副本数可设置为 `30 ~ 50` 个。展开 **高级选项**，填写用于对 nginx 服务增加 CPU 负载的命令和参数，其它设置暂无需配置，参考如下提示填写。
 
@@ -126,22 +135,22 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 
 ![编辑副本数](/edit-load-generator.png)
 
-### 第三步：标签设置
+#### 第三步：标签设置
 
 本示例暂未用到存储因此跳过存储卷设置，为方便识别此资源，我们标签设置为 `app: hpa-example`。点击创建，以上一共创建了两个部署和一个服务。
 
 ![查看创建结果](/hpa-deployment-list.png)
 
 
-## 验证弹性伸缩
+### 验证弹性伸缩
 
-### 第一步：查看部署状态
+#### 第一步：查看部署状态
 
 在部署的列表中，点击创建的部署 `hpe-example`，进入资源详情页，可以看到当前部署中的实际运行副本和期望副本数都为 2，并且重点关注一下此时容器组的弹性伸缩状态和当前的 CPU 使用率以及它的监控情况。
 
 ![负载工作前](/hpa-details-page.png)
 
-### 第二步：查看弹性伸缩情况
+#### 第二步：查看弹性伸缩情况
 
 待 `load-generator` 的所有副本的容器都创建成功并开始访问 `hpe-example` 服务时，如下图所示，刷新页面后可以发现 CPU 使用率明显有升高，目前上升至 62 %，并且期望副本和实际运行副本数都变成了 4，这是由于我们之前设置的 Horizontal Pod Autoscaler 开始工作了，`load-generator` 循环地请求该 `hpa-example` 服务使得 CPU 使用率迅速升高，HPA 开始工作后使得该服务的后端 Pod 副本数增加共同处理大量的请求，`hpa-example` 的副本数会随 CPU 的使用率升高而继续增加，正好也证明了弹性伸缩的工作原理。
 
@@ -153,7 +162,7 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 
 > 说明：HPA 工作后，Deployment 最终的副本数量可能需要几分钟才能稳定下来，删除负载后 Pod 数量回缩至正常状态也需要几分钟。 由于环境的差异，不同环境中最终的副本数量可能与本示例中的数量不同。
 
-### 停止负载
+#### 停止负载
 
 1、将 `load-generator` 删除或将之前设置的循环请求命令删除，都可以停止负载。本示例删除 `load-generator` 后，再次查看 `hpe-example` 的运行状况，可以发现几分钟后它的 CPU 利用率已缓慢降到 18 %，并且 HPA 将其副本数量最终减少至最小副本数 2，最终恢复了正常状态，从 CPU 使用量监控曲线反映的趋势也可以帮助用户进一步理解弹性伸缩的工作原理。
 
@@ -165,7 +174,7 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 
 ![容器监控](/hpa-container-monitoring.png)
 
-## 修改弹性伸缩
+### 修改弹性伸缩
 
 创建后若需要修改弹性伸缩的参数，可以在部署详情页，点击 **更多操作 → 弹性伸缩**，如下页面支持修改其参数。
 
