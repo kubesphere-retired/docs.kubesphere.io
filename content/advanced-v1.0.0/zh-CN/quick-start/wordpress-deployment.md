@@ -9,7 +9,7 @@ title: "示例二 - 部署 Wordpress"
 ## 前提条件
 
 - 已创建了有状态副本集 MySQL，若还未创建请参考 [示例一 - 部署 MySQL](../mysql-deployment)。
-- 以 `demo` 用户登录 KubeSphere，进入已创建的企业空间下的项目
+- 以 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目
 
 ## 预估时间
 
