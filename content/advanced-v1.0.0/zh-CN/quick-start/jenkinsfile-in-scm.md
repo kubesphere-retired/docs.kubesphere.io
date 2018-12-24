@@ -200,9 +200,13 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ### 第四步：运行流水线
 
-流水线创建后，点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile (默认是根目录下的 Jenkinsfile)。
+流水线创建后将根据上一步**行为策略**自动扫描代码仓库中的分支。
+
+这时我们可以主动点击右侧 **运行** 以运行发布release的流水线，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile (默认是根目录下的 Jenkinsfile)。
 
 由于仓库的 Jenkinsfile 中 `TAG_NAME: defaultValue` 没有设置默认值，因此在这里的 `TAG_NAME` 可以输入一个 tag 编号，比如输入 v0.0.1，tag 用于在 GitHub 和 DockerHub 中分别生成带有 tag 的 release 和镜像。点击确定，流水线开始运行。
+
+> 注意: 在主动运行流水线以发布release时，`TAG_NAME` 不应与之前代码仓库中所存在的 `tag` 名称重复，如果重复会导致流水线的运行失败。
 
 ![运行流水线](/run-pipeline-demo1.png)
 
