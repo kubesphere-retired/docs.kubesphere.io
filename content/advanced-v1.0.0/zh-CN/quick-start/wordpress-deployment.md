@@ -227,6 +227,8 @@ app=wordpress-ingress
 
 ### 访问 Wordpress
 
-至此，WordPress 就以应用路由的方式通过网关入口暴露到外网，由于在路由规则中我们选择的是 http 协议，因此可以通过示例中在路由规则和外网访问配置的 `{$hostname}:{$NodePort}` 如 `http://wordpress.139.198.16.160.nip.io:30517` 访问 WordPress 博客网站。
+设置完成后，WordPress 就以应用路由的方式通过网关入口暴露到外网，由于在路由规则中我们选择的是 http 协议，因此可以通过示例中在路由规则和外网访问配置的 `{$hostname}:{$NodePort}` 如 `http://wordpress.139.198.16.160.nip.io:30517` 访问 WordPress 博客网站。
 
 ![访问 Wordpress](/wordpress-homepage.png)
+
+至此，您已经熟悉了部署 (Deployments) 和有状态副本集 (Statefulsets) 的基本功能使用，关于部署和有状态副本集的各项参数释义，详见 [部署](../../workload/deployments) 和 [有状态副本集](../../workload/statefulsets)。
