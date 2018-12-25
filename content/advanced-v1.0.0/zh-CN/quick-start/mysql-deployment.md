@@ -15,11 +15,11 @@ title: "示例一 - 部署 MySQL 有状态应用"
 
 约 10 分钟。
 
-<!-- ## 示例视频
+## 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/demo1-mysql.mp4">
-</video> -->
+</video>
 
 ## 操作示例
 
