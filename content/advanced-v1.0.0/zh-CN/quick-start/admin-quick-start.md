@@ -47,7 +47,7 @@ title: "管理员快速入门"
 
 ![创建账号](/account-list.png)
 
-1.5. 填写新用户的基本信息，如用户名设置为 `user-manager`，角色选择 `user-manager`，其它信息可自定义，点击 **创建**。
+1.5. 填写新用户的基本信息，如用户名设置为 `user-manager`，角色选择 `user-manager`，其它信息可自定义，点击 **确定**。
 
 > 说明：上述步骤仅简单地说明创建流程，关于账号管理与角色权限管理的详细说明，请参考 [角色权限概览](../../multi-tenant/role-overview) 和 [账号管理](../../platform-management/account-management)。
 
@@ -104,7 +104,7 @@ title: "管理员快速入门"
 
 ![企业空间列表](/workspace-list-demo.png)
 
-3.2. 填写项目的基本信息和高级设置。
+3.2. 填写项目的基本信息和高级设置，完成后点击 **下一步**。
 
 **基本信息**
 - 名称：为项目起一个简洁明了的名称，便于用户浏览和搜索，比如 `demo-namespace`
