@@ -29,7 +29,7 @@ title: "示例四 - 一键部署应用"
 
 ![添加应用仓库](/add-app-repo.png)
 
-2、填写应用仓库的详细信息，如下添加一个 http 协议的示例仓库：`http://helm-repo.sh1a.qingstor.com`。
+2、填写应用仓库的详细信息，如下添加一个 http 协议的示例仓库：`http://docs-repo.gd2.qingstor.com	`，完成后点击 **确定**。
 
 ![应用仓库详细信息](/app-repo-basic.png)
 
@@ -43,11 +43,11 @@ title: "示例四 - 一键部署应用"
 
 ![](/nginx-details.png)
 
-2、点击 **部署应用**，填写应用的基本信息，应用名称可自定义，其中参数配置是读取的 `values.yaml` 文件中的默认值。选择预先创建的企业空间和项目，暂无需修改其它配置，点击部署。
+2、点击 **部署应用**，填写应用的基本信息，应用名称可自定义，其中参数配置是读取的 `values.yaml` 文件中的默认值。选择预先创建的企业空间和项目，暂无需修改其它配置，点击 **部署**。
 
 ![填写基本信息](/nginx-demo-basic.png)
 
-3、通过应用模板部署的应用可以在项目下的 **应用** 列表页面查看，此时将在当前项目的 **应用** 中创建一个新的 Nginx 应用，待镜像拉取和容器启动完毕，状态即可显示为 **已启用**。
+3、点击左侧菜单栏的 **应用**，通过应用模板部署的应用可以在项目下的 **应用** 列表页面查看，此时将在当前项目的 **应用** 中创建一个新的 Nginx 应用，待镜像拉取和容器启动完毕，状态即可显示为 **已启用**。
 
 ![查看应用](/nginx-app-demo.png)
 
@@ -55,23 +55,24 @@ title: "示例四 - 一键部署应用"
 
 ### 第三步：查看应用详情
 
-1、在应用列表点击 Nginx 应用，进入应用的资源状态页可以看到该应用是由服务和工作负载组成，并支持查看其环境变量和操作日志。
+1、在应用列表点击 Nginx 应用 (docs-demo)，进入应用的资源状态页可以看到该应用是由服务和工作负载组成，并支持查看其环境变量和操作日志。
 
 ![](/nginx-details-overview.png)
 
-2、点击 **工作负载**，可以查看该应用的部署 (Deployment) 详情页面，该页面可以更详细地查看 Pod 和容器的资源状态、监控，并支持编辑 Pod 的基本功能，如编辑配置模板、弹性伸缩、添加健康检查器等。
+2、点击 **工作负载** 中的 `docs-demo-nginx`，可以查看该应用的部署 (Deployment) 详情页面，该页面可以更详细地查看 Pod 和容器的资源状态、监控，并支持编辑 Pod 的基本功能，如编辑配置模板、弹性伸缩、添加健康检查器等。
 
 ![工作负载详情](/nginx-deployment-details.png)
 
-3、返回应用的详情页面，点击 **服务** 可以查看该应用的服务详情。若需要将该应用暴露给外网访问，可点击 **更多操作 → 编辑外网访问**。
+3、返回应用的详情页面，点击 **服务** 中的 `docs-demo-nginx` 可以查看该应用的服务详情。若需要将该应用暴露给外网访问，可点击 **更多操作 → 编辑外网访问**。
 
 ![编辑外网访问](/nginx-service-details.png)
 
 4、外网访问支持以下三种，本示例以 `NodePort` 访问方式为例，点击确定。
 
-- None: 只在集群内部访问服务，集群外部无法访问。
-- NodePort：使用 NodePort 方式可以通过访问工作节点对应的端口来访问服务
-- LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。
+> - 说明：
+> -  None: 只在集群内部访问服务，集群外部无法访问。
+> - NodePort：使用 NodePort 方式可以通过访问工作节点对应的端口来访问服务
+> - LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。
 
 ![选择访问方式](/select-nodeport.png)
 
@@ -81,9 +82,21 @@ title: "示例四 - 一键部署应用"
 
 ### 第四步：访问应用
 
-当以上步骤都顺利完成，此时在浏览器可以通过 **公网 IP : 30055** (`${EIP}:${NODEPORT}`) 在外网访问 Nginx 应用。
-
 > 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 30055)，保证外网流量可以通过该端口，外部才能够访问。
+
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30055` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+
+**添加端口转发规则**
+
+![添加端口转发规则](/demo4-vpc-nodeport-forward.png)
+
+**防火墙添加下行规则**
+
+![防火墙添加下行规则](/demo4-firewall-nodeport.png)
+
+### 访问 Nginx
+
+当以上步骤都顺利完成，此时在浏览器可以通过 **公网 IP : 30055** (`${EIP}:${NODEPORT}`) 在外网访问 Nginx 应用。
 
 ![访问应用](/access-nginx-app.png)
 

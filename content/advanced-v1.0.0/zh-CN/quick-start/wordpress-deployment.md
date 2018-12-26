@@ -57,11 +57,11 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 ![存储卷设置](/demo2-pvc-setting.png)
 
-2.3. 下一步，设置标签为 `app: wordpress-pvc`，点击创建。
+2.3. 点击 **下一步**，设置标签为 `app: wordpress-pvc`，点击创建。
 
 ![设置标签](/demo-pvc-label.png)
 
-2.4. 查看存储卷列表，可以看到存储卷 wordpress-pvc 已经创建成功，状态是 “准备就绪”，可挂载至工作负载。
+2.4. 点击左侧菜单中的 **存储卷**，查看存储卷列表，可以看到存储卷 wordpress-pvc 已经创建成功，状态是 “准备就绪”，可挂载至工作负载。
 
 > 若存储类型为 Local，那么该存储卷在被挂载至工作负载之前都将显示创建中，这种情况是正常的，因为 Local 目前还不支持存储卷动态配置 [ (Dynamic Volume Provisioning) ](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)，挂载后状态将显示 “准备就绪”。
 
@@ -191,13 +191,15 @@ app=wordpress-service
 
 ![设置路由规则](/wordpress-ingress-setting.png)
 
-> 说明：如果是在私有环境下，我们可以直接在主机的 hosts 文件中添加记录来使域名解析到对应的 IP。例如，将 hostname 设置为 `wordpress.demo.io`，我们在 `/etc/hosts` 文件中添加如下记录。需要保证客户端与集群工作节点 192.168.0.4 网络可通，也可以使用其它工作节点的 IP，只要客户端和工作节点网络是通的，设置完之后，在浏览器中使用域名和网关的端口号 `http://wordpress.demo.io:30517` 即可访问 (此示例中用的是外网访问的网关 (Gateway) 的第一个端口 30517，它对应的是 HTTP 协议的 80 端口)。
+> 说明：如果是在私有环境下，我们可以直接在主机的 hosts 文件中添加记录来使域名解析到对应的 IP。例如，将 hostname 设置为 `wordpress.demo.io`，我们在 `/etc/hosts` 文件中添加如下记录。需要保证客户端与集群工作节点的 IP 网络可通，比如这里是 `192.168.0.4`，也可以使用其它工作节点的 IP。只要客户端和工作节点网络是通的，设置完之后，在浏览器中使用域名和网关的端口号 `http://wordpress.demo.io:30517` 即可访问 (此示例中用的是外网访问的网关 (Gateway) 的第一个端口 30517，它对应的是 HTTP 协议的 80 端口)。
 
 ```bash
 192.168.0.4 wordpress.demo.io
 ```
 
-9.4. [Annotation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) 是用户定义的 “附加” 信息，本示例暂不设置注解，点击 **下一步** 进入标签设置。为方便识别此应用，我们标签设置如下。点击 **创建**，即可创建成功。
+9.4. [Annotation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) 是用户定义的 “附加” 信息，本示例暂不设置注解，点击 **下一步** 进入标签设置。
+
+9.5. 为方便识别此应用，我们标签设置如下。点击 **创建**，即可创建成功。
 
 ```
 app=wordpress-ingress
@@ -212,18 +214,28 @@ app=wordpress-ingress
 ![设置网关](/demo2-gateway.png)
 
 10.2. 网关入口提供提供如下两种方式，本示例以 `NodePort` 访问方式为例配置网关入口，选择 `NodePort` 然后点击 **保存**。
- 
-- NodePort：使用 NodePort 方式可以通过访问工作节点对应的端口来访问服务
 
-- LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。(如果外网访问方式设置的是 LoadBalancer，参见 [应用路由](../../ingress-service/ingress) 的 LoadBalancer 方式。)
+> 说明： 
+> - NodePort：使用 NodePort 方式可以通过访问工作节点对应的端口来访问服务
+> - LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。(如果外网访问方式设置的是 LoadBalancer，参见 [应用路由](../../ingress-service/ingress) 的 LoadBalancer 方式。)
 
 ![设置网关](/gateway-setting.png)
 
 10.3. 外网访问设置后，将产生两个节点端口 (NodePort)，分别是 HTTP 协议 (80) 和 HTTPS 协议 (443) 的节点端口，比如这里依次是 `30517` 和 `30409`。
 
-> 注意：可能需要进行端口转发和防火墙放行对应的端口，保证外网流量能够通过需要访问的端口如 30517，否则外网无法访问。
-
 ![端口列表](/gateway-nodeport-list.png)
+
+> 注意：若需要在公网访问，可能需要进行端口转发和防火墙放行对应的端口，保证外网流量能够通过需要访问的端口如 30517，否则外网无法访问。
+
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30517` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+
+**添加端口转发规则**
+
+![添加端口转发规则](/vpc-nodeport-forward.png)
+
+**防火墙添加下行规则**
+
+![防火墙添加下行规则](/firewall-nodeport.png)
 
 ### 访问 Wordpress
 
