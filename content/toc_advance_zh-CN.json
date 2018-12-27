@@ -52,7 +52,7 @@
         },
         {
           "title": "安装内置 Harbor",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/gitlab-harbor-installation.md"
+          "entry": "./advanced-v1.0.0/zh-CN/installation/harbor-installation.md"
         },
         {
           "title": "集群节点扩容",

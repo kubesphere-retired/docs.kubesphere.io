@@ -46,11 +46,18 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 
 ![Docker Hub 镜像仓库](/add-dockerhub.png)
 
+
 ### 添加 Harbor 镜像仓库
 
 **Harbor 简介**
 
 [Harbor](http://vmware.github.io/harbor/) 是一个用于存储和分发 Docker 镜像的企业级 Registry 服务器，通过添加一些企业必需的功能特性，例如安全、标识和管理等，扩展了开源 Docker Distribution，作为一个企业级私有 Registry 服务器，Harbor 提供了更好的性能和安全。注意，添加之前请确保已创建了 Harbor 镜像仓库服务端，以下详细介绍如何在 KubeSphere 中添加 Harbor 镜像仓库。
+
+#### 添加内置 Harbor 镜像仓库
+
+KubeSphere Installer 集成了 **Harbor** 的 Helm Chart，内置的 **Harbor** 作为可选安装项，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，关于如何安装和使用内置的 Harbor 镜像仓库详见 [安装内置 Harbor](../../installation/harbor-installation)。
+
+#### 对接外部 Harbor 镜像仓库
 
 根据 Harbor 镜像仓库的地址类型，需要分 http 和 https 两种认证方法：
 
@@ -122,7 +129,7 @@ $ sudo systemctl restart docker
 
 ## 使用镜像仓库
 
-以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 QingCloud 镜像仓库中有 `mysql:5.6` 的 docker 镜像，镜像地址为 `dockerhub.qingcloud.com/mysql:5.6`。创建 Deployment，在容器组模板中需要选择镜像仓库，然后填写为 `镜像仓库地址 / 镜像名称:tag`。
+以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 QingCloud 镜像仓库中有 `mysql:5.6` 的 docker 镜像。创建 Deployment 时，在容器组模板中需要选择镜像仓库，镜像地址填写为 `dockerhub.qingcloud.com/mysql:5.6`，镜像地址的格式为 `镜像仓库地址 / 镜像名称:tag`，填写后创建完成即可使用该镜像仓库中的镜像。
    
 ![创建部署](/ae-docker-hub-setting.png)
 
