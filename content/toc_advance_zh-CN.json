@@ -51,6 +51,10 @@
           "entry": "./advanced-v1.0.0/zh-CN/installation/storage-configuration.md"
         },
         {
+          "title": "安装内置 Harbor",
+          "entry": "./advanced-v1.0.0/zh-CN/installation/gitlab-harbor-installation.md"
+        },
+        {
           "title": "集群节点扩容",
           "entry": "./advanced-v1.0.0/zh-CN/installation/add-nodes.md"
         },
