@@ -20,6 +20,12 @@ Job 负责批处理任务，即仅执行一次的任务。任务具有并发的�
 
 ## 操作示例
 
+### 示例视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo3-job.mp4">
+</video>
+
 ### 创建任务
 
 登录 KubeSphere 控制台，在所属项目的左侧菜单栏，选择 **工作负载 → 任务**，进入任务列表页面。
