@@ -17,6 +17,12 @@ title: "示例二 - 部署 Wordpress"
 
 ## 操作示例
 
+### 示例视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo2-wordpress.mp4">
+</video>
+
 ### 部署 Wordpress
 
 #### 第一步：创建配置

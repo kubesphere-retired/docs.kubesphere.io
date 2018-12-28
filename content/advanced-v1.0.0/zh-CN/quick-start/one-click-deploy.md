@@ -21,6 +21,12 @@ title: "示例四 - 一键部署应用"
 
 ## 操作示例
 
+### 示例视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo4-one-click-deploy.mp4">
+</video>
+
 ### 第一步：添加应用仓库
 
 应用仓库的后端可以是 QingStor 对象存储，也可以是 AWS 对象存储，里面存储的内容是开发者开发好的应用的配置包以及索引文件。因此在 KubeSphere 添加应用仓库之前，需提前在云平台创建对象存储并上传应用配置包，一般是基于 Helm Chart 规范开发的应用。本示例准备了一个基于 [QingStor 对象存储](https://www.qingcloud.com/products/qingstor/) 的应用仓库，里面包含了用于演示的 Nginx 应用配置包，若需要自行添加和上传应用，请参阅 [添加应用仓库](../../platform-management/app-repo)。
@@ -33,7 +39,7 @@ title: "示例四 - 一键部署应用"
 
 ![应用仓库详细信息](/app-repo-basic.png)
 
-3、添加完成后，可以在 **应用模板** 中查看新添加仓库的应用，点击应用名称为 `nginx` 的应用，准备部署该应用。
+3、添加完成后，可以在顶部的 **应用模板** 中查看新添加仓库的应用，点击应用名称为 `nginx` 的应用，准备部署该应用。
 
 ![查看应用模板](/app-template-lists.png)
 
