@@ -180,26 +180,23 @@ app=wordpress-service
 
 ![创建应用路由](/wordpress-ingress-basic.png)
 
-9.3. 为应用路由设置路由规则，点击 **添加路由规则**。如果是在公网环境中，路由规则中的 **Hostname** 可以使用 [nip.io](http://nip.io/)  作为应用路由的域名解析。nip.io 是一个免费的域名解析服务，可以将符合下列格式的域名解析对应的 IP，可用来作为应用路由的解析服务，省去配置本地 hosts 文件的步骤。
+9.3. 下一步，点击 **添加路由规则**，参考如下配置路由规则。完成后点击 **保存**，然后点击 **下一步**。
 
-例如，集群的公网 IP 地址为 139.198.16.160，在创建应用路由时，参考如下配置路由规则。完成后点击 **保存**，然后点击 **下一步**。
-
-- Hostname：可自定义，比如设置为 `wordpress.139.198.16.160.nip.io`，它是应用路由规则的访问域名。若外网访问设置为 NodePort，最终则使用 `{$Hostname}:{$NodePort}` 来访问应用路由后端的服务
+- Hostname：可自定义，比如设置为 `wordpress.demo.io`，它是应用路由规则的访问域名，最终使用此域名来访问对应的服务 (如果访问入口是以 NodePort 的方式启用，需要保证 Hostname 能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证 Hostname 正确解析到负载均衡器的 IP 上)。
 - 协议：选择 `http` (若使用 https 需要预先在密钥中添加相关的证书)
-- Paths：应用规则的路径和对应的后端服务，路径填写 "/"，服务选择之前创建的服务 `wordpress-service`，端口填写 wordpress 服务端口 `80`，完成后点击 **保存** 然后选择 **下一步**
-
+- Paths：应用规则的路径和对应的后端服务，路径填写 "/"，服务选择之前创建的服务 `wordpress-service`，端口填写 wordpress 服务端口 `80`，完成后点击下一步：
 
 ![设置路由规则](/wordpress-ingress-setting.png)
 
-> 说明：如果是在私有环境下，我们可以直接在主机的 hosts 文件中添加记录来使域名解析到对应的 IP。例如，将 hostname 设置为 `wordpress.demo.io`，我们在 `/etc/hosts` 文件中添加如下记录。需要保证客户端与集群工作节点的 IP 网络可通，比如这里是 `192.168.0.4`，也可以使用其它工作节点的 IP。只要客户端和工作节点网络是通的，设置完之后，在浏览器中使用域名和网关的端口号 `http://wordpress.demo.io:30517` 即可访问 (此示例中用的是外网访问的网关 (Gateway) 的第一个端口 30517，它对应的是 HTTP 协议的 80 端口)。
+9.4. 在本地的 hosts 文件中添加记录来使域名解析到对应的 IP。例如，集群的公网 IP 为 `139.198.16.160`，且上一步将 hostname 设置为 `wordpress.demo.io`，我们在 `/etc/hosts` 文件中添加如下记录。
 
 ```bash
-192.168.0.4 wordpress.demo.io
+139.198.16.160 wordpress.demo.io
 ```
 
-9.4. [Annotation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) 是用户定义的 “附加” 信息，本示例暂不设置注解，点击 **下一步** 进入标签设置。
+9.5. [Annotation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) 是用户定义的 “附加” 信息，本示例暂不设置注解，点击 **下一步** 进入标签设置。
 
-9.5. 为方便识别此应用，我们标签设置如下。点击 **创建**，即可创建成功。
+9.6. 为方便识别此应用，我们标签设置如下。点击 **创建**，即可创建成功。
 
 ```
 app=wordpress-ingress
@@ -239,7 +236,7 @@ app=wordpress-ingress
 
 ### 访问 Wordpress
 
-设置完成后，WordPress 就以应用路由的方式通过网关入口暴露到外网，由于在路由规则中我们选择的是 http 协议，因此可以通过示例中在路由规则和外网访问配置的 `{$hostname}:{$NodePort}` 如 `http://wordpress.139.198.16.160.nip.io:30517` 访问 WordPress 博客网站。
+设置完成后，WordPress 就以应用路由的方式通过网关入口暴露到外网，由于在路由规则中我们选择的是 http 协议，因此可以通过示例中在路由规则和外网访问配置的 `{$hostname}:{$NodePort}` 如 `http://wordpress.demo.io:30517` 访问 WordPress 博客网站。
 
 ![访问 Wordpress](/wordpress-homepage.png)
 
