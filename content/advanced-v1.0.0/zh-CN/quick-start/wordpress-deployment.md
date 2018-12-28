@@ -184,7 +184,7 @@ app=wordpress-service
 
 - Hostname：可自定义，比如设置为 `wordpress.demo.io`，它是应用路由规则的访问域名，最终使用此域名来访问对应的服务 (如果访问入口是以 NodePort 的方式启用，需要保证 Hostname 能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证 Hostname 正确解析到负载均衡器的 IP 上)。
 - 协议：选择 `http` (若使用 https 需要预先在密钥中添加相关的证书)
-- Paths：应用规则的路径和对应的后端服务，路径填写 "/"，服务选择之前创建的服务 `wordpress-service`，端口填写 wordpress 服务端口 `80`，完成后点击下一步：
+- Paths：应用规则的路径和对应的后端服务，路径填写 "/"，服务选择之前创建的服务 `wordpress-service`，端口填写 wordpress-service 服务端口 `80`，完成后点击下一步：
 
 ![设置路由规则](/wordpress-ingress-setting.png)
 
