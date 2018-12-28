@@ -2,9 +2,13 @@
 title: "常见问题" 
 ---
 
+### 如何快速了解 KubeSphere
+
 1、作为新手，如何快速了解 KubeSphere 的使用？
 
 答：我们提供了多个快速入门的示例包括工作负载和 DevOps 工程，建议从 [快速入门](../../zh-CN/quick-start/quick-start-guide) 入手，参考 **快速入门** 并实践和操作每一个示例。
+
+### Multi-node 安装配置相关问题
 
 2、[Multi-Node 模式](../installation/multi-node) 安装时，如果某些服务器的 **Ubuntu** 系统默认管理员用户为 `ubuntu`，若切换为 `root` 用户进行安装，应该如何配置和操作？
 
@@ -42,6 +46,7 @@ kube-node
 kube-master 
 
 ```
+### 安装失败相关问题
 
 3、安装过程中，如果遇到安装失败并且发现错误日志中有这类信息：`The following packages have pending transactions`，这种情况应该如何处理？
 
@@ -68,6 +73,7 @@ nameserver 100.64.9.5
 ···
 ``` -->
 
+### 流水线运行报错相关问题
 
 4、创建 Jenkins 流水线后，运行时报错怎么处理？
 
@@ -83,12 +89,15 @@ nameserver 100.64.9.5
 
 答：可能由于网络问题造成，建议尝试再次运行该流水线。
 
+### 如何查看 kubeconfig 文件
 
 6、如何查看 Kubeconfig 文件？
 
 用户可以通过打开 Kubectl UI 查看 Kubeconfig 文件，仅管理员或拥有 Kubectl UI 权限的用户有权限。
 
 ![查看 Kubeconfig 文件](/view-kubeconfig.png)
+
+### 如何访问 Jenkins 服务端
 
 7、如何访问和登录 Jenkins 服务端？
 
