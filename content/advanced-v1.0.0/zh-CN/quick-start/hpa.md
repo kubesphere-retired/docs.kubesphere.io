@@ -165,7 +165,7 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 
 本示例暂未用到存储，点击 **下一步** 跳过存储卷设置；
 
-为方便识别此资源，标签设置为 `app: hpa-example`；
+为方便识别此资源，标签设置为 `app:load-generator`；
 
 点击 **创建**；
 
