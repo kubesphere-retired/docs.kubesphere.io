@@ -22,8 +22,8 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 前提条件
 
-- 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考时前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
-- 已创建了 DevOps 工程，若还未创建请参考 [创建 DevOps 工程](../../devops/devops-project/#创建-devops-工程)。
+- 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
+- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [管理员快速入门](../../quick-start/admin-quick-start)。
 - 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。
 
 ## 演示视频
@@ -34,30 +34,35 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 创建凭证
 
-进入已创建的 DevOps 工程，开始创建凭证。本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (KubeConfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
+在 [管理员快速入门](../../quick-start/admin-quick-start) 中已给 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 DevOps 工程，开始创建凭证。
+
+本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
 
 ### 第一步：创建 DockerHub 凭证
 
-1、进入已创建的 DevOps 工程，在左侧的工程管理菜单下。点击 `凭证管理`，进入凭证管理界面，界面会展示当前工程所需的所有可用凭证。
+1、进入已创建的 DevOps 工程，在左侧的工程管理菜单下。点击 `凭证`，进入凭证管理界面，界面会展示当前工程所需的所有可用凭证。
 
 ![credential_page](/devops_credentials.png)
 
-2、点击创建按钮，创建一个用于 DockerHub 登录的凭证。
+2、点击 **创建凭证**，创建一个用于 DockerHub 登录的凭证，完成后点击 **确定**。
 
 - 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，此处命名为 **dockerhub-id**
 - 类型：选择 **账户凭证**
-- 用户名/密码：输入您个人的 DockerHub 用户名和密码
+- 用户名：填写您个人的 DockerHub 的用户名
+- token / 密码：您个人的 DockerHub 的密码
 - 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证
 
 ![Dockerhub 凭证](/dockerhub-credential.png)
 
 ### 第二步：创建 GitHub 凭证
 
-同上，创建一个用于 GitHub 的凭证，凭证 ID 命名为 **github-id**，类型选择 **账户凭证**，输入您个人的 GitHub 用户名和密码，备注描述信息。
+同上，创建一个用于 GitHub 的凭证，凭证 ID 命名为 **github-id**，类型选择 `账户凭证`，输入您个人的 GitHub 用户名和密码，备注描述信息，完成后点击 **确定**。
 
 ### 第三步：创建 kubeconfig 凭证
 
-创建一个类型为 **kubeconfig** 的凭证，凭证 ID 命名为 **demo-kubeconfig**，用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig` 的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
+
+> 说明：kubeconfig 类型的凭证用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
 
 至此，3 个凭证已经创建完成，下一步需要在示例仓库中修改对应的三个凭证 ID 为用户自己创建的凭证 ID。
 
@@ -73,16 +78,19 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ### 第二步：修改 Jenkinsfile
 
-Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**，在  GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值，完成后提交更新到当前的 master 分支：
+1、Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile**。
+
+![进入 Jenkinsfile](/jenkinsfile-location.png)
+
+2、在  GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。
 
 ![修改 Jenkinsfile](/modify-jenkinsfile.png)
-![提交更新](/commit-jenkinsfile.png)
 
 |修改项|值|含义|
 |---|---|---|
 |DOCKERHUB\_CREDENTIAL\_ID|dockerhub-id|填写创建凭证步骤中的 DockerHub 凭证 ID，用于登录您的 DockerHub|
 |GITHUB\_CREDENTIAL\_ID|github-id|填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库|
-|KUBECONFIG\_CREDENTIAL\_ID|demo-kubeconfig| KubeConfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群 |
+|KUBECONFIG\_CREDENTIAL\_ID|demo-kubeconfig| kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群 |
 |DOCKERHUB_NAMESPACE|your-dockerhub-account| 替换为您的 DockerHub 账号名 <br> (它也可以是账户下的 Organization 名称)|
 |GITHUB_ACCOUNT|your-github-account | 替换为您的 GitHub 账号名 <br> (它也可以是账户下的 Organization 名称) |
 |APP_NAME|devops-docs-sample |应用名称|
@@ -99,6 +107,9 @@ environment {
   }
       ···
 ```
+3、修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
+
+![提交更新](/commit-jenkinsfile.png)
 
 ## 创建项目
 
@@ -106,7 +117,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 ### 第一步：填写项目信息
 
-登录 KubeSphere，在已创建的企业空间下，点击 **项目管理 → 创建项目**，填写项目的基本信息。
+回到工作台，在同一个的企业空间下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
 - 名称：固定为 `kubesphere-docs-dev`，若需要修改项目名称则需在 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
@@ -125,6 +136,8 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 同上，参考上一步创建一个名称为 `kubesphere-docs-prod` 的项目，作为生产环境。
 
 > 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-docs-dev` 和 `kubesphere-docs-prod` 项目中将看到流水线创建的部署 (Deployment)和服务 (Service)。
+
+![项目列表](/devops-demo-project-lists.png)
 
 ## 创建流水线
 
