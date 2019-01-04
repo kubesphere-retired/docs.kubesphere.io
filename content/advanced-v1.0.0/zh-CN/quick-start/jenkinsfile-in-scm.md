@@ -248,7 +248,8 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 3、点击 **确定**，将新生成一条流水线活动开始运行。
 
-> 注：tag 用于在 GitHub 和 DockerHub 中分别生成带有 tag 的 release 和镜像。
+> 说明: tag 用于在 GitHub 和 DockerHub 中分别生成带有 tag 的 release 和镜像。
+> 注意: 在主动运行流水线以发布 release 时，`TAG_NAME` 不应与之前代码仓库中所存在的 `tag` 名称重复，如果重复会导致流水线的运行失败。
 
 ![运行流水线](/run-pipeline-demo1.png)
 
