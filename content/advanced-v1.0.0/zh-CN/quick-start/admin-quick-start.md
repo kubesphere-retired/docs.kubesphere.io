@@ -70,9 +70,13 @@ title: "管理员快速入门"
 
 #### 第二步：创建企业空间
 
-企业空间 (workspace) 是 KubeSphere 实现多租户模式的基础，是用户管理项目、DevOps 工程和企业成员的基本单位。因此，上一步的 ws-admin 账号创建成功后，则需要 ws-manager 创建企业空间并指定 ws-admin 为企业空间的管理员。
+企业空间 (workspace) 是 KubeSphere 实现多租户模式的基础，是用户管理项目、DevOps 工程和企业成员的基本单位。
 
-2.1. 切换为 `ws-manager` 登录 KubeSphere，ws-manager 有权限查看平台的所有企业空间。新安装的环境只有一个系统默认的企业空间 **system-workspace** ，用于运行 KubeSphere 平台相关组件和服务，禁止删除该企业空间。在企业空间列表点击 **创建**。
+2.1. 切换为 `admin` 登录 KubeSphere，admin 有权限查看平台的所有企业空间。
+
+点击`企业空间`，可见新安装的环境只有一个系统默认的企业空间 **system-workspace** ，用于运行 KubeSphere 平台相关组件和服务，禁止删除该企业空间。
+
+在企业空间列表点击 **创建**；
 
 ![企业空间列表](/how-to-create-workspace.png)
 
