@@ -18,7 +18,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 预估时间
 
-约 30 分钟。
+30-50 分钟 (时间由于环境的网速等因素而有所不同) 。
 
 ## 操作示例
 
@@ -240,7 +240,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 #### 第四步：运行流水线
 
-流水线创建后，将自动触发远程分支后默认开始运行。
+流水线创建后，点击浏览器的 **刷新** 按钮，可见一条自动触发远程分支后的运行记录。
 
 1、点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master` 分支，系统将根据输入的分支加载 Jenkinsfile (默认是根目录下的 Jenkinsfile)。
 
@@ -328,17 +328,17 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ### 访问示例服务
 
-如下在浏览器访问部署到 KubeSphere 的 Dev 和 Production 环境的服务。
+在浏览器访问部署到 KubeSphere Dev 和 Production 环境的服务：
 
 **Dev 环境**
 
-如下访问 `http://127.0.0.1:30880/`。
+访问 `http://127.0.0.1:30880/` 或者 `http://EIP:30880/`。
 
 ![](/docs-home-dev-preview.png)
 
 **Prodcution 环境**
 
-如下访问 `http://127.0.0.1:30980/`。
+访问 `http://127.0.0.1:30980/` 或者 `http://EIP:30980/`。
 
 ![](/docs-home-production-preview.png)
 
