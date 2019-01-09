@@ -107,3 +107,24 @@ title: "示例四 - 一键部署应用"
 ![访问应用](/access-nginx-app.png)
 
 至此，您已经熟悉了如何通过添加应用仓库并使用应用模板一键部署应用的操作流程。
+
+### 访问容器终端
+
+在后台如果需要进入容器终端通常需要执行命令 `docker exec -it [容器编号] /bin/bash` 才可以进入容器内部，在 KubeSphere 中访问容器终端是非常方便的。
+
+在 nginx 的部署详情页，点击容器组下的 nginx 容器组 → nginx 容器，即可进入容器的详情页。
+
+![工作负载详情](/nginx-workload-page.png)
+
+![容器组详情页](/view-docker-container.png)
+
+点击左侧 `终端` 按钮，即可进入该容器的终端。
+
+![容器终端](/container-terminal.png)
+
+进入容器终端后，即可在容器内部执行命令进行操作。比如，执行 `cat /etc/hosts` 查看该容器的 Pod IP 和 Pod Name。
+
+![终端窗口](/terminal-command-window.png)
+
+
+

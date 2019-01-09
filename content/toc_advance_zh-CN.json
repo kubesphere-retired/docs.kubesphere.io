@@ -183,6 +183,10 @@
         {
           "title": "应用仓库",
           "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-repo.md"
+        },
+        {
+          "title": "Jenkins 系统设置",
+          "entry": "./advanced-v1.0.0/zh-CN/devops/jenkins-setting.md"
         }
       ]
     },
@@ -322,10 +326,6 @@
             {
               "title": "设置自动触发扫描",
               "entry": "./advanced-v1.0.0/zh-CN/devops/auto-trigger.md"
-            },
-            {
-              "title": "Jenkins 系统设置",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/jenkins-setting.md"
             },
             {
               "title": "Jenkins Agent 说明",
