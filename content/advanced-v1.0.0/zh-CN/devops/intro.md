@@ -70,7 +70,7 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 ### 高级设置
 
-KubeSphere 使用了 Configuration-as-Code 进行 Jenkins 的系统设置，详见 [Jenkins 系统设置](../jenkins-setting)。
+KubeSphere 使用了 Configuration-as-Code 进行 Jenkins 的系统设置，详见 [Jenkins 系统设置](../../devops/jenkins-setting)。
 
 ### 流水线常见问题
 

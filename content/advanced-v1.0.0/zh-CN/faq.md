@@ -91,9 +91,9 @@ nameserver 100.64.9.5
 
 ### 如何查看 kubeconfig 文件
 
-6、如何查看 Kubeconfig 文件？
+6、如何查看当前集群的 Kubeconfig 文件？
 
-用户可以通过打开 Kubectl UI 查看 Kubeconfig 文件，仅管理员或拥有 Kubectl UI 权限的用户有权限。
+用户可以通过打开 web kubectl 查看 Kubeconfig 文件，仅管理员或拥有 web kubectl 权限的用户有权限。
 
 ![查看 Kubeconfig 文件](/view-kubeconfig.png)
 
