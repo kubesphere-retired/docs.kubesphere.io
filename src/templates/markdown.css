@@ -481,3 +481,42 @@
 .viewer-backdrop {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.md-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.md-tabs label {
+  order: 1;
+  display: block;
+  padding: 1rem 2rem;
+  margin-right: 0.2rem;
+  cursor: pointer;
+  background: #ecf0f2;
+  font-weight: bold;
+  transition: background ease 0.2s;
+  border-radius: 4px 4px 0 0;
+}
+
+.md-tabs .md-tab {
+  order: 99;
+  flex-grow: 1;
+  display: none;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0 4px 4px 4px;
+}
+
+.md-tabs input[type='radio'] {
+  display: none;
+}
+
+.md-tabs input[type='radio']:checked + label {
+  background: #fff;
+}
+
+.md-tabs input[type='radio']:checked + label + .md-tab {
+  display: inline;
+}
