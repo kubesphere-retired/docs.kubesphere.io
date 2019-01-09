@@ -2,11 +2,11 @@
 title: "示例七 - Jenkinsfile out of SCM" 
 ---
 
-在上一篇文档示例六是通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
+上一篇文档示例六是通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
 
 ## 目的
 
-本示例演示基于 [示例六 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，通过可视化构建流水线 (包含示例六的前六个阶段)，最终将一个文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问，这里所谓的开发环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例六的流程后，对于示例七的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) 为例。
+本示例演示基于 [示例六 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，通过可视化构建流水线 (包含示例六的前六个阶段)，最终将一个文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问，这里所谓的开发环境在底层的 Kubernetes 里是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例六的流程后，对于示例七的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample) 为例。
 
 ## 前提条件
 
@@ -36,13 +36,13 @@ title: "示例七 - Jenkinsfile out of SCM"
 > - **阶段一. Checkout SCM**: 拉取 GitHub 仓库代码
 > - **阶段二. Get dependencies**: 通过包管理器 [yarn](https://yarnpkg.com/zh-Hans/) 安装项目的所有依赖
 > - **阶段三. Unit test**: 单元测试，如果测试通过了才继续下面的任务
-> - **阶段四. Build**:  执行项目中 `package.json` 的 scripts 里的 build 命令，即生成静态网站的命令。
+> - **阶段四. Build**:  执行项目中 `package.json` 的 scripts 里的 build 命令，本例中用于生成静态网站。
 > - **阶段五. Build & push snapshot image**: 构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 DockerHub (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
 > - **阶段六. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
 
 ### 创建项目
 
-CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将文档网站部署到开发环境 `kubesphere-docs-dev`，它对应的是 KubeSphere 中的一个项目 (Namespace)，该项目需要预先在控制台创建。注意，若您已在 [示例六](../jenkinsfile-in-scm) 创建过该项目，则无需再次创建，可跳过创建项目步骤。
+CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将该网站部署到开发环境 `kubesphere-docs-dev`，它对应的是 KubeSphere 中的一个项目 (Namespace)，该项目需要预先在控制台创建。注意，若您已在 [示例六](../jenkinsfile-in-scm) 创建过该项目，则无需再次创建，可跳过创建项目步骤。
 
 #### 第一步：填写项目信息
 
@@ -167,7 +167,7 @@ CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/k
 
 ![代理设置](/pipeline_agent.png)
 
-2、点击左侧结构编辑区域的 **“+”** 号，增加一个阶段 (Stage)，命名为 **checkout SCM**。
+2、点击左侧结构编辑区域的 **“+”** 号，增加一个阶段 (Stage)，点击界面中的 **No name**，在右侧将其命名为 **checkout SCM**。
 
 3、然后在此阶段下点击 `添加步骤`。右侧选择 `git`，此阶段通过 Git 拉取仓库的代码，弹窗中填写的信息如下：
 
@@ -289,7 +289,7 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-CRON-BUILD-$BUILD_
 
 - Kubeconfig：选择之前创建的 kubeconfig 凭证
 - 配置文件路径 (configs)：yaml 模板在项目中的相对路径，填写 `deploy/no-branch-dev/**`
-- 在配置中启用变量替换 (enableConfigSubstitution)：勾选，允许在流水线中通过变量动态传值 (比如以上用到的 `$DOCKER_PASSWORD`、`$APP_NAME`)
+- 在配置中启用变量替换 (enableConfigSubstitution)，保持默认，允许在流水线中通过变量动态传值 (比如以上用到的 `$DOCKER_PASSWORD`、`$APP_NAME`)
 
 ![部署到 Kubernetes 配置](/Kubernetes-deploy-info.png)
 
@@ -329,7 +329,7 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-CRON-BUILD-$BUILD_
 
 ### 验证运行结果
 
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 Docker 镜像仓库，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag。在 KubeSphere 中最终以 deployment 和 service 的形式部署到了开发环境中。
+若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 Docker 镜像仓库，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 SNAPSHOT-CRON-BUILD-xxx 的镜像已经被 push 到 DockerHub。在 KubeSphere 中最终以 deployment 和 service 的形式部署到了开发环境中。
 
 1、切换为 `project-regular` 登录 KubeSphere，进入 `kubesphere-docs-dev` 项目，在左侧的菜单栏点击 **工作负载 → 部署**，可以看到 ks-docs-sample-dev 已创建成功。
 
