@@ -20,7 +20,7 @@ title: "示例一 - 部署 MySQL 有状态应用"
 ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/demo1-mysql.mp4">
+  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo1-mysql.mp4">
 </video>
 
 ### 部署 MySQL

@@ -24,7 +24,7 @@ title: "示例四 - 一键部署应用"
 ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo4-one-click-deploy.mp4">
+  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo4-oneclick-deploy.mp4">
 </video>
 
 ### 第一步：添加应用仓库

@@ -29,7 +29,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/hpa-quick-start.mp4">
+  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo5-hpa-quick-start.mp4">
 </video>
 
 ### 创建 HPA
