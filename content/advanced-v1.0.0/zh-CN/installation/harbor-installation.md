@@ -2,7 +2,7 @@
 title: "安装内置 Harbor" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考以下步骤安装和访问 Harbor。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考以下步骤安装和访问 Harbor。
 
 ## 修改安装配置文件
 

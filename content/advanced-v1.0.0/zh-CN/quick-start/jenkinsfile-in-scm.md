@@ -48,6 +48,8 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
 
+> 注意：若用户的凭证信息如账号或密码中包含了 `@`，`$` 这类特殊符号，可能在运行时无法识别而报错，这类情况需要用户在创建凭证时对密码进行 urlencode 编码，可通过一些第三方网站进行转换 (比如 `http://tool.chinaz.com/tools/urlencode.aspx`)，然后再将转换后的输出粘贴到对应的凭证信息中。
+
 #### 第一步：创建 DockerHub 凭证
 
 1、进入之前创建的 DevOps 工程，在左侧的工程管理菜单下，点击 `凭证`，进入凭证管理界面。
@@ -69,6 +71,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 #### 第二步：创建 GitHub 凭证
 
 同上，创建一个用于 GitHub 的凭证，凭证 ID 命名为 **github-id**，类型选择 `账户凭证`，输入您个人的 GitHub 用户名和密码，备注描述信息，完成后点击 **确定**。
+
 
 #### 第三步：创建 kubeconfig 凭证
 
