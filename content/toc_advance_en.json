@@ -3,10 +3,25 @@
   "lang": "en",
   "chapters": [
     {
-      "title": "Installing, Patching, and Upgrading",
-      "entries": [
+      "title": "Overview",
+      "icon": "/product.svg",
+      "desc": "Help you to better understand KubeSphere with detailed graphics and contents",
+      "chapters": [
         {
-          "entry": "./advanced-v1.0.0/en/test-en.md"
+          "title": "Introduction",
+          "entry": "./advanced-v1.0.0/en/introduction/intro.md"
+        },
+        {
+          "title": "Features",
+          "entry": "./advanced-v1.0.0/en/introduction/features.md"
+        },
+        {
+          "title": "Advantages",
+          "entry": "./advanced-v1.0.0/en/introduction/advantages.md"
+        },
+        {
+          "title": "Glossary",
+          "entry": "./advanced-v1.0.0/en/introduction/glossary.md"
         }
       ]
     }
