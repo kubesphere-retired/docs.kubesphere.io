@@ -24,6 +24,37 @@
           "entry": "./advanced-v1.0.0/en/introduction/glossary.md"
         }
       ]
+    },
+    {
+      "title": "Installation",
+      "icon": "/install.svg",
+      "desc": "Reference the installation guide to download and install KubeSphere",
+      "chapters": [
+        {
+          "title": "Instruction",
+          "entry": "./advanced-v1.0.0/en/installation/intro.md"
+        },
+        {
+          "title": "All-in-One",
+          "entry": "./advanced-v1.0.0/en/installation/all-in-one.md"
+        },
+        {
+          "title": "Multi-node",
+          "entry": "./advanced-v1.0.0/en/installation/multi-node.md"
+        },
+        {
+          "title": "Highly Available Master and Etcd",
+          "entry": "./advanced-v1.0.0/en/installation/master-etcd-ha.md"
+        },
+        {
+          "title": "Add New Nodes",
+          "entry": "./advanced-v1.0.0/en/installation/add-nodes.md"
+        },
+        {
+          "title": "Uninstalling KubeSphere",
+          "entry": "./advanced-v1.0.0/en/installation/uninstall.md"
+        }
+      ]
     }
   ]
 }
