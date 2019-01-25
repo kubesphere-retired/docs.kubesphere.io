@@ -13,10 +13,10 @@ title: "All-in-One 模式"
 您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的安装，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
 
 | 操作系统 | 最小配置 | 推荐配置 |
-| --- | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
+| --- | --- | --- | 
+| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：500 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：500 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：500 G |
 
 ## 第二步: 准备安装包
 
