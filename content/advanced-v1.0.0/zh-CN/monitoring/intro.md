@@ -33,7 +33,7 @@ KubeSphere 对资源的监控从两条线提供多维度的监控指标，即
 
 KubeSphere 监控模块的设计和架构主要是采用了开源的解决方案，经过长时间的技术选型，最后选择了 [Prometheus](https://prometheus.io/)，主要原因有：
 
-- Prometheus 和 Kubenetes 天然集成，为 CloudNative 而设计，多种工具和服务纷纷推出适配的 Exporter，供 Prometheus 抓取，Prometheus + Grafana 逐渐成为监控告警的首选；
+- Prometheus 和 Kubernetes 天然集成，为 CloudNative 而设计，多种工具和服务纷纷推出适配的 Exporter，供 Prometheus 抓取，Prometheus + Grafana 逐渐成为监控告警的首选；
 - 采用主动拉数据的 Pull 模式，相当于有了数据获取 Agent 的能力；
 - 2.0 之后重写了底层时序数据存储层，针对时序数据特点优化，能利用更少的资源存储和查询更多的数据；
 - 灵活好用的查询语言 PromQL，能把 PromQL 嵌入 http 请求的强大的 API；
