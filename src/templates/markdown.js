@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import classnames from 'classnames'
 import Viewer from 'viewerjs'
 import 'viewerjs/dist/viewer.css'
 
@@ -225,7 +226,7 @@ export default class MarkdownTemplate extends React.Component {
             />
             <MarkdownWrapper>
               <MarkdownBody
-                className="md-body"
+                className={classnames("md-body", {["md-en"]: postNode.fields.language === 'en'})}
                 innerRef={ref => {
                   this.markdownRef = ref
                 }}
