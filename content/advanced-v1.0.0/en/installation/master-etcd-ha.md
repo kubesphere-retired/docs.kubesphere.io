@@ -117,9 +117,10 @@ After adding the backend, you need to click **Apply Changes** to make it effecti
 
 ![save change](/lb-list-en.png)
 
+<!--
 ### 修改主机配置文件
 
-<!-- 可在如下示例的 [kube-master] 和 [etcd] 部分填入主机名 master1、master2、master3 作为高可用的 Master 和 etcd 集群。注意，etcd 节点个数需要设置为 `奇数个`，由于 etcd 内存本身消耗比较大，部署到工作节点 (node) 上很容易出现资源不足，因此不建议在工作节点上部署 etcd 集群。为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户安装。
+ 可在如下示例的 [kube-master] 和 [etcd] 部分填入主机名 master1、master2、master3 作为高可用的 Master 和 etcd 集群。注意，etcd 节点个数需要设置为 `奇数个`，由于 etcd 内存本身消耗比较大，部署到工作节点 (node) 上很容易出现资源不足，因此不建议在工作节点上部署 etcd 集群。为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户安装。
 
 以下示例在 **CentOS 7.5** 上使用 `root` 用户安装，若以非 root 用户 (如 ubuntu ) 进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。 -->
 

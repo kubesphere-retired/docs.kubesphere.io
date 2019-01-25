@@ -16,8 +16,8 @@ title: "Multi-node"
 
 - Please download [KubeSphere Advanced Edition](https://kubesphere.io/download) to the target machine.
 - It is recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage server. If you are not prepare the storage server yet, you can also configure NFS-Server in Kubernetes as the default storage only for testing installation.
-<!-- 
 
+<!-- 
 ## 第一步: 准备主机
 
 您可以参考以下节点规格 准备 **`至少 2 台`** 符合要求的主机节点开始 `multi-node` 模式的部署，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
