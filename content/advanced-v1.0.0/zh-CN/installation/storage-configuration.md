@@ -42,14 +42,14 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 
 |**QingCloud-CSI** | **Description**|
 | --- | ---|
-| qy\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
-| qy\_csi\_is\_default\_class|是否设定为默认的存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型|
-| qy\_access\_key\_id ， <br> qy\_secret\_access\_key|通过[QingCloud 云平台控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
-|qy\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、pek3b （北京3区-B）、pek3c （北京3区-C）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）|
-| type | QingCloud 云平台块存储的类型，0 代表性能型硬盘，1 或 2（根据集群所在区不同而参数不同）代表容量型硬盘，3 代表超高性能型硬盘，详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
-| maxSize, minSize | 限制存储卷类型的存储卷容量范围，单位为 GiB|
-| stepSize | 设置用户所创建存储卷容量的增量，单位为 GiB|
-| fsType | 存储卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4|
+| qingcloud\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
+| qingcloud\_csi\_is\_default\_class|是否设定为默认的存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型|
+| qingcloud\_access\_key\_id ， <br> qingcloud\_secret\_access\_key|通过[QingCloud 云平台控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
+|qingcloud\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、pek3b （北京3区-B）、pek3c （北京3区-C）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）|
+| qingcloud\_type | QingCloud 云平台块存储的类型，0 代表性能型硬盘，1 或 2（根据集群所在区不同而参数不同）代表容量型硬盘，3 代表超高性能型硬盘，详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
+| qingcloud\_maxSize, qingcloud\_minSize | 限制存储卷类型的存储卷容量范围，单位为 GiB|
+| qingcloud\_stepSize | 设置用户所创建存储卷容量的增量，单位为 GiB|
+| qingcloud\_fsType | 存储卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4|
 
 ### QingStor NeonSAN
 
@@ -136,8 +136,8 @@ NFS 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP �
 
 | **NFS** | **Description** |
 | --- | --- |
-| nfs\_server\_enable | 是否部署 NFS Server 到当前集群作为存储服务端，是：true；否：false | 
-|nfs\_server\_is\_default\_class | 是否设定 NFS 为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
+| nfs\_in\_k8s\_enable | 是否部署 NFS Server 到当前集群作为存储服务端，是：true；否：false | 
+|nfs\_in\_k8s\_is\_default\_class | 是否设定 NFS 为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
 
 ### Local Volume（仅限 all-in-one 部署测试使用）
 

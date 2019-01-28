@@ -21,17 +21,13 @@ title: "部署"
 ![创建部署 - 代码模式](/ae_deployment_command.png)
 
 
-1.2. 在基本信息页，输入部署的名称，用户可以根据需求填写部署的描述信息。在 Kubernetes 中策略是指定新的 Pod 替换旧的 Pod 的策略，分为 `RollingUpdate` 和 `Recreate` 两种类型。
+1.2. 在基本信息页，输入部署的名称，用户可以根据需求填写部署的描述信息。
 
-- 名称：为创建的任务起一个简洁明了的名称，便于用户浏览和搜索。
+- 名称：为创建的部署起一个简洁明了的名称，便于用户浏览和搜索。
 - 别名：帮助您更好的区分资源，并支持中文名称。
 - 描述信息：简单介绍部署，让用户进一步了解部署的作用。
-- RollingUpdate：Deployment 使用滚动更新 ([Rolling-update](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update)) 的方式更新 Pod，您可以指定 maxUnavailable 和 maxSurge 来控制滚动更新的进程。
 
-   - MaxUnavailable 是可选配置项，当前默认值是 25%。用来指定在升级过程中不可用 Pod 的最大数量。该值可以是一个绝对值 (例如 5)，也可以是期望 Pod 数量的百分比 (例如 10%)。通过计算百分比的绝对值向下取整。如果 MaxSurge 为 0 时，MaxUnavailable 不可以为 0。
-   - MaxSurge 是可选配置项，当前默认值是 25%。用来指定可以超过期望的 Pod 数量的最大个数。该值可以是一个绝对值 (例如 5) 或者是期望的 Pod 数量的百分比 (例如 10%)。当 MaxUnavailable 为 0 时 MaxSurge 不可以为 0。通过百分比计算的绝对值向上取整。
-
-- Recreate：在创建出新的 Pod 之前会先杀掉所有已存在的 Pod。   
+点击 **下一步**。
 
 ![创建部署 - 基础信息](/ae_deployment_create_basic.png)
 
@@ -41,38 +37,57 @@ title: "部署"
 
 ![创建部署-设置HPA](/ae_deployment_HPA_setting.png)
 
-然后根据需求添加容器，Pod 可以包含一个或者多个容器，添加容器前需要先在平台添加镜像仓库，参见 [镜像仓库 - 添加镜像仓库](../../platform-management/image-registry/#添加镜像仓库)。点击 **添加容器**，将从添加到平台的镜像仓库中拉取镜像，输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 wordpress:4.8-apache。
+点击 **添加容器**，然后根据需求添加容器镜像，容器中定义的镜像默认从 Docker Hub 中拉取。输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 wordpress:4.8-apache。
 
-2.2. 如果用户有更进一步的需求，可以点击 **高级选项**。高级选项中可以对 CPU 和内存的资源使用进行限定。
+> 说明：若需要使用私有镜像仓库如 Harbor，参见 [镜像仓库 - 添加镜像仓库](../../platform-management/image-registry/#添加镜像仓库)。
+
+为了实现集群的资源被有效调度和分配同时提高资源的利用率， 平台采用了 request 和 limit 两种限制类型对资源进行分配。request 通常是容器使用的最小资源需求, 而 limit 通常是容器能使用资源的最大值，设置为 0 表示对使用的资源不做限制, 可无限的使用。request 能保证 pod 有足够的资源来运行, 而 limit 则是防止某个 Pod 无限制的使用资源, 导致其他 Pod 崩溃。
 
 **表1：CPU 配额说明**
 
 |参数|说明|
 |---|---|
-|**requests**|容器使用的最小 CPU 需求，作为容器调度时资源分配的判断依赖。<br> 只有当节点上可分配 CPU 总量 ≥ 容器 CPU 申请数时，才允许将容器调度到该节点。|
-|**limits**|容器能使用的 CPU 最大值，超过这个限定值，容器可能会被 kill。|
+|**最小使用 (requests)**|容器使用的 CPU 最小值，作为容器调度时资源分配的判断依赖。<br> 只有当节点上可分配 CPU 总量 ≥ 容器 CPU 最小值时，才允许将容器调度到该节点。|
+|**最大使用 (limits)**|容器能使用的 CPU 最大值。|
 
 **表2：内存配额说明**
 
 |参数|说明|
 |---|---|
-|**requests**|容器使用的最小内存需求，作为容器调度时资源分配的判断依赖。<br> 只有当节点上可分配内存总量 ≥ 容器内存申请数时，才允许将容器调度到该节点。|
-|**limits**|容器能使用的内存最大值。当内存使用率超出设置的内存限制值时，该实例可能会被重启从而影响工作负载。|
+|**最小使用 (requests)**|容器使用的最小内存需求，作为容器调度时资源分配的判断依赖。<br> 只有当节点上可分配内存总量 ≥ 容器内存申请数时，才允许将容器调度到该节点。|
+|**最大使用 (limits)**|容器能使用的内存最大值，如果内存使用量超过这个限定值，容器可能会被 kill。|
 
-在默认情况下，镜像会运行默认命令和参数，如果想运行特定命令或重写镜像默认值，可在高级选项的命令和参数中设置，此外还可以设置端口和环境变量。
+
+![创建部署 - 容器组设置](/ae_deployment_container_setting.png)  
+
+2.2. 如果用户有更进一步的需求，可以点击 **高级选项**。
 
 - **就绪探针/存活探针**：在业务级的监控检查方面，Kubernetes 定义了两种类型的健康检查探针，详见 [设置健康检查器](../../workload/health-check)。
+   - 存活探针： 监测到容器实例不健康时，重启应用。
+   - 就绪探针：监测到容器实例不健康时，将工作负载设置为未就绪状态，业务流量不会导入到该容器中。
 - **命令**： 可自定义容器的启动命令，Kubernetes 的容器启动命令可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell)。
 - **参数**： 可自定义容器的启动参数，Kubernetes 的容器启动的参数可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)。
 - **端口**： 即容器端口，用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP。
-- **主机端口**： 主机端口是容器映射到主机上的端口，一般情况下无需设置主机端口。
 - **环境变量**： 环境变量是指容器运行环境中设定的一个变量，与 Dockerfile 中的 “ENV” 效果相同，为创建的工作负载提供极大的灵活性。
-- **引入配置中心**： ConfigMap 用来保存键值对形式的配置数据，可用于设置环境变量的值，详见 [配置 - Configmap](../../configuration/configmaps)。
+- **引入配置中心**： 支持添加 Secret 和 ConfigMap 作为环境变量，用来保存键值对形式的配置数据，详见 [配置](../../configuration/configmaps) 和 [密钥](../../configuration/secrets)。 
+- **镜像拉取策略**：imagePullPolicy，默认的镜像拉取策略是 IfNotPresent，在镜像已经存在的情况下，kubelet 将不再去拉取镜像。如果需要频繁拉取镜像，则设置拉取策略为 Always。如果容器属性 imagePullPolicy 设置为 IfNotPresent 或者 Never， 则会优先使用本地镜像。
 
-上述配置信息填写完成以后，点击下一步。
+设置完成后点击 **保存**。
 
-![创建部署 - 容器组设置](/ae_deployment_container_setting.png)
 ![创建部署 - 容器组设置](/ae_deployment_container_setting-2.png)
+
+**更新策略**
+
+更新策略包括滚动更新 (RollingUpdate) 和替换升级 (Recreate)：
+
+- 滚动更新：推荐使用滚动更新 ([Rolling-update](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#rolling-update)) 的方式更新 Deployment，滚动升级将逐步用新版本的容器组替换旧版本的容器组，升级的过程中，业务流量会同时负载均衡分布到新老的容器组上，所以业务不会中断。您可以指定 **容器组最小可用数量** 和 **更新时容器组最大数量** 来控制滚动更新的进程。
+
+   - 容器组最小可用数量：可选配置项，每次滚动升级要求存活的最小容器组数量，建议配置为正整数，最小为 1，该值可以是一个绝对值 (例如 5)。
+   - 更新时容器组最大数量：可选配置项，升级过程中，Deployment 中允许超出副本数量的容器组的最大数量。
+
+- 替换升级：在创建出新的 Pod 之前会先杀掉所有已存在的 Pod，意味着替换升级会先删除旧的容器组，再创建新容器组，升级过程中业务会中断。   
+
+上述配置信息填写完成以后，点击 **下一步**。
 
 ### 第三步：添加存储卷
 

@@ -8,7 +8,7 @@ title: "常见问题"
 
 答：我们提供了多个快速入门的示例包括工作负载和 DevOps 工程，建议从 [快速入门](../../zh-CN/quick-start/quick-start-guide) 入手，参考 **快速入门** 并实践和操作每一个示例。
 
-### Multi-node 安装配置相关问题
+### Multi-Node 安装配置相关问题
 
 2、[Multi-Node 模式](../installation/multi-node) 安装时，如果某些服务器的 **Ubuntu** 系统默认管理员用户为 `ubuntu`，若切换为 `root` 用户进行安装，应该如何配置和操作？
 
