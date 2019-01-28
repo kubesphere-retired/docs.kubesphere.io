@@ -3,6 +3,21 @@
   "lang": "zh-CN",
   "chapters": [
     {
+      "title": "Release Notes",
+      "icon": "/product.svg",
+      "desc": "为您介绍 Kubesphere 已发布的版本功能与更新",
+      "chapters": [
+        {
+          "title": "Release Notes - 1.0.1 (最新)",
+          "entry": "./advanced-v1.0.0/zh-CN/release/release-v101.md"
+        },
+        {
+          "title": "Release Notes - 1.0.0",
+          "entry": "./advanced-v1.0.0/zh-CN/release/release-v100.md"
+        }
+      ]
+    },
+    {
       "title": "产品介绍",
       "icon": "/product.svg",
       "desc": "通过简单的图文介绍帮助您了解 Kubesphere",
@@ -39,8 +54,12 @@
           "entry": "./advanced-v1.0.0/zh-CN/installation/all-in-one.md"
         },
         {
-          "title": "Multi-node 模式",
+          "title": "Multi-Node 模式",
           "entry": "./advanced-v1.0.0/zh-CN/installation/multi-node.md"
+        },
+        {
+          "title": "升级",
+          "entry": "./advanced-v1.0.0/zh-CN/installation/upgrade.md"
         },
         {
           "title": "Master 和 etcd 节点高可用",
@@ -283,6 +302,10 @@
           "title": "项目设置",
           "entries": [
             {
+              "title": "基本信息",
+              "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-quota.md"
+            },
+            {
               "title": "成员角色",
               "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-roles.md"
             },
@@ -293,10 +316,6 @@
             {
               "title": "外网访问",
               "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-gateway.md"
-            },
-            {
-              "title": "默认资源",
-              "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-quota.md"
             }
           ]
         },

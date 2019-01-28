@@ -62,8 +62,6 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
    - CPU Request Target(%) (CPU 目标值)：当 CPU 使用率超过或低于此目标值时，将相应地添加或删除副本，此处设置为 `50%`
    - Memory Request Target(Mi) (内存目标值)：当内存使用量超过或低于此目标值时，将添加或删除副本，本示例以增加 CPU 负载作为测试，内存暂不作限定
 
- 点击 **添加容器**；
-
  > 注：容器组模板中可以设置 HPA 相关参数，以设置 CPU 目标值作为弹性伸缩的计算参考，实际上会为部署创建一个 `Horizontal Pod Autoscaler` 来调度其弹性伸缩。
 
 ![设置详情](/hpa-info.png)
@@ -71,9 +69,13 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 #### 第三步：添加容器
 
-填写容器的基本信息，容器名称可自定义，镜像填写 `nginx`，将默认拉取 **latest** 的镜像。高级设置暂不作设置，点击 **保存**，点击 **下一步**；
+1、点击 **添加容器**，填写容器的基本信息，容器名称可自定义，镜像填写 `nginx`，将默认拉取 **latest** 的镜像。CPU 和内存此处暂不作限定，将使用在创建项目时指定的默认请求值；
 
-由于示例不会用到持久化存储，因此存储卷也不作设置，点击 **下一步**；
+2、高级设置暂不作设置，点击 **保存**；
+
+3、更新策略选择推荐的 **滚动更新**，然后点击 **下一步**；
+
+4、由于示例不会用到持久化存储，因此存储卷也不作设置，点击 **下一步**；
 
 ![添加容器](/add-nginx-container.png)
 
@@ -117,7 +119,7 @@ kube-scheduler 将根据各主机 (Node) 的负载状态，将 Pod 随机调度�
 
 外网访问方式选择 `None`，即仅在集群内部访问该服务，点击 **创建**。
 
-## 创建 Load-generator
+### 创建 Load-generator
 
 另外创建一个部署 (Deployment) 用于向上一步创建的服务不断发送查询请求，模拟增加 CPU 负载。
 
@@ -127,25 +129,29 @@ kube-scheduler 将根据各主机 (Node) 的负载状态，将 Pod 随机调度�
 
 - 名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，如 `load-generator`
 - 别名：更好的区分资源，并支持中文名称，比如 `增加负载`
-- 更新策略：选择 RollingUpdate
+- 描述信息：简单介绍该部署
 
 点击 **下一步**；
 
 ![填写基本信息](/hpa-load-basic.png)
 
-#### 第二步：容器组模板
+#### 第二步：容器组模板  
 
 1、点击 **编辑模式**，将副本数的字段 `replicas` 改为 50，再次点击 **编辑模式** 切换回 UI；
 
 ![编辑副本数](/edit-load-generator.png)
 
-2、回到 **容器组模板** 页，点击**添加容器**，设置参数如下：
+2、回到 **容器组模板** 页，点击 **添加容器**，设置参数如下：
 
 - 容器名称：必填，起一个简洁明了的名称，比如 busybox-container；
 - 镜像名称：填写 `busybox`；
+- CPU 和内存：此处暂不作限定，将使用在创建项目时指定的默认请求值。
 
-展开 **高级选项**，填写用于对 nginx 服务增加 CPU 负载的命令和参数，其它设置暂无需配置，设置参数如下：
-- 命令和参数：注意，参数中服务的 http 地址应替换为您实际的服务和项目名称
+![填写容器镜像](/hpa-container-tmp.png)
+
+3、展开 **高级选项**，然后分别点击 **添加命令** 和 **添加参数**，填写用于对 nginx 服务增加 CPU 负载的命令和参数，其它设置暂无需配置。设置命令和参数如下：
+
+> 注意：参数中服务的 http 地址应替换为您实际的服务和项目名称。例如，我们在创建 HPA 的服务时，服务名称为 hpa-example，当前的项目名称为 demo-namespace，那么该服务在内部的 http 地址为 `http://hpa-example.demo-namespace.svc.cluster.local`。
 
 ```
 # 命令
@@ -153,14 +159,14 @@ sh
 -c
 
 # 参数 (http 地址参考：http://{$服务名称}.{$项目名称}.svc.cluster.local)
-while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
+while true; do wget -q -O- http://hpa-example.demo-namespace.svc.cluster.local; done
 ```
 
 ![设置详情](/hpa-load-cmd.png)
 
-点击 **保存**；
+4、完成填写后，点击 **保存**；
 
-点击 **下一步**；
+5、更新策略选择推荐的 **滚动更新**，点击 **下一步**；
 
 > 注：本步骤用于创建 `busybox` 容器，并设置多个副本数使容器启动后同时循环地向上一步创建的服务发送请求。为了快速地看到弹性伸缩的效果，副本数可设置为 `30 ~ 50` 个。
 
@@ -172,7 +178,7 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 
 点击 **创建**；
 
-以上一共创建了两个部署和一个服务。
+至此，以上一共创建了两个部署 (分别是 hpa-example 和 load-generator ) 和一个服务 (hpa-example)。
 
 ![查看创建结果](/hpa-deployment-list.png)
 
@@ -216,6 +222,12 @@ while true; do wget -q -O- http://hpa-example.hpa.svc.cluster.local; done
 创建后若需要修改弹性伸缩的参数，可以在部署详情页，点击 **更多操作 → 弹性伸缩**，如下页面支持修改其参数：
 
 ![修改弹性伸缩](/update-hpa.png)
+
+### 取消弹性伸缩
+
+若该部署无需设置 HPA，则可以在当前的部署详情页中，点击弹性伸缩右侧的 **···**，然后选择 **取消**。
+
+![取消 HPA](/cancel-hpa.png)
 
 至此，您已经熟悉了如何在创建部署时设置弹性伸缩的基本操作。
 

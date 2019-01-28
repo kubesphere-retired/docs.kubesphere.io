@@ -1,12 +1,12 @@
 ---
-title: "Multi-node 模式"
+title: "Multi-Node 模式"
 ---
 
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
 ## 前提条件
 
-- 请下载 [KubeSphere 高级版](https://kubesphere.io/download) 至待安装机器中。
+- 目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download) 至待安装机器中。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端，存储服务端的磁盘容量参考主机规格表中的推荐配置或选择更高的容量。为方便初次安装但没有准备存储服务端时进行部署测试，也可配置部署 NFS server in Kubernetes 到当前集群。
 
 ## 第一步: 准备主机
@@ -37,16 +37,18 @@ title: "Multi-node 模式"
 
 ## 第二步: 准备安装配置文件
 
-**1.** [下载安装包](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
+**1.** 建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
+
+> 注意：若您的机器已安装了 Advanced-v1.0.0，请直接参考 [升级指南](../upgrade) 将您原有的环境一键升级至最新版本，无需参考以下步骤重复安装。
 
 ```bash
-$ tar -zxf kubesphere-all-advanced-1.0.0.tar.gz
+$ tar -zxf kubesphere-all-advanced-1.0.1.tar.gz
 ```
 
-**2.** 进入 “`kubesphere-all-advanced-1.0.0`” 目录
+**2.** 进入 “`kubesphere-all-advanced-1.0.1`” 目录。
 
 ```bash
-$ cd kubesphere-all-advanced-1.0.0
+$ cd kubesphere-all-advanced-1.0.1
 ```
 
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
@@ -119,7 +121,7 @@ nfs_server_is_default_class: true
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.3，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
 参考以下步骤开始 multi-node 部署。
 
@@ -147,7 +149,7 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-12-08
+https://kubesphere.io/               2018-01-25
 ################################################
 Please input an option: 2
 
