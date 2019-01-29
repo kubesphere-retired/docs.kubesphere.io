@@ -13,7 +13,17 @@ title: "外网访问"
 >
 > 注意：由于使用 Load Balancer 需要安装与云服务商对接的 cloud-controller-manage 插件，目前 qingcloud-cloud-controller-manager 插件正在开发阶段，且即将上线，待上线后即可使用 Load Balancer 将内部的服务暴露给外网访问。
 
-3. 点击 **保存** 来创建网关，如下图选择的是 NodePort 的方式，左边节点端口生成的两个端口，分别是 HTTP 协议的 80 端口和 HTTPS 协议的 443 端口，外网可通过 EIP 或 Hostname + 端口号来访问服务。完成后选择关闭。
+3. 点击 **保存** 来创建网关，如下图选择的是 NodePort 的方式，左边节点端口生成的两个端口，分别是 HTTP 协议的端口和 HTTPS 协议的端口，外网可通过 EIP:NodePort 或 Hostname:NodePort 来访问服务，如：
+
+
+- 通过 EIP 访问：
+  - `http://139.198.0.20:30798`
+  - `https://139.198.0.20:31279`
+
+- 通过在应用路由规则中设置的 Hostname 访问：
+  - `http://demo.kubesphere.io:30798`
+  - `https://demo.kubesphere.io:31279`
+
 
 ![网关设置-NodePort](/gateway-nodeport.png)
 

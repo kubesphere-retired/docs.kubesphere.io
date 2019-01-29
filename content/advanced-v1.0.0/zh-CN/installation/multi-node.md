@@ -13,11 +13,16 @@ title: "Multi-Node 模式"
 
 您可以参考以下节点规格 准备 **`至少 2 台`** 符合要求的主机节点开始 `multi-node` 模式的部署，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
 
+> 说明：若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：500 G |
+| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+|Debian Stretch 9.5 (64 bit)| CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+
+
 
 以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在底层的 Kubernetes 中 Worker 节点跟 Master 节点都运行着一个 **kubelet** 组件，但 Master 节点上还会运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
 
@@ -157,7 +162,7 @@ Please input an option: 2
 
 **4.** 测试 KubeSphere 集群部署是否成功：
 
-**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 32130)，保证外网流量可以通过该端口，外部才能够访问。
+**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 30880)，保证外网流量可以通过该端口，外部才能够访问。
 
 ```bash
 successsful!
@@ -165,7 +170,7 @@ successsful!
 ###              Welcome to KubeSphere!           ###
 #####################################################
 
-Console: http://192.168.0.1:32130
+Console: http://192.168.0.1:30880
 Account: admin
 Password: passw0rd
 

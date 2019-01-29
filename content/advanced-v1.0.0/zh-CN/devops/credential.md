@@ -52,7 +52,4 @@ title: "凭证管理"
 
    ![credential_delete](/credential_delete.png)
 
-5. 点击右侧的活动页面，可查看此凭证最近的使用情况。
-
-   ![credential_activity](/credential_delete.png)
 

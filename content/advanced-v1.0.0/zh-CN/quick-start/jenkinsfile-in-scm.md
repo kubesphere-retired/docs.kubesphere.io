@@ -292,8 +292,8 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 |环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
 |---|---|---|---|---|
-|Dev| 公网 IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
-|Production|公网 IP : 30980 (`${EIP}:${NODEPORT}`)|kubesphere-docs-prod|ks-docs-sample |ks-docs-sample|
+|Dev| 公网 IP : 30860 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
+|Production|公网 IP : 30960 (`${EIP}:${NODEPORT}`)|kubesphere-docs-prod|ks-docs-sample |ks-docs-sample|
 
 1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-docs-prod` 项目下的部署。
 
@@ -302,7 +302,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 **查看部署**
 ![验证运行结果](/verify-docs-deployment.png)
 
-2、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30980`。
+2、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30960`。
 
 **查看服务**
 ![查看服务](/demo6-service-nodeport.png)
@@ -317,9 +317,9 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![查看 release](/verify-github-release.png)
 
-5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-docs-sample 服务的 `30980` 端口为例。
+5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-docs-sample 服务的 `30960` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30980` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30960` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
 **添加端口转发规则**
 
@@ -335,13 +335,13 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 **Dev 环境**
 
-访问 `http://127.0.0.1:30880/` 或者 `http://EIP:30880/`。
+访问 `http://127.0.0.1:30860/` 或者 `http://EIP:30860/`。
 
 ![](/docs-home-dev-preview.png)
 
 **Prodcution 环境**
 
-访问 `http://127.0.0.1:30980/` 或者 `http://EIP:30980/`。
+访问 `http://127.0.0.1:30960/` 或者 `http://EIP:30960/`。
 
 ![](/docs-home-production-preview.png)
 
