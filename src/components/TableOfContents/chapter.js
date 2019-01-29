@@ -48,7 +48,7 @@ class LinkWithHeadings extends React.Component {
   }
 
   render() {
-    const { entry, level, title } = this.props
+    const { entry, tag, level, title } = this.props
     const { headings, fields, frontmatter } = entry.childMarkdownRemark
     const { open } = this.state
 
@@ -62,10 +62,13 @@ class LinkWithHeadings extends React.Component {
       <div>
         <Link to={fields.slug}>
           <Title level={level} onClick={this.handleClick}>
-            {heads.length > 0 && (
+            {heads.length > 0 ? (
               <Arrow className={classnames({ 'arrow-open': open })} />
+            ) : (
+              level === 0 && <Arrow />
             )}
             {title || frontmatter.title}
+            {tag && <Tag>{tag}</Tag>}
           </Title>
         </Link>
         <HeadingsWrapper
@@ -156,7 +159,7 @@ class ChapterList extends React.Component {
   }
 
   render() {
-    const { chapters, entry, entries, title, level = 0 } = this.props
+    const { chapters, entry, tag, entries, title, level = 0 } = this.props
     const { open } = this.state
 
     return (
@@ -164,7 +167,12 @@ class ChapterList extends React.Component {
         {title && (
           <ListItem key={`${title}${level}`}>
             {entry ? (
-              <LinkWithHeadings entry={entry} level={level} title={title} />
+              <LinkWithHeadings
+                entry={entry}
+                tag={tag}
+                level={level}
+                title={title}
+              />
             ) : (
               <Title level={level} onClick={this.handleClick}>
                 <Arrow className={classnames({ 'arrow-open': open })} />
@@ -269,4 +277,26 @@ const HeadingsWrapper = styled.div`
   &.heads-open > ol > li {
     height: auto;
   }
+`
+
+const Tag = styled.span`
+  display: block;
+  position: absolute;
+  height: 20px;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  padding: 0 13px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.67;
+  color: #ffffff;
+  border-radius: 10px;
+  background-color: #f5a623;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.01),
+    rgba(0, 0, 0, 0.05)
+  );
 `
