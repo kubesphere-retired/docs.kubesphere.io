@@ -47,9 +47,9 @@ v1.0.1 对 v1.0.0 进行了改进和功能优化，并修复了已知的 Bug，�
 
  ### Kubernetes 相关
 
- - Kubernetes v1.12.3 升级至 [Kubernetes 1.12.5](https://github.com/kubernetes/kubernetes/releases/tag/v1.12.5)，同时支持升级至 v1.13.2。
- - Kube-proxy 默认选择 ipvs 作为 proxy mode。
- - etcd 升级至 3.2.18。
+ - Kubernetes v1.12.3 可升级至 [Kubernetes 1.12.5](https://github.com/kubernetes/kubernetes/releases/tag/v1.12.5)，同时支持升级至 v1.13.2。
+ <!-- - Kube-proxy 默认选择 ipvs 作为 proxy mode。 -->
+ - etcd 支持升级至 v3.2.24。
 
 ### 安全
 

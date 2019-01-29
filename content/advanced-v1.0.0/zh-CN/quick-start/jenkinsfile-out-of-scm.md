@@ -335,12 +335,12 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-CRON-BUILD-$BUILD_
 
 |环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)|
 |---|---|---|---|---|
-|Dev| 公网IP : 30880 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
+|Dev| 公网IP : 30860 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
 
 **查看部署**
 ![查看部署](/demo7-deployment.png)
 
-2、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30880`。
+2、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30860`。
 
 **查看服务**
 ![查看服务](/demo7-service.png)
@@ -351,7 +351,7 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-CRON-BUILD-$BUILD_
 
 4、若需要在外网访问，可能需要进行端口转发并开放防火墙，才能访问到成功部署的文档网站示例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30880` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30860` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
 **添加端口转发规则**
 
@@ -363,7 +363,7 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-CRON-BUILD-$BUILD_
 
 ### 访问示例服务
 
-如下在浏览器访问部署到 KubeSphere 的开发环境的服务：`http://127.0.0.1:30880/`。
+如下在浏览器访问部署到 KubeSphere 的开发环境的服务：`http://127.0.0.1:30860/`。
 
 **Dev 环境**
 ![](/docs-home-dev-preview.png)

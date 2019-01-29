@@ -5,7 +5,7 @@
     {
       "title": "Release Notes",
       "icon": "/product.svg",
-      "desc": "为您介绍 Kubesphere 已发布的版本功能与更新",
+      "desc": "为您介绍 KubeSphere 已发布的版本功能与更新",
       "chapters": [
         {
           "title": "Release Notes - 1.0.1 (最新)",
@@ -20,7 +20,7 @@
     {
       "title": "产品介绍",
       "icon": "/product.svg",
-      "desc": "通过简单的图文介绍帮助您了解 Kubesphere",
+      "desc": "通过简单的图文介绍帮助您了解 KubeSphere",
       "chapters": [
         {
           "title": "产品简介",
