@@ -12,11 +12,16 @@ title: "All-in-One 模式"
 
 您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的安装，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
 
+> 说明：若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- | 
-| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：500 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：500 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：500 G |
+| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+|Debian Stretch 9.5 (64 bit)| CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+
+
 
 ## 第二步: 准备安装包
 
@@ -86,7 +91,7 @@ Please input an option: 1
 
 **4.** 测试 KubeSphere 单节点安装是否成功：
 
-**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 31236)，保证外网流量可以通过该端口，外部才能够访问。
+**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 30880)，保证外网流量可以通过该端口，外部才能够访问。
 
 ```bash
 successsful!
@@ -94,7 +99,7 @@ successsful!
 ###              Welcome to KubeSphere!           ###
 #####################################################
 
-Console: http://192.168.0.8:31236
+Console: http://192.168.0.8:30880
 Account: admin
 Password: passw0rd
 
