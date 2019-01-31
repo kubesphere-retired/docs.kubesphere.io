@@ -104,6 +104,8 @@ Login Succeeded
 
 ### 使用 Harbor 镜像仓库
 
+若需要在 KubeSphere 中使用 Harbor 镜像仓库中的镜像，需要先将相关的镜像构建后上传至 Harbor。关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
+
 以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 Harbor 镜像仓库中已有 `mysql:5.6` 的 docker 镜像，在容器组模板中需要先选择镜像仓库，然后将镜像填写为 `http://harbor.devops.kubesphere.local:30280/mysql:5.6`，对应的格式为 `镜像仓库地址 / 镜像名称:tag`，填写后创建完成即可使用该 Harbor 镜像仓库中的镜像。
 
 ![使用 Harbor 镜像仓库](/apply-harbor.png)
