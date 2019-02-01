@@ -42,19 +42,19 @@ etcd_version: v3.2.18
 
 ### 第二步：修改配置文件 
 
-修改配置文件分以下两种情况：
+升级将默认以 1.0.1 的 conf 目录下的配置文件进行升级，因此在升级前需要将 1.0.0 中 conf 下的配置文件中修改过的参数都同步到 1.0.1，修改配置文件分以下两种情况：
 
 #### All-in-One
 
-若 1.0.0 是以 **all-in-one** 模式安装的单节点集群，那么升级前在 1.0.1 安装包的 *conf* 目录下，无需修改 `hosts.ini` 文件，但需要确认 `vars.yml` 中的存储配置是否修改。
+若 1.0.0 是以 **all-in-one** 模式安装的单节点集群，那么升级前在 1.0.1 中无需修改 `conf/hosts.ini` 文件，但需要确认 1.0.0 的 `conf/vars.yml` 参数配置是否修改，若在 1.0.0 中已作修改则需要在 1.0.1 中同步所有修改的参数。
 
-例如，目前 1.0.1 中默认使用 [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为存储类型，如果 1.0.0 配置和使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 `vars.yml` 中需要修改成对应的存储配置参数，并将 Local 的存储配置部分设置为 false。存储配置的参数释义详见 [存储配置参数](../storage-configuration)。
+例如，目前 1.0.1 中默认使用 [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为存储类型，如果 1.0.0 配置和使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 `vars.yml` 中需要修改成对应的存储配置参数，并将 Local 的存储配置部分设置为 false，参数释义详见 [存储配置参数](../storage-configuration)。
 
 #### Multi-Node 
 
-若 1.0.0 是以 **multi-node** 模式安装的多节点集群，那么升级前需将 1.0.0 安装包中 *conf* 目录下的 `hosts.ini` 和 `vars.yaml` 中的配置同步到 1.0.1 的对应文件中。
+若 1.0.0 是以 **multi-node** 模式安装的多节点集群，那么升级前需将 1.0.0 的 `conf/hosts.ini` 和 `conf/vars.yaml` 中的配置都同步到 1.0.1 的对应文件中：
    - 将 1.0.0 的 `conf/hosts.ini` 中的主机参数配置覆盖至 1.0.1 的 `conf/hosts.ini`，参数释义详见 [Multi-Node 模式 - 准备安装配置文件](../multi-node)。
-   - 将 1.0.0 的 `conf/vars.yml` 中的存储参数配置同步至 1.0.1 的 `conf/vars.yml`。例如，1.0.0 配置和使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 `vars.yml` 中也需要修改成对应的存储配置参数，并将 Local 的存储配置部分设置为 false。存储配置的参数释义详见 [存储配置参数](../storage-configuration)。 
+   - 将 1.0.0 的 `conf/vars.yml` 中所有修改过的参数配置同步至 1.0.1 的 `conf/vars.yml`。例如，1.0.0 配置使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 `conf/vars.yml` 中也需要修改成对应的存储配置参数，并将 Local 的存储配置部分设置为 false，参数释义详见 [存储配置参数](../storage-configuration)。 
 
 > 注意：`conf/vars.yml` 中的配置都是 `key:value` 的形式，QingCloud CSI 和 NFS in Kubernetes 在 1.0.1 的 `conf/vars.yml` 中 key 已作修改，若使用了这两类存储则应使用 1.0.1 中的 key。
 
