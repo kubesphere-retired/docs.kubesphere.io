@@ -55,6 +55,21 @@
           "entry": "./advanced-v1.0.0/en/installation/uninstall.md"
         }
       ]
+    },
+    {
+      "title": "Quick Start",
+      "icon": "/access.svg",
+      "desc": "Get a quick overview of the basic features of KubeSphere with 7 quick-start examples to walk you through the process, help you to get familiar with it.",
+      "chapters": [
+        {
+          "title": "Admin Quick Start",
+          "entry": "./advanced-v1.0.0/en/quick-start/admin-quick-start.md"
+        },
+        {
+          "title": "Deploy a MySQL Application",
+          "entry": "./advanced-v1.0.0/en/quick-start/mysql-deployment.md"
+        }
+      ]
     }
   ]
 }
