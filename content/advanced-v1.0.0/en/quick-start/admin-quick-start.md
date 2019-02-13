@@ -11,7 +11,7 @@ This document is intended for cluster admin who are new to KubeSphere, guiding u
 - You need to install KubeSphere to the target machine. 
 - You need a default admin account which is used to log in to KubeSphere.
 
-### Estimated time
+## Estimated Time
 
 About 15 minutes.
 
@@ -137,5 +137,44 @@ First, click **Create** button.
 
 4.4. Similarly, navigate to **Project Management → Project Members**. Then click **Invite Member** and grant `project-regular` as the role of `maintainer`, which is used to create pipeline, credentials, etc.
 
+![邀请成员进入工程](/invite-member-to-devops-en.png)
 
+### How to Use Web Kubectl
 
+Kubectl is a command line interface for running commands against Kubernetes clusters. 
+
+KubeSphere provides web kubectl on UI and it only allows the role of `cluster-admin` has access to use web kubectl.
+
+Sign in with cluster admin, open the web kubectl window by clicking the web kubectl button at the lower right.
+
+![kubectl 位置](/web-kubectl-location-en.png)
+
+Cluster admin is able to search or and manage the cluster resource with kubectl commands. For example, the following commands produce all of the PVCs' status.
+
+```bash
+kubectl get pvc --all-namespaces
+```
+
+![查询 PVC](/view-kubectl-en.png)
+
+Web kubectl also supports view the Kubeconfig File of the Kubernetes cluster.
+
+#### Kubectl Syntax
+
+Use the following syntax to run kubectl commands from the web kubectl:
+
+```bash
+kubectl [command] [TYPE] [NAME] [flags]
+```
+
+> Notes:
+> where command, TYPE, NAME, and flags are:
+> - command: Specifies the operation that you want to perform on one or more resources, for example create, get, describe, delete.
+> - TYPE: Specifies the resource type. Resource types are case-insensitive and you can specify the singular, plural, or abbreviated forms. For example, the following commands produce the same output:
+> - NAME: Specifies the name of the resource. Names are case-sensitive. If the name is omitted, details for all resources are displayed, for example $ kubectl get pods.
+> - flags: Specifies optional flags. For example, you can use the -s or --server flags to specify the address and port of the Kubernetes API server.
+> If you need help, just run kubectl help from the web kubectl.
+
+For more about command operations, see the [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) documentation.
+
+So far, this page shows you the users and accounts management and how to use web kubectl. It's recommended to reference the other quick start guides to practice.
