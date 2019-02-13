@@ -218,7 +218,7 @@ nfs_server_is_default_class: true
 
 ``` -->
 
-**5.** It is recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage server. If you are not prepare the storage server yet, you can also configure NFS server in Kubernetes as the default storage only for testing installation. If so, you may need to modify the storage class parameters in  `vars.yml` refer to the example below. For details please reference the <a href="https://docs.kubesphere.io/advanced-v1.0.0/zh-CN/installation/storage-configuration/" target="_blank">Storage Configuration Instructions</a>.
+**5.** It is recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage server. If you are not prepare the storage server yet, you can also configure NFS server in Kubernetes as the default storage only for testing installation. If so, you may need to modify the storage class parameters in  `vars.yml` refer to the example below. For details please reference the <a href="https://docs.kubesphere.io/advanced-v1.0/zh-CN/installation/storage-configuration/" target="_blank">Storage Configuration Instructions</a>.
  
 **Note：**  <br/>
 

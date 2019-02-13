@@ -71,8 +71,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       const redirects = {
         '/express/zh-CN/': '/express/zh-CN/basic/',
         '/express/en/': '/express/en/KubeSphere-Installer-Guide/',
-        '/advanced-v1.0.0/zh-CN/': '/advanced-v1.0.0/zh-CN/introduction/intro/',
-        '/advanced-v1.0.0/en/': '/advanced-v1.0.0/en/test-en/',
+        '/advanced-v1.0/zh-CN/': '/advanced-v1.0/zh-CN/introduction/intro/',
+        '/advanced-v1.0/en/': '/advanced-v1.0/en/test-en/',
       }
 
       Object.entries(redirects).forEach(([key, value]) => {

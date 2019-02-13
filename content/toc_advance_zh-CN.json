@@ -1,5 +1,5 @@
 {
-  "version": "advanced-v1.0.0",
+  "version": "advanced-v1.0",
   "lang": "zh-CN",
   "chapters": [
     {
@@ -9,12 +9,12 @@
       "chapters": [
         {
           "title": "Release Notes - 1.0.1",
-          "entry": "./advanced-v1.0.0/zh-CN/release/release-v101.md",
+          "entry": "./advanced-v1.0/zh-CN/release/release-v101.md",
           "tag": "最新"
         },
         {
           "title": "Release Notes - 1.0.0",
-          "entry": "./advanced-v1.0.0/zh-CN/release/release-v100.md"
+          "entry": "./advanced-v1.0/zh-CN/release/release-v100.md"
         }
       ]
     },
@@ -25,19 +25,19 @@
       "chapters": [
         {
           "title": "产品简介",
-          "entry": "./advanced-v1.0.0/zh-CN/introduction/intro.md"
+          "entry": "./advanced-v1.0/zh-CN/introduction/intro.md"
         },
         {
           "title": "产品功能",
-          "entry": "./advanced-v1.0.0/zh-CN/introduction/features.md"
+          "entry": "./advanced-v1.0/zh-CN/introduction/features.md"
         },
         {
           "title": "产品优势",
-          "entry": "./advanced-v1.0.0/zh-CN/introduction/advantages.md"
+          "entry": "./advanced-v1.0/zh-CN/introduction/advantages.md"
         },
         {
           "title": "名词解释",
-          "entry": "./advanced-v1.0.0/zh-CN/introduction/glossary.md"
+          "entry": "./advanced-v1.0/zh-CN/introduction/glossary.md"
         }
       ]
     },
@@ -48,39 +48,39 @@
       "chapters": [
         {
           "title": "安装说明",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/intro.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/intro.md"
         },
         {
           "title": "All-in-One 模式",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/all-in-one.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/all-in-one.md"
         },
         {
           "title": "Multi-Node 模式",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/multi-node.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/multi-node.md"
         },
         {
           "title": "升级",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/upgrade.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/upgrade.md"
         },
         {
           "title": "Master 和 etcd 节点高可用",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/master-ha.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/master-ha.md"
         },
         {
           "title": "存储配置说明",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/storage-configuration.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/storage-configuration.md"
         },
         {
           "title": "安装内置 Harbor",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/harbor-installation.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/harbor-installation.md"
         },
         {
           "title": "集群节点扩容",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/add-nodes.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/add-nodes.md"
         },
         {
           "title": "卸载",
-          "entry": "./advanced-v1.0.0/zh-CN/installation/uninstall.md"
+          "entry": "./advanced-v1.0/zh-CN/installation/uninstall.md"
         }
       ]
     },
@@ -91,39 +91,39 @@
       "chapters": [
         {
           "title": "入门必读",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/quick-start-guide.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/quick-start-guide.md"
         },
         {
           "title": "管理员快速入门",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/admin-quick-start.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/admin-quick-start.md"
         },
         {
           "title": "示例一 - 部署 MySQL",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/mysql-deployment.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/mysql-deployment.md"
         },
         {
           "title": "示例二 - 部署 Wordpress",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/wordpress-deployment.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/wordpress-deployment.md"
         },
         {
           "title": "示例三 - 创建简单任务",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/job-quick-start.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/job-quick-start.md"
         },
         {
           "title": "示例四 - 一键部署应用",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/one-click-deploy.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/one-click-deploy.md"
         },
         {
           "title": "示例五 - 设置弹性伸缩 (HPA)",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/hpa.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/hpa.md"
         },
         {
           "title": "示例六 - Jenkinsfile-in-SCM",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/jenkinsfile-in-scm.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/jenkinsfile-in-scm.md"
         },
         {
           "title": "示例七 - Jenkinsfile-out-of-SCM",
-          "entry": "./advanced-v1.0.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
+          "entry": "./advanced-v1.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
         }
       ]
     },
@@ -137,11 +137,11 @@
           "entries": [
             {
               "title": "多租户管理概述",
-              "entry": "./advanced-v1.0.0/zh-CN/multi-tenant/intro.md"
+              "entry": "./advanced-v1.0/zh-CN/multi-tenant/intro.md"
             },
             {
               "title": "角色权限概览",
-              "entry": "./advanced-v1.0.0/zh-CN/multi-tenant/role-overview.md"
+              "entry": "./advanced-v1.0/zh-CN/multi-tenant/role-overview.md"
             }
           ]
         },
@@ -150,15 +150,15 @@
           "entries": [
             {
               "title": "企业空间管理",
-              "entry": "./advanced-v1.0.0/zh-CN/platform-management/workspace-management.md"
+              "entry": "./advanced-v1.0/zh-CN/platform-management/workspace-management.md"
             },
             {
               "title": "账号管理",
-              "entry": "./advanced-v1.0.0/zh-CN/platform-management/account-management.md"
+              "entry": "./advanced-v1.0/zh-CN/platform-management/account-management.md"
             },
             {
               "title": "平台角色",
-              "entry": "./advanced-v1.0.0/zh-CN/platform-management/role-management.md"
+              "entry": "./advanced-v1.0/zh-CN/platform-management/role-management.md"
             }
           ]
         },
@@ -167,15 +167,15 @@
           "entries": [
             {
               "title": "服务组件",
-              "entry": "./advanced-v1.0.0/zh-CN/infrastructure/components.md"
+              "entry": "./advanced-v1.0/zh-CN/infrastructure/components.md"
             },
             {
               "title": "主机管理",
-              "entry": "./advanced-v1.0.0/zh-CN/infrastructure/nodes.md"
+              "entry": "./advanced-v1.0/zh-CN/infrastructure/nodes.md"
             },
             {
               "title": "存储类型",
-              "entry": "./advanced-v1.0.0/zh-CN/infrastructure/storageclass.md"
+              "entry": "./advanced-v1.0/zh-CN/infrastructure/storageclass.md"
             }
           ]
         },
@@ -184,29 +184,29 @@
           "entries": [
             {
               "title": "监控概述",
-              "entry": "./advanced-v1.0.0/zh-CN/monitoring/intro.md"
+              "entry": "./advanced-v1.0/zh-CN/monitoring/intro.md"
             },
             {
               "title": "应用资源监控",
-              "entry": "./advanced-v1.0.0/zh-CN/monitoring/monitoring-demo.md"
+              "entry": "./advanced-v1.0/zh-CN/monitoring/monitoring-demo.md"
             },
             {
               "title": "物理资源监控",
-              "entry": "./advanced-v1.0.0/zh-CN/monitoring/physical-resources.md"
+              "entry": "./advanced-v1.0/zh-CN/monitoring/physical-resources.md"
             },
             {
               "title": "应用资源监控",
-              "entry": "./advanced-v1.0.0/zh-CN/monitoring/application-resources.md"
+              "entry": "./advanced-v1.0/zh-CN/monitoring/application-resources.md"
             }
           ]
         },
         {
           "title": "应用仓库",
-          "entry": "./advanced-v1.0.0/zh-CN/platform-management/app-repo.md"
+          "entry": "./advanced-v1.0/zh-CN/platform-management/app-repo.md"
         },
         {
           "title": "Jenkins 系统设置",
-          "entry": "./advanced-v1.0.0/zh-CN/devops/jenkins-setting.md"
+          "entry": "./advanced-v1.0/zh-CN/devops/jenkins-setting.md"
         }
       ]
     },
@@ -220,35 +220,35 @@
           "entries": [
             {
               "title": "工作负载概述",
-              "entry": "./advanced-v1.0.0/zh-CN/workload/workload.md"
+              "entry": "./advanced-v1.0/zh-CN/workload/workload.md"
             },
             {
               "title": "部署",
-              "entry": "./advanced-v1.0.0/zh-CN/workload/deployments.md"
+              "entry": "./advanced-v1.0/zh-CN/workload/deployments.md"
             },
             {
               "title": "有状态副本集",
-              "entry": "./advanced-v1.0.0/zh-CN/workload/statefulsets.md"
+              "entry": "./advanced-v1.0/zh-CN/workload/statefulsets.md"
             },
             {
               "title": "守护进程集",
-              "entry": "./advanced-v1.0.0/zh-CN/workload/daemonsets.md"
+              "entry": "./advanced-v1.0/zh-CN/workload/daemonsets.md"
             },
             {
               "title": "任务",
-              "entry": "./advanced-v1.0.0/zh-CN/workload/jobs.md"
+              "entry": "./advanced-v1.0/zh-CN/workload/jobs.md"
             },
             {
               "title": "定时任务",
-              "entry": "./advanced-v1.0.0/zh-CN/workload/cronjobs.md"
+              "entry": "./advanced-v1.0/zh-CN/workload/cronjobs.md"
             },
             {
               "title": "设置健康检查器",
-              "entry": "./advanced-v1.0.0/zh-CN/workload/health-check.md"
+              "entry": "./advanced-v1.0/zh-CN/workload/health-check.md"
             },
             {
               "title": "工作负载管理",
-              "entry": "./advanced-v1.0.0/zh-CN/workload/workload-management.md"
+              "entry": "./advanced-v1.0/zh-CN/workload/workload-management.md"
             }
           ]
         },
@@ -257,15 +257,15 @@
           "entries": [
             {
               "title": "存储概述",
-              "entry": "./advanced-v1.0.0/zh-CN/storage/volume.md"
+              "entry": "./advanced-v1.0/zh-CN/storage/volume.md"
             },
             {
               "title": "存储卷",
-              "entry": "./advanced-v1.0.0/zh-CN/storage/pvc.md"
+              "entry": "./advanced-v1.0/zh-CN/storage/pvc.md"
             },
             {
               "title": "Local Volume 使用方法",
-              "entry": "./advanced-v1.0.0/zh-CN/storage/local-volume.md"
+              "entry": "./advanced-v1.0/zh-CN/storage/local-volume.md"
             }
           ]
         },
@@ -274,11 +274,11 @@
           "entries": [
             {
               "title": "服务管理",
-              "entry": "./advanced-v1.0.0/zh-CN/ingress-service/services.md"
+              "entry": "./advanced-v1.0/zh-CN/ingress-service/services.md"
             },
             {
               "title": "应用路由",
-              "entry": "./advanced-v1.0.0/zh-CN/ingress-service/ingress.md"
+              "entry": "./advanced-v1.0/zh-CN/ingress-service/ingress.md"
             }
           ]
         },
@@ -287,15 +287,15 @@
           "entries": [
             {
               "title": "密钥",
-              "entry": "./advanced-v1.0.0/zh-CN/configuration/secrets.md"
+              "entry": "./advanced-v1.0/zh-CN/configuration/secrets.md"
             },
             {
               "title": "配置",
-              "entry": "./advanced-v1.0.0/zh-CN/configuration/configmaps.md"
+              "entry": "./advanced-v1.0/zh-CN/configuration/configmaps.md"
             },
             {
               "title": "镜像仓库",
-              "entry": "./advanced-v1.0.0/zh-CN/configuration/image-registry.md"
+              "entry": "./advanced-v1.0/zh-CN/configuration/image-registry.md"
             }
           ]
         },
@@ -304,19 +304,19 @@
           "entries": [
             {
               "title": "基本信息",
-              "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-quota.md"
+              "entry": "./advanced-v1.0/zh-CN/project-setting/project-quota.md"
             },
             {
               "title": "成员角色",
-              "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-roles.md"
+              "entry": "./advanced-v1.0/zh-CN/project-setting/project-roles.md"
             },
             {
               "title": "项目成员",
-              "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-members.md"
+              "entry": "./advanced-v1.0/zh-CN/project-setting/project-members.md"
             },
             {
               "title": "外网访问",
-              "entry": "./advanced-v1.0.0/zh-CN/project-setting/project-gateway.md"
+              "entry": "./advanced-v1.0/zh-CN/project-setting/project-gateway.md"
             }
           ]
         },
@@ -325,35 +325,35 @@
           "entries": [
             {
               "title": "DevOps 工程概述",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/intro.md"
+              "entry": "./advanced-v1.0/zh-CN/devops/intro.md"
             },
             {
               "title": "管理 DevOps 工程",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/devops-project.md"
+              "entry": "./advanced-v1.0/zh-CN/devops/devops-project.md"
             },
             {
               "title": "流水线",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/pipeline.md"
+              "entry": "./advanced-v1.0/zh-CN/devops/pipeline.md"
             },
             {
               "title": "凭证管理",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/credential.md"
+              "entry": "./advanced-v1.0/zh-CN/devops/credential.md"
             },
             {
               "title": "添加代码仓库",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/add-scm.md"
+              "entry": "./advanced-v1.0/zh-CN/devops/add-scm.md"
             },
             {
               "title": "设置自动触发扫描",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/auto-trigger.md"
+              "entry": "./advanced-v1.0/zh-CN/devops/auto-trigger.md"
             },
             {
               "title": "Jenkins Agent 说明",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/jenkins-agent.md"
+              "entry": "./advanced-v1.0/zh-CN/devops/jenkins-agent.md"
             },
             {
               "title": "流水线常见问题",
-              "entry": "./advanced-v1.0.0/zh-CN/devops/devops-faq.md"
+              "entry": "./advanced-v1.0/zh-CN/devops/devops-faq.md"
             }
           ]
         }
@@ -363,7 +363,7 @@
       "title": "常见问题",
       "icon": "/problem.svg",
       "desc": "总结实际应用场景中可能遇到的问题并给出通用解决方案。",
-      "entry": "./advanced-v1.0.0/zh-CN/faq.md"
+      "entry": "./advanced-v1.0/zh-CN/faq.md"
     }
   ]
 }

@@ -33,8 +33,8 @@ class Versions extends React.Component {
   changeVersion = (version) => {
     if (version === 'express') {
       location.href=`/express/zh-CN/basic/`
-    } else if (version === 'advanced-v1.0.0') {
-      location.href=`/advanced-v1.0.0/zh-CN/introduction/intro/`
+    } else if (version === 'advanced-v1.0') {
+      location.href=`/advanced-v1.0/zh-CN/introduction/intro/`
     } else {
       location.href=`/${version}/zh-CN/`
     }
