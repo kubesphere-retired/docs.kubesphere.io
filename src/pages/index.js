@@ -123,7 +123,7 @@ const Versions = ({ current, versions, onChange }) => {
     <VersionsWrapper>
       <Wrapper>
         <div className="version-text">
-          <div>当前文档适用于 KubeSphere {current.value}</div>
+          <div>当前文档适用于 KubeSphere {current.label}</div>
           <p>
             这里将提供适用于当前版本的帮助文档，如果需要其它版本文档请选择右侧版本
           </p>
