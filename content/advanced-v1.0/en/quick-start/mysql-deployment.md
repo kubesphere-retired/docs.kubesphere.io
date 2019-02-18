@@ -9,8 +9,7 @@ title: "Deploy a MySQL Application"
 
 ## Target 
 
-
-This page contains a Statefulset as an example shows how to deploy MySQL as a stateful application, which used the `Mysql:5.6` image as a backend for the [Wordpress](https://wordpress.org/) website. The MySQL initial password for this example will be created and saved as [Secret](../../configuration/secrets). This example only describes the process without too much explanation. For a detailed explanation of parameters and fields, see [Secrets](../../configuration/secrets) and [StatefulSets](../../workload/statefulsets).
+This page creates a Statefulset as an example shows how to deploy MySQL as a stateful application, which used the `Mysql:5.6` image as a backend for the [Wordpress](https://wordpress.org/) website. The MySQL initial password for this example will be created and saved as [Secret](../../configuration/secrets). This example only describes the process without too much explanation. For a detailed explanation of parameters and fields, see [Secrets](../../configuration/secrets) and [StatefulSets](../../workload/statefulsets).
 
 <!-- ## 前提条件
 
@@ -200,7 +199,7 @@ Fill in the Service Config with the following information:
 
 - Service Name: `mysql-service` (The Service Name defined here will be associated with Wordpress)
 - Ports:
-   - name: NodePort
+   - name: nodeport
    - protocol: TCP
    - port: 3306
    - target port: 3306
