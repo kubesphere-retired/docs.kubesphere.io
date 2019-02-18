@@ -1,21 +1,34 @@
 ---
-title: "示例二 - 部署 Wordpress" 
+title: "Deploy a WordPress Web Application" 
 ---
 
-## 目的
+<!-- ## 目的
 
-本文以创建一个部署 (Deployment) 为例，部署一个无状态的 Wordpress 应用，基于示例一的 MySQL 应用最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
+本文以创建一个部署 (Deployment) 为例，部署一个无状态的 Wordpress 应用，基于示例一的 MySQL 应用最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。 -->
 
-## 前提条件
+## Target 
+
+This page creates a Deployment as an example shows how to deploy [Wordpress](https://wordpress.org/)  web application, which is based on the last guide [Deploy a MySQL Application](../mysql-deployment). The connection password between WordPress and MySQL will be created and saved as a [ConfigMap](../../configuration/configmaps).
+
+<!-- ## 前提条件
 
 - 已创建了有状态副本集 MySQL，若还未创建请参考 [示例一 - 部署 MySQL](../mysql-deployment)。
-- 以 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目
+- 以 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目 -->
 
-## 预估时间
+## Prerequisites
 
-约 15 分钟。
+- You need to create a MySQL StatefulSet, see the [Deploy a MySQL Application](../mysql-deployment) if not yet.
+- You need to sign in with `project-regular` and enter into the corresponding project.
 
-## 操作示例
+<!-- ## 预估时间
+
+约 15 分钟。 -->
+
+## Estimated Time
+
+About 15 minutes.
+
+<!-- ## 操作示例
 
 ### 示例视频
 
@@ -43,9 +56,28 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 1.3. ConfigMap 是以键值对的形式存在，此处键值对设置为 `WORDPRESS_DB_PASSWORD` 和 `123456`，完成后点击 **创建**。
 
-![ConfigMap 设置](/wordpress-configmap.png)
+![ConfigMap 设置](/wordpress-configmap.png) -->
 
-#### 第二步：创建存储卷
+## Example
+
+### Create a WordPress Deployment
+
+#### Step 1: Create a ConfigMap
+
+1.1. Navigate to **Configuration Center → ConfigMaps**, then choose **Create ConfigMap**.
+
+![创建配置](/wordpress-create-configmap-en.png)
+
+1.2. Fill in the basic information, e.g. `Name : wordpress-configmap`. Then choose **Next** when you're done. 
+
+![基本信息](/demo2-configmap-basic-en.png)
+
+1.3. ConfigMap parameter is composed of a set of key/value pairs, fill with the following values and select **Create**.
+
+- key: WORDPRESS_DB_PASSWORD
+- value: 123456
+
+<!-- #### 第二步：创建存储卷
 
 2.1. 在当前项目下左侧菜单栏的 **存储卷**，点击创建，基本信息如下。
 
@@ -71,9 +103,27 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 > 若存储类型为 Local，那么该存储卷在被挂载至工作负载之前都将显示创建中，这种情况是正常的，因为 Local 目前还不支持存储卷动态配置 [ (Dynamic Volume Provisioning) ](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)，挂载后状态将显示 “准备就绪”。
 
-![创建存储卷](/wordpress-pvc-list.png)
+![创建存储卷](/wordpress-pvc-list.png) -->
 
-#### 第三步：创建部署
+#### Step 2: Create a Volume
+
+2.1. Navigate to **Volumes**, and click **Create**. Then fill in the basic information, e.g. `Name : wordpress-configmap`, choose **Next** when you're done.
+
+![创建存储卷](/demo2-wordpress-pvc-basic-en.png)
+
+2.2. Volume settings depends on your storage class configuration, local volume is set to the default storage class within all-in-one installation, its volume settings as below screenshot:
+
+![存储卷设置](/demo2-pvc-setting-en.png)
+
+2.3. We simply keep the default label settings as `app: wordpress-pvc`, then choose **Create**.
+
+2.4. when you're redirect to the Volumes list, you will be able to see the volume `wordpress-pvc` has been created successfully.
+
+![创建存储卷](/wordpress-pvc-list-en.png)
+
+> Reminder: The volume will display `Pending` if it is not yet mounted, actually it is normal since local doesn't suppor [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). This volume will change to `Bound` when it is mounted to the workload.
+
+<!-- #### 第三步：创建部署
 
 在左侧菜单栏选择 **工作负载 → 部署**，进入列表页，点击 **创建部署**。
 
@@ -85,15 +135,21 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 - 名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，比如 `wordpress`
 - 别名：可选，支持中文帮助更好的区分资源，如 `Wordpress 网站`
-- 描述信息：简单介绍该工作负载，方便用户进一步了解
+- 描述信息：简单介绍该工作负载，方便用户进一步了解 -->
 
-<!-- - 更新策略：选择 RollingUpdate
-   - MaxSurge：默认 25%， MaxSurge 指定的是除了 "期望副本 (DESIRED)" 数量之外，在一次滚动更新中，部署控制器还可以创建多少个新的容器组
-   - MaxUnavailable：默认 25%，表示最多可以一次删除 "25 % 的期望副本数量" 个容器组 -->
+#### Step 3: Create a Deployment
 
-![填写基本信息](/wordpress-basic.png)
+Navigate to **Workloads → Deployments**, then click **Create**.
 
-#### 第五步：容器组模板
+![创建部署](/wordpress-create-deployment-en.png)
+
+#### Step 4: Basic Information
+
+Fill in the basic information, e.g. `Name : wordpress`. Then choose **Next** when you're done. 
+
+![填写基本信息](/wordpress-basic-en.png)
+
+<!-- #### 第五步：容器组模板
 
 5.1. 点击 **添加容器**。容器组模板中，名称可自定义，镜像填写 `wordpress:4.8-apache`，CPU 和内存此处暂不作限定，将使用在创建项目时指定的默认值，点击 **高级选项**。
 
@@ -109,9 +165,38 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 ![容器组模板](/wordpress-container-setting.png)
 
-5.3. 副本数量和弹性伸缩暂无需设置，更新策略选择推荐的 **滚动更新策略**，然后点击 **下一步**。
+5.3. 副本数量和弹性伸缩暂无需设置，更新策略选择推荐的 **滚动更新策略**，然后点击 **下一步**。 -->
 
-#### 第六步：存储卷设置
+#### Step 5: Pod Template
+
+5.1. Click **Add Container**, Container Name can be customized by the user, fill in the image with `wordpress:4.8-apache`, leave the CPU and Memory at their default values. Click **Advanced Options**.
+
+![容器组模板](/demo2-container-setting-en.png)
+
+5.2. We'll simply set the **Ports** and **Environmental Variables** according to the following hints. 
+
+- Ports:
+   - Name: Port
+   - Protocol: TCP
+   - Port: 80
+- Environmental Variables (It requires to create 2 environmental variables in this section)
+   - choose **Reference Config Center**
+   - then fill in the name with `WORDPRESS_DB_PASSWORD` 
+   - select resource: select `wordpress-configmap` 
+   - select Key: `WORDPRESS_DB_PASSWORD`
+   
+Then select **Add Environmental Variable**, and fill in the name/value:
+
+- name: WORDPRESS_DB_HOST
+- value: mysql-service
+
+Choose **Save** when you're done.
+
+![容器组模板](/wordpress-container-setting-en.png)
+
+5.3. No need to modify the Replicas and Horizontal Pod Autoscaling, For **Update Strategy** you can keep `RollingUpdate` which is a recommended strategy. Then click **Next**.
+
+<!-- #### 第六步：存储卷设置
 
 6.1. 此处选择 **添加已有存储卷**，选择第二步创建的存储卷 `wordpress-pvc`。
 
@@ -135,9 +220,25 @@ app: wordpress
 
 7.3. 查看创建的部署 Wordpress，可以看到其状态显示运行中，下一步则需要为 Wordpress 创建服务和应用路由，最终暴露给外网访问。
 
-![创建成功](/demo-wordpress-create-successfully.png)
+![创建成功](/demo-wordpress-create-successfully.png) -->
 
-#### 第八步：创建服务
+#### Step 6: Volume Settings
+
+6.1. Choose **Add Existing Volume**, select the `wordpress-pvc` which was created in Step 2.
+
+6.2. Set the Mount Path to `/var/www/html` and select `ReadAndWrite`. Then click **Save** and select **Next** when you're done.
+
+![存储卷设置](/wordpress-pvc-path-en.png)
+
+#### Step 7: View the Deployment
+
+7.1. We simply keep the default label settings as `app: wordpress`. There is no need to set Node Selector in this demo, you can choose **Create** directly.
+
+7.2. You will be able to see the WordPress Deployment displays "updating" since this process requires a series of operations such as pulling a Docker image of the specified tag, creating a container, and connecting the MySQL database. Normally, it will change to "running" at around 1 min.
+
+![创建成功](/demo-wordpress-create-successfully-en.png)
+
+<!-- #### 第八步：创建服务
 
 8.1. 在当前项目中，左侧菜单栏选择 **网路与服务 → 服务**，点击 **创建**。
 
@@ -170,9 +271,36 @@ app=wordpress-service
 
 8.5. 服务暴露给外网访问的访问方式，支持 NodePort 和 LoadBalancer，由于示例将以应用路由 (Ingress) 的方式添加 Hostname 来暴露服务给外网访问，所以服务的访问方式选择 **None**。点击 **创建**，wordpress-service 服务可创建成功。
 
-![创建成功](/demo2-wordpress-service-list.png)
+![创建成功](/demo2-wordpress-service-list.png) -->
 
-#### 第九步：创建应用路由
+#### Step 8: Create a Service
+
+8.1. Navigate to **Network & Service** → **Service**, choose **Create**.
+
+![创建服务](/demo2-create-svc-en.png)
+
+8.2. Fill in the basic information, e.g. `Name : wordpress-service`. Then choose **Next** when you're done.
+
+8.3. Reference the following information to complete the Service Settings:
+
+- Service Type: choose the first item (Virtual IP: Access the service through the internal IP of the cluster)
+- Selector: Click **Specify Workload**, then select `wordpress` and click **Save**.
+- Ports:
+   - name: nodeport
+   - protocol: TCP
+   - port: 80  
+   - target port: 80
+- Session Affinity: None.
+
+![服务设置](/service-setting-en.png)
+
+8.4. We simply keep the default label settings as `app: wordpress-service`, then choose **Next**.
+
+8.5. We are going to expose this service via Ingress hostname, so leave the Access Method at `None`. Then click **Create**, the `wordpress-service` has been created successfully.
+
+![创建成功](/demo2-wordpress-service-list-en.png)
+
+<!-- #### 第九步：创建应用路由
 
 通过创建应用路由的方式可以将 WordPress 暴露出去供外网访问，与将服务直接通过 NodePort 或 LoadBalancer 暴露出去不同之处是应用路由是通过配置 Hostname 和路由规则（即 ingress）来访问，请参考以下步骤配置应用路由。关于应用路由的管理详见 [应用路由](../../ingress-service/ingress)。
 
@@ -210,8 +338,40 @@ app=wordpress-service
 app=wordpress-ingress
 ```
 
-![查看应用路由创建](/ingress-create-result.png)
+![查看应用路由创建](/ingress-create-result.png) -->
 
+#### Step 9: Create a Route
+
+9.1. Navigate to **Network & Service** → **Routes** and choose **Create Route**.
+
+![创建应用路由](/demo2-create-ingress-en.png)
+
+9.2. Fill in the basic information, e.g. `Name: wordpress-ingress`, click **Next** when you're done.
+
+9.3. Choose **Add Route Rule**, set the Route Rule according to the following hints:
+
+- Hostname：it can be customized by user, e.g. `wordpress.demo.io`, wordpress service will be accessed via this hostname.
+- Protocol：select `http` (if select https please create the related certificates in secrets)
+- Paths：
+   - Path: enter `/`
+   - Service: choose `wordpress-service`
+   - port: enter `80`
+
+![设置路由规则](/wordpress-ingress-setting-en.png)
+
+9.4. Add a line of record ({$EIP} {$hostname}) to the your local `hosts` file. For example, if the EIP of your KubeSphere is `139.198.16.160` and the hostname has been set to `wordpress.demo.io`, then we need to add a line of record to `/etc/hosts` as following:
+
+```bash
+139.198.16.160 wordpress.demo.io
+```
+
+9.5. Skip the [Annotation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/), then keep the default label settings as `app: wordpress-ingress`. 
+
+9.6. Click **Create**, the `wordpress-ingress` will be created successfully.
+
+![查看应用路由创建](/ingress-create-result-en.png)
+
+<!-- 
 #### 第十步：配置外网访问
 
 10.1. 在当前项目中，左侧菜单选择 **项目设置 → 外网访问**，点击 **设置网关**，即应用路由的网关入口，每个项目都有一个独立的网关入口。
@@ -240,12 +400,25 @@ app=wordpress-ingress
 
 **防火墙添加下行规则**
 
-![防火墙添加下行规则](/firewall-nodeport.png)
+![防火墙添加下行规则](/firewall-nodeport.png) -->
 
-### 访问 Wordpress
+#### Step 10: Configure the Gateway
 
-设置完成后，WordPress 就以应用路由的方式通过网关入口暴露到外网，由于在路由规则中我们选择的是 http 协议，因此可以通过示例中在路由规则和外网访问配置的 `{$hostname}:{$NodePort}` 如 `http://wordpress.demo.io:30517` 访问 WordPress 博客网站。
+10.1. Navigate to **Project-Settings → Internet Access**, then click **Set Gateway**.
 
-![访问 Wordpress](/wordpress-homepage.png)
+![设置网关](/demo2-gateway-en.png)
 
-至此，您已经熟悉了部署 (Deployments) 和有状态副本集 (Statefulsets) 的基本功能使用，关于部署和有状态副本集的各项参数释义，详见 [部署](../../workload/deployments) 和 [有状态副本集](../../workload/statefulsets)。
+10.2. Make sure the Access Method is set to `NodePort`, then choose **Save**.
+
+> Reminder: LoadBalancer is required Cloud provider's LB plugin integration and support, QingCloud LoadBalancer plugin is in development and will coming soon. We will let you know 
+
+10.3. It will generate 2 node ports, represent http and https respectively. For example, here is corresponding to 31499 and 32646.
+
+![端口列表](/gateway-nodeport-list-en.png)
+
+### Access the WordPress service
+
+At this point, WordPress is exposed to the outside by the Ingress, thus we can access it via `{$hostname}:{$NodePort}` i.e. `http://wordpress.demo.io:30517` since we selected http protocol previously.
+
+You might be familiar with the basic features of Deployments and StatefulSets, see the [Deployments](../../workload/deployments) and [StatefulSets](../../workload/statefulsets) for the details.
+

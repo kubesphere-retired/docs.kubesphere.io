@@ -19,7 +19,7 @@ title: "All-in-One 模式"
 | CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
 | Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
 |Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-|Debian Stretch 9.5 (64 bit)| CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+|Debian Stretch 9.5 (64 bit)| CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
 
 
 
