@@ -213,6 +213,7 @@ export default class MarkdownTemplate extends React.Component {
                   this.props.data.tableOfContents.edges[0].node.chapters
                 }
               />
+              <ICP>KubeSphere™ 2019 All Rights Reserved.</ICP>
             </ToCContainer>
           </NavContainer>
           <MainContainer isExpand={isExpand}>
@@ -311,7 +312,9 @@ const MainContainer = styled.div`
 `
 
 const ToCContainer = styled.div`
-  padding: 40px 0;
+  position: relative;
+  padding: 40px 0 60px 0;
+  min-height: calc(100vh - 92px);
 `
 
 const MarkdownWrapper = styled.div`
@@ -350,6 +353,17 @@ const FooterWrapper = styled.div`
   max-width: 1217px;
   padding: 0 30px;
   margin: 0 auto;
+`
+
+const ICP = styled.div`
+  position: absolute;
+  padding: 20px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #ffffff;
 `
 
 /* eslint no-undef: "off" */
@@ -418,6 +432,7 @@ export const pageQuery = graphql`
             }
             chapters {
               title
+              tag
               entry {
                 id
                 childMarkdownRemark {

@@ -20,5 +20,6 @@ class TableOfContents extends React.Component {
 export default TableOfContents
 
 const TOCWrapper = styled.div`
+  position: relative;
   margin: 0;
 `

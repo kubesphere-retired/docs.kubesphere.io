@@ -1,5 +1,5 @@
 {
-  "version": "advanced-v1.0.0",
+  "version": "advanced-v1.0",
   "lang": "en",
   "chapters": [
     {
@@ -9,19 +9,19 @@
       "chapters": [
         {
           "title": "Introduction",
-          "entry": "./advanced-v1.0.0/en/introduction/intro.md"
+          "entry": "./advanced-v1.0/en/introduction/intro.md"
         },
         {
           "title": "Features",
-          "entry": "./advanced-v1.0.0/en/introduction/features.md"
+          "entry": "./advanced-v1.0/en/introduction/features.md"
         },
         {
           "title": "Advantages",
-          "entry": "./advanced-v1.0.0/en/introduction/advantages.md"
+          "entry": "./advanced-v1.0/en/introduction/advantages.md"
         },
         {
           "title": "Glossary",
-          "entry": "./advanced-v1.0.0/en/introduction/glossary.md"
+          "entry": "./advanced-v1.0/en/introduction/glossary.md"
         }
       ]
     },
@@ -32,27 +32,27 @@
       "chapters": [
         {
           "title": "Instruction",
-          "entry": "./advanced-v1.0.0/en/installation/intro.md"
+          "entry": "./advanced-v1.0/en/installation/intro.md"
         },
         {
           "title": "All-in-One",
-          "entry": "./advanced-v1.0.0/en/installation/all-in-one.md"
+          "entry": "./advanced-v1.0/en/installation/all-in-one.md"
         },
         {
           "title": "Multi-Node",
-          "entry": "./advanced-v1.0.0/en/installation/multi-node.md"
+          "entry": "./advanced-v1.0/en/installation/multi-node.md"
         },
         {
           "title": "Highly Available Master and Etcd",
-          "entry": "./advanced-v1.0.0/en/installation/master-etcd-ha.md"
+          "entry": "./advanced-v1.0/en/installation/master-etcd-ha.md"
         },
         {
           "title": "Add New Nodes",
-          "entry": "./advanced-v1.0.0/en/installation/add-nodes.md"
+          "entry": "./advanced-v1.0/en/installation/add-nodes.md"
         },
         {
           "title": "Uninstalling KubeSphere",
-          "entry": "./advanced-v1.0.0/en/installation/uninstall.md"
+          "entry": "./advanced-v1.0/en/installation/uninstall.md"
         }
       ]
     },
@@ -63,11 +63,11 @@
       "chapters": [
         {
           "title": "Admin Quick Start",
-          "entry": "./advanced-v1.0.0/en/quick-start/admin-quick-start.md"
+          "entry": "./advanced-v1.0/en/quick-start/admin-quick-start.md"
         },
         {
           "title": "Deploy a MySQL Application",
-          "entry": "./advanced-v1.0.0/en/quick-start/mysql-deployment.md"
+          "entry": "./advanced-v1.0/en/quick-start/mysql-deployment.md"
         }
       ]
     }

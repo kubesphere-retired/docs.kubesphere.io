@@ -167,11 +167,13 @@ const Documents = ({ tableOfContent }) => (
     <Wrapper>
       <ul className="chapter-list">
         {tableOfContent.node.chapters.map((chapter, index) => {
+          console.log(chapter);
           return (
             <li key={index}>
               <h3>
                 {chapter.icon && <img src={chapter.icon} alt="" />}
                 <Link to={getTitleLink(chapter)}>{chapter.title}</Link>
+                {chapter.tag && <Tag>{chapter.tag}</Tag>}
               </h3>
               {chapter.desc && <p>{chapter.desc}</p>}
               {chapter.chapters && (
@@ -181,6 +183,7 @@ const Documents = ({ tableOfContent }) => (
                       <Link to={getTitleLink(subChapter)}>
                         {subChapter.title}
                       </Link>
+                      {subChapter.tag && <Tag>{subChapter.tag}</Tag>}
                     </li>
                   ))}
                 </ul>
@@ -558,6 +561,20 @@ const Button = styled.a`
   }
 `
 
+const Tag = styled.span`
+  display: inline-block;
+  height: 20px;
+  margin-left: 8px;
+  padding: 0 13px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.67;
+  color: #ffffff;
+  border-radius: 10px;
+  background-color: #f5a623;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.05));
+`
+
 export const query = graphql`
   fragment ChildRemark on MarkdownRemark {
     fields {
@@ -603,6 +620,7 @@ export const query = graphql`
             }
             chapters {
               title
+              tag
               entry {
                 id
                 childMarkdownRemark {
