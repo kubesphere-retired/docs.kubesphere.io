@@ -64,7 +64,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 #### Step 1: Create a ConfigMap
 
-1.1. Navigate to **Configuration Center → ConfigMaps**, then choose **Create ConfigMap**.
+1.1. Enter the project, navigate to **Configuration Center → ConfigMaps**, then choose **Create ConfigMap**.
 
 ![创建配置](/wordpress-create-configmap-en.png)
 
