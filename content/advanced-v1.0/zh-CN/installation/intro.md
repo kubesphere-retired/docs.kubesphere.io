@@ -32,6 +32,15 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 `Multi-Node` 即多节点集群安装，高级版支持 master 节点和 etcd 的高可用，支持在正式环境安装和使用，详见 [Multi-Node 模式](../multi-node)。
 
+### 离线安装
+
+KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安装包进行安装。
+
+离线的安装步骤与在线安装一致，因此可参考以上两种安装模式的安装指南进行安装。目前离线安装支持的操作系统如下，系统盘需保证 100 G 以上，主机配置规格的其它参数可参考在线安装的主机配置。
+ 
+- CentOS 7.4/7.5   
+- Ubuntu 16.04.4/16.04.5
+
 #### 存储配置说明
 
 Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行部署测试。若在正式环境使用需配置 KubeSphere 支持的持久化存储服务，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置 [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/) 这类持久化存储的安装参数，详见 [存储配置说明](../storage-configuration)。
@@ -69,7 +78,6 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 |---|---|
 | 1 |删除 `/var/lib/etcd/`，删除 `/var/lib/docker`，删除 `/etc/kubernetes/`，删除 `/etc/kubesphere/`。 |
 | 2 |磁盘格式化、分区。|
-
 
 
 ## 卸载

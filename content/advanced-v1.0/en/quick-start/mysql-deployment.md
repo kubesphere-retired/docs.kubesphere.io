@@ -68,7 +68,7 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 
 #### Step 1: Create a Secret
 
-1.1. Navigate to **Configuration Center → Secrets**, then click **Create**.
+1.1. Enter the project, navigate to **Configuration Center → Secrets**, then click **Create**.
 
 ![创建密钥](/demo1-create-secrets-en.png)
 

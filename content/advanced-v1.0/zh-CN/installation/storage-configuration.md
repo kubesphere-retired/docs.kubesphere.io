@@ -121,6 +121,8 @@ $ heketi-cli cluster list
 
 ### NFS
 
+> 注意：**NFS** 与 **NFS in Kubernetes** 是两种不同类型的存储类型，在 vars.yml 中配置时仅需配置其中一种作为默认的存储类型即可。
+
 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS](https://www.qingcloud.com/products/nas/) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
 
 | **NFS** | **Description** |
@@ -129,6 +131,10 @@ $ heketi-cli cluster list
 | nfs\_client\_is\_default\_class | 是否设定为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
 | nfs\_server | 允许其访问的 NFS 服务端地址，可以是 IP 或 Hostname |
 | nfs\_path | NFS 共享目录，即服务器上共享出去的文件目录，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
+
+例如，在如下的 QingCloud vNAS 示例中，nfs\_server 和 nfs\_path 可对应填写 `192.168.0.17` 和 `/mnt/shared_dir`，其中 vNAS 存储服务端应与待安装机器在同一个私有网络中。
+
+![NAS 配置](/nfs-qingcloud.png)
 
 ### NFS in Kubernetes（仅限 multi-node 部署测试使用）
 
