@@ -216,6 +216,10 @@
       "desc": "指导用户如何使用平台提供的基本功能",
       "chapters": [
         {
+          "title": "应用模板",
+          "entry": "./advanced-v1.0/zh-CN/app-template/app-template.md"
+        },
+        {
           "title": "工作负载",
           "entries": [
             {
