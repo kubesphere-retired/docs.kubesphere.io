@@ -9,7 +9,7 @@ title: "Deploy a MySQL Application"
 
 ## Target 
 
-This page creates a Statefulset as an example shows how to deploy MySQL as a stateful application, which used the `Mysql:5.6` image as a backend for the [Wordpress](https://wordpress.org/) website. The MySQL initial password for this example will be created and saved as [Secret](../../configuration/secrets). This example only describes the process without too much explanation. For a detailed explanation of parameters and fields, see [Secrets](../../configuration/secrets) and [StatefulSets](../../workload/statefulsets).
+In this tutorial we will create a Statefulset as an example shows how to deploy MySQL as a stateful application, which used the `Mysql:5.6` image as a backend for the [Wordpress](https://wordpress.org/) website. The MySQL initial password for this example will be created and saved as [Secret](../../configuration/secrets). This example only describes the process without too much explanation. For a detailed explanation of parameters and fields, see [Secrets](../../configuration/secrets) and [StatefulSets](../../workload/statefulsets).
 
 <!-- ## 前提条件
 
