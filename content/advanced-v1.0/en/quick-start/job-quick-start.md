@@ -16,7 +16,7 @@ title: "Create a Job to Calculate PI to 2000 Decimal"
 
 ## Target
 
-This document describes the basic features of a Job by creating a parallel task to perform a simple calculation and outputting PI to 2000 decimal as an example.
+This tutorial describes the basic features of a Job by creating a parallel task to perform a simple calculation and outputting PI to 2000 decimal as an example.
 
 ## Prerequisites
 

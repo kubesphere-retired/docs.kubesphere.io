@@ -4,7 +4,7 @@ title: "Create a CI/CD Pipeline Based on Jenkinsfile"
 
 ## Target
 
-This document demonstrates how to create a CI/CD pipeline based on Jenkinsfile in GitHub, it includes 8 stages and will deploy a Docs web service to Dev and Production environment respectively. The following flow chart briefly illustrates the process of the entire pipeline.
+In this tutorial we will demonstrates how to setup a CI/CD pipeline within KubeSphere using an example repository, it includes 8 stages and will deploy a Docs web service to Dev and Production environment respectively. The following flow chart briefly illustrates the process of the entire pipeline.
 
 ![流程图](/cicd-pipeline-01.svg)
 
@@ -20,9 +20,11 @@ This document demonstrates how to create a CI/CD pipeline based on Jenkinsfile i
 
 ## Prerequisites
 
-- This example will use GitHub and DockerHub, make sure you have created [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) accounts.
-- You need to create a workspace and project, see the [Admin Quick Start](../admin-quick-start) if not yet.
-- You would better be familiar with the basics of Git and version control
+For this tutorial you will need
+
+- Make sure you have created [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) account.
+- Create a workspace and DevOps project, see the [Admin Quick Start](../admin-quick-start) if not yet.
+- Be familiar with the basics of Git and version control
 
 ## Estimated Time
 
@@ -278,7 +280,9 @@ At this point, we have created two projects as the Dev and Production environmen
 
 #### Step 1: Basic Information
 
-1. Redirect to 
+1. Redirect to **Workbench**, then select **DevOps Projects** tab and enter **demo-devops** that we created in the [Admin Quick Start](../admin-quick-start).
+
+2. Fill in the basic information.
 
 #### 第二步：添加仓库
 

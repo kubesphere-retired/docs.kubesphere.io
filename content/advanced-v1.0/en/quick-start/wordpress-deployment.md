@@ -8,7 +8,7 @@ title: "Deploy a WordPress Web Application"
 
 ## Target 
 
-This page creates a Deployment as an example shows how to deploy [Wordpress](https://wordpress.org/)  web application, which is based on the last guide [Deploy a MySQL Application](../mysql-deployment). The connection password between WordPress and MySQL will be created and saved as a [ConfigMap](../../configuration/configmaps).
+In this tutorial we will create a Deployment as an example shows how to deploy [Wordpress](https://wordpress.org/)  web application, which is based on the last guide [Deploy a MySQL Application](../mysql-deployment). The connection password between WordPress and MySQL will be created and saved as a [ConfigMap](../../configuration/configmaps).
 
 <!-- ## 前提条件
 
