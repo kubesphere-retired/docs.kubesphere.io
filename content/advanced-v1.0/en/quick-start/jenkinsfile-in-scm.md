@@ -282,7 +282,7 @@ At this point, we have created two projects as the Dev and Production environmen
 
 1. Redirect to **Workbench**, then select **DevOps Projects** tab and enter **demo-devops** that we created in the [Admin Quick Start](../admin-quick-start).
 
-2. Fill in the basic information.
+2. Fill in the basic information, e.g. `jenkinsfile-in-scm`. Then click the **Code Repository (Optional)** to add GitHub repo.
 
 #### 第二步：添加仓库
 
