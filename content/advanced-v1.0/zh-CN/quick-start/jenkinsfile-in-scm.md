@@ -185,7 +185,7 @@ CI/CD 流水线会根据文档网站项目的 [yaml 模板文件](https://github
 
 4、复制生成的 token，在 KubeSphere Token 框中输入该 token 然后点击保存。
 
-5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-docs-sample]，点击 **选择此仓库**(https://github.com/kubesphere/devops-docs-sample)，完成后点击 **下一步**。
+5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-docs-sample](https://github.com/kubesphere/devops-docs-sample)，点击 **选择此仓库**，完成后点击 **下一步**。
     
 ![git_select](/git_repo.png)
 
