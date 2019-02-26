@@ -68,6 +68,22 @@
         {
           "title": "Deploy a MySQL Application",
           "entry": "./advanced-v1.0/en/quick-start/mysql-deployment.md"
+        },
+        {
+          "title": "Deploy a Wordpress",
+          "entry": "./advanced-v1.0/en/quick-start/wordpress-deployment.md"
+        },
+        {
+          "title": "Create a Job to Calculate PI to 2000 Decimal",
+          "entry": "./advanced-v1.0/en/quick-start/job-quick-start.md"
+        },
+        {
+          "title": "One-click deployment of Applications",
+          "entry": "./advanced-v1.0/en/quick-start/one-click-deploy.md"
+        },
+        {
+          "title": "Create a CI/CD Pipeline Based on Jenkinsfile",
+          "entry": "./advanced-v1.0/en/quick-start/jenkinsfile-in-scm.md"
         }
       ]
     }
