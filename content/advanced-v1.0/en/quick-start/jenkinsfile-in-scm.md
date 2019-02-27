@@ -212,9 +212,23 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 ···
 ``` -->
 
-#### Step 5: Review the Pipeline.
+#### Step 5: Review the Pipeline
 
-### 查看流水线
+Enter into this pipeline that we ran it manually, then watch its running status. It will be paused when it runs to `deploy to dev` stage, thus you could choose `Proceed` in this stage. For the convenience, we will use project-regular to review directly.
+
+Accordingly, the last 3 stages including `deploy to dev`, `push with tag`, `deploy to production` require review 3 times in sequence. Note that it will not proceed to run unless you click **Proceed** button.
+
+![审核流水线](/devops_input-en.png)
+
+> Note: If you would like to point someone like project-admin to review, you can specify the name in Jenkinsfile as following:
+
+```groovy
+···
+input(id: 'release-image-with-tag', message: 'release image with tag?', submitter: 'project-admin')
+···
+```
+
+<!-- ### 查看流水线
    
 1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile](https://github.com/kubesphere/devops-docs-sample/blob/master/Jenkinsfile) 中被定义。
    
@@ -222,9 +236,19 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 2、当前页面中点击右上方的 `查看日志`，查看流水线运行日志。页面展示了每一步的具体日志、运行状态及时间等信息，点击左侧某个具体的阶段可展开查看其具体的日志。日志可下载至本地，如出现错误，下载至本地更便于分析定位问题。
    
-![log](/pipeline_log.png)
+![log](/pipeline_log.png) -->
 
-### 验证运行结果
+### View the Pipeline
+
+1. Click into the pipeline under the activity list to inspect the running status and build progress in a visual way. Note that it might only display a log output page since it's still in the initialization phase, once the initialization finished it will direct to the visual page.
+
+![run_status](/pipeline_status.png)
+
+2. It also supports you to inspect logs for each stage, click **Show Log** button it will direct you to a detailed popup window.
+
+![log](/pipeline_log-en.png)
+
+<!-- ### 验证运行结果
 
 若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-docs-dev` 和 `kubesphere-docs-prod` 项目环境中。
 
@@ -265,7 +289,16 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 **防火墙添加下行规则**
 
-![防火墙添加下行规则](/demo6-firewall-nodeport.png)
+![防火墙添加下行规则](/demo6-firewall-nodeport.png) -->
+
+### Verify the Result
+
+Once each stage of this pipeline ran successfully, the image with different tag (e.g. snapshot, TAG_NAME(v0.0.1), latest) will be pushed to DockerHub, then it will also generate a new release in GitHub, as well as the deployment and service will be deployed to `kubesphere-docs-dev` and `kubesphere-docs-prod` respectively, see the table as following:
+
+|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
+|---|---|---|---|---|
+|Dev| `http://EIP:30860` (i.e. ${EIP}:${NODEPORT} )| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
+|Production|`http://EIP : 30960 (i.e. ${EIP}:${NODEPORT} )|kubesphere-docs-prod|ks-docs-sample |ks-docs-sample|
 
 ### 访问示例服务
 

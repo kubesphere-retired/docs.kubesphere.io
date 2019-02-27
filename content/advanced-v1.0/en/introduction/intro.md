@@ -22,11 +22,11 @@ KubeSphere started as an open source project and all of KubeSphere members hope 
 
 KubeSphere Advanced Edition provides a full-stack container deployment and management platform which supports workload deployment on production environment cluster. Its core functions can be summarized in the following functional architecture diagrams. The Advanced Edition's features were listed at [Product Features](../features). It's recommened to access KubeSphere's commercial website to learn more information.
 
-![功能架构图](/feature-architecture-copy.svg)
+![功能架构图](/kubesphere-landscape-en.svg)
 
 ## Roadmap
 
 **Community Edition** => **Express Edition** => **Advanced Edition** 
 
-![Roadmap](/roadmap.svg)
+![Roadmap](/roadmap-en.svg)
 
