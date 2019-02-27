@@ -28,26 +28,13 @@ KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harb
 
 #### 第一步：修改 Docker 配置
 
-修改集群中所有节点的 Docker 配置，需要根据操作系统来修改：
+修改集群中所有节点的 Docker 配置，需要在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段 `--insecure-registry=harbor.devops.kubesphere.local:30280`，如下所示：
 
-- 如果待安装机器的系统为 `CentOS`，则需要在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段 `--insecure-registry=harbor.devops.kubesphere.local:30280`，如下所示：
-
-**CentOS 示例**
+**配置文件修改示例**
 
 ```bash
 [Service]
 Environment="DOCKER_OPTS= -D --insecure-registry=harbor.devops.kubesphere.local:30280 --data-root=/var/lib/docker --log-opt max-size=10m --log-opt max-file=3 --iptables=false"
-```
-
-- 如果待安装机器的系统为 `Ubuntu`，则需要修改或添加 `/etc/docker/daemon.json` ⽂件：
-
-**Ubuntu 示例**
-
-```bash
-{
-    "insecure-registries": [
-        "harbor.devops.kubesphere.local:30280"]
-}
 ```
 
 #### 第二步：重启 Docker 服务
