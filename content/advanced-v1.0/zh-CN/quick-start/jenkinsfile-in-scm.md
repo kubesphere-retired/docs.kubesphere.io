@@ -6,9 +6,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 目的
 
-本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。下面的流程图简单说明了整个 pipeline 的工作过程：
-
-![流程图](/cicd-pipeline-01.svg)
+本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。
 
 ## 前提条件
 
@@ -29,6 +27,10 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 </video>
 
 ### 流水线概览
+
+下面的流程图简单说明了整个 pipeline 的工作过程：
+
+![流程图](/cicd-pipeline-01.svg)
 
 > 流程说明：
 > - **阶段一. Checkout SCM**: 拉取 GitHub 仓库代码

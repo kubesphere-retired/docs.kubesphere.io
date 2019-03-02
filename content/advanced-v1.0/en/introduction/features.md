@@ -39,7 +39,7 @@ KubeSphere provides a wizard-like UI for many kinds of workloads including Deplo
 
 ## Multi-dimensional Monitoring 
 
-Through the built-in monitoring center, it provides users with multi-dimensional monitoring, including clusters, enterprise spaces, projects, workloads / Pod, and containers.  
+Through the built-in monitoring center, it provides users with multi-dimensional monitoring, including clusters, workspaces, projects, workloads / Pod, and containers.  
 
 - It presents real-time monitoring metrics, including node status, CPU, memory and storage usage, disk throughput, Pod status, inode utilization, network bandwidth, support for both real-time and historical metrics searching.
 - Support for matching with the enterprise's own monitoring system to provide multi-dimensional monitoring of host, container and application services. 
@@ -48,7 +48,7 @@ Through the built-in monitoring center, it provides users with multi-dimensional
 ## Service and Network Management 
 
 - Based on native API, provide wizard-style user interface for Service and ingress in k8s, expose the application to the network much easier for users. 
-- Integration of microservice governance, circuit breakers、staged rollouts with %-based traffic split、rate limiting、intelligent routing features based on Istio to provide a wizard-like user interface.
+- Integration of microservice governance, circuit breakers, staged rollouts with percentage-based traffic split, rate limiting, intelligent routing features based on Istio to provide a wizard-like user interface.
 - Support for connecting with QingCloud load balancer if KubeSphere is deployed on the QingCloud platform.
 
 ## Application Management 

@@ -77,7 +77,7 @@ Enter into `docs-demo-nginx` service, then click **More** and choose **Edit Inte
 
 ### Step 4: Access Nginx Service
 
-> Note: If you want to access the service, you might need to bind the EIP and configure port forwarding. If the public network EIP has a firewall, add the corresponding port (e.g. 30518) to the firewall rules to ensure that the external network traffic can pass through the port. In that case, external access is available.
+> Note: If you want to access the service, you might need to bind the EIP and configure port forwarding. If the EIP has a firewall, add the corresponding port (e.g. 30518) to the firewall rules to ensure that the external network traffic can pass through the port. In that case, external access is available.
 
 For example, our KubeSphere cluster is deployed on QingCloud platform within VPC, thus we need to add `30518` to the port forwarding rule on the VPC network and then release the port on the firewall.
 
