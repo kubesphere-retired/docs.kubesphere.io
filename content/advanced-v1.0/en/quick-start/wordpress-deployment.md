@@ -420,5 +420,5 @@ app=wordpress-ingress
 
 At this point, WordPress is exposed to the outside by the Ingress, thus we can access it via `{$hostname}:{$NodePort}` i.e. `http://wordpress.demo.io:30517` since we selected http protocol previously.
 
-You might be familiar with the basic features of Deployments and StatefulSets, see the [Deployments](../../workload/deployments) and [StatefulSets](../../workload/statefulsets) for the details.
+Hope you could be familiar with the basic features of Deployments and StatefulSets right now, see the [Deployments](../../workload/deployments) and [StatefulSets](../../workload/statefulsets) for the details.
 

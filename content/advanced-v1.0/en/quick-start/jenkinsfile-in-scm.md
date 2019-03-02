@@ -4,9 +4,7 @@ title: "Create a CI/CD Pipeline Based on Jenkinsfile"
 
 ## Target
 
-In this tutorial we will demonstrates how to setup a CI/CD pipeline within KubeSphere using an example repository, it includes 8 stages and will deploy a Docs web service to Dev and Production environment respectively. The following flow chart briefly illustrates the process of the entire pipeline.
-
-![流程图](/cicd-pipeline-01.svg)
+In this tutorial we will demonstrate how to setup a CI/CD pipeline within KubeSphere using an example repository, it includes 8 stages and will deploy a Docs web service to Dev and Production environment respectively. 
 
 ## Prerequisites
 
@@ -22,6 +20,11 @@ About 30 - 50 minutes.
 
 ### Overview
 
+The following flow chart briefly illustrates the process of the entire pipeline.
+
+![流程图](/cicd-pipeline-01.svg)
+
+- Instructions
 - Stage 1 - Checkout SCM: Pull source code from GitHub.
 - Stage 2 - Get dependencies: install all of the dependencies via [yarn](https://yarnpkg.com/zh-Hans/).
 - Stage 3 - Unit test: If the unit test passes, then continue the following tasks.
@@ -62,7 +65,7 @@ Same as above, create a credential for GitHub, then fill in the basic informatio
 
 Same as above, click **Create Credentials** to create a credential for `kubeconfig`, name Credential ID as **demo-kubeconfig**, then click **OK** when you're done.
 
-At this point, we have create 3 credentials totally. 
+At this point, we have created 3 credentials totally. 
 
 ![凭证列表](/credential-list-demo-en.png) 
 
@@ -112,7 +115,7 @@ environment {
 
 ![提交更新](/commit-jenkinsfile-en.png)
 
-### Create Projects
+### Create Two Projects
 
 Pipeline will deploy the Docs web service to both Dev and Production environment according to the [yaml](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy) file, thus we are going to create 2 projects (i.e. `kubesphere-docs-dev` and `kubesphere-docs-prod`) as environment.
 
@@ -139,7 +142,7 @@ At this point, we have created two projects as the Dev and Production environmen
 
 1. Redirect to **Workbench**, then select **DevOps Projects** tab and enter **demo-devops** that we created in the [Admin Quick Start](../admin-quick-start).
 
-2. Fill in the basic information, e.g. `jenkinsfile-in-SCM`. Then click the **Code Repository (Optional)** to add GitHub repo.
+2. Click **Create**, fill in the basic information, e.g. `jenkinsfile-in-SCM`. Then click the **Code Repository (Optional)** to add GitHub repo.
 
 #### Step 2: Add a Repository
 
@@ -153,7 +156,7 @@ At this point, we have created two projects as the Dev and Production environmen
 
 5. Click **Next** when you've completed basic information.
 
-#### Step 3:  Advanced Settings
+#### Step 3: Advanced Settings
 
 1. Check **Discard old branch** and leave the default value (-1) in **Days to keep old items** and **Max period of old items to keep**.
 
@@ -244,63 +247,35 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![run_status](/pipeline_status.png)
 
-2. It also supports you to inspect logs for each stage, click **Show Log** button it will direct you to a detailed popup window.
+2. It also supports you to inspect logs for each stage, click **Show Log** button it will direct to a detailed popup window.
 
 ![log](/pipeline_log-en.png)
 
-<!-- ### 验证运行结果
-
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(v0.0.1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-docs-dev` 和 `kubesphere-docs-prod` 项目环境中。
-
-|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
-|---|---|---|---|---|
-|Dev| 公网 IP : 30860 (`${EIP}:${NODEPORT}`)| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
-|Production|公网 IP : 30960 (`${EIP}:${NODEPORT}`)|kubesphere-docs-prod|ks-docs-sample |ks-docs-sample|
-
-1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-docs-prod` 项目下的部署。
-
-进入该项目，在左侧的菜单栏点击 **工作负载 → 部署**，可以看到 ks-docs-sample 已创建成功。正常情况下，部署的状态应该显示 **运行中**。
-
-**查看部署**
-![验证运行结果](/verify-docs-deployment.png)
-
-2、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30960`。
-
-**查看服务**
-![查看服务](/demo6-service-nodeport.png)
-
-3、查看推送到您个人的 DockerHub 中的镜像，可以看到 `devops-docs-sample` 就是 APP_NAME 的值，而 `v0.0.1, lastest, SNAPSHOT-master-2` 就是在 jenkinsfile 中定义的 tag。
-  
-![查看 DockerHub](/deveops-dockerhub.png)
-
-4、点击 `release`，查看 Fork 到您个人 GitHub repo 中的 `v0.0.1`  tag 和 release，它是由 jenkinsfile 中的 `push with tag` stage 生成的。
-
-![查看 release](/demo6-view-releases.png)
-
-![查看 release](/verify-github-release.png)
-
-5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-docs-sample 服务的 `30960` 端口为例。
-
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30960` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
-
-**添加端口转发规则**
-
-![添加端口转发规则](/demo6-vpc-nodeport-forward.png)
-
-**防火墙添加下行规则**
-
-![防火墙添加下行规则](/demo6-firewall-nodeport.png) -->
 
 ### Verify the Result
 
 Once each stage of this pipeline ran successfully, the image with different tag (e.g. snapshot, TAG_NAME(v0.0.1), latest) will be pushed to DockerHub, then it will also generate a new release in GitHub, as well as the deployment and service will be deployed to `kubesphere-docs-dev` and `kubesphere-docs-prod` respectively, see the table as following:
 
-|环境|访问地址| 所在项目 (Namespace) | 部署 (Deployment) |服务 (Service)
+|Environment|Accessing URL| Project | Deployment | Service |
 |---|---|---|---|---|
 |Dev| `http://EIP:30860` (i.e. ${EIP}:${NODEPORT} )| kubesphere-docs-dev| ks-docs-sample-dev|ks-docs-sample-dev|
-|Production|`http://EIP : 30960 (i.e. ${EIP}:${NODEPORT} )|kubesphere-docs-prod|ks-docs-sample |ks-docs-sample|
+|Production|`http://EIP:30960` (i.e. ${EIP}:${NODEPORT} )|kubesphere-docs-prod|ks-docs-sample |ks-docs-sample|
 
-### 访问示例服务
+1. At this point, you can verify the status of their deployment and service in related project.
+
+2. Then you can visit your profile in DockerHub and look at the image details.
+
+![查看 DockerHub](/deveops-dockerhub.png)
+
+3. Redirect to tour GitHub, you can verify the release result.
+
+![查看 release](/demo6-view-releases.png)
+
+![查看 release](/verify-github-release.png)
+
+4. As the Docs web service is exposed outside, if you want to access the service, you might need to bind the EIP and configure port forwarding. If the EIP has a firewall, add the corresponding port (e.g. 30860 and 30960) to the firewall rules to ensure that the external network traffic can pass through these ports. In that case, external access is available.
+
+<!-- ### 访问示例服务
 
 在浏览器访问部署到 KubeSphere Dev 和 Production 环境的服务：
 
@@ -314,7 +289,24 @@ Once each stage of this pipeline ran successfully, the image with different tag 
 
 访问 `http://127.0.0.1:30960/` 或者 `http://EIP:30960/`。
 
-![](/docs-home-production-preview.png)
+![](/docs-home-production-preview.png) -->
 
+### Access the service
 
-至此，创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../faq)。
+Accessing the Docs service of Dev and Production environment:
+
+**Dev Environment**
+
+Enter `http://EIP:30860/` in your browser to preview the service.
+
+![](/docs-home-dev-preview-en.png)
+
+**Production Environment**
+
+Enter `http://EIP:30960/` in your browser to preview the service.
+
+![](/docs-home-production-preview-en.png) 
+
+<!-- 至此，创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../faq)。 -->
+
+At this point, we have successfully created a pipeline based on the Jenkinsfile in the repository, it's recommeded you to follow with the next tutorial.

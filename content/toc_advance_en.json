@@ -74,7 +74,7 @@
           "entry": "./advanced-v1.0/en/quick-start/wordpress-deployment.md"
         },
         {
-          "title": "Create a Job to Calculate PI to 2000 Decimal",
+          "title": "Job to Calculate PI to 2000 Decimal",
           "entry": "./advanced-v1.0/en/quick-start/job-quick-start.md"
         },
         {
@@ -82,8 +82,62 @@
           "entry": "./advanced-v1.0/en/quick-start/one-click-deploy.md"
         },
         {
-          "title": "Create a CI/CD Pipeline Based on Jenkinsfile",
+          "title": "CI/CD Pipeline Based on Jenkinsfile",
           "entry": "./advanced-v1.0/en/quick-start/jenkinsfile-in-scm.md"
+        },
+        {
+          "title": "CI/CD Pipeline In a Visual Way",
+          "entry": "./advanced-v1.0/en/quick-start/jenkinsfile-out-of-scm.md"
+        }
+      ]
+    },
+    {
+      "title": "Cluster Admin Guide",
+      "icon": "/admin_reffer.svg",
+      "desc": "Instruction for cluster admin to manage platform and resources.",
+      "chapters": [
+        {
+          "title": "Multi-tenant Management",
+          "entries": [
+            {
+              "title": "Overview of Multi-tenant Management",
+              "entry": "./advanced-v1.0/en/multi-tenant/intro.md"
+            },
+            {
+              "title": "Overview of Role Management",
+              "entry": "./advanced-v1.0/en/multi-tenant/role-overview.md"
+            }
+          ]
+        },
+        {
+          "title": "Platform Management",
+          "entries": [
+            {
+              "title": "Account Management",
+              "entry": "./advanced-v1.0/en/platform-management/account-management.md"
+            },
+            {
+              "title": "Platform Roles Management",
+              "entry": "./advanced-v1.0/en/platform-management/role-management.md"
+            }
+          ]
+        },
+        {
+          "title": "Infrastructure",
+          "entries": [
+            {
+              "title": "Service Components",
+              "entry": "./advanced-v1.0/en/infrastructure/components.md"
+            },
+            {
+              "title": "Storage Classes",
+              "entry": "./advanced-v1.0/en/infrastructure/storageclass.md"
+            }
+          ]
+        },
+        {
+          "title": "Application Repository",
+          "entry": "./advanced-v1.0/en/platform-management/app-repo.md"
         }
       ]
     }
