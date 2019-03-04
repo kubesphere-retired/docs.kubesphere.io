@@ -1,5 +1,5 @@
 ---
-Title: "Application Repository"
+title: "Application Repository"
 ---
 
 KubeSphere built the application repository service based on [OpenPitrix](https://openpitrix.io), which is an open-source application management
