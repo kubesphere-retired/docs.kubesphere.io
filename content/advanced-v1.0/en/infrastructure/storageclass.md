@@ -11,7 +11,7 @@ The Storage Class is allow to be configured by the cluster admin and provide to 
 - [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)
 - [Local Volume (Only all-in-one)](https://kubernetes.io/docs/concepts/storage/volumes/#local)
 
-Noted that if there are multiple storage classes in the system, only one can be set as the default storage class.
+Note that if there are multiple storage classes in the system, only one can be set as the default storage class.
 
 ## Create the Storage Class
 

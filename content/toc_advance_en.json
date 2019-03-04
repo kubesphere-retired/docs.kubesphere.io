@@ -136,8 +136,21 @@
           ]
         },
         {
+          "title": "Monitoring Center",
+          "entries": [
+            {
+              "title": "Physical Resources",
+              "entry": "./advanced-v1.0/en/monitoring/physical-resources.md"
+            }
+          ]
+        },
+        {
           "title": "Application Repository",
           "entry": "./advanced-v1.0/en/platform-management/app-repo.md"
+        },
+        {
+          "title": "Jenkins System Settings",
+          "entry": "./advanced-v1.0/en/devops/jenkins-setting.md"
         }
       ]
     }
