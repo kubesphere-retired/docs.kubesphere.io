@@ -1,5 +1,5 @@
 ---
-Title: "Overview of Multi-tenant Management"
+title: "Overview of Multi-tenant Management"
 ---
 
 The core of multi-tenancy is to allocate the authority relationship between different users and resources. For the container management platform, the main resources are computing resources, storage resources and network resources, which are also the key object resources of KubeSphere multi-tenany.
