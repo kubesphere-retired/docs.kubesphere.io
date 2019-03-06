@@ -5,7 +5,7 @@ title: "All-in-One 模式"
 
 ## 前提条件
 
-- 目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download) 至待安装机器中。
+- 目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced) 至待安装机器中。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。若还未准备存储服务端，为方便测试部署，也可使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储。
 
 ## 第一步: 准备主机

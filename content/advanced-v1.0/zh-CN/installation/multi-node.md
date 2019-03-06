@@ -6,7 +6,7 @@ title: "Multi-Node 模式"
 
 ## 前提条件
 
-- 目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download) 至待安装机器中。
+- 目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced) 至待安装机器中。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端，存储服务端的磁盘容量参考主机规格表中的推荐配置或选择更高的容量。为方便初次安装但没有准备存储服务端时进行部署测试，也可配置部署 NFS server in Kubernetes 到当前集群。
 
 ## 第一步: 准备主机
