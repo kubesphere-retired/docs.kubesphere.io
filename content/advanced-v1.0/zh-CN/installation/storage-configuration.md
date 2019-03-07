@@ -24,8 +24,8 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 |GlusterFS Client |v3.12.10|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，配置详见 [GlusterFS](../storage-configuration/#glusterfs)|
 |NFS Server in Kubernetes| v1.0.9 |配置详见 [NFS Server 配置](../storage-configuration/#nfs) |
 |NFS Client | v3.1.0 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，详见 [NFS Client](../storage-configuration/#nfs)  |
-| QingCloud-CSI|v0.2.0.1|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [QingCloud CSI](../storage-configuration/#qingcloud-csi)|
-| NeonSAN-CSI|v0.3.0|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
+| QingCloud-CSI|v0.2.0.1|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [QingCloud CSI](../storage-configuration/#qingcloud-云平台块存储)|
+| NeonSAN-CSI|v0.3.0|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [Neonsan-CSI](../storage-configuration/#qingstor-neonsan) |
 
 > 说明：
 > 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
