@@ -35,6 +35,8 @@ class Versions extends React.Component {
       location.href=`/express/zh-CN/basic/`
     } else if (version === 'advanced-v1.0') {
       location.href=`/advanced-v1.0/zh-CN/introduction/intro/`
+    } else if (version === 'advanced-v2.0') {
+      location.href=`/advanced-v2.0/zh-CN/introduction/intro/`
     } else {
       location.href=`/${version}/zh-CN/`
     }
