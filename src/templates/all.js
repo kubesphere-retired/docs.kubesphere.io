@@ -79,7 +79,8 @@ export default class MarkdownTemplate extends React.Component {
 
     const version = site.siteMetadata.versions.find(
       version => version.value === tableOfContents.edges[0].node.version
-    )
+    ) || {}
+
     return (
       <div className="markdown-all">
         <Helmet>
