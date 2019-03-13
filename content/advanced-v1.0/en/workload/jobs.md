@@ -69,13 +69,13 @@ In order to realize the effective scheduling and allocation of resources in the 
 
 ![Pod template 1](https://pek3b.qingstor.com/kubesphere-docs/png/20190312205848.png)
 
-2.2. If the user has further requirements, click on **Advanced Options**.
+2.2. If the user has further requirements, click on the **Advanced Options** button.
 
 - **Command**: In some cases, you need your command to run in a shell, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/inject-data-application/define-command-Argument-container/#run-a-command-in-a-shell).
 - **Arguments**: You can defined the arguments directly by providing strings, see [Kubernetes documentation](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/).
 - **Ports**: This is the container port that needs to be exposed. The port protocol can be TCP and UDP.
 - **Environment Variables**: you can define an argument for a Pod using any of the techniques available for defining environment variables, including ConfigMaps and Secrets, which has the same effect as the "ENV" in the Dockerfile, providing great flexibility for creating workloads.
-    - **Reference Configuration Center**: Supports adding Secret and ConfigMap as environment variables to save configuration data in the form of key-value pairs. See [Configuration](../../configuration/configmaps) and [secrets](../../configuration/secrets).
+    - **Reference Configuration Center**: Supports adding Secret and ConfigMap as environment variables to save configuration data in the form of key-value pairs. See [ConfigMaps](../../configuration/configmaps) and [Secrets](../../configuration/secrets).
 - **Image Pull Policy**: imagePullPolicy, the default image pull policy is **IfNotPresent**, the kubelet will no longer pull the image if the image already exists. If you need to pull the image frequently, set the pull policy to Always. If the container property imagePullPolicy is set to IfNotPresent or Never, the local image will be used first.
 
 Click **Save** when setup is complete.
@@ -88,11 +88,11 @@ Then Click **Next** when you're done.
 
 Job suppots totally 3 kind of volumes, i.e. **Persistent Storage Volume**, **Temporary Storage Volume (EmptyDir)** and **Reference Configuration Center**.
 
-#### Persistent Storage Volume
+#### Persistent Volume
 
 Persistent storage volumes can be used to save user's persist data, **Add Existing Volume** means you need to create volumes in advance, see [Create Persistent Storage Volume](../../storage/pvc). 
 
-#### Temporary Storage Volume
+#### Temporary Volume (EmptyDir)
 
 The temporary storage volume represents [emptyDir](https://kubernetes.cn/docs/concepts/storage/volumes/#emptydir), which is first created when a Pod is assigned to a Node, and exists as long as that Pod is running on that node. When a Pod is removed from a node for any reason, the data in the emptyDir is deleted forever.
 
