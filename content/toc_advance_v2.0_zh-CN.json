@@ -197,6 +197,10 @@
             {
               "title": "应用资源监控",
               "entry": "./advanced-v2.0/zh-CN/monitoring/application-resources.md"
+            },
+            {
+              "title": "日志收集",
+              "entry": "./advanced-v2.0/zh-CN/monitoring/log-gathering.md"
             }
           ]
         },
@@ -321,6 +325,19 @@
             {
               "title": "外网访问",
               "entry": "./advanced-v2.0/zh-CN/project-setting/project-gateway.md"
+            }
+          ]
+        },
+        {
+          "title": "工具箱",
+          "entries": [
+            {
+              "title": "Web Kubectl",
+              "entry": "./advanced-v2.0/zh-CN/toolbox/kubectl.md"
+            },
+            {
+              "title": "日志查询",
+              "entry": "./advanced-v2.0/zh-CN/toolbox/log-search.md"
             }
           ]
         },
