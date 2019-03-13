@@ -1,5 +1,5 @@
 ---
-title: "Create a Job to Calculate PI to 2000 Decimal"
+title: "Create a Job to compute π to 2000 places"
 ---
 
 <!-- ## 目的

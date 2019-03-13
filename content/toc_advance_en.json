@@ -74,7 +74,7 @@
           "entry": "./advanced-v1.0/en/quick-start/wordpress-deployment.md"
         },
         {
-          "title": "Job to Calculate PI to 2000 Decimal",
+          "title": "Job to compute π to 2000 places",
           "entry": "./advanced-v1.0/en/quick-start/job-quick-start.md"
         },
         {
@@ -189,6 +189,15 @@
             {
               "title": "CronJobs",
               "entry": "./advanced-v1.0/en/workload/cronjobs.md"
+            }
+          ]
+        },
+        {
+          "title": "Storage",
+          "entries": [
+            {
+              "title": "Volumes",
+              "entry": "./advanced-v1.0/en/storage/pvc.md"
             }
           ]
         }
