@@ -141,6 +141,10 @@
             {
               "title": "Physical Resources",
               "entry": "./advanced-v1.0/en/monitoring/physical-resources.md"
+            },
+            {
+              "title": "Application Resources",
+              "entry": "./advanced-v1.0/en/monitoring/application-resources.md"
             }
           ]
         },
@@ -151,6 +155,42 @@
         {
           "title": "Jenkins System Settings",
           "entry": "./advanced-v1.0/en/devops/jenkins-setting.md"
+        }
+      ]
+    },
+    {
+      "title": "User Guide",
+      "icon": "/reffer.svg",
+      "desc": "Instruct users on how to use the basic features provided by the platform",
+      "chapters": [
+        {
+          "title": "Application Template",
+          "entry": "./advanced-v1.0/en/app-template/app-template.md"
+        },
+        {
+          "title": "Workloads",
+          "entries": [
+            {
+              "title": "Deployments",
+              "entry": "./advanced-v1.0/en/workload/deployments.md"
+            },
+            {
+              "title": "StatefulSets",
+              "entry": "./advanced-v1.0/en/workload/statefulsets.md"
+            },
+            {
+              "title": "DaemonSets",
+              "entry": "./advanced-v1.0/en/workload/daemonsets.md"
+            },
+            {
+              "title": "Jobs",
+              "entry": "./advanced-v1.0/en/workload/jobs.md"
+            },
+            {
+              "title": "CronJobs",
+              "entry": "./advanced-v1.0/en/workload/cronjobs.md"
+            }
+          ]
         }
       ]
     }

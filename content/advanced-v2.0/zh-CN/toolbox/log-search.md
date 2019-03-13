@@ -1,5 +1,5 @@
 ---
-title: "日志收集"
+title: "日志查询"
 ---
 
 应用日志的收集、分析和监控是日常运维工作中非常关键的部分，妥善地处理应用日志收集也是应用容器化的一个重要主题。KubeSphere 的日志系统目前是通过 Fluent-Bit Operator 在集群的所有节点上统一部署和配置 Fluent-bit，由 Fluent-bit 进行收集所有容器的日志信息，然后直接传到 Elasticsearch，集群管理员也可以指定 Kafka 或 Fluentd 等存储、消息队列中。
@@ -25,7 +25,7 @@ KubeSphere 支持所有用户进行日志查询，登录 KubeSphere 后，点击
 
 ![查询规则](https://pek3b.qingstor.com/kubesphere-docs/png/20190308102212.png)
 
-支持自定义时间范围，默认可查询近 7 天的日志信息，也可以修改日志保留的时间。
+查询支持自定义时间范围，默认可查询近 7 天的日志信息，也可以修改日志保留的时间。
 
 ![时间范围](https://pek3b.qingstor.com/kubesphere-docs/png/20190308102748.png)
 
