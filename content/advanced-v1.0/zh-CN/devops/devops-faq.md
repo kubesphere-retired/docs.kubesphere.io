@@ -63,11 +63,11 @@ KubeSphere 拥有很多母语为中文的用户，但是 Jenkins 目前对中文
 
 ## 内置 Maven agent 构建缓慢
 
-在默认情况下，我们将Maven agent的JVM设置为32位以降低构建所造成的内存消耗。
+在默认情况下，我们将 Maven agent 的 JVM 设置为 32 位以降低构建所造成的内存消耗。
 
-在32位的JVM当中，最大堆大小不能超过2G，对于一些大型项目来说会造成构建无法完成、构建缓慢等情况。
+在 32 位的 JVM 当中，最大堆大小不能超过 2G ，对于一些大型项目来说会造成构建无法完成、构建缓慢等情况。
 
-可以在Jenkinsfile当中主动运行以下命令，将agent的JVM切换至64位：
+可以在 Jenkinsfile 当中主动运行以下命令，将 agent 的 JVM 切换至 64 位：
 
 ```shell
 $ alternatives --set java /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64/jre/bin/java
