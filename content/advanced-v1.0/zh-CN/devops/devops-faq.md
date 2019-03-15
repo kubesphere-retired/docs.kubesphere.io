@@ -61,3 +61,15 @@ KubeSphere 拥有很多母语为中文的用户，但是 Jenkins 目前对中文
 
 5、镜像仓库替换需要修改 Jenkinsfile 的中 docker build、docker tag、docker push 命令的镜像名称，以及示例仓库中 `/deploy` 的 yaml 文件中的镜像地址，用户可以按照自己的情况进行镜像仓库地址的修改。
 
+## 内置 Maven agent 构建缓慢
+
+在默认情况下，我们将 Maven agent 的 JVM 设置为 32 位以降低构建所造成的内存消耗。
+
+在 32 位的 JVM 当中，最大堆大小不能超过 2G ，对于一些大型项目来说会造成构建无法完成、构建缓慢等情况。
+
+可以在 Jenkinsfile 当中主动运行以下命令，将 agent 的 JVM 切换至 64 位：
+
+```shell
+$ alternatives --set java /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64/jre/bin/java
+$ alternatives --set javac /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64/bin/javac
+```
