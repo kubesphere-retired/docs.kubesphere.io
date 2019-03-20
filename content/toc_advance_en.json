@@ -3,6 +3,22 @@
   "lang": "en",
   "chapters": [
     {
+      "title": "Release Notes",
+      "icon": "/product.svg",
+      "desc": "Introduce the new features, capabilities and updates for the releases",
+      "chapters": [
+        {
+          "title": "Release Notes - 1.0.1",
+          "entry": "./advanced-v1.0/en/release/release-v101.md",
+          "tag": "Latest"
+        },
+        {
+          "title": "Release Notes - 1.0.0",
+          "entry": "./advanced-v1.0/en/release/release-v100.md"
+        }
+      ]
+    },
+    {
       "title": "Overview",
       "icon": "/product.svg",
       "desc": "Help you to better understand KubeSphere with detailed graphics and contents",
@@ -228,6 +244,27 @@
             {
               "title": "Image Registry",
               "entry": "./advanced-v1.0/en/configuration/image-registry.md"
+            }
+          ]
+        },
+        {
+          "title": "Project Settings",
+          "entries": [
+            {
+              "title": "Basic Information",
+              "entry": "./advanced-v1.0/en/project-setting/project-quota.md"
+            },
+            {
+              "title": "Member Roles",
+              "entry": "./advanced-v1.0/en/project-setting/project-roles.md"
+            },
+            {
+              "title": "Project Members",
+              "entry": "./advanced-v1.0/en/project-setting/project-members.md"
+            },
+            {
+              "title": "Internet Access",
+              "entry": "./advanced-v1.0/en/project-setting/project-gateway.md"
             }
           ]
         }
