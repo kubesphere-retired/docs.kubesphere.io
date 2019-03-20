@@ -230,6 +230,27 @@
               "entry": "./advanced-v1.0/en/configuration/image-registry.md"
             }
           ]
+        },
+        {
+          "title": "Project Settings",
+          "entries": [
+            {
+              "title": "Basic Information",
+              "entry": "./advanced-v1.0/en/project-setting/project-quota.md"
+            },
+            {
+              "title": "Member Roles",
+              "entry": "./advanced-v1.0/en/project-setting/project-roles.md"
+            },
+            {
+              "title": "Project Members",
+              "entry": "./advanced-v1.0/en/project-setting/project-members.md"
+            },
+            {
+              "title": "Internet Access",
+              "entry": "./advanced-v1.0/en/project-setting/project-gateway.md"
+            }
+          ]
         }
       ]
     }

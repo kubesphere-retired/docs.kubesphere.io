@@ -22,6 +22,8 @@ Sign in with project-regular, enter into one project (e.g. demo-namespace), then
 - Alias: Helps you better distinguish resources and supports Chinese.
 - Description: A brief introduction to ConfigMap.
 
+Click **Next** when you're done.  
+
 ![Basic Information](https://pek3b.qingstor.com/kubesphere-docs/png/20190320093931.png)
 
 ### Step 2: ConfigMap Settings
