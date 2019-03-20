@@ -144,4 +144,16 @@ Installer 安装将会同时部署 Jenkins Dashboard，该服务暴露的端口 
 
 > 说明：
 > 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
+> 
 
+### 关于对 CephRBD、GlusterFS 开源存储的支持方式
+
+9、关于对 CephRBD、GlusterFS 开源存储的支持方式
+
+Installer 集成了这两类开源存储的存储插件，并在安装过程基于配置文件帮助用户完成部署配置工作，但其**存储服务端的部署和运维并不包含在 KubeSphere 平台支持范围中**。
+
+### NeonSAN 存储插件是否支持非 KubeSphere 的 Kubernetes 环境
+
+10、NeonSAN 存储插件是否支持非 KubeSphere 的 Kubernetes 环境
+
+支持，[NeonSAN 存储插件](https://github.com/yunify/qingstor-csi) 基于 CSI 0.3.0 开发，理论上可以支持 Kubernetes **1.11** 及以上版本，经过 KubeSphere 已验证可支持的版本包括 Kubernetes **1.12** 及以上版本，在非 KubeSphere 环境中部署 NeonSAN 存储插件可参考[此链接文档](https://github.com/yunify/qingstor-csi/blob/master/README_zh.md)，关于部署、使用的各种问题可直接在 GitHub 上提 issue。
