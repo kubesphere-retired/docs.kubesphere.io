@@ -19,14 +19,14 @@ Sign in with project-regular, enter into one project (e.g. demo-namespace), then
 
 ### Step 1: Fill in the Basic Information
 
-1.1. Click **Create StatefulSet** button, then fill in the basic information in the pop-up window. There are three ways to create a Statefulset, i.e. **fill in the creation table**, **upload Yaml file** and **edit mode**. The following mainly introduces each step of within creation table. If you prefer edit mode, you can click on the **edit mode** button, it supports the yaml and json formats. Edit mode makes it easy for users who are used to command operations.
+1.1. Click **Create StatefulSet** button, then fill in the basic information in the pop-up window. There are three ways to create a Statefulset, i.e. **fill in the creation table**, **upload Yaml file** and **edit mode**. The following mainly introduces each step within creation table. If you prefer edit mode, you can click on the **edit mode** button, it supports the yaml and json formats. Edit mode makes it easy for users who are used to command operations.
 
 ![Edit mode](https://pek3b.qingstor.com/kubesphere-docs/png/20190312130642.png)
 
 1.2. On the basic information page, enter the name of the StatefulSet, you can also fill in the description as required.
 
 - Name: A concise and clear name for this StatefulSet, which is convenient for users to browse and search.
-- Alias: Helps you better distinguish resources and supports Chinese names.
+- Alias: Helps you better distinguish resources and supports Chinese.
 - Description: A brief introduction to StatefulSet.
 
 Click **Next** when you're done.  

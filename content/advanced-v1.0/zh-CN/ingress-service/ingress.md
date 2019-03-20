@@ -4,6 +4,8 @@ title: "应用路由"
 
 应用路由 (Ingress) 是用来聚合集群内服务的方式，对应的是 Kubernetes 的 Ingress 资源，后端使用了 Nginx Controller 来处理具体规则。Ingress 可以给 service 提供集群外部访问的 URL、负载均衡、SSL termination、HTTP 路由等。
 
+![Ingress 示意图](/ingress-flow.svg)
+ 
 ## 前提条件
 
 - 请确保已预先创建了 [服务](../services)，定义应用路由规则时需要选择后端的服务，Ingress 的流量被转发到它所匹配后端的服务。
@@ -23,7 +25,7 @@ title: "应用路由"
 - 别名：帮助您更好的区分资源，并支持中文名称。
 - 描述信息：详细介绍应用路由的特性，当用户想进一步了解该应用路由时，描述内容将变得尤为重要。
 
-![](/ae-ingress-basic.png)
+![填写基本信息](/ae-ingress-basic.png)
 
 ### 第二步：填写应用路由规则
 

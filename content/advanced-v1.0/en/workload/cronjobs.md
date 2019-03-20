@@ -12,16 +12,16 @@ Sign in with project-regular, enter into one project (e.g. demo-namespace), then
 
 ### Step 1: Fill in the Basic Information
 
-1.1. Click **Create CronJob** button, then fill in the basic information in the pop-up window. There are two ways to create a CronJob, i.e. **fill in the creation table** and **edit mode**. The following mainly introduces each step of within creation table. If you prefer edit mode, you can click on the **edit mode**, it supports the yaml and json formats. Edit mode makes it easy for users who are used to command operations.
+1.1. Click **Create CronJob** button, then fill in the basic information in the pop-up window. There are two ways to create a CronJob, i.e. **fill in the creation table** and **edit mode**. The following mainly introduces each step within creation table. If you prefer edit mode, you can click on the **edit mode**, it supports the yaml and json formats. Edit mode makes it easy for users who are used to command operations.
 
 ![Edit mode](https://pek3b.qingstor.com/kubesphere-docs/png/20190312214937.png)
 
 1.2. On the basic information page, enter the name of the CronJob, you can also fill in the description as required.
 
-- Name: A concise and clear name for this Job, which is convenient for users to browse and search.
-- Alias: Helps you better distinguish resources and supports Chinese names.
+- Name: A concise and clear name for this CronJob, which is convenient for users to browse and search.
+- Alias: Helps you better distinguish resources and supports Chinese.
 - Schedule:  It runs a job periodically on a given time-based schedule, reference [CRON](https://en.wikipedia.org/wiki/Cron).
-- Description: A brief introduction to this Job.
+- Description: A brief introduction to this CronJob.
 
 Click **Advanced Options** to set CronJob limitations, there are 4 fields as following:
 

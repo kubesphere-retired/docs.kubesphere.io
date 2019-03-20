@@ -28,7 +28,9 @@ title: "存储卷"
 
 ### 第二步：存储卷设置
 
-存储设置中，选择存储卷的存储类型，存储类型需要预先创建，详见 [创建存储类型](../../infrastructure/storageclass/#创建存储类型)。按需填写存储卷的容量大小，存储卷大小和访问模式必须与存储类型和存储服务端能力相适应。各类型存储支持的访问模式参见 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)。
+存储设置中，选择存储卷的存储类型，按需填写存储卷的容量大小，存储卷大小和访问模式必须与存储类型和存储服务端能力相适应。各类型存储支持的访问模式参见 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)。
+
+> 提示：若需要选择集成多种 存储类型需要预先创建，详见 [创建存储类型](../../infrastructure/storageclass/#创建存储类型)。
 
 访问模式包括以下三种，注意，块存储仅支持单节点读写，若选择 QingCloud CSI 则访问只能选择 RWO。
 

@@ -14,14 +14,14 @@ Sign in with project-regular, enter into one project (e.g. demo-namespace), then
 
 ### Step 1: Fill in the Basic Information
 
-1.1. Click **Create Deployment** button, then fill in the basic information in the pop-up window. There are two ways to create a deployment, i.e. **fill in the creation table** and **edit mode**. The following mainly introduces each step of within creation table. If you prefer edit mode, you can click on the **edit mode**, it supports the yaml and json formats. Edit mode makes it easy for users who are used to command operations.
+1.1. Click **Create Deployment** button, then fill in the basic information in the pop-up window. There are two ways to create a deployment, i.e. **fill in the creation table** and **edit mode**. The following mainly introduces each step within creation table. If you prefer edit mode, you can click on the **edit mode**, it supports the yaml and json formats. Edit mode makes it easy for users who are used to command operations.
 
 ![command-line](https://pek3b.qingstor.com/kubesphere-docs/png/20190311153946.png)
 
 1.2. On the basic information page, enter the name of the deployment, you can also fill in the description as required.
 
 - Name: A concise and clear name for this deployment, which is convenient for users to browse and search.
-- Alias: Helps you better distinguish resources and supports Chinese names.
+- Alias: Helps you better distinguish resources and supports Chinese.
 - Description: A brief introduction to this deployment.
 
 Click **Next** when you're done.
