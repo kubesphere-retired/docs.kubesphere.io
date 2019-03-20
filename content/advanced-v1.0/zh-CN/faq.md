@@ -142,10 +142,6 @@ $ yum-complete-transaction --cleanup-only
 
 Installer 安装将会同时部署 Jenkins Dashboard，该服务暴露的端口 (NodePort) 为 `30180`，确保外网流量能够正常通过该端口，然后访问公网 IP 和端口号 (${EIP}:${NODEPORT}) 即可。Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard。
 
-> 说明：
-> 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
-> 
-
 ### 关于对 CephRBD、GlusterFS 开源存储的支持方式
 
 9、关于对 CephRBD、GlusterFS 开源存储的支持方式
@@ -157,3 +153,7 @@ Installer 集成了这两类开源存储的存储插件，并在安装过程基�
 10、NeonSAN 存储插件是否支持非 KubeSphere 的 Kubernetes 环境
 
 支持，[NeonSAN 存储插件](https://github.com/yunify/qingstor-csi) 基于 CSI 0.3.0 开发，理论上可以支持 Kubernetes **1.11** 及以上版本，经过 KubeSphere 已验证可支持的版本包括 Kubernetes **1.12** 及以上版本，在非 KubeSphere 环境中部署 NeonSAN 存储插件可参考[此链接文档](https://github.com/yunify/qingstor-csi/blob/master/README_zh.md)，关于部署、使用的各种问题可直接在 GitHub 上提 issue。
+
+> 说明：
+> 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
+> 
