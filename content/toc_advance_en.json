@@ -200,6 +200,36 @@
               "entry": "./advanced-v1.0/en/storage/pvc.md"
             }
           ]
+        },
+        {
+          "title": "Network & Services",
+          "entries": [
+            {
+              "title": "Services",
+              "entry": "./advanced-v1.0/en/ingress-service/service.md"
+            },
+            {
+              "title": "Routes",
+              "entry": "./advanced-v1.0/en/ingress-service/ingress.md"
+            }
+          ]
+        },
+        {
+          "title": "Configuration Center",
+          "entries": [
+            {
+              "title": "Secret",
+              "entry": "./advanced-v1.0/en/configuration/secrets.md"
+            },
+            {
+              "title": "ConfigMap",
+              "entry": "./advanced-v1.0/en/configuration/configmaps.md"
+            },
+            {
+              "title": "Image Registry",
+              "entry": "./advanced-v1.0/en/configuration/image-registry.md"
+            }
+          ]
         }
       ]
     }

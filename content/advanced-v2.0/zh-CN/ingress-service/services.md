@@ -39,7 +39,7 @@ title: "服务管理"
 - 端口：服务的端口号和目标端口，目标端口是对应的后端工作负载的端口号，如 MySQL 的 3306 端口。
 - 会话亲和性
    - None：以 Round robin 的方式轮询后端的 Pods。
-   - ClientIP：以 ClientIP 的方式固定 request 到同一台机器。
+   - ClientIP：来自同一个 IP 地址的访问请求都转发到同一个后端 Pod。
 
 ![创建服务](/ae-svc-setting.png)
 

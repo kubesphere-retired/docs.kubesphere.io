@@ -129,7 +129,7 @@ tier=frontend
 
 - 10.2. 参考以下截图完成参数设置。其中服务类型包括 Virtual IP、Headless (selector) 和 Headless (externalname) 三种，此处我们选择 Virtual IP，选择器一栏选择已创建的部署: `wordpress-mysql`，其中，第一个端口是需要暴露出去的服务端口，第二个端口（目标端口）是容器端口，此处的 MySQL 服务的端口和目标端口都填写 TCP 协议的 `3306` 端口，选择下一步：
 
-> 说明: 若要实现基于客户端 IP 的会话亲和性，可以在会话亲和性下拉框选择 "ClientIP" 或在代码模式将 service.spec.sessionAffinity 的值设置为 "ClientIP"（默认值为 "None"）。
+> 说明: 若要实现基于客户端 IP 的会话亲和性，可以在会话亲和性下拉框选择 "ClientIP" 或在代码模式将 service.spec.sessionAffinity 的值设置为 "ClientIP"（默认值为 "None"），该设置可将来自同一个 IP 地址的访问请求都转发到同一个后端 Pod。
 
 ![创建服务 - 参数设置](/uc_createsvc2.png)
 

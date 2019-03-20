@@ -157,7 +157,7 @@ app: wordpress
 - 端口：端口名称可自定义，服务的端口和目标端口都填写 `TCP` 协议的 `80` 端口
 - 会话亲和性：None，完成参数设置，选择下一步
 
-> 说明: 若有实现基于客户端 IP 的会话亲和性的需求，可以在会话亲和性下拉框选择 "ClientIP" 或在代码模式将 service.spec.sessionAffinity 的值设置为 "ClientIP"（默认值为 "None"）。
+> 说明: 若有实现基于客户端 IP 的会话亲和性的需求，可以在会话亲和性下拉框选择 "ClientIP" 或在代码模式将 service.spec.sessionAffinity 的值设置为 "ClientIP"（默认值为 "None"），该设置可将来自同一个 IP 地址的访问请求都转发到同一个后端 Pod。
 
 ![服务类型](/demo2-svc-setting.png)
 ![服务设置](/service-setting.png)
