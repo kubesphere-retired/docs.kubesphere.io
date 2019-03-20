@@ -67,7 +67,7 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由
 
 ### All-in-One
 
-`All-in-One` mode is single-node installation that supports one-click installation, it's only recommended for testing and experiencing the features of Advanced Edition, see [All-in-One](../all-in-one). By contrast, the Multi-node mode is recommended in a formal environment.
+`All-in-One` is single-node installation that supports one-click installation, it's only recommended for testing and experiencing the features of Advanced Edition, see [All-in-One](../all-in-one). By contrast, the Multi-node mode is recommended in a formal environment.
 
 ### Multi-Node 
 
