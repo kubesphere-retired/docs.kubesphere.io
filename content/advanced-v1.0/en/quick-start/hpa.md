@@ -91,7 +91,7 @@ Choose **Horizontal Pod Autoscaling**, and fill in the table as following:
 
 ### Step 2: Service Settings
 
-Since the service is accessed within the cluster, so we choose the first item (Virtual IP) for the service Settings.
+Since the service is accessed within the cluster, we choose the first item (Virtual IP) for the service Settings.
 
 ![Service Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20190322000035.png)
 

@@ -63,6 +63,14 @@
           "entry": "./advanced-v1.0/en/installation/master-etcd-ha.md"
         },
         {
+          "title": "Storage Configuration Instruction",
+          "entry": "./advanced-v1.0/en/installation/storage-configuration.md"
+        },
+        {
+          "title": "Harbor Installation Guide",
+          "entry": "./advanced-v1.0/en/installation/harbor-installation.md"
+        },
+        {
           "title": "Add New Nodes",
           "entry": "./advanced-v1.0/en/installation/add-nodes.md"
         },
@@ -286,6 +294,14 @@
             {
               "title": "DevOps Project Management",
               "entry": "./advanced-v1.0/en/devops/credential.md"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "./advanced-v1.0/en/devops/add-scm.md"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "./advanced-v1.0/en/devops/jenkins-agent.md"
             }
           ]
         }

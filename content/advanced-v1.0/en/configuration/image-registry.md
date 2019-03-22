@@ -14,7 +14,8 @@ Click **Create Secret** button, then fill in the basic information in the pop-up
 
 ### Add the QingCloud Docker Hub
 
-1. On the basic information page, enter the name of the QingCloud Docker Hub, you can also fill in the description as required.
+1. On the basic information page, enter the name of the QingCloud Docker Hub, you can also fill in the description as your needs.
+
 
 
 - Name: A concise and clear name for this registry, which is convenient for users to browse and search, e.g. `dockerhub-qingcloud`.
@@ -26,6 +27,7 @@ Click **Next** when you're done.
 ![QingCloud Docker Hub](https://pek3b.qingstor.com/kubesphere-docs/png/20190320105702.png)
 
 2. In the Secret Settings table, select `Image Repository Secret` as the type, then fill in the account authentication information of the image registry.
+
 
 
 - Registry Address: Use QingCloud image registry address `dockerhub.qingcloud.com` as an example.
@@ -53,7 +55,7 @@ If you need to add Dokcer Hub as the image registry, first make sure you have al
 
 #### Add the Internal Harbor
 
-KubeSphere Installer has integrated Harbor's Helm Chart, which is an optional installation item, so it requires to enable the installation in advance, users can configure the installation according to the needs of the teams. Before start installation, you just need to configure in the  `conf/vars.yml`, see [Install the built-in Harbor](../../installation/).
+KubeSphere Installer has integrated Harbor's Helm Chart, which is an optional installation item, so it requires to enable the installation in advance, users can configure the installation according to the needs of the teams. Before start installation, you just need to configure in `conf/vars.yml`, see [Harbor Installation Guide](../../installation/harbor-installation).
 
 #### Connect the External Harbor
 
