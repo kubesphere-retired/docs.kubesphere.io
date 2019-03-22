@@ -22,7 +22,7 @@ harbor_domain: harbor.devops.kubesphere.local
 
 #### 第一步：修改 Docker 配置
 
-修改集群中所有节点的 Docker 配置，需要在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段 `--insecure-registry=harbor.devops.kubesphere.local:30280`，如下所示：
+修改集群中 **所有节点** 的 Docker 配置，需要在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段 `--insecure-registry=harbor.devops.kubesphere.local:30280`，如下所示：
 
 **配置文件修改示例**
 
@@ -41,11 +41,11 @@ Environment="DOCKER_OPTS=  --registry-mirror=https://registry.docker-cn.com --da
 192.168.0.24 harbor.devops.kubesphere.local
 ```
 
-> 说明：192.168.0.24 是当前主机的内网 IP，若需要将 Harbor 服务暴露给集群外部用户使用，则替换为当前集群的公网 IP，并将 Harbor 端口 30280 进行端口转发和开放防火墙，确保流量可以通过该端口。
+> 说明：192.168.0.24 是当前主机的内网 IP，请根据实际情况填写。若需要将 Harbor 服务暴露给集群外部用户使用，则需要在外网配置 DNS 记录（DNS 服务器处或者用户的本地 hosts 文件内），把域名 `harbor.devops.kubesphere.local` 对应到相应的外网 IP，并将 Harbor 端口 30280 进行端口转发和开放防火墙，确保外部流量可以通过该端口。
 
-#### 第二步：重启 Docker 服务
+#### 第三步：重启 Docker 服务
 
-修改后，需要重启所有节点的 Docker 服务使配置生效，⽐如在 Linux 系统中需执行以下命令：
+修改后，需要重启 **所有节点** 的 Docker 服务使配置生效，⽐如在 Linux 系统中需执行以下命令：
 
 ```bash
 $ sudo systemctl daemon-reload
@@ -54,7 +54,7 @@ $ sudo systemctl daemon-reload
 ```bash
 $ sudo systemctl restart docker
 ```
-#### 第三步：登录 Harbor
+#### 第四步：登录 Harbor
 
 执行以下命令登录 Harbor 镜像仓库。关于如何制作镜像、打包上传镜像以及 Dockerfile 的使用，请参考 [Docker 官方文档](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)。
 
@@ -100,12 +100,19 @@ Login Succeeded
 
 ### 浏览器访问
 
-KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harbor 服务对外暴露的节点端口 (NodePort) 为 30280，内置的 Harbor 镜像仓库目前仅支持 http 协议，在浏览器中可以通过 `{$公网 IP}:{$NodePort}` 如 `http://139.198.16.160:30280` 访问 Harbor 登录页面。默认的管理员用户名和密码为 `admin / Harbor12345`，其它用户与 KubeSphere 的用户账户体系一致。关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
+KubeSphere 安装成功后，若需要在集群外部访问 Harbor，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后才可以在浏览器访问 Harbor 镜像仓库。
 
-> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 30280，保证外网流量可以通过该端口，外部才能够访问。
+```bash
+139.198.10.10 harbor.devops.kubesphere.local
+```
 
-![Harbor 登录](/harbor-console.png)
+> 注意：`139.198.10.10` 是 KubeSphere 集群的公网 IP，请根据实际情况填写。在外网访问 Harbor，需要绑定公网 IP 并配置端口转发，若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口 30280，保证外网流量可以通过该端口，外部才能够访问。
 
+Harbor 服务对外暴露的节点端口 (NodePort) 为 30280，内置的 Harbor 镜像仓库目前仅支持 http 协议，在浏览器中可以通过 `{$域名}:{$NodePort}` 如 `http://harbor.devops.kubesphere.local:30280` 访问 Harbor 登录页面。默认的管理员用户名和密码为 `admin / Harbor12345`，其它用户与 KubeSphere 的用户账户体系一致。关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
+
+
+
+![浏览器访问](https://pek3b.qingstor.com/kubesphere-docs/png/20190322111038.png)
 
 ### 使用 Harbor 镜像仓库
 
