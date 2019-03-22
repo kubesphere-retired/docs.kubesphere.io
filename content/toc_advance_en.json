@@ -98,6 +98,10 @@
           "entry": "./advanced-v1.0/en/quick-start/one-click-deploy.md"
         },
         {
+          "title": "Create Horizontal Pod Autoscaler",
+          "entry": "./advanced-v1.0/en/quick-start/hpa.md"
+        },
+        {
           "title": "CI/CD Pipeline Based on Jenkinsfile",
           "entry": "./advanced-v1.0/en/quick-start/jenkinsfile-in-scm.md"
         },
@@ -265,6 +269,23 @@
             {
               "title": "Internet Access",
               "entry": "./advanced-v1.0/en/project-setting/project-gateway.md"
+            }
+          ]
+        },
+        {
+          "title": "DevOps Project",
+          "entries": [
+            {
+              "title": "DevOps Project Management",
+              "entry": "./advanced-v1.0/en/devops/devops-project.md"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "./advanced-v1.0/en/devops/pipeline.md"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "./advanced-v1.0/en/devops/credential.md"
             }
           ]
         }

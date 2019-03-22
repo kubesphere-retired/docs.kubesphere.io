@@ -46,7 +46,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 - 名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，如 `hpa-example`
 - 别名：可选，更好的区分资源，并支持中文名称
-- 更新策略：选择 RollingUpdate
+- 描述信息：简单介绍该部署，方便用户进一步了解
 
 点击 **下一步**；
 
@@ -187,13 +187,13 @@ while true; do wget -q -O- http://hpa-example.demo-namespace.svc.cluster.local; 
 
 #### 第一步：查看部署状态
 
-在部署列表中，点击之前创建的部署 `hpe-example`，进入资源详情页，请重点关注此时容器组的弹性伸缩状态和当前的 CPU 使用率以及它的监控情况。
+在部署列表中，点击之前创建的部署 `hpa-example`，进入资源详情页，请重点关注此时容器组的弹性伸缩状态和当前的 CPU 使用率以及它的监控情况。
 
 ![负载工作前](/hpa-details-page.png)
 
 #### 第二步：查看弹性伸缩情况
 
-待 `load-generator` 的所有副本的容器都创建成功并开始访问 `hpe-example` 服务时，如下图所示，刷新页面后可见 CPU 使用率明显升高，目前上升至 62 %，并且期望副本和实际运行副本数都变成了 4，这是由于我们之前设置的 Horizontal Pod Autoscaler 开始工作了，`load-generator` 循环地请求该 `hpa-example` 服务使得 CPU 使用率迅速升高，HPA 开始工作后使得该服务的后端 Pod 副本数增加共同处理大量的请求，`hpa-example` 的副本数会随 CPU 的使用率升高而继续增加，正好也证明了弹性伸缩的工作原理。
+待 `load-generator` 的所有副本的容器都创建成功并开始访问 `hpa-example` 服务时，如下图所示，刷新页面后可见 CPU 使用率明显升高，目前上升至 62 %，并且期望副本和实际运行副本数都变成了 4，这是由于我们之前设置的 Horizontal Pod Autoscaler 开始工作了，`load-generator` 循环地请求该 `hpa-example` 服务使得 CPU 使用率迅速升高，HPA 开始工作后使得该服务的后端 Pod 副本数增加共同处理大量的请求，`hpa-example` 的副本数会随 CPU 的使用率升高而继续增加，正好也证明了弹性伸缩的工作原理。
 
 ![负载工作后](/hpa-working-result.png)
 
@@ -207,7 +207,7 @@ while true; do wget -q -O- http://hpa-example.demo-namespace.svc.cluster.local; 
 
 1、在左侧菜单栏选择 **工作负载 → 部署**，在部署列表中选择 `load-generator`，点击界面上方的 **删除** （或将之前设置的循环请求命令删除），停止负载；
 
-2、再次查看 `hpe-example` 的运行状况，可以发现几分钟后它的 CPU 利用率已缓慢降到 18 %，并且 HPA 将其副本数量最终减少至最小副本数 2，最终恢复了正常状态，从 CPU 使用量监控曲线反映的趋势也可以帮助我们进一步理解弹性伸缩的工作原理；
+2、再次查看 `hpa-example` 的运行状况，可以发现几分钟后它的 CPU 利用率已缓慢降到 18 %，并且 HPA 将其副本数量最终减少至最小副本数 2，最终恢复了正常状态，从 CPU 使用量监控曲线反映的趋势也可以帮助我们进一步理解弹性伸缩的工作原理；
 
 > 注意：在完成本示例后，请将工作负载 load-generator 删除，防止其一直访问该应用而造成 CPU 资源的不必要的消耗或集群因资源不足而出现问题。
 

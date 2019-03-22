@@ -6,7 +6,7 @@ As mentioned in [Account-Management](../account-management), role management is 
 
 ## Prerequisites
 
-You need an account for the cluster-admin role, and sign in KubeSphere.
+You need an account for the `cluster-admin` role, then sign in KubeSphere.
 
 ## Create roles
 
