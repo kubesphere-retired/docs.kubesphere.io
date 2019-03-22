@@ -1,152 +1,161 @@
 ---
-title: "存储配置说明"
+title: "Storage Configuration Instruction"
 ---
 
-目前，Installer 支持以下类型的存储作为存储服务端，为 KubeSphere 提供持久化存储 (更多的存储类型持续更新中)：
+Currently, Installer supports the following types of storage as storage servers, providing persistent storage service for KubeSphere (more storage classes are continuously updated).
 
-- QingCloud 云平台块存储
+- QingCloud Block Storage
 - QingStor NeonSAN
 - Ceph RBD
 - GlusterFS
 - NFS
-- NFS in Kubernetes (仅限 multi-node 部署测试使用)
-- Local Volume (仅限 all-in-one 部署测试使用)
+- NFS in Kubernetes (Multi-node installation test only)
+- Local Volume (All-in-One installation test only)
 
-同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接 QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的权限或已有 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端，然后在 `vars.yml` 配置对应的参数即可对接相应的存储服务端。
+At the same time, Installer integrates the [QingCloud-CSI (Block Storage Plugin)](https://github.com/yunify/qingcloud-csi/blob/master/README.md) and the [QingStor NeonSAN CSI Plugin](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12.md). It can be connected to the QingCloud block storage or QingStor NeonSAN as a storage, just need simple configuration before installation. 
 
-Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已测试过的版本如下：
+Make sure you have [QingCloud](https://console.qingcloud.com/login) account. In addition, The Installer also integrates storage clients such as NFS, GlusterFS and Ceph RBD. Users need to prepare the relevant storage server in advance, and then configure the corresponding parameters in `vars.yml` to connect to the corresponding storage server.
 
-| **名称** | **版本** | **参考** |
+
+The versions of open source storage servers and clients that have been tested using Installer, as well as the CSI plugins, are listed as following:
+
+| **Name** | **Version** | **Reference** |
 | ----------- | --- |---|
-| Ceph RBD Server | v0.94.10 |若用于测试部署可参考 [部署 Ceph 存储服务端](/express/zh-CN/ceph-ks-install/)，如果是正式环境搭建请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)|
-| Ceph RBD Client | v12.2.5 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，参考 [Ceph RBD](../storage-configuration/#ceph-rbd)|
-| GlusterFS Server | v3.7.6 |若用于测试部署可参考 [部署 GlusterFS 存储服务端](/express/zh-CN/glusterfs-ks-install/)， 如果是正式环境搭建请参考 [Gluster 官方文档](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) ，并且需要安装 [Heketi 管理端 (v3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin)|
-|GlusterFS Client |v3.12.10|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，配置详见 [GlusterFS](../storage-configuration/#glusterfs)|
-|NFS Server in Kubernetes| v1.0.9 |配置详见 [NFS Server 配置](../storage-configuration/#nfs) |
-|NFS Client | v3.1.0 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，详见 [NFS Client](../storage-configuration/#nfs)  |
-| QingCloud-CSI|v0.2.0.1|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [QingCloud CSI](../storage-configuration/#qingcloud-csi)|
-| NeonSAN-CSI|v0.3.0|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
+Ceph RBD Server | v0.94.10 | For testing installation, please refer to [Deploy Ceph Storage Server](/express/zh-CN/ceph-ks-install/). If it is in a formal environment, please refer to [Ceph Documentation](http://docs.ceph.com/docs/master/)|
+Ceph RBD Client | v12.2.5 | Before installing KubeSphere, you just need to configure the corresponding parameters in `vars.yml` to connect to its storage server, see [Ceph RBD](../storage-configuration/#ceph-rbd) |
+GlusterFS Server | v3.7.6 | For testing installation, please refer to [Deploying GlusterFS Storage Server](/express/zh-CN/glusterfs-ks-install/). If it is a formal environment, please refer to [Gluster Documentation](https://www.gluster.org/install/) or [Gluster Documentaion](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) and need to install [Heketi Manager (V3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin) as well|
+|GlusterFS Client |v3.12.10|Before installing KubeSphere, you just need to configure the corresponding parameters in `vars.yml` to connect to the storage server, see [GlusterFS](../storage-configuration/#glusterfs)|
+|NFS Server in Kubernetes| v1.0.9 | For configuration details, see [NFS Server Configuration](../storage-configuration/#nfs) |
+|NFS Client | v3.1.0 | Before installing KubeSphere, you just need to configure the corresponding parameters in `vars.yml` to connect to its storage server, see [NFS Client](../storage-configuration/#nfs) |
+QingCloud-CSI|v0.2.0.1|Please configure the corresponding parameters in `vars.yml` before installing KubeSphere. For details, see [QingCloud CSI](../storage-configuration/#qingcloud-csi)|
+NeonSAN-CSI|v0.3.0| Before installing KubeSphere, you just need to configure the corresponding parameters in `vars.yml`, see [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
 
-> 说明：
-> 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
+> Note: It's not allowed to set two default storage class in the cluster. To specify a default storage class, make sure there is no default storage class already exited in the current cluster.
 
-## 配置文件释义
 
-准备了满足要求的存储服务端后，只需要参考以下表中的参数说明，在 `conf/vars.yml` 中，根据您存储服务端所支持的存储类型，在配置文件的相应部分参考示例或注释修改对应参数，即可完成集群存储类型的配置。以下对 `vars.yml` 存储相关的参数配置做简要说明 (参数详解请参考 [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) )。
+## Storage Configuration Definition
 
-### QingCloud 云平台块存储
+After preparing the storage server, then you need to reference the parameter description in the following table. Then modify the corresponding storage class part in the configuration file (`conf/vars.yml` ) according to your storage server. The following is a brief description of the parameter configuration related to `vars.yml` storage, also see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/)) for the details.
 
-KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务。
+### QingCloud Block Storage
 
-[QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式 (Access Mode) 为 **单节点读写（ReadWriteOnce）** 的基于 QingCloud 的超高性能型 (超高性能型硬盘只能用在超高性能型主机)、性能型 (性能型硬盘只能用在性能型主机) 或容量型硬盘的存储卷并挂载至工作负载。在安装 KubeSphere 时配置 QingCloud-CSI 插件的参数说明如下。
+KubeSphere supports QingCloud Block Storage as the platform storage service. If you would like to experience dynamic provisioning to create volumes, it's recommended to use [QingCloud Block Storage](https://docs.qingcloud.com/product/Storage/volume/), KubeSphere integrated [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md), which supports you to use the different performance of block storage in QingCloud platform.
+
+After plugin installation completes, user can create volumes based on several types of disk, such as super high performance disk, high performance disk and high capacity disk, with ReadWriteOnce access mode and mount volumes on workloads.
+
+The parameters for configuring the QingCloud-CSI plugin are described below.
 
 |**QingCloud-CSI** | **Description**|
 | --- | ---|
-| qy\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
-| qy\_csi\_is\_default\_class|是否设定为默认的存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型|
-| qy\_access\_key\_id ， <br> qy\_secret\_access\_key|通过[QingCloud 云平台控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
-|qy\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、pek3b （北京3区-B）、pek3c （北京3区-C）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）|
-| type | QingCloud 云平台块存储的类型，0 代表性能型硬盘，1 或 2（根据集群所在区不同而参数不同）代表容量型硬盘，3 代表超高性能型硬盘，详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
-| maxSize, minSize | 限制存储卷类型的存储卷容量范围，单位为 GiB|
-| stepSize | 设置用户所创建存储卷容量的增量，单位为 GiB|
-| fsType | 存储卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4|
+| qingcloud\_csi\_enabled|Determines whether to use QingCloud-CSI as the persistent storage volume, can be set to true or false. Defaults to false |
+| qingcloud\_csi\_is\_default\_class| Determines whether to set QingCloud-CSI as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default. |
+qingcloud\_access\_key\_id , <br> qingcloud\_secret\_access\_key| Get from [QingCloud Cloud Platform Console](https://console.qingcloud.com/login) |
+|qingcloud\_zone| zone should be the same as the zone where the Kubernetes cluster is installed, and the CSI plugin will operate on the storage volumes for this zone. For example: zone can be set to these values, such as sh1a (Shanghai 1-A), sh1b (Shanghai 1-B), pek2 (Beijing 2), pek3a (Beijing 3-A), pek3b (Beijing 3-B), pek3c (Beijing 3-C), gd1 (Guangdong 1), gd2a (Guangdong 2-A), ap1 (Asia Pacific 1), ap2a (Asia Pacific 2-A) |
+| type | The type of volume in QingCloud IaaS platform. In QingCloud public cloud platform, 0 represents high performance volume. 3 respresents super high performance volume. 1 or 2 represents high capacity volume depending on cluster‘s zone, see [QingCloud Documentation](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
+| maxSize, minSize | Limit the range of volume size in GiB|
+| stepSize | Set the increment of volumes size in GiB|
+| fsType | The file system of the storage volume, which supports ext3, ext4, xfs. The default is ext4|
 
 ### QingStor NeonSAN
 
-NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为存储服务，若您准备好 NeonSAN 服务端后，即可在 `conf/vars.yml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
+The NeonSAN-CSI plugin supports the enterprise-level distributed storage [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) as the platform storage service. If you have prepared the NeonSAN server, you will be able to configure the NeonSAN-CSI plugin to connect to its storage server in `conf/vars.yml`, see [NeonSAN-CSI Reference](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
 
 | **NeonSAN** | **Description** |
 | --- | --- |
-| neonsan\_csi\_enabled | 是否使用 NeonSAN 作为持久化存储，是：true；否：false |
-| neonsan\_csi\_is\_default\_class | 是否设定为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
-| neonsan\_csi\_protocol | NeonSAN 服务端传输协议，如 TCP 或 RDMA|
-| neonsan\_server\_address |NeonSAN 服务端地址 |
-| neonsan\_cluster\_name| NeonSAN 服务端集群名称|
-| neonsan\_server\_pool|Kubernetes 插件从哪个 pool 内创建存储卷，默认值为 kube|
-| neonsan\_server\_replicas|NeonSAN image 的副本个数，默认为 1|
-| neonsan\_server\_stepSize|用户所创建存储卷容量的增量，单位为 GiB，默认为 1|
-| neonsan\_server\_fsType|存储卷的文件系统格式，默认为 ext4|
-
+| neonsan\_csi\_enabled | Determines whether to use NeonSAN as the persistent storage, can be set to true or false. Defaults to false |
+| neonsan\_csi\_is\_default\_class | Determines whether to set NeonSAN-CSI as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default.|
+Neonsan\_csi\_protocol | tranportation protocol, user must set the option, such as TCP or RDMA|
+| neonsan\_server\_address | NeonSAN server address |
+| neonsan\_cluster\_name| NeonSAN server cluster name|
+| neonsan\_server\_pool|A comma separated list of pools. Tell plugin to manager these pools. User must set the option, the default value is kube|
+| neonsan\_server\_replicas|NeonSAN image replica count. Default: 1|
+| neonsan\_server\_stepSize|set the increment of volumes size in GiB. Default: 1|
+| neonsan\_server\_fsType|The file system to use for the volume. Default: ext4|
 
 ### Ceph RBD
 
-[Ceph RBD](https://ceph.com/) 是一个分布式存储系统，在 `conf/vars.yml` 配置的释义如下。
+
+The open source [Ceph RBD](https://ceph.com/) distributed storage system, can be configured in `conf/vars.yml`, assume you have prepared Ceph storage servers in advance, thus you can reference the following definition. See [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) for more details.
 
 | **Ceph\_RBD** | **Description** |
 | --- | --- |
-| ceph\_rbd\_enabled | 是否使用 Ceph RBD 作为持久化存储，是：true；否：false |
-| ceph\_rbd\_storage\_class | 存储类型名称 |
-| ceph\_rbd\_is\_default\_class | 是否设定为默认存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
-| ceph\_rbd\_monitors | 根据 Ceph RBD 服务端配置填写，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_admin\_id | 能够在存储池中创建的客户端 ID ，默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_admin\_secret | Admin_id 的 secret，安装程序将会自动在 kube-system 项目内创建此 secret，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_pool | 可使用的 Ceph RBD 存储池，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_user\_id | 用于映射 RBD  的 ceph 客户端 ID 默认: admin，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_user\_secret | User_id 的 secret，需注意在所使用 rbd image 的项目内都需创建此 Secret，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_fsType | 存储卷的文件系统，kubernetes 支持 fsType，默认：ext4，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-| ceph\_rbd\_imageFormat | Ceph RBD  格式，默认："1"，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) |
-|ceph\_rbd\_imageFeatures| 当 `ceph_rbd_imageFormat` 字段不为 1 时需填写此字段，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd)|
+| ceph\_rbd\_enabled | Determines whether to use Ceph RBD as the persistent storage, can be set to true or false. Defaults to false |
+| ceph\_rbd\_storage\_class | Storage class name |
+| ceph\_rbd\_is\_default\_class | Determines whether to set Ceph RBD as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default. |
+| ceph\_rbd\_monitors | Ceph monitors, comma delimited. This parameter is required, which depends on Ceph RBD server parameters |
+| ceph\_rbd\_admin\_id | Ceph client ID that is capable of creating images in the pool. Default is “admin” |
+| ceph\_rbd\_admin\_secret | Admin_id's secret，Secret name for "adminId". This parameter is required. The provided secret must have type “kubernetes.io/rbd” |
+| ceph\_rbd\_pool | Ceph RBD pool. Default is “rbd” |
+| ceph\_rbd\_user\_id | Ceph client ID that is used to map the RBD image. Default is the same as adminId |
+| ceph\_rbd\_user\_secret | Secret for User_id, it is required to create this secret in namespace which used rbd image |
+| ceph\_rbd\_fsType | fsType that is supported by kubernetes. Default: "ext4"|
+| ceph\_rbd\_imageFormat | Ceph RBD image format, “1” or “2”. Default is “1” |
+|ceph\_rbd\_imageFeatures| This parameter is optional and should only be used if you set imageFormat to “2”. Currently supported features are layering only. Default is “”, and no features are turned on|
 
-> 注： 存储类型中创建 secret 所需 ceph secret 如 `ceph_rbd_admin_secret` 和 `ceph_rbd_user_secret` 可在 ceph 服务端通过以下命令获得：
+**Attention:**<br/>
+> The on-demand ceph secret which is created in storage class, like "ceph_rbd_admin_secret" and "ceph_rbd_user_secret", it can be returned with following command in Ceph storage server.
 
-```bash
+```
 $ ceph auth get-key client.admin
 ```
 
 ### GlusterFS 
 
-[GlusterFS](https://www.gluster.org/) 是一个开源的分布式文件系统，配置时需提供 heketi 所管理的 glusterfs 集群，在 `conf/vars.yml` 配置的释义如下。
+[GlusterFS](https://docs.gluster.org/en/latest/) is a scalable network filesystem suitable for data-intensive tasks such as cloud storage and media streaming. Assume you have prepared GlusterFS storage servers in advance, thus you can reference the following definition，see [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) for more details.
 
-| **GlusterFS**| **Description** |
+| **GlusterFS（It requires glusterfs cluster which is managed by heketi）**|**Description** |
 | --- | --- |
-| glusterfs\_provisioner\_enabled | 是否使用 GlusterFS 作为持久化存储，是：true；否：false |
-| glusterfs\_provisioner\_storage\_class | 存储类型的名称 |
-| glusterfs\_is\_default\_class | 是否设定为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型| --- | --- |glusterfs\_provisioner\_resturl | Heketi 服务 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) | glusterfs\_provisioner\_clusterid | Heketi 服务端输入 heketi-cli cluster list 命令获得，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_restauthenabled | Gluster 启用对 REST 服务器的认证，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_resturl | Heketi 服务端 url，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_clusterid | Gluster 集群 id，登录 heketi 服务端输入 heketi-cli cluster list 得到 Gluster 集群 id，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_restuser | 能够在 Gluster pool 中创建 volume 的 Heketi 用户，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_secretName | secret 名称，安装程序将会在 kube-system 项目内自动创建此 secret，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_gidMin | glusterfs\_provisioner\_storage\_class 中 GID 的最小值，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_gidMax | glusterfs\_provisioner\_storage\_class 中 GID 的最大值，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| glusterfs\_provisioner\_volumetype | Volume 类型，参数配置请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) |
-| jwt\_admin\_key | heketi 服务器中 `/etc/heketi/heketi.json` 的 jwt.admin.key 字段 |
+| glusterfs\_provisioner\_enabled | Determines whether to use GlusterFS as the persistent storage, can be set to true or false. Defaults to false |
+| glusterfs\_provisioner\_storage\_class | Storage class name |
+| glusterfs\_is\_default\_class | Determines whether to set GlusterFS as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default |
+| glusterfs\_provisioner\_restauthenabled | Gluster REST service authentication boolean that enables authentication to the REST server |
+| glusterfs\_provisioner\_resturl | Gluster REST service/Heketi service url which provision gluster volumes on demand. The general format should be IPaddress:Port and this is a mandatory parameter for GlusterFS dynamic provisioner|
+| glusterfs\_provisioner\_clusterid | Optional, for example, 630372ccdc720a92c681fb928f27b53f is the ID of the cluster which will be used by Heketi when provisioning the volume. It can also be a list of clusterids |
+| glusterfs\_provisioner\_restuser | Gluster REST service/Heketi user who has access to create volumes in the Gluster Trusted Pool |
+| glusterfs\_provisioner\_secretName | Optional, identification of Secret instance that contains user password to use when talking to Gluster REST service,Installation package will automatically create this secret in Kube-system |
+| glusterfs\_provisioner\_gidMin | The minimum value of GID range for the storage class |
+| glusterfs\_provisioner\_gidMax |The maximum value of GID range for the storage class |
+| glusterfs\_provisioner\_volumetype | The volume type and its parameters can be configured with this optional value,For example: ‘Replica volume’: volumetype: replicate:3 |
+| jwt\_admin\_key | "jwt.admin.key" column from "/etc/heketi/heketi.json" in Heketi server |
 
-> 注： Glusterfs 存储类型中所需的 `glusterfs_provisioner_clusterid` 可在 glusterfs 服务端通过以下命令获得：
-
-```bash
-$ export HEKETI_CLI_SERVER=http://localhost:8080
-$ heketi-cli cluster list
-```
+**Attention：**<br/>
+ > In Glusterfs, `"glusterfs_provisioner_clusterid"` could be returned from glusterfs server. Execute the following command:
+ 
+ ```bash
+ $ export HEKETI_CLI_SERVER=http://localhost:8080
+ 
+ $ heketi-cli cluster list
+ ```
 
 ### NFS
 
-[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS](https://www.qingcloud.com/products/nas/) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
+An NFS volume allows an existing NFS (Network File System) share to be mounted into your Pod. NFS can be configured in `conf/vars.yml`, assume you have prepared Ceph storage servers in advance. By the way, you can use [QingCloud vNAS](https://www.qingcloud.com/products/nas/) as NFS server.
 
 | **NFS** | **Description** |
 | --- | --- |
-| nfs\_client\_enable | 是否使用 NFS 作为持久化存储，是：true；否：false |
-| nfs\_client\_is\_default\_class | 是否设定为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
-| nfs\_server | 允许其访问的 NFS 服务端地址，可以是 IP 或 Hostname |
-| nfs\_path | NFS 共享目录，即服务器上共享出去的文件目录，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
+| nfs\_client\_enable | Determines whether to use NFS as the persistent storage, can be set to true or false. Defaults to false |
+| nfs\_client\_is\_default\_class | Determines whether to set NFS as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default  |
+| nfs\_server | The NFS server address, either IP or Hostname |
+| nfs\_path | NFS shared directory, which is the file directory shared on the server, see [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
 
-### NFS in Kubernetes（仅限 multi-node 部署测试使用）
+### NFS in Kubernetes（Multi-node installation test only）
 
-NFS 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本安装方法将会在 Kubernetes 集群内安装 [容器化的 NFS 服务端](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner)，要求 Kubernetes 节点有足够的硬盘空间。在 `conf/vars.yml` 配置的释义如下。
+This kind of storage will install the [Containerized NFS server](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner) in the Kubernetes cluster, which is an out-of-tree dynamic provisioner for Kubernetes, requiring the Kubernetes node to have enough disk space. The definition of the `conf/vars.yml` is as following table. 
+
+> Note: If you have a pre-existing NFS Server, please consider using the NFS as above instead.
 
 | **NFS** | **Description** |
 | --- | --- |
-| nfs\_server\_enable | 是否部署 NFS Server 到当前集群作为存储服务端，是：true；否：false | 
-|nfs\_server\_is\_default\_class | 是否设定 NFS 为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
+| nfs\_server\_enable | Determines whether to use NFS in Kubernetes as the persistent storage, can be set to true or false. Defaults to false | 
+|nfs\_server\_is\_default\_class | Determines whether to set NFS in Kubernetes as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default |
 
-### Local Volume（仅限 all-in-one 部署测试使用）
+### Local Volume（All-in-One installation test only）
 
-[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 表示挂载的本地存储设备，如磁盘、分区或目录，仅支持在 all-in-one 模式安装时使用 Local Volume，由于该类型暂不支持动态分配，因此仅建议用于测试部署，方便初次安装和体验。在 `conf/vars.yml` 配置的释义如下。
+A [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume. Dynamic provisioning is not supported yet. So it's only recommended to use Local volume for All-in-One installation test only, it can help you to quickly & easily install KubeSphere on a single node. The definition of the `conf/vars.yml` is as following table. 
 
-| **Local Volume** | **Description** |
+| **Local volume** | **Description** |
 | --- | --- |
-| local\_volume\_provisioner\_enabled | 是否使用 local volume 作为持久化存储，  是：true；否：false |
-| local\_volume\_provisioner\_storage\_class | 存储类型的名称，   默认：local |
-| local\_volume\_is\_default\_class | 是否设定为默认存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型 |
+| local\_volume\_provisioner\_enabled | Determines whether to use Local as the persistent storage, can be set to true or false. Defaults to true |
+| local\_volume\_provisioner\_storage\_class | Storage class name, default value：local |
+| local\_volume\_is\_default\_class | Determines whether to set Local as the default storage class, can be set to true or false. Defaults to true. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default |
 
-> 说明： 在您配置好 Local Volume (只有 all-in-one 支持这类存储) 并成功安装 KubeSphere 后，可参阅 [Local Volume 使用方法](../../storage/local-volume)。

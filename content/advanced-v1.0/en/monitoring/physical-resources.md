@@ -6,7 +6,7 @@ The KubeSphere Monitoring Center provides monitoring of CPU, memory, network, an
 
 ## Prerequisites
 
-You need an account of cluster-admin role and sign in with KubeSphere, see the [Admin Quick Start](../admin-quick-start) if not yet.
+You need an account of cluster-admin role and sign in KubeSphere, see the [Admin Quick Start](../admin-quick-start) if not yet.
 
 ## View the Cluster Status
 

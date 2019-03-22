@@ -85,7 +85,7 @@ Login Succeeded
 
 #### 第二步：填写 Harbor 仓库信息
 
-2.1. 参考如下提示填写 Harbor 仓库的登录信息。
+2.1. 在类型中选择镜像仓库密钥，参考如下提示填写 Harbor 仓库的登录信息。
 
 - 仓库地址：填写内置的 Harbor 镜像仓库域名和节点端口 `http://harbor.devops.kubesphere.local:30280`
 - 用户名：admin
@@ -94,13 +94,13 @@ Login Succeeded
 
 ![](/harbor-docker-login.png)
 
-2.2. 如果 Harbor 安装配置都正确，并且验证信息都填写无误，即可添加成功。Harbor 镜像仓库添加完成后，可以上传镜像和拉取镜像。
+2.2. 点击 **创建**，如果 Harbor 安装配置都正确，并且验证信息都填写无误，即可添加成功。Harbor 镜像仓库添加完成后，可以上传镜像和拉取镜像。
 
 ![](/harbor-secret-list.png)
 
 ### 浏览器访问
 
-KubeSphere 安装成功后，若需要在集群外部访问 Harbor，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后才可以在浏览器访问 Harbor 镜像仓库。
+KubeSphere 和 Harbor 都安装成功后，若需要在集群外部访问 Harbor，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后才可以在浏览器访问 Harbor 镜像仓库。
 
 ```bash
 139.198.10.10 harbor.devops.kubesphere.local

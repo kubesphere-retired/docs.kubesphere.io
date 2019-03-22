@@ -1,65 +1,68 @@
 ---
-title: "安装内置 Harbor" 
+title: "Harbor Installation Guide" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考以下步骤安装和访问 Harbor。
+[Harbor](https://goharbor.io/) is an an open source trusted cloud native registry project that stores, signs, and scans content. Harbor extends the open source Docker Distribution by adding the functionalities usually required by users such as security, identity and management.
 
-## 修改安装配置文件
+KubeSphere Installer integrates Harbor's Helm Chart (v18.11.1), built-in Harbor as an optional installation item, users can configure the installation according to the project needs, users just need to simply configure it in `conf/vars.yml` before installation. Follow the steps below to install and access the Harbor.
 
-1、安装 KubeSphere 前，在 Installer 中的 `conf/vars.yml` 文件中，参考如下配置修改。
+## Modify the Configuration
+
+1. Before installing KubeSphere, set `Harbor_enable: true` in `conf/vars.yml`.
+
 ```
 # harbor deployment
-harbor_enable: true
-harbor_domain: harbor.devops.kubesphere.local
+Harbor_enable: true
+Harbor_domain: harbor.devops.kubesphere.local
 ```
-2、修改后保存，然后执行安装脚本，即可通过 Helm Chart 的方式来安装 Harbor。
+2. Save it after modification, and then execute the installation script, finally you can install Harbor through Helm Chart.
 
-## 访问 Harbor
 
-### 浏览器访问
+## Visit Harbor
 
-KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harbor 服务对外暴露的节点端口 (NodePort) 为 30280，内置的 Harbor 镜像仓库目前仅支持 http 协议，在浏览器中可以通过 `{$公网 IP}:{$NodePort}` 如 `http://139.198.16.160:30280` 访问 Harbor 登录页面。默认的管理员用户名和密码为 `admin / Harbor12345`，其它用户与 KubeSphere 的用户账户体系一致。关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
+To add Harbor as a image registry in KubeSphere, please refer to the following steps to configure Docker access and then add the user authentication information of Harbor in KubeSphere.
 
-> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 30280，保证外网流量可以通过该端口，外部才能够访问。
+### Login with Docker
 
-![Harbor 登录](/harbor-console.png)
+#### Step 1: Modify the Docker Configuration
 
-### Docker 访问
+Modify the Docker Configuration for **all nodes** in the cluster firstly, that is, add the field `--insecure-registry=harbor.devops.kubesphere.local:30280` into `/etc/systemd/system/docker.service.d/docker-options.conf` as following:
 
-#### 第一步：修改 Docker 配置
-
-修改集群中所有节点的 Docker 配置，需要根据操作系统来修改：
-
-- 如果待安装机器的系统为 `CentOS`，则需要在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段 `--insecure-registry=harbor.devops.kubesphere.local:30280`，如下所示：
-
-**CentOS 示例**
+**Configuration Example**
 
 ```bash
 [Service]
-Environment="DOCKER_OPTS= -D --insecure-registry=harbor.devops.kubesphere.local:30280 --data-root=/var/lib/docker --log-opt max-size=10m --log-opt max-file=3 --iptables=false"
+Environment="DOCKER_OPTS=  --registry-mirror=https://registry.docker-cn.com --data-root=/var/lib/docker --log-opt max-size=10m --log-opt max-file=3 --iptables=false --insecure-registry=harbor.devops.kubesphere.local:30280"
 ```
 
-- 如果待安装机器的系统为 `Ubuntu`，则需要修改或添加 `/etc/docker/daemon.json` ⽂件：
+> Note: The "Environment" field should be written on one line and cannot be manually wrapped.
 
-**Ubuntu 示例**
+#### Step 2: Modify the hosts
+
+
+You need to add a record as follows in the local `/etc/hosts` file:
 
 ```bash
-{
-    "insecure-registries": [
-        "harbor.devops.kubesphere.local:30280"]
-}
+192.168.0.24 harbor.devops.kubesphere.local
 ```
 
-#### 第二步：重启 Docker 服务
+> Note: **192.168.0.24** is the internal IP of the current host. Please fill in your actual node IP. If you need to expose the Harbor service to users outside the cluster, you need to configure the DNS record (in the DNS server or the user's local hosts file) on the external network, and configure the domain name `harbor.devops.kubesphere.local` with the corresponding external IP address. And forward the node port (30290) and add a firewall rule to ensure that external traffic can pass through the node port.
 
-修改后，需要重启所有节点的 Docker 服务使配置生效，⽐如在 Linux 系统中需执行以下命令：
+#### Step 3: Restart Docker Service
+
+When you've completed the steps above, you need to restart the Docker service of **all nodes** to make the configuration take effect. For example, you need to execute the following commands in Linux hosts:
+
+```bash
+$ sudo systemctl daemon-reload
+```
 
 ```bash
 $ sudo systemctl restart docker
 ```
-#### 第三步：登录 Harbor
 
-执行以下命令登录 Harbor 镜像仓库。关于如何制作镜像、打包上传镜像以及 Dockerfile 的使用，请参考 [Docker 官方文档]。(https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)。
+#### Step 4: Login Harbor
+
+Execute the following command to log in to the Harbor image registry. Make sure that you can see "Login Succeeded" returning.
 
 ```dockerfile
 $ docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280
@@ -72,38 +75,69 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 ```
 
-### KubeSphere 添加 Harbor 
+For more tutorials on how to make docker image, pull and upload images, as well as using Dockerfiles, see [Docker Documentation](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 
-登录控制台，在已创建的企业空间的项目下，左侧菜单栏选择 **配置中心 → 密钥**，点击 **创建**。
+### Add Harbor in KubeSphere
 
-#### 第一步：填写基本信息
+Sign in KubeSphere, enter into one project (e.g. demo-namespace), then select **Configuration Center → Secrets**.
 
-填写密钥的基本信息，完成后点击 **下一步**。
+![Add Harbor in KubeSphere](https://pek3b.qingstor.com/kubesphere-docs/png/20190322204611.png)
 
-- 名称：起一个简洁明了的名称，填写 `harbor`
-- 别名：支持中文，帮助您更好的区分资源，比如 `内置 Harbor 镜像仓库`
-- 描述信息：简单介绍该密钥的功能
+Click **Create Secret** button, then fill in the basic information and secret settings in the pop-up window. 
 
-![基本信息](/harbor-secret-basic.png)
+#### Step 1: Basic information
 
-#### 第二步：填写 Harbor 仓库信息
-
-2.1. 参考如下提示填写 Harbor 仓库的登录信息。
-
-- 仓库地址：填写内置的 Harbor 镜像仓库域名和节点端口 `http://harbor.devops.kubesphere.local:30280`
-- 用户名：admin
-- 密码：Harbor12345
-- 邮箱：填写个人邮箱
-
-![](/harbor-docker-login.png)
-
-2.2. 如果 Harbor 安装配置都正确，并且验证信息都填写无误，即可添加成功。Harbor 镜像仓库添加完成后，可以上传镜像和拉取镜像。
-
-![](/harbor-secret-list.png)
+On the basic information page, enter the name of the registry, you can also fill in the description as your needs.
 
 
-### 使用 Harbor 镜像仓库
+- Name: A concise and clear name for this registry, which is convenient for users to browse and search, e.g. `harbor-registry`.
+- Alias: Helps you better distinguish resources and supports Chinese.
+- Description: A brief introduction to this registry.
 
-以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 Harbor 镜像仓库中已有 `mysql:5.6` 的 docker 镜像，在容器组模板中需要先选择镜像仓库，然后将镜像填写为 `http://harbor.devops.kubesphere.local:30280/mysql:5.6`，对应的格式为 `镜像仓库地址 / 镜像名称:tag`，填写后创建完成即可使用该 Harbor 镜像仓库中的镜像。
+Click **Next** when you're done.
 
-![使用 Harbor 镜像仓库](/apply-harbor.png)
+![Basic information](https://pek3b.qingstor.com/kubesphere-docs/png/20190322204700.png)
+
+#### Step 2: Fill in the Harbor Authentication
+
+2.1. Select `Image Repositry Secret`, refer to the following prompt to fill in the login authentication of the Harbor registry.
+
+
+
+- Registry Address: Enter `http://harbor.devops.kubesphere.local:30280`
+- Username: admin
+- Password: Harbor12345
+- Email: Fill in your personal email address
+
+
+Click **Create** when you're done.
+
+![Fill in the Harbor Authentication](https://pek3b.qingstor.com/kubesphere-docs/png/20190322205236.png)
+
+2.2. If the Harbor configuration and the authentication information are both correct, then it can be created successfully. Once the Harbor registry has been added, you can upload and pull the image.
+
+![Created successfully](https://pek3b.qingstor.com/kubesphere-docs/png/20190322205528.png)
+
+### Access the Harbor UI
+
+After KubeSphere is successfully installed, if you need to access Harbor outside the cluster, add a line of record to your local `/etc/hosts` by referring to the following example, and then you can access the Harbor UI in your browser.
+
+```bash
+139.198.10.10 harbor.devops.kubesphere.local
+```
+
+> Note: `139.198.10.10` is the EIP of the KubeSphere cluster. Please fill in according to your actual EIP. Make sure you have already bound the EIP to your cluster and configured port forwarding. If the EIP has a firewall, add corresponding rule of the node port (30280) to the rule, ensure that the external network traffic can pass through that node port.
+
+The node port 30280 will be exposed by the Harbor service, currently supports only the http protocol, which can be accessed in the browser using `{$domain name}:{$NodePort}`, e.g. `http://harbor.devops.kubesphere.local:30280` 
+
+The default administrator username and password is `admin / Harbor12345`, and other users are consistent with KubeSphere's user account system (Support LDAP). See [Harbor Documentation](https://goharbor.io/docs/) for more details.
+
+![Access Harbor](https://pek3b.qingstor.com/kubesphere-docs/png/20190322210622.png)
+
+### Using Harbor Registry
+
+If you need to use the image in the Harbor in KubeSphere, you need to first build the relevant image and push it to Harbor registry. See the [Harbor Documentation](https://goharbor.io/docs/) for more tutorials.
+
+Take the creation of a deployment as an example of how to pull images from Harbor registry. For example, there is a docker image of `mysql:5.6` in the Harbor. In the Pod template table, you need to select the image registry first, and then enter `http://harbor.devops.kubesphere.local:30280/mysql:5.6` as image, commonly the format is `Image registry address/image name:tag`. Once the deployment created, which means that that image in the Harbor is available to pull and use.
+
+![Using Harbor Registry](https://pek3b.qingstor.com/kubesphere-docs/png/20190322211441.png)
