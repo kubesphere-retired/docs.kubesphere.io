@@ -12,7 +12,7 @@ For this tutorial you will need
 
 - Make sure you have created [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) account.
 - Create a workspace and DevOps project, see the [Admin Quick Start](../admin-quick-start) if not yet.
-- Be familiar with the basics of Git and version control
+- Be familiar with the basics of Git and version control.
 
 ## Estimated Time
 

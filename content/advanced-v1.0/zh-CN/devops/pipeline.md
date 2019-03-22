@@ -12,7 +12,12 @@ Pipeline 的几个常用概念：
 
 ## 创建流水线（Pipeline）
 
-创建流水线支持 `Jenkinsfile in SCM (Source Code Management)` 和 `Jenkinsfile out of SCM (Source Code Management)`，请确保在创建流水线之前已创建了 DevOps 工程。本节准备了两个示例，通过以下两种方式，分别说明如何将本文档网站构建一个 CI/CD 的 Jenkins 流水线，并最终发布并部署到 KubeSphere 中。
+创建流水线支持 `Jenkinsfile in SCM (Source Code Management)` 和 `Jenkinsfile out of SCM (Source Code Management)`，请确保在创建流水线之前已创建了 DevOps 工程。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190321150756.png)
+
+
+本节准备了两个示例，通过以下两种方式，分别说明如何将本文档网站构建一个 CI/CD 的 Jenkins 流水线，并最终发布并部署到 KubeSphere 中。
 
 - Jenkinsfile in SCM：创建此类型流水线时需要添加代码仓库且仓库中存在 Jenkinsfile，平台将扫描仓库中的 Jenkinsfile 自动构建流水线。本文档给出了一个示例和视频，参阅 [Jenkinsfile in SCM](../../quick-start/jenkinsfile-in-scm)。
 - Jenkinsfile out of SCM：创建此类型的流水线无需添加代码仓库，支持可视化构建流水线，本文档给出了一个示例和视频，请参阅 [Jenkinsfile out of SCM](../../quick-start/jenkinsfile-out-of-scm)。
