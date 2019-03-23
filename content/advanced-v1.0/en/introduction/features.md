@@ -14,8 +14,8 @@ KubeSphere provides a wizard-like UI for many kinds of workloads including Deplo
 
 - Provide a visual CI/CD pipeline that enables users to build their CI/CD workflow or based on the built-in Jenkinsfile repository. 
 - Support for end-to-end pipeline, including source code repositories (GitHub / SVN / Git)
-- Built-in Pod Template (such as Go, nodejs, maven), supports for deploying the workload to Kubernetes.
-- Provide complete log to record every process of CI / CD Pipeline.
+- Built-in Pod Template (such as Go, nodejs, maven), supports for deploying applications to Kubernetes.
+- Provide complete log to record every process of CI/CD Pipeline.
 
 
 ## Multitenancy

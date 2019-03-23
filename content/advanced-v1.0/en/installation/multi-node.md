@@ -1,48 +1,13 @@
 ---
 title: "Multi-node"
 ---
-<!-- 
-`Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
-## 前提条件
-
-- 请下载 [KubeSphere 高级版](https://kubesphere.io/download) 至待安装机器中。
-- 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端，存储服务端的磁盘容量参考主机规格表中的推荐配置或选择更高的容量。为方便初次安装但没有准备存储服务端时进行部署测试，也可配置部署 NFS server in Kubernetes 到当前集群。 -->
-
-
-`Multi-Node` mode means install KubeSphere on multiple instances. Typically, select any one host in the cluster being served as a role of "`taskbox`" to execute the installation task for other hosts before multi-node installation,  `SSH Communication` is required to be established between "taskbox" and other hosts.
+`Multi-Node` installation means install KubeSphere on multiple instances. Typically, select any one host in the cluster being served as a role of "`taskbox`" to execute the installation task for other hosts before multi-node installation,  `SSH Communication` is required to be established between "taskbox" and other hosts.
 
 ## Prerequisites
 
-- Please download [KubeSphere Advanced Edition](https://kubesphere.io/download) to the target machine.
+- Please download [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced) to the target machine.
 - It is recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage server. If you are not prepare the storage server yet, you can also configure NFS-Server in Kubernetes as the default storage only for testing installation.
-
-<!-- 
-## 第一步: 准备主机
-
-您可以参考以下节点规格 准备 **`至少 2 台`** 符合要求的主机节点开始 `multi-node` 模式的部署，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
-
-| 操作系统 | 最小配置 | 推荐配置 |
-| --- | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：大于 300 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：大于 300 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 磁盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 磁盘：大于 300 G |
-
-以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在底层的 Kubernetes 中 Worker 节点跟 Master 节点都运行着一个 **kubelet** 组件，但 Master 节点上还会运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
-
-> 说明：高级版支持 Master 和 etcd 节点高可用配置，但本示例仅作为测试部署的演示，因此 3 台主机中仅部署单个 Master 和单个 etcd，正式环境建议配置 Master 和 etcd 节点的高可用，请参阅 [Master 和 etcd 节点高可用配置](../master-ha)。
-
-假设主机信息如下所示：
-
-| 主机 IP | 主机名 | 集群角色 |
-| --- | --- | --- |
-|192.168.0.1|master|master，etcd|
-|192.168.0.2|node1|node|
-|192.168.0.3|node2|node|
-
-**集群架构：** 单 master 单 etcd 双 node
-
-![集群架构图](/cluster-architecture-zh.svg) -->
 
 ## Step 1: Provision Linux Host
 
@@ -52,9 +17,10 @@ The following section identifies the hardware specifications and system-level re
 
 | System | Minimum Requirements |  Recommendations |
 | --- | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：40 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：more than 300 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：40 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：more than 300 G |
-| Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：40 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：more than 300 G |
+| CentOS 7.5 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：40 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：40 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G |
+| Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：40 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G |
+| Debian Stretch 9.5 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：40 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G |
 
 
 The following section describes an example to introduce multi-node installation. This example showing 3 hosts installation that "master" serves as the taskbox who is supposed to execute the installation. The KubeSphere cluster architecture consists of management nodes (Master) and working nodes (Node), the following cluster consists of one Master and two Nodes. In the underlying Kubernetes, the Worker nodes and the Master nodes all running a kubelet, but there are three system pods running on Master : kube-apiserver, kube-scheduler, and kube-controller-manager. Assume that the host information as following table showing:
@@ -74,65 +40,19 @@ The following section describes an example to introduce multi-node installation.
 
 ![Architecture](/cluster-architecture.svg)
 
-<!-- ## 第二步: 准备安装配置文件
-
-**1.** [下载安装包](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
-
-```bash
-$ tar -zxf kubesphere-all-advanced-1.0.0.tar.gz
-```
-
-**2.** 进入 “`kubesphere-all-advanced-1.0.0`” 目录
-
-```bash
-$ cd kubesphere-all-advanced-1.0.0
-```
-
-**3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
-
-> 说明：
-> - 若以非 root 用户 (如 ubuntu 用户) 进行安装，可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
-> - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [常见问题 - 问题 2](../../faq)。
-> - master, node1, node2 作为集群各个节点的主机名，若需要自定义主机名则所有主机名需要都使用小写形式。
-
-以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。
-
-**root 配置示例：**
-
-```ini
-[all]
-master ansible_connection=local  ip=192.168.0.1
-node1  ansible_host=192.168.0.2  ip=192.168.0.2  ansible_ssh_pass=PASSWORD
-node2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD
-
-[kube-master]
-master
-
-[kube-node]
-node1
-node2
-
-[etcd]
-master
-
-[k8s-cluster:children]
-kube-node
-kube-master
-``` -->
-
 ## Step 2: Provision Installation Files
 
 
-**1.**  Download [KubeSphere Advanced Edition](https://kubesphere.io/download), suggest you to download installer via command like `curl -O url` or `wget url` with download link. When you get the installer, execute following command to unzip it. 
+**1.**  Download [KubeSphere Advanced Edition](https://kubesphere.io/download/?type=advanced), suggest you to download installer via command like `curl -O url` or `wget url` with download link. When you get the installer, execute following command to unzip it. 
 
 ```bash
-$ tar -zxf kubesphere-all-advanced-1.0.0.tar.gz
+$ tar -zxf kubesphere-all-advanced-1.0.1.tar.gz
 ```
 
-**2.** Go into “`kubesphere-all-advanced-1.0.0`” folder
+**2.** Go into “`kubesphere-all-advanced-1.0.1`” folder
 
 ```bash
-$ cd kubesphere-all-advanced-1.0.0
+$ cd kubesphere-all-advanced-1.0.1
 ```
 
 **3.** In order to manage deployment process and target machines configuration, please refer to the following scripts to configure all hosts in `hosts.ini`. It's recommneded to install using `root` user, here showing an example configuration in `CentOS 7.5` using `root` user. Note that each host information occupies one line and cannot be wrapped manually.
