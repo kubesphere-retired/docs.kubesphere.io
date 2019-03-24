@@ -32,10 +32,13 @@ NeonSAN-CSI|v0.3.0| Before installing KubeSphere, you just need to configure the
 
 > Note: It's not allowed to set two default storage class in the cluster. To specify a default storage class, make sure there is no default storage class already exited in the current cluster.
 
-
 ## Storage Configuration Definition
 
-After preparing the storage server, then you need to reference the parameter description in the following table. Then modify the corresponding storage class part in the configuration file (`conf/vars.yml` ) according to your storage server. The following is a brief description of the parameter configuration related to `vars.yml` storage, also see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/)) for the details.
+After preparing the storage server, then you need to reference the parameter description in the following table. Then modify the corresponding storage class part in the configuration file (`conf/vars.yml` ) according to your storage server. 
+
+The following is a brief description of the parameter configuration related to `vars.yml` storage, also see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/)) for the details.
+
+> Note: By default, Local Volume is configured as the default storage class of the cluster in `vars.yml`. If you are going to configure other storage class as the default class, firstly you have to modify the related configuration of Local to **false**, and then modify the configuration of the corresponding storage according to your storage server before start installation. 
 
 ### QingCloud Block Storage
 
@@ -149,7 +152,7 @@ This kind of storage will install the [Containerized NFS server](https://github.
 | nfs\_server\_enable | Determines whether to use NFS in Kubernetes as the persistent storage, can be set to true or false. Defaults to false | 
 |nfs\_server\_is\_default\_class | Determines whether to set NFS in Kubernetes as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default |
 
-### Local Volume（All-in-One installation test only）
+### Local Volume (All-in-One installation test only)
 
 A [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume. Dynamic provisioning is not supported yet. So it's only recommended to use Local volume for All-in-One installation test only, it can help you to quickly & easily install KubeSphere on a single node. The definition of the `conf/vars.yml` is as following table. 
 

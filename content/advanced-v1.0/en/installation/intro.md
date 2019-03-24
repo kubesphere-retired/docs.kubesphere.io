@@ -28,7 +28,7 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 ## Prerequisites
 
-Download the [KubeSphere Advanced Edition](https://kubesphere.io/download) to the target machine.
+Download the [KubeSphere Advanced Edition](https://kubesphere.io/download/?type=advanced) to the target machine.
 
 ## Install KubeSphere
 

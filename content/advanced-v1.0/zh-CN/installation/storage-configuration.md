@@ -32,7 +32,11 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 
 ## 配置文件释义
 
-准备了满足要求的存储服务端后，只需要参考以下表中的参数说明，在 `conf/vars.yml` 中，根据您存储服务端所支持的存储类型，在配置文件的相应部分参考示例或注释修改对应参数，即可完成集群存储类型的配置。以下对 `vars.yml` 存储相关的参数配置做简要说明 (参数详解请参考 [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) )。
+准备了满足要求的存储服务端后，只需要参考以下表中的参数说明，在 `conf/vars.yml` 中，根据您存储服务端所支持的存储类型，首先在 `conf/vars.yml` 的相应部分参考示例或注释修改对应参数并保存，然后再执行安装程序，即可完成集群存储类型的配置。
+
+以下对 `vars.yml` 存储相关的参数配置做简要说明 (参数详解请参考 [storage classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) )。
+
+> 特别注意：`vars.yml` 中默认配置了 Local 类型的存储作为集群默认的存储类型，若配置其他类型的存储，则首先需要将 Local 相关的参数配置都修改为 **false**，然后再根据您的存储服务端修改对应的存储相关部分的参数配置。
 
 ### QingCloud 云平台块存储
 
