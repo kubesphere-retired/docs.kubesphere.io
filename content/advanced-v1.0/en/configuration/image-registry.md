@@ -55,7 +55,7 @@ If you need to add Dokcer Hub as the image registry, first make sure you have al
 
 #### Add the Internal Harbor
 
-KubeSphere Installer has integrated Harbor's Helm Chart, which is an optional installation item, so it requires to enable the installation in advance, users can configure the installation according to the needs of the teams. Before start installation, you just need to configure in `conf/vars.yml`, see [Harbor Installation Guide](../../installation/harbor-installation).
+KubeSphere Installer has integrated Harbor's Helm Chart, which is an optional installation item, so it requires to enable the installation in advance, users can configure the installation according to the needs of the teams. Before start installation, you just need to configure in `conf/vars.yml`, see [Integrating Harbor registry](../../installation/harbor-installation).
 
 #### Connect the External Harbor
 

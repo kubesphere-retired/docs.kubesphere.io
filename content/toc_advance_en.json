@@ -51,11 +51,11 @@
           "entry": "./advanced-v1.0/en/installation/intro.md"
         },
         {
-          "title": "All-in-One",
+          "title": "All-in-One Installation",
           "entry": "./advanced-v1.0/en/installation/all-in-one.md"
         },
         {
-          "title": "Multi-Node",
+          "title": "Multi-Node Installation",
           "entry": "./advanced-v1.0/en/installation/multi-node.md"
         },
         {
@@ -71,7 +71,7 @@
           "entry": "./advanced-v1.0/en/installation/harbor-installation.md"
         },
         {
-          "title": "Add New Nodes",
+          "title": "Adding New Nodes",
           "entry": "./advanced-v1.0/en/installation/add-nodes.md"
         },
         {
@@ -90,11 +90,11 @@
           "entry": "./advanced-v1.0/en/quick-start/admin-quick-start.md"
         },
         {
-          "title": "Deploy a MySQL Application",
+          "title": "Deploying a MySQL Application",
           "entry": "./advanced-v1.0/en/quick-start/mysql-deployment.md"
         },
         {
-          "title": "Deploy a Wordpress",
+          "title": "Deploying a Wordpress",
           "entry": "./advanced-v1.0/en/quick-start/wordpress-deployment.md"
         },
         {
@@ -106,7 +106,7 @@
           "entry": "./advanced-v1.0/en/quick-start/one-click-deploy.md"
         },
         {
-          "title": "Create Horizontal Pod Autoscaler",
+          "title": "Creating Horizontal Pod Autoscaler",
           "entry": "./advanced-v1.0/en/quick-start/hpa.md"
         },
         {

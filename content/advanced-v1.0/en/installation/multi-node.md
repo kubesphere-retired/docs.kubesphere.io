@@ -1,17 +1,17 @@
 ---
-title: "Multi-node"
+title: "Multi-node Installation"
 ---
 
-`Multi-Node` installation means install KubeSphere on multiple instances. Typically, select any one host in the cluster being served as a role of "`taskbox`" to execute the installation task for other hosts before multi-node installation,  `SSH Communication` is required to be established between "taskbox" and other hosts.
+`Multi-Node` installation means install KubeSphere on multiple instances. Typically, select any one host in the cluster to serve as a role of "taskbox" to execute the installation task for other hosts before multi-node installation, `SSH Communication` is required to be established between "taskbox" and other hosts.
 
 ## Prerequisites
 
 - Please download [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced) to the target machine.
-- It is recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage server. If you are not prepare the storage server yet, you can also configure NFS-Server in Kubernetes as the default storage only for testing installation.
+- It is recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage server. If you are not prepare the storage server yet, you can also configure NFS in Kubernetes as the default storage only for testing installation.
 
 ## Step 1: Provision Linux Host
 
-The following section identifies the hardware specifications and system-level requirements of hosts for installation. To get started with multi-node mode, you may need to prepare at least `2` hosts refer to the following specification. For `ubuntu 16.04` OS, it's recommended to select the latest `16.04.5`.
+The following section identifies the hardware specifications and harware requirements of hosts for installation. To get started with multi-node installation, you need to prepare at least `2` hosts according to the following specification. For `ubuntu 16.04` OS, it's recommended to select  `16.04.5`.
 
 ### Hardware Recommendations
 
@@ -23,9 +23,9 @@ The following section identifies the hardware specifications and system-level re
 | Debian Stretch 9.5 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：40 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G |
 
 
-The following section describes an example to introduce multi-node installation. This example showing 3 hosts installation that "master" serves as the taskbox who is supposed to execute the installation. The KubeSphere cluster architecture consists of management nodes (Master) and working nodes (Node), the following cluster consists of one Master and two Nodes. In the underlying Kubernetes, the Worker nodes and the Master nodes all running a kubelet, but there are three system pods running on Master : kube-apiserver, kube-scheduler, and kube-controller-manager. Assume that the host information as following table showing:
+The following section describes an example to introduce multi-node installation. This example showing 3 hosts installation that "master" serves as the taskbox to execute the installation. The KubeSphere cluster architecture consists of management nodes (Master) and working nodes (Node), the following cluster consists of one Master and two Nodes. Assume that the host information as following table showing:
 
-> Note: The Advanced Edition supports the high-availability configuration of the Master and etcd nodes, but this example is only for testing installation, so only a single Master and a single etcd are deployed. The formal environment is recommended to create highly available Master and etcd cluster, see [Creating Highly Available Master and Etcd Cluster](../master-etcd-ha).
+> Note: The Advanced Edition supports the high-availability configuration of the Master and etcd nodes, but this example is only for testing installation, so only a single Master and a single etcd will be deployed. For installing highly available cluster, see [Creating Highly Available Master and Etcd Cluster](../master-etcd-ha).
 
 | Host IP | Host Name | Role |
 | --- | --- | --- |
@@ -43,7 +43,7 @@ The following section describes an example to introduce multi-node installation.
 ## Step 2: Provision Installation Files
 
 
-**1.**  Download [KubeSphere Advanced Edition](https://kubesphere.io/download/?type=advanced), suggest you to download installer via command like `curl -O url` or `wget url` with download link. When you get the installer, execute following command to unzip it. 
+**1.**  Download [KubeSphere Advanced Edition](https://kubesphere.io/download/?type=advanced), suggest you to download installer via command like `curl -O url` or `wget url` after you get the download link. When you download the installer, execute following command to unzip it. 
 
 ```bash
 $ tar -zxf kubesphere-all-advanced-1.0.1.tar.gz
@@ -55,11 +55,13 @@ $ tar -zxf kubesphere-all-advanced-1.0.1.tar.gz
 $ cd kubesphere-all-advanced-1.0.1
 ```
 
-**3.** In order to manage deployment process and target machines configuration, please refer to the following scripts to configure all hosts in `hosts.ini`. It's recommneded to install using `root` user, here showing an example configuration in `CentOS 7.5` using `root` user. Note that each host information occupies one line and cannot be wrapped manually.
+**3.** In order to manage deployment process and target machines configuration, please refer to the following example to configure all hosts in `hosts.ini`. 
+
+It's recommended to install using `root` user, Following example of `hosts.ini` is configured in `CentOS 7.5` using `root` user. Note that each host information occupies one line and cannot be wrapped manually.
 
 > Note:
-> - If installer is ran from non-root user account who has sudo privilege already, then you are supposed to reference the example section that is commented out in `conf/hosts.ini`.
-> - If the `root` user cannot be ssh connected to other machines in taskbox, you need to refer to the `non-root` user example section in the `conf/hosts.ini` as well, but it's recommended to switch to the `root` user when executing `install.sh`. If you are still confused about this, see the [FAQ - Question 2](../../faq).
+> - If installer is ran from non-root user account who has sudo privilege already, then you need to reference the example section that is commented out in `conf/hosts.ini`.
+> - If the `root` user can't use SSH connection with other machines in taskbox, you need to refer to the `non-root` user example at the top of the `conf/hosts.ini`, but it's recommended to switch `root` user when executing `install.sh`.
 
 **hosts.ini**
 
@@ -83,25 +85,13 @@ master
 kube-node
 kube-master
 ```
-<!-- 
-> 说明：
->
-> - [all] 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码。主机名为 "master" 的节点作为已通过 SSH 连接的 Taskbox 所以无需填写密码，[all] 中其它节点的参数比如 node1 和 node2 的 `ansible_host` 和 `ip` 都替换为当前 node1 和 node2 的内网 IP，将 `ansible_ssh_pass` 替换为您准备的主机 `root` 用户登录密码。
-> -  应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分，因为 "master" 节点作为 taskbox，用来执行整个集群的安装任务，同时 "master" 节点在 KubeSphere 集群架构中也将作为管理节点 Master 和负责保存持久化数据的 etcd。
-> - 将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
->
-> 参数解释：<br>
-> - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接。
-> - `ansible_host`: 集群中将要连接的主机地址或域名。
-> - `ip`: 集群中将要连接的主机 IP。
-> - `ansible_ssh_pass`: 待连接主机 root 用户的密码。 -->
 
 **Note：** <br/>
 
-> - Each node's parameters like Internal IP and its password needs to be modified into `[all]` field. In this example, since "master" served as `taskbox` which has been ssh connected from your local, just needs to replace "ip" with your current "ip".
-> - Other nodes like "node1" and "node2", both `"ansible_host"` and "ip" needs to be replaced by their actual Internal IP, and `"ansible_ssh_pass"` should be replaced with the ssh password in `[all]` field.
-> - "master" is served as the taskbox which is to execute installation task for whole cluster, as well as the role of master and etcd, so "master" needs to be filled into `[kube-master]` and `[etcd]` field.
-> - At the same time, for "node1" and "node2", they serve the role of `Node` as well, so all of the hosts name need to be filled into `[kube-node]` field.
+> - Each node's parameters like IP and its password needs to be modified with actual values in `[all]` section. In this example, since "master" served as `taskbox` which has been ssh connected from your local, no need to add password field.
+> - Other nodes like "node1" and "node2", both `ansible_host` and `ip` need to be replaced by actual Internal IP, and `"ansible_ssh_pass"` should be replaced with the SSH password.
+> - "master" is served as the taskbox to execute installation task for whole cluster, as well as the role of master and etcd, so "master" needs to be filled into `[kube-master]` and `[etcd]` section.
+> - At the same time, for "node1" and "node2", both serve the role of `Node` as well, so their hosts name need to be filled in `[kube-node]` section.
 > 
 > Parameters Specification:
 > 
@@ -113,47 +103,21 @@ kube-master
 > - `ansible_ssh_pass`: The password of the host to be connected using root.
 
 
-<!-- **5.** 为方便测试部署和演示，本文档以部署 NFS Server 至当前集群为例。注意，在正式环境使用需准备 KubeSphere 支持的存储服务端。以下存储配置示例需在 `vars.yml` 中修改，将安装 NFS server in Kubernetes 至当前集群作为默认存储类型，参数释义详见 [存储配置说明](../storage-configuration/#NFS)。
-
-> 说明：
-> - 网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改，根据配置文件按需修改相关配置项，未做修改将以默认参数执行。
-> - 网络：默认插件 `Calico`。
-> - 支持存储类型：[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[Local Volume (仅支持 all-in-one)](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
-> - Multi-Node 安装时需要配置持久化存储，因为它不支持 Local Volume，因此把 Local Volume 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI (QingCloud 块存储插件)、NeonSAN CSI (NeonSAN 存储插件)、NFS、GlusterFS、CephRBD 等。如下所示配置 NFS server in Kubernetes，将 `nfs_server_enable` 和 `nfs_server_is_default_class` 设置为 true。
-> - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。 -->
-
-<!-- 
-
-**存储配置示例：**
-
-```yaml
-# Local volume provisioner deployment(Only all-in-one)
-local_volume_provisioner_enabled: false
-local_volume_provisioner_storage_class: local
-local_volume_is_default_class: false
-
-# NFS-Server provisioner deployment
-nfs_server_enable: true
-nfs_server_is_default_class: true
-
-``` -->
-
-**5.** It is recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage server. If you are not prepare the storage server yet, you can also configure NFS server in Kubernetes as the default storage only for testing installation. If so, you may need to modify the storage class parameters in  `vars.yml` refer to the example below. For details please reference the <a href="https://docs.kubesphere.io/advanced-v1.0/zh-CN/installation/storage-configuration/" target="_blank">Storage Configuration Instructions</a>.
+**5.** It is recommended to use the storage services recommended by KubeSphere and prepare the corresponding storage server. If you are not prepare the storage server yet, you can also configure NFS in Kubernetes as the default storage only for testing. If so, you need to modify the storage class parameters in  `vars.yml` refer to the example below, see [Storage Configuration Instructions](../storage-configuration).
  
 **Note：**  <br/>
 
-> - You may need to modify the relevant configurations like network or storage class in `conf/vars.yaml`, otherwise it will be executed with default parameters without any modifications.
-> - Network：KubeSphere supports `calico` by default.
-> - Supported Storage Classes as following list, please reference [Storage Configuration Instructions](../storage-configuration) for the details：
+> - You may need to modify the relevant configurations like network or storage class in `conf/vars.yaml`, otherwise it will be executed with default parameters.
+> - Network: `Calico` by default.
+> - Multi-node supports following storage classes:
 >     - [QingCloud Block Storage](https://www.qingcloud.com/products/volume/)
 >     - [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)
 >     - [GlusterFS](https://www.gluster.org/)
 >     - [CephRBD](https://ceph.com/)
 >     - [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)
->     - [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)
-> - Typically, you need to configure the persistent storage. Since multi-node mode does not support local storage, it's recommended to modify the local storage configuration to `false`, then configure persistent storage such as QingCloud-CSI, NeonSAN-CSI, GlusterFS or CephRBD. Following example describes how to configure NFS server in Kubernetes (`nfs_server_enable` and `nfs_server_is_default_class` needs to be set to true).
 > - Since the default subnet for Cluster IPs is 10.233.0.0/18, default subnet for Pod IPs is 10.233.64.0/18 in Kubernetes cluster. The node IPs must not overlap with those 2 default IPs. If any conflicts happened with the IP address, go to `conf/vars.yaml` and modify `kube_service_addresses` or `kube_pods_subnet` to avoid this senario.
 
+**6.** Since multi-node installation doesn't support local volume, firstly you need to modify the local volume configuration to `false`, then configure persistent storage such as QingCloud-CSI, NeonSAN-CSI, GlusterFS or CephRBD. Following example describes how to configure NFS server in Kubernetes for testing (`nfs_server_enable` and `nfs_server_is_default_class` needs to set to `true`).
 
 **Example** 
 
@@ -167,38 +131,16 @@ local_volume_is_default_class: false
 nfs_server_enable: true
 nfs_server_is_default_class: true
 ```
-<!-- 
-## 第三步: 安装 KubeSphere
-
-KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.3，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
-
-参考以下步骤开始 multi-node 部署。
-
-> 说明：由于 multi-node 的安装时间跟网络情况和带宽、机器配置、安装节点个数等因素都有关，此处暂不提供时间标准。
-
-**1.** 进入 `scripts` 目录：
-
-```bash
-$ cd scripts
-```
-
-**2.** 建议使用 root 用户安装，执行 `install.sh` 脚本：
-
-```bash
-$ ./install.sh
-```
-
-**3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [存储配置说明](../storage-configuration)。 -->
 
 ## Step 3: Get Started With Deployment
 
-The environment and file monitoring, dependencies, Kubernetes (v1.12.3) and etcd, as well as the automated storage deployment, all of these procedures will be automatically processing in this installation. The KubeSphere installer will automatically install the relevant dependent software like Ansible (v2.4+)，Python-netaddr (v0.7.18+) and Jinja (v2.9+) as well.
+The environment and file monitoring, dependencies, Kubernetes (v1.12.3) and etcd, as well as the automated storage deployment, all of these procedures will be automatically processed in this installation. The installer will automatically install the relevant dependent softwares like Ansible (v2.4+)，Python-netaddr (v0.7.18+) and Jinja (v2.9+) as well.
 
-Following steps describes how to get started with all-in-one:
+Following steps describes how to get started with Multi-node installation:
 
 > Since Multi-node installation duration is related to network conditions and bandwidth, machine configuration and the number of nodes, it's hard to give a standard duration. 
 
-**1.** Go into `scripts`:
+**1.** Enter into `scripts`:
 
 ```bash
 $ cd scripts
@@ -210,7 +152,7 @@ $ cd scripts
 $ ./install.sh
 ```
 
-**3.** Enter `2` to select `multi-node` mode to start, the installer will prompt if you have configured the storage or not. If not, please enter "no", then return to configure the storage, for details please reference [Storage Configuration Instructions](../storage-configuration).
+**3.** Enter `2` to start `multi-node` installation, the installer will prompt if you have configured the storage or not. If not, please enter "no", then return to configure the storage, see [Storage Configuration Instruction](../storage-configuration).
 
 ```bash
 ################################################
@@ -226,33 +168,9 @@ Please input an option: 2
 
 ```
 
-<!-- **4.** 测试 KubeSphere 集群部署是否成功：
-
-**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 32130)，保证外网流量可以通过该端口，外部才能够访问。
-
-```bash
-successsful!
-#####################################################
-###              Welcome to KubeSphere!           ###
-#####################################################
-
-Console: http://192.168.0.1:32130
-Account: admin
-Password: passw0rd
-
-NOTE：Please modify the default password after login.
-#####################################################
-```
-
-> 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat kubesphere/kubesphere_running` 命令查看。
-
-**(2)** 安装成功后，浏览器访问对应的 url，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
-
-![KubeSphere 控制台](/kubesphere-console.png) -->
-
 **4.** To verify the multi-node installation：
 
-**(1).** If you can see the following "Successful" result being returned after `install.sh` completed, that means KubuSphere installation is ready. You may need to bind the EIP and configure port forwarding. Make sure you have added the corresponding Nodeport to the firewall (like 32130) if the EIP has a firewall, then external network traffic can pass through this nodeport.
+**(1).** If you can see the following "Successful" result after `install.sh` completed, that means KubuSphere installation is ready. You may need to bind the EIP and configure port forwarding. Make sure you have added the corresponding Nodeport to the firewall rules (like 32130) if the EIP has a firewall, then external network traffic can pass through this nodeport.
 
 ```bash
 successsful!
@@ -269,8 +187,8 @@ NOTE：Please modify the default password after login.
 ```
 
 
-> Note: If you need to view the above interface , just execute `cat kubesphere/kubesphere_running` command in the installer directory.
+> Note: If you need to view the above interface, execute `cat kubesphere/kubesphere_running`.
 
-**(2).** You will be able to use default account and password to log in to the KubeSphere console to experience when KubeSphere is deployed successfully. It's highly recommended to refer to the [KubeSphere Quick Start](../../quick-start/quick-start-guide/)， and learn how to get started with it！
+**(2).** You will be able to log in to the KubeSphere console using default account and password, it's highly recommended to reference [Quick Start Guide](../../quick-start/quick-start-guide/).
 
 ![login](/login-page-en.png)
