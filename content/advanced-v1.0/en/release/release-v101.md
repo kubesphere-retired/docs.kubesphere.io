@@ -23,18 +23,6 @@ The release of Advanced Edition 1.0.1 has improved and optimized 1.0.0, and fixe
 
 ## About Advanced Edition 1.0.1
 
-### Bug Fixed in 1.0.1
-
-- Fixed the issue where the role of workspaces-manager can't view the list of workspaces after sign in.
-- Fixed the passing parameters issue of GIt repository credentials.
-- Fixed the notification issue that there was no user login failure.
-- Fixed the problem with data remanence in deleted app.
-- Fixed parameter display issues in some Helm app profiles.
-- Fixed Horizontal Pod AutoScaler (HPA) display issues for users with different authorities.
-- Fixed an issue where modifying the route Hosts parameter does not take effect in some scenarios.
-- Corrected multiple Chinese and English copywriting.
-
-
 ### Notable Changes and Optimization in 1.0.1
 
 - When updating a StatefulSet, its associated services can be edited simultaneously.
@@ -46,6 +34,17 @@ The release of Advanced Edition 1.0.1 has improved and optimized 1.0.0, and fixe
 - Allow the modification of a "NodePort" type service to "None".
 - Allow change passwords on the User Settings page.
 - Multiple user experience optimizations, including container editing UI and enabling input parameters, update strategies, container logs, etc.
+
+### Bug Fixed in 1.0.1
+
+- Fixed the issue where the role of workspaces-manager can't view the list of workspaces after sign in.
+- Fixed the passing parameters issue of GIt repository credentials.
+- Fixed the notification issue that there was no user login failure.
+- Fixed the problem with data remanence in deleted app.
+- Fixed parameter display issues in some Helm app profiles.
+- Fixed Horizontal Pod AutoScaler (HPA) display issues for users with different authorities.
+- Fixed an issue where modifying the route Hosts parameter does not take effect in some scenarios.
+- Corrected multiple Chinese and English copywriting.
 
 
 ### Kubernetes on KubeSphere

@@ -22,11 +22,19 @@ title: "管理员快速入门"
   <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/admin-quick-start.mp4">
 </video>
 
+目前，平台的资源层级包括 Cluster, Workspace, Project 和 DevOps 工程，层级关系如下图所示，在每个层级中，每个组织中都有多个不同的内置角色。
+
+![resource-hierarchy](/resource-hierarchy.svg)
+
 ### 集群管理员
 
 #### 第一步：创建角色和账号
 
-平台中的 cluster-admin 角色可以为其他用户创建账号并分配平台角色，平台内置了 cluster-admin、cluster-regular 和 workspaces-manager 三个常用的角色，同时支持自定义新的角色。
+平台中的 cluster-admin 角色可以为其他用户创建账号并分配平台角色，平台内置了集群层级的以下三个常用的角色，同时支持自定义新的角色。
+
+- cluster-admin
+- cluster-regular
+- workspaces-manager 
 
 本示例首先新建一个角色 (user-manager)，为该角色授予账号管理和角色管理的权限，然后新建一个账号并给这个账号授予 user-manager 角色。
 

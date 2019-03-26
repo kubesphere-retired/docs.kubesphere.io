@@ -2,7 +2,7 @@
 title: "Introduction"
 ---
 
-[KubeSphere](https://kubesphere.io) is an enterprise-grade multi-tenant container management platform that built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI enables creation of computing resources with a few clicks and one-click deployment, which reduces the learning curve of using such a platform. It greatly reduces the complexity of the daily work of development, testing, operation and maintenance, and aims to solve the pain spot of Kubernetes' storage, network, security and ease of use, etc. 
+[KubeSphere](https://kubesphere.io) is an enterprise-grade multi-tenant container management platform that built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI enables creation of computing resources with a few clicks and one-click deployment, which reduces the learning curve and empower the DevOps teams. It greatly reduces the complexity of the daily work of development, testing, operation and maintenance, aiming to solve the pain spots of Kubernetes' storage, network, security and ease of use, etc. 
 
 In addition, KubeSphere has integrated and optimized multiple functional modules for container scenarios to help enterprises easily cope with the bussiness scenarios, such as application management, service and network management, DevOps delivery, multi-tenant management, workload and node management, as well as the image registries management and storage management. 
 
