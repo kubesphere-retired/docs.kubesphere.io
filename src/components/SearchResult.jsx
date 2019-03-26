@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import Mark from 'mark.js'
+import { translate } from 'react-i18next'
 
 import Modal from './Modal'
 import Search from './Search'
@@ -14,7 +15,7 @@ const Header = props => (
   </HeaderWrapper>
 )
 
-export default class SearchResult extends React.Component {
+class SearchResult extends React.Component {
   componentDidMount() {
     setTimeout(() => {
       this.doMark()
@@ -36,7 +37,7 @@ export default class SearchResult extends React.Component {
   }
 
   render() {
-    const { results, onCancel, visible, ...search } = this.props
+    const { t, results, onCancel, visible, ...search } = this.props
 
     return (
       <Modal
@@ -46,7 +47,7 @@ export default class SearchResult extends React.Component {
         header={<Header {...search} />}
       >
         <Wrapper>
-          <p>共找到 {results.length} 条相关信息</p>
+          <p>{t('Found')} {results.length} {t('related message(s)')}</p>
           <div
             ref={ref => {
               this.ref = ref
@@ -162,3 +163,5 @@ const ResultItem = styled.li`
     color: #4c5e70;
   }
 `
+
+export default translate('base')(SearchResult)

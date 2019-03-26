@@ -1,15 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { translate } from 'react-i18next'
 
 import { ReactComponent as LogoIcon } from '../assets/logo.svg'
 
-const Logo = () => (
+const Logo = ({ t }) => (
   <Wrapper>
     <a href="//kubesphere.io/" target="_blank">
       <LogoIcon className="logo" />
     </a>
     <a href="/">
-      <p>文档中心</p>
+      <p>{t('Documentation')}</p>
     </a>
   </Wrapper>
 )
@@ -46,4 +47,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default Logo
+export default translate('base')(Logo)
