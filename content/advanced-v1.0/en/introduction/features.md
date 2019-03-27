@@ -6,7 +6,7 @@ KubeSphere provides an easy-to-use console with the awesome user experience that
 
 The following modules elaborate on the KubeSphere services from a professional point of view.
 
-## One-Stop Workloads O&M
+## One-Stop Workload O&M
 
 KubeSphere provides a wizard-like UI for many kinds of workloads including Deployments, DaemonSets, StatusfulSets, Jobs, CronJobs management, as well as Horizontal Pod Autoscaler (HPA) and container health checking support.
 
