@@ -8,7 +8,7 @@ title: "Instruction"
 
 Download the [KubeSphere Advanced Edition](https://kubesphere.io/download/?type=advanced) to the target machine.
 
-## Install KubeSphere
+## Installing KubeSphere
 
 KubeSphere installation supports [all-in-one](../all-in-one) and [multi-node](../multi-node).
 
@@ -48,7 +48,7 @@ The multi-node installation supports configure the NFS in Kubernetes to provide 
 
 Multi-node installation can help uses to deploy KubeSphere to a cluster. However, we also need to consider the high availability of the master and etcd in a production environment. This page uses the Load balancer as an example, walk you through how to configure highly available Master and etcd nodes installation, see [Creating Highly Available Master and Etcd Cluster](../master-etcd-ha).
 
-### Add new node
+### Adding new node
 
 After you install KubeSphere, you may run out of server capacity in a formal environment and need to add a new node, then scale the cluster horizontally to complete the system expansion, see [Add new node](../add-nodes).
 
@@ -71,7 +71,7 @@ KubeSphere supports high availability of master and working nodes to ensure clus
 | 2 | Disk formatting, partitioning. |
 
 
-## Uninstall
+## Uninstalling
 
 Uninstall will remove KubeSphere from the machine, this operation is irreversible, see [Uninstall](../uninstall).
 

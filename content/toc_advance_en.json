@@ -67,7 +67,7 @@
           "entry": "./advanced-v1.0/en/installation/storage-configuration.md"
         },
         {
-          "title": "Harbor Installation Guide",
+          "title": "Integrating Harbor Registry",
           "entry": "./advanced-v1.0/en/installation/harbor-installation.md"
         },
         {
