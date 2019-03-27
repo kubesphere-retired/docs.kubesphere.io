@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { translate } from 'react-i18next'
 import { ReactComponent as DocsIcon } from '../assets/docs.svg'
 import { ReactComponent as KubeSphere } from '../assets/kubesphere.svg'
 import { ReactComponent as Arrow } from '../assets/arrow.svg'
+import { getLanguage } from '../utils'
 
 class Versions extends React.Component {
   state = {
@@ -30,15 +31,18 @@ class Versions extends React.Component {
     })
   }
 
-  changeVersion = (version) => {
+  changeVersion = version => {
+    const { i18n } = this.props
+    const lang = getLanguage(i18n.language)
+
     if (version === 'express') {
-      location.href=`/express/zh-CN/basic/`
+      location.href = `/express/${lang}/basic/`
     } else if (version === 'advanced-v1.0') {
-      location.href=`/advanced-v1.0/zh-CN/introduction/intro/`
+      location.href = `/advanced-v1.0/${lang}/introduction/intro/`
     } else if (version === 'advanced-v2.0') {
-      location.href=`/advanced-v2.0/zh-CN/introduction/intro/`
+      location.href = `/advanced-v2.0/${lang}/introduction/intro/`
     } else {
-      location.href=`/${version}/zh-CN/`
+      location.href = `/${version}/${lang}/`
     }
   }
 
@@ -67,7 +71,8 @@ class Versions extends React.Component {
   render() {
     const { versions, current } = this.props
 
-    const currentVersion = versions.find(version => version.value === current) || {}
+    const currentVersion =
+      versions.find(version => version.value === current) || {}
 
     return (
       <VersionsWrapper>
@@ -154,7 +159,7 @@ const OptionsWrapper = styled.div`
   width: 100%;
   left: 0;
   bottom: -1px;
-  
+
   background-color: rgba(0, 170, 114, 0.99);
   opacity: ${({ showOptions }) => {
     return showOptions ? 1 : 0
@@ -186,4 +191,4 @@ const Option = styled.div`
   }
 `
 
-export default Versions
+export default translate('base')(Versions)

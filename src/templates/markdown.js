@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { translate } from 'react-i18next'
 import styled from 'styled-components'
 import classnames from 'classnames'
 import Viewer from 'viewerjs'
@@ -16,19 +17,31 @@ import TableOfContents from '../components/TableOfContents/index'
 import './markdown.css'
 import './b16-tomorrow-dark.css'
 
-export default class MarkdownTemplate extends React.Component {
+class MarkdownTemplate extends React.Component {
   static childContextTypes = {
     location: PropTypes.object,
   }
 
-  state = {
-    isExpand: false,
-    query: '',
-    showSearchResult: false,
-    results: [],
-    prev: {},
-    next: {},
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      isExpand: false,
+      query: '',
+      showSearchResult: false,
+      results: [],
+      prev: {},
+      next: {},
+    }
+
+    if (props.pathContext.lang) {
+      const { i18n } = this.props
+      if (i18n.language !== props.pathContext.lang) {
+        i18n.changeLanguage(props.pathContext.lang)
+      }
+    }
   }
+  
 
   componentDidMount() {
     document.addEventListener('click', this.handleClick)
@@ -164,15 +177,19 @@ export default class MarkdownTemplate extends React.Component {
   }
 
   getSearchResults(query) {
-    const postNode = this.props.data.postBySlug
-    const index = `${postNode.fields.version}_${postNode.fields.language}`
+    const {version, lang} = this.props.pathContext
+    const index = `${version}_${lang}`
     if (!query || !window.__LUNR__) return []
     const lunrIndex = window.__LUNR__[index]
+    if (!lunrIndex) {
+      return []
+    }
     const results = lunrIndex.index.search(query)
     return results.map(({ ref }) => lunrIndex.store[ref])
   }
 
   render() {
+    const { t } = this.props
     const { slug } = this.props.pathContext
     const postNode = this.props.data.postBySlug
 
@@ -221,7 +238,7 @@ export default class MarkdownTemplate extends React.Component {
               query={query}
               isExpand={isExpand}
               onSearch={this.handleSearch}
-              placeholder={'快速查找'}
+              placeholder={t('Quick search')}
               toggleExpand={this.handleExpand}
               onQueryChange={this.handleQueryChange}
             />
@@ -454,3 +471,5 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export default translate('base')(MarkdownTemplate)

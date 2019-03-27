@@ -4,18 +4,22 @@ import Link from 'gatsby-link'
 import get from 'lodash/get'
 import 'react-tippy/dist/tippy.css'
 import { Tooltip } from 'react-tippy'
+import { translate } from 'react-i18next'
+
+import { getLanguage } from '../utils'
 
 import Logo from '../components/Logo'
 import Select from '../components/Select'
 import Search from '../components/Search'
 import SearchResult from '../components/SearchResult'
+import Language from '../components/Language'
 
 import { ReactComponent as RoadMapIcon } from '../assets/icon-roadmap.svg'
 import { ReactComponent as ChatIcon } from '../assets/icon-chat.svg'
 import { ReactComponent as BugIcon } from '../assets/icon-bug.svg'
 import { ReactComponent as DownloadIcon } from '../assets/download.svg'
 
-export default class IndexPage extends React.Component {
+class IndexPage extends React.Component {
   state = {
     query: '',
     results: [],
@@ -45,8 +49,9 @@ export default class IndexPage extends React.Component {
 
   getSearchResults(query) {
     const { selectVersion } = this.state
+    const { i18n } = this.props
 
-    const index = `${selectVersion.value}_zh-CN`
+    const index = `${selectVersion.value}_${getLanguage(i18n.language)}`
 
     if (!query || !window.__LUNR__) return []
     const lunrIndex = window.__LUNR__[index]
@@ -73,7 +78,7 @@ export default class IndexPage extends React.Component {
           selectVersion={selectVersion}
           onVersionChange={this.handleVersionChange}
         />
-        <Footer />
+        <Footer t={this.props.t} />
         <SearchResult
           query={query}
           results={results}
@@ -81,26 +86,30 @@ export default class IndexPage extends React.Component {
           onCancel={this.hideSearch}
           onSearch={this.handleSearch}
           onQueryChange={this.handleQueryChange}
+          t={this.props.t}
         />
       </div>
     )
   }
 }
 
-const Header = ({ query, onSearch, onQueryChange }) => (
+export default translate('base')(IndexPage)
+
+const Header = ({ t, query, onSearch, onQueryChange }) => (
   <HeaderWrapper>
     <LogoWrapper>
       <Logo />
     </LogoWrapper>
     <Wrapper>
-      <h1>欢迎使用 KubeSphere 文档</h1>
+      <h1>{t('Welcome to the KubeSphere documentation')}</h1>
       <p>
-        欢迎阅读 KubeSphere 文档，我们尽可能以清晰简明的图文，介绍 KubeSphere
-        各项服务及使用方法。
+        {t(
+          'Welcome to the KubeSphere documentation, we will introduce KubeSphere services and how to use them in clear and concise graphics.'
+        )}
       </p>
       <div style={{ textAlign: 'center' }}>
         <Search
-          placeholder="输入关键字快速获取帮助"
+          placeholder={t('Enter keywords to get help quickly')}
           query={query}
           onSearch={onSearch}
           onQueryChange={onQueryChange}
@@ -110,7 +119,7 @@ const Header = ({ query, onSearch, onQueryChange }) => (
   </HeaderWrapper>
 )
 
-const Versions = ({ current, versions, onChange }) => {
+const Versions = ({ t, current, versions, onChange }) => {
   const handleDownload = current => {
     const a = document.createElement('a')
     a.target = '_blank'
@@ -123,9 +132,13 @@ const Versions = ({ current, versions, onChange }) => {
     <VersionsWrapper>
       <Wrapper>
         <div className="version-text">
-          <div>当前文档适用于 KubeSphere {current.label}</div>
+          <div>
+            {t('Current documentation applies to')} KubeSphere {current.label}
+          </div>
           <p>
-            这里将提供适用于当前版本的帮助文档，如果需要其它版本文档请选择右侧版本
+            {t(
+              'The help file for the current version will be provided here. If you need other versions of the document, please select the right version.'
+            )}
           </p>
         </div>
         <div className="version-select">
@@ -136,7 +149,7 @@ const Versions = ({ current, versions, onChange }) => {
           />
           <Tooltip
             style={{ marginLeft: 12 }}
-            title={`下载 ${current.label} 离线文档`}
+            title={`${t('Download')} ${current.label} ${t('offline document')}`}
             position="top"
             distance={16}
             arrow
@@ -167,7 +180,6 @@ const Documents = ({ tableOfContent }) => (
     <Wrapper>
       <ul className="chapter-list">
         {tableOfContent.node.chapters.map((chapter, index) => {
-          console.log(chapter);
           return (
             <li key={index}>
               <h3>
@@ -197,10 +209,10 @@ const Documents = ({ tableOfContent }) => (
 )
 
 const Content = props => {
+  const lang = getLanguage(props.i18n.language)
   const tableOfContent = props.data.allContentJson.edges.find(
     edge =>
-      edge.node.version === props.selectVersion.value &&
-      edge.node.lang === 'zh-CN'
+      edge.node.version === props.selectVersion.value && edge.node.lang === lang
   )
 
   return (
@@ -209,13 +221,14 @@ const Content = props => {
         current={props.selectVersion}
         versions={props.data.site.siteMetadata.versions}
         onChange={props.onVersionChange}
+        t={props.t}
       />
       {tableOfContent && <Documents tableOfContent={tableOfContent} />}
     </ContentWrapper>
   )
 }
 
-const Footer = () => {
+const Footer = ({ t }) => {
   return (
     <FooterWrapper>
       <Wrapper>
@@ -223,39 +236,42 @@ const Footer = () => {
           <li>
             <h3>
               <RoadMapIcon />
-              获取 KubeSphere
+              {t('Get')} KubeSphere
             </h3>
             <p>
-              推荐您免费下载和使用最新的{' '}
-              <a href="https://kubesphere.io/download">KubeSphere 高级版</a>{' '}
+              {t('Recommend you to download and use the latest free')}{' '}
+              <a href="https://kubesphere.io/download">{t('KubeSphere Advanced Edition')}</a>{' '}
             </p>
           </li>
           <li>
             <h3>
               <BugIcon />
-              报告 Bug
+              {t('Report the Bug')}
             </h3>
             <p>
-              KubeSphere 使用{' '}
+            {t('KubeSphere uses')}{' '}
               <a href="https://github.com/kubesphere/kubesphere/issues">
                 GitHub issue
               </a>{' '}
-              来管理 bug 跟踪
+              {t('to manage bug tracking')}
             </p>
           </li>
           <li>
             <h3>
               <ChatIcon />
-              日常沟通
+              {t('Communication')}
             </h3>
             <p>
-              在 Slack 频道上找到我们:{' '}
+              {t('Find us on the Slack channel')}:{' '}
               <a href="https://kubesphere.slack.com" target="_blank">
                 kubesphere.slack.com
               </a>
             </p>
           </li>
         </ul>
+        <LanguageWrapper>
+          <Language />
+        </LanguageWrapper>
         <p className="icp">KubeSphere™ 2019 All Rights Reserved.</p>
       </Wrapper>
     </FooterWrapper>
@@ -572,7 +588,21 @@ const Tag = styled.span`
   color: #ffffff;
   border-radius: 10px;
   background-color: #f5a623;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.05));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.01),
+    rgba(0, 0, 0, 0.05)
+  );
+`
+
+const LanguageWrapper = styled.div`
+  margin-bottom: 36px;
+  text-align: left;
+
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+  }
 `
 
 export const query = graphql`

@@ -6,6 +6,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
+import '../utils/i18n'
+
 import '../assets/fonts/ProximaNova/stylesheet.css'
 import './index.css'
 

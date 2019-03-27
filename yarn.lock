@@ -5570,7 +5570,7 @@ hoek@4.x.x:
   version "4.2.1"
   resolved "http://registry.npmjs.org/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
-hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
@@ -5604,6 +5604,13 @@ html-encoding-sniffer@^1.0.2:
 html-entities@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
+
+html-parse-stringify2@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/html-parse-stringify2/-/html-parse-stringify2-2.0.1.tgz#dc5670b7292ca158b7bc916c9a6735ac8872834a"
+  integrity sha1-3FZwtyksoVi3vJFsmmc1rIhyg0o=
+  dependencies:
+    void-elements "^2.0.1"
 
 html-void-elements@^1.0.0, html-void-elements@^1.0.1:
   version "1.0.3"
@@ -5684,6 +5691,16 @@ https-browserify@0.0.1:
 https-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
+
+i18next-browser-languagedetector@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-2.2.0.tgz#5f41abe61964a56dce70102ab31c3ed5d5866edc"
+  integrity sha512-fKhsaJzXY2anqAPxn9bgxc5NrTcu1GnYiIwGfNFPkpfFneutHnuReb4x4suOVNMf9RTuiCxfR+UAF8aHhv89SQ==
+
+i18next@11.3.3:
+  version "11.3.3"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-11.3.3.tgz#a6ca3c2a93237c94e242bda7df3411588ac37ea1"
+  integrity sha512-YR1p0IJCKbUxi9DKKb7SK5kQMVcUIUA1xxPlxr7mn3pvkFdEE1eZi/TiYC5eyOE6wvWYOb5xZc+1HVSD5dJXMg==
 
 iconv-lite@0.4.23:
   version "0.4.23"
@@ -9531,6 +9548,15 @@ react-hot-loader@^3.0.0-beta.6:
     redbox-react "^1.3.6"
     source-map "^0.6.1"
 
+react-i18next@7.7.0:
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.7.0.tgz#0cf044b9222179a6ddc5af248a2291ac580652fd"
+  integrity sha512-Zamv69CACmG3vI5exXd1LymIw3E/b8xO5cRke0M21eXliKAnTtqPCYcL2E/kWderaFtTeZwrB2WBacLmRCKtwQ==
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+    html-parse-stringify2 "2.0.1"
+    prop-types "^15.6.0"
+
 react-input-autosize@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.1.tgz#ec428fa15b1592994fb5f9aa15bb1eb6baf420f8"
@@ -12084,6 +12110,11 @@ vm-browserify@0.0.4:
   resolved "http://registry.npmjs.org/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
+
+void-elements@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
+  integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"

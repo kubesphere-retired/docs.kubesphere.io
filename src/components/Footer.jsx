@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
+import { translate } from 'react-i18next'
 
 import { ReactComponent as Previous } from '../assets/previous.svg'
 import { ReactComponent as Next } from '../assets/next.svg'
 
 class Footer extends React.Component {
   render() {
-    const { prev, next } = this.props
+    const { t, prev, next } = this.props
 
     return (
       <div>
@@ -15,12 +16,12 @@ class Footer extends React.Component {
           {!isEmpty(prev) && (
             <Link href={prev.href}>
               <Previous />
-              上一篇: {prev.text}
+              {t('Previous')}: {prev.text}
             </Link>
           )}
           {!isEmpty(next) && (
             <Link href={next.href} right>
-              下一篇: {next.text}
+              {t('Next')}: {next.text}
               <Next />
             </Link>
           )}
@@ -63,4 +64,4 @@ const FooterText = styled.p`
   font-family: Proxima Nova;
 `
 
-export default Footer
+export default translate('base')(Footer)
