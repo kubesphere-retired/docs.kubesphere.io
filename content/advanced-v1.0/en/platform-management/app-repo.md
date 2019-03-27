@@ -3,7 +3,7 @@ title: "Application Repository"
 ---
 
 KubeSphere built the application repository service based on [OpenPitrix](https://openpitrix.io), which is an open-source application management
-platform for multi-cloud environment, be powered by [QingCloud](https://www.qingcloud.com) as well. 
+platform for multi-cloud environment, powered by [QingCloud](https://www.qingcloud.com) as well. 
 KubeSphere Application Repository supports for Helm application. In the application repository, each application consists of Helm package, which including some manifests and templates.
 
 The application package can be stored into an HTTP/HTTPS server or an S3 object storage. The  application repository is an external storage independent of KubeSphere, which can be QingStor object storage or AWS object storage, where the content is the configuration and template files. Once the repository is registered, the stored application packages are automatically indexed into deployable applications.
