@@ -22,7 +22,7 @@ This example prepares 6 hosts, master and etcd clusters will be deployed in 3 of
 
 ### Preparing a Load Balancer
 
-This page showing the example of creating a load balancer on QingCloud platform, and briefly explain its creation steps. For details, please refer to [QingCloud Document](https://docs.qingcloud.com/product/network/loadbalancer).
+This page shows an example of creating a load balancer on QingCloud platform, and briefly explain its creation steps. For details, please refer to [QingCloud Document](https://docs.qingcloud.com/product/network/loadbalancer).
 
 #### Step 1: Create a Load Balancer
 
@@ -41,21 +41,21 @@ Other settings can be kept as default. After filling in the basic information, c
 
 #### Step 2: Create the Listener
 
-Enter into the Load Balancer that was created last step and create a Listener which is used to listen to port `6443` of the TCP protocol, any other port could be listened as well. But the port in `vars.yml` should be consistent with the port which is set here, basic information should be filled in as follows.
+Enter into the Load Balancer that was created at last step, then create a Listener which is used to listen to port `6443` of the TCP protocol, any other ports could be listened as well. But the port in `vars.yml` should be consistent with the port which is set here, basic information should be filled in as follows.
 
-
+- Name: Define a concise and clear name for this Listener
 - Listener Protocol: Select TCP protocol
 - Port: 6443
 - Load mode: Poll
 
-> Note: After creating the listener, please check the firewall rules of the Load Balancer to ensure that the port`6443` has been added to the firewall rules and the external network traffic can pass. Otherwise, the external network cannot access the service of the port, and the installation may fail.
+> Note: After creating the listener, please check the firewall rules of the Load Balancer to ensure that the port `6443` has been added to the firewall rules and the external network traffic can pass. Otherwise, the external network cannot access the service, and the installation may fail.
 
 ![create listener](/create-monitor-en.png)
 
 
 #### Step 3: Add the Backend Server
 
-**Note:** Make sure that you have already prepared the corresponding servers before this step.
+> Note: Make sure that you have already prepared the corresponding servers before this step.
 
 Under the current Load Balancer, click **Add Backend**
 
@@ -63,23 +63,27 @@ Under the current Load Balancer, click **Add Backend**
 
 2. Note that the port must be filled with `6443`, which is the default port of the kube-apiserver. 
 
-3. Finally, click **Submit** when this page is completed.
+3. Finally, click **Submit** when you're done.
 
 ![Add Backend](/add-backend-node-en.png)
 
-After adding the backend, you need to click **Apply Changes** to make it effective. You can view the three added Master nodes of the current Load Balancer in the list. Note that the state of the backend host that has just been added may show "unavailable" in the listener, since the 6443 service port corresponding to the api-server is not yet open, which is normal. After the installation is successful, the kube-apiserver port 6443 on the backend host will be exposed, then the status will change to `Active`, indicating that the Load Balancer is working properly.
+After adding the backend, you need to click **Apply Changes** to make it effective. You can verify the three added Master nodes of the current Load Balancer in the list. 
+
+Note that the state of the backend hosts showing "unavailable" in the listener, since the service port 6443 of api-server is not open, actually this is normal. After the installation is successful, the port 6443 of kube-apiserver on the backend hosts will be exposed, then the status will change to `Active`, indicating that the Load Balancer is working properly.
 
 ![save change](/lb-list-en.png)
 
-The host names master1, master2, and master3 can be filled in the [kube-master] and [etcd] sections of the following example as highly available Master and etcd nodes. Note that the number of etcd needs to be set to `odd number`. Since the memory of etcd is relatively large, it may cause insufficient resources to the working node. Therefore, it is not recommended to deploy the etcd cluster on the working node.
+The host names master1, master2, and master3 can be filled in the [kube-master] and [etcd] sections of the following example as highly available Master and etcd nodes. 
 
-In order to manage deployment process and target machines configuration, please refer to the following scripts to configure all hosts in `hosts.ini`. It's recommneded to install using `root` user, here showing an example configuration in `CentOS 7.5` using `root` user. Note that each host information occupies one line and cannot be wrapped manually.
+Note that the number of etcd needs to be set to `odd number`. Since the memory of etcd is relatively large, it may cause insufficient resources to the working node. Therefore, it is not recommended to deploy the etcd cluster on the working node.
+
+In order to manage deployment process and target machines, please refer to the following example to configure all hosts in `hosts.ini`. It's recommneded to install using `root` user, here shows an example configuration in `CentOS 7.5` using `root` user. Note that each host information occupies one line and cannot be wrapped manually.
 
 > Note:
-> - If installer is ran from non-root user account who has sudo privilege already, then you are supposed to reference the example section that is commented out in `conf/hosts.ini`.
-> - If the `root` user cannot be ssh connected to other machines in taskbox, you need to refer to the `non-root` user example section in the `conf/hosts.ini` as well, but it's recommended to switch to the `root` user when executing `install.sh`. If you are still confused about this, see the [FAQ - Question 2](../../faq).
+> - If installer is ran from non-root user account who has sudo privilege already, you need to reference the example section that is commented out in `conf/hosts.ini`.
+> - If the `root` user cannot establish SSH connection with other machines in taskbox node, you need to refer to the `non-root` user example in `conf/hosts.ini` as well, but it's recommended to switch to the `root` user when executing `install.sh`.
 
-**host.ini configuration sample**
+**host.ini configuration example**
 
 ```ini
 [all]
@@ -112,12 +116,7 @@ kube-master
 
 ### Configure the LB Parameters
 
-<!-- 在 QingCloud 云平台准备好负载均衡器后，需在 `vars.yaml` 配置文件中修改相关参数。假设负载均衡器的内网 IP 地址是 `192.168.0.10` (这里需替换为您的负载均衡器实际 IP 地址)，负载均衡器设置的 TCP 协议的监听端口 (port) 为 `6443`，那么在 `conf/vars.yml` 中参数配置参考如下示例 (`loadbalancer_apiserver` 作为可选配置项，在配置文件中应取消注释)。
-
-> - 注意，address 和 port 在配置文件中应缩进两个空格。
-> - 负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问。如果需要修改域名则先取消注释再自行修改。 -->
-
-Finally, you need to modify the relevant parameters in the `vars.yaml` after prepare the Load Balancer. Suppose the internal IP address of the Load Balancer is `192.168.0.10` (replaced it with your actual Load Balancer IP address), and the listening port of the TCP protocol is `6443`, then the parameter configuration in `conf/vars.yml` can be referred to the following example (`loadbalancer_apiserver` as an optional configuration which should be uncommented in the configuration file).
+Finally, you need to modify the relevant parameters in the `vars.yaml` after prepare the Load Balancer. Assume the internal IP address of the Load Balancer is `192.168.0.10` (replaced it with your actual Load Balancer IP address), and the listening port of the TCP protocol is `6443`, then the parameter configuration in `conf/vars.yml` can be modified like the following example (`loadbalancer_apiserver` as an optional configuration which should be uncommented in the configuration file).
 
 > - Note that address and port should be indented by two spaces in the configuration file.
 > - The domain name of the Load Balancer is "lb.kubesphere.local" by default for internal access. If you need to modify the domain name, please uncomment and modify it.
@@ -131,7 +130,5 @@ loadbalancer_apiserver:
   address: 192.168.0.10
   port: 6443
 ```
-
-<!-- 完成 master 和 etcd 高可用的参数配置后，请继续参阅 [Multi-Node 模式 - 存储配置示例](../multi-node) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。 -->
 
 See [Multi-Node](../multi-node) to configure the related parameters of the persistent storage in `vars.yml` and complete the rest multi-node installation process after completing highly available configuration. 
