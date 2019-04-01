@@ -1,5 +1,5 @@
 module.exports = {
-  'Welcome to the KubeSphere documentation': '欢迎使用 KubeSphere 文档',
+  'Welcome to the KubeSphere Documentation': '欢迎使用 KubeSphere 文档',
   'Welcome to the KubeSphere documentation, we will introduce KubeSphere services and how to use them in clear and concise graphics.':
     '欢迎阅读 KubeSphere 文档，我们尽可能以清晰简明的图文，介绍 KubeSphere 各项服务及使用方法。',
   'Enter keywords to get help quickly': '输入关键字快速获取帮助',

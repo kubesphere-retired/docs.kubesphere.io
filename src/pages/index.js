@@ -101,7 +101,7 @@ const Header = ({ t, query, onSearch, onQueryChange }) => (
       <Logo />
     </LogoWrapper>
     <Wrapper>
-      <h1>{t('Welcome to the KubeSphere documentation')}</h1>
+      <h1>{t('Welcome to the KubeSphere Documentation')}</h1>
       <p>
         {t(
           'Welcome to the KubeSphere documentation, we will introduce KubeSphere services and how to use them in clear and concise graphics.'
