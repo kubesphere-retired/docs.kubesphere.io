@@ -158,6 +158,10 @@
               "entry": "./advanced-v1.0/en/infrastructure/components.md"
             },
             {
+              "title": "Nodes",
+              "entry": "./advanced-v1.0/en/infrastructure/node.md"
+            },
+            {
               "title": "Storage Classes",
               "entry": "./advanced-v1.0/en/infrastructure/storageclass.md"
             }
