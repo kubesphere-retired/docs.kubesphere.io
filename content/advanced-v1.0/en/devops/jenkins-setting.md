@@ -2,7 +2,7 @@
 title: "Jenkins System Settings"
 ---
 
-Jenkins is powerful and flexible thus it has become the de facto standard for CI/CD, with an active community to maintain plugins for almost any combination of tools and use cases. But flexibility comes at a price: because in addition to the Jenkins core, many plugins require some system-level configuration to get the job done.
+Jenkins is powerful and flexible and it has become the de facto standard for CI/CD workflow. But flexibility comes at a price: because in addition to the Jenkins itself, many plugins require some system-level configuration to get the job done.
 
 KubeSphere DevOps is based on Jenkins for containerized CI/CD workflow functionality. To provide users with a schedulable Jenkins environment, KubeSphere uses **Configuration-as-Code** for Jenkins system settings, which requires the user to log in to Jenkins Dashboard and reload after KubeSphere modifies the configuration file. In the current release, Jenkins system settings are not yet available in KubeSphere, it will be supported in upcoming release.
 
