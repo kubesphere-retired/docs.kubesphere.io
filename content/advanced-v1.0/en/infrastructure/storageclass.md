@@ -13,9 +13,9 @@ The Storage Class is allow to be configured by the cluster admin and provide to 
 
 Note that if there are multiple storage classes in the system, only one can be set as the default storage class.
 
-## Create the Storage Class
+## Create a Storage Class
 
-Firstly sign in with **cluster admin**, select **Platform Management → Infrastructure → Storage Classes**, then enter into the storage classes panel. As a cluster-admin, you can view all of storage classes and details.
+Firstly sign in with **cluster admin**, select **Platform → Infrastructure → Storage Classes**, then enter into the storage classes panel. As a cluster-admin, you can view all of storage classes and details.
 
 ![navigate-to-storageclass](/navigate-to-storageclass.png)
 
