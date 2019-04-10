@@ -112,13 +112,13 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online*
 
 ## 创建项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-dev`和 `kubesphere-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev`和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
 ### 第一步：填写项目信息
 
 回到工作台，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
-- 名称：固定为 `kubesphere-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>) 中修改 namespace
+- 名称：固定为 `kubesphere-sample-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
 - 描述信息：可简单介绍该项目，方便用户进一步了解
 
@@ -132,11 +132,11 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ### 创建第二个项目
 
-同上，参考上一步创建一个名称为 `kubesphere-prod` 的项目，作为生产环境。
+同上，参考上一步创建一个名称为 `kubesphere-sample-prod` 的项目，作为生产环境。
 
 高级配置设置如下。
 
-> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-dev` 和 `kubesphere-prod` 项目中将看到流水线创建的部署 (Deployment) 和服务 (Service)。
+> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目中将看到流水线创建的部署 (Deployment) 和服务 (Service)。
 
 ![project](https://kubesphere-docs.pek3b.qingstor.com/png/project.png)
 
@@ -273,14 +273,14 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 验证运行结果
 
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-dev` 和 `kubesphere-prod` 项目环境中。
+若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
-| Dev        | 公网 IP : 30861 (`${EIP}:${NODEPORT}`) | kubesphere-dev       | ks-sample-dev     | ks-sample-dev  |
-| Production | 公网 IP : 30961 (`${EIP}:${NODEPORT}`) | kubesphere-prod      | ks-sample         | ks-sample      |
+| Dev        | 公网 IP : 30861 (`${EIP}:${NODEPORT}`) | kubesphere-sample-dev       | ks-sample-dev     | ks-sample-dev  |
+| Production | 公网 IP : 30961 (`${EIP}:${NODEPORT}`) | kubesphere-sample-prod      | ks-sample         | ks-sample      |
 
-1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-prod`项目下的部署。
+1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod`项目下的部署。
 
 进入该项目，在左侧的菜单栏点击 **工作负载 → 部署**，可以看到 ks-sample 已创建成功。正常情况下，部署的状态应该显示 **运行中**。
 
