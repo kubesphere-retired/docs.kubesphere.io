@@ -75,6 +75,10 @@
           "entry": "./advanced-v2.0/zh-CN/installation/harbor-installation.md"
         },
         {
+          "title": "安装内置 GitLab",
+          "entry": "./advanced-v2.0/zh-CN/installation/gitlab-installation.md"
+        },
+        {
           "title": "集群节点扩容",
           "entry": "./advanced-v2.0/zh-CN/installation/add-nodes.md"
         },
@@ -124,6 +128,18 @@
         {
           "title": "示例七 - Jenkinsfile-out-of-SCM",
           "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
+        },
+        {
+          "title": "示例八 - Source-to-image",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/source-to-image.md"
+        },
+        {
+          "title": "示例九 - 流水线示例(在线版)",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/devops-online.md"
+        },
+        {
+          "title": "示例十 - Harbor + GitLab 流水线示例(离线版)",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
         }
       ]
     },
