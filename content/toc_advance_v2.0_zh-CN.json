@@ -197,16 +197,38 @@
             {
               "title": "应用资源监控",
               "entry": "./advanced-v2.0/zh-CN/monitoring/application-resources.md"
-            },
-            {
-              "title": "日志收集",
-              "entry": "./advanced-v2.0/zh-CN/monitoring/log-gathering.md"
             }
           ]
         },
         {
-          "title": "应用仓库",
-          "entry": "./advanced-v2.0/zh-CN/platform-management/app-repo.md"
+          "title": "平台设置",
+          "entries": [
+            {
+              "title": "应用仓库",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/app-repo.md"
+            },
+            {
+              "title": "邮件服务器",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/email-server.md"
+            },
+            {
+              "title": "日志收集",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/log-gathering.md"
+            }
+          ]
+        },
+        {
+          "title": "工具箱",
+          "entries": [
+            {
+              "title": "Web Kubectl",
+              "entry": "./advanced-v2.0/zh-CN/toolbox/kubectl.md"
+            },
+            {
+              "title": "日志收集",
+              "entry": "./advanced-v2.0/zh-CN/toolbox/log-search.md"
+            }
+          ]
         },
         {
           "title": "Jenkins 系统设置",
@@ -285,6 +307,10 @@
               "entry": "./advanced-v2.0/zh-CN/ingress-service/services.md"
             },
             {
+              "title": "灰度发布",
+              "entry": "./advanced-v2.0/zh-CN/ingress-service/grayscale.md"
+            },
+            {
               "title": "应用路由",
               "entry": "./advanced-v2.0/zh-CN/ingress-service/ingress.md"
             }
@@ -325,19 +351,6 @@
             {
               "title": "外网访问",
               "entry": "./advanced-v2.0/zh-CN/project-setting/project-gateway.md"
-            }
-          ]
-        },
-        {
-          "title": "工具箱",
-          "entries": [
-            {
-              "title": "Web Kubectl",
-              "entry": "./advanced-v2.0/zh-CN/toolbox/kubectl.md"
-            },
-            {
-              "title": "日志查询",
-              "entry": "./advanced-v2.0/zh-CN/toolbox/log-search.md"
             }
           ]
         },

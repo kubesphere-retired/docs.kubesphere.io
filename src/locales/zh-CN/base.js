@@ -1,10 +1,10 @@
 module.exports = {
   'Welcome to the KubeSphere Documentation': '欢迎使用 KubeSphere 文档',
-  'Welcome to the KubeSphere documentation, we will introduce KubeSphere services and how to use them in clear and concise graphics.':
+  'We will introduce the services and features of KubeSphere with clear and concise pictures and texts as far as possible.':
     '欢迎阅读 KubeSphere 文档，我们尽可能以清晰简明的图文，介绍 KubeSphere 各项服务及使用方法。',
   'Enter keywords to get help quickly': '输入关键字快速获取帮助',
-  'Current documentation applies to': '当前文档适用于',
-  'The help file for the current version will be provided here. If you need other versions of the document, please select the right version.':
+  'The current document is available for': '当前文档适用于',
+  'The following provides the current version of the documentation, if you need other versions of the document please switch on the right.':
     '这里将提供适用于当前版本的帮助文档，如果需要其它版本文档请选择右侧版本',
   Download: '下载',
   'offline document': '离线文档',

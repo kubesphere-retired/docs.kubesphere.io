@@ -6,9 +6,9 @@ KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服�
 
 ## 添加应用仓库
 
-使用集群管理员账户登录 KubeSphere 管理控制台，点击左上角 **平台管理 → 应用仓库**，进入列表页。
+使用集群管理员账户登录 KubeSphere 管理控制台，点击左上角 **平台管理 → 平台设置**，进入列表页。
 
-![应用仓库列表](/ae-apprepo_list.png)
+![添加应用仓库](https://pek3b.qingstor.com/kubesphere-docs/png/20190410020944.png)
 
 1. 点击右上角 **添加应用仓库** 按钮。
 

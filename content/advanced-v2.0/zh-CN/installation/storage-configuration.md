@@ -40,6 +40,8 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 
 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式 (Access Mode) 为 **单节点读写（ReadWriteOnce）** 的基于 QingCloud 的超高性能型 (超高性能型硬盘只能用在超高性能型主机)、性能型 (性能型硬盘只能用在性能型主机) 或容量型硬盘的存储卷并挂载至工作负载。在安装 KubeSphere 时配置 QingCloud-CSI 插件的参数说明如下。
 
+> 注意：在 KubeSphere 集群内使用到性能型、超高性能型、企业型或基础型硬盘时，集群的主机类型也应与硬盘的类型保持一致。
+
 |**QingCloud-CSI** | **Description**|
 | --- | ---|
 | qingcloud\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
