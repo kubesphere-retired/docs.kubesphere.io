@@ -104,7 +104,7 @@ const Header = ({ t, query, onSearch, onQueryChange }) => (
       <h1>{t('Welcome to the KubeSphere Documentation')}</h1>
       <p>
         {t(
-          'Welcome to the KubeSphere documentation, we will introduce KubeSphere services and how to use them in clear and concise graphics.'
+          'We will introduce the services and features of KubeSphere with clear and concise pictures and texts as far as possible.'
         )}
       </p>
       <div style={{ textAlign: 'center' }}>
@@ -133,11 +133,11 @@ const Versions = ({ t, current, versions, onChange }) => {
       <Wrapper>
         <div className="version-text">
           <div>
-            {t('Current documentation applies to')} KubeSphere {current.label}
+            {t('The current document is available for')} KubeSphere {current.label}
           </div>
           <p>
             {t(
-              'The help file for the current version will be provided here. If you need other versions of the document, please select the right version.'
+              'The following provides the current version of the documentation, if you need other versions of the document please switch on the right.'
             )}
           </p>
         </div>
