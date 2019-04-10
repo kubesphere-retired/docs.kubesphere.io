@@ -49,6 +49,10 @@ Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持
 
 KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，详见 [安装内置 Harbor](../harbor-installation)。
 
+#### 安装内置 GitLab (可选)
+
+​KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Gitlab (版本为 v11.3.4)作为可选安装项，用户可以根据团队项目的需求来配置安装，详见 [安装内置 GitLab](../gitlab-installation)。
+
 #### Master 和 etcd 节点高可用配置
 
 Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点，详见 [Master 和 etcd 节点高可用配置](../master-ha)。
