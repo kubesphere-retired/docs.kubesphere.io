@@ -223,11 +223,17 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 ![ce](https://kubesphere-docs.pek3b.qingstor.com/png/ce.png)
 
+### 第四步：创建sonarQube凭证
+
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本`的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token信息。完成后点击 **确定**。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
+
 ## 修改 Jenkinsfile
 
 ### 第一步：进入项目
 
-​	1.根据前提条件中的要求，现应已按照[安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)要求正确将 GitHub 中的[`devops-sample-s2i`](<https://github.com/kubesphere/devops-sample-s2i>)导入到GitLab中。
+​	1.根据前提条件中的要求，现应已按照[安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)要求正确将 GitHub 中的[`devops-sample-s2i`](https://github.com/kubesphere/devops-sample-s2i)导入到GitLab中。
 
 ![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab.png)
 
@@ -245,14 +251,14 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 | 修改项                   | 值                                   | 含义                                                         |
 | :----------------------- | :----------------------------------- | :----------------------------------------------------------- |
-| HARBOR_CREDENTIAL_ID     | harbor-id                            | 填写创建凭证步骤中的 Harbor 凭证 ID，用于登录您的 Harbor 仓库 |
-| GITLAB_CREDENTIAL_ID     | gitlab-id                            | 填写创建凭证步骤中的 GitLab 凭证 ID，用于推送 tag 到 GitLab 仓库 |
-| KUBECONFIG_CREDENTIAL_ID | demo-kubeconfig                      | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
+| HARBOR\_CREDENTIAL\_ID     | harbor-id                            | 填写创建凭证步骤中的 Harbor 凭证 ID，用于登录您的 Harbor 仓库 |
+| GITLAB\_CREDENTIAL\_ID     | gitlab-id                            | 填写创建凭证步骤中的 GitLab 凭证 ID，用于推送 tag 到 GitLab 仓库 |
+| KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig                      | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
 | REDISTRY                 | harbor.devops.kubesphere.local:30280 | 默认为 Harbor 域名，用于镜像的推送                           |
 | NAMESPACE                | library                              | 默认为 Harbor 下的 library 项目，可根据实际情况更改项目名称  |
 | GITLAB_ACCOUNT           | admin1                               | GitLab用户，默认为admin1                                     |
 | APP_NAME                 | devops-docs-sample                   | 应用名称                                                     |
-| SONAR_TOKEN_ID           | sonar-token                          | sonarQube 的 Token 凭证，用于代码质量检测                    |
+| SONAR\_CREDENTIAL\_ID      | sonar-token                          | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
 
 ## 创建项目
 

@@ -77,6 +77,12 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ![凭证列表](https://kubesphere-docs.pek3b.qingstor.com/png/credential-list-demo.png)
 
+### 第四步：创建sonarQube凭证
+
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本`的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token 信息。完成后点击 **确定**。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
+
 ## 修改 Jenkinsfile
 
 ### 第一步：Fork项目
@@ -97,14 +103,14 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online*
 
 | 修改项                   | 值                     | 含义                                                         |
 | :----------------------- | :--------------------- | :----------------------------------------------------------- |
-| DOCKER_CREDENTIAL_ID     | dockerhub-id           | 填写创建凭证步骤中的 DockerHub 凭证 ID，用于登录您的 DockerHub |
-| GITHUB_CREDENTIAL_ID     | github-id              | 填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库 |
-| KUBECONFIG_CREDENTIAL_ID | demo-kubeconfig        | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
+| DOCKER\_CREDENTIAL\_ID     | dockerhub-id           | 填写创建凭证步骤中的 DockerHub 凭证 ID，用于登录您的 DockerHub |
+| GITHUB\_CREDENTIAL\_ID     | github-id              | 填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库 |
+| KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig        | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
 | REDISTRY                 | docker.io              | 默认为docker.io 域名，用于镜像的推送                         |
 | NAMESPACE                | your-dockerhub-account | 替换为您的 DockerHub 账号名(它也可以是账户下的 Organization 名称) |
 | GITHUB_ACCOUNT           | github_username               | GitHub用户名                                  |
 | APP_NAME                 | devops-docs-sample     | 应用名称                                                     |
-| SONAR_TOKEN_ID           | sonar-token            | sonarQube 的 Token 凭证，用于代码质量检测                    |
+| SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
 
 修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
