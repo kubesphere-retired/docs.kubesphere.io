@@ -219,15 +219,15 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 > 说明：kubeconfig 类型的凭证用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
 
-至此，3 个凭证已经创建完成，下一步需要在示例仓库中的 jenkinsfile 修改对应的三个凭证 ID 为用户自己创建的凭证 ID。
-
-![ce](https://kubesphere-docs.pek3b.qingstor.com/png/ce.png)
-
 ### 第四步：创建sonarQube凭证
 
 同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本`的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token信息。完成后点击 **确定**。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
+
+至此，4 个凭证已经创建完成，下一步需要在示例仓库中的 jenkinsfile 修改对应的四个凭证 ID 为用户自己创建的凭证 ID。
+
+![ce](https://kubesphere-docs.pek3b.qingstor.com/png/ce.png)
 
 ## 修改 Jenkinsfile
 
