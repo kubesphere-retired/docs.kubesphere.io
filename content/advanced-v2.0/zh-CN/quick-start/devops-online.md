@@ -81,15 +81,15 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 至此，4 个凭证已经创建完成，下一步需要在示例仓库中的 jenkinsfile 修改对应的四个凭证 ID 为用户自己创建的凭证 ID。
 
-![凭证列表](https://kubesphere-docs.pek3b.qingstor.com/png/credential-list-demo.png)
+![](https://kubesphere-docs.pek3b.qingstor.com/png/credential-list-demo.png)
 
 ## 修改 Jenkinsfile
 
 ### 第一步：Fork项目
 
-登录 GitHub，将本示例用到的 GitHub 仓库 [devops-sample-s2i](https://github.com/kubesphere/devops-sample-s2i) Fork 至您个人的 GitHub。
+登录 GitHub，将本示例用到的 GitHub 仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) Fork 至您个人的 GitHub。
 
-![Fork 项目](https://kubesphere-docs.pek3b.qingstor.com/png/fork-repo.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/fork-repo.png)
 
 ### 第二步：修改 Jenkinsfile
 
@@ -107,7 +107,7 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online*
 | GITHUB\_CREDENTIAL\_ID     | github-id              | 填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库 |
 | KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig        | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
 | REDISTRY                 | docker.io              | 默认为docker.io 域名，用于镜像的推送                         |
-| NAMESPACE                | your-dockerhub-account | 替换为您的 DockerHub 账号名(它也可以是账户下的 Organization 名称) |
+| DOCKERHUB_NAMESPACE      | your-dockerhub-account | 替换为您的 DockerHub 账号名(它也可以是账户下的 Organization 名称) |
 | GITHUB_ACCOUNT           | github_username               | GitHub用户名                                  |
 | APP_NAME                 | devops-docs-sample     | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
@@ -118,13 +118,13 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online*
 
 ## 创建项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev`和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev`和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
 ### 第一步：填写项目信息
 
 回到工作台，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
-- 名称：固定为 `kubesphere-sample-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>) 中修改 namespace
+- 名称：固定为 `kubesphere-sample-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
 - 描述信息：可简单介绍该项目，方便用户进一步了解
 
@@ -176,7 +176,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 4、复制生成的 token，在 KubeSphere Token 框中输入该 token 然后点击保存。
 
-5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-sample-s2i](https://github.com/kubesphere/devops-sample-s2i)，点击 **选择此仓库**，完成后点击 **下一步**。 
+5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample)，点击 **选择此仓库**，完成后点击 **下一步**。 
 
 ![image-20190409122653070](https://kubesphere-docs.pek3b.qingstor.com/png/image-20190409122653070.png)
 
@@ -217,7 +217,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 > - PR 本身的源代码版本：一次发现操作，基于 PR 本身的源代码版本创建并运行流水线
 > - 当 PR 被发现时会创建两个流水线，一个流水线使用 PR 本身的源代码版本，一个流水线使用 PR 与目标分支合并后的源代码版本：两次发现操作，将分别创建两条流水线，第一条流水线使用 PR 本身的源代码版本，第二条流水线使用 PR 与目标分支合并后的源代码版本
 
-3、默认的 **脚本路径** 为 **Jenkinsfile**，请将其修改为[**Jenkinsfile-online**](https://github.com/kubesphere/devops-sample-s2i/blob/master/Jenkinsfile-online)。
+3、默认的 **脚本路径** 为 **Jenkinsfile**，请将其修改为[**Jenkinsfile-online**](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online)。
 
 > 注：路径是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
@@ -269,7 +269,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 查看流水线
 
-1、点击流水线中 `活动`列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-online](https://github.com/kubesphere/devops-sample-s2i/blob/master/Jenkinsfile-online) 中被定义。
+1、点击流水线中 `活动`列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-online](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online) 中被定义。
 
 ![stage](https://kubesphere-docs.pek3b.qingstor.com/png/stage.png)
 

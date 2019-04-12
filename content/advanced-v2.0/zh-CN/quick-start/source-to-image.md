@@ -52,7 +52,7 @@ title: "示例八 - Source-to-image"
 
 ### Fork项目
 
-登录 GitHub，将本示例用到的 GitHub 仓库 [devops-docs-sample](<https://github.com/kubesphere/devops-sample-s2i>) Fork 至您个人的 GitHub。
+登录 GitHub，将本示例用到的 GitHub 仓库 [devops-docs-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
 
 ![fork](https://kubesphere-docs.pek3b.qingstor.com/png/fork.png)
 
@@ -82,7 +82,7 @@ title: "示例八 - Source-to-image"
 
 然后输入一下信息，
 
-- 代码地址：源代码仓库的址（目前支持git，支持HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入Fork之前的Git仓库地址。比如：`https://github.com/soulseen/devops-sample-s2i.git`
+- 代码地址：源代码仓库的址（目前支持git，支持HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入Fork之前的Git仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
 - 密钥：选择之前创建的`github-id`
 - 映像模板：选择`kubespheredev/java-8-centos7`作为此示例的Builder image
 - 代码相对路径：使用默认的`\`即可

@@ -2,7 +2,7 @@
 title: "安装内置 GitLab" 
 ---
 
-​KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Gitlab (版本为 v11.3.4)作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对代码仓库的管理，仅需安装前在配置文件 `conf/vars.yml`中简单配置即可，具体可参考以下步骤安装和访问 GitLab。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Gitlab (版本为 v11.3.4)作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对代码仓库的管理，仅需安装前在配置文件 `conf/vars.yml`中简单配置即可，具体可参考以下步骤安装和访问 GitLab。
 
 ## 修改配置文件
 
@@ -44,11 +44,11 @@ GitLab 服务对外暴露的节点端口 (NodePort) 为30080(HTTP)、30443(HTTPS
 
 ## 使用 GitLab 示例
 
-​关于 GitLab 的详细使用详见[GitLab文档](<https://docs.gitlab.com/ee/README.html>)。本示例以`devops-sample`为例展示如何从GitHub导入项目至GitLab。
+关于 GitLab 的详细使用详见[GitLab文档](<https://docs.gitlab.com/ee/README.html>)。本示例以`devops-sample`为例展示如何从GitHub导入项目至GitLab。
 
-​	1、请先将 GitHub 仓库[`devops-sample-s2i`](<https://github.com/kubesphere/devops-sample-s2i>)fork至您个人的 GitHub 仓库。。
+​	1、请先将 GitHub 仓库[`devops-java-sample`](<https://github.com/kubesphere/devops-java-sample>)fork至您个人的 GitHub 仓库。。
 
-![Fork](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-Fork.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/fork-repo.png))
 
 
 
@@ -64,7 +64,7 @@ GitLab 服务对外暴露的节点端口 (NodePort) 为30080(HTTP)、30443(HTTPS
 
 ![token](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-token.png)
 
-​	选择[devops-sample-s2i](https://github.com/kubesphere/devops-sample-s2i)项目Import。
+​	选择[devops-java-sample](https://github.com/kubesphere/devops-java-sample)项目Import。
 
 ​	5、等待 Status 显示为 Done，即导入成功。
 

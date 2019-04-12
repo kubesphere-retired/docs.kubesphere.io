@@ -233,9 +233,11 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 ### 第一步：进入项目
 
-​	1.根据前提条件中的要求，现应已按照[安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)要求正确将 GitHub 中的[`devops-sample-s2i`](https://github.com/kubesphere/devops-sample-s2i)导入到GitLab中。
+​	1.根据前提条件中的要求，现应已按照[安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)要求正确将 GitHub 中的[`devops-java-sample`](https://github.com/kubesphere/devops-java-sample)导入到GitLab中。
 
-![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab.png)
+> 注：若因网络限制，无法从 GitHub 导入，请自行clone至其他服务器，然后上传至GitLab仓库，仓库名称请保持一致。
+
+![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-succ.png)
 
 ​	2.点击项目进入。
 
@@ -255,24 +257,24 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 | GITLAB\_CREDENTIAL\_ID     | gitlab-id                            | 填写创建凭证步骤中的 GitLab 凭证 ID，用于推送 tag 到 GitLab 仓库 |
 | KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig                      | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
 | REDISTRY                 | harbor.devops.kubesphere.local:30280 | 默认为 Harbor 域名，用于镜像的推送                           |
-| NAMESPACE                | library                              | 默认为 Harbor 下的 library 项目，可根据实际情况更改项目名称  |
+| HARBOR_NAMESPACE         | library                              | 默认为 Harbor 下的 library 项目，可根据实际情况更改项目名称  |
 | GITLAB_ACCOUNT           | admin1                               | GitLab用户，默认为admin1                                     |
 | APP_NAME                 | devops-docs-sample                   | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID      | sonar-token                          | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
 
 ## 创建项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev`和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev`和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
 ### 第一步：填写项目信息
 
 回到工作台，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
-- 名称：固定为 `kubesphere-sample-prod`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>) 中修改 namespace
+- 名称：固定为 `kubesphere-sample-prodx`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
 - 描述信息：可简单介绍该项目，方便用户进一步了解
 
-![dev](https://kubesphere-docs.pek3b.qingstor.com/png/dev.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/dev.png)
 
 ### 第二步：高级设置
 
@@ -312,7 +314,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ![addrepo](https://kubesphere-docs.pek3b.qingstor.com/png/addrepo.png)
 
-2、输入仓库URl，默认为`http://gitlab.devops.kubesphere.local:30080/admin1/devops-sample-s2i.git`，
+2、输入仓库URl，默认为`http://gitlab.devops.kubesphere.local:30080/admin1/devops-java-sample.git`，
 
 注意：GitLab 中提供的 HTTP 和 SSH URI 有误。HTTP URI 需要手动加上端口号30080，SSH URI需要手动加上协议`ssh://`和端口号：30090。
 
