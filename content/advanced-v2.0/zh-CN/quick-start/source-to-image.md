@@ -82,23 +82,13 @@ title: "示例八 - Source-to-image"
 
 然后输入一下信息，
 
-<<<<<<< HEAD
-- 代码地址：源代码仓库的址（目前支持 git，支持 HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入 Fork 之前的 Git 仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
+- 代码地址：源代码仓库的址（目前支持 Git，支持 HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入 Fork 之前的 Git 仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
 - 密钥：选择之前创建的 `github-id`
 - 映像模板：选择 `kubespheredev/java-8-centos7` 作为此示例的Builder image
 - 代码相对路径：使用默认的 `\` 即可
 - 映像名称：可根据自己情况定义，此示例使用 `<dockerhub_username>/hello`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限
 - tag：镜像标签使用默认 `latest` 即可
 - 目标镜像仓库：选择之前创建的 Dockerhub
-=======
-- 代码地址：源代码仓库的址（目前支持git，支持HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入Fork之前的Git仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
-- 密钥：选择之前创建的`github-id`
-- 映像模板：选择`kubespheredev/java-8-centos7`作为此示例的Builder image
-- 代码相对路径：使用默认的`\`即可
-- 映像名称：可根据自己情况定义，此示例使用`<dockerhub_username>/hello`，`dockerhub_username`为自己的账户名称，确保具有推拉权限
-- tag：镜像标签使用默认`latest`即可
-- 目标镜像仓库：选择之前创建的dockerhub
->>>>>>> 79b1b72... modify repo name
 
 ![s2i](https://kubesphere-docs.pek3b.qingstor.com/png/s2i.png)
 
