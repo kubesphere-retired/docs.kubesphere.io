@@ -2,11 +2,11 @@
 title: "示例八 - Source-to-image" 
 ---
 
-​Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的BUilder image中，来将编译后的代码打包成docker镜像。它使得应用程序开发人员对他们的代码进行更改，而不用知道Dockerfile或Docker镜像的细节，让对于Docker并不感兴趣的开发人员构建镜像更加方便，或者可以给构建过程提供更加强大的功能。
+​Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的BUilder image中，来将编译后的代码打包成 Docker 镜像。它使得应用程序开发人员对他们的代码进行更改，而不用知道 Dockerfile 或 Docker 镜像的细节，让对于 Docker 并不感兴趣的开发人员构建镜像更加方便，或者可以给构建过程提供更加强大的功能。
 
 ## 目的
 
-本示例通过官方给出的Hello World的Java示例，演示如何在Kubesphere上使用Source to image来实现构建镜像，并且实现自动推送到镜像仓库，最后部署集群中。
+本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 Kubesphere 上使用 Source to image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署集群中。
 
 ## 前提条件
 
@@ -52,7 +52,7 @@ title: "示例八 - Source-to-image"
 
 ### Fork项目
 
-登录 GitHub，将本示例用到的 GitHub 仓库 [devops-docs-sample](<https://github.com/kubesphere/devops-sample-s2i>) Fork 至您个人的 GitHub。
+登录 GitHub，将本示例用到的 GitHub 仓库 [devops-docs-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
 
 ![fork](https://kubesphere-docs.pek3b.qingstor.com/png/fork.png)
 
@@ -66,7 +66,7 @@ title: "示例八 - Source-to-image"
 
 点击创建，创建一个部署。
 
-- 名称：必填，给部署起一个名字，以便在使用的时候容易区分，此处使用`s2i-test`
+- 名称：必填，给部署起一个名字，以便在使用的时候容易区分，此处使用 `s2i-test`
 - 别名：为了方便理解可自定义设置
 - 描述信息：简单描述该部署的相关信息，可自定义
 
@@ -82,43 +82,53 @@ title: "示例八 - Source-to-image"
 
 然后输入一下信息，
 
-- 代码地址：源代码仓库的址（目前支持git，支持HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入Fork之前的Git仓库地址。比如：`https://github.com/soulseen/devops-sample-s2i.git`
+<<<<<<< HEAD
+- 代码地址：源代码仓库的址（目前支持 git，支持 HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入 Fork 之前的 Git 仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
+- 密钥：选择之前创建的 `github-id`
+- 映像模板：选择 `kubespheredev/java-8-centos7` 作为此示例的Builder image
+- 代码相对路径：使用默认的 `\` 即可
+- 映像名称：可根据自己情况定义，此示例使用 `<dockerhub_username>/hello`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限
+- tag：镜像标签使用默认 `latest` 即可
+- 目标镜像仓库：选择之前创建的 Dockerhub
+=======
+- 代码地址：源代码仓库的址（目前支持git，支持HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入Fork之前的Git仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
 - 密钥：选择之前创建的`github-id`
 - 映像模板：选择`kubespheredev/java-8-centos7`作为此示例的Builder image
 - 代码相对路径：使用默认的`\`即可
 - 映像名称：可根据自己情况定义，此示例使用`<dockerhub_username>/hello`，`dockerhub_username`为自己的账户名称，确保具有推拉权限
 - tag：镜像标签使用默认`latest`即可
 - 目标镜像仓库：选择之前创建的dockerhub
+>>>>>>> 79b1b72... modify repo name
 
 ![s2i](https://kubesphere-docs.pek3b.qingstor.com/png/s2i.png)
 
-往下滑动至`容器规格设置`，建议最大CPU和最大内存设置为500m和1000
+往下滑动至 `容器规格设置`，建议最大 CPU 和最大内存设置为 500m 和 1000
 
 ![plan](https://kubesphere-docs.pek3b.qingstor.com/png/plan.png)
 
-往下滑至`服务设置`，配置端口为8080，如：
+往下滑至 `服务设置`，配置端口为 8080，如：
 
 ![server](https://kubesphere-docs.pek3b.qingstor.com/png/server.png)
 
 然后点击保存
 
-副本数量可选择为1，然后点击下一步
+副本数量可选择为 1，然后点击下一步
 
 ![next1](https://kubesphere-docs.pek3b.qingstor.com/png/next1.png)
 
 #### 第三步：存储卷设置
 
-默认即可，选择`下一步`。
+默认即可，选择 `下一步`。
 
 #### 第四步：标签设置
 
-默认即可，选择`创建`。
+默认即可，选择 `创建`。
 
 以上部署创建完成。
 
 ### 构建完成
 
-出现如下图所依绿勾即表示镜像通过s2i构建成功。
+出现如下图所依绿勾即表示镜像通过 s2i 构建成功。
 
 ![succ](https://kubesphere-docs.pek3b.qingstor.com/png/succ.png)
 
@@ -128,7 +138,7 @@ title: "示例八 - Source-to-image"
 
 ### 验证运行结果
 
-若通过s2i部署顺利，则将会在设置的Dockerhub中查看到设置的镜像，名称和标签为**容器组模版设置**中设置的值。若想在浏览器中查看到部署结果，可进行如下配置。
+若通过 s2i 部署顺利，则将会在设置的 Dockerhub 中查看到设置的镜像，名称和标签为 **容器组模版设置** 中设置的值。若想在浏览器中查看到部署结果，可进行如下配置。
 
 #### 第一步：创建服务
 
@@ -138,21 +148,21 @@ title: "示例八 - Source-to-image"
 
 #### 第二步：基本信息填写
 
-基本信息与创建部署类似，这里名称填写示例名称`s2i-test-service`，其余可根据自己情况填写，点击下一步，如下图
+基本信息与创建部署类似，这里名称填写示例名称 `s2i-test-service`，其余可根据自己情况填写，点击下一步，如下图
 
 ![service_name](https://kubesphere-docs.pek3b.qingstor.com/png/service_name.png)
 
 #### 第四步：服务设置
 
-选择服务类型为`通过集群内部IP来访问服务 Virtual IP`，如下图
+选择服务类型为 `通过集群内部IP来访问服务 Virtual IP`，如下图。
 
 ![type](https://kubesphere-docs.pek3b.qingstor.com/png/type.png)
-
-点击下一步，然后点击指定工作负载，选择刚刚创建的名称为`s2i-test`的部署，如下图
+。】
+点击下一步，然后点击指定工作负载，选择刚刚创建的名称为 `s2i-test` 的部署，如下图。
 
 ![select](https://kubesphere-docs.pek3b.qingstor.com/png/select.png)
 
-点击保存，然后配置端口为`30962`,目标端口为`8080`,具体信息填写如下图
+点击保存，然后配置端口为 `30962`,目标端口为 `8080`,具体信息填写如下图。
 
 ![port](https://kubesphere-docs.pek3b.qingstor.com/png/port.png)
 
@@ -160,21 +170,21 @@ title: "示例八 - Source-to-image"
 
 #### 第五步：标签设置
 
-默认即可
+默认即可。
 
 #### 第六步：外网访问
 
-选择访问方式为NodePort
+选择访问方式为 NodePort。
 
 ![nodeport](https://kubesphere-docs.pek3b.qingstor.com/png/nodeport.png)
 
-至此，可在内网通过`内网IP:30962`进行访问。
+至此，可在内网通过 `内网IP:30962` 进行访问。
 
 #### 第七步：配置外网访问
 
-若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的`Hello World`示例，以访问该项目管理下的服务的 `30962`端口为例。
+若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 `Hello World` 示例，以访问该项目管理下的服务的 `30962` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30962`在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30962` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
 **添加端口转发规则**
 
@@ -184,4 +194,4 @@ title: "示例八 - Source-to-image"
 
 ![firewall](https://kubesphere-docs.pek3b.qingstor.com/png/firewall.png)
 
-至此，即可访问`http://EIP:30860/`，看到页面的`Hello World`
+至此，即可访问`http://EIP:30860/`，看到页面的 `Hello World!`。

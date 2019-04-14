@@ -1,5 +1,5 @@
 ---
-title: "示例九 - 流水线示例(在线版)" 
+title: "示例九 - CI/CD 流水线(在线版)" 
 ---
 
 Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Source Control Management) 的一部分，因此可使用 `git clone`或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在代码仓库中应包含 Jenkinsfile。
@@ -69,21 +69,37 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ### 第三步：创建 kubeconfig 凭证
 
-同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig`的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig` 的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
 
 > 说明：kubeconfig 类型的凭证用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
 
-至此，3 个凭证已经创建完成，下一步需要在示例仓库中的 jenkinsfile 修改对应的三个凭证 ID 为用户自己创建的凭证 ID。
+### 第四步：创建 sonarQube 凭证
+
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本` 的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token 信息。完成后点击 **确定**。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
+
+至此，4 个凭证已经创建完成，下一步需要在示例仓库中的 jenkinsfile 修改对应的四个凭证 ID 为用户自己创建的凭证 ID。
+
+![](https://kubesphere-docs.pek3b.qingstor.com/png/credential-list-demo.png)
+
+至此，4 个凭证已经创建完成，下一步需要在示例仓库中的 jenkinsfile 修改对应的四个凭证 ID 为用户自己创建的凭证 ID。
 
 ![凭证列表](https://kubesphere-docs.pek3b.qingstor.com/png/credential-list-demo.png)
+
+### 第四步：创建sonarQube凭证
+
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本`的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token 信息。完成后点击 **确定**。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
 
 ## 修改 Jenkinsfile
 
 ### 第一步：Fork项目
 
-登录 GitHub，将本示例用到的 GitHub 仓库 [devops-sample-s2i](https://github.com/kubesphere/devops-sample-s2i) Fork 至您个人的 GitHub。
+登录 GitHub，将本示例用到的 GitHub 仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) Fork 至您个人的 GitHub。
 
-![Fork 项目](https://kubesphere-docs.pek3b.qingstor.com/png/fork-repo.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/fork-repo.png)
 
 ### 第二步：修改 Jenkinsfile
 
@@ -97,14 +113,14 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online*
 
 | 修改项                   | 值                     | 含义                                                         |
 | :----------------------- | :--------------------- | :----------------------------------------------------------- |
-| DOCKER_CREDENTIAL_ID     | dockerhub-id           | 填写创建凭证步骤中的 DockerHub 凭证 ID，用于登录您的 DockerHub |
-| GITHUB_CREDENTIAL_ID     | github-id              | 填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库 |
-| KUBECONFIG_CREDENTIAL_ID | demo-kubeconfig        | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
+| DOCKER\_CREDENTIAL\_ID     | dockerhub-id           | 填写创建凭证步骤中的 DockerHub 凭证 ID，用于登录您的 DockerHub |
+| GITHUB\_CREDENTIAL\_ID     | github-id              | 填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库 |
+| KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig        | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
 | REDISTRY                 | docker.io              | 默认为docker.io 域名，用于镜像的推送                         |
-| NAMESPACE                | your-dockerhub-account | 替换为您的 DockerHub 账号名(它也可以是账户下的 Organization 名称) |
+| DOCKERHUB_NAMESPACE      | your-dockerhub-account | 替换为您的 DockerHub 账号名(它也可以是账户下的 Organization 名称) |
 | GITHUB_ACCOUNT           | github_username               | GitHub用户名                                  |
 | APP_NAME                 | devops-docs-sample     | 应用名称                                                     |
-| SONAR_TOKEN_ID           | sonar-token            | sonarQube 的 Token 凭证，用于代码质量检测                    |
+| SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
 
 修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
@@ -112,13 +128,13 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online*
 
 ## 创建项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-dev`和 `kubesphere-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
 ### 第一步：填写项目信息
 
 回到工作台，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
-- 名称：固定为 `kubesphere-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>) 中修改 namespace
+- 名称：固定为 `kubesphere-sample-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
 - 描述信息：可简单介绍该项目，方便用户进一步了解
 
@@ -132,11 +148,11 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ### 创建第二个项目
 
-同上，参考上一步创建一个名称为 `kubesphere-prod` 的项目，作为生产环境。
+同上，参考上一步创建一个名称为 `kubesphere-sample-prod` 的项目，作为生产环境。
 
 高级配置设置如下。
 
-> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-dev` 和 `kubesphere-prod` 项目中将看到流水线创建的部署 (Deployment) 和服务 (Service)。
+> 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目中将看到流水线创建的部署 (Deployment) 和服务 (Service)。
 
 ![project](https://kubesphere-docs.pek3b.qingstor.com/png/project.png)
 
@@ -170,7 +186,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 4、复制生成的 token，在 KubeSphere Token 框中输入该 token 然后点击保存。
 
-5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-sample-s2i](https://github.com/kubesphere/devops-sample-s2i)，点击 **选择此仓库**，完成后点击 **下一步**。 
+5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample)，点击 **选择此仓库**，完成后点击 **下一步**。 
 
 ![image-20190409122653070](https://kubesphere-docs.pek3b.qingstor.com/png/image-20190409122653070.png)
 
@@ -211,7 +227,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 > - PR 本身的源代码版本：一次发现操作，基于 PR 本身的源代码版本创建并运行流水线
 > - 当 PR 被发现时会创建两个流水线，一个流水线使用 PR 本身的源代码版本，一个流水线使用 PR 与目标分支合并后的源代码版本：两次发现操作，将分别创建两条流水线，第一条流水线使用 PR 本身的源代码版本，第二条流水线使用 PR 与目标分支合并后的源代码版本
 
-3、默认的 **脚本路径** 为 **Jenkinsfile**，请将其修改为[**Jenkinsfile-online**](https://github.com/kubesphere/devops-sample-s2i/blob/master/Jenkinsfile-online)。
+3、默认的 **脚本路径** 为 **Jenkinsfile**，请将其修改为[**Jenkinsfile-online**](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online)。
 
 > 注：路径是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
@@ -249,7 +265,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ### 第五步：审核流水线
 
-为方便演示，此处默认用当前账户来审核，当流水线执行至 `input`步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile-online 中分别定义了三个阶段 (stage) 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中依次需要对 `deploy to dev, push with tag, deploy to production`这三个阶段审核 `3`次，若不审核或点击 **终止** 则流水线将不会继续运行。
+为方便演示，此处默认用当前账户来审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile-online 中分别定义了三个阶段 (stage) 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中依次需要对 `deploy to dev, push with tag, deploy to production` 这三个阶段审核 `3` 次，若不审核或点击 **终止** 则流水线将不会继续运行。
 
 ![审核流水线](https://kubesphere-docs.pek3b.qingstor.com/png/devops_input.png)
 
@@ -263,7 +279,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 查看流水线
 
-1、点击流水线中 `活动`列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-online](https://github.com/kubesphere/devops-sample-s2i/blob/master/Jenkinsfile-online) 中被定义。
+1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-online](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online) 中被定义。
 
 ![stage](https://kubesphere-docs.pek3b.qingstor.com/png/stage.png)
 
@@ -273,14 +289,14 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 验证运行结果
 
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-dev` 和 `kubesphere-prod` 项目环境中。
+若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
-| Dev        | 公网 IP : 30861 (`${EIP}:${NODEPORT}`) | kubesphere-dev       | ks-sample-dev     | ks-sample-dev  |
-| Production | 公网 IP : 30961 (`${EIP}:${NODEPORT}`) | kubesphere-prod      | ks-sample         | ks-sample      |
+| Dev        | 公网 IP : 30861 (`${EIP}:${NODEPORT}`) | kubesphere-sample-dev       | ks-sample-dev     | ks-sample-dev  |
+| Production | 公网 IP : 30961 (`${EIP}:${NODEPORT}`) | kubesphere-sample-prod      | ks-sample         | ks-sample      |
 
-1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-prod`项目下的部署。
+1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod`项目下的部署。
 
 进入该项目，在左侧的菜单栏点击 **工作负载 → 部署**，可以看到 ks-sample 已创建成功。正常情况下，部署的状态应该显示 **运行中**。
 
@@ -298,9 +314,9 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 4、点击 `release`，查看 Fork 到您个人 GitHub repo 中的 `v0.0.1`tag 和 release，它是由 jenkinsfile 中的 `push with tag`stage 生成的
 
-5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960`端口为例。
+5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961`在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
 **添加端口转发规则**
 
