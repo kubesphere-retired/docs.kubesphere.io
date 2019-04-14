@@ -1,5 +1,5 @@
 ---
-title: "示例九 - 流水线示例(在线版)" 
+title: "示例九 - CI/CD 流水线(在线版)" 
 ---
 
 Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Source Control Management) 的一部分，因此可使用 `git clone`或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在代码仓库中应包含 Jenkinsfile。
@@ -69,13 +69,13 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ### 第三步：创建 kubeconfig 凭证
 
-同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig`的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig` 的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
 
 > 说明：kubeconfig 类型的凭证用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
 
-### 第四步：创建sonarQube凭证
+### 第四步：创建 sonarQube 凭证
 
-同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本`的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token 信息。完成后点击 **确定**。
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本` 的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token 信息。完成后点击 **确定**。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
 
@@ -255,7 +255,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ### 第五步：审核流水线
 
-为方便演示，此处默认用当前账户来审核，当流水线执行至 `input`步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile-online 中分别定义了三个阶段 (stage) 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中依次需要对 `deploy to dev, push with tag, deploy to production`这三个阶段审核 `3`次，若不审核或点击 **终止** 则流水线将不会继续运行。
+为方便演示，此处默认用当前账户来审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile-online 中分别定义了三个阶段 (stage) 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中依次需要对 `deploy to dev, push with tag, deploy to production` 这三个阶段审核 `3` 次，若不审核或点击 **终止** 则流水线将不会继续运行。
 
 ![审核流水线](https://kubesphere-docs.pek3b.qingstor.com/png/devops_input.png)
 
@@ -269,7 +269,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 查看流水线
 
-1、点击流水线中 `活动`列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-online](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online) 中被定义。
+1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-online](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online) 中被定义。
 
 ![stage](https://kubesphere-docs.pek3b.qingstor.com/png/stage.png)
 
@@ -304,9 +304,9 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 4、点击 `release`，查看 Fork 到您个人 GitHub repo 中的 `v0.0.1`tag 和 release，它是由 jenkinsfile 中的 `push with tag`stage 生成的
 
-5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960`端口为例。
+5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961`在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
 **添加端口转发规则**
 

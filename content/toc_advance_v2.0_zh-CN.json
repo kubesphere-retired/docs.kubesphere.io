@@ -134,7 +134,7 @@
           "entry": "./advanced-v2.0/zh-CN/quick-start/source-to-image.md"
         },
         {
-          "title": "示例九 - 流水线示例(在线版)",
+          "title": "示例九 - CI/CD 流水线(在线版)",
           "entry": "./advanced-v2.0/zh-CN/quick-start/devops-online.md"
         },
         {

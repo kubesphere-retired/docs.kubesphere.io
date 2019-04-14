@@ -1,23 +1,23 @@
 ---
-title: "示例十 - Harbor+GitLab流水线示例(离线版)" 
+title: "示例十 - Harbor+GitLab 流水线示例(离线版)" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)和GitLab，内置的 Harbor和GitLab作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目进行管理，仅需安装前在配置文件 `conf/vars.yml`中简单配置即可。KubeSphere的安装文档请参考[安装说明](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/intro/>)。Harbor的具体安装请参考[安装内置Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>)。GitLab的具体安装请参考[安装内置GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目进行管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可。KubeSphere 的安装文档请参考 [安装说明](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/intro/>)。Harbor 的具体安装请参考 [安装内置 Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>)。GitLab 的具体安装请参考 [安装内置 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
 
 ## 目的
 
-​	本示例演示通过内置 GitLab 仓库中的 Jenkinsfile 来创建流水线，流水线共包含 7 个阶段，首先会将 GitLab 中的源码构建成镜像，然后推送到 Harbor 私有仓库，最终将一个输出 “Hello,World!” 的Web示例部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。
+​本示例演示通过内置 GitLab 仓库中的 Jenkinsfile 来创建流水线，流水线共包含 7 个阶段，首先会将 GitLab 中的源码构建成镜像，然后推送到 Harbor 私有仓库，最终将一个输出 “Hello,World!” 的Web示例部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。
 
 ## 前提条件
 
-- 本示例的代码仓库以 GitLab 和 Harbor 为例，参考前请确保正确[安装内置Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>) 和 [GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
+- 本示例的代码仓库以 GitLab 和 Harbor 为例，参考前请确保正确 [安装内置Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>) 和 [GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
 - 已创建了企业空间和 DevOps 工程，若还未创建请参考 [管理员快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)。
 - 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。
 - 已准备Kubesphere安装包，以及相关基础镜像。
 
 ## 预估时间
 
-​	60-90 分钟 (时间由于环境的网速等因素而有所不同) 。
+​60-90 分钟 (时间由于环境的网速等因素而有所不同) 。
 
 ## 操作示例
 
@@ -32,7 +32,7 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 > - **阶段一. Checkout SCM**: 拉取 GitLab 仓库代码
 > - **阶段二. Unit test**: 单元测试，如果测试通过了才继续下面的任务
 > - **阶段三. sonarQube analysis**：sonarQube 代码质量检测
-> - **阶段四. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER`推送至 Harbor (其中 `$BUILD_NUMBER`为 pipeline 活动列表的运行序号)。
+> - **阶段四. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 Harbor (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
 > - **阶段五. Push latest image**: 将 master 分支打上 tag 为 latest，并推送至 Harbor。
 > - **阶段六. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
 > - **阶段七. Push with tag**: 生成 tag 并 release 到 GitLab，并推送到 Harbor。
@@ -42,9 +42,9 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 ### 第一步：系统配置修改
 
-​	1、通过 CoreDNS 的 hosts 插件配置 KubeSphere 集群的 DNS 服务，使集群内部可通过 hostname 域名访问外部服务。
+​1、通过 CoreDNS 的 hosts 插件配置 KubeSphere 集群的 DNS 服务，使集群内部可通过 hostname 域名访问外部服务。
 
-​	登陆集群控制节点，执行命令`kubectl edit configmap coredns -n kube-system -o yaml`，该命令可编辑 coredns 的配置文件，编辑 data 字段，如下， hosts 的内容为新增内容。
+​	登陆集群控制节点，执行命令 `kubectl edit configmap coredns -n kube-system -o yaml`，该命令可编辑 coredns 的配置文件，编辑 data 字段，如下， hosts 的内容为新增内容。
 
 ```bash
 data:
@@ -71,7 +71,7 @@ data:
     }
 ```
 
-**说明：`192.168.0.2`**是 KubeSphere 集群的内任意节点IP，请根据实际情况填写。`harbor.devops.kubesphere.local`和`gitlab.devops.kubesphere.local`分别为 Harbor 和 GitLab 的域名。
+**说明：`192.168.0.2`** 是 KubeSphere 集群的内任意节点IP，请根据实际情况填写。`harbor.devops.kubesphere.local` 和 `gitlab.devops.kubesphere.local` 分别为 Harbor 和 GitLab 的域名。
 
 ​	2、修改 Jenkins 初始化配置，通过修改 Jenkins 初始化配置，使在执行构建任务的容器中配置--insecure-registry，使 Harbor 能正常推拉镜像。
 
@@ -79,23 +79,23 @@ data:
 
 ![workspace](https://kubesphere-docs.pek3b.qingstor.com/png/workspace.png)
 
-选择`system-workspace`，点击进入该企业空间
+选择 `system-workspace`，点击进入该企业空间
 
 ![sapce](https://kubesphere-docs.pek3b.qingstor.com/png/sapce.png)
 
-选择`项目管理`，进入项目`kubesphere-devops-system`。
+选择 `项目管理`，进入项目`kubesphere-devops-system`。
 
 ![namespace](https://kubesphere-docs.pek3b.qingstor.com/png/namespace.png)
 
-点击配置中心下的`配置`，然后找到名称为`jenkins-casc-config`的配置文件，点击进入。
+点击配置中心下的 `配置`，然后找到名称为 `jenkins-casc-config` 的配置文件，点击进入。
 
 ![configmap](https://kubesphere-docs.pek3b.qingstor.com/png/configmap.png)
 
-进入配置后，点击`更多操作`下面的`编辑配置文件`。
+进入配置后，点击 `更多操作` 下面的 `编辑配置文件` 。
 
 ![editcm](https://kubesphere-docs.pek3b.qingstor.com/png/editcm.png)
 
-该配置文件共有配置4个服务，在 data.jenkins.yam.jenkins.clouds.kubernetes.templates 下，name 分别为`base`、`nodejs`、`maven`、`go`，分别修改其各个`name`为`docker-server`下的args参数，将原来的`args: "--insecure-registry harbor.devops.kubesphere:30280"`改为`args: "--insecure-registry harbor.devops.kubesphere.local:30280`。以 go 为示例，修改完后的配置如下(其中标注*的为修改行)：
+该配置文件共有配置4个服务，在 data.jenkins.yam.jenkins.clouds.kubernetes.templates 下，name 分别为 `base`、`nodejs`、`maven`、`go`，分别修改其各个 `name` 为 `docker-server` 下的 args 参数，将原来的 `args: "--insecure-registry harbor.devops.kubesphere:30280"` 改为 `args: "--insecure-registry harbor.devops.kubesphere.local:30280`。以 go 为示例，修改完后的配置如下(其中标注*的为修改行)：
 
 ```go
           - name: "go"
@@ -131,7 +131,7 @@ data:
                 memory: false
 ```
 
-修改更新后，需要登陆 Jenkins 重新加载，具体步骤请参考[登陆Jenkins重新加载](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/devops/jenkins-setting/#%E7%99%BB%E9%99%86-jenkins-%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD>)。
+修改更新后，需要登陆 Jenkins 重新加载，具体步骤请参考 [登陆Jenkins重新加载](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/devops/jenkins-setting/#%E7%99%BB%E9%99%86-jenkins-%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD>)。
 
 ### 第二步：上传基础镜像到Harbor
 
@@ -143,7 +143,7 @@ data:
 
 3、本地加入 insecure
 
-若改主机为 KubeSphere 集群的节点，则无需配置，请跳过此步骤。若为集群外部主机，请修改 Docker 配置文件`daemon.json`，在Linux上的默认路径为 `/etc/docker/daemon.json`，Windows 上的默认路径为`%programdata%\docker\config\daemon.json`，在该文件中加入配置
+若改主机为 KubeSphere 集群的节点，则无需配置，请跳过此步骤。若为集群外部主机，请修改 Docker 配置文件 `daemon.json`，在Linux上的默认路径为 `/etc/docker/daemon.json`，Windows 上的默认路径为`%programdata%\docker\config\daemon.json`，在该文件中加入配置
 
 ``` json
   "insecure-registries" : [
@@ -151,11 +151,11 @@ data:
   ]
 ```
 
-具体文件参数详情可参考[Docker Daemon配置文件](<https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file>)。
+具体文件参数详情可参考 [Docker Daemon配置文件](<https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file>)。
 
 然后重启 Docker。
 
-2、登陆 Harbor，执行命令`docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280`。
+2、登陆 Harbor，执行命令 `docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280`。
 
 ```dockerfile
 $ docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280
@@ -168,7 +168,7 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 ```
 
-4、推送镜像，执行命令`docker push harbor.devops.kubesphere.local:30280/library/java:openjdk-8-jre-alpine`
+4、推送镜像，执行命令 `docker push harbor.devops.kubesphere.local:30280/library/java:openjdk-8-jre-alpine`
 
 ```bash
 $ docker push harbor.devops.kubesphere.local:30280/library/java:openjdk-8-jre-alpine
@@ -215,13 +215,13 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 ### 第三步：创建 kubeconfig 凭证
 
-同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig`的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig` 的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
 
 > 说明：kubeconfig 类型的凭证用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
 
 ### 第四步：创建sonarQube凭证
 
-同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本`的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token信息。完成后点击 **确定**。
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本` 的凭证，凭证 ID 命名为 **sonar-token**，密钥 输入 soanr 上 Project 的 token信息。完成后点击 **确定**。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
 
@@ -233,9 +233,9 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 ### 第一步：进入项目
 
-​	1.根据前提条件中的要求，现应已按照[安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)要求正确将 GitHub 中的[`devops-java-sample`](https://github.com/kubesphere/devops-java-sample)导入到GitLab中。
+​	1.根据前提条件中的要求，现应已按照 [安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/) 要求正确将 GitHub 中的 [`devops-java-sample`](https://github.com/kubesphere/devops-java-sample) 导入到GitLab中。
 
-> 注：若因网络限制，无法从 GitHub 导入，请自行clone至其他服务器，然后上传至GitLab仓库，仓库名称请保持一致。
+> 注：若因网络限制，无法从 GitHub 导入，请自行 clone 至其他服务器，然后上传至GitLab仓库，仓库名称请保持一致。
 
 ![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-succ.png)
 
@@ -264,7 +264,7 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 ## 创建项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev`和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件] (<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
 ### 第一步：填写项目信息
 
@@ -316,7 +316,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 2、输入仓库URl，默认为`http://gitlab.devops.kubesphere.local:30080/admin1/devops-java-sample.git`，
 
-注意：GitLab 中提供的 HTTP 和 SSH URI 有误。HTTP URI 需要手动加上端口号30080，SSH URI需要手动加上协议`ssh://`和端口号：30090。
+注意：GitLab 中提供的 HTTP 和 SSH URI 有误。HTTP URI 需要手动加上端口号30080，SSH URI 需要手动加上协议 `ssh://` 和端口号：30090。
 
 证书选择之前创建的 `gitlab-id`。
 
@@ -375,11 +375,11 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 1、点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master`分支，系统将根据输入的分支加载 Jenkinsfile (默认是根目录下的 Jenkinsfile)。
 
-2、由于仓库的 Jenkinsfile 中 `TAG_NAME: defaultValue`没有设置默认值，因此在这里的 `TAG_NAME`可以输入一个 tag 编号，比如输入 v0.0.1。
+2、由于仓库的 Jenkinsfile 中 `TAG_NAME: defaultValue` 没有设置默认值，因此在这里的 `TAG_NAME` 可以输入一个 tag 编号，比如输入 v0.0.1。
 
 3、点击 **确定**，将新生成一条流水线活动开始运行。
 
-> 说明: tag 用于在 GitLab 和 Harbor 中分别生成带有 tag 的 release 和镜像。 注意: 在主动运行流水线以发布 release 时，`TAG_NAME`不应与之前代码仓库中所存在的 `tag`名称重复，如果重复会导致流水线的运行失败。
+> 说明: tag 用于在 GitLab 和 Harbor 中分别生成带有 tag 的 release 和镜像。 注意: 在主动运行流水线以发布 release 时，`TAG_NAME` 不应与之前代码仓库中所存在的 `tag` 名称重复，如果重复会导致流水线的运行失败。
 
 ![运行流水线](https://kubesphere-docs.pek3b.qingstor.com/png/run-pipeline-demo1.png)
 
@@ -391,11 +391,11 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ### 第五步：审核流水线
 
-为方便演示，此处默认用当前账户来审核，当流水线执行至 `input`步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile 中分别定义了三个阶段 (stage) 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中依次需要对 `deploy to dev, push with tag, deploy to production`这三个阶段审核 `3`次，若不审核或点击 **终止** 则流水线将不会继续运行。
+为方便演示，此处默认用当前账户来审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile 中分别定义了三个阶段 (stage) 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中依次需要对 `deploy to dev, push with tag, deploy to production`这三个阶段审核 `3`次，若不审核或点击 **终止** 则流水线将不会继续运行。
 
 ![审核流水线](https://kubesphere-docs.pek3b.qingstor.com/png/devops_input.png)
 
-> 说明：在实际的开发生产场景下，可能需要更高权限的管理员或运维人员来审核流水线和镜像，并决定是否允许将其推送至代码或镜像仓库，以及部署至开发或生产环境。Jenkinsfile 中的 `input`步骤支持指定用户审核流水线，比如要指定用户名为 project-admin 的用户来审核，可以在 Jenkinsfile 的 input 函数中追加一个字段，如果是多个用户则通过逗号分隔，如下所示：
+> 说明：在实际的开发生产场景下，可能需要更高权限的管理员或运维人员来审核流水线和镜像，并决定是否允许将其推送至代码或镜像仓库，以及部署至开发或生产环境。Jenkinsfile 中的 `input` 步骤支持指定用户审核流水线，比如要指定用户名为 project-admin 的用户来审核，可以在 Jenkinsfile 的 input 函数中追加一个字段，如果是多个用户则通过逗号分隔，如下所示：
 
 ```groovy
 ···
@@ -415,14 +415,14 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 验证运行结果
 
-若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 Harbor 中，我们在 Jenkinsfile 中已经配置过 Harbor，登录 Harbor 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 Harbor，并且在 GitLab 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev`和 `kubesphere-sample-prod`项目环境中。
+若流水线的每一步都能执行成功，那么流水线最终 build 的 Docker 镜像也将被成功地 push 到 Harbor 中，我们在 Jenkinsfile 中已经配置过 Harbor，登录 Harbor 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 Harbor，并且在 GitLab 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
 | Dev        | 公网 IP : 30861 (`${EIP}:${NODEPORT}`) | kubesphere-sample-dev       | ks-sample-dev     | ks-sample-dev  |
 | Production | 公网 IP : 30961 (`${EIP}:${NODEPORT}`) | kubesphere-sample-prod      | ks-sample         | ks-sample      |
 
-1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod`项目下的部署。
+1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod` 项目下的部署。
 
 进入该项目，在左侧的菜单栏点击 **工作负载 → 部署**，可以看到 ks-sample 已创建成功。正常情况下，部署的状态应该显示 **运行中**。
 
@@ -433,11 +433,11 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 **查看服务** 
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
-3、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-sample`就是 APP_NAME 的值，而 tag也是在 jenkinsfile 中定义的 tag。
+3、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-sample` 就是 APP_NAME 的值，而 tag也是在 jenkinsfile 中定义的 tag。
 
-5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960`端口为例。
+5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961`在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
 **添加端口转发规则**
 ![port](https://kubesphere-docs.pek3b.qingstor.com/png/port.png)
@@ -450,11 +450,11 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 在浏览器访问部署到 KubeSphere Dev 和 Production 环境的服务：
 
 **Dev 环境**
-访问 `http://127.0.0.1:30861/`或者 `http://EIP:30861/`。
+访问 `http://127.0.0.1:30861/` 或者 `http://EIP:30861/`。
 
 **Prodcution 环境**
-访问 `http://127.0.0.1:30961/`或者 `http://EIP:30961\`。
+访问 `http://127.0.0.1:30961/` 或者 `http://EIP:30961\`。
 
-页面会出现`Hello,World!`。
+页面会出现 `Hello,World!`。
 
-至此，结合GitLab和Harbor，在离线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](https://docs.kubesphere.io/advanced-v2.0/zh-CN/faq)。
+至此，结合 GitLab 和 Harbor，在离线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](https://docs.kubesphere.io/advanced-v2.0/zh-CN/faq)。

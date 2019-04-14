@@ -44,9 +44,9 @@ title: "入门必读"
 
 - [示例八 - Source to Image](../source-to-image)
 
-Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的BUilder image中，来将编译后的代码打包成docker镜像。
+Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的 Builder image中，来将编译后的代码打包成 Docker 镜像。
 
-- [示例九 - 流水线示例(在线版)](../devops-online)
+- [示例九 - CI/CD 流水线(在线版)](../devops-online)
 
 本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，包括拉取代码、单元测试、代码质量检测、构建镜像、推送和发布版本，最终示例网站部署到 KubeSphere 集群中的开发环境和产品环境，并且能够通过公网访问。
 
