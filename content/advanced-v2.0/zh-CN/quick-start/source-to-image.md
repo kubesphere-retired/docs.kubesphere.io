@@ -6,7 +6,7 @@ title: "示例八 - Source-to-image"
 
 ## 目的
 
-本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 Kubesphere 上使用 Source to image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署集群中。
+本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 Kubesphere 上使用 Source to image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署到集群中。
 
 ## 前提条件
 
