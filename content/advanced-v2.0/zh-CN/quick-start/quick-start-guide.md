@@ -42,10 +42,6 @@ title: "入门必读"
 
 本示例以文档和视频演示如何基于 [示例六 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，以可视化的方式构建 CI/CD 流水线 (包含示例六的前六个阶段)，最终将本文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。
 
-- [示例八 - Source to Image](../source-to-image)
-
-Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的 Builder image中，来将编译后的代码打包成 Docker 镜像。
-
 - [示例九 - CI/CD 流水线(在线版)](../devops-online)
 
 本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，包括拉取代码、单元测试、代码质量检测、构建镜像、推送和发布版本，最终示例网站部署到 KubeSphere 集群中的开发环境和产品环境，并且能够通过公网访问。
@@ -53,3 +49,8 @@ Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将
 - [示例十 - Harbor + GitLab 流水线示例(离线版)](../harbor-gitlab-devops-offline)
 
 本示例演示如何在离线环境下使用内置的 Harbor 和 GitLab，仓库中的 Jenkinsfile 来创建 CI/CD 流水线，包括拉取代码、单元测试、代码质量检测、构建镜像、推送和发布版本，最终示例网站部署到 KubeSphere 集群中的开发环境和产品环境，并且能够通过公网访问。
+
+
+- [示例十一 - Source to Image](../source-to-image)
+
+Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的 Builder image中，来将编译后的代码打包成 Docker 镜像。
