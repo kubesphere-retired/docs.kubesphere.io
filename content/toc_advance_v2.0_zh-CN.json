@@ -124,6 +124,10 @@
         {
           "title": "示例七 - Jenkinsfile-out-of-SCM",
           "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
+        },
+        {
+          "title": "示例八 - Bookinfo 应用的灰度发布示例",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/bookinfo-canary.md"
         }
       ]
     },
@@ -309,6 +313,10 @@
             {
               "title": "灰度发布",
               "entry": "./advanced-v2.0/zh-CN/ingress-service/grayscale.md"
+            },
+            {
+              "title": "流量治理",
+              "entry": "./advanced-v2.0/zh-CN/ingress-service/traffic-gov.md"
             },
             {
               "title": "应用路由",
