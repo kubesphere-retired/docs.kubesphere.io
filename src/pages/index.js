@@ -272,7 +272,7 @@ const Footer = ({ t }) => {
         <LanguageWrapper>
           <Language />
         </LanguageWrapper>
-        <p className="icp">KubeSphere™ 2019 All Rights Reserved.</p>
+        <p className="icp">KubeSphere®️ 2019 All Rights Reserved.</p>
       </Wrapper>
     </FooterWrapper>
   )
