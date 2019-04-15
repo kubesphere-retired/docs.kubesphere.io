@@ -2,13 +2,14 @@
 title: "日志查询"
 ---
 
-应用日志的收集、分析和监控是日常运维工作中非常关键的部分，妥善地处理应用日志收集也是应用容器化的一个重要主题。KubeSphere 提供了非常强大且易用的日志管理功能比如多租户日志管理、多级别日志查询 (项目/工作负载/容器组/容器以及关键字)、灵活方便的日志收集配置选项等。Kibana 虽然很强大，但是它无法区分不同用户的日志，用户只能在整个集群范围内查看和搜索日志，而且 Kibana 中展现的 Kubernetes 日志包含了很多无关的信息。
+应用日志的收集、分析和监控是日常运维工作中非常关键的部分，妥善地处理应用日志收集也是应用容器化的一个重要主题。KubeSphere 提供了非常强大且易用的日志管理功能比如多租户日志管理、多级别日志查询 (项目/工作负载/容器组/容器以及关键字)、灵活方便的日志收集配置选项等。在 KubeSphere 的日志查询系统中，不同的租户只能看到属于自己的日志信息，而 Kibana 虽然强大，但是它无法区分不同租户的日志，用户只能在整个集群范围内查看和搜索日志，并且 Kibana 中展现的 Kubernetes 日志包含了很多无关的信息。
 
-KubeSphere 的日志系统目前是通过 Fluent-Bit Operator 在集群的所有节点上统一部署和配置 Fluent-bit，由 Fluent-bit 进行收集所有容器的日志信息，然后直接传到 Elasticsearch，集群管理员也可以指定 Kafka 或 Fluentd 等存储、消息队列中。
 
 ## 日志系统架构
 
 ![日志系统架构](https://pek3b.qingstor.com/kubesphere-docs/png/20190410010910.png)
+
+KubeSphere 的日志系统目前是通过 Fluent-Bit Operator 在集群的所有节点上统一部署和配置 Fluent-bit，由 Fluent-bit 进行收集所有容器的日志信息，然后直接传到 Elasticsearch，集群管理员也可以指定 Kafka 或 Fluentd 等存储、消息队列中。
 
 - Fluentbit-opearator 以 DaemonSet 方式在每个节点上运⾏⼀个实例，节点物理机的 `/var/log/containers` 目录映射到 Fluentbit-opearator 容器中。 Fluentbit-opearator 的 Input 插件 tail 主机映射到容器的 log 日志文件，Output 插件依据配置，将采集到的⽇志信息发送到 ElasticSearch 、 Kafka 等存储、消息队列中。ElasticSearch 输出插件依据⽇志信息，在 
 
