@@ -1,5 +1,5 @@
 ---
-title: "示例十 - Harbor+GitLab 流水线示例(离线版)" 
+title: "CI/CD 流水线示例 (离线版)" 
 ---
 
 KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目进行管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可。KubeSphere 的安装文档请参考 [安装说明](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/intro/>)。Harbor 的具体安装请参考 [安装内置 Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>)。GitLab 的具体安装请参考 [安装内置 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
@@ -267,15 +267,13 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 ### 第一步：进入项目
 
-​	1.根据前提条件中的要求，现应已按照 [安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/) 要求正确将 GitHub 中的 [`devops-java-sample`](https://github.com/kubesphere/devops-java-sample) 导入到GitLab中。
+​1. 根据前提条件中的要求，现应已按照 [安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/) 要求正确将 GitHub 中的 [`devops-java-sample`](https://github.com/kubesphere/devops-java-sample) 导入到GitLab中。
 
-> 注：若因网络限制，无法从 GitHub 导入，请自行 clone 至其他服务器，然后上传至GitLab仓库，仓库名称请保持一致。
-
-> 注：若因网络限制，无法从 GitHub 导入，请自行clone至其他服务器，然后上传至GitLab仓库，仓库名称请保持一致。
+> 注：若因网络限制，无法从 GitHub 导入，请自行 clone 至其他服务器，然后上传至 GitLab 仓库，仓库名称请保持一致。
 
 ![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-succ.png)
 
-​	2.点击项目进入。
+​2. 点击项目进入。
 
 ### 第二步：修改 Jenkinsfile
 
@@ -477,7 +475,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 3、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-sample` 就是 APP_NAME 的值，而 tag也是在 jenkinsfile 中定义的 tag。
 
-5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
+4、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
 
 例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 

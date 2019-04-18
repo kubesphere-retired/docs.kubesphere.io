@@ -1,5 +1,5 @@
 ---
-title: "示例十一 - Source-to-image" 
+title: "示例六 - Source-to-image" 
 ---
 
 ​Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的Builder image中，来将编译后的代码打包成 Docker 镜像。它使得应用程序开发人员对他们的代码进行更改，而不用知道 Dockerfile 或 Docker 镜像的细节，让对于 Docker 并不感兴趣的开发人员构建镜像更加方便，或者可以给构建过程提供更加强大的功能。
@@ -147,7 +147,7 @@ title: "示例十一 - Source-to-image"
 选择服务类型为 `通过集群内部IP来访问服务 Virtual IP`，如下图。
 
 ![type](https://kubesphere-docs.pek3b.qingstor.com/png/type.png)
-。】
+
 点击下一步，然后点击指定工作负载，选择刚刚创建的名称为 `s2i-test` 的部署，如下图。
 
 ![select](https://kubesphere-docs.pek3b.qingstor.com/png/select.png)
