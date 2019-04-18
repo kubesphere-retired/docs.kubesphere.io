@@ -27,7 +27,7 @@ title: "示例二 - 部署 Wordpress"
 
 #### 第一步：创建配置
 
-Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库的密码属于敏感信息，不适合以明文的方式表现在步骤中，因此以创建配置 (ConfigMap) 的方式来代替该环境变量。创建的配置将在创建 Wordpress 的容器组设置时作为环境变量写入。
+Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库的密码，为演示方便，以创建配置 (ConfigMap) 的方式来代替该环境变量。创建的配置将在创建 Wordpress 的容器组设置时作为环境变量写入。
 
 1.1. 在当前项目下左侧菜单栏的 **配置中心** 选择 **配置**，点击 **创建配置**。
 

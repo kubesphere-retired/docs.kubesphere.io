@@ -98,7 +98,7 @@
           "entry": "./advanced-v2.0/zh-CN/quick-start/quick-start-guide.md"
         },
         {
-          "title": "管理员快速入门",
+          "title": "多租户管理快速入门",
           "entry": "./advanced-v2.0/zh-CN/quick-start/admin-quick-start.md"
         },
         {
@@ -122,28 +122,24 @@
           "entry": "./advanced-v2.0/zh-CN/quick-start/hpa.md"
         },
         {
-          "title": "示例六 - Jenkinsfile-in-SCM",
-          "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-in-scm.md"
+          "title": "示例六 - Source-to-image",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/source-to-image.md"
         },
         {
-          "title": "示例七 - Jenkinsfile-out-of-SCM",
-          "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
-        },
-        {
-          "title": "示例八 - Bookinfo 应用的灰度发布示例",
+          "title": "示例七 - Bookinfo 微服务的灰度发布",
           "entry": "./advanced-v2.0/zh-CN/quick-start/bookinfo-canary.md"
         },
         {
-          "title": "示例九 - CI/CD 流水线(在线版)",
+          "title": "示例八 - Jenkinsfile in SCM 流水线",
           "entry": "./advanced-v2.0/zh-CN/quick-start/devops-online.md"
         },
         {
-          "title": "示例十 - Harbor + GitLab 流水线示例(离线版)",
-          "entry": "./advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
+          "title": "示例九 - Jenkinsfile-out-of-SCM",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
         },
         {
-          "title": "示例十一 - Source-to-image",
-          "entry": "./advanced-v2.0/zh-CN/quick-start/source-to-image.md"
+          "title": "示例十 - CI/CD 流水线(离线版)",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
         }
       ]
     },
@@ -217,6 +213,14 @@
             {
               "title": "应用资源监控",
               "entry": "./advanced-v2.0/zh-CN/monitoring/application-resources.md"
+            },
+            {
+              "title": "监控策略 - 节点级别",
+              "entry": "./advanced-v2.0/zh-CN/monitoring/alert-policy.md"
+            },
+            {
+              "title": "监控消息 - 节点级别",
+              "entry": "./advanced-v2.0/zh-CN/monitoring/alert-message.md"
             }
           ]
         },

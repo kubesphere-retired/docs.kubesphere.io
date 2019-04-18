@@ -5,7 +5,7 @@ title: "All-in-One 模式"
 
 ## 前提条件
 
-- 目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced) 至待安装机器中。
+- 目前高级版已发布了 v2.0.0，建议下载最新的 [KubeSphere Advanced Edition 2.0.0](https://kubesphere.io/download/?type=advanced) 至待安装机器中。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。若还未准备存储服务端，为方便测试部署，也可使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储。
 
 ## 第一步: 准备主机
@@ -16,32 +16,30 @@ title: "All-in-One 模式"
 
 | 操作系统 | 最小配置 | 推荐配置 |
 | --- | --- | --- | 
-| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-|Debian Stretch 9.5 (64 bit)| CPU：4 核 <br/> 内存：8 G <br/> 系统盘：100 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+| CentOS 7.5 (64 bit) | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：100 G | CPU：大于 8 核 <br/> 内存：大于 16 G <br/> 系统盘：不小于 100 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：100 G | CPU：大于 8 核 <br/> 内存：大于 16 G <br/> 系统盘：不小于 100 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：100 G | CPU：大于 8 核 <br/> 内存：大于 16 G <br/> 系统盘：不小于 100 G |
+|Debian Stretch 9.5 (64 bit)| CPU：8 核 <br/> 内存：16 G <br/> 系统盘：100 G | CPU：大于 8 核 <br/> 内存：大于 16 G <br/> 系统盘：不小于 100 G |
 
 
 
 ## 第二步: 准备安装包
 
-**1.** 建议下载最新的 [KubeSphere Advanced-v1.0.1](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
-
-> 注意：若您的机器已安装了 Advanced-v1.0.0，请直接参考 [升级指南](../upgrade) 将您原有的环境一键升级至最新版本，无需参考以下步骤重复安装。
+**1.** 建议下载最新的 [KubeSphere Advanced-v2.0.0](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
 
 ```bash
-$ tar -zxf kubesphere-all-advanced-1.0.1.tar.gz
+$ tar -zxf kubesphere-all-advanced-2.0.0.tar.gz
 ```
 
-**2.** 进入 “`kubesphere-all-advanced-1.0.1`” 目录。
+**2.** 进入 “`kubesphere-all-advanced-2.0.0`” 目录。
 
 ```bash
-$ cd kubesphere-all-advanced-1.0.1
+$ cd kubesphere-all-advanced-2.0.0
 ```
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。最新的Installer 默认安装的 Kubernetes 版本是 v1.12.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。最新的Installer 默认安装的 Kubernetes 版本是 v1.13.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
@@ -83,7 +81,7 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-01-25
+https://kubesphere.io/               2018-04-19
 ################################################
 Please input an option: 1
 

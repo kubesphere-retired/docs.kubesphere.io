@@ -6,7 +6,7 @@ title: "Multi-Node 模式"
 
 ## 前提条件
 
-- 目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced) 至待安装机器中。
+- 目前高级版已发布了 v2.0.0，建议下载最新的 [KubeSphere Advanced Edition 2.0.0](https://kubesphere.io/download/?type=advanced) 至待安装机器中。
 - 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端，存储服务端的磁盘容量参考主机规格表中的推荐配置或选择更高的容量。为方便初次安装但没有准备存储服务端时进行部署测试，也可配置部署 NFS server in Kubernetes 到当前集群。
 
 ## 第一步: 准备主机
@@ -15,16 +15,17 @@ title: "Multi-Node 模式"
 
 > 说明：若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
 
-| 操作系统 | 最小配置 | 推荐配置 |
+| 操作系统 | 最小配置 | 推荐配置 (根据业务规模配置) |
 | --- | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-|Debian Stretch 9.5 (64 bit)| CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
+| CentOS 7.5 (64 bit) | 总 CPU 应不小于 8 核 <br/> 总内存不小于 16 G <br/> 系统盘：40 G | 总 CPU：大于 8 核 <br/> 总内存：大于 16 G <br/> 系统盘：不小于 100 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | 总 CPU 应不小于 8 核 <br/> 总内存不小于 16 G <br/> 系统盘：40 G | 总 CPU：大于 8 核 <br/> 总内存：大于 16 G <br/> 系统盘：不小于 100 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | 总 CPU 应不小于 8 核 <br/> 总内存不小于 16 G <br/> 系统盘：40 G | 总 CPU：大于 8 核 <br/> 总内存：大于 16 G <br/> 系统盘：不小于 100 G |
+|Debian Stretch 9.5 (64 bit)| 总 CPU 应不小于 8 核 <br/> 总内存不小于 16 G <br/> 系统盘：40 G | 总CPU：大于 8 核 <br/> 总内存：大于 16 G <br/> 系统盘：不小于 100 G |
 
 
+以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。
 
-以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在底层的 Kubernetes 中 Worker 节点跟 Master 节点都运行着一个 **kubelet** 组件，但 Master 节点上还会运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
+在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在底层的 Kubernetes 中 Worker 节点跟 Master 节点都运行一个 **kubelet** 组件，但 Master 节点上还会运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
 
 > 说明：高级版支持 Master 和 etcd 节点高可用配置，但本示例仅作为测试部署的演示，因此 3 台主机中仅部署单个 Master 和单个 etcd，正式环境建议配置 Master 和 etcd 节点的高可用，请参阅 [Master 和 etcd 节点高可用配置](../master-ha)。
 
@@ -42,18 +43,18 @@ title: "Multi-Node 模式"
 
 ## 第二步: 准备安装配置文件
 
-**1.** 建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
+**1.** 建议下载最新的 [KubeSphere Advanced Edition 2.0.0](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
 
-> 注意：若您的机器已安装了 Advanced-v1.0.0，请直接参考 [升级指南](../upgrade) 将您原有的环境一键升级至最新版本，无需参考以下步骤重复安装。
+> 注意：若您的机器已安装了 Advanced 1.0.1，请直接参考 [升级指南](../upgrade) 将您原有的环境一键升级至最新版本，无需参考以下步骤重复安装。
 
 ```bash
-$ tar -zxf kubesphere-all-advanced-1.0.1.tar.gz
+$ tar -zxf kubesphere-all-advanced-2.0.0.tar.gz
 ```
 
-**2.** 进入 “`kubesphere-all-advanced-1.0.1`” 目录。
+**2.** 进入 “`kubesphere-all-advanced-2.0.0`” 目录。
 
 ```bash
-$ cd kubesphere-all-advanced-1.0.1
+$ cd kubesphere-all-advanced-2.0.0
 ```
 
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
@@ -126,7 +127,7 @@ nfs_server_is_default_class: true
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.13.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
 
 参考以下步骤开始 multi-node 部署。
 
@@ -154,7 +155,7 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-01-25
+https://kubesphere.io/               2018-04-18
 ################################################
 Please input an option: 2
 

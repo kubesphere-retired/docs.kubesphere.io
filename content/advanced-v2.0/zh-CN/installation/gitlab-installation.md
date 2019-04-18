@@ -46,7 +46,7 @@ GitLab 服务对外暴露的节点端口 (NodePort) 为 30080(HTTP)、30443(HTTP
 
 关于 GitLab 的详细使用详见 [GitLab文档](<https://docs.gitlab.com/ee/README.html>)。本示例以 `devops-sample` 为例展示如何从GitHub导入项目至GitLab。
 
-​	1、请先将 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>)fork至您个人的 GitHub 仓库。。
+​	1、请先将 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>)fork至您个人的 GitHub 仓库。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/fork-repo.png))
 

@@ -1,10 +1,10 @@
 ---
-title: "管理员快速入门"
+title: "多租户管理快速入门"
 ---
 
 ## 目的
 
-本文档面向初次使用 KubeSphere 的集群管理员用户，引导新手用户创建企业空间、创建新的角色和账户，然后邀请新用户进入企业空间后，创建项目和 DevOps 工程，并引导管理员使用 web Kubectl 工具，帮助用户熟悉多租户下的用户和角色管理，以及 web Kubectl 工具的使用，快速上手 KubeSphere。
+本文档面向初次使用 KubeSphere 的集群管理员用户，引导新手用户创建企业空间、创建新的角色和账户，然后邀请新用户进入企业空间后，创建项目和 DevOps 工程，帮助用户熟悉多租户下的用户和角色管理，快速上手 KubeSphere。
 
 ## 前提条件
 
@@ -133,6 +133,8 @@ title: "管理员快速入门"
 
 > 说明：项目管理和设置的详细说明，请参考用户指南下的项目设置系列文档。
 
+##### 邀请成员
+
 3.4. 示例项目 demo-namespace 创建成功后，点击进入示例项目。在 **步骤 2.4.** 已邀请用户 `project-regular` 加入了当前企业空间 `demo-workspace`，下一步则需要邀请 project-regular 进入该企业空间下的项目 demo-namespace。点击项目列表中的 demo-namespace 进入该项目。
 
 ![项目列表](/create-demo-namespace.png)
@@ -144,6 +146,20 @@ title: "管理员快速入门"
 3.6. 在弹窗中的 `project-regular` 点击 `"+"`，在项目的内置角色中选择 `operator` 角色。因此，后续在项目中创建和管理资源，都可以由 `project-regular` 用户登录后进行操作。
 
 ![邀请 operator](/grant-role-to-operator.png)
+
+##### 设置外网访问
+
+在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，负责接收项目外部进入的流量，并将请求转发到对应的后端服务。
+
+3.7. 设置外网访问仅项目管理员 `project-admin` 拥有开启权限，选择 「项目设置」 → 「外网访问」，点击 「设置网关」。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417080748.png)
+
+3.8. 在弹窗中，选择默认的 NodePort，并点击 「应用治理」 开启 istio 对非入侵式的微服务治理功能，然后点击 「保存」。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417081037.png)
+
+3.9. 当前可以看到网关地址、http/https 端口号和应用治理都已经开启。
 
 #### 第四步：创建 DevOps 工程
 
