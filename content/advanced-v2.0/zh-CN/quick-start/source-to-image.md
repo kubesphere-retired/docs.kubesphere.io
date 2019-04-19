@@ -2,7 +2,7 @@
 title: "示例六 - Source-to-image" 
 ---
 
-​Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的Builder image中，来将编译后的代码打包成 Docker 镜像。它使得应用程序开发人员对他们的代码进行更改，而不用知道 Dockerfile 或 Docker 镜像的细节，让对于 Docker 并不感兴趣的开发人员构建镜像更加方便，或者可以给构建过程提供更加强大的功能。
+Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的Builder image中，来将编译后的代码打包成 Docker 镜像。它使得应用程序开发人员对他们的代码进行更改，而不用知道 Dockerfile 或 Docker 镜像的细节，让对于 Docker 并不感兴趣的开发人员构建镜像更加方便，或者可以给构建过程提供更加强大的功能。
 
 ## 目的
 
@@ -27,7 +27,7 @@ title: "示例六 - Source-to-image"
 
 ![create-ca](https://kubesphere-docs.pek3b.qingstor.com/png/create-ca.png)
 
-点击创建，创建一个用于 DockerHub 登录的密钥；
+2、点击创建，创建一个用于 DockerHub 登录的密钥；
 
 - 名称：必填，此名称作为改密钥的名称使用，此处命名为 **dockerhub-id**
 - 别名：为了方便理解可自定义设置
@@ -42,7 +42,7 @@ title: "示例六 - Source-to-image"
 - 用户名：填写您个人的 DockerHub 的用户名
 - 密码：填写您个人的 DockerHub 的密码
 
-完成后点击创建
+3、完成后点击创建
 
 ![dockerhub](https://kubesphere-docs.pek3b.qingstor.com/png/dockerhub.png)
 
@@ -60,11 +60,11 @@ title: "示例六 - Source-to-image"
 
 #### 第一步：填写基本信息
 
-在左侧的工作负载菜单下，点击部署，进入部署管理界面。
+1、在左侧的工作负载菜单下，点击部署，进入部署管理界面。
 
 ![createdeploy](https://kubesphere-docs.pek3b.qingstor.com/png/createdeploy.png)
 
-点击创建，创建一个部署。
+2、点击创建，创建一个部署。
 
 - 名称：必填，给部署起一个名字，以便在使用的时候容易区分，此处使用 `s2i-test`
 - 别名：为了方便理解可自定义设置
@@ -72,35 +72,35 @@ title: "示例六 - Source-to-image"
 
 #### 第二步：容器组模版设置
 
-点击下一步，进入容器组模版设置界面，选择添加容器
+1、点击下一步，进入容器组模版设置界面，选择添加容器
 
 ![container](https://kubesphere-docs.pek3b.qingstor.com/png/container.png)
 
-然后选择`通过代码构建新的容器镜像`
+2、然后选择`通过代码构建新的容器镜像`
 
 ![build](https://kubesphere-docs.pek3b.qingstor.com/png/build.png)
 
-然后输入一下信息，
+3、然后输入一下信息，
 
 - 代码地址：源代码仓库的址（目前支持 Git，支持 HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入 Fork 之前的 Git 仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
 - 密钥：选择之前创建的 `github-id`
 - 映像模板：选择 `kubespheredev/java-8-centos7` 作为此示例的Builder image
-- 代码相对路径：使用默认的 `\` 即可
+- 代码相对路径：使用默认的 `/` 即可
 - 映像名称：可根据自己情况定义，此示例使用 `<dockerhub_username>/hello`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限
 - tag：镜像标签使用默认 `latest` 即可
-- 目标镜像仓库：选择之前创建的 Dockerhub
+- 目标镜像仓库：选择之前创建的 `dockerhub-id`
 
 ![s2i](https://kubesphere-docs.pek3b.qingstor.com/png/s2i.png)
 
-往下滑动至 `容器规格设置`，建议最大 CPU 和最大内存设置为 500m 和 1000
+4、往下滑动至 `容器规格设置`，建议最大 CPU 和最大内存设置为 500m 和 1000Mi
 
 ![plan](https://kubesphere-docs.pek3b.qingstor.com/png/plan.png)
 
-往下滑至 `服务设置`，配置端口为 8080，如：
+5、往下滑至 `服务设置`，配置端口为 8080，如：
 
 ![server](https://kubesphere-docs.pek3b.qingstor.com/png/server.png)
 
-然后点击保存
+6、然后点击保存
 
 副本数量可选择为 1，然后点击下一步
 
@@ -142,19 +142,19 @@ title: "示例六 - Source-to-image"
 
 ![service_name](https://kubesphere-docs.pek3b.qingstor.com/png/service_name.png)
 
-#### 第四步：服务设置
+#### 第三步：服务设置
 
-选择服务类型为 `通过集群内部IP来访问服务 Virtual IP`，如下图。
+1、选择服务类型为 `通过集群内部IP来访问服务 Virtual IP`，如下图。
 
 ![type](https://kubesphere-docs.pek3b.qingstor.com/png/type.png)
 
-点击下一步，然后点击指定工作负载，选择刚刚创建的名称为 `s2i-test` 的部署，如下图。
+2、点击下一步，然后点击指定工作负载，选择刚刚创建的名称为 `s2i-test` 的部署，如下图。
 
 ![select](https://kubesphere-docs.pek3b.qingstor.com/png/select.png)
 
 点击保存，然后配置端口为 `30962`,目标端口为 `8080`,具体信息填写如下图。
 
-![port](https://kubesphere-docs.pek3b.qingstor.com/png/port.png)
+![s2i-port](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-port.png)
 
 点击下一步。
 
