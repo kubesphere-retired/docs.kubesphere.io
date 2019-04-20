@@ -42,9 +42,9 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 ### 第一步：系统配置修改
 
-1、通过 CoreDNS 的 hosts 插件配置 KubeSphere 集群的 DNS 服务，使集群内部可通过 hostname 域名访问外部服务。
+一、通过 CoreDNS 的 hosts 插件配置 KubeSphere 集群的 DNS 服务，使集群内部可通过 hostname 域名访问外部服务。
 
-​	登陆集群控制节点，执行命令 `kubectl edit configmap coredns -n kube-system -o yaml`，该命令可编辑 coredns 的配置文件，编辑 data 字段，如下， hosts 的内容为新增内容。
+​	1、登陆集群控制节点，执行命令 `kubectl edit configmap coredns -n kube-system -o yaml`，该命令可编辑 coredns 的配置文件，编辑 data 字段，如下， hosts 的内容为新增内容。
 
 ```bash
 data:
@@ -73,29 +73,29 @@ data:
 
 **说明：`192.168.0.2`** 是 KubeSphere 集群的内任意节点IP，请根据实际情况填写。`harbor.devops.kubesphere.local` 和 `gitlab.devops.kubesphere.local` 分别为 Harbor 和 GitLab 的域名。
 
-​	2、修改 Jenkins 初始化配置，通过修改 Jenkins 初始化配置，使在执行构建任务的容器中配置--insecure-registry，使 Harbor 能正常推拉镜像。
+二、修改 Jenkins 初始化配置，通过修改 Jenkins 初始化配置，使在执行构建任务的容器中配置--insecure-registry，使 Harbor 能正常推拉镜像。
 
-先点击平台管理，然后进入企业空间。
+1、先点击平台管理，然后进入企业空间。
 
 ![workspace](https://kubesphere-docs.pek3b.qingstor.com/png/workspace.png)
 
-选择 `system-workspace`，点击进入该企业空间
+2、选择 `system-workspace`，点击进入该企业空间
 
 ![sapce](https://kubesphere-docs.pek3b.qingstor.com/png/sapce.png)
 
-选择 `项目管理`，进入项目`kubesphere-devops-system`。
+3、选择 `项目管理`，进入项目`kubesphere-devops-system`。
 
 ![namespace](https://kubesphere-docs.pek3b.qingstor.com/png/namespace.png)
 
-点击配置中心下的 `配置`，然后找到名称为 `jenkins-casc-config` 的配置文件，点击进入。
+4、点击配置中心下的 `配置`，然后找到名称为 `jenkins-casc-config` 的配置文件，点击进入。
 
 ![configmap](https://kubesphere-docs.pek3b.qingstor.com/png/configmap.png)
 
-进入配置后，点击 `更多操作` 下面的 `编辑配置文件` 。
+5、进入配置后，点击 `更多操作` 下面的 `编辑配置文件` 。
 
 ![editcm](https://kubesphere-docs.pek3b.qingstor.com/png/editcm.png)
 
-该配置文件共有配置4个服务，在 data.jenkins.yam.jenkins.clouds.kubernetes.templates 下，name 分别为 `base`、`nodejs`、`maven`、`go`，分别修改其各个 `name` 为 `docker-server` 下的 args 参数，将原来的 `args: "--insecure-registry harbor.devops.kubesphere:30280"` 改为 `args: "--insecure-registry harbor.devops.kubesphere.local:30280`。以 go 为示例，修改完后的配置如下(其中标注*的为修改行)：
+6、该配置文件共有配置4个服务，在 data.jenkins.yam.jenkins.clouds.kubernetes.templates 下，name 分别为 `base`、`nodejs`、`maven`、`go`，分别修改其各个 `name` 为 `docker-server` 下的 args 参数，将原来的 `args: "--insecure-registry harbor.devops.kubesphere:30280"` 改为 `args: "--insecure-registry harbor.devops.kubesphere.local:30280`。以 go 为示例，修改完后的配置如下(其中标注*的为修改行)：
 
 ```go
           - name: "go"
@@ -155,7 +155,7 @@ data:
 
 然后重启 Docker。
 
-2、登陆 Harbor，执行命令 `docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280`。
+4、登陆 Harbor，执行命令 `docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280`。
 
 ```dockerfile
 $ docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280
@@ -168,7 +168,7 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 ```
 
-4、推送镜像，执行命令 `docker push harbor.devops.kubesphere.local:30280/library/java:openjdk-8-jre-alpine`
+5、推送镜像，执行命令 `docker push harbor.devops.kubesphere.local:30280/library/java:openjdk-8-jre-alpine`
 
 ```bash
 $ docker push harbor.devops.kubesphere.local:30280/library/java:openjdk-8-jre-alpine
@@ -179,7 +179,7 @@ The push refers to repository [harbor.devops.kubesphere.local:30280/library/java
 v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5ef5 size: 947
 ```
 
-5、登陆 Harbor 查看到推送的镜像，即完成镜像推送。
+6、登陆 Harbor 查看到推送的镜像，即完成镜像推送。
 
 ![image](https://kubesphere-docs.pek3b.qingstor.com/png/image.png)
 
@@ -447,35 +447,33 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![log](https://kubesphere-docs.pek3b.qingstor.com/png/log.png)
 
-![log](https://kubesphere-docs.pek3b.qingstor.com/png/log.png)
-
 ## 验证运行结果
 
-若流水线执行成功，点击该流水线下的 `代码质量`，即可看到通过 sonarQube 的代码质量检测结果，如下图(仅供参考)。
+1、若流水线执行成功，点击该流水线下的 `代码质量`，即可看到通过 sonarQube 的代码质量检测结果，如下图(仅供参考)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-result.png)
 
-流水线最终 build 的 Docker 镜像也将被成功地 push 到 Harbor 中，我们在 Jenkinsfile 中已经配置过 Harbor，登录 Harbor 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 Harbor，并且在 GitLab 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
+2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 Harbor 中，我们在 Jenkinsfile 中已经配置过 Harbor，登录 Harbor 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 Harbor，并且在 GitLab 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
 | Dev        | 公网 IP : 30861 (`${EIP}:${NODEPORT}`) | kubesphere-sample-dev       | ks-sample-dev     | ks-sample-dev  |
 | Production | 公网 IP : 30961 (`${EIP}:${NODEPORT}`) | kubesphere-sample-prod      | ks-sample         | ks-sample      |
 
-1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod` 项目下的部署。
+3、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod` 项目下的部署。
 
 进入该项目，在左侧的菜单栏点击 **工作负载 → 部署**，可以看到 ks-sample 已创建成功。正常情况下，部署的状态应该显示 **运行中**。
 
 ![deploy](https://kubesphere-docs.pek3b.qingstor.com/png/deploy.png)
 
-2、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30961`。
+4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30961`。
 
 **查看服务** 
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
-3、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-sample` 就是 APP_NAME 的值，而 tag也是在 jenkinsfile 中定义的 tag。
+5、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-sample` 就是 APP_NAME 的值，而 tag也是在 jenkinsfile 中定义的 tag。
 
-4、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
+6、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
 
 例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 

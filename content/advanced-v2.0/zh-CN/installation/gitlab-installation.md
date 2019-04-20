@@ -30,7 +30,7 @@ gitlab_hosts_domain: devops.kubesphere.local
 
 ###浏览器访问配置
 
-KubeSphere 和 GitLab 都安装完成后，若需要在集群外部访问 GitLab，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后才可以在浏览器访问GitLab。
+1、KubeSphere 和 GitLab 都安装完成后，若需要在集群外部访问 GitLab，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后才可以在浏览器访问GitLab。
 
 ```bash
 139.198.10.10 gitlab.devops.kubesphere.local
@@ -38,7 +38,7 @@ KubeSphere 和 GitLab 都安装完成后，若需要在集群外部访问 GitLab
 
 > 注意： **`139.198.10.10`** 是 KubeSphere 集群的公网 IP，请根据实际情况填写。在外网访问 GitLab，需要绑定公网 IP 并配置端口转发，若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口 30080(HTTP)、30443(HTTPS)、30090(SSH)，保证外网流量可以通过该端口，外部才能够访问。
 
-GitLab 服务对外暴露的节点端口 (NodePort) 为 30080(HTTP)、30443(HTTPS)、30090(SSH)，在浏览器中可以通过 `{$域名}:{$NodePort}` 如 `http://gitlab.devops.kubesphere.local:30080` 访问 GitLab 登录页面。默认的 GitLab 用户名和密码为 `admin / passw0rd `。关于 GitLab 的使用详见 [GitLab文档](<https://docs.gitlab.com/ee/README.html>)。
+2、GitLab 服务对外暴露的节点端口 (NodePort) 为 30080(HTTP)、30443(HTTPS)、30090(SSH)，在浏览器中可以通过 `{$域名}:{$NodePort}` 如 `http://gitlab.devops.kubesphere.local:30080` 访问 GitLab 登录页面。默认的 GitLab 用户名和密码为 `admin / passw0rd `。关于 GitLab 的使用详见 [GitLab文档](<https://docs.gitlab.com/ee/README.html>)。
 
 ![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-gitlab.png)
 

@@ -59,7 +59,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 - token / 密码：您个人的 DockerHub 的密码
 - 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证
 
-完成后点击 **确定**。
+3、完成后点击 **确定**。
 
 ![Dockerhub 凭证](https://kubesphere-docs.pek3b.qingstor.com/png/dockerhub-credential.png)
 
@@ -109,7 +109,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-finish.png)
 
-然后在Kubesphere下回到之前的项目中，与上面步骤类似，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本` 的凭证，凭证 ID 命名为 **sonar-token**，密钥 为上面复制的 token信息。完成后点击 **确定**。
+7、然后在Kubesphere下回到之前的项目中，与上面步骤类似，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本` 的凭证，凭证 ID 命名为 **sonar-token**，密钥 为上面复制的 token信息。完成后点击 **确定**。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
 
@@ -127,11 +127,11 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ### 第二步：修改 Jenkinsfile
 
-Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online**。
+1、Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online**。
 
 ![jenkins-online](https://kubesphere-docs.pek3b.qingstor.com/png/jenkinsonline.png)
 
-在 GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。
+2、在 GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。
 
 ![image-20190409121802459](https://kubesphere-docs.pek3b.qingstor.com/png/env.png)
 
@@ -146,7 +146,7 @@ Fork 至您个人的 GitHub 后，在 **根目录** 进入 **Jenkinsfile-online*
 | APP_NAME                 | devops-docs-sample     | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
 
-修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
+3、修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
 ![提交更新](https://kubesphere-docs.pek3b.qingstor.com/png/commit-jenkinsfile.png)
 
@@ -251,7 +251,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 > - PR 本身的源代码版本：一次发现操作，基于 PR 本身的源代码版本创建并运行流水线
 > - 当 PR 被发现时会创建两个流水线，一个流水线使用 PR 本身的源代码版本，一个流水线使用 PR 与目标分支合并后的源代码版本：两次发现操作，将分别创建两条流水线，第一条流水线使用 PR 本身的源代码版本，第二条流水线使用 PR 与目标分支合并后的源代码版本
 
-3、默认的 **脚本路径** 为 **Jenkinsfile**，请将其修改为[**Jenkinsfile-online**](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online)。
+3、默认的 **脚本路径** 为 **Jenkinsfile**，请将其修改为 [**Jenkinsfile-online**](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online)。
 
 > 注：路径是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
@@ -313,36 +313,36 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 验证运行结果
 
-若流水线执行成功，点击该流水线下的 `代码质量`，即可看到通过 sonarQube 的代码质量检测结果，如下图(仅供参考)。
+1、若流水线执行成功，点击该流水线下的 `代码质量`，即可看到通过 sonarQube 的代码质量检测结果，如下图(仅供参考)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-result.png)
 
-流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
+2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
 | Dev        | 公网 IP : 30861 (`${EIP}:${NODEPORT}`) | kubesphere-sample-dev       | ks-sample-dev     | ks-sample-dev  |
 | Production | 公网 IP : 30961 (`${EIP}:${NODEPORT}`) | kubesphere-sample-prod      | ks-sample         | ks-sample      |
 
-1、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod`项目下的部署。
+3、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod`项目下的部署。
 
 进入该项目，在左侧的菜单栏点击 **工作负载 → 部署**，可以看到 ks-sample 已创建成功。正常情况下，部署的状态应该显示 **运行中**。
 
 ![deploy](https://kubesphere-docs.pek3b.qingstor.com/png/deploy.png)
 
-2、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30961`。
+4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30961`。
 
 **查看服务** 
 
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
-3、查看推送到您个人的 DockerHub 中的镜像，可以看到 `devops-sample`就是 APP_NAME 的值，而 tag也是在 jenkinsfile-online 中定义的 tag。
+5、查看推送到您个人的 DockerHub 中的镜像，可以看到 `devops-sample`就是 APP_NAME 的值，而 tag也是在 jenkinsfile-online 中定义的 tag。
 
 ![查看 DockerHub](https://kubesphere-docs.pek3b.qingstor.com/png/deveops-dockerhub.png)
 
-4、点击 `release`，查看 Fork 到您个人 GitHub repo 中的 `v0.0.1`tag 和 release，它是由 jenkinsfile 中的 `push with tag`stage 生成的
+6、点击 `release`，查看 Fork 到您个人 GitHub repo 中的 `v0.0.1`tag 和 release，它是由 jenkinsfile 中的 `push with tag`stage 生成的
 
-5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
+7、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
 
 例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
