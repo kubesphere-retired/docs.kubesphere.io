@@ -21,6 +21,7 @@ export default class Select extends React.Component {
 const Wrapper = styled.div`
   display: inline-block;
   vertical-align: middle;
+  text-align: left;
 
   .react-select__control {
     position: relative;
@@ -75,7 +76,6 @@ const Wrapper = styled.div`
     margin-right: 2px;
     font-size: 14px;
     font-weight: 600;
-    line-height: 2;
     color: #ffffff;
     max-width: none;
     position: static;
