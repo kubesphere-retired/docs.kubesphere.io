@@ -2,20 +2,20 @@
 title: "示例六 - Source-to-image" 
 ---
 
-Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的Builder image中，来将编译后的代码打包成 Docker 镜像。它使得应用程序开发人员对他们的代码进行更改，而不用知道 Dockerfile 或 Docker 镜像的细节，让对于 Docker 并不感兴趣的开发人员构建镜像更加方便，或者可以给构建过程提供更加强大的功能。
+Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包成可运行程序到 Docker 镜像的工具，在程序员不需要了解 Dockerfile 的情况下方便构建镜像。它是通过将源代码放入一个负责编译源代码的 Builder image 中，自动将编译后的代码打包成 Docker 镜像。
 
 ## 目的
 
-本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 Kubesphere 上使用 Source to image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署到集群中。
+本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 KubeSphere 上使用 Source to Image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署到集群中。
 
 ## 前提条件
 
-- 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
-- 已创建了企业空间和项目管理，若还未创建请参考 [管理员快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)。
+- 本示例以 GitHub 代码仓库和 DockerHub 镜像仓库为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
+- 已创建了企业空间和项目管理，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 
 ## 预估时间
 
-20-30 分钟 (时间由于环境的网速等因素而有所不同) 。
+20-30 分钟（时间由于网速等因素而有所不同）。
 
 ## 操作示例
 
