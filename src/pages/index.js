@@ -377,15 +377,14 @@ const VersionsWrapper = styled.div`
   }
 
   .version-select {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
+    float: right;
+    margin-top: -42px;
 
     @media only screen and (max-width: 768px) {
-      top: auto;
-      right: 24px;
-      transform: none;
+      float: none;
+      margin-top: 0;
+      margin-right: 24px;
+      text-align: right;
     }
   }
 `
