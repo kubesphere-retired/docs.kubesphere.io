@@ -9,20 +9,16 @@ title: "DevOps 工程概述"
 相较于易捷版，DevOps 工程是高级版独有的功能，针对企业实际的快速迭代和快速交付业务需求和场景，可以发现很多企业和 IT 团队都有持续集成和持续交付的需求。DevOps 工程提供 Jenkinsfile in & out of SCM 两种模式，从仓库 (SVN/Git/GitHub)、代码编译、镜像制作、镜像安全、推送到仓库、应用版本、到定时构建的端到端流水线设置，支持用户在开发、测试等环境下的端到端高效流水线能力，支持用户成员管理，同时提供完整的日志功能，记录 CI/CD 流水线的每个过程。
 
 
-KubeSphere 高级版 v1.0.0 提供的 DevOps 具有以下功能：
+KubeSphere 高级版 v2.0.0 提供的 DevOps 具有以下功能：
 
 
 - 开箱即用的 DevOps 功能，无需对 Jenkins 进行复杂的插件配置；
+- 支持 Source to Image (S2I)，快速交付容器镜像；
+- 多语言代码静态检查，持续提升代码质量；
 - 独立 DevOps 工程，提供访问可控、安全隔离的 CI/CD 操作空间；
 - 兼容 Jenkinsfile in & out of SCM (Source Code Management) 两种模式；
 - 可视化流水线编辑工具，降低 CI/CD 学习成本；
 - 使用 KubeSphere 基于 Kubernetes 提供弹性、干净、可定制的构建环境。
-
-KubeSphere 高级版下一个版本 v2.0.0 将增加如下新的功能：
-
-
-- 支持 Source to Image (S2I)，快速交付容器镜像；
-- 多语言代码静态检查，持续提升代码质量。
 
 ### 理解 KubeSphere DevOps
 
@@ -46,15 +42,16 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 ### 快速上手 CI/CD
 
-我们提供了两个具有代表性的示例和文档，帮助您快速上手 CI/CD。
+我们提供了几篇具有代表性的示例和文档，帮助您快速上手 CI/CD。
 
-- [示例六 - Jenkinsfile in SCM](../../quick-start/jenkinsfile-in-scm)
+- [Source to Image](../../quick-start/source-to-image/)
 
-本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，最终将一个文档网站部署到 KubeSphere 集群中的开发环境和生产环境，并且能够通过公网访问。
+- [Jenkinsfile in SCM 流水线](../../quick-start/jenkinsfile-in-scm)
 
-- [示例七 - Jenkinsfile out of SCM](../../quick-start/jenkinsfile-out-of-scm)
+- [CI/CD 流水线 (离线版)](../../quick-start/devops-online)
 
-本示例以文档和视频演示如何基于 [示例一 - Jenkinsfile in SCM](../../quick-start/jenkinsfile-in-scm)，以可视化的方式构建 CI/CD 流水线 (包含示例一的前六个阶段)，最终将本文档网站部署到 KubeSphere 集群中的开发环境且能够通过公网访问。
+- [Jenkinsfile out of SCM](../../quick-start/jenkinsfile-out-of-scm)
+
 
 ### Jenkins Agent 说明
 
