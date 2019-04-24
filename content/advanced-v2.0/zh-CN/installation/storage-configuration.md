@@ -11,7 +11,9 @@ title: "存储配置说明"
 - NFS
 - Local Volume (仅限 all-in-one 部署测试使用)
 
-同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接 QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的权限或已有 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端，然后在 `vars.yml` 配置对应的参数即可对接相应的存储服务端。
+同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接 QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的权限或已有 NeonSAN 服务端。
+
+Installer 也集成了 NFS、GlusterFS 和 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端，可参考 [部署 Ceph RBD 存储服务端](../../appendix/ceph-ks-install) 或 [部署 GlusterFS 存储服务端](../../appendix/glusterfs-ks-install) 然后在 `vars.yml` 配置对应的参数即可对接相应的存储服务端。
 
 Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已测试过的版本如下：
 
@@ -21,7 +23,6 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 | Ceph RBD Client | v12.2.5 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，参考 [Ceph RBD](../storage-configuration/#ceph-rbd)|
 | GlusterFS Server | v3.7.6 |若用于测试部署可参考 [部署 GlusterFS 存储服务端](/express/zh-CN/glusterfs-ks-install/)， 如果是正式环境搭建请参考 [Gluster 官方文档](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) ，并且需要安装 [Heketi 管理端 (v3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin)|
 |GlusterFS Client |v3.12.10|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，配置详见 [GlusterFS](../storage-configuration/#glusterfs)|
-|NFS Server in Kubernetes| v1.0.9 |配置详见 [NFS Server 配置](../storage-configuration/#nfs) |
 |NFS Client | v3.1.0 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，详见 [NFS Client](../storage-configuration/#nfs)  |
 | QingCloud-CSI|v0.2.0.1|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [QingCloud CSI](../storage-configuration/#qingcloud-云平台块存储)|
 | NeonSAN-CSI|v0.3.0|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数，详见 [Neonsan-CSI](../storage-configuration/#qingstor-neonsan) |
