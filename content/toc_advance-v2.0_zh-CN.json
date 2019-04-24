@@ -434,6 +434,20 @@
       "icon": "/problem.svg",
       "desc": "总结实际应用场景中可能遇到的问题并给出通用解决方案。",
       "entry": "./advanced-v2.0/zh-CN/faq.md"
+    },
+    {
+      "title": "附录",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "部署 Ceph 存储服务端",
+          "entry": "./advanced-v2.0/zh-CN/appendix/ceph-ks-install.md"
+        },
+        {
+          "title": "部署 GlusterFS 存储服务端",
+          "entry": "./advanced-v2.0/zh-CN/appendix/glusterfs-ks-install.md"
+        }
+      ]
     }
   ]
 }
