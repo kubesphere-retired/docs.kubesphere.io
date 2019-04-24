@@ -2,7 +2,7 @@
 title: "CI/CD 流水线示例 (离线版)" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目进行管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可。KubeSphere 的安装文档请参考 [安装说明](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/intro/>)。Harbor 的具体安装请参考 [安装内置 Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>)。GitLab 的具体安装请参考 [安装内置 GitLab](https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目进行管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可。KubeSphere 的安装文档请参考 [安装说明](../../installation/intro)。Harbor 的具体安装请参考 [安装内置 Harbor](../../installation/harbor-installation/)，GitLab 的具体安装请参考 [安装内置 GitLab](../../installation/gitlab-installation/)。
 
 ## 目的
 
@@ -10,14 +10,14 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 ## 前提条件
 
-- 本示例以 GitLab 和 Harbor 为例，参考前请确保正确安装了 [内置 Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>) 和 [内置 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
-- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)。
+- 本示例以 GitLab 和 Harbor 为例，参考前请确保正确安装了 [内置 Harbor](../../installation/harbor-installation/) 和 [内置 GitLab](../../installation/gitlab-installation/)。
+- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 - 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。
 - 已准备 Kubesphere 安装包，以及相关基础镜像。
 
 ## 预估时间
 
-60-90 分钟 (时间由于环境的网速等因素而有所不同) 。
+60-90 分钟
 
 ## 操作示例
 
