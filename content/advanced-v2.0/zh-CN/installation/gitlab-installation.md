@@ -26,50 +26,58 @@ gitlab_hosts_domain: devops.kubesphere.local
 192.168.0.24 gitlab.devops.kubesphere.local
 ```
 
-> 说明：192.168.0.24 是当前主机的内网 IP，请根据实际情况填写。若需要将 Gitlab 服务暴露给集群外部用户使用，则需要在外网配置 DNS 记录（DNS 服务器处或者用户的本地 hosts 文件内），把域名 `gitlab.devops.kubesphere.local` 对应到相应的外网 IP，并将 Gitlab 端口30080、30090、30443进行端口转发和开放防火墙，确保外部流量可以通过该端口(端口映射关系为30080:80，30090:22，30443:443)。
+> 说明：192.168.0.24 是当前主机的内网 IP，请根据实际情况填写。若需要将 Gitlab 服务暴露给集群外部用户使用，则需要在外网配置 DNS 记录（DNS 服务器处或者用户的本地 hosts 文件内），把域名 `gitlab.devops.kubesphere.local` 对应到相应的外网 IP。
 
-###浏览器访问配置
+待安装完成后，执行以下命令查看 GitLab 端口号：
 
-1、KubeSphere 和 GitLab 都安装完成后，若需要在集群外部访问 GitLab，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后才可以在浏览器访问GitLab。
+```bash
+kubectl get svc ks-gitlab-nginx-ingress-controller -n kubesphere-devops-system
+NAME                                TYPE      CLUSTER-IP   EXTERNAL-IP   PORT(S)                               AGE
+ks-gitlab-nginx-ingress-controller  NodePort  10.233.41.10  <none>   80:30080/TCP,443:30443/TCP,22:30090/TCP   11h
+```
+
+### 浏览器访问配置
+
+1、KubeSphere 和 GitLab 都安装完成后，若需要在集群外部访问 GitLab，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后才可以在浏览器访问 GitLab。
+
+> 注意： `139.198.10.10` 是 KubeSphere 集群的公网 IP，请根据实际情况填写。在外网访问 GitLab，需要绑定公网 IP 并配置端口转发，若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口 30080(HTTP)、30443(HTTPS)、30090(SSH)，保证外网流量可以通过该端口，外部才能够访问。
 
 ```bash
 139.198.10.10 gitlab.devops.kubesphere.local
 ```
 
-> 注意： **`139.198.10.10`** 是 KubeSphere 集群的公网 IP，请根据实际情况填写。在外网访问 GitLab，需要绑定公网 IP 并配置端口转发，若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口 30080(HTTP)、30443(HTTPS)、30090(SSH)，保证外网流量可以通过该端口，外部才能够访问。
-
-2、GitLab 服务对外暴露的节点端口 (NodePort) 为 30080(HTTP)、30443(HTTPS)、30090(SSH)，在浏览器中可以通过 `{$域名}:{$NodePort}` 如 `http://gitlab.devops.kubesphere.local:30080` 访问 GitLab 登录页面。默认的 GitLab 用户名和密码为 `admin / passw0rd `。关于 GitLab 的使用详见 [GitLab文档](<https://docs.gitlab.com/ee/README.html>)。
+2、GitLab 服务对外暴露的节点端口 (NodePort) 为 30080(HTTP)、30443(HTTPS)、30090(SSH)，在浏览器中可以通过 `{$域名}:{$NodePort}` 如 `http://gitlab.devops.kubesphere.local:30080` 访问 GitLab 登录页面。默认的 GitLab 用户名和密码为 `admin / passw0rd `，关于 GitLab 的使用详见 [GitLab 文档](<https://docs.gitlab.com/ee/README.html>)。
 
 ![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-gitlab.png)
 
 ## 使用 GitLab 示例
 
-关于 GitLab 的详细使用详见 [GitLab文档](<https://docs.gitlab.com/ee/README.html>)。本示例以 `devops-sample` 为例展示如何从GitHub导入项目至GitLab。
+关于 GitLab 的详细使用详见 [GitLab 文档](<https://docs.gitlab.com/ee/README.html>)。本示例以 `devops-sample` 为例展示如何从GitHub导入项目至GitLab。
 
-​	1、请先将 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>)fork至您个人的 GitHub 仓库。
+​1、请先将 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>)fork至您个人的 GitHub 仓库。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/fork-repo.png))
 
 
 
-​	2、使用 Kubesphere 默认的用户名和密码 `admin / passw0rd` 登陆 GitLab 后，选择 `Create a project`。
+​2、使用 Kubesphere 默认的用户名和密码 `admin / passw0rd` 登陆 GitLab 后，选择 `Create a project`。
 
 ![create](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-create.png)
 
-​	3、选择 import project from GitHub。
+​3、选择 import project from GitHub。
 
 ![import](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-import.png)
 
-​	4、按照提示加入个人 Token，Personal access token 可在 GitHub[Setting](<https://github.com/settings/tokens/new>) 页面生成。然后可选择 GitHub repositories。
+​4、按照提示加入个人 Token，Personal access token 可在 GitHub [Setting](<https://github.com/settings/tokens/new>) 页面生成。然后可选择 GitHub repositories。
 
 ![token](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-token.png)
 
-​	选择 [devops-java-sample](https://github.com/kubesphere/devops-java-sample)项目Import。
+​5、选择 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 项目Import。
 
-​	5、等待 Status 显示为 Done，即导入成功。
+​6、等待 Status 显示为 Done，即导入成功。
 
 ![done](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-done.png)
 
-回到 Project 主页面，即可看到项目导入成功。
+7、回到 Project 主页面，即可看到项目导入成功。
 
 ![succ](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-succ.png)

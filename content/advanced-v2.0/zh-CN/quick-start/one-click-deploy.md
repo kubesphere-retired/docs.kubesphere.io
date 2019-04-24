@@ -1,5 +1,5 @@
 ---
-title: "示例四 - 一键部署应用"
+title: "一键部署应用"
 ---
 
 应用为用户提供完整的业务功能，由一个或多个特定功能的组件组成。KubeSphere 应用模板所纳管的应用基于 Helm 打包规范构建，并通过统一的公有或私有的应用仓库交付使用，应用可根据自身特性由一个或多个 Kubernetes 工作负载 (workload) 和服务组成。
@@ -13,25 +13,25 @@ title: "示例四 - 一键部署应用"
 
 ## 前提条件
 
-已创建了企业空间和项目，若还未创建请参考 [管理员快速入门](../../quick-start/admin-quick-start)。
+已创建了企业空间和项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 
 ## 预估时间
 
 约 15 分钟。
 
 ## 操作示例
-
+<!-- 
 ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo4-oneclick-deploy.mp4">
-</video>
+</video> -->
 
 ### 第一步：添加应用仓库
 
 应用仓库的后端可以是 QingStor 对象存储，也可以是 AWS 对象存储，里面存储的内容是开发者开发好的应用的配置包以及索引文件。因此在 KubeSphere 添加应用仓库之前，需提前在云平台创建对象存储并上传应用配置包，一般是基于 Helm Chart 规范开发的应用。本示例准备了一个基于 [QingStor 对象存储](https://www.qingcloud.com/products/qingstor/) 的应用仓库，里面包含了用于演示的 Nginx 应用配置包，若需要自行添加和上传应用，请参阅 [添加应用仓库](../../platform-management/app-repo)。
 
-1、应用仓库一般仅集群管理员或拥有应用仓库权限的用户操作。以 **集群管理员** 或拥有应用仓库权限的账号登录 KubeSphere，选择 **平台管理 → 应用仓库**，点击添加应用仓库。
+1、应用仓库一般仅集群管理员或拥有应用仓库权限的用户操作。以 **cluster-admin** 登录 KubeSphere，选择 **平台管理 → 应用仓库**，点击添加应用仓库。
 
 ![添加应用仓库](/add-app-repo.png)
 
@@ -45,7 +45,7 @@ title: "示例四 - 一键部署应用"
 
 ### 第二步：部署应用
 
-1、查看和部署应用等后续操作可使用管理员快速入门中创建的 project-regular 账号登录操作。点击进入 Nginx 应用模板的详情页面，可以查看其应用介绍、基本信息、版本信息和配置文件，该页面支持编辑和下载应用的配置文件，支持 Yaml 和 Json 格式。
+1、查看和部署应用等后续操作可用 `project-regular` 账号登录操作。点击进入 Nginx 应用模板的详情页面，可以查看其应用介绍、基本信息、版本信息和配置文件，该页面支持编辑和下载应用的配置文件，支持 Yaml 和 Json 格式。
 
 ![](/nginx-details.png)
 

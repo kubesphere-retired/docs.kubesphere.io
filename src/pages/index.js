@@ -60,6 +60,7 @@ class IndexPage extends React.Component {
   }
 
   handleVersionChange = value => {
+    console.log(value)
     this.setState({ selectVersion: value })
   }
 

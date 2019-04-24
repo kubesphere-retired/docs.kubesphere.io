@@ -1,5 +1,5 @@
 ---
-title: "示例六 - Source-to-image" 
+title: "Source-to-image" 
 ---
 
 Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的Builder image中，来将编译后的代码打包成 Docker 镜像。它使得应用程序开发人员对他们的代码进行更改，而不用知道 Dockerfile 或 Docker 镜像的细节，让对于 Docker 并不感兴趣的开发人员构建镜像更加方便，或者可以给构建过程提供更加强大的功能。
@@ -10,8 +10,8 @@ Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将
 
 ## 前提条件
 
-- 本示例的代码仓库以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号。
-- 已创建了企业空间和项目管理，若还未创建请参考 [管理员快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)。
+- 本示例以 GitHub 代码仓库和 DockerHub 镜像仓库为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
+- 已创建了企业空间和项目管理，若还未创建请参考 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)。
 
 ## 预估时间
 
@@ -23,7 +23,7 @@ Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将
 
 #### 第一步：创建 DockerHub 镜像仓库密钥
 
-1、进入之前创建的项目管理，在左侧的配置中心菜单下，点击 `密钥`，进入密钥管理界面。
+1、以 `project-regular` 进入之前创建的项目 `demo-namespace`，在左侧的配置中心菜单下，点击 `密钥`，进入密钥管理界面。
 
 ![create-ca](https://kubesphere-docs.pek3b.qingstor.com/png/create-ca.png)
 

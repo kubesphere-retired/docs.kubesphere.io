@@ -1,5 +1,5 @@
 ---
-title: "示例三 - 创建简单任务"
+title: "创建简单任务"
 ---
 
 实际工作中，我们经常需要进行批量数据处理和分析，以及按照时间进行调度执行。可以在 KubeSphere 中使用容器技术完成，也就是使用 Job (任务) 和 CronJob (定时任务) 来执行。这样方便维护较为干净的执行环境，减少不同任务工具的相互干扰。同时可以在集群上按照任务要求和资源状况进行动态伸缩执行。
@@ -12,7 +12,7 @@ Job 负责批处理任务，即仅执行一次的任务。任务具有并发的�
 
 ## 前提条件
 
-已创建了企业空间和项目，若还未创建请参考 [管理员快速入门](../../quick-start/admin-quick-start)。
+已创建了企业空间和项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 
 ## 预估时间
 
@@ -20,15 +20,15 @@ Job 负责批处理任务，即仅执行一次的任务。任务具有并发的�
 
 ## 操作示例
 
-### 示例视频
+<!-- ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo3-job.mp4">
-</video>
+</video> -->
 
 ### 创建任务
 
-登录 KubeSphere 控制台，在所属项目的左侧菜单栏，选择 **工作负载 → 任务**，进入任务列表页面。
+以 `project-regular` 登录 KubeSphere 控制台，在所属项目的左侧菜单栏，选择 **工作负载 → 任务**，进入任务列表页面。
 
 ![创建任务](/demo3-create-job.png)
 

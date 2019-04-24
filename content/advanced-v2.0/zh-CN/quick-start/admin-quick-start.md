@@ -16,17 +16,28 @@ title: "多租户管理快速入门"
 
 ## 操作示例
 
-### 示例视频
+<!-- ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/admin-quick-start.mp4">
-</video>
+</video> -->
+
+目前，平台的资源一共有三个层级，包括集群 (Cluster)、 企业空间 (Workspace)、 项目 (Project) 和 DevOps Project (DevOps 工程)，层级关系如下图所示，在每个层级中，每个组织中都有多个不同的内置角色。
+
+![resource-hierarchy](/resource-hierarchy.svg)
 
 ### 集群管理员
 
 #### 第一步：创建角色和账号
 
-平台中的 cluster-admin 角色可以为其他用户创建账号并分配平台角色，平台内置了 cluster-admin、cluster-regular 和 workspaces-manager 三个常用的角色，同时支持自定义新的角色。
+平台中的 cluster-admin 角色可以为其他用户创建账号并分配平台角色，平台内置了集群层级的以下三个常用的角色，同时支持自定义新的角色。
+
+|内置角色|描述|
+|---|---|
+|cluster-admin |集群管理员，可以管理集群中所有的资源。|
+|workspaces-manager|集群中企业空间管理员，可以管理集群中所有的企业空间及其下面的项目和工程资源。|
+|cluster-regular|集群中的普通用户，在被邀请加入企业空间之前没有任何资源操作权限。|
+
 
 本示例首先新建一个角色 (user-manager)，为该角色授予账号管理和角色管理的权限，然后新建一个账号并给这个账号授予 user-manager 角色。
 
@@ -125,13 +136,15 @@ title: "多租户管理快速入门"
 
 **高级设置**
 
-3.3. 此处可使用默认的请求值 (requests) 与限额值 (limits)，在项目使用过程中可根据实际情况再次编辑资源默认请求。高级设置是在当前项目中配置容器默认的 CPU 和内存的请求与限额，相当于是给项目创建了一个 Kubernetes 的 LimitRange 对象，在项目中创建工作负载后填写容器组模板时，若不填写容器 CPU 和内存的请求与限额，则容器会被分配在高级设置的默认 CPU 和内存请求与限额值。
+3.3. 此处将默认的最大 CPU 和内存分别设置 `2 Core` 和 `2 Gi`，后续的示例都需要在这个示例项目中完成，在项目使用过程中可根据实际情况再次编辑资源默认请求。
 
 完成高级设置后，点击 **创建**。
 
-![高级设置](/namespace-limit-request-1.png)
+> 说明：高级设置是在当前项目中配置容器默认的 CPU 和内存的请求与限额，相当于是给项目创建了一个 Kubernetes 的 LimitRange 对象，在项目中创建工作负载后填写容器组模板时，若不填写容器 CPU 和内存的请求与限额，则容器会被分配在高级设置的默认 CPU 和内存请求与限额值。
 
-> 说明：项目管理和设置的详细说明，请参考用户指南下的项目设置系列文档。
+![设置配额](https://pek3b.qingstor.com/kubesphere-docs/png/20190424092715.png)
+
+> 提示：项目管理和设置的详细说明，请参考用户指南下的项目设置系列文档。
 
 ##### 邀请成员
 
