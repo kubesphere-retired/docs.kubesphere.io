@@ -22,6 +22,12 @@ title: "告警策略 —— 节点级别"
 
 管理员需预先配置邮件服务器，若还未配置可参考 [邮件服务器](../../platform-settings/email-server)。
 
+### 演示视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/kubesphere%20%E5%91%8A%E8%AD%A6.mov">
+</video>
+
 ### 第一步：添加告警策略
 
 1. 以 `cluster-admin` 登录 KubeSphere，点击 「平台管理」，选择 「监控中心」。
