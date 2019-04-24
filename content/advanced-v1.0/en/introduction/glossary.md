@@ -2,7 +2,7 @@
 title: "Glossary"
 ---
 
-This document describes some frequently used glossaries in KubeSphere, will involve the following basic concepts:
+This document describes some frequently used glossaries in KubeSphere as shown below:
 
  
 | Object | Concepts|
