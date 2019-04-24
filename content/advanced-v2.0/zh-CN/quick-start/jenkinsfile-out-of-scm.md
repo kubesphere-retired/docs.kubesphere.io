@@ -10,9 +10,8 @@ title: "Jenkinsfile out of SCM - 图形化流水线"
 
 ## 前提条件
 
-- 已有 [DockerHub](http://www.dockerhub.com/) 的账号。
-- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [管理员快速入门](../../quick-start/admin-quick-start)。
-- 熟悉 Dockerfile 常用命令，可参考 [Docker 官方文档](https://docs.docker.com/engine/reference/builder/#usage)。
+- 已有 [DockerHub](http://www.dockerhub.com/) 的账号；
+- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 
 ## 预估时间
 
@@ -20,11 +19,11 @@ title: "Jenkinsfile out of SCM - 图形化流水线"
 
 ## 操作示例
 
-### 演示视频
+<!-- ### 演示视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo7-jenkinsfile-out-of-scm.mp4">
-</video>
+</video> -->
 
 ### 流水线概览
 

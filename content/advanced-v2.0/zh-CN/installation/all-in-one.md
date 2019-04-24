@@ -5,8 +5,8 @@ title: "All-in-One 模式"
 
 ## 前提条件
 
-- 目前高级版已发布了 v2.0.0，建议下载最新的 [KubeSphere Advanced Edition 2.0.0](https://kubesphere.io/download/?type=advanced) 至待安装机器中。
-- 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。若还未准备存储服务端，为方便测试部署，也可使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储。
+<!-- - 下载最新的 [KubeSphere Advanced Edition 2.0.0 - dev](https://kubesphere.io/download/?type=advanced) 至待安装机器中。 -->
+建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端。若还未准备存储服务端，为方便测试部署，也可使用 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为默认存储。
 
 ## 第一步: 准备主机
 
@@ -25,21 +25,25 @@ title: "All-in-One 模式"
 
 ## 第二步: 准备安装包
 
-**1.** 建议下载最新的 [KubeSphere Advanced-v2.0.0](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
+**1.** 执行以下命令下载最新的 `KubeSphere Advanced v2.0.0 - dev` 安装包至待安装机器，并解压压缩包。
 
 ```bash
-$ tar -zxf kubesphere-all-advanced-2.0.0.tar.gz
+$ curl -L https://kubesphere.io/download/nightly/latest -o installer.tgz
 ```
 
-**2.** 进入 “`kubesphere-all-advanced-2.0.0`” 目录。
+```bash
+$ tar -zxf installer.tgz
+```
+
+**2.** 进入 “`kubesphere-all-advanced-2.0.0-dev-{$date}`” 目录。
 
 ```bash
-$ cd kubesphere-all-advanced-2.0.0
+$ cd kubesphere-all-advanced-2.0.0-dev-{$date}
 ```
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。最新的Installer 默认安装的 Kubernetes 版本是 v1.13.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。最新的Installer 默认安装的 Kubernetes 版本是 v1.13.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
@@ -89,7 +93,7 @@ Please input an option: 1
 
 **4.** 测试 KubeSphere 单节点安装是否成功：
 
-**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 30880)，保证外网流量可以通过该端口，外部才能够访问。
+**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。
 
 ```bash
 successsful!
@@ -106,7 +110,17 @@ NOTE：Please modify the default password after login.
 ```
 > 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat kubesphere/kubesphere_running` 命令查看。
 
-**(2)** 安装成功后，浏览器访问对应的 url，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
+**(2)** 若需要在外网访问，则云平台将外网访问的 http 端口 (30880) 进行 **端口转发**，并添加 **防火墙的下行规则**，确保该外网流量可以通过该端口。
+
+例如在 QingCloud 平台配置端口转发和防火墙规则：
+
+**端口转发**
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424163527.png)
+
+**添加防火墙下行规则**
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424163607.png)
+
+**(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 
 ![KubeSphere 控制台](/kubesphere-console.png)
 

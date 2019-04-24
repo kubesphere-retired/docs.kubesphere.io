@@ -1,5 +1,5 @@
 ---
-title: "示例二 - 部署 Wordpress" 
+title: "部署 Wordpress" 
 ---
 
 ## 目的
@@ -8,7 +8,7 @@ title: "示例二 - 部署 Wordpress"
 
 ## 前提条件
 
-- 已创建了有状态副本集 MySQL，若还未创建请参考 [示例一 - 部署 MySQL](../mysql-deployment)。
+- 已创建了有状态副本集 MySQL，若还未创建请参考 [部署 MySQL](../mysql-deployment)。
 - 以 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目
 
 ## 预估时间
@@ -17,11 +17,11 @@ title: "示例二 - 部署 Wordpress"
 
 ## 操作示例
 
-### 示例视频
+<!-- ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo2-wordpress.mp4">
-</video>
+</video> -->
 
 ### 部署 Wordpress
 
@@ -168,67 +168,11 @@ app: wordpress
 app=wordpress-service
 ```
 
-8.5. 服务暴露给外网访问的访问方式，支持 NodePort 和 LoadBalancer，由于示例将以应用路由 (Ingress) 的方式添加 Hostname 来暴露服务给外网访问，所以服务的访问方式选择 **None**。点击 **创建**，wordpress-service 服务可创建成功。
+8.5. 服务暴露给外网访问的访问方式，支持 NodePort 和 LoadBalancer，这里服务的访问方式选择 **NodePort**。点击 **创建**，wordpress-service 服务可创建成功。注意，wordpress-service 服务生成了一个节点端口 `30517`。
 
 ![创建成功](/demo2-wordpress-service-list.png)
 
-#### 第九步：创建应用路由
 
-通过创建应用路由的方式可以将 WordPress 暴露出去供外网访问，与将服务直接通过 NodePort 或 LoadBalancer 暴露出去不同之处是应用路由是通过配置 Hostname 和路由规则（即 ingress）来访问，请参考以下步骤配置应用路由。关于应用路由的管理详见 [应用路由](../../ingress-service/ingress)。
-
-
-9.1. 在当前项目中，左侧菜单选择 **网路与服务 → 应用路由**，点击 **创建**。
-
-![创建应用路由](/demo2-create-ingress.png)
-
-9.2. 创建应用路由，填入基本信息，完成后点击 **下一步**。
-
-- 名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，如 `wordpress-ingress`
-- 别名和描述信息：比如 wordpress 应用路由
-
-![创建应用路由](/wordpress-ingress-basic.png)
-
-9.3. 下一步，点击 **添加路由规则**，参考如下配置路由规则。完成后点击 **保存**，然后点击 **下一步**。
-
-- Hostname：可自定义，比如设置为 `wordpress.demo.io`，它是应用路由规则的访问域名，最终使用此域名来访问对应的服务 (如果访问入口是以 NodePort 的方式启用，需要保证 Hostname 能够在客户端正确解析到集群工作节点上；如果是以 LoadBalancer 方式启用，需要保证 Hostname 正确解析到负载均衡器的 IP 上)。
-- 协议：选择 `http` (若使用 https 需要预先在密钥中添加相关的证书)
-- Paths：应用规则的路径和对应的后端服务，路径填写 "/"，服务选择之前创建的服务 `wordpress-service`，端口填写 wordpress-service 服务端口 `80`，完成后点击下一步：
-
-![设置路由规则](/wordpress-ingress-setting.png)
-
-9.4. 在本地的 hosts 文件中添加记录来使域名解析到对应的 IP。例如，集群的公网 IP 为 `139.198.16.160`，且上一步将 hostname 设置为 `wordpress.demo.io`，我们在 `/etc/hosts` 文件中添加如下记录。
-
-```bash
-139.198.16.160 wordpress.demo.io
-```
-
-9.5. [Annotation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) 是用户定义的 “附加” 信息，本示例暂不设置注解，点击 **下一步** 进入标签设置。
-
-9.6. 为方便识别此应用，我们标签设置如下。点击 **创建**，即可创建成功。
-
-```
-app=wordpress-ingress
-```
-
-![查看应用路由创建](/ingress-create-result.png)
-
-#### 第十步：配置外网访问
-
-10.1. 在当前项目中，左侧菜单选择 **项目设置 → 外网访问**，点击 **设置网关**，即应用路由的网关入口，每个项目都有一个独立的网关入口。
-
-![设置网关](/demo2-gateway.png)
-
-10.2. 网关入口提供提供如下两种方式，本示例以 `NodePort` 访问方式为例配置网关入口，选择 `NodePort` 然后点击 **保存**。
-
-> 说明： 
-> - NodePort：使用 NodePort 方式可以通过访问工作节点对应的端口来访问服务
-> - LoadBalancer：如果用 LoadBalancer 的方式暴露服务，需要有云服务厂商的 LoadBalancer 插件支持，比如 [QingCloud KubeSphere 托管服务](https://appcenter.qingcloud.com/apps/app-u0llx5j8/Kubernetes%20on%20QingCloud) 可以将公网 IP 地址的 ID 填入 Annotation 中，即可通过公网 IP 访问该服务。(如果外网访问方式设置的是 LoadBalancer，参见 [应用路由](../../ingress-service/ingress) 的 LoadBalancer 方式。)
-
-![设置网关](/gateway-setting.png)
-
-10.3. 外网访问设置后，将产生两个节点端口 (NodePort)，分别是 HTTP 协议 (80) 和 HTTPS 协议 (443) 的节点端口，比如这里依次是 `30517` 和 `30409`。
-
-![端口列表](/gateway-nodeport-list.png)
 
 > 注意：若需要在公网访问，可能需要进行端口转发和防火墙放行对应的端口，保证外网流量能够通过需要访问的端口如 30517，否则外网无法访问。
 
@@ -244,7 +188,7 @@ app=wordpress-ingress
 
 ### 访问 Wordpress
 
-设置完成后，WordPress 就以应用路由的方式通过网关入口暴露到外网，由于在路由规则中我们选择的是 http 协议，因此可以通过示例中在路由规则和外网访问配置的 `{$hostname}:{$NodePort}` 如 `http://wordpress.demo.io:30517` 访问 WordPress 博客网站。
+设置完成后，WordPress 就以应用路由的方式通过网关入口暴露到外网，可以通过 `http://{$公网 IP}:{$节点端口 NodePort}` 访问 WordPress 博客网站。
 
 ![访问 Wordpress](/wordpress-homepage.png)
 

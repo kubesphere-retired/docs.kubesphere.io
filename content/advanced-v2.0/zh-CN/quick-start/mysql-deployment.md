@@ -1,5 +1,5 @@
 ---
-title: "示例一 - 部署 MySQL 有状态应用" 
+title: "部署 MySQL 有状态应用" 
 ---
 
 ## 目的
@@ -8,8 +8,8 @@ title: "示例一 - 部署 MySQL 有状态应用"
 
 ## 前提条件
 
-- 已创建了企业空间和项目，若还未创建请参考 [管理员快速入门](../admin-quick-start)
-- 以上一篇文档创建的 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目
+- 已创建了企业空间和项目，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 以 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目。
 
 ## 预估时间
 
@@ -17,11 +17,11 @@ title: "示例一 - 部署 MySQL 有状态应用"
 
 ## 操作示例
 
-### 示例视频
+<!-- ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo1-mysql.mp4">
-</video>
+</video> -->
 
 ### 部署 MySQL
 

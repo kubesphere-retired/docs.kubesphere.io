@@ -10,10 +10,10 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 ## 前提条件
 
-- 本示例的代码仓库以 GitLab 和 Harbor 为例，参考前请确保正确 [安装内置Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>) 和 [GitLab](https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
-- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [管理员快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)。
+- 本示例以 GitLab 和 Harbor 为例，参考前请确保正确安装了 [内置 Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>) 和 [内置 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
+- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)。
 - 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。
-- 已准备Kubesphere安装包，以及相关基础镜像。
+- 已准备 Kubesphere 安装包，以及相关基础镜像。
 
 ## 预估时间
 

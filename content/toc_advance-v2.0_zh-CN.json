@@ -59,16 +59,20 @@
           "entry": "./advanced-v2.0/zh-CN/installation/multi-node.md"
         },
         {
-          "title": "升级",
-          "entry": "./advanced-v2.0/zh-CN/installation/upgrade.md"
-        },
-        {
           "title": "Master 和 etcd 节点高可用",
           "entry": "./advanced-v2.0/zh-CN/installation/master-ha.md"
         },
         {
-          "title": "存储配置说明",
+          "title": "存储安装配置说明",
           "entry": "./advanced-v2.0/zh-CN/installation/storage-configuration.md"
+        },
+        {
+          "title": "集群组件配置说明",
+          "entry": "./advanced-v2.0/zh-CN/installation/vars.md"
+        },
+        {
+          "title": "安装 QingCloud 负载均衡器插件",
+          "entry": "./advanced-v2.0/zh-CN/installation/qingcloud-lb.md"
         },
         {
           "title": "安装内置 Harbor",
@@ -98,48 +102,52 @@
           "entry": "./advanced-v2.0/zh-CN/quick-start/quick-start-guide.md"
         },
         {
-          "title": "多租户管理快速入门",
+          "title": "示例一 - 多租户管理快速入门",
           "entry": "./advanced-v2.0/zh-CN/quick-start/admin-quick-start.md"
         },
         {
-          "title": "示例一 - 部署 MySQL",
+          "title": "示例一 - 应用路由与服务示例",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/ingress-demo.md"
+        },
+        {
+          "title": "示例三 - 部署 MySQL",
           "entry": "./advanced-v2.0/zh-CN/quick-start/mysql-deployment.md"
         },
         {
-          "title": "示例二 - 部署 Wordpress",
+          "title": "示例四 - 部署 Wordpress",
           "entry": "./advanced-v2.0/zh-CN/quick-start/wordpress-deployment.md"
         },
         {
-          "title": "示例三 - 创建简单任务",
+          "title": "示例五 - 创建简单任务",
           "entry": "./advanced-v2.0/zh-CN/quick-start/job-quick-start.md"
         },
         {
-          "title": "示例四 - 一键部署应用",
+          "title": "示例六 - 一键部署应用",
           "entry": "./advanced-v2.0/zh-CN/quick-start/one-click-deploy.md"
         },
         {
-          "title": "示例五 - 设置弹性伸缩 (HPA)",
+          "title": "示例七 - 设置弹性伸缩 (HPA)",
           "entry": "./advanced-v2.0/zh-CN/quick-start/hpa.md"
         },
         {
-          "title": "示例六 - Source-to-image",
+          "title": "示例八 - Source-to-Image",
           "entry": "./advanced-v2.0/zh-CN/quick-start/source-to-image.md"
         },
         {
-          "title": "示例七 - Bookinfo 微服务的灰度发布",
+          "title": "示例九 - Bookinfo 微服务的灰度发布",
           "entry": "./advanced-v2.0/zh-CN/quick-start/bookinfo-canary.md"
         },
         {
-          "title": "示例八 - Jenkinsfile in SCM 流水线",
+          "title": "示例十 - Jenkinsfile in SCM 流水线",
           "entry": "./advanced-v2.0/zh-CN/quick-start/devops-online.md"
         },
         {
-          "title": "示例九 - Jenkinsfile-out-of-SCM",
-          "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
+          "title": "示例十一 - CI/CD 流水线(离线版)",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
         },
         {
-          "title": "示例十 - CI/CD 流水线(离线版)",
-          "entry": "./advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
+          "title": "示例十二 - Jenkinsfile-out-of-SCM",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
         }
       ]
     },
