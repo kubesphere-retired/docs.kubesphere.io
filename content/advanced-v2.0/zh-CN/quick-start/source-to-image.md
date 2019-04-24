@@ -2,11 +2,11 @@
 title: "Source-to-image" 
 ---
 
-Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的Builder image中，来将编译后的代码打包成 Docker 镜像。它使得应用程序开发人员对他们的代码进行更改，而不用知道 Dockerfile 或 Docker 镜像的细节，让对于 Docker 并不感兴趣的开发人员构建镜像更加方便，或者可以给构建过程提供更加强大的功能。
+Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包成可运行程序到 Docker 镜像的工具，在程序员不需要了解 Dockerfile 的情况下方便构建镜像。它是通过将源代码放入一个负责编译源代码的 Builder image 中，自动将编译后的代码打包成 Docker 镜像。
 
 ## 目的
 
-本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 Kubesphere 上使用 Source to image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署到集群中。
+本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 KubeSphere 上使用 Source to Image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署到集群中。
 
 ## 前提条件
 
@@ -15,7 +15,7 @@ Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将
 
 ## 预估时间
 
-20-30 分钟 (时间由于环境的网速等因素而有所不同) 。
+20-30 分钟（时间由于网速等因素而有所不同）。
 
 ## 操作示例
 
@@ -52,7 +52,7 @@ Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将
 
 ### Fork项目
 
-登录 GitHub，将本示例用到的 GitHub 仓库 [devops-docs-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
+登录 GitHub，将本示例用到的 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
 
 ![fork](https://kubesphere-docs.pek3b.qingstor.com/png/fork.png)
 
@@ -168,13 +168,17 @@ Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将
 
 ![nodeport](https://kubesphere-docs.pek3b.qingstor.com/png/nodeport.png)
 
-至此，可在内网通过 `内网IP:30962` 进行访问。
+至此，查看服务创建完成。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-nodeport.png)
+
+可在内网通过 `nodeIP:nodePort` 进行访问。如上图所示，此示例中随机分配的 nodePort 为 30454，即可在内网通过 `nodeIP:30454` 进行访问。
 
 #### 第七步：配置外网访问
 
-若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 `Hello World` 示例，以访问该项目管理下的服务的 `30962` 端口为例。
+若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 `Hello World` 示例，以访问该项目管理下的服务的 `30454` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30962` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30454` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
 **添加端口转发规则**
 

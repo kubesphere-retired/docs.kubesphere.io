@@ -2,7 +2,7 @@
 title: "CI/CD 流水线示例 (离线版)" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目进行管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可。KubeSphere 的安装文档请参考 [安装说明](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/intro/>)。Harbor 的具体安装请参考 [安装内置 Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>)。GitLab 的具体安装请参考 [安装内置 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目进行管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可。KubeSphere 的安装文档请参考 [安装说明](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/intro/>)。Harbor 的具体安装请参考 [安装内置 Harbor](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/harbor-installation/>)。GitLab 的具体安装请参考 [安装内置 GitLab](https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/gitlab-installation/)。
 
 ## 目的
 
