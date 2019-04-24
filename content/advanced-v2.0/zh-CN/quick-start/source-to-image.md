@@ -52,7 +52,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ### Fork项目
 
-登录 GitHub，将本示例用到的 GitHub 仓库 [devops-docs-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
+登录 GitHub，将本示例用到的 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
 
 ![fork](https://kubesphere-docs.pek3b.qingstor.com/png/fork.png)
 
@@ -168,13 +168,17 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![nodeport](https://kubesphere-docs.pek3b.qingstor.com/png/nodeport.png)
 
-至此，可在内网通过 `内网IP:30962` 进行访问。
+至此，查看服务创建完成。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-nodeport.png)
+
+可在内网通过 `nodeIP:nodePort` 进行访问。如上图所示，此示例中随机分配的 nodePort 为 30454，即可在内网通过 `nodeIP:30454` 进行访问。
 
 #### 第七步：配置外网访问
 
-若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 `Hello World` 示例，以访问该项目管理下的服务的 `30962` 端口为例。
+若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 `Hello World` 示例，以访问该项目管理下的服务的 `30454` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30962` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30454` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
 **添加端口转发规则**
 
