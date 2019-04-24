@@ -52,7 +52,7 @@ Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将
 
 ### Fork项目
 
-登录 GitHub，将本示例用到的 GitHub 仓库 [devops-docs-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
+登录 GitHub，将本示例用到的 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
 
 ![fork](https://kubesphere-docs.pek3b.qingstor.com/png/fork.png)
 
