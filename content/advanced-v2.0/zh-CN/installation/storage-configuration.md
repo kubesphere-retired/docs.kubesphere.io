@@ -9,7 +9,6 @@ title: "存储配置说明"
 - Ceph RBD
 - GlusterFS
 - NFS
-- NFS in Kubernetes (仅限 multi-node 部署测试使用)
 - Local Volume (仅限 all-in-one 部署测试使用)
 
 同时，Installer 集成了 [QingCloud 云平台块存储 CSI 插件](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 和 [QingStor NeonSAN CSI 插件](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12_zh.md)，仅需在安装前简单配置即可对接 QingCloud 云平台块存储或 NeonSAN 作为存储服务，前提是需要有操作 [QingCloud 云平台](https://console.qingcloud.com/login) 资源的权限或已有 NeonSAN 服务端。Installer 也集成了 NFS、GlusterFS 或 Ceph RBD 这类存储的客户端，用户需提前准备相关的存储服务端，然后在 `vars.yml` 配置对应的参数即可对接相应的存储服务端。
@@ -36,7 +35,7 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 
 ### QingCloud 云平台块存储
 
-KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务。
+KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务。
 
 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式 (Access Mode) 为 **单节点读写（ReadWriteOnce）** 的基于 QingCloud 的超高性能型 (超高性能型硬盘只能用在超高性能型主机)、性能型 (性能型硬盘只能用在性能型主机) 或容量型硬盘的存储卷并挂载至工作负载。在安装 KubeSphere 时配置 QingCloud-CSI 插件的参数说明如下。
 
@@ -136,7 +135,7 @@ $ heketi-cli cluster list
 
 ### NFS
 
-> 注意：**NFS** 与 **NFS in Kubernetes** 是两种不同类型的存储类型，在 vars.yml 中配置时仅需配置其中一种作为默认的存储类型即可。
+<!-- > 注意：**NFS** 与 **NFS in Kubernetes** 是两种不同类型的存储类型，在 vars.yml 中配置时仅需配置其中一种作为默认的存储类型即可。 -->
 
 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。需要预先准备 NFS 服务端，本方法可以使用 QingCloud 云平台 [vNAS](https://www.qingcloud.com/products/nas/) 作为 NFS 服务端。在 `conf/vars.yml` 配置的释义如下。
 
@@ -150,14 +149,14 @@ $ heketi-cli cluster list
 | nfs\_path | NFS 共享目录，即服务器上共享出去的文件目录，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
 
 
-### NFS in Kubernetes（仅限 multi-node 部署测试使用）
+<!-- ### NFS in Kubernetes（仅限 multi-node 部署测试使用）
 
 NFS 即网络文件系统，它允许网络中的计算机之间通过 TCP/IP 网络共享资源。本安装方法将会在 Kubernetes 集群内安装 [容器化的 NFS 服务端](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner)，要求 Kubernetes 节点有足够的硬盘空间。在 `conf/vars.yml` 配置的释义如下。
 
 | **NFS** | **Description** |
 | --- | --- |
 | nfs\_in\_k8s\_enable | 是否部署 NFS Server 到当前集群作为存储服务端，是：true；否：false | 
-|nfs\_in\_k8s\_is\_default\_class | 是否设定 NFS 为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
+|nfs\_in\_k8s\_is\_default\_class | 是否设定 NFS 为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 | -->
 
 ### Local Volume（仅限 all-in-one 部署测试使用）
 
