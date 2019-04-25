@@ -132,7 +132,7 @@ $ yum-complete-transaction --cleanup-only
 
 7、如何查看当前集群的 Kubeconfig 文件？
 
-用户可以通过打开 web kubectl 查看 Kubeconfig 文件，仅管理员或拥有 web kubectl 权限的用户有权限。
+答：用户可以通过打开 web kubectl 查看 Kubeconfig 文件，仅管理员或拥有 web kubectl 权限的用户有权限。
 
 ![查看 Kubeconfig 文件](/view-kubeconfig.png)
 
@@ -140,8 +140,19 @@ $ yum-complete-transaction --cleanup-only
 
 8、如何访问和登录 Jenkins 服务端？
 
-Installer 安装将会同时部署 Jenkins Dashboard，该服务暴露的端口 (NodePort) 为 `30180`，确保外网流量能够正常通过该端口，然后访问公网 IP 和端口号 (${EIP}:${NODEPORT}) 即可。Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard。
+答：Installer 安装将会同时部署 Jenkins Dashboard，该服务暴露的端口 (NodePort) 为 `30180`，确保外网流量能够正常通过该端口，然后访问公网 IP 和端口号 (${EIP}:${NODEPORT}) 即可。Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard。
 
 > 说明：
 > 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
 
+### CPU 用量异常问题
+
+9、为何安装后 CPU 用量数值异常大？
+
+![CPU 用量数值异常大](https://pek3b.qingstor.com/kubesphere-docs/png/20190425174519.png)
+
+答：Kubesphere 计算 CPU 用量的方法是求 user 、 nice 、 system 、 iowait 、 irq 、 softirq 以及 steal 七种 CPU 模式下的用量合，数据通过 node_exporter 采集。由于 Linux 内核 4.x 存在 steal 数值异常大的 bug，导致了如上图的异常值。建议尝试重启节点主机，或升级内核版本。
+
+更多信息请参考 [node_exporter issue #742](https://github.com/prometheus/node_exporter/issues/742)
+
+ 
