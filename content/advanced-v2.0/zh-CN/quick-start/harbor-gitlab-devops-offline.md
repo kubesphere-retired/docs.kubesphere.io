@@ -290,7 +290,7 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 | HARBOR\_CREDENTIAL\_ID     | harbor-id                            | 填写创建凭证步骤中的 Harbor 凭证 ID，用于登录您的 Harbor 仓库 |
 | GITLAB\_CREDENTIAL\_ID     | gitlab-id                            | 填写创建凭证步骤中的 GitLab 凭证 ID，用于推送 tag 到 GitLab 仓库 |
 | KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig                      | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
-| REDISTRY                 | harbor.devops.kubesphere.local:30280 | 默认为 Harbor 域名，用于镜像的推送                           |
+| REGISTRY                 | harbor.devops.kubesphere.local:30280 | 默认为 Harbor 域名，用于镜像的推送                           |
 | HARBOR_NAMESPACE         | library                              | 默认为 Harbor 下的 library 项目，可根据实际情况更改项目名称  |
 | GITLAB_ACCOUNT           | admin1                               | GitLab用户，默认为admin1                                     |
 | APP_NAME                 | devops-docs-sample                   | 应用名称                                                     |

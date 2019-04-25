@@ -140,7 +140,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 | DOCKER\_CREDENTIAL\_ID     | dockerhub-id           | 填写创建凭证步骤中的 DockerHub 凭证 ID，用于登录您的 DockerHub |
 | GITHUB\_CREDENTIAL\_ID     | github-id              | 填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库 |
 | KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig        | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
-| REDISTRY                 | docker.io              | 默认为docker.io 域名，用于镜像的推送                         |
+| REGISTRY                 | docker.io              | 默认为docker.io 域名，用于镜像的推送                         |
 | DOCKERHUB_NAMESPACE      | your-dockerhub-account | 替换为您的 DockerHub 账号名(它也可以是账户下的 Organization 名称) |
 | GITHUB_ACCOUNT           | github_username               | GitHub用户名                                  |
 | APP_NAME                 | devops-docs-sample     | 应用名称                                                     |
