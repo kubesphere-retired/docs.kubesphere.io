@@ -336,7 +336,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
-5、查看推送到您个人的 DockerHub 中的镜像，可以看到 `devops-sample`就是 APP_NAME 的值，而 tag也是在 jenkinsfile-online 中定义的 tag。
+5、查看推送到您个人的 DockerHub 中的镜像，可以看到 `devops-java-sample`就是 APP_NAME 的值，而 tag也是在 jenkinsfile-online 中定义的 tag。
 
 ![查看 DockerHub](https://kubesphere-docs.pek3b.qingstor.com/png/deveops-dockerhub.png)
 
