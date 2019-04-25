@@ -277,7 +277,7 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 
 ### 第二步：修改 Jenkinsfile
 
-​	1、在 **根目录** 进入 **Jenkinsfile**。
+​	1、在 **根目录** 进入 **Jenkinsfile-on-prem**。
 
 ![jenkins](https://kubesphere-docs.pek3b.qingstor.com/png/jenkins.png)
 
@@ -290,7 +290,7 @@ v1: digest: sha256:955dbe76c31f802d537d0c5e4160b3a010091e7e8323f46ecbb2a0f2174a5
 | HARBOR\_CREDENTIAL\_ID     | harbor-id                            | 填写创建凭证步骤中的 Harbor 凭证 ID，用于登录您的 Harbor 仓库 |
 | GITLAB\_CREDENTIAL\_ID     | gitlab-id                            | 填写创建凭证步骤中的 GitLab 凭证 ID，用于推送 tag 到 GitLab 仓库 |
 | KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig                      | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
-| REDISTRY                 | harbor.devops.kubesphere.local:30280 | 默认为 Harbor 域名，用于镜像的推送                           |
+| REGISTRY                 | harbor.devops.kubesphere.local:30280 | 默认为 Harbor 域名，用于镜像的推送                           |
 | HARBOR_NAMESPACE         | library                              | 默认为 Harbor 下的 library 项目，可根据实际情况更改项目名称  |
 | GITLAB_ACCOUNT           | admin1                               | GitLab用户，默认为admin1                                     |
 | APP_NAME                 | devops-docs-sample                   | 应用名称                                                     |
@@ -304,7 +304,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件] (<https://github.com
 
 回到工作台，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
-- 名称：固定为 `kubesphere-sample-prod`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-sample-s2i/tree/master/deploy>) 中修改 namespace
+- 名称：固定为 `kubesphere-sample-prod`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
 - 描述信息：可简单介绍该项目，方便用户进一步了解
 
@@ -387,7 +387,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件] (<https://github.com
 > - 只有被提交为 PR 的分支：仅扫描 PR 分支
 > - 所有分支：拉取的仓库 (origin) 中所有的分支
 
-3、默认的 **脚本路径** 为 Jenkinsfile，此处无需修改。
+3、默认的 **脚本路径** 为 Jenkinsfile，需要修改为 `Jenkinsfile-on-prem`。
 
 > 注：路径是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
@@ -407,9 +407,9 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件] (<https://github.com
 
 流水线创建后，点击浏览器的 **刷新** 按钮，可见一条自动触发远程分支后的运行记录。
 
-1、点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master`分支，系统将根据输入的分支加载 Jenkinsfile (默认是根目录下的 Jenkinsfile)。
+1、点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master`分支，系统将根据输入的分支加载 Jenkinsfile (此示例为根目录下的 Jenkinsfile-on-prem)。
 
-2、由于仓库的 Jenkinsfile 中 `TAG_NAME: defaultValue` 没有设置默认值，因此在这里的 `TAG_NAME` 可以输入一个 tag 编号，比如输入 v0.0.1。
+2、由于仓库的 Jenkinsfile-on-prem 中 `TAG_NAME: defaultValue` 没有设置默认值，因此在这里的 `TAG_NAME` 可以输入一个 tag 编号，比如输入 v0.0.1。
 
 3、点击 **确定**，将新生成一条流水线活动开始运行。
 
@@ -425,7 +425,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件] (<https://github.com
 
 ### 第五步：审核流水线
 
-为方便演示，此处默认用当前账户来审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile 中分别定义了三个阶段 (stage) 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中依次需要对 `deploy to dev, push with tag, deploy to production`这三个阶段审核 `3`次，若不审核或点击 **终止** 则流水线将不会继续运行。
+为方便演示，此处默认用当前账户来审核，当流水线执行至 `input` 步骤时状态将暂停，需要手动点击 **继续**，流水线才能继续运行。注意，在 Jenkinsfile-on-prem 中分别定义了三个阶段 (stage) 用来部署至 Dev 环境和 Production 环境以及推送 tag，因此在流水线中依次需要对 `deploy to dev, push with tag, deploy to production`这三个阶段审核 `3`次，若不审核或点击 **终止** 则流水线将不会继续运行。
 
 ![审核流水线](https://kubesphere-docs.pek3b.qingstor.com/png/devops_input.png)
 
@@ -439,7 +439,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 查看流水线
 
-1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile](https://github.com/kubesphere/devops-docs-sample/blob/master/Jenkinsfile) 中被定义。
+1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-on-prem](https://github.com/kubesphere/devops-docs-sample/blob/master/Jenkinsfile-on-prem) 中被定义。
 
 ![stage](https://kubesphere-docs.pek3b.qingstor.com/png/stage.png)
 
@@ -453,7 +453,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-result.png)
 
-2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 Harbor 中，我们在 Jenkinsfile 中已经配置过 Harbor，登录 Harbor 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 Harbor，并且在 GitLab 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
+2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 Harbor 中，我们在 Jenkinsfile-on-prem 中已经配置过 Harbor，登录 Harbor 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 Harbor，并且在 GitLab 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
@@ -471,7 +471,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 **查看服务** 
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
-5、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-sample` 就是 APP_NAME 的值，而 tag也是在 jenkinsfile 中定义的 tag。
+5、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-java-sample` 就是 APP_NAME 的值，而 tag也是在 Jenkinsfile-on-prem 中定义的 tag。
 
 6、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
 
