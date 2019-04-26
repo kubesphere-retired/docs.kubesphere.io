@@ -6,7 +6,7 @@ title: "Bookinfo 微服务的灰度发布示例"
 
 ## 目的
 
-本示例在 KubeSphere 中使用 istio 官方提供的 Bookinfo 示例，创建一个微服务应用并对其中的服务组件进行灰度发布，演示 KubeSphere 服务治理的能力。
+本示例在 KubeSphere 中使用 Istio 官方提供的 Bookinfo 示例，创建一个微服务应用并对其中的服务组件进行灰度发布，演示 KubeSphere 服务治理的能力。
 
 ## Bookinfo 微服务应用架构
 
@@ -14,7 +14,7 @@ Bookinfo 应用分为四个单独的微服务：
 
 - productpage ：productpage 微服务会调用 details 和 reviews 两个微服务，用来生成页面。
 - details ：这个微服务包含了书籍的信息。
-- reviews ：这个微服务包含了书籍相关的评论。它还会调用 ratings 微服务。
+- reviews ：这个微服务包含了书籍相关的评论，它还会调用 ratings 微服务。
 - ratings ：ratings 微服务中包含了由书籍评价组成的评级信息。
 
 reviews 微服务有 3 个版本：
