@@ -18,7 +18,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 ## 前提条件
 
-已创建了企业空间和项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
+已创建了企业空间和项目，并且已经创建了项目普通用户的账号 (project-regular)，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 
 ## 预估时间
 
@@ -36,7 +36,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 #### 第一步：创建部署
 
-1、以项目管理员 `project-regular` 登录 KubeSphere。在项目列表里点击之前创建好的项目 `demo-namespace`，进入项目；
+1、以项目普通用户 `project-regular` 登录 KubeSphere。在项目列表里点击之前创建好的项目 `demo-namespace`，进入项目；
 
 在左侧菜单栏选择 **工作负载 → 部署**，点击 **创建部署**。
 

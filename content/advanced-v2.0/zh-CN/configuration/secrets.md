@@ -70,3 +70,34 @@ type: kubernetes.io/tls
 - 以环境变量方式，在添加容器镜像的高级设置中，点击 **引入配置中心** 选择创建的密钥。
 
 关于如何使用密钥，建议参考 [示例一 - 部署 MySQL](../../quick-start/mysql-deployment)。
+
+## 创建常用的几类密钥
+
+### 创建 DockerHub 密钥
+
+1、以项目普通用户 `project-regular` 进入之前创建的项目 `demo-namespace`，在左侧的配置中心菜单下，点击 `密钥`，进入密钥管理界面。
+
+![create-ca](https://kubesphere-docs.pek3b.qingstor.com/png/create-ca.png)
+
+2、点击创建，创建一个用于 DockerHub 登录的密钥；
+
+- 名称：必填，此名称作为改密钥的名称使用，此处命名为 **dockerhub-id**
+- 别名：为了方便理解可自定义设置
+- 描述信息：简单描述该密钥的用途等相关信息，可自定义
+
+然后点击下一步
+
+![name-ca](https://kubesphere-docs.pek3b.qingstor.com/png/name-ca.png)
+
+- 类型：选择 **镜像仓库密钥**
+- 仓库地址：填写 DockerHub 的仓库地址，如docker.io
+- 用户名：填写您个人的 DockerHub 的用户名
+- 密码：填写您个人的 DockerHub 的密码
+
+3、完成后点击 「创建」。
+
+### 创建 GitHub 密钥
+
+同上，创建一个用于 GitHub 的密钥，凭证 ID 命名为 **github-id**，类型选择 `账号密码密钥`，输入您个人的 GitHub 用户名和密码，完成后点击 **确定**。
+
+

@@ -263,8 +263,21 @@
           ]
         },
         {
-          "title": "Jenkins 系统设置",
-          "entry": "./advanced-v2.0/zh-CN/devops/jenkins-setting.md"
+          "title": "通用配置",
+          "entries": [
+            {
+              "title": "系统配置修改",
+              "entry": "./advanced-v2.0/zh-CN/system-settings/edit-system-settings.md"
+            },
+            {
+              "title": "上传镜像至 Harbor",
+              "entry": "./advanced-v2.0/zh-CN/system-settings/push-img-harbor.md"
+            },
+            {
+              "title": "Jenkins 系统设置",
+              "entry": "./advanced-v2.0/zh-CN/devops/jenkins-setting.md"
+            }
+          ]
         }
       ]
     },
@@ -412,6 +425,10 @@
             {
               "title": "添加代码仓库",
               "entry": "./advanced-v2.0/zh-CN/devops/add-scm.md"
+            },
+            {
+              "title": "访问 SonarQube 并创建 Token",
+              "entry": "./advanced-v2.0/zh-CN/devops/sonarqube.md"
             },
             {
               "title": "设置自动触发扫描",
