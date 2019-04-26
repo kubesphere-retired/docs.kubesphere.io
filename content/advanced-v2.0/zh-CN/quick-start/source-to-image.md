@@ -23,7 +23,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 需要预先创建 DockerHub 镜像仓库和 GitHub 代码仓库的密钥，分别为 **dockerhub-id** 和 **github-id**，参考 [创建常用的几类密钥](../../configuration/secrets/#创建常用的几类密钥)。
 
-### Fork项目
+### Fork 项目
 
 登录 GitHub，将本示例用到的 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub。
 
@@ -39,9 +39,9 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 2、点击创建，创建一个部署。
 
-- 名称：必填，给部署起一个名字，以便在使用的时候容易区分，此处使用 `s2i-test`
-- 别名：为了方便理解可自定义设置
-- 描述信息：简单描述该部署的相关信息，可自定义
+- 名称：必填，给部署起一个名字，以便在使用的时候容易区分，此处使用 `s2i-test`；
+- 别名：为了方便理解可自定义设置；
+- 描述信息：简单描述该部署的相关信息，可自定义；
 
 #### 第二步：容器组模版设置
 
@@ -49,19 +49,23 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![container](https://kubesphere-docs.pek3b.qingstor.com/png/container.png)
 
-2、然后选择`通过代码构建新的容器镜像`
+2、然后选择 `通过代码构建新的容器镜像`。
 
 ![build](https://kubesphere-docs.pek3b.qingstor.com/png/build.png)
 
-3、参考如下提示填写信息。
+3、[示例仓库](https://github.com/kubesphere/devops-java-sample) Fork 至您个人的 GitHub 后，复制您个人仓库的 git 地址。
 
-- 代码地址：源代码仓库的址（目前支持 Git，支持 HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入 Fork 之前的 Git 仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
-- 密钥：选择之前创建的 `github-id`
-- 映像模板：选择 `kubespheredev/java-8-centos7` 作为此示例的Builder image
-- 代码相对路径：使用默认的 `/` 即可
-- 映像名称：可根据自己情况定义，此示例使用 `<dockerhub_username>/hello`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限
-- tag：镜像标签使用默认 `latest` 即可
-- 目标镜像仓库：选择之前创建的 `dockerhub-id`
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190426112246.png)
+
+4、参考如下提示填写信息。
+
+- 代码地址：粘贴上一步复制的 git 地址（目前支持 Git，支持 HTTP、HTTPS，并且可以指定代码分支以及在源代码终端的相对路径）；
+- 密钥：选择之前创建的 `github-id`；
+- 映像模板：选择 `kubespheredev/java-8-centos7` 作为此示例的 Builder image；
+- 代码相对路径：使用默认的 `/` 即可；
+- 映像名称：可根据自己情况定义，此示例使用 `<dockerhub_username>/hello`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限；
+- tag：镜像标签使用默认 `latest` 即可；
+- 目标镜像仓库：选择之前创建的 `dockerhub-id`。
 
 ![s2i](https://kubesphere-docs.pek3b.qingstor.com/png/s2i.png)
 
@@ -125,7 +129,11 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![select](https://kubesphere-docs.pek3b.qingstor.com/png/select.png)
 
-点击保存，然后配置端口为 `30962`,目标端口为 `8080`,具体信息填写如下图，完成后点击 「下一步」。
+3、点击保存，参考如下提示配置端口信息。
+
+- 端口名称：s2i-port；
+- 协议默认 TCP，端口号：`30962`，目标端口为 `8080`；
+- 设置完成后点击 「下一步」。
 
 ![s2i-port](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-port.png)
 
@@ -138,7 +146,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 选择访问方式为 `NodePort`。
 
-![nodeport](https://kubesphere-docs.pek3b.qingstor.com/png/nodeport.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190426113634.png)
 
 至此，查看服务创建完成。
 
@@ -160,4 +168,10 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![firewall](https://kubesphere-docs.pek3b.qingstor.com/png/firewall.png)
 
-至此，即可访问`http://{$EIP}:30860/`，看到页面的 `Hello World!`。
+至此，即可访问`http://{$EIP}:30454/`，看到页面的 `Hello World!`。
+
+### 查看推送的镜像
+
+由于我们在容器组模板设置中设置的目标镜像仓库为 DockerHub，此时可以登录您个人的 DockerHub 查看 Source to Image 示例推送的镜像，以下验证发现 `hello:latest` 镜像已成功推送至 DockerHub。
+
+![查看推送的镜像](https://pek3b.qingstor.com/kubesphere-docs/png/20190426114503.png)
