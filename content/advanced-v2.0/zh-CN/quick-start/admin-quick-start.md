@@ -39,11 +39,11 @@ title: "多租户管理快速入门"
 |cluster-regular|集群中的普通用户，在被邀请加入企业空间之前没有任何资源操作权限。|
 
 
-本示例首先新建一个角色 (users-manager)，为该角色授予账号管理和角色管理的权限，然后新建一个账号并给这个账号授予 users-manager 角色。
+本示例首先新建一个角色 (user-manager)，为该角色授予账号管理和角色管理的权限，然后新建一个账号并给这个账号授予 user-manager 角色。
 
 |账号名|集群角色|职责|
 |---|---|---|
-|user-manager|users-manager|管理集群的账户和角色|
+|user-manager|user-manager|管理集群的账户和角色|
 
 1.1. 点击控制台左上角 **平台管理 → 平台角色**，可以看到当前的角色列表，点击 **创建**，创建一个角色用于管理所有账户和角色。
 
@@ -51,7 +51,7 @@ title: "多租户管理快速入门"
 
 1.2. 填写角色的基本信息和权限设置。
 
-- 名称：起一个简洁明了的名称，便于用户浏览和搜索，如 `users-manager`
+- 名称：起一个简洁明了的名称，便于用户浏览和搜索，如 `user-manager`
 - 描述信息：简单介绍该角色的职责，如 `管理账户和角色`
 
 ![基本信息](/role-basic.png)
@@ -64,20 +64,20 @@ title: "多租户管理快速入门"
 
 ![创建账号](/account-list.png)
 
-1.5. 填写新用户的基本信息，如用户名设置为 `user-manager`，角色选择 `users-manager`，其它信息可自定义，点击 **确定**。
+1.5. 填写新用户的基本信息，如用户名设置为 `user-manager`，角色选择 `user-manager`，其它信息可自定义，点击 **确定**。
 
 > 说明：上述步骤仅简单地说明创建流程，关于账号管理与角色权限管理的详细说明，请参考 [角色权限概览](../../multi-tenant/role-overview) 和 [账号管理](../../platform-management/account-management)。
 
-![添加用户](/demo-account.png)
+![账号管理](https://pek3b.qingstor.com/kubesphere-docs/png/20190426165010.png)
 
-1.6. 然后用 user-manager 来创建下表的一个 workspace-manager 和三个 cluster-regular 角色的账号，workspace-manager 将用于创建一个企业空间，并指定其中一个用户名为 `ws-admin` 作为企业空间管理员。切换成上一步创建的 `user-manager` 账号登录 KubeSphere，在 **账号管理** 下，新建四个账号，创建步骤同上，参考如下信息创建。
+1.6. 然后用 user-manager 来创建下表中的四个账号，workspace-manager 将用于创建一个企业空间，并指定其中一个用户名为 `ws-admin` 作为企业空间管理员。切换成上一步创建的 `user-manager` 账号登录 KubeSphere，在 **账号管理** 下，新建四个账号，创建步骤同上，参考如下信息创建。
 
-|账号名|集群角色|企业空间角色|职责|
-|---|---|---|---|
-|ws-manager|workspaces-manager|workspace-admin (默认)|创建和管理企业空间|
-|ws-admin|cluster-regular|workspace-admin|管理企业空间下所有的资源<br> (本示例用于邀请新成员加入企业空间)|
-|project-admin|cluster-regular|workspace-regular|创建和管理项目、DevOps 工程，邀请新成员加入|
-|project-regular|cluster-regular|workspace-regular|将被 project-admin 邀请加入项目和 DevOps 工程，<br>用于创建项目和工程下的工作负载、Pipeline 等资源|
+|账号名|集群角色|职责|
+|---|---|---|
+|ws-manager|workspaces-manager|创建和管理企业空间|
+|ws-admin|cluster-regular|管理企业空间下所有的资源<br> (本示例用于邀请新成员加入企业空间)|
+|project-admin|cluster-regular|创建和管理项目、DevOps 工程，邀请新成员加入|
+|project-regular|cluster-regular|将被 project-admin 邀请加入项目和 DevOps 工程，<br>用于创建项目和工程下的工作负载、Pipeline 等资源|
 
 1.7. 查看新建的四个账号信息。
 
@@ -111,7 +111,14 @@ title: "多租户管理快速入门"
 
 ![邀请成员](/workspace-member-list.png)
 
-2.4. 这一步需要邀请在 **步骤 1.6.** 创建的两个用户 `project-admin` 和 `project-regular` 进入企业空间，并且都授予 `workspace-regular` 的角色。
+2.4. 这一步需要邀请在 **步骤 1.6.** 创建的两个用户 `project-admin` 和 `project-regular` 进入企业空间，并且都授予 `workspace-regular` 的角色，此时该企业空间一共有如下四个用户：
+
+|账号名|企业空间角色|职责|
+|---|---|---|
+|ws-manager|workspace-admin (默认)|创建和管理企业空间|
+|ws-admin|workspace-admin|管理企业空间下所有的资源<br> (本示例用于邀请新成员加入企业空间)|
+|project-admin|workspace-regular|创建和管理项目、DevOps 工程，邀请新成员加入|
+|project-regular|workspace-regular|将被 project-admin 邀请加入项目和 DevOps 工程，<br>用于创建项目和工程下的工作负载、Pipeline 等资源|
 
 ![邀请 project-regular](/invite-operator-user.png)
 
@@ -196,4 +203,4 @@ title: "多租户管理快速入门"
 ![设置角色](/devops-member-management.png)
 
 
-至此，本文档为您演示了如何在多租户的基础上，使用账户管理和角色管理的功能，以示例的方式介绍了常用内置角色的用法，以及创建项目和 DevOps 工程，并且说明了如何使用 web kubectl。请参考 [快速入门](../quick-start-guide) 系列文档的 7 个示例，使用 project-regular 用户登录 KubeSphere 动手实践操作一遍，创建具体的工作负载、服务和 CI / CD 流水线。
+至此，本文档为您演示了如何在多租户的基础上，使用账户管理和角色管理的功能，以示例的方式介绍了常用内置角色的用法，以及创建项目和 DevOps 工程。请继续参考 [快速入门](../quick-start-guide) 系列文档的其他示例，使用项目普通用户 `project-regular` 登录 KubeSphere 动手实践操作一遍，创建具体的工作负载、服务和 CI/CD 流水线。
