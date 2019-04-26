@@ -11,7 +11,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 ## 前提条件
 
 - 本示例以 GitHub 代码仓库和 DockerHub 镜像仓库为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
-- 已创建了企业空间和项目管理，若还未创建请参考 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)。
+- 已创建了企业空间和项目管理，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 
 ## 预估时间
 
@@ -19,36 +19,9 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ## 操作示例
 
-### 创建凭证
+### 创建密钥
 
-#### 第一步：创建 DockerHub 镜像仓库密钥
-
-1、以 `project-regular` 进入之前创建的项目 `demo-namespace`，在左侧的配置中心菜单下，点击 `密钥`，进入密钥管理界面。
-
-![create-ca](https://kubesphere-docs.pek3b.qingstor.com/png/create-ca.png)
-
-2、点击创建，创建一个用于 DockerHub 登录的密钥；
-
-- 名称：必填，此名称作为改密钥的名称使用，此处命名为 **dockerhub-id**
-- 别名：为了方便理解可自定义设置
-- 描述信息：简单描述该密钥的用途等相关信息，可自定义
-
-然后点击下一步
-
-![name-ca](https://kubesphere-docs.pek3b.qingstor.com/png/name-ca.png)
-
-- 类型：选择 **镜像仓库密钥**
-- 仓库地址：填写 DockerHub 的仓库地址，如docker.io
-- 用户名：填写您个人的 DockerHub 的用户名
-- 密码：填写您个人的 DockerHub 的密码
-
-3、完成后点击创建
-
-![dockerhub](https://kubesphere-docs.pek3b.qingstor.com/png/dockerhub.png)
-
-#### 第二步：创建 GitHub 密钥
-
-同上，创建一个用于 GitHub 的密钥，凭证 ID 命名为 **github-id**，类型选择 `账号密码密钥`，输入您个人的 GitHub 用户名和密码，完成后点击 **确定**。
+需要预先创建 DockerHub 镜像仓库和 GitHub 代码仓库的密钥，分别为 **dockerhub-id** 和 **github-id**，参考 [创建常用的几类密钥](../../configuration/secrets/#创建常用的几类密钥)。
 
 ### Fork项目
 
@@ -72,7 +45,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 #### 第二步：容器组模版设置
 
-1、点击下一步，进入容器组模版设置界面，选择添加容器
+1、点击 「下一步」，进入容器组模版设置界面，选择 「添加容器」。
 
 ![container](https://kubesphere-docs.pek3b.qingstor.com/png/container.png)
 
@@ -80,7 +53,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![build](https://kubesphere-docs.pek3b.qingstor.com/png/build.png)
 
-3、然后输入一下信息，
+3、参考如下提示填写信息。
 
 - 代码地址：源代码仓库的址（目前支持 Git，支持 HTTP、HTTPS）并且可以指定代码分支及在源代码终端额相对路径地，输入 Fork 之前的 Git 仓库地址。比如：`https://github.com/soulseen/devops-java-sample.git`
 - 密钥：选择之前创建的 `github-id`
@@ -100,9 +73,9 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![server](https://kubesphere-docs.pek3b.qingstor.com/png/server.png)
 
-6、然后点击保存
+6、然后点击 「保存」
 
-副本数量可选择为 1，然后点击下一步
+副本数量可选择为 1，然后点击 「下一步」。
 
 ![next1](https://kubesphere-docs.pek3b.qingstor.com/png/next1.png)
 
@@ -132,13 +105,13 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 #### 第一步：创建服务
 
-选择左侧网络与服务下的服务，点击创建服务。
+选择左侧网络与服务下的服务，点击 「创建服务」。
 
 ![create_service](https://kubesphere-docs.pek3b.qingstor.com/png/create_service.png)
 
 #### 第二步：基本信息填写
 
-基本信息与创建部署类似，这里名称填写示例名称 `s2i-test-service`，其余可根据自己情况填写，点击下一步，如下图
+基本信息与创建部署类似，这里名称填写示例名称 `s2i-test-service`，其余可根据自己情况填写，点击 「下一步」，如下图。
 
 ![service_name](https://kubesphere-docs.pek3b.qingstor.com/png/service_name.png)
 
@@ -148,23 +121,22 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![type](https://kubesphere-docs.pek3b.qingstor.com/png/type.png)
 
-2、点击下一步，然后点击指定工作负载，选择刚刚创建的名称为 `s2i-test` 的部署，如下图。
+2、然后点击 「指定工作负载」，选择刚刚创建的名称为 `s2i-test` 的部署，如下图。
 
 ![select](https://kubesphere-docs.pek3b.qingstor.com/png/select.png)
 
-点击保存，然后配置端口为 `30962`,目标端口为 `8080`,具体信息填写如下图。
+点击保存，然后配置端口为 `30962`,目标端口为 `8080`,具体信息填写如下图，完成后点击 「下一步」。
 
 ![s2i-port](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-port.png)
 
-点击下一步。
 
 #### 第五步：标签设置
 
-默认即可。
+默认即可，点击 「下一步」。
 
 #### 第六步：外网访问
 
-选择访问方式为 NodePort。
+选择访问方式为 `NodePort`。
 
 ![nodeport](https://kubesphere-docs.pek3b.qingstor.com/png/nodeport.png)
 
@@ -172,7 +144,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-nodeport.png)
 
-可在内网通过 `nodeIP:nodePort` 进行访问。如上图所示，此示例中随机分配的 nodePort 为 30454，即可在内网通过 `nodeIP:30454` 进行访问。
+可在内网通过 `http://{$nodeIP}:{$nodePort}` 进行访问。如上图所示，此示例中随机分配的 nodePort 为 30454，即可在内网通过 `http://{$nodeIP}:30454` 进行访问。
 
 #### 第七步：配置外网访问
 
@@ -188,4 +160,4 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![firewall](https://kubesphere-docs.pek3b.qingstor.com/png/firewall.png)
 
-至此，即可访问`http://EIP:30860/`，看到页面的 `Hello World!`。
+至此，即可访问`http://{$EIP}:30860/`，看到页面的 `Hello World!`。

@@ -2,16 +2,16 @@
 title: "Jenkinsfile in SCM 流水线" 
 ---
 
-Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Source Control Management) 的一部分，因此可使用 `git clone`或者其他类似的命令都能够获取此 Jenkinsfile，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在代码仓库中应包含 Jenkinsfile。
+Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Source Control Management) 的一部分，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在代码仓库中应包含 Jenkinsfile。
 
 ## 目的
 
-本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个文档网站部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的
+本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个 Hello World 页面部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问。
 
 ## 前提条件
 
 - 本示例以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
-- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start)；
+- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。
 
 ## 预估时间
@@ -39,77 +39,13 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 创建凭证
 
-在 [管理员快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start) 中已给 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 DevOps 工程，开始创建凭证。
+在 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
 
-本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
+1、本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，参考 [创建凭证](../../devops/credential/#创建凭证) 依次创建这三个凭证。
 
-> 注意：若用户的凭证信息如账号或密码中包含了 `@`，`$`这类特殊符号，可能在运行时无法识别而报错，这类情况需要用户在创建凭证时对密码进行 urlencode 编码，可通过一些第三方网站进行转换 (比如 `http://tool.chinaz.com/tools/urlencode.aspx`)，然后再将转换后的输出粘贴到对应的凭证信息中。
+2、然后参考 [访问 SonarQube 并创建 Token](../../devops/sonarqube)，创建一个 Java 的 Token 并复制。
 
-### 第一步：创建 DockerHub 凭证
-
-1、进入之前创建的 DevOps 工程，在左侧的工程管理菜单下，点击 `凭证`，进入凭证管理界面。
-
-![credential_page](https://kubesphere-docs.pek3b.qingstor.com/png/devops_credentials.png)
-
-2、点击 **创建**，创建一个用于 DockerHub 登录的凭证；
-
-- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，此处命名为 **dockerhub-id**
-- 类型：选择 **账户凭证**
-- 用户名：填写您个人的 DockerHub 的用户名
-- token / 密码：您个人的 DockerHub 的密码
-- 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证
-
-3、完成后点击 **确定**。
-
-![Dockerhub 凭证](https://kubesphere-docs.pek3b.qingstor.com/png/dockerhub-credential.png)
-
-### 第二步：创建 GitHub 凭证
-
-同上，创建一个用于 GitHub 的凭证，凭证 ID 命名为 **github-id**，类型选择 `账户凭证`，输入您个人的 GitHub 用户名和密码，备注描述信息，完成后点击 **确定**。
-
-### 第三步：创建 kubeconfig 凭证
-
-同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig` 的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
-
-> 说明：kubeconfig 类型的凭证用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
-
-### 第四步：创建 sonarQube 凭证
-
-1、首先点击右侧 `企业空间`，进入 `system-workspace`。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/devops-workspace.png)
-
-2、然后选择 `项目管理`，点击进入 `kubesphere-devops-system`。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-ns.png)
-
-3、然后点击 `网络与服务` 下的 `服务` ，选择进入 `ks-sonarqube-sonarqube` 服务。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-getsvc.png)
-
-即可看到 sonarQube 暴露的节点端口。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-port.png)
-
-然后通过 `节点 IP: 端口` 的方式进入到 sonarQube 界面。若是在青云 QingCloud 公有云上配置，则需要配置防火墙和端口转发，具体方式可参考 [访问服务示例](<https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline/#%E8%AE%BF%E9%97%AE%E7%A4%BA%E4%BE%8B%E6%9C%8D%E5%8A%A1>)。
-
-4、使用默认账号 `admin/admin` 登入 sonar，然后点击右上角加号下的 `Create new project`。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-create.png)
-
-5、然后输入 `name`，然后点击 `Generate`。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-name.png)
-
-即可获取 token，然后点击 `Continue`。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-con.png)
-
-6、然后选择 Language `Java` ，选择 build technology 为 `Maven`。**复制 token**。点击 `Finish this tutorial` 即可。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-finish.png)
-
-7、然后在Kubesphere下回到之前的项目中，与上面步骤类似，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本` 的凭证，凭证 ID 命名为 **sonar-token**，密钥 为上面复制的 token信息。完成后点击 **确定**。
+3、最后在 KubeSphere 中进入 `devops-demo` 的 DevOps 工程中，与上面步骤类似，在 **凭证** 下点击 **创建**，创建一个类型为 `秘密文本` 的凭证，凭证 ID 命名为 **sonar-token**，密钥为上一步复制的 token 信息，完成后点击 **确定**。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-id.png)
 
@@ -168,13 +104,9 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 本示例暂无资源请求和限制，因此高级设置中无需修改默认值，点击 **创建**，项目可创建成功。
 
-![dev-succ](https://kubesphere-docs.pek3b.qingstor.com/png/dev-succ.png)
-
 ### 创建第二个项目
 
 同上，参考上一步创建一个名称为 `kubesphere-sample-prod` 的项目，作为生产环境。
-
-高级配置设置如下。
 
 > 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目中将看到流水线创建的部署 (Deployment) 和服务 (Service)。
 
@@ -218,9 +150,9 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 完成代码仓库相关设置后，进入高级设置页面，高级设置支持对流水线的构建记录、行为策略、定期扫描等设置的定制化，以下对用到的相关配置作简单释义。
 
-1、构建设置中，勾选 `丢弃旧的构建`，此处的 **保留构建的天数** 和 **保持构建的最大个数** 默认为 -1。
+1、构建设置中，勾选 `丢弃旧的分支`，此处的 **保留构建的天数** 和 **保持构建的最大个数** 默认为 -1。
 
-![构建设置](https://kubesphere-docs.pek3b.qingstor.com/png/build-setting.png)
+![丢弃旧的分支](https://pek3b.qingstor.com/kubesphere-docs/png/20190425224048.png)
 
 > 说明：
 >
@@ -317,7 +249,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-result.png)
 
-2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
+2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。Hello World 示例页面最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
@@ -328,7 +260,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 进入该项目，在左侧的菜单栏点击 **工作负载 → 部署**，可以看到 ks-sample 已创建成功。正常情况下，部署的状态应该显示 **运行中**。
 
-![deploy](https://kubesphere-docs.pek3b.qingstor.com/png/deploy.png)
+![sample](https://pek3b.qingstor.com/kubesphere-docs/png/20190426084733.png)
 
 4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30961`。
 
@@ -342,7 +274,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 6、点击 `release`，查看 Fork 到您个人 GitHub repo 中的 `v0.0.1`tag 和 release，它是由 jenkinsfile 中的 `push with tag`stage 生成的
 
-7、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30960` 端口为例。
+7、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 Hello World 示例的首页，以访问生产环境 ks-sample 服务的 `30961` 端口为例。
 
 例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
 
@@ -364,8 +296,8 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 **Prodcution 环境**
 
-访问 `http://127.0.0.1:30961/`或者 `http://EIP:30961\`。
+访问 `http://127.0.0.1:30961/`或者 `http://EIP:30961/`。
 
 页面会出现 `Hello,World!`。
 
-至此，结合 GitHub 和 DockerHub，在线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](https://docs.kubesphere.io/advanced-v2.0/zh-CN/faq)。
+至此，结合 GitHub 和 DockerHub，在线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../faq)。
