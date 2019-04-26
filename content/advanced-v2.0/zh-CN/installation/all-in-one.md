@@ -14,12 +14,12 @@ title: "All-in-One 模式"
 
 > 说明：若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
 
-| 操作系统 | 最小配置 | 推荐配置 |
-| --- | --- | --- | 
-| CentOS 7.5 (64 bit) | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：100 G | CPU：大于 8 核 <br/> 内存：大于 16 G <br/> 系统盘：不小于 100 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：100 G | CPU：大于 8 核 <br/> 内存：大于 16 G <br/> 系统盘：不小于 100 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：100 G | CPU：大于 8 核 <br/> 内存：大于 16 G <br/> 系统盘：不小于 100 G |
-|Debian Stretch 9.5 (64 bit)| CPU：8 核 <br/> 内存：16 G <br/> 系统盘：100 G | CPU：大于 8 核 <br/> 内存：大于 16 G <br/> 系统盘：不小于 100 G |
+| 操作系统 | 最小配置 | 
+| --- | --- |
+| CentOS 7.5 (64 bit) | CPU：8 核， 内存：16 G， 系统盘：100 G | 
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：8 核， 内存：16 G， 系统盘：100 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：8 核， 内存：16 G， 系统盘：100 G | 
+|Debian Stretch 9.5 (64 bit)| CPU：8 核， 内存：16 G， 系统盘：100 G | 
 
 
 
