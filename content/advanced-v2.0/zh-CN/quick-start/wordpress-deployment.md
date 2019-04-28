@@ -4,12 +4,12 @@ title: "部署 Wordpress"
 
 ## 目的
 
-本文以创建一个部署 (Deployment) 为例，部署一个无状态的 Wordpress 应用，基于示例一的 MySQL 应用最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
+本文以创建一个部署 (Deployment) 为例，部署一个无状态的 Wordpress 应用，基于 [示例二](../mysql-deployment) 的 MySQL 应用最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
 
 ## 前提条件
 
 - 已创建了有状态副本集 MySQL，若还未创建请参考 [部署 MySQL](../mysql-deployment)。
-- 以 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目
+- 以项目普通用户 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目
 
 ## 预估时间
 
@@ -31,7 +31,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 1.1. 在当前项目下左侧菜单栏的 **配置中心** 选择 **配置**，点击 **创建配置**。
 
-![创建配置](/wordpress-create-configmap.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428141721.png)
 
 1.2. 填写部署的基本信息，完成后点击 **下一步**。
 
@@ -63,7 +63,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 ![存储卷设置](/demo2-pvc-setting.png)
 
-2.3. 点击 **下一步**，设置标签为 `app: wordpress-pvc`，点击创建。
+2.3. 标签默认为 `app: wordpress-pvc`，点击 「创建」。
 
 ![设置标签](/demo-pvc-label.png)
 
@@ -95,21 +95,21 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 #### 第五步：容器组模板
 
-5.1. 点击 **添加容器**。容器组模板中，名称可自定义，镜像填写 `wordpress:4.8-apache`，CPU 和内存此处暂不作限定，将使用在创建项目时指定的默认值，点击 **高级选项**。
+5.1. 点击 **添加容器**。容器组模板中，名称可自定义，镜像填写 `wordpress:4.8-apache`，CPU 和内存此处暂不作限定，将使用在创建项目时指定的默认值。
 
-![容器组模板](/demo2-container-setting.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428142854.png)
 
-5.2. 对 **端口** 和 **环境变量** 进行设置，其它项暂不作设置。参考如下填写，完成后点击 **保存**。
+5.2. 下滑至服务设置，对 **端口** 和 **环境变量** 进行设置，其它项暂不作设置。参考如下填写。
 
-- 端口：名称可自定义，选择 `TCP` 协议，填写 Wordpress 在容器内的端口 `80`。
+- 端口：名称可自定义如 port，选择 `TCP` 协议，填写 Wordpress 在容器内的端口 `80`。
 - 环境变量：这里需要添加两个环境变量
    -  点击 **引用配置中心**，名称填写 `WORDPRESS_DB_PASSWORD`，选择在第一步创建的配置 (ConfigMap) `wordpress-configmap` 和 `WORDPRESS_DB_PASSWORD`。
    -  点击 **添加环境变量**，名称填写 `WORDPRESS_DB_HOST`，值填写 `mysql-service`，对应的是 [示例一 - 部署 MySQL](../mysql-deployment/#第六步：服务配置) 创建 MySQL 服务的名称，否则无法连接 MySQL 数据库，可在服务列表中查看其服务名。
 
 
-![容器组模板](/wordpress-container-setting.png)
+![容器组模板](https://pek3b.qingstor.com/kubesphere-docs/png/20190428143233.png)
 
-5.3. 副本数量和弹性伸缩暂无需设置，更新策略选择推荐的 **滚动更新策略**，然后点击 **下一步**。
+5.3. 完成后点击 **保存**，点击 **下一步**。
 
 #### 第六步：存储卷设置
 
@@ -123,11 +123,8 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 #### 第七步：查看部署
 
-7.1. 为方便识别此应用，我们标签设置如下。下一步的节点选择器可以指定容器组调度到期望运行的节点上，此处暂不作设置，点击 **创建**，部署创建完成。
+7.1. 标签保留默认值，节点选择器此处暂不作设置，点击 **创建**，部署创建完成。
 
-```
-app: wordpress
-```
 
 7.2. 创建完成后，部署的状态为 "更新中" 是由于创建后需要拉取 wordpress 镜像并创建容器 (大概一分钟左右)，可以看到容器组的状态是 "ContainerCreating"，待部署创建完成后，状态会显示 “运行中”。
 
@@ -141,7 +138,7 @@ app: wordpress
 
 8.1. 在当前项目中，左侧菜单栏选择 **网路与服务 → 服务**，点击 **创建**。
 
-![创建服务](/demo2-create-svc.png)
+![创建服务](https://pek3b.qingstor.com/kubesphere-docs/png/20190428143635.png)
 
 8.2. 基本信息中，信息填写如下，完成后点击 **下一步**：
 
@@ -154,7 +151,7 @@ app: wordpress
 
 - 服务类型：选择第一项 **通过集群内部IP来访问服务 Virtual IP**
 - 选择器：点击 **指定工作负载** 可以指定上一步创建的部署 Wordpress，指定后点击 **保存** 
-- 端口：端口名称可自定义，服务的端口和目标端口都填写 `TCP` 协议的 `80` 端口
+- 端口：端口名称可自定义如 port，服务的端口和目标端口都填写 `TCP` 协议的 `80` 端口
 - 会话亲和性：None，完成参数设置，选择下一步
 
 > 说明: 若有实现基于客户端 IP 的会话亲和性的需求，可以在会话亲和性下拉框选择 "ClientIP" 或在代码模式将 service.spec.sessionAffinity 的值设置为 "ClientIP"（默认值为 "None"），该设置可将来自同一个 IP 地址的访问请求都转发到同一个后端 Pod。
@@ -162,29 +159,21 @@ app: wordpress
 ![服务类型](/demo2-svc-setting.png)
 ![服务设置](/service-setting.png)
 
-8.4. 添加标签并保存，本示例标签设置如下，添加后选择 **下一步**。
+8.4. 本示例标签保留默认值，选择 **下一步**。
 
-```
-app=wordpress-service
-```
+8.5. 服务暴露给外网访问支持 NodePort 和 LoadBalancer，这里服务的访问方式选择 **NodePort**。
 
-8.5. 服务暴露给外网访问的访问方式，支持 NodePort 和 LoadBalancer，这里服务的访问方式选择 **NodePort**。点击 **创建**，wordpress-service 服务可创建成功。注意，wordpress-service 服务生成了一个节点端口 `30517`。
+![设置 NodePort](https://pek3b.qingstor.com/kubesphere-docs/png/20190428143904.png)
+
+8.6. 点击 **创建**，wordpress-service 服务可创建成功。注意，wordpress-service 服务生成了一个节点端口 `30517`。
 
 ![创建成功](/demo2-wordpress-service-list.png)
 
 
 
-> 注意：若需要在公网访问，可能需要进行端口转发和防火墙放行对应的端口，保证外网流量能够通过需要访问的端口如 30517，否则外网无法访问。
+> 注意：若需要在公网访问，可能需要进行端口转发和防火墙放行对应的端口，保证外网流量能够通过需要访问的节点端口如 30517，否则外网无法访问。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30517` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
-
-**添加端口转发规则**
-
-![添加端口转发规则](/vpc-nodeport-forward.png)
-
-**防火墙添加下行规则**
-
-![防火墙添加下行规则](/firewall-nodeport.png)
+例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 ### 访问 Wordpress
 

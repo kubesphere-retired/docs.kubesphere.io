@@ -158,17 +158,9 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 `Hello World` 示例，以访问该项目管理下的服务的 `30454` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30454` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
+例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
-**添加端口转发规则**
-
-![trans](https://kubesphere-docs.pek3b.qingstor.com/png/trans.png)
-
-**防火墙添加下行规则**
-
-![firewall](https://kubesphere-docs.pek3b.qingstor.com/png/firewall.png)
-
-至此，即可访问`http://{$EIP}:30454/`，看到页面的 `Hello World!`。
+完成上述步骤后，即可访问`http://{$EIP}:30454/`，看到页面的 `Hello World!`。
 
 ### 查看推送的镜像
 

@@ -61,7 +61,7 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 | --- | ---|
 | qingcloud\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
 | qingcloud\_csi\_is\_default\_class|是否设定为默认的存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型|
-| qingcloud\_type | QingCloud 云平台硬盘的类型 <br> * 性能型是 0 <br> * 容量型是 1 或 2 <br>* 超高性能型是 3 <br> * 企业级分布式块存储 NeonSAN 是 5 <br> * 基础型是 100 <br> * SSD 企业型是 200 <br> 详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
+| qingcloud\_type | QingCloud 云平台硬盘的类型 <br> * 性能型是 0 <br> * 容量型是 2 <br>* 超高性能型是 3 <br> * 企业级分布式块存储 NeonSAN 是 5 <br> * 基础型是 100 <br> * SSD 企业型是 200 <br> 详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
 | qingcloud\_maxSize, qingcloud\_minSize | 限制存储卷类型的存储卷容量范围，单位为 GiB|
 | qingcloud\_stepSize | 设置用户所创建存储卷容量的增量，单位为 GiB|
 | qingcloud\_fsType | 存储卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4|

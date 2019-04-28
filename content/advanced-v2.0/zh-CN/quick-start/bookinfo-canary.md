@@ -61,34 +61,22 @@ reviews 微服务有 3 个版本：
 
 2. 由于外网访问启用的是 NodePort 的方式，NodePort 会在主机上开放 http 端口，要访问 bookinfo 应用需要将该端口进行转发并在防火墙添加下行规则，确保流量能够通过该端口。
 
-例如在 QingCloud 云平台进行上述操作，假设外网访问开启的 NodePort 为 31680 (http)，则需要参考如下步骤：
+例如在 QingCloud 云平台进行上述操作，假设外网访问开启的主机端口 NodePort 为 31680 (http)，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
-**a.端口转发**
 
-其中内网 IP 可选集群中任意一个节点，例如 `192.168.0.8`。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417084751.png)
-
-**b.添加防火墙规则**
-
-进入当前 VPC 的防火墙，为 31680 添加一条下行规则。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417085948.png)
-
-**c.本地添加 hosts 记录**
-
-在本地打开 `/etc/hosts` 文件，为 hostname 添加一条记录，例如：
+3. 在本地打开 `/etc/hosts` 文件，为 hostname 添加一条记录，例如：
 
 ```shell
 #{公网 IP} {hostname}
 139.198.111.111 productpage.demo-namespace.192.168.0.8.nip.io
 ```
 
-3. 完成上述步骤后，在应用路由下选择 「点击访问」，可以看到 bookinfo 的 details 页面。
+4. 完成上述步骤后，在应用路由下选择 「点击访问」，可以看到 bookinfo 的 details 页面。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417102555.png)
 
-4. 点击 **Normal user** 访问 productpage。注意此时 Book Reviews 部分只显示了 Reviewer1 和 Reviewer2。
+5. 点击 **Normal user** 访问 productpage。注意此时 Book Reviews 部分只显示了 Reviewer1 和 Reviewer2。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190414165548.png)
 

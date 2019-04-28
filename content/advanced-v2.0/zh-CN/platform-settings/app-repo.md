@@ -36,3 +36,18 @@ Google 有两个应用仓库可以试用，QingStor 对其中稳定的仓库做�
 > - Google Incubator Helm Repo: `https://kubernetes-charts-incubator.storage.googleapis.com/`
 
 在企业内私有云场景下，用户可以基于 [Helm](https://helm.sh) 规范去构建自己的应用仓库，并且可以开发和上传满足企业业务需求的应用到自己的应用仓库中，然后基于 KubeSphere 完成应用的分发部署。
+
+## 添加示例应用仓库
+
+
+1、应用仓库一般仅集群管理员或拥有应用仓库权限的用户操作。以集群管理员 **cluster-admin** 登录 KubeSphere，选择 **平台管理 → 平台设置**，进入应用仓库页面，点击 「添加应用仓库」。
+
+2、填写应用仓库的详细信息，如下添加一个 http 协议的示例仓库：`http://docs-repo.gd2.qingstor.com`，完成后点击 **确定**。
+
+![应用仓库详细信息](/app-repo-basic.png)
+
+![示例应用仓库](https://pek3b.qingstor.com/kubesphere-docs/png/20190428181651.png)
+
+3、添加完成后，可以在顶部的 **应用模板** 中查看新添加仓库的应用。
+
+![查看应用模板](/app-template-lists.png)

@@ -91,7 +91,7 @@ title: "多租户管理快速入门"
 
 2.1. 切换为 `ws-manager` 登录 KubeSphere，ws-manager 有权限查看和管理平台的所有企业空间。
 
-点击 `企业空间`，可见新安装的环境只有一个系统默认的企业空间 **system-workspace**，用于运行 KubeSphere 平台相关组件和服务，禁止删除该企业空间。
+点击左上角的 `平台管理` → `企业空间`，可见新安装的环境只有一个系统默认的企业空间 **system-workspace**，用于运行 KubeSphere 平台相关组件和服务，禁止删除该企业空间。
 
 在企业空间列表点击 **创建**；
 
@@ -107,20 +107,21 @@ title: "多租户管理快速入门"
 
 > 说明：企业空间管理的详细说明请参考 [企业空间管理](../../platform-management/workspace-management)。
 
-2.3. 企业空间 `demo-workspace` 创建完成后，切换为 `ws-admin` 登录 KubeSphere，如果用户只有一个企业空间，登录进去后会直接进入该企业空间，可看到该企业空间的概览页。`ws-admin` 可以从集群成员中邀请新成员加入当前企业空间，然后创建项目和 DevOps 工程。在左侧菜单栏选择 **企业空间管理 → 成员管理**，点击 **邀请成员**。 
+2.3. 企业空间 `demo-workspace` 创建完成后，切换为 `ws-admin` 登录 KubeSphere，如果用户只有一个企业空间，登录进去后会直接进入该企业空间，可看到该企业空间下的项目和 DevOps 工程列表。
+
+`ws-admin` 可以从集群成员中邀请新成员加入当前企业空间，然后创建项目和 DevOps 工程。在左侧菜单栏选择 `企业空间管理` 进入企业空间概览页，然后选择 `企业空间管理` → `成员管理`，点击 `邀请成员`。 
 
 ![邀请成员](/workspace-member-list.png)
 
-2.4. 这一步需要邀请在 **步骤 1.6.** 创建的两个用户 `project-admin` 和 `project-regular` 进入企业空间，并且都授予 `workspace-regular` 的角色，此时该企业空间一共有如下四个用户：
+2.4. 这一步需要邀请在 **步骤 1.6.** 创建的两个用户 `project-admin` 和 `project-regular` 进入企业空间，并且都授予 `workspace-regular` 的角色，此时该企业空间一共有如下三个用户：
 
 |账号名|企业空间角色|职责|
 |---|---|---|
-|ws-manager|workspace-admin (默认)|创建和管理企业空间|
 |ws-admin|workspace-admin|管理企业空间下所有的资源<br> (本示例用于邀请新成员加入企业空间)|
 |project-admin|workspace-regular|创建和管理项目、DevOps 工程，邀请新成员加入|
-|project-regular|workspace-regular|将被 project-admin 邀请加入项目和 DevOps 工程，<br>用于创建项目和工程下的工作负载、Pipeline 等资源|
+|project-regular|workspace-viewer|将被 project-admin 邀请加入项目和 DevOps 工程，<br>用于创建工作负载、流水线等业务资源|
 
-![邀请 project-regular](/invite-operator-user.png)
+![邀请成员](https://pek3b.qingstor.com/kubesphere-docs/png/20190428134020.png)
 
 ### 项目和 DevOps 工程管理员
 
@@ -128,9 +129,9 @@ title: "多租户管理快速入门"
 
 创建工作负载、服务和 CI/CD 流水线等资源，需要先创建好项目和 DevOps 工程。
 
-3.1. 上一步将用户 `project-admin` 邀请进入企业空间后，可切换为 `project-admin` 账号登录 KubeSphere，默认进入 demo-workspace 企业空间下，点击 **创建**，选择 **创建资源型项目**。
+3.1. 上一步将用户项目管理员 `project-admin` 邀请进入企业空间后，可切换为 `project-admin` 账号登录 KubeSphere，默认进入 demo-workspace 企业空间下，点击 **创建**，选择 **创建资源型项目**。
 
-![企业空间列表](/workspace-list-demo.png)
+![创建项目](https://pek3b.qingstor.com/kubesphere-docs/png/20190428113548.png)
 
 3.2. 填写项目的基本信息和高级设置，完成后点击 **下一步**。
 
@@ -139,7 +140,7 @@ title: "多租户管理快速入门"
 - 别名：帮助您更好的区分资源，并支持中文名称，比如 `示例项目`
 - 描述信息：简单介绍该项目
 
-![创建项目](/create-project-basic.png)
+![基本信息](/create-project-basic.png)
 
 **高级设置**
 
@@ -157,15 +158,15 @@ title: "多租户管理快速入门"
 
 3.4. 示例项目 demo-namespace 创建成功后，点击进入示例项目。在 **步骤 2.4.** 已邀请用户 `project-regular` 加入了当前企业空间 `demo-workspace`，下一步则需要邀请 project-regular 进入该企业空间下的项目 demo-namespace。点击项目列表中的 demo-namespace 进入该项目。
 
-![项目列表](/create-demo-namespace.png)
+![示例项目](https://pek3b.qingstor.com/kubesphere-docs/png/20190428113744.png)
 
 3.5. 在项目的左侧菜单栏选择 **项目设置 → 项目成员**，点击 **邀请成员**。
 
-![邀请成员](/invite-operator-to-ns.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428113931.png)
 
 3.6. 在弹窗中的 `project-regular` 点击 `"+"`，在项目的内置角色中选择 `operator` 角色。因此，后续在项目中创建和管理资源，都可以由 `project-regular` 用户登录后进行操作。
 
-![邀请 operator](/grant-role-to-operator.png)
+![邀请成员](https://pek3b.qingstor.com/kubesphere-docs/png/20190428131347.png)
 
 ##### 设置外网访问
 
@@ -185,7 +186,7 @@ title: "多租户管理快速入门"
 
 4.1. 继续使用 `project-admin` 用户创建 DevOps 工程。点击 **工作台**，在当前企业空间下，点击 **创建**，在弹窗中选择 **创建一个 DevOps 工程**。DevOps 工程的创建者 `project-admin` 将默认为该工程的 Owner，拥有 DevOps 工程的最高权限。
 
-![创建 DevOps](/docs-demo-devops.png)
+![创建 DevOps 工程](https://pek3b.qingstor.com/kubesphere-docs/png/20190428131518.png)
 
 4.2. 输入 DevOps 工程的名称和描述信息，比如名称为 `demo-devops`。点击 **创建**，注意创建一个 DevOps 有一个初始化环境的过程需要几秒钟。
 
@@ -195,12 +196,10 @@ title: "多租户管理快速入门"
 
 4.3. 点击 DevOps 工程列表中的 `demo-devops` 进入该工程的详情页。
 
-![创建成功](/demo-devops-list1.png)
-
 4.4. 同上，这一步需要在 `demo-devops` 工程中邀请用户 `project-regular`，并设置角色为 `maintainer`，用于对工程内的 Pipeline、凭证等创建和配置等操作。菜单栏选择 **工程管理 → 工程成员**，然后点击 **邀请成员**，为用户 `project-regular` 设置角色为 `maintainer`。后续在 DevOps 工程中创建 Pipeline 和凭证等资源，都可以由 `project-regular` 用户登录后进行操作。
 
 ![邀请成员进入工程](/invite-member-to-devops.png)
-![设置角色](/devops-member-management.png)
+![设置角色](https://pek3b.qingstor.com/kubesphere-docs/png/20190428131807.png)
 
 
-至此，本文档为您演示了如何在多租户的基础上，使用账户管理和角色管理的功能，以示例的方式介绍了常用内置角色的用法，以及创建项目和 DevOps 工程。请继续参考 [快速入门](../quick-start-guide) 系列文档的其他示例，使用项目普通用户 `project-regular` 登录 KubeSphere 动手实践操作一遍，创建具体的工作负载、服务和 CI/CD 流水线。
+至此，本文档为您演示了如何在多租户的基础上，使用账户管理和角色管理的功能，以示例的方式介绍了常用内置角色的用法，以及创建项目和 DevOps 工程。请继续参考 [快速入门](../quick-start-guide) 系列文档的其他示例比如 [应用路由与服务示例](../ingress-demo)，使用项目普通用户 `project-regular` 登录 KubeSphere 动手实践操作一遍，创建具体的工作负载、服务和 CI/CD 流水线。
