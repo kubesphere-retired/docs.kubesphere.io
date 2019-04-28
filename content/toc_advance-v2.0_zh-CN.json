@@ -71,7 +71,7 @@
           "entry": "./advanced-v2.0/zh-CN/installation/vars.md"
         },
         {
-          "title": "安装 QingCloud 负载均衡器插件",
+          "title": "安装负载均衡器插件",
           "entry": "./advanced-v2.0/zh-CN/installation/qingcloud-lb.md"
         },
         {
@@ -81,6 +81,10 @@
         {
           "title": "安装内置 GitLab",
           "entry": "./advanced-v2.0/zh-CN/installation/gitlab-installation.md"
+        },
+        {
+          "title": "访问 SonarQube 和 Jenkins 服务端",
+          "entry": "./advanced-v2.0/zh-CN/installation/sonarqube-jenkins.md"
         },
         {
           "title": "集群节点扩容",

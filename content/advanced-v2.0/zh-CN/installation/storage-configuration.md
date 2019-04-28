@@ -52,8 +52,8 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 | qingcloud_port| https 端口 (443)|
 |qingcloud_protocol | 协议 (https) |
 |qingcloud_uri | URI (iaas)
-|qingcloud_connection_retries | 连接重试时间 (默认 3 秒) |
-| qingcloud_connection_timeout | 连接超时时间 ( 默认 30 秒 |
+|qingcloud\_connection\_retries | 连接重试时间 (默认 3 秒) |
+| qingcloud\_connection\_timeout | 连接超时时间 ( 默认 30 秒 |
 
 在 `vars.yml` 中完成上表中的 API 相关配置后，再修改 QingCloud-CSI 配置安装 QingCloud 块存储插件。
 
@@ -61,10 +61,32 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 | --- | ---|
 | qingcloud\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
 | qingcloud\_csi\_is\_default\_class|是否设定为默认的存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型|
-| qingcloud\_type | QingCloud 云平台块存储的类型，0 代表性能型硬盘，1 或 2（根据集群所在区不同而参数不同）代表容量型硬盘，3 代表超高性能型硬盘，详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
+| qingcloud\_type | QingCloud 云平台硬盘的类型 <br> * 性能型是 0 <br> * 容量型是 1 或 2 <br>* 超高性能型是 3 <br> * 企业级分布式块存储 NeonSAN 是 5 <br> * 基础型是 100 <br> * SSD 企业型是 200 <br> 详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
 | qingcloud\_maxSize, qingcloud\_minSize | 限制存储卷类型的存储卷容量范围，单位为 GiB|
 | qingcloud\_stepSize | 设置用户所创建存储卷容量的增量，单位为 GiB|
 | qingcloud\_fsType | 存储卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4|
+| disk\_replica | 硬盘的副本策略，支持单副本和多副本，1 表示单副本，2 表示多副本|
+
+#### 硬盘类型与主机适配性
+
+|          | 性能型硬盘    | 容量型硬盘  | 超高性能型硬盘 | NeonSAN 硬盘 |基础型硬盘| SSD 企业型硬盘|
+|-----------|------------------|------------------|-----------------|---------|----------|-------|
+|性能型主机| ✓        | ✓                | -               | ✓      | -     | -     |
+|超高性能型主机| -       | ✓                | ✓               |✓  |-  |-  |
+|基础型主机| -       | ✓                | -               |✓  |✓  |-  |
+|企业型主机| -       | ✓                | -               |✓  |-  |✓  |
+
+
+#### 各区应设置的 minSize, maxSize 和 stepSize 参数
+
+|          | 性能型硬盘    | 容量型硬盘  | 超高性能型硬盘 | NeonSAN 硬盘 |基础型硬盘| SSD 企业型硬盘|
+|----|----|-----|-----|----|----|-----|
+| 北京2区  |10 - 1000, 10  | 100 - 5000, 50  | 10 - 1000,10 | -  |  - | - |
+| 北京3区-A  | 10 - 2000, 10  | 100 - 5000, 50  | 10 - 2000,10  |  - |  - | -  |
+| 广东1区 | 10 - 1000, 10  | 100 - 5000, 50  | 10 - 1000,10  |  - | -  | -  |
+| 上海1区-A  | -  | 100 - 5000, 50  | -  | 100 - 50000, 100  | 10 - 2000, 10  | 10 - 2000, 10  |
+| 亚太1区  |10 - 1000, 10   | 100 - 5000, 50  | -  |  - |  - |  - |
+| 亚太2区-A  | -  | 100 - 5000, 50  |  - | -  | 10 - 2000, 10  | 10 - 2000, 10  |
 
 ### QingStor NeonSAN
 

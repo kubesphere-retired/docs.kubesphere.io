@@ -136,14 +136,6 @@ $ yum-complete-transaction --cleanup-only
 
 ![查看 Kubeconfig 文件](/view-kubeconfig.png)
 
-### 如何访问 Jenkins 服务端
-
-8、如何访问和登录 Jenkins 服务端？
-
-答：Installer 安装将会同时部署 Jenkins Dashboard，该服务暴露的端口 (NodePort) 为 `30180`，确保外网流量能够正常通过该端口，然后访问公网 IP 和端口号 (${EIP}:${NODEPORT}) 即可。Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard。
-
-> 说明：
-> 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
 
 ### CPU 用量异常问题
 
@@ -155,4 +147,6 @@ $ yum-complete-transaction --cleanup-only
 
 更多信息请参考 [node_exporter issue #742](https://github.com/prometheus/node_exporter/issues/742)
 
+> 说明：
+> 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
  
