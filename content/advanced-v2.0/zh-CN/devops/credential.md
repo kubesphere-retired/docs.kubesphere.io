@@ -21,11 +21,13 @@ title: "凭证管理"
 
 以项目 project-regular 登录 KubeSphere，在 devops-demo 的 DevOps 工程点击 `凭证`，进入凭证管理界面，以下说明几个在 DevOps 工程中常用的凭证。
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190427133402.png)
+
 ### 创建 DockerHub 凭证
 
 1、点击 **创建**，创建一个用于 DockerHub 登录的凭证；
 
-- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，此处命名为 **dockerhub-id**
+- 凭证 ID：必填，此 ID 将用于仓库中的 Jenkinsfile，此示例中可命名为 **dockerhub-id**
 - 类型：选择 **账户凭证**
 - 用户名：填写您个人的 DockerHub 的用户名
 - token / 密码：您个人的 DockerHub 的密码
@@ -36,15 +38,15 @@ title: "凭证管理"
 
 2、完成后点击 **确定**。
 
-![Dockerhub 凭证](https://kubesphere-docs.pek3b.qingstor.com/png/dockerhub-credential.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190427133655.png)
 
 ### 创建 GitHub 凭证
 
-同上，创建一个用于 GitHub 的凭证，凭证 ID 命名为 **github-id**，类型选择 `账户凭证`，输入您个人的 GitHub 用户名和密码，备注描述信息，完成后点击 **确定**。
+同上，创建一个用于 GitHub 的凭证，凭证 ID 可命名为 **github-id**，类型选择 `账户凭证`，输入您个人的 GitHub 用户名和密码，备注描述信息，完成后点击 **确定**。
 
 ### 创建 kubeconfig 凭证
 
-同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig` 的凭证，凭证 ID 命名为 **demo-kubeconfig**，完成后点击 **确定**。
+同上，在 **凭证** 下点击 **创建**，创建一个类型为 `kubeconfig` 的凭证，凭证 ID 可命名为 **demo-kubeconfig**，完成后点击 **确定**。
 
 > 说明：kubeconfig 类型的凭证用于访问接入正在运行的 Kubernetes 集群，在流水线部署步骤将用到该凭证。注意，此处的 Content 将自动获取当前 KubeSphere 中的 kubeconfig 文件内容，若部署至当前 KubeSphere 中则无需修改，若部署至其它 Kubernetes 集群，则需要将其 kubeconfig 文件的内容粘贴至 Content 中。
 
@@ -61,9 +63,7 @@ title: "凭证管理"
 
 企业大型的工程往往需要与很多环境交互，会用到较多的凭证，KubeSphere 提供了凭证管理的页面，帮助用户统一集中管理这些凭证。
 
-1. 在左侧的工程管理菜单下，点击`凭证管理`，进入凭证管理界面，展示当前工程下的所有可用凭证。
-   
-   ![credential_page](/devops_credentials.png)
+1. 在左侧的工程管理菜单下，点击 `凭证`，进入凭证管理界面，展示当前工程下的所有可用凭证。
 
 2. 点击任意某一凭证，进入其详情页面。在此页面中可进行凭证的编辑，删除以及查看凭证的使用情况等操作。
 

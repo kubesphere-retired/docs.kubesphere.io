@@ -1,16 +1,20 @@
 ---
-title: "安装 QingCloud 负载均衡器插件"
+title: "安装负载均衡器插件"
 ---
 
-服务或应用路由如果通过 LoadBalancer 的方式暴露到外网访问，则需要安装对应的负载均衡器插件来支持。如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/vars.yml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)。
+服务或应用路由如果通过 LoadBalancer 的方式暴露到外网访问，则需要安装对应的负载均衡器插件来支持，集群可以部署云平台的虚拟机或直接部署在物理机，因此分别需要不同类型的负载均衡器插件进行对接，KubeSphere 分别开发了 [QingCloud 云平台负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager) 和适用于适用于物理机部署 Kubernetes 的 [负载均衡器插件 Porter](https://github.com/kubesphere/porter)，并且已将它们在 GitHub 开源。
 
-## 前提条件
+## 安装 QingCloud 云平台负载均衡器插件
+
+如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/vars.yml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)。
+
+### 前提条件
 
 已有 QingCloud 云平台账号，并下载 installer 至目标机器。
 
-## 安装步骤
+### 安装步骤
 
-参考如下提示在 `conf/vars.yml` 中进行配置：
+在安装 KubeSphere 前参考如下提示在 `conf/vars.yml` 中进行配置：
 
 1. 配置 QingCloud API key pairs 和 zone：
 
@@ -41,4 +45,11 @@ qingcloud_connection_timeout: 30
 ## QingCloud LoadBlance
 qingcloud_lb_enable: true
 ```
- 
+
+完成以上步骤的配置后，可继续参考安装指南完成其他配置并执行安装。
+
+## 安装负载均衡器插件 Porter 
+
+Porter 是一款适用于物理机部署 Kubernetes 的负载均衡器，该负载均衡器使用物理交换机实现，利用 BGP 和 ECMP 从而达到性能最优和高可用性，Porter 是一个提供用户在物理环境暴露服务和在云上暴露服务一致性体验的插件。
+
+安装和使用 Porter 请参考 [Porter 项目](https://github.com/kubesphere/porter)。

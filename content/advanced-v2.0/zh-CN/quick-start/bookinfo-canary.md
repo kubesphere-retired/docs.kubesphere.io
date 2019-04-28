@@ -48,13 +48,12 @@ reviews 微服务有 3 个版本：
 
 2. 在弹窗中，点击 「确定」 部署 bookinfo 示例应用。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417142636.png)
 
 3. 确认应用状态显示 `Ready`，则说明 bookinfo 微服务创建成功。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190426215609.png)
 
-### 访问 bookinfo 应用
+### 访问 Bookinfo 应用
 
 1. 点击 bookinfo 进入应用详情页，可以看到应用路由下自动生成的 hostname。
 
