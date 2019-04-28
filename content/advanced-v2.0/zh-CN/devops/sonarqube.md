@@ -4,7 +4,7 @@ title: "创建 SonarQube Token"
 
 ### 访问 SonarQube 
 
-参考 [访问内置 SonarQube](../../installation/sonarqube-svc)。
+参考 [访问内置 SonarQube](../../installation/sonarqube-jenkins)。
 
 ### 创建 SonarQube Token
 

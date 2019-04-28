@@ -11,8 +11,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 ## 前提条件
 
 - 本示例以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
-- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
-- 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。
+- 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 project-regular 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 
 ## 预估时间
 
@@ -41,7 +40,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 在 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
 
-1、本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，参考 [创建凭证](../../devops/credential/#创建凭证) 依次创建这三个凭证。
+1、本示例代码仓库中的 Jenkinsfile 需要用到 **DockerHub、GitHub** 和 **kubeconfig** (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，参考 [创建凭证](../../devops/credential/#创建凭证) 依次创建这三个凭证。
 
 2、然后参考 [访问 SonarQube 并创建 Token](../../devops/sonarqube)，创建一个 Java 的 Token 并复制。
 
@@ -76,11 +75,11 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 | DOCKER\_CREDENTIAL\_ID     | dockerhub-id           | 填写创建凭证步骤中的 DockerHub 凭证 ID，用于登录您的 DockerHub |
 | GITHUB\_CREDENTIAL\_ID     | github-id              | 填写创建凭证步骤中的 GitHub 凭证 ID，用于推送 tag 到 GitHub 仓库 |
 | KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig        | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
-| REGISTRY                 | docker.io              | 默认为docker.io 域名，用于镜像的推送                         |
-| DOCKERHUB_NAMESPACE      | your-dockerhub-account | 替换为您的 DockerHub 账号名(它也可以是账户下的 Organization 名称) |
-| GITHUB_ACCOUNT           | github_username               | GitHub用户名                                  |
-| APP_NAME                 | devops-docs-sample     | 应用名称                                                     |
-| SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
+| REGISTRY                 | docker.io              | 默认为 docker.io 域名，用于镜像的推送                         |
+|DOCKERHUB_NAMESPACE|your-dockerhub-account| 替换为您的 DockerHub 账号名 <br> (它也可以是账户下的 Organization 名称)|
+|GITHUB_ACCOUNT|your-github-account | 替换为您的 GitHub 账号名 <br> (它也可以是账户下的 Organization 名称) |
+| APP_NAME                 | devops-java-sample     | 应用名称                                                     |
+| SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 SonarQube token凭证 ID，用于代码质量检测 |
 
 3、修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
@@ -92,7 +91,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ### 第一步：填写项目信息
 
-回到工作台，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
+使用项目管理员 `project-admin` 账号登录 KubeSphere，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
 - 名称：固定为 `kubesphere-sample-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
@@ -276,15 +275,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 7、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 Hello World 示例的首页，以访问生产环境 ks-sample 服务的 `30961` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
-
-**添加端口转发规则**
-
-![port](https://kubesphere-docs.pek3b.qingstor.com/png/port.png)
-
-**防火墙添加下行规则**
-
-![filewall](https://kubesphere-docs.pek3b.qingstor.com/png/filewall.png)
+例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 ## 访问示例服务
 

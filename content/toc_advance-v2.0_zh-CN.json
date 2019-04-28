@@ -467,6 +467,10 @@
         {
           "title": "部署 GlusterFS 存储服务端",
           "entry": "./advanced-v2.0/zh-CN/appendix/glusterfs-ks-install.md"
+        },
+        {
+          "title": "云平台配置端口转发和防火墙",
+          "entry": "./advanced-v2.0/zh-CN/appendix/qingcloud-manipulation.md"
         }
       ]
     }

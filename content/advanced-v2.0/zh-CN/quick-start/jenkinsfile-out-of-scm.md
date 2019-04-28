@@ -350,15 +350,7 @@ docker push docker.io/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-CRON-BUILD-$BUILD_
 
 4、若需要在外网访问，可能需要进行端口转发并开放防火墙，才能访问到成功部署的文档网站示例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30860` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
-
-**添加端口转发规则**
-
-![添加端口转发规则](/demo7-vpc-nodeport-forward.png)
-
-**防火墙添加下行规则**
-
-![防火墙添加下行规则](/demo7-firewall-nodeport.png)
+例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 ### 访问示例服务
 

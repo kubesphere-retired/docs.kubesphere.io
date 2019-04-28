@@ -48,7 +48,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 在 [管理员快速入门](../../quick-start/admin-quick-start) 中已给 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 DevOps 工程，开始创建凭证。
 
-本示例代码仓库中的 Jenkinsfile 需要用到 DockerHub、GitHub 和 Kubernetes (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
+本示例代码仓库中的 Jenkinsfile 需要用到 **DockerHub、GitHub** 和 **kubeconfig** (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，这 3 个凭证 ID 需要与 Jenkinsfile 中前三个环境变量的值一致，先依次创建这三个凭证。
 
 > 注意：若用户的凭证信息如账号或密码中包含了 `@`，`$` 这类特殊符号，可能在运行时无法识别而报错，这类情况需要用户在创建凭证时对密码进行 urlencode 编码，可通过一些第三方网站进行转换 (比如 `http://tool.chinaz.com/tools/urlencode.aspx`)，然后再将转换后的输出粘贴到对应的凭证信息中。
 
@@ -321,15 +321,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 5、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-docs-sample 服务的 `30960` 端口为例。
 
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30960` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
-
-**添加端口转发规则**
-
-![添加端口转发规则](/demo6-vpc-nodeport-forward.png)
-
-**防火墙添加下行规则**
-
-![防火墙添加下行规则](/demo6-firewall-nodeport.png)
+例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 ### 访问示例服务
 
