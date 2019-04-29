@@ -36,6 +36,10 @@
           "entry": "./advanced-v2.0/zh-CN/introduction/advantages.md"
         },
         {
+          "title": "应用场景",
+          "entry": "./advanced-v2.0/zh-CN/introduction/scenarios.md"
+        },
+        {
           "title": "名词解释",
           "entry": "./advanced-v2.0/zh-CN/introduction/glossary.md"
         }
