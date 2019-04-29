@@ -12,11 +12,11 @@ title: "安装说明"
 
 KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 两种模式，即支持单节点和多节点安装两种安装方式。
 
-另外，KubeSphere Installer 集成了 **Harbor** 和 **GitLab**，但默认情况下不会安装 Harbor 和 GitLab，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考 [安装内置 Harbor](../harbor-installation)。
+另外，KubeSphere Installer 集成了 **Harbor** 和 **GitLab**，但默认情况下不会安装 Harbor 和 GitLab，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
 
 **说明:**
 
-> - 由于安装过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。
+> - 由于安装过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。如果不能访问外网，则需要下载离线安装包。
 > - KubeSphere 集群的架构中，由于各自服务的不同，分为管理节点和工作节点两个角色，即 Master 和 Node。
 > - Master 节点由三个紧密协作的组件组合而成，即负责 API 服务的 kube-apiserver、负责调度的 kube-scheduler、负责容器编排的 kube-controller-manager。
 > - 集群的持久化数据，由 kube-apiserver 处理后保存至 etcd 中。
