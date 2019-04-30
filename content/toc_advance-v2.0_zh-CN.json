@@ -295,8 +295,17 @@
       "desc": "指导用户如何使用平台提供的基本功能",
       "chapters": [
         {
-          "title": "应用模板",
-          "entry": "./advanced-v2.0/zh-CN/app-template/app-template.md"
+          "title": "应用",
+          "entries": [
+            {
+              "title": "应用模板",
+              "entry": "./advanced-v2.0/zh-CN/application/app-template.md"
+            },
+            {
+              "title": "自制应用",
+              "entry": "./advanced-v2.0/zh-CN/application/composing-svc.md"
+            }
+          ]
         },
         {
           "title": "工作负载",
