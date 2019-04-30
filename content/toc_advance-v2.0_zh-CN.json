@@ -383,6 +383,19 @@
           ]
         },
         {
+          "title": "监控告警",
+          "entries": [
+            {
+              "title": "告警消息 - 工作负载级别",
+              "entry": "./advanced-v2.0/zh-CN/workload-alert/workload-alert-message.md"
+            },
+            {
+              "title": "告警策略 - 工作负载级别",
+              "entry": "./advanced-v2.0/zh-CN/workload-alert/workload-alert-policy.md"
+            }
+          ]
+        },
+        {
           "title": "配置中心",
           "entries": [
             {
