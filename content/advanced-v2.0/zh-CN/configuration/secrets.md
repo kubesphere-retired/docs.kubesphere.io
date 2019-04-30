@@ -25,7 +25,7 @@ title: "密钥"
 
 ### 第二步：Secret 设置
 
-密钥有三种类型：
+密钥支持以下五种类型：
 
 - 默认 (Opaque)：base64 编码格式的 Secret，用来存储密码、密钥等，这种类型应用得比较多。
 例如：
@@ -58,9 +58,12 @@ type: kubernetes.io/tls
    - 邮箱: 123@test.com
 
 
+- 账号密码密钥：用来存储系统的账号密码，例如 DockerHub 或 GitHub。
+
+
 - 自定义：支持用户自己创建一种密钥类型 (type)，格式与默认 (Opaque) 类型相似，都是键值对的形式。
 
-![secret 设置](/secret-setting.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190429154941.png)
 
 ## 使用密钥
 
