@@ -291,4 +291,4 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 页面会出现 `Hello,World!`。
 
-至此，结合 GitHub 和 DockerHub，在线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../faq)。
+至此，结合 GitHub 和 DockerHub，在线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../devops/devops-faq)。

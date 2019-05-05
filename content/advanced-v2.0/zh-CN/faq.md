@@ -49,7 +49,7 @@ kube-master
 
 ### 安装前如何配置 QingCloud vNas
 
-3、KubeSphere 支持对接 [QingCloud vNas](https://www.qingcloud.com/products/nas/) 作为集群的存储服务端，以下说明如何在 [QingCloud 控制台](console.qingcloud.com) 创建文件存储 vNas：
+3、KubeSphere 支持对接 [QingCloud vNas](https://www.qingcloud.com/products/nas/) 作为集群的存储服务端，以下说明如何在 [QingCloud 控制台](https://console.qingcloud.com/login) 创建文件存储 vNas：
 
 3.1. 选择 **文件存储 vNAS**，点击 **创建**。
 

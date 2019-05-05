@@ -4,7 +4,7 @@ title: "告警策略 —— 工作负载级别"
 
 ## 目的
 
-本篇文档以创建一个工作负载级别的告警策略并发送邮件通知作为示例，引导用户在项目中如何设置工作负载级别的告警策略。
+KubeSphere 提供节点和工作负载级别的告警策略，普通用户可以在项目中设置工作负载级别的告警策略。本篇文档以创建一个工作负载级别的告警策略并发送邮件通知作为示例，引导用户在项目中如何设置工作负载级别的告警策略。
 
 ## 操作示例
 
@@ -13,8 +13,6 @@ title: "告警策略 —— 工作负载级别"
 - 需由集群管理员预先配置邮件服务器，若还未配置可参考 [邮件服务器](../../platform-settings/email-server)；
 - 已创建了企业空间和项目并且创建了项目普通用户 project-regular 的账号，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)；
 - 项目中已有工作负载，若没有可在 「应用」→「部署新应用」，选择 「部署示例应用 Bookinfo」 快速部署一个应用。
-
-### 演示视频
 
 <!-- <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/kubesphere%20%E5%91%8A%E8%AD%A6.mov">

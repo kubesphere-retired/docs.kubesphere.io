@@ -72,7 +72,7 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 ### 第一步：进入项目
 
-​1. 根据前提条件中的要求，现应已按照 [安装 GitLab](http://localhost:8000/advanced-v2.0/zh-CN/installation/gitlab-installation/) 要求正确将 GitHub 中的 [`devops-java-sample`](https://github.com/kubesphere/devops-java-sample) 导入到GitLab中。
+​1. 根据前提条件中的要求，现应已按照 [安装 GitLab](../../installation/gitlab-installation/) 要求正确将 GitHub 中的 [`devops-java-sample`](https://github.com/kubesphere/devops-java-sample) 导入到GitLab中。
 
 > 注：若因网络限制，无法从 GitHub 导入，请自行 clone 至其他服务器，然后上传至 GitLab 仓库，仓库名称请保持一致。
 
@@ -220,7 +220,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 查看流水线
 
-1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-on-prem](https://github.com/kubesphere/devops-docs-sample/blob/master/Jenkinsfile-on-prem) 中被定义。
+1、点击流水线中 `活动` 列表下当前正在运行的流水线序列号，页面展现了流水线中每一步骤的运行状态，注意，流水线刚创建时处于初始化阶段，可能仅显示日志窗口，待初始化 (约一分钟) 完成后即可看到流水线。黑色框标注了流水线的步骤名称，示例中流水线共 8 个 stage，分别在 [Jenkinsfile-on-prem](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-on-prem) 中被定义。
 
 ![stage](https://kubesphere-docs.pek3b.qingstor.com/png/stage.png)
 

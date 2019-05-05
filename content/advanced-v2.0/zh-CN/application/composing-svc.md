@@ -10,8 +10,8 @@ title: "自制应用"
 
 ### 前提条件
 
-- 使用项目普通用户 `project-regular` 账号登录 KubeSphere，进入已创建的企业空间下的项目 `demo-namespace`，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
-- 请确保当前项目已在外网访问中开启了应用治理，若还未开启请参考 [设置外网访问](../admin-quick-start/#%E8%AE%BE%E7%BD%AE%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE)；
+- 使用项目普通用户 `project-regular` 账号登录 KubeSphere，进入已创建的企业空间下的项目 `demo-namespace`，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)；
+- 请确保当前项目已在外网访问中开启了应用治理，若还未开启请参考 [设置外网访问](../../quick-start/admin-quick-start/#%E8%AE%BE%E7%BD%AE%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE)；
 - 已有组件版本
 
 ### 操作说明
