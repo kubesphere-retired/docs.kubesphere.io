@@ -103,7 +103,7 @@ successsful!
 
 Console: http://192.168.0.8:30880
 Account: admin
-Password: passw0rd
+Password: P@88w0rd
 
 NOTE：Please modify the default password after login.
 #####################################################
