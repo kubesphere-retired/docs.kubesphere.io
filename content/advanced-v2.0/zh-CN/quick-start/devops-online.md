@@ -186,6 +186,8 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 > 注：路径是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190505212550.png)
+
 4、在 **扫描 Repo Trigger** 勾选 `如果没有扫描触发，则定期扫描`，扫描时间间隔可根据团队习惯设定，本示例设置为 `5 minutes`。
 
 > 说明：定期扫描是设定一个周期让流水线周期性地扫描远程仓库，根据 **行为策略** 查看仓库有没有代码更新或新的 PR。
@@ -196,7 +198,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 完成高级设置后点击 **创建**。
 
-![image-20190409132341041](https://kubesphere-docs.pek3b.qingstor.com/png/image-20190409132341041.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190505212814.png)
 
 ### 第四步：运行流水线
 

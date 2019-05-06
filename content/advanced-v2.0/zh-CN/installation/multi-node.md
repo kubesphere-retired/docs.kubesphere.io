@@ -124,7 +124,12 @@ local_volume_is_default_class: false
 # QingCloud CSI
 qingcloud_csi_enabled: true
 qingcloud_csi_is_default_class: true
-···
+qingcloud_type: 2
+qingcloud_maxSize: 5000
+qingcloud_minSize: 100
+qingcloud_stepSize: 50
+qingcloud_fsType: ext4
+qingcloud_disk_replica: 2
 ```
 
 > 说明：
@@ -184,7 +189,7 @@ successsful!
 
 Console: http://192.168.0.1:30880
 Account: admin
-Password: passw0rd
+Password: P@88w0rd
 
 NOTE：Please modify the default password after login.
 #####################################################
