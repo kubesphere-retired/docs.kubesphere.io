@@ -176,11 +176,13 @@ title: "多租户管理快速入门"
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417080748.png)
 
-3.8. 在弹窗中，选择默认的 NodePort，并点击 「应用治理」 开启 istio 对非入侵式的微服务治理功能，然后点击 「保存」。
+3.8. 在弹窗中，选择默认的 NodePort，然后点击 「保存」。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417081037.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507222321.png)
 
-3.9. 当前可以看到网关地址、http/https 端口号和应用治理都已经开启。
+3.9. 当前可以看到网关地址、http/https 端口号都已经开启。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507222400.png)
 
 #### 第四步：创建 DevOps 工程
 
