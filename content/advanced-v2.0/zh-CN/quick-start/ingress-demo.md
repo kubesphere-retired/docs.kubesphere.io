@@ -83,6 +83,8 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 - 点击 「指定工作负载」，选择 tea，点击保存；
 - 端口：名称为 http，默认 TCP 协议，端口和目标端口都填写 80。
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507203902.png)
+
 
 3. 点击 「下一步」，标签设置保留默认，点击 「创建」，tea-svc 即可创建成功。
 
@@ -163,7 +165,7 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 1. 选择 「网络与服务」→ 「应用路由」，点击 「创建应用路由」。
 
-2. 输入名称 `cafe-ingress`，点击 「下一步」，设置 「路由规则」。
+2. 输入名称 `cafe-ingress`，点击 「下一步」，点击 「添加路由规则」。
 
 3. 选择 「指定域名」，按照如下提示填写路由规则，应用路由的路由规则即它的核心所在。
 
@@ -177,7 +179,7 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424153059.png)
 
-4. 无需设置注解，选择 「下一步」，点击 「创建」，cafe-ingress 创建成功。
+4. 完成路由规则设置后点击「保存」，无需设置注解，选择 「下一步」，点击 「创建」，cafe-ingress 创建成功。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424110313.png)
 
@@ -185,22 +187,18 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 至此，即可通过外网分别访问 “咖啡点餐系统” 和 “茶水点餐系统”，即访问应用路由下不同的服务。
 
-在云平台将外网访问的 https 端口 (比如示例中是 31585) 进行 **端口转发**，并添加 **防火墙的下行规则**，确保该外网流量可以通过该端口，然后通过以下 curl 命令进行访问测试。
+在云平台将外网访问的 https 端口 (比如本示例中是 31198) 进行 **端口转发**，并添加 **防火墙的下行规则**，确保该外网流量可以通过该端口，然后通过以下 curl 命令进行访问测试。
 
-例如在 QingCloud 平台配置端口转发和防火墙规则：
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507222447.png)
 
-**端口转发**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424152233.png)
-
-**添加防火墙下行规则**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424152446.png)
+例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 > 提示：如果在内网环境可登录集群中的任意节点或通过 web kubectl，通过以下 curl 命令进行访问测试，需要将公网 IP 替换为网关地址。
 
 比如，我们访问 `https://cafe.example.com:443/coffee` 时，应该是 coffee 的部署负责响应请求，访问这个 URL 得到的返回信息是：Server name: coffee-6cbd8b965c-9659v，即 coffee 这个 Deployment 的名字。
 
 ```bash
-$ curl --resolve cafe.example.com:31585:139.198.100.100 https://cafe.example.com:31585/coffee --insecure
+$ curl --resolve cafe.example.com:31198:139.198.100.100 https://cafe.example.com:31198/coffee --insecure
 Server address: 10.233.122.100:80
 Server name: coffee-6cbd8b965c-9659v
 Date: 23/Apr/2019:03:17:43 +0000
@@ -211,7 +209,7 @@ Request ID: 1dcb8794548dd6013439b85bbaef0dd6
 而访问 `https://cafe.example.com:433/tea` 的时候，则应该是 tea 的部署负责响应我的请求（Server name: tea-588dbb89d5-bgxqn），说明应用路由已经成功将不同的请求转发给了对应的后端服务。
 
 ```bash
-curl --resolve cafe.example.com:31585:139.198.100.100 https://cafe.example.com:31585/tea --insecure
+curl --resolve cafe.example.com:31198:139.198.100.100 https://cafe.example.com:31198/tea --insecure
 Server address: 10.233.122.97:80
 Server name: tea-588dbb89d5-bgxqn
 Date: 23/Apr/2019:03:16:23 +0000
