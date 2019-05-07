@@ -77,7 +77,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 | KUBECONFIG\_CREDENTIAL\_ID | demo-kubeconfig        | kubeconfig 凭证 ID，用于访问接入正在运行的 Kubernetes 集群   |
 | REGISTRY                 | docker.io              | 默认为 docker.io 域名，用于镜像的推送                         |
 |DOCKERHUB_NAMESPACE|your-dockerhub-account| 替换为您的 DockerHub 账号名 <br> (它也可以是账户下的 Organization 名称)|
-|GITHUB_ACCOUNT|your-github-account | 替换为您的 GitHub 账号名 <br> (它也可以是账户下的 Organization 名称) |
+|GITHUB_ACCOUNT|your-github-account | 替换为您的 GitHub 账号名，例如 `https://github.com/kubesphere/` 则填写 `kubesphere` (它也可以是账户下的 Organization 名称) |
 | APP_NAME                 | devops-java-sample     | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 SonarQube token凭证 ID，用于代码质量检测 |
 

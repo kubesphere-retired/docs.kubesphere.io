@@ -128,14 +128,23 @@ $ yum-complete-transaction --cleanup-only
 
 答：可能由于网络问题造成，建议尝试再次运行该流水线。
 
+7、流水线运行时遇到如下报错应如何处理？
+
+```
++ git push http://****:****@github.com/****/devops-java-sample.git --tags
+fatal: unable to access 'http://****:****@github.com/****/devops-java-sample.git/': Could not resolve host: yunify.com; Unknown error
+script returned exit code 128  
+```
+
+答：可能是 GitHub 账号或密码带有 "@" 这类特殊字符，需要用户在创建凭证时对密码进行 urlencode 编码，可通过一些第三方网站进行转换 (比如 `http://tool.chinaz.com/tools/urlencode.aspx`)，然后再将转换后的输出粘贴到对应的凭证信息中。
+
 ### 如何查看 kubeconfig 文件
 
-7、如何查看当前集群的 Kubeconfig 文件？
+8、如何查看当前集群的 Kubeconfig 文件？
 
-答：用户可以通过打开 web kubectl 查看 Kubeconfig 文件，仅管理员或拥有 web kubectl 权限的用户有权限。
+答：用户可以点击 “小锤子” 工具箱的图标，选择「kubeconfig」即可查看，仅管理员用户有权限查看。
 
-![查看 Kubeconfig 文件](/view-kubeconfig.png)
-
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190506151204.png)
 
 ### CPU 用量异常问题
 

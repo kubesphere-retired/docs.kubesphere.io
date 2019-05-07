@@ -254,26 +254,22 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 5、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-java-sample` 就是 APP_NAME 的值，而 tag也是在 Jenkinsfile-on-prem 中定义的 tag。
 
-6、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的文档网站示例的首页，以访问生产环境 ks-sample 服务的 `30961` 端口为例。
-
-例如，在 QingCloud 云平台上，如果使用了 VPC 网络，则需要将 KubeSphere 集群中的任意一台主机上暴露的节点端口 (NodePort) `30961` 在 VPC 网络中添加端口转发规则，然后在防火墙放行该端口。
-
-**添加端口转发规则**
-![port](https://kubesphere-docs.pek3b.qingstor.com/png/port.png)
-
-**防火墙添加下行规则**
-![filewall](https://kubesphere-docs.pek3b.qingstor.com/png/filewall.png)
-
 ## 访问示例服务
 
-在浏览器访问部署到 KubeSphere Dev 和 Production 环境的服务：
+在浏览器或通过后台命令访问部署到 KubeSphere Dev 和 Production 环境的服务：
 
 **Dev 环境**
-访问 `http://127.0.0.1:30861/` 或者 `http://EIP:30861/`。
+
+例如，浏览器访问 `http://192.168.0.20:30861/` (即 `http://IP:NodePort/`) 可访问到 `Hello,World!` 页面，或通过后台命令验证：
+
+```bash
+curl http://192.168.0.20:30861
+Hello,World!
+```
 
 **Prodcution 环境**
-访问 `http://127.0.0.1:30961/` 或者 `http://EIP:30961/`。
 
-页面会出现 `Hello,World!`。
+同上可访问 `http://192.168.0.20:30961/` (即 `http://IP:NodePort/`) 。
+
 
 至此，结合 GitLab 和 Harbor，在离线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../faq)。
