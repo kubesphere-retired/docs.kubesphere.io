@@ -98,6 +98,17 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 | 亚太1区  |10 - 1000, 10   | 100 - 5000, 50  | -  |  - |  - |  - |
 | 亚太2区-A  | -  | 100 - 5000, 50  |  - | -  | 10 - 2000, 10  | 10 - 2000, 10  |
 
+#### QingCloud 各类型块存储的最低配额
+
+注意，使用 QingCloud 云平台块存储作为存储服务，安装前需要确保用户账号在当前 Zone 资源配额满足最低要求。Multi-node 安装最少需要 14 块硬盘，请参考以下的最低配额表核对您账号的存储配额，若硬盘数量和容量配额不够请提工单申请配额。
+
+| 最低配额 \ 硬盘类型   | 性能型硬盘  | 容量型硬盘  | 超高性能型硬盘 | NeonSAN 硬盘|基础型硬盘|SSD 企业型硬盘|
+|-----------|------------------|------------------|-----------------|---------|----------|-------|
+|块数 (块) / 容量 (GB)| 14 / 230    | 14 / 1400   | 14 / 230   | 14 / 1400   | 14 / 230   | 14 / 230 |
+
+
+
+
 ### QingStor NeonSAN
 
 NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为存储服务，若您准备好 NeonSAN 物理服务端后，即可在 `conf/vars.yml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。

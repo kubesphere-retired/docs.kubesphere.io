@@ -10,9 +10,12 @@ title: "All-in-One 模式"
 
 ## 第一步: 准备主机
 
-您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的安装，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
+您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的安装。
 
-> 说明：若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+> 说明：
+> - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
+> - 若使用 ubuntu 18.04，则需要使用 root 用户；
+> - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
 
 | 操作系统 | 最小配置 | 
 | --- | --- |
