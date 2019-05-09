@@ -77,7 +77,7 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 
 ![设置容器组模板](https://pek3b.qingstor.com/kubesphere-docs/png/20190428140749.png)
 
-4.3. 点击 **下一步**。
+4.3. 点击 **保存**，然后点击 **下一步**。
 
 #### 第五步：添加存储卷模板
 
