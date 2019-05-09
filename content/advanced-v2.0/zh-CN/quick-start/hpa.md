@@ -8,7 +8,7 @@ title: "设置弹性伸缩"
 
 HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中通过简单的设置或通过 UI 的 `kubectl autoscale` 命令来创建。HPA Controller 默认每 `30 秒` 轮询一次，检查工作负载中指定的部署 (Deployment) 的资源使用率，如 CPU 使用率或内存使用量，同时与创建部署时设定的值和指标做比较，从而实现 Pod 副本数自动伸缩的功能。
 
-在部署中创建了 HPA 后，Controller Manager 将会访问用户自定义的 REST 客户端或 Heapster，获取用户定义的资源中每一个容器组的利用率或原始值 (取决于指定的目标类型) 的平均值，然后，与 HPA 中设置的指标进行对比，同时计算部署中的 Pod 需要弹性伸缩的具体值并实现操作。在底层 Kubernetes 中的 Pod 的 CPU 和内存资源，实际上还分为 limits 和 requests 两种情况，在调度的时候，kube-scheduler 将会根据 requests 的值进行计算。因此，当 Pod 没有设置资源请求值 (request) 时，弹性伸缩功能将不会工作。
+在部署中创建了 HPA 后，Controller Manager 将会访问 Metrics-server，获取用户定义的资源中每一个容器组的利用率或原始值 (取决于指定的目标类型) 的平均值，然后，与 HPA 中设置的指标进行对比，同时计算部署中的 Pod 需要弹性伸缩的具体值并实现操作。在底层 Kubernetes 中的 Pod 的 CPU 和内存资源，实际上还分为 limits 和 requests 两种情况，在调度的时候，kube-scheduler 将会根据 requests 的值进行计算。因此，当 Pod 没有设置资源请求值 (request) 时，弹性伸缩功能将不会工作。
 
 ![弹性伸缩工作原理](/hpa.svg)
 
