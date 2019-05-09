@@ -28,6 +28,10 @@ reviews 微服务有 3 个版本：
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190414172945.png)
 <center>(Bookinfo 架构图与示例说明参考自 https://istio.io/docs/examples/bookinfo/)</center>
 
+## 预估时间
+
+约 30 ~ 50 分钟。
+
 ## 前提条件
 
 <!-- - 使用 `project-regular` 账号登录 KubeSphere，进入已创建的企业空间下的项目 `demo-namespace`，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
@@ -36,11 +40,6 @@ reviews 微服务有 3 个版本：
 - 请参考 [多租户管理快速入门](../admin-quick-start) 使用管理员账号在企业空间下新建一个项目并开启外网访问，注意访问方式为 NodePort，然后开启「应用治理」；
 - 邀请项目普通用户 `project-regular` 加入新建的项目，然后使用 `project-regular` 账号登录操作。
 
-
-
-## 预估时间
-
-约 30 ~ 50 分钟。
 
 ## 操作示例
 

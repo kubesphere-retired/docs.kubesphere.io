@@ -8,15 +8,18 @@ title: "Multi-Node 模式"
 
 <!-- - 下载最新的 [KubeSphere Advanced Edition 2.0.0 - dev](https://kubesphere.io/download/?type=advanced) 至待安装机器中。 -->
 - 已准备 KubeSphere 支持的 [持久化存储服务端](../storage-configuration)，本篇文档以配置 QingCloud-CSI 插件对接 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 为例，需要有 [QingCloud 云平台](https://console.qingcloud.com/login) 的账号。
-- <font color=red>注意，Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，安装前需要确认您 QingCloud 账号在当前 Zone 的容量型硬盘的配额是否大于 14，若配额不够请提工单申请容量型硬盘的配额。</font>
+- <font color=red>注意，使用 QingCloud 云平台块存储作为存储服务，安装前需要确保用户账号在当前 Zone 资源配额满足最低要求。Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，所需的容量型硬盘容量的最低配额为 1400 GB，若硬盘数量和容量配额不够请提工单申请配额。</font> 若使用其他类型的硬盘，参考 [QingCloud 各类型块存储配额表](../storage-configuration)。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190509151500.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190509171820.png)
 
 ## 第一步: 准备主机
 
-您可以参考以下节点规格 准备 **`至少 2 台`** 符合要求的主机节点开始 `multi-node` 模式的部署，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
+您可以参考以下节点规格 准备 **`至少 2 台`** 符合要求的主机节点开始 `multi-node` 模式的部署。
 
-> 说明：若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+> 说明：
+> - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
+> - 若使用 ubuntu 18.04，则需要使用 root 用户；
+> - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
 
 | 操作系统 | 最小配置 (根据集群规模)| 
 | --- | --- | 
@@ -112,9 +115,9 @@ kube-master
 **4.** 编辑 `conf/vars.yml` 配置文件，集群的存储以配置 QingCloud-CSI 插件对接 QingCloud 云平台块存储为例。
 
 - 其中值带有 * 号的值为必配项，参数释义详见 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)：
-    - `qingcloud_access_key_id` 和 `qingcloud_secret_access_key`： 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得，
-    - `qingcloud_zone`：根据您的机器所在的 Zone
-- 不带 * 号的最后六行为可配项所以在示例中无需修改，当前默认配置了容量型硬盘 (可挂载至任意类型主机)。<br> <font color=red>注意，安装前需要确认您 QingCloud 账号在当前 Zone 的容量型硬盘的配额是否大于 14。</font> 若需要修改为其他类型的硬盘，也需要满足最低配额，配置可参考 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)
+    - `qingcloud_access_key_id` 和 `qingcloud_secret_access_key`： 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得；
+    - `qingcloud_zone`：根据您的机器所在的 Zone 填写，例如：sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）；
+- 不带 * 号的最后六行为可配项所以在示例中无需修改，当前默认配置了容量型硬盘 (可挂载至任意类型主机)。<br> <font color=red>注意，安装前需要确认您 QingCloud 账号在当前 Zone 的容量型硬盘的配额是否大于 14。</font> 若需要修改为其他类型的硬盘，也需要满足最低配额，配置可参考 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)。
 
 
 **vars.yml 配置存储示例：**

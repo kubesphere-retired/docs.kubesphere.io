@@ -16,14 +16,19 @@ title: "安装负载均衡器插件"
 
 在安装 KubeSphere 前参考如下提示在 `conf/vars.yml` 中进行配置：
 
-1. 配置 QingCloud API key pairs 和 zone：
+1. 其中值带有 * 号的值为必配项：
+    - `qingcloud_access_key_id` 和 `qingcloud_secret_access_key`： 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得；
+    - `qingcloud_zone`：根据您的机器所在的 Zone 填写，例如：sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）；
+
+
+最后六行为可配置项，适用于私有云场景下的配置，请根据实际情况配置。
 
 ```bash
 # Access key pair can be created in QingCloud console
-qingcloud_access_key_id: Input your QingCloud key id
-qingcloud_secret_access_key: Input your QingCloud access key
+qingcloud_access_key_id: * Input your QingCloud key id *
+qingcloud_secret_access_key: * Input your QingCloud access key *
 # Zone should be the same as Kubernetes cluster
-qingcloud_zone: Input your Zone ID
+qingcloud_zone: * Input your Zone ID *
 # QingCloud IaaS platform service url.
 qingcloud_host: api.qingcloud.com
 qingcloud_port: 443
@@ -34,16 +39,18 @@ qingcloud_connection_timeout: 30
 ```
 
 
-|**QingCloud-CSI** | **Description**|
-| --- | ---|
-| qingcloud\_access\_key\_id ， <br> qingcloud\_secret\_access\_key|通过 [QingCloud 云平台控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
-|qingcloud\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）|
+2. 设置 `qingcloud_lb_enable` 为 true，启用并安装 QingCloud 负载均衡器插件。其中 `qingcloud_vxnet_id` 和 `qingcloud_user_id` 为可配项：
 
-2. 安装并启用 QingCloud 负载均衡器插件：
+
+- qingcloud\_vxnet\_id：注意，此参数配置适用于私有云场景，若填写后将为集群的服务及应用路由生成内网 IP，服务仅支持集群内部访问，若需要配置则填写待安装机器所在的私有网络 ID。
+- qingcloud\_user\_id：推荐配置此参数，请填写待安装机器的用户 ID，配置后即可自动获取公网 IP 并且支持多个服务共享一个 公网IP (点击 QingCloud Console 右上角的「账户设置」查看用户 ID)。
+
 
 ```bash
-## QingCloud LoadBlance
+## QingCloud LoadBlancer Plugin
 qingcloud_lb_enable: true
+qingcloud_vxnet_id: SHOULD_BE_REPLACED
+qingcloud_user_id: SHOULD_BE_REPLACED
 ```
 
 完成以上步骤的配置后，可继续参考安装指南完成其他配置并执行安装。
