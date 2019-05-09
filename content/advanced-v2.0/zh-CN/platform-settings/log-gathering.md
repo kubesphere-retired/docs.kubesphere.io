@@ -2,9 +2,9 @@
 title: "日志收集"
 ---
 
-KubeSphere 提供了非常灵活的日志收集的管理配置功能，用户可以添加日志接收者包括 Elasticsearch、Kafka 和 Fluentd，甚至可以暂停 (关闭) 向某个日志接收者输入日志，也支持稍后重新启用 (激活) 该日志接收者。
+KubeSphere 提供了非常灵活的日志收集的管理配置功能，用户可以添加日志接收者包括 Elasticsearch、Kafka 和 Fluentd，甚至可以暂停 (关闭) 向某个日志接收者输出日志，也支持稍后重新启用 (激活) 该日志接收者。
 
-在平台管理中的平台设置页面提供了日志收集配置的选项，KubeSphere 日志查询的日志是存在 Elasticsearch 中的，用户可以把日志导出并保存到其他地方，例如指定集群外部独立的 Elasticsearch 或者 Kafka，添加了新的外部日志接收者后，日志查询就从这个新的日志接收者查询日志了。
+在平台管理中的平台设置页面提供了日志收集配置的选项，KubeSphere 日志查询的日志是默认存在集群内部的 Elasticsearch 中，生产环境强烈推荐配置外部独立的 Elasticsearch 或者 Kafka 集群来存储日志数据，添加了新的外部日志接收者后，日志查询就从这个新的日志接收者查询日志了。
 
 ## 添加日志收集者
 
@@ -18,7 +18,7 @@ KubeSphere 提供了非常灵活的日志收集的管理配置功能，用户可
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190410012915.png)
 
-集群将内置的 Elasticsearch 作为默认的日志收集器，因此我们演示添加一个集群内部的 Kafka 作为日志收集器，在弹窗中选择 Kafka，并填写访问地址等相关信息。
+集群将内置的 Elasticsearch 作为默认的日志收集器，由于生产环境需要配置外部独立的 Elasticsearch 或者 Kafka 集群来存储日志数据，因此我们演示添加一个 Kafka 作为日志收集器，在弹窗中选择 Kafka，并填写 Kafka 集群的访问地址等相关信息。
 
 ![添加日志接收者](https://pek3b.qingstor.com/kubesphere-docs/png/20190410014858.png)
 

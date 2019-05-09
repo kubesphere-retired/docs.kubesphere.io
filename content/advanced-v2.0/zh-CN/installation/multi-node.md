@@ -7,7 +7,10 @@ title: "Multi-Node 模式"
 ## 前提条件
 
 <!-- - 下载最新的 [KubeSphere Advanced Edition 2.0.0 - dev](https://kubesphere.io/download/?type=advanced) 至待安装机器中。 -->
-已准备 KubeSphere 支持的 [持久化存储服务端](../storage-configuration)，本篇文档以配置 QingCloud-CSI 插件对接 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 为例，需要有 [QingCloud 云平台](https://console.qingcloud.com/login) 的账号。
+- 已准备 KubeSphere 支持的 [持久化存储服务端](../storage-configuration)，本篇文档以配置 QingCloud-CSI 插件对接 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 为例，需要有 [QingCloud 云平台](https://console.qingcloud.com/login) 的账号。
+- <font color=red>注意，Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，安装前需要确认您 QingCloud 账号在当前 Zone 的容量型硬盘的配额是否大于 14，若配额不够请提工单申请容量型硬盘的配额。</font>
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190509151500.png)
 
 ## 第一步: 准备主机
 
@@ -43,7 +46,7 @@ title: "Multi-Node 模式"
 
 ## 第二步: 准备安装配置文件
 
-**1.** 执行以下命令下载最新的 `KubeSphere Advanced v2.0.0 - dev` 安装包至待安装机器，并解压压缩包。
+**1.** 下载最新的 `KubeSphere Advanced v2.0.0 - dev` 安装包至任务执行机，并解压压缩包。
 
 ```bash
 $ curl -L https://kubesphere.io/download/nightly/latest -o installer.tgz
@@ -59,7 +62,7 @@ $ tar -zxf installer.tgz
 $ cd kubesphere-all-advanced-2.0.0-dev-{$date}
 ```
 
-**3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
+**3.** 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
 
 > 说明：
 > - 若以非 root 用户 (如 ubuntu 用户) 进行安装，可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
@@ -68,7 +71,7 @@ $ cd kubesphere-all-advanced-2.0.0-dev-{$date}
 
 以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。
 
-**root 配置示例：**
+**root 配置 hosts.ini 示例：**
 
 ```ini
 [all]
@@ -93,37 +96,40 @@ kube-master
 
 > 说明：
 >
-> - [all] 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码。主机名为 "master" 的节点作为已通过 SSH 连接的 Taskbox 所以无需填写密码，[all] 中其它节点的参数比如 node1 和 node2 的 `ansible_host` 和 `ip` 都替换为当前 node1 和 node2 的内网 IP，将 `ansible_ssh_pass` 替换为您准备的主机 `root` 用户登录密码。
-> -  应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分，因为 "master" 节点作为 taskbox，用来执行整个集群的安装任务，同时 "master" 节点在 KubeSphere 集群架构中也将作为管理节点 Master 和负责保存持久化数据的 etcd。
-> - 将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
+> - `[all]`： 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码：<br>主机名为 "master" 的节点作为已通过 SSH 连接的 Taskbox 所以无需填写密码。<br> Node 节点的参数比如 node1 和 node2 的 `ansible_host` 和 `ip` 都替换为当前 node1 和 node2 的内网 IP，将 `ansible_ssh_pass` 替换为您准备的主机 `root` 用户登录密码。
 >
-> 参数解释：<br>
-> - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接。
-> - `ansible_host`: 集群中将要连接的主机地址或域名。
-> - `ip`: 集群中将要连接的主机 IP。
-> - `ansible_ssh_pass`: 待连接主机 root 用户的密码。
+>   参数解释：<br>
+>       - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接。
+>       - `ansible_host`: 集群中将要连接的主机地址或域名。
+>       - `ip`: 集群中将要连接的主机 IP。
+>       - `ansible_ssh_pass`: 待连接主机 root 用户的密码。
+> - `[kube-master]` 和 `[etcd]`：应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分，"master" 节点作为 taskbox，用来执行整个集群的安装任务，同时 "master" 节点在 KubeSphere 集群架构中也将作为 Master 节点管理集群和 etcd 节点负责保存集群的数据。
+> - `[kube-node]`：将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
 
 
-**5.** 集群的存储以配置 QingCloud-CSI 插件对接 QingCloud 云平台块存储为例，其中 `qingcloud_access_key_id` 和 `qingcloud_secret_access_key` 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得，参数释义详见 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration)。
 
-**存储配置示例：**
+
+**4.** 编辑 `conf/vars.yml` 配置文件，集群的存储以配置 QingCloud-CSI 插件对接 QingCloud 云平台块存储为例。
+
+- 其中值带有 * 号的值为必配项，参数释义详见 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)：
+    - `qingcloud_access_key_id` 和 `qingcloud_secret_access_key`： 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得，
+    - `qingcloud_zone`：根据您的机器所在的 Zone
+- 不带 * 号的最后六行为可配项所以在示例中无需修改，当前默认配置了容量型硬盘 (可挂载至任意类型主机)。<br> <font color=red>注意，安装前需要确认您 QingCloud 账号在当前 Zone 的容量型硬盘的配额是否大于 14。</font> 若需要修改为其他类型的硬盘，也需要满足最低配额，配置可参考 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)
+
+
+**vars.yml 配置存储示例：**
 
 ```yaml
 # Access key pair can be created in QingCloud console
-qingcloud_access_key_id: Input your QingCloud key id
-qingcloud_secret_access_key: Input your QingCloud access key
+qingcloud_access_key_id: * Input your QingCloud key id *
+qingcloud_secret_access_key: * Input your QingCloud access key *
 # Zone should be the same as Kubernetes cluster
-qingcloud_zone: Input your Zone ID (e.g. pek3a, gd2)
+qingcloud_zone: * Input your Zone ID (e.g. pek3a, gd2) *
 ···
 
-# Local volume provisioner deployment(Only all-in-one)
-local_volume_provisioner_enabled: false
-local_volume_provisioner_storage_class: local
-local_volume_is_default_class: false
-
 # QingCloud CSI
-qingcloud_csi_enabled: true
-qingcloud_csi_is_default_class: true
+qingcloud_csi_enabled: * true *
+qingcloud_csi_is_default_class: * true *
 qingcloud_type: 2
 qingcloud_maxSize: 5000
 qingcloud_minSize: 100
@@ -133,10 +139,8 @@ qingcloud_disk_replica: 2
 ```
 
 > 说明：
-> - 网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改，根据配置文件按需修改相关配置项，未做修改将以默认参数执行；
-> - 网络：默认插件 `Calico`；
-> - 支持存储类型：[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[Local Volume (仅支持 all-in-one)](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)；
-> - Multi-Node 安装时需要配置持久化存储，因为它不支持 Local Volume，因此把 Local Volume 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI (QingCloud 块存储插件)；
+> - 网络、存储、GitLab、Harbor、LB 插件等相关内容可在 `conf/vars.yml` 配置文件中修改或开启安装，其中网络的默认插件是 `Calico`。可按需修改相关配置项，未做修改将以默认参数执行；
+> - 支持存储类型：[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)；
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
 
@@ -161,7 +165,7 @@ $ cd scripts
 $ ./install.sh
 ```
 
-**3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若已配置过请输入 "yes"，否则输入 "no"，将返回目录继续配置存储并参考 [存储配置说明](../storage-configuration)。
+**3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
 
 ```bash
 ################################################
@@ -199,13 +203,7 @@ NOTE：Please modify the default password after login.
 
 **(2)** 若需要在外网访问，则云平台将外网访问的 http 端口 (30880) 进行 **端口转发**，并添加 **防火墙的下行规则**，确保该外网流量可以通过该端口。
 
-例如在 QingCloud 平台配置端口转发和防火墙规则：
-
-**端口转发**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424163527.png)
-
-**添加防火墙下行规则**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424163607.png)
+例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 **(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 
