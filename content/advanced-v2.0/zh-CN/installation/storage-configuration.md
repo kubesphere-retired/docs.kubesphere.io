@@ -38,11 +38,19 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 
 KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务。
 
-[QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户可创建访问模式 (Access Mode) 为 **单节点读写（ReadWriteOnce）** 的基于 QingCloud 的超高性能型 (超高性能型硬盘只能用在超高性能型主机)、性能型 (性能型硬盘只能用在性能型主机) 或容量型硬盘的存储卷并挂载至工作负载。在安装 KubeSphere 时配置 QingCloud-CSI 插件的参数说明如下。
+[QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户在 QingCloud 云平台可创建访问模式 (Access Mode) 为 **单节点读写（ReadWriteOnce）** 的存储卷并挂载至工作负载，包括以下几种类型：
+
+- 容量型 
+- 基础型
+- SSD 企业型
+- 超高性能型
+- 企业级分布式块存储 NeonSAN 
+
 
 > 注意：在 KubeSphere 集群内使用到性能型、超高性能型、企业型或基础型硬盘时，集群的主机类型也应与硬盘的类型保持一致。
 
-安装配置 QingCloud-CSI 插件和 QingCloud 负载均衡器插件需要下载 API 密钥来对接 QingCloud API。
+
+在安装 KubeSphere 时配置 QingCloud-CSI 插件的参数说明如下三个表所示，安装配置 QingCloud-CSI 插件和 QingCloud 负载均衡器插件都需要下载 API 密钥来对接 QingCloud API。
 
 |**QingCloud-API** | **Description**|
 | --- | ---|
@@ -79,6 +87,8 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 
 #### 各区应设置的 minSize, maxSize 和 stepSize 参数
 
+下表中的值对应的格式为：qingcloud\_minSize - qingcloud\_maxSize，qingcloud\_stepSize。
+
 |          | 性能型硬盘    | 容量型硬盘  | 超高性能型硬盘 | NeonSAN 硬盘 |基础型硬盘| SSD 企业型硬盘|
 |----|----|-----|-----|----|----|-----|
 | 北京2区  |10 - 1000, 10  | 100 - 5000, 50  | 10 - 1000,10 | -  |  - | - |
@@ -90,7 +100,7 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 
 ### QingStor NeonSAN
 
-NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为存储服务，若您准备好 NeonSAN 服务端后，即可在 `conf/vars.yml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
+NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为存储服务，若您准备好 NeonSAN 物理服务端后，即可在 `conf/vars.yml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
 
 | **NeonSAN** | **Description** |
 | --- | --- |

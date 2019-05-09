@@ -130,7 +130,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 ![部署详情](/wordpress-deployment-list.png)
 
-7.3. 查看创建的部署 Wordpress，可以看到其状态显示运行中，下一步则需要为 Wordpress 创建服务和应用路由，最终暴露给外网访问。
+7.3. 查看创建的部署 Wordpress，可以看到其状态显示运行中，下一步则需要为 Wordpress 创建服务，最终暴露给外网访问。
 
 ![创建成功](/demo-wordpress-create-successfully.png)
 
@@ -165,20 +165,19 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 ![设置 NodePort](https://pek3b.qingstor.com/kubesphere-docs/png/20190428143904.png)
 
-8.6. 点击 **创建**，wordpress-service 服务可创建成功。注意，wordpress-service 服务生成了一个节点端口 `30517`。
+8.6. 点击 **创建**，wordpress-service 服务可创建成功。注意，wordpress-service 服务生成了一个节点端口 `32689`。
 
-![创建成功](/demo2-wordpress-service-list.png)
+![查看服务](https://pek3b.qingstor.com/kubesphere-docs/png/20190509082526.png)
 
 
-
-> 注意：若需要在公网访问，可能需要进行端口转发和防火墙放行对应的端口，保证外网流量能够通过需要访问的节点端口如 30517，否则外网无法访问。
+> 注意：若需要在公网访问，可能需要进行端口转发和防火墙放行对应的端口，保证外网流量能够通过需要访问的节点端口如 32689，否则外网无法访问。
 
 例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 ### 访问 Wordpress
 
-设置完成后，WordPress 就以应用路由的方式通过网关入口暴露到外网，可以通过 `http://{$公网 IP}:{$节点端口 NodePort}` 访问 WordPress 博客网站。
+设置完成后，WordPress 就以服务的方式通过 NodePort 暴露到集群外部，可以通过 `http://{$公网 IP}:{$节点端口 NodePort}` 访问 WordPress 博客网站。
 
-![访问 Wordpress](/wordpress-homepage.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190509082952.png)
 
-至此，您已经熟悉了部署 (Deployments) 和有状态副本集 (Statefulsets) 的基本功能使用，关于部署和有状态副本集的各项参数释义，详见 [部署](../../workload/deployments) 和 [有状态副本集](../../workload/statefulsets)。
+至此，您已经熟悉了部署 (Deployments) 和有状态副本集 (Statefulsets) 、密钥 (Secret)、配置 (ConfigMap) 的基本功能使用，关于部署和有状态副本集的各项参数释义，详见 [部署](../../workload/deployments) 和 [有状态副本集](../../workload/statefulsets)。
