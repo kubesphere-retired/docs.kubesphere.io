@@ -2,9 +2,9 @@
 title: "安装内置 GitLab" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Gitlab (版本为 v11.3.4)作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对代码仓库的管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，具体可参考以下步骤安装和访问 GitLab。
+KubeSphere Installer 内置的 Gitlab (版本为 v11.3.4) 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对代码仓库的管理，仅需`安装前`在配置文件 `conf/vars.yml` 中简单配置即可，具体可参考以下步骤安装和访问 GitLab。
 
-## 修改配置文件
+## 第一步：修改配置文件
 
 1、安装 KubeSphere 前，在 Installer 中的 `conf/vars.yml` 文件中，参考如下配置修改。
 
@@ -16,19 +16,17 @@ gitlab_hosts_domain: devops.kubesphere.local
 
 2、修改后保存，然后执行安装脚本，即可通过 Helm Chart 的方式来安装 GitLab。
 
-## 配置 Docker 访问
+## 第二步：配置 GitLab 访问
 
-### 修改 hosts 配置文件
-
-在集群中所有节点的 `/etc/hosts` 文件中，需要参考如下添加一条记录：
+<!-- 在集群中所有节点的 `/etc/hosts` 文件中，需要参考如下添加一条记录：
 
 ```bash
 192.168.0.24 gitlab.devops.kubesphere.local
 ```
 
-> 说明：192.168.0.24 是当前主机的内网 IP，请根据实际情况填写。若需要将 Gitlab 服务暴露给集群外部用户使用，则需要在外网配置 DNS 记录（DNS 服务器处或者用户的本地 hosts 文件内），把域名 `gitlab.devops.kubesphere.local` 对应到相应的外网 IP。
+> 说明：192.168.0.24 是当前主机的内网 IP，请根据实际情况填写。若需要将 Gitlab 服务暴露给集群外部用户使用，则需要在外网配置 DNS 记录（DNS 服务器处或者用户的本地 hosts 文件内），把域名 `gitlab.devops.kubesphere.local` 对应到相应的外网 IP。 -->
 
-待安装完成后，执行以下命令查看 GitLab 端口号：
+1、待安装完成后，执行以下命令查看 GitLab 端口号：
 
 ```bash
 kubectl get svc ks-gitlab-nginx-ingress-controller -n kubesphere-devops-system
@@ -36,17 +34,15 @@ NAME                                TYPE      CLUSTER-IP   EXTERNAL-IP   PORT(S)
 ks-gitlab-nginx-ingress-controller  NodePort  10.233.41.10  <none>   80:30080/TCP,443:30443/TCP,22:30090/TCP   11h
 ```
 
-### 浏览器访问配置
-
-1、KubeSphere 和 GitLab 都安装完成后，若需要在集群外部访问 GitLab，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后才可以在浏览器访问 GitLab。
-
-> 注意： `139.198.10.10` 是 KubeSphere 集群的公网 IP，请根据实际情况填写。在外网访问 GitLab，需要绑定公网 IP 并配置端口转发，若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口 30080(HTTP)、30443(HTTPS)、30090(SSH)，保证外网流量可以通过该端口，外部才能够访问。
+2、KubeSphere 和 GitLab 都安装完成后，若需要在集群外部访问 GitLab，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后即可在浏览器访问 GitLab。
 
 ```bash
 139.198.10.10 gitlab.devops.kubesphere.local
 ```
 
-2、GitLab 服务对外暴露的节点端口 (NodePort) 为 30080(HTTP)、30443(HTTPS)、30090(SSH)，在浏览器中可以通过 `{$域名}:{$NodePort}` 如 `http://gitlab.devops.kubesphere.local:30080` 访问 GitLab 登录页面。默认的 GitLab 用户名和密码为 `admin / passw0rd `，关于 GitLab 的使用详见 [GitLab 文档](<https://docs.gitlab.com/ee/README.html>)。
+> 注意： `139.198.10.10` 是 KubeSphere 集群的公网 IP，请根据实际情况填写。在外网访问 GitLab，需要绑定公网 IP 并配置端口转发，若公网 IP 有防火墙，请在防火墙添加规则放行对应的端口 30080(HTTP)、30443(HTTPS)、30090(SSH)，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+
+3、GitLab 服务对外暴露的节点端口 (NodePort) 为 30080(HTTP)、30443(HTTPS)、30090(SSH)，在浏览器中可以通过 `{$域名}:{$NodePort}` 如 `http://gitlab.devops.kubesphere.local:30080` 访问 GitLab 登录页面。默认的 GitLab 用户名和密码为 `admin / passw0rd `，关于 GitLab 的使用详见 [GitLab 文档](<https://docs.gitlab.com/ee/README.html>)。
 
 ![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-gitlab.png)
 
