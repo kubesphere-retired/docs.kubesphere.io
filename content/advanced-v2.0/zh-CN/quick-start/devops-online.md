@@ -89,9 +89,11 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
-### 第一步：填写项目信息
+### 第一步：创建第一个项目
 
-使用项目管理员 `project-admin` 账号登录 KubeSphere，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
+> 提示：项目管理员 `project-admin` 账号已在 [多租户管理快速入门](../../quick-start/admin-quick-start) 中创建。
+
+1、使用项目管理员 `project-admin` 账号登录 KubeSphere，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
 - 名称：固定为 `kubesphere-sample-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
@@ -99,13 +101,15 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ![dev](https://kubesphere-docs.pek3b.qingstor.com/png/dev.png)
 
-### 第二步：高级设置
+2、本示例暂无资源请求和限制，因此高级设置中无需修改默认值，点击 **创建**，项目可创建成功。
 
-本示例暂无资源请求和限制，因此高级设置中无需修改默认值，点击 **创建**，项目可创建成功。
+### 第二步：邀请成员
 
-### 创建第二个项目
+第一个项目创建完后，还需要项目管理员 `project-admin` 邀请当前的项目普通用户 `project-regular` 进入 `kubesphere-sample-dev` 项目，进入「项目设置」→「项目成员」，点击「邀请成员」选择邀请 `project-regular` 并授予 `operator` 角色，若对此有疑问可参考 [多租户管理快速入门 - 邀请成员](../../quick-start/admin-quick-start/#邀请成员) 。
 
-同上，参考上一步创建一个名称为 `kubesphere-sample-prod` 的项目，作为生产环境。
+### 第三步：创建第二个项目
+
+同上，参考以上两步创建一个名称为 `kubesphere-sample-prod` 的项目作为生产环境，并邀请普通用户 `project-regular` 进入 `kubesphere-sample-prod` 项目并授予 `operator` 角色。
 
 > 说明：当 CI/CD 流水线后续执行成功后，在 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目中将看到流水线创建的部署 (Deployment) 和服务 (Service)。
 

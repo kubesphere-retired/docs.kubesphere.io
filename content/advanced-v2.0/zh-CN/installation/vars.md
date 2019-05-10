@@ -31,6 +31,7 @@ Installer 默认使用 local 类型的存储方便 all-in-one 模式进行安装
 |qingcloud\_lb\_enable | 是否安装 QingCloud LB 插件 (需在 QingCloud 云平台安装) |
 | prometheus\_memory\_size | Prometheus 内存请求大小 | 
 | prometheus\_volume\_size | Prometheus 存储空间大小 | 
+| keep\_log\_days | 集群内置的 Elasticsearch 中日志保留时间，默认是 7 天 |
 | kibana_enable | 是否部署 Kibana （默认 false） | 
 | elasticsearch\_volume\_size | Elasticsearch 存储空间 | 
 | EMAIL\_SMTP\_HOST | SMTP 邮件服务器地址 | 

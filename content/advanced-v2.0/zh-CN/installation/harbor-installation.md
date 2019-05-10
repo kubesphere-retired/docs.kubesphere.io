@@ -2,7 +2,7 @@
 title: "安装内置 Harbor" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考以下步骤安装和访问 Harbor。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需`安装前`在配置文件 `conf/vars.yml` 中简单配置即可，参考以下步骤安装和访问 Harbor。
 
 ## 修改安装配置文件
 
@@ -16,37 +16,9 @@ harbor_domain: harbor.devops.kubesphere.local
 
 ## 访问 Harbor
 
-### 浏览器访问
+### Docker 登录 Harbor
 
-KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harbor 服务对外暴露的节点端口 (NodePort) 为 30280，内置的 Harbor 镜像仓库目前仅支持 http 协议，在浏览器中可以通过 `{$公网 IP}:{$NodePort}` 如 `http://139.198.16.160:30280` 访问 Harbor 登录页面。默认的管理员用户名和密码为 `admin / Harbor12345`，其它用户与 KubeSphere 的用户账户体系一致。关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
-
-> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 30280，保证外网流量可以通过该端口，外部才能够访问。
-
-![Harbor 登录](/harbor-console.png)
-
-### Docker 访问
-
-#### 第一步：修改 Docker 配置
-
-修改集群中所有节点的 Docker 配置，需要在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段 `--insecure-registry=harbor.devops.kubesphere.local:30280`，如下所示：
-
-**配置文件修改示例**
-
-```bash
-[Service]
-Environment="DOCKER_OPTS= -D --insecure-registry=harbor.devops.kubesphere.local:30280 --data-root=/var/lib/docker --log-opt max-size=10m --log-opt max-file=3 --iptables=false"
-```
-
-#### 第二步：重启 Docker 服务
-
-修改后，需要重启所有节点的 Docker 服务使配置生效，⽐如在 Linux 系统中需执行以下命令：
-
-```bash
-$ sudo systemctl restart docker
-```
-#### 第三步：登录 Harbor
-
-执行以下命令登录 Harbor 镜像仓库。关于如何制作镜像、打包上传镜像以及 Dockerfile 的使用，请参考 [Docker 官方文档]。(https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)。
+登录 Harbor 镜像仓库。
 
 ```dockerfile
 $ docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280
@@ -59,7 +31,53 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 ```
 
+### 使用 Harbor 镜像仓库
+
+关于如何制作镜像、打包上传镜像以及 Dockerfile 的使用详情，请参考 [Docker 官方文档](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)。
+
+KubeSphere 安装成功后，本地已经有了 nginx:1.14-alpine 镜像，因此演示如何在本地给示例镜像 nginx 打 tag 后推送到 Harbor 镜像仓库的 library 项目中：
+
+1、给本地 nginx 镜像打上 1.14-alpine 的 tag。
+
+```bash
+docker tag nginx:1.14-alpine harbor.devops.kubesphere.local:30280/library/nginx:1.14-alpine
+```
+
+2、推送至 Harbor 镜像仓库的 library 项目中。
+
+```bash
+docker push harbor.devops.kubesphere.local:30280/library/nginx:1.14-alpine
+```
+
+镜像推送成功即可通过浏览器登录 Harbor，验证推送的结果。
+
+### 浏览器访问 Harbor
+
+KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harbor 服务对外暴露的节点端口 (NodePort) 为 30280，内置的 Harbor 镜像仓库目前仅支持 http 协议，在浏览器中可以通过 `{$公网 IP}:{$NodePort}` 如 `http://139.198.16.160:30280` 访问 Harbor 登录页面。
+
+> 提示：在浏览器中还可通过域名访问 Harbor，在本地 `/etc/hosts` 添加一行记录 `139.198.16.160 harbor.devops.kubesphere.local`，即可通过 `http://harbor.devops.kubesphere.local:30280` 访问。
+
+1、输入默认的管理员用户名和密码 `admin / Harbor12345` 登录 Harbor。
+
+> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 `30280`，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+>
+> 提示：其它用户登录的账号密码与 KubeSphere 的 LDAP 用户账户体系一致。
+
+![Harbor 登录](/harbor-console.png)
+
+2、登录成功后，点击进入 library 项目。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190510164826.png)
+
+3、可以看到 library 项目下已有了 nginx 镜像。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190510230246.png)
+
+## KubeSphere 中使用 Harbor
+
 ### KubeSphere 添加 Harbor 
+
+> 提示：以下需要在企业空间下的项目中添加镜像仓库，若还未创建企业空间和项目，请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 
 登录控制台，在已创建的企业空间的项目下，左侧菜单栏选择 **配置中心 → 密钥**，点击 **创建**。
 
@@ -89,10 +107,20 @@ Login Succeeded
 ![](/harbor-secret-list.png)
 
 
-### 使用 Harbor 镜像仓库
+### 使用 Harbor 中的镜像
 
-若需要在 KubeSphere 中使用 Harbor 镜像仓库中的镜像，需要先将相关的镜像构建后上传至 Harbor。关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
+若需要在 KubeSphere 中使用 Harbor 镜像仓库中的镜像，需要先将相关的镜像构建后上传至 Harbor。
 
-以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 Harbor 镜像仓库中已有 `mysql:5.6` 的 docker 镜像，在容器组模板中需要先选择镜像仓库，然后将镜像填写为 `http://harbor.devops.kubesphere.local:30280/mysql:5.6`，对应的格式为 `镜像仓库地址 / 镜像名称:tag`，填写后创建完成即可使用该 Harbor 镜像仓库中的镜像。
+以创建 Deployment (部署) 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如上述步骤已经将镜像 `nginx:1.14-alpine` 推送到了 library 项目，因此以下将演示如何创建工作负载并使用 Harbor 中的示例镜像 `nginx:1.14-alpine`。
 
-![使用 Harbor 镜像仓库](/apply-harbor.png)
+1、上述步骤中已将镜像仓库添加到了项目中，因此进入当前项目，选择「工作负载」→「部署」，点击「创建」。
+
+
+2、 在弹窗中填写基本信息然后点击「下一步」，在容器组模板中需要先选择镜像仓库，镜像为 `harbor.devops.kubesphere.local:30280/library/nginx:1.14-alpine`，对应的格式为 `镜像仓库地址/项目名称/镜像名称:tag`，填写后点击「保存」，然后一直点击下一步直至创建，待创建成功后即可使用该镜像。
+
+> 提示：关于如何创建工作负载的详细步骤说明，请参考快速入门系列文档。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190510231807.png)
+
+> 提示：关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
+
