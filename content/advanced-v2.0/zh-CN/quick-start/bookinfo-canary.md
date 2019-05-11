@@ -37,15 +37,15 @@ reviews 微服务有 3 个版本：
 <!-- - 使用 `project-regular` 账号登录 KubeSphere，进入已创建的企业空间下的项目 `demo-namespace`，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 请确保当前项目已在外网访问中开启了应用治理，若还未开启请参考 [设置外网访问](../admin-quick-start/#%E8%AE%BE%E7%BD%AE%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE)； -->
 
-- 请参考 [多租户管理快速入门](../admin-quick-start) 使用企业空间管理员账号在该企业空间下新建一个项目并开启外网访问，注意访问方式为 NodePort，并开启「应用治理」；
-- 邀请项目普通用户 `project-regular` 加入新建的项目，然后使用 `project-regular` 账号登录操作。
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，并且项目已开启了外网访问 (访问方式为 `NodePort`)，请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 
 ## 操作示例
 
 ### 创建自制应用
 
-1. 使用 `project-regular` 账号进入项目 demo-namespace 后，点击 「应用」，选择 「自制应用」，点击 「部署示例应用」。
+1. 使用项目普通用户 `project-regular` 账号进入项目 demo-namespace 后，点击 「应用」，选择 「自制应用」，点击 「部署示例应用」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190426215359.png)
 
@@ -119,7 +119,7 @@ reviews 微服务有 3 个版本：
 打开命令行窗口输入以下命令，引入真实的访问流量，模拟对 bookinfo 应用每 0.5 秒访问一次。
 
 ```shell
-$ watch -n 0.5 "curl http://productpage.demo-namspace.139.198.111.111.nip.io:31680"
+$ watch -n 0.5 "curl http://productpage.demo-namspace.139.198.111.111.nip.io:31680/productpage?u=normal"
 ```
 
 从流量治理的链路图中，可以看到各个微服务之间的服务调用和依赖、健康状况、性能等情况。

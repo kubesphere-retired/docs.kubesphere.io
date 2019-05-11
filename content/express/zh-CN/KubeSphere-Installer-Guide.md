@@ -406,10 +406,18 @@ KubeSphere 部署成功后，可以使用以下的用户名和密码登录 KubeS
 | --- | ---|
 |qy\_csi\_enabled|是否使用 QingCloud-CSI 作为持久化存储，是：true； 否：false |
 |qy\_csi\_is\_default\_class|是否设定为默认 storage\_class， 是：true；否：false <br/> 注：系统中存在多种 storage\_class 时，只能设定一种为 default\_class
-| qy\_access\_key\_id ， <br> qy\_secret\_access\_key|通过[青云控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
+|qy\_access\_key\_id ， <br> qy\_secret\_access\_key|通过[青云控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
 |qy\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3 （北京3区）、pek3a（北京3区-A）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）、 |
-
-
+|qy_host| QingCloud 云平台 api 地址，例如 `api.qingcloud.com` (若对接私有云则以下值都需要根据实际情况填写)|
+| qy_port| API 请求的端口，默认 https 端口 (443)|
+|qy_protocol | 网络协议，默认 https 协议 |
+|qy_uri | URI 路径，默认值 iaas |
+|qy\_connection\_retries | API 连接重试时间 (默认 3 秒) |
+| qy\_connection\_timeout | API 连接超时时间 (默认 30 秒) |
+| qy\_type | QingCloud 云平台硬盘的类型 <br> * 性能型是 0 <br> * 容量型是 2 <br>* 超高性能型是 3 <br> * 企业级分布式块存储 NeonSAN 是 5 <br> * 基础型是 100 <br> * SSD 企业型是 200 <br> 详情见 [QingCloud 官方文档](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
+| qy\_maxSize, qy\_minSize | 限制存储卷类型的存储卷容量范围，单位为 GiB|
+| qy\_stepSize | 设置用户所创建存储卷容量的增量，单位为 GiB|
+| qy\_fsType | 存储卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4|
 
 
 ### Ceph RBD

@@ -8,8 +8,8 @@ title: "部署 MySQL 有状态应用"
 
 ## 前提条件
 
-- 已创建了企业空间和项目和项目普通用户 `project-regular`，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
-- 以 `project-regular` 账号登录 KubeSphere，进入已创建的企业空间下的项目。
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 ## 预估时间
 
@@ -27,9 +27,11 @@ title: "部署 MySQL 有状态应用"
 
 #### 第一步：创建密钥
 
+
+
 MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感信息，不适合以明文的方式表现在步骤中，因此以创建密钥的方式来代替该环境变量。创建的密钥将在创建 MySQL 的容器组设置时作为环境变量写入。
 
-1.1. 在当前项目下左侧菜单栏的 **配置中心** 选择 **密钥**，点击 **创建**。
+1.1. 以项目普通用户 `project-regular` 登录 KubeSphere，在当前项目下左侧菜单栏的 **配置中心** 选择 **密钥**，点击 **创建**。
 
 ![创建密钥](https://pek3b.qingstor.com/kubesphere-docs/png/20190428135821.png)
 

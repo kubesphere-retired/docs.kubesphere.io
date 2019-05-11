@@ -16,13 +16,15 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 
 本示例演示创建一个设置了弹性伸缩的应用，通过另外创建的多个 Pod 循环向该应用发送无限的查询请求访问应用的服务，相当于手动增加 CPU 负载，即模拟多个用户同时访问该服务，演示其弹性伸缩的功能，详细说明 HPA 的工作原理以及如何在部署中设置 Pod 水平自动伸缩。
 
-## 前提条件
-
-已创建了企业空间和项目，并且已经创建了项目普通用户的账号 (project-regular)，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
-
 ## 预估时间
 
 约 25 分钟。
+
+## 前提条件
+
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
+
 
 ## 操作示例
 
