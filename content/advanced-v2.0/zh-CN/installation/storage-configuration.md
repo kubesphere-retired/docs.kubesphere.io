@@ -56,12 +56,12 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 | --- | ---|
 | qingcloud\_access\_key\_id ， <br> qingcloud\_secret\_access\_key|通过[QingCloud 云平台控制台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得|
 |qingcloud\_zone| zone 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。例如：zone 可以设置为 sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）|
-|qingcloud_host| QingCloud 公有云 api 地址 api.qingcloud.com|
-| qingcloud_port| https 端口 (443)|
-|qingcloud_protocol | 协议 (https) |
-|qingcloud_uri | URI (iaas)
-|qingcloud\_connection\_retries | 连接重试时间 (默认 3 秒) |
-| qingcloud\_connection\_timeout | 连接超时时间 ( 默认 30 秒 |
+|qingcloud_host| QingCloud 云平台 api 地址，例如 `api.qingcloud.com` (若对接私有云则以下值都需要根据实际情况填写)|
+|qingcloud_port| API 请求的端口，默认 https 端口 (443)|
+|qingcloud_protocol | 网络协议，默认 https 协议 |
+|qingcloud_uri | URI 路径，默认值 iaas |
+|qingcloud\_connection\_retries | API 连接重试时间 (默认 3 秒) |
+| qingcloud\_connection\_timeout | API 连接超时时间 (默认 30 秒） |
 
 在 `vars.yml` 中完成上表中的 API 相关配置后，再修改 QingCloud-CSI 配置安装 QingCloud 块存储插件。
 
@@ -74,6 +74,7 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 | qingcloud\_stepSize | 设置用户所创建存储卷容量的增量，单位为 GiB|
 | qingcloud\_fsType | 存储卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4|
 | disk\_replica | 硬盘的副本策略，支持单副本和多副本，1 表示单副本，2 表示多副本|
+
 
 #### 硬盘类型与主机适配性
 

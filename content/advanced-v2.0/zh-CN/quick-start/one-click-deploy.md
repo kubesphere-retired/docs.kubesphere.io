@@ -13,7 +13,8 @@ title: "一键部署应用"
 
 ## 前提条件
 
-已创建了企业空间和项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 ## 预估时间
 
@@ -29,11 +30,13 @@ title: "一键部署应用"
 
 ### 第一步：添加应用仓库
 
-应用仓库的后端可以是 QingStor 对象存储或 AWS 对象存储，还可以是 GitHub，里面存储的内容是开发者开发好的应用的配置包以及索引文件。因此在 KubeSphere 添加应用仓库之前，需提前上传应用配置包至对象存储或 GitHub，一般是基于 Helm Chart 规范开发的应用。本示例准备了一个基于 [QingStor 对象存储](https://www.qingcloud.com/products/qingstor/) 的应用仓库，里面包含了用于演示的 Nginx 应用配置包，请参阅 [添加示例应用仓库](../../platform-settings/app-repo/#添加示例应用仓库) 进行操作。
+应用仓库的后端可以是 QingStor 对象存储或 AWS 对象存储，还可以是 GitHub，里面存储的内容是开发者开发好的应用的配置包以及索引文件。因此在 KubeSphere 添加应用仓库之前，需提前上传应用配置包至对象存储或 GitHub，一般是基于 Helm Chart 规范开发的应用。
+
+本示例准备了一个基于 [QingStor 对象存储](https://www.qingcloud.com/products/qingstor/) 的应用仓库，里面包含了用于演示的 Nginx 应用配置包，请参考 [添加示例应用仓库](../../platform-settings/app-repo/#添加示例应用仓库) 进行操作。
 
 ### 第二步：部署应用
 
-1、添加示例应用仓库后，查看和部署应用等后续操作可使用项目普通用户 `project-regular` 账号登录操作，在顶部的 **应用模板** 中查看新添加仓库的应用。
+1、添加示例应用仓库后，查看和部署应用等后续操作使用项目普通用户 `project-regular` 账号登录 KubeSphere 进行操作，在顶部的 **应用模板** 中查看新添加仓库的应用。
 
 ![查看新添加仓库的应用](https://pek3b.qingstor.com/kubesphere-docs/png/20190428194016.png)
 

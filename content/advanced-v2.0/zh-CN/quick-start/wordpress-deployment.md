@@ -8,8 +8,8 @@ title: "部署 Wordpress"
 
 ## 前提条件
 
-- 已创建了有状态副本集 MySQL，若还未创建请参考 [部署 MySQL](../mysql-deployment)。
-- 以项目普通用户 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目
+- 已创建了有状态副本集 MySQL，若还未创建请参考上一篇 [部署 MySQL](../mysql-deployment)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 ## 预估时间
 
@@ -29,7 +29,7 @@ title: "部署 Wordpress"
 
 Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库的密码，为演示方便，以创建配置 (ConfigMap) 的方式来代替该环境变量。创建的配置将在创建 Wordpress 的容器组设置时作为环境变量写入。
 
-1.1. 在当前项目下左侧菜单栏的 **配置中心** 选择 **配置**，点击 **创建配置**。
+1.1. 以项目普通用户 `project-regular` 登录 KubeSphere，在当前项目下左侧菜单栏的 **配置中心** 选择 **配置**，点击 **创建配置**。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428141721.png)
 

@@ -13,8 +13,8 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 ## 前提条件
 
-- 已创建了企业空间和项目，并且项目已开启了外网访问，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
-- 以上一篇文档创建的项目普通用户 `project-regular` 登录 KubeSphere，进入已创建的企业空间下的项目。
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，并开启了外网访问，请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 
 ## 预估时间

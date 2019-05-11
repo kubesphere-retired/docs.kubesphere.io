@@ -12,7 +12,8 @@ Job 负责批处理任务，即仅执行一次的任务。任务具有并发的�
 
 ## 前提条件
 
-已创建了企业空间和项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 ## 预估时间
 
@@ -28,7 +29,7 @@ Job 负责批处理任务，即仅执行一次的任务。任务具有并发的�
 
 ### 创建任务
 
-以 `project-regular` 登录 KubeSphere 控制台，在所属项目的左侧菜单栏，选择 **工作负载 → 任务**，进入任务列表页面。
+以项目普通用户 `project-regular` 登录 KubeSphere 控制台，在所属项目的左侧菜单栏，选择 **工作负载 → 任务**，进入任务列表页面。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428160535.png)
 
