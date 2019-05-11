@@ -6,7 +6,7 @@ title: "Bookinfo 微服务的灰度发布示例"
 
 ## 目的
 
-本示例在 KubeSphere 中使用 Istio 官方提供的 Bookinfo 示例，创建一个微服务应用并对其中的服务组件进行灰度发布，演示 KubeSphere 服务治理的能力。
+本示例在 KubeSphere 中使用 Istio 官方提供的 [Bookinfo](https://istio.io/docs/examples/bookinfo/) 示例，创建一个微服务应用并对其中的服务组件进行灰度发布，演示 KubeSphere 服务治理的能力。
 
 ## Bookinfo 微服务应用架构
 
@@ -37,7 +37,7 @@ reviews 微服务有 3 个版本：
 <!-- - 使用 `project-regular` 账号登录 KubeSphere，进入已创建的企业空间下的项目 `demo-namespace`，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 请确保当前项目已在外网访问中开启了应用治理，若还未开启请参考 [设置外网访问](../admin-quick-start/#%E8%AE%BE%E7%BD%AE%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE)； -->
 
-- 已创建了企业空间、项目和普通用户 `project-regular` 账号，并且项目已开启了外网访问 (访问方式为 NodePort)，请参考 [多租户管理快速入门](../admin-quick-start)；
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，并且项目已开启了外网访问 (访问方式为 `NodePort`)，请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 
