@@ -12,6 +12,8 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 - 本示例以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
 - 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 project-regular 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
+
 
 ## 预估时间
 
@@ -23,7 +25,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 下面的流程图简单说明了整个 pipeline 的工作过程：
 
-![scicd-pipeline-01](https://kubesphere-docs.pek3b.qingstor.com/png/cicd-pipeline-01.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190511194807.png)
 
 > 流程说明：
 >
@@ -95,11 +97,11 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 1、使用项目管理员 `project-admin` 账号登录 KubeSphere，在之前创建的企业空间 (demo-workspace) 下，点击 **项目 → 创建**，创建一个 **资源型项目**，作为本示例的开发环境，填写该项目的基本信息，完成后点击 **下一步**。
 
+
 - 名称：固定为 `kubesphere-sample-dev`，若需要修改项目名称则需在 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>) 中修改 namespace
 - 别名：可自定义，比如 **开发环境**
 - 描述信息：可简单介绍该项目，方便用户进一步了解
 
-![dev](https://kubesphere-docs.pek3b.qingstor.com/png/dev.png)
 
 2、本示例暂无资源请求和限制，因此高级设置中无需修改默认值，点击 **创建**，项目可创建成功。
 

@@ -2,7 +2,7 @@
 title: "CI/CD 流水线示例 (离线版)" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目进行管理，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可。KubeSphere 的安装文档请参考 [安装说明](../../installation/intro)。Harbor 的具体安装请参考 [安装内置 Harbor](../../installation/harbor-installation/)，GitLab 的具体安装请参考 [安装内置 GitLab](../../installation/gitlab-installation/)。
+KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像和代码进行管理，本文档适用于离线环境的流水线构建。
 
 ## 目的
 
@@ -10,14 +10,14 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 ## 前提条件
 
-- 本示例以 GitLab 和 Harbor 为例，参考前请确保正确安装了 [内置 Harbor](../../installation/harbor-installation/) 和 [内置 GitLab](../../installation/gitlab-installation/)。
-- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
-- 熟悉 Git 分支管理和版本控制相关的基础知识，详见 [Git 官方文档](https://git-scm.com/book/zh/v2)。
-- 已准备 Kubesphere 安装包，以及相关基础镜像。
+- 本示例以 GitLab 和 Harbor 为例，请确保已安装 [内置 Harbor](../../installation/harbor-installation/) 和 [内置 GitLab](../../installation/gitlab-installation/)，已准备了基础镜像 `java:openjdk-8-jre-alpine`；
+- 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
+
 
 ## 预估时间
 
-60-90 分钟
+30-50 分钟
 
 ## 操作示例
 
@@ -25,7 +25,7 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 下面的流程图简单说明了整个 pipeline 的工作过程：
 
-![cicd-pipeline-01](https://kubesphere-docs.pek3b.qingstor.com/png/cicd-pipeline-01.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190511194807.png)
 
 > 流程说明：
 >
@@ -54,7 +54,7 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 ## 创建凭证
 
-在 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 DevOps 工程，开始创建凭证。
+使用项目普通用户 `project-regular` 登录 KubeSphere，进入已创建的 DevOps 工程，开始创建凭证。
 
 1、本示例代码仓库中的 Jenkinsfile 需要用到 Harbor、GitLab 和 Kubernetes (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，参考 [创建凭证](../../devops/credential) 依次创建这三个凭证。
 

@@ -11,7 +11,8 @@ title: "Jenkinsfile out of SCM - 图形化流水线"
 ## 前提条件
 
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号；
-- 已创建了企业空间和 DevOps 工程，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
+- 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
 
 ## 预估时间
 
