@@ -23,9 +23,9 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 
 ### 流水线概览
 
-下面的流程图简单说明了整个 pipeline 的工作过程：
+下面的流程图简单说明了整个流水线的工作过程：
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190511194807.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190511231412.png)
 
 > 流程说明：
 >
