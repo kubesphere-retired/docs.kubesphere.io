@@ -185,19 +185,19 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ### 访问应用路由
 
-至此，即可通过外网分别访问 “咖啡点餐系统” 和 “茶水点餐系统”，即访问应用路由下不同的服务。
+在云平台将外网访问的 https 端口 (比如本示例中是 `31198`) 进行 **端口转发**，并添加 **防火墙的下行规则**，确保该外网流量可以通过该端口，然后通过 curl 命令进行访问测试。例如在 QingCloud 平台配置端口转发和防火墙规则，则参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
-在云平台将外网访问的 https 端口 (比如本示例中是 31198) 进行 **端口转发**，并添加 **防火墙的下行规则**，确保该外网流量可以通过该端口，然后通过以下 curl 命令进行访问测试。
+至此，即可通过外网分别访问 “咖啡点餐系统” 和 “茶水点餐系统”，即访问应用路由下不同的服务。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507222447.png)
 
-例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 > 提示：如果在内网环境可登录集群中的任意节点或通过 web kubectl，通过以下 curl 命令进行访问测试，需要将公网 IP 替换为网关地址。
 
 比如，我们访问 `https://cafe.example.com:443/coffee` 时，应该是 coffee 的部署负责响应请求，访问这个 URL 得到的返回信息是：Server name: coffee-6cbd8b965c-9659v，即 coffee 这个 Deployment 的名字。
 
 ```bash
+# curl --resolve {$hostname}:{$NodePort}:{$IP} https://{$hostname}:{$NodePort}/{$path} --insecure
 $ curl --resolve cafe.example.com:31198:139.198.100.100 https://cafe.example.com:31198/coffee --insecure
 Server address: 10.233.122.100:80
 Server name: coffee-6cbd8b965c-9659v
@@ -209,6 +209,7 @@ Request ID: 1dcb8794548dd6013439b85bbaef0dd6
 而访问 `https://cafe.example.com:433/tea` 的时候，则应该是 tea 的部署负责响应我的请求（Server name: tea-588dbb89d5-bgxqn），说明应用路由已经成功将不同的请求转发给了对应的后端服务。
 
 ```bash
+# curl --resolve {$hostname}:{$NodePort}:{$IP} https://{$hostname}:{$NodePort}/{$path} --insecure
 curl --resolve cafe.example.com:31198:139.198.100.100 https://cafe.example.com:31198/tea --insecure
 Server address: 10.233.122.97:80
 Server name: tea-588dbb89d5-bgxqn

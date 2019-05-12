@@ -25,7 +25,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 下面的流程图简单说明了整个 pipeline 的工作过程：
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190511194807.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190511231412.png)
 
 > 流程说明：
 >
