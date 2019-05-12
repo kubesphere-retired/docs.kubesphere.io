@@ -2,7 +2,7 @@
 title: "应用路由与服务示例"
 ---
 
-KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，即应用路由 (Ingress)，为了代理不同后端服务 (Service) 而设置的负载均衡服务，用户访问 URL 时，应用路由可以把请求转发给不同的后端服务。因此，应用路由的功能其实可以理解为 Service 的 “Service”。
+KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，即应用路由控制器 (Ingress Controller)，为了代理不同后端服务 (Service) 而设置的负载均衡服务，用户访问 URL 时，应用路由控制器可以把请求转发给不同的后端服务。因此，应用路由的功能其实可以理解为 Service 的 “Service”。
 
 [Kubernetes Ingress](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) 官方提供了这样一个例子：对于 `https://cafe.example.com`，如果访问 `https://cafe.example.com/coffee` 则返回 “咖啡点餐系统”，如果访问 `https://cafe.example.com/tea`，则返回 “茶水点餐系统”。这两个系统分别由后端的 coffee 和 tea 这两个部署 (Deployment) 来提供服务。
 
@@ -27,7 +27,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 #### 创建 tea
 
-1. 进入 demo-namespace 项目后，选择 「工作负载」→「部署」，点击 「创建部署」。
+1. 以用户 project-regular 登录，进入 demo-namespace 项目后，选择 「工作负载」→「部署」，点击 「创建部署」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424094607.png)
 
