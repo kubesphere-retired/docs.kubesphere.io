@@ -113,15 +113,9 @@ NOTE：Please modify the default password after login.
 ```
 > 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat kubesphere/kubesphere_running` 命令查看。
 
-**(2)** 若需要在外网访问，则云平台将外网访问的 http 端口 (30880) 进行 **端口转发**，并添加 **防火墙的下行规则**，确保该外网流量可以通过该端口。
+**(2)** 若需要在外网访问，在云平台需要在端口转发规则中将**内网端口** 30880 转发到**源端口** 30880，然后在防火墙开放这个**源端口**，确保外网流量可以通过该端口。
 
-例如在 QingCloud 平台配置端口转发和防火墙规则：
-
-**端口转发**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424163527.png)
-
-**添加防火墙下行规则**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424163607.png)
+例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 **(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 

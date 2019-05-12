@@ -61,7 +61,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 - 镜像：nginxdemos/hello:plain-text ；
 - 容器名称：coffee
-- 服务设置：名称输入 port，协议默认 TCP，端口号输入 80 ；
+- 服务设置：名称输入 port，协议默认 TCP，端口号输入 80 (容器端口)；
 
 
 3. 完成后点击 「保存」，选择 「下一步」。无需设置存储卷，点击 「下一步」，然后点击 「创建」，即可看到 coffee 已创建成功，至此一共创建了如下两个部署。
@@ -81,7 +81,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 2. 选择第一项 `通过集群内 IP 来访问服务 Virtual IP`，参考如下提示填写服务设置：
 
 - 点击 「指定工作负载」，选择 tea，点击保存；
-- 端口：名称为 http，默认 TCP 协议，端口和目标端口都填写 80。
+- 端口：名称为 port，默认 TCP 协议，端口和目标端口都填写 80 (前者表示暴露在 Cluster IP 上的端口，仅提供给集群内部访问服务的入口，目标端口是当前的服务后端 Pod 上的端口)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507203902.png)
 
@@ -174,8 +174,8 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 - 协议：选择 https
 - 密钥：选择 cafe-secret
 - 路径：
-   - 输入 `/coffee`，服务选择 coffee-svc，选择 80 端口，点击 「添加 Path」
-   - 输入 `/tea`，服务选择 tea-svc，选择 80 端口
+   - 输入 `/coffee`，服务选择 coffee-svc，选择 80 端口作为服务端口，点击 「添加 Path」
+   - 输入 `/tea`，服务选择 tea-svc，选择 80 端口作为服务端口
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424153059.png)
 
@@ -185,7 +185,7 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ### 访问应用路由
 
-在云平台将外网访问的 https 端口 (比如本示例中是 `31198`) 进行 **端口转发**，并添加 **防火墙的下行规则**，确保该外网流量可以通过该端口，然后通过 curl 命令进行访问测试。例如在 QingCloud 平台配置端口转发和防火墙规则，则参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+在云平台需要把应用路由在外网访问的 **https** 端口 (比如本示例是 31198)，在端口转发规则中将**内网端口** 31198 转发到**源端口** 31198，然后在防火墙开放这个**源端口**，确保外网流量可以通过该端口，即可通过 curl 命令进行访问测试。例如在 QingCloud 平台配置端口转发和防火墙规则，可参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 至此，即可通过外网分别访问 “咖啡点餐系统” 和 “茶水点餐系统”，即访问应用路由下不同的服务。
 
@@ -194,10 +194,10 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 > 提示：如果在内网环境可登录集群中的任意节点或通过 web kubectl，通过以下 curl 命令进行访问测试，需要将公网 IP 替换为网关地址。
 
-比如，我们访问 `https://cafe.example.com:443/coffee` 时，应该是 coffee 的部署负责响应请求，访问这个 URL 得到的返回信息是：Server name: coffee-6cbd8b965c-9659v，即 coffee 这个 Deployment 的名字。
+比如，我们访问 `https://cafe.example.com:{$HTTPS_PORT}/coffee` 时，应该是 coffee 的部署负责响应请求，访问这个 URL 得到的返回信息是：Server name: coffee-6cbd8b965c-9659v，即 coffee 这个 Deployment 的名字。
 
 ```bash
-# curl --resolve {$hostname}:{$NodePort}:{$IP} https://{$hostname}:{$NodePort}/{$path} --insecure
+# curl --resolve {$HOSTNAME}:{$HTTPS_PORT}:{$IP} https://{$hostname}:{$HTTPS_PORT}/{$PATH} --insecure
 $ curl --resolve cafe.example.com:31198:139.198.100.100 https://cafe.example.com:31198/coffee --insecure
 Server address: 10.233.122.100:80
 Server name: coffee-6cbd8b965c-9659v
@@ -206,10 +206,10 @@ URI: /coffee
 Request ID: 1dcb8794548dd6013439b85bbaef0dd6
 ```
 
-而访问 `https://cafe.example.com:433/tea` 的时候，则应该是 tea 的部署负责响应我的请求（Server name: tea-588dbb89d5-bgxqn），说明应用路由已经成功将不同的请求转发给了对应的后端服务。
+而访问 `https://cafe.example.com:{$HTTPS_PORT}/tea` 的时候，则应该是 tea 的部署负责响应我的请求（Server name: tea-588dbb89d5-bgxqn），说明应用路由已经成功将不同的请求转发给了对应的后端服务。
 
 ```bash
-# curl --resolve {$hostname}:{$NodePort}:{$IP} https://{$hostname}:{$NodePort}/{$path} --insecure
+# curl --resolve {$HOSTNAME}:{$HTTPS_PORT}:{$IP} https://{$hostname}:{$HTTPS_PORT}/{$PATH} --insecure
 curl --resolve cafe.example.com:31198:139.198.100.100 https://cafe.example.com:31198/tea --insecure
 Server address: 10.233.122.97:80
 Server name: tea-588dbb89d5-bgxqn
