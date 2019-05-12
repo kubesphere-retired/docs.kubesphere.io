@@ -39,7 +39,7 @@ title: "多租户管理快速入门"
 |cluster-regular|集群中的普通用户，在被邀请加入企业空间之前没有任何资源操作权限。|
 
 
-本示例首先新建一个角色 (users-manager)，为该角色授予账号管理和角色管理的权限，然后新建一个账号并给这个账号授予 user-manager 角色。
+本示例首先新建一个角色 (users-manager)，为该角色授予账号管理和角色管理的权限，然后新建一个账号并给这个账号授予 users-manager 角色。
 
 |账号名|集群角色|职责|
 |---|---|---|
@@ -70,7 +70,7 @@ title: "多租户管理快速入门"
 
 ![账号管理](https://pek3b.qingstor.com/kubesphere-docs/png/20190426165010.png)
 
-1.6. 然后用 user-manager 来创建下表中的四个账号，workspace-manager 将用于创建一个企业空间，并指定其中一个用户名为 `ws-admin` 作为企业空间管理员。切换成上一步创建的 `user-manager` 账号登录 KubeSphere，在 **账号管理** 下，新建四个账号，创建步骤同上，参考如下信息创建。
+1.6. 然后用 user-manager 来创建下表中的四个账号，`ws-manager` 将用于创建一个企业空间，并指定其中一个用户名为 `ws-admin` 作为企业空间管理员。切换成上一步创建的 `user-manager` 账号登录 KubeSphere，在 **账号管理** 下，新建四个账号，创建步骤同上，参考如下信息创建。
 
 |账号名|集群角色|职责|
 |---|---|---|
@@ -113,7 +113,7 @@ title: "多租户管理快速入门"
 
 ![邀请成员](/workspace-member-list.png)
 
-2.4. 这一步需要邀请在 **步骤 1.6.** 创建的两个用户 `project-admin` 和 `project-regular` 进入企业空间，并且都授予 `workspace-regular` 的角色，此时该企业空间一共有如下三个用户：
+2.4. 这一步需要邀请在 **步骤 1.6.** 创建的两个用户 `project-admin` 和 `project-regular` 进入企业空间，且分别授予 `workspace-regular` 和 `workspace-viewer` 的角色，此时该企业空间一共有如下三个用户：
 
 |账号名|企业空间角色|职责|
 |---|---|---|
