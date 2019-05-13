@@ -33,7 +33,7 @@ Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库�
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428141721.png)
 
-1.2. 填写部署的基本信息，完成后点击 **下一步**。
+1.2. 填写配置的基本信息，完成后点击 **下一步**。
 
 - 名称：作为 Wordpress 容器中环境变量的名称，填写 `wordpress-configmap`
 - 别名：支持中文，帮助您更好的区分资源，比如 `连接 MySQL 密码`
