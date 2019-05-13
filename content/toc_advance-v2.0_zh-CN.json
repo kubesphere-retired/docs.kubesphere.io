@@ -304,6 +304,10 @@
             {
               "title": "自制应用",
               "entry": "./advanced-v2.0/zh-CN/application/composing-svc.md"
+            },
+            {
+              "title": "流量治理",
+              "entry": "./advanced-v2.0/zh-CN/application/traffic-gov.md"
             }
           ]
         },
@@ -371,10 +375,6 @@
             {
               "title": "灰度发布",
               "entry": "./advanced-v2.0/zh-CN/ingress-service/grayscale.md"
-            },
-            {
-              "title": "流量治理",
-              "entry": "./advanced-v2.0/zh-CN/ingress-service/traffic-gov.md"
             },
             {
               "title": "应用路由",

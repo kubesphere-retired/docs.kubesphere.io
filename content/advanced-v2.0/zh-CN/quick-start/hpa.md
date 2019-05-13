@@ -59,28 +59,27 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
 点击 **弹性伸缩**，填写信息如下：
 
 - 弹性伸缩 (HPA)
-   - 最小副本数：弹性伸缩的容器组数量下限，此处设置 `2`
-   - 最大副本数：弹性伸缩的容器组数量上限，此处设置 `8`
+   - 最小副本数：弹性伸缩的容器组数量下限，此处设置 `1`
+   - 最大副本数：弹性伸缩的容器组数量上限，此处设置 `10`
    - CPU Request Target(%) (CPU 目标值)：当 CPU 使用率超过或低于此目标值时，将相应地添加或删除副本，此处设置为 `50%`
    - Memory Request Target(Mi) (内存目标值)：当内存使用量超过或低于此目标值时，将添加或删除副本，本示例以增加 CPU 负载作为测试，内存暂不作限定
 
  > 注：容器组模板中可以设置 HPA 相关参数，以设置 CPU 目标值作为弹性伸缩的计算参考，实际上会为部署创建一个 `Horizontal Pod Autoscaler` 来调度其弹性伸缩。
 
-![设置详情](/hpa-info.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514011228.png)
 
 
 #### 第三步：添加容器
 
-1、点击 **添加容器**，填写容器的基本信息，容器名称可自定义，镜像填写 `nginx`，将默认拉取 **latest** 的镜像。CPU 和内存此处暂不作限定，将使用在创建项目时指定的默认请求值；
+1、点击 **添加容器**，填写容器的基本信息，容器名称可自定义，镜像填写 `mirrorgooglecontainers/hpa-example`，将默认拉取 **latest** 的镜像。CPU 和内存此处暂不作限定，将使用在创建项目时指定的默认请求值；
 
-![添加容器](https://pek3b.qingstor.com/kubesphere-docs/png/20190428194647.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514011315.png)
 
-2、点击 **保存**，然后点击 **下一步**；由于示例不会用到持久化存储，因此存储卷也不作设置，点击 **下一步**；
+2、下拉至**服务设置**，自定义端口名称，如 port，默认 TCP 协议，端口号为 `80`。
 
-3、标签设置保留默认的 `app : nginx-hpa`。节点选择器无需设置，点击 **创建**，即可查看 Nginx 的运行状态详情。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514011621.png)
 
-> 说明：标签是一个或多个关联到资源如容器组上的键值对，通过标签来识别、组织或查找资源对象；
-kube-scheduler 将根据各主机 (Node) 的负载状态，将 Pod 随机调度到各台主机上。
+3、点击 **保存**，然后点击 **下一步**；由于示例不会用到持久化存储，因此存储卷也不作设置，点击 **下一步**；标签和节点选择器无需设置，点击 **创建**，即可查看 HPA 示例的运行状态详情。
 
 ### 创建服务
 
@@ -105,13 +104,13 @@ kube-scheduler 将根据各主机 (Node) 的负载状态，将 Pod 随机调度�
 
 点击 **下一步**；
 
-![服务设置](/hpa-service-setting.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514012105.png)
 
 2、标签设置保留默认值 `app: hpa-example`，点击 **下一步**；
 
-3、外网访问方式选择 `None`，即仅在集群内部访问该服务，点击 **创建**。
+3、外网访问方式选择 `None`，即仅在集群内部访问该服务，点击 **创建** 即可创建成功。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428200817.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514012207.png)
 
 ### 创建 Load-generator
 
@@ -121,9 +120,11 @@ kube-scheduler 将根据各主机 (Node) 的负载状态，将 Pod 随机调度�
 
 在左侧菜单栏选择 **工作负载 → 部署**，点击创建部署，填写部署的基本信息，其它项保持默认：
 
+
 - 名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，如 `load-generator`
 - 别名：更好的区分资源，并支持中文名称，比如 `增加负载`
 - 描述信息：简单介绍该部署
+
 
 点击 **下一步**；
 
@@ -131,19 +132,14 @@ kube-scheduler 将根据各主机 (Node) 的负载状态，将 Pod 随机调度�
 
 #### 第二步：容器组模板  
 
-1、点击 **编辑模式**，将副本数的字段 `replicas` 改为 50，再次点击 **编辑模式** 切换回 UI；
+1、点击 **添加容器**，设置参数如下：
 
-![编辑副本数](/edit-load-generator.png)
-
-2、回到 **容器组模板** 页，点击 **添加容器**，设置参数如下：
-
-- 容器名称：必填，起一个简洁明了的名称，比如 busybox-container；
 - 镜像名称：填写 `busybox`；
 - CPU 和内存：此处暂不作限定，将使用在创建项目时指定的默认请求值。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428201127.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514012524.png)
 
-3、然后勾选 **启动命令**，在展开的运行命令和参数中填写用于对 nginx 服务增加 CPU 负载的命令和参数，其它设置暂无需配置。设置运行命令和参数如下：
+3、然后下滑至 **启动命令**，勾选 **启动命令**，在展开的运行命令和参数中填写用于对 hpa-example 服务增加 CPU 负载的命令和参数，其它设置暂无需配置。设置`运行命令`和`参数`如下：
 
 > 注意：参数中服务的 http 地址应替换为您实际的服务和项目名称。例如，我们在创建 HPA 的服务时，服务名称为 hpa-example，当前的项目名称为 demo-namespace，那么该服务在内部的 http 地址为 `http://hpa-example.demo-namespace.svc.cluster.local`。
 
@@ -156,19 +152,13 @@ sh
 while true; do wget -q -O- http://hpa-example.demo-namespace.svc.cluster.local; done
 ```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428202925.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514012832.png)
 
-4、完成填写后，点击 **保存**；点击 **下一步**；
-
-> 注：本步骤用于创建 `busybox` 容器，并设置多个副本数使容器启动后同时循环地向上一步创建的服务发送请求。为了快速地看到弹性伸缩的效果，副本数可设置为 `30 ~ 50` 个。
-
-#### 第三步：标签设置
-
-本示例暂未用到存储，点击 **下一步** 跳过存储卷设置；标签设置保留默认值 `app:load-generator`，点击 **创建**；
+4、完成填写后，点击 **保存**；点击 **下一步**；本示例暂未用到存储，点击 **下一步** 跳过存储卷设置；标签设置保留默认值即可，点击 **创建**；
 
 至此，以上一共创建了两个部署 (分别是 hpa-example 和 load-generator ) 和一个服务 (hpa-example)。
 
-![查看创建结果](/hpa-deployment-list.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514014625.png)
 
 
 ### 验证弹性伸缩
@@ -177,17 +167,19 @@ while true; do wget -q -O- http://hpa-example.demo-namespace.svc.cluster.local; 
 
 在部署列表中，点击之前创建的部署 `hpe-example`，进入资源详情页，请重点关注此时容器组的弹性伸缩状态和当前的 CPU 使用率以及它的监控情况。
 
-![负载工作前](/hpa-details-page.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514014254.png)
 
 #### 第二步：查看弹性伸缩情况
 
-待 `load-generator` 的所有副本的容器都创建成功并开始访问 `hpe-example` 服务时，如下图所示，刷新页面后可见 CPU 使用率明显升高，目前上升至 62 %，并且期望副本和实际运行副本数都变成了 4，这是由于我们之前设置的 Horizontal Pod Autoscaler 开始工作了，`load-generator` 循环地请求该 `hpa-example` 服务使得 CPU 使用率迅速升高，HPA 开始工作后使得该服务的后端 Pod 副本数增加共同处理大量的请求，`hpa-example` 的副本数会随 CPU 的使用率升高而继续增加，正好也证明了弹性伸缩的工作原理。
+待 `load-generator` 的所有副本的容器都创建成功并开始访问 `hpe-example` 服务时，如下图所示，刷新页面后可见 CPU 使用率明显升高，先快速上升至 5210 %，并且期望副本和实际运行副本数都变成了 4，这是由于我们之前设置的 Horizontal Pod Autoscaler 开始工作了，`load-generator` 循环地请求该 `hpa-example` 服务使得 CPU 使用率迅速升高，HPA 开始工作后使得该服务的后端 Pod 副本数迅速增加共同处理大量的请求，`hpa-example` 的副本数会随 CPU 的使用率升高而继续增加。
 
-![负载工作后](/hpa-working-result.png)
+一分钟左右 CPU 使用率降低至 629 %，副本数增加至所设置 HPA 的最大值 10，正好也证明了弹性伸缩的工作原理。
 
-理论上，从容器组的 CPU 监控曲线中可以看到最初创建的 2 个容器组的 CPU 使用量有一个明显的升高趋势，待 HPA 开始工作时可以发现 CPU 使用量有明显降低的趋势，最终趋于平稳，而此时新增的 Pod 上可以看到 CPU 使用量在增加。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514014919.png)
 
-![Pod 监控](/pod-hpa-monitoring.png)
+理论上，从容器组的 CPU 监控曲线中可以看到最初创建的 1 个容器组的 CPU 使用量有一个明显的升高趋势，待 HPA 开始工作时可以发现 CPU 使用量有明显降低的趋势，最终趋于平稳，而此时新增的 Pod 上可以看到 CPU 使用量在增加。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514015547.png)
 
 > 说明：HPA 工作后，Deployment 最终的副本数量可能需要几分钟才能稳定下来，删除负载后 Pod 数量回缩至正常状态也需要几分钟。 由于环境的差异，不同环境中最终的副本数量可能与本示例中的数量不同。
 
@@ -195,15 +187,15 @@ while true; do wget -q -O- http://hpa-example.demo-namespace.svc.cluster.local; 
 
 1、在左侧菜单栏选择 **工作负载 → 部署**，在部署列表中选择 `load-generator`，点击界面上方的 **删除** （或将之前设置的循环请求命令删除），停止负载；
 
-2、再次查看 `hpe-example` 的运行状况，可以发现几分钟后它的 CPU 利用率已缓慢降到 18 %，并且 HPA 将其副本数量最终减少至最小副本数 2，最终恢复了正常状态，从 CPU 使用量监控曲线反映的趋势也可以帮助我们进一步理解弹性伸缩的工作原理；
+2、再次查看 `hpe-example` 的运行状况，可以发现几分钟后它的 CPU 利用率已缓慢降到 10 %，并且 HPA 将其副本数量最终减少至最小副本数 1，最终恢复了正常状态，从 CPU 使用量监控曲线反映的趋势也可以帮助我们进一步理解弹性伸缩的工作原理；
 
 > 注意：在完成本示例后，请将工作负载 load-generator 删除，防止其一直访问该应用而造成 CPU 资源的不必要的消耗或集群因资源不足而出现问题。
 
-![停止负载](/hpa-remove-load.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514020958.png)
 
-3、在 Deployment 页面可以下钻到每个 Pod 的单个容器的监控详情，对比该容器的 CPU 使用量和网络流入、出速率监控曲线，与本示例的操作流程正好相符。
+3、在部署的详情页面，可以下钻到每个 Pod 的单个容器的监控详情，点击最初创建的容器组进入容器组详情页，选择 「监控」，查看该容器组的 CPU 使用量和网络流入、出速率监控曲线，与本示例的操作流程和 HPA 原理正好相符。
 
-![容器监控](/hpa-container-monitoring.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514020208.png)
 
 ### 修改弹性伸缩
 

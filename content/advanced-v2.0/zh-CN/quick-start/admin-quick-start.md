@@ -160,7 +160,7 @@ title: "多租户管理快速入门"
 
 3.4. 示例项目 demo-namespace 创建成功后，点击进入示例项目。在 **步骤 2.4.** 已邀请用户 `project-regular` 加入了当前企业空间 `demo-workspace`，下一步则需要邀请 project-regular 进入该企业空间下的项目 demo-namespace。点击项目列表中的 demo-namespace 进入该项目。
 
-![示例项目](https://pek3b.qingstor.com/kubesphere-docs/png/20190428113744.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190513095919.png)
 
 3.5. 在项目的左侧菜单栏选择 **项目设置 → 项目成员**，点击 **邀请成员**。
 

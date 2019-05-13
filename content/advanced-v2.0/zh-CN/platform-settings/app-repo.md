@@ -21,7 +21,7 @@ KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服�
 - 类型：支持 Helm Chart 类型的应用
 - URL：支持以下三种协议
    - S3：支持将仓库内的应用部署到运行环境。QingStor 的 Bucket URL 是 http 开头，但是可以兼容 S3 协议，URL 按照 S3 风格 `s3.<zone-id>.qingstor.com/<bucket-name>/` 就可以使用 S3 接口访问 QingStor 服务。
-   - HTTP：可读，不可写，仅支持获取该应用仓库 (对象存储) 中的应用，支持部署到运行环境，比如：[http://openpitrix.pek3a.qingstor.com/package/](http://openpitrix.pek3a.qingstor.com/package/)，该示例仓库包含三个应用，创建后将自动导入到平台中。
+   - HTTP：可读，不可写，仅支持获取该应用仓库 (对象存储) 中的应用，支持部署到运行环境，比如：`http://docs-repo.gd2.qingstor.com`，该示例包含一个 Nginx 示例应用，创建后将自动导入到平台中，可在应用模板中进行部署。
    - HTTPS：可读，不可写，仅支持获取该应用仓库 (对象存储) 中的应用，支持部署到运行环境。
 
 - 描述信息：简单介绍应用仓库的主要特性，让用户进一步了解该应用仓库；
