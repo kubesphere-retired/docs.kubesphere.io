@@ -8,7 +8,7 @@ title: "访问内置 SonarQube 和 Jenkins 服务端"
 
 ### 第一步：查看 SonarQube 服务端口
 
-执行如下命令，查看 SonarQube 服务端口，可以看到其端口为 31359。
+执行如下命令，查看 SonarQube 服务端口，可以看到其端口为 `31359`。
 
 ```bash
 $ kubectl get svc -n kubesphere-devops-system | grep ks-sonarqube-sonarqube
@@ -17,7 +17,7 @@ ks-sonarqube-sonarqube               NodePort    10.233.20.169   <none>        9
 
 ### 第二步：访问 SonarQube
 
-若 KubeSphere 部署在云平台，需要在外网访问 SonarQube，通常需要在云平台进行端口转发并添加防火墙规则，确保流量能够通过该端口，然后通过 `http://{$公网 I}:{$NodePort}` 进行访问。
+若 KubeSphere 部署在云平台，需要在外网访问 SonarQube，在端口转发规则中将**内网端口** 31359 转发到**源端口** 31359，然后在防火墙开放这个**源端口**，确保流量能够通过该端口，然后通过 `http://{$公网 I}:{$NodePort}` 进行访问。例如在 QingCloud 平台配置端口转发和防火墙规则，可参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 > 说明：若部署在私有环境，则可以在集群的任意节点通过 `http://{$节点 IP}:{$NodePort}` 进行访问。
 

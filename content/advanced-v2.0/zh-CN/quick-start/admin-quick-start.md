@@ -107,11 +107,13 @@ title: "多租户管理快速入门"
 
 > 说明：企业空间管理的详细说明请参考 [企业空间管理](../../platform-management/workspace-management)。
 
-2.3. 企业空间 `demo-workspace` 创建完成后，切换为 `ws-admin` 登录 KubeSphere，如果用户只有一个企业空间，登录进去后会直接进入该企业空间，可看到该企业空间下的项目和 DevOps 工程列表。
+2.3. 企业空间 `demo-workspace` 创建完成后，切换为 `ws-admin` 登录 KubeSphere，可看到该企业空间下的项目和 DevOps 工程列表，点击左侧「进入企业空间」进入企业空间详情页。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190512180433.png)
 
 `ws-admin` 可以从集群成员中邀请新成员加入当前企业空间，然后创建项目和 DevOps 工程。在左侧菜单栏选择 `企业空间管理` 进入企业空间概览页，然后选择 `企业空间管理` → `成员管理`，点击 `邀请成员`。 
 
-![邀请成员](/workspace-member-list.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190512180724.png)
 
 2.4. 这一步需要邀请在 **步骤 1.6.** 创建的两个用户 `project-admin` 和 `project-regular` 进入企业空间，且分别授予 `workspace-regular` 和 `workspace-viewer` 的角色，此时该企业空间一共有如下三个用户：
 
@@ -121,7 +123,7 @@ title: "多租户管理快速入门"
 |project-admin|workspace-regular|创建和管理项目、DevOps 工程，邀请新成员加入|
 |project-regular|workspace-viewer|将被 project-admin 邀请加入项目和 DevOps 工程，<br>用于创建工作负载、流水线等业务资源|
 
-![邀请成员](https://pek3b.qingstor.com/kubesphere-docs/png/20190428134020.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190512213703.png)
 
 ### 项目和 DevOps 工程管理员
 
@@ -166,13 +168,13 @@ title: "多租户管理快速入门"
 
 3.6. 在弹窗中的 `project-regular` 点击 `"+"`，在项目的内置角色中选择 `operator` 角色。因此，后续在项目中创建和管理资源，都可以由 `project-regular` 用户登录后进行操作。
 
-![邀请成员](https://pek3b.qingstor.com/kubesphere-docs/png/20190428131347.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190513095239.png)
 
 ##### 设置外网访问
 
 在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，负责接收项目外部进入的流量，并将请求转发到对应的后端服务。
 
-3.7. 设置外网访问仅项目管理员 `project-admin` 拥有开启权限，选择 「项目设置」 → 「外网访问」，点击 「设置网关」。
+3.7. 请使用项目管理员 `project-admin` 设置外网访问，选择 「项目设置」 → 「外网访问」，点击 「设置网关」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417080748.png)
 
