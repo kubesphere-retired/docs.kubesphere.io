@@ -89,9 +89,9 @@ reviews 微服务有 3 个版本：
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190414165824.png)
 
-2. 在跳转的灰度发布页面，选择 「金丝雀发布」 作为灰度策略，点击 「应用治理」。
+2. 在跳转的灰度发布页面，选择 「金丝雀发布」 作为灰度策略，点击 「发布任务」。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190414165936.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190512153647.png)
 
 3. 在弹窗中，填写发布任务名称为 `bookinfo-carary`，点击 「下一步」。
 
