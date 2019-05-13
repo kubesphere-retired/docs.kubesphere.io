@@ -8,7 +8,7 @@ KubeSphere 提供了非常灵活的日志收集的管理配置功能，用户可
 
 ## 添加日志收集者
 
-以 `cluster admin` 登录 KubeSphere，点击 **平台管理 → 平台设置**，选择 **日志收集**。
+以 `cluster-admin` 角色用户登录 KubeSphere，点击 **平台管理 → 平台设置**，选择 **日志收集**。
 
 ![平台设置](https://pek3b.qingstor.com/kubesphere-docs/png/20190410014618.png)
 
