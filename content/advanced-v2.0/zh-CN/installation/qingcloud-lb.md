@@ -39,18 +39,12 @@ qingcloud_connection_timeout: 30
 ```
 
 
-2. 设置 `qingcloud_lb_enable` 为 true，启用并安装 QingCloud 负载均衡器插件。其中 `qingcloud_vxnet_id` 和 `qingcloud_user_id` 为可配项：
-
-
-- qingcloud\_vxnet\_id：注意，此参数配置适用于私有云场景，若填写后将为集群的服务及应用路由生成内网 IP，服务仅支持集群内部访问，若需要配置则填写待安装机器所在的私有网络 ID。
-- qingcloud\_user\_id：推荐配置此参数，请填写待安装机器的用户 ID，配置后即可自动获取公网 IP 并且支持多个服务共享一个 公网IP (点击 QingCloud Console 右上角的「账户设置」查看用户 ID)。
-
+2. 设置 `qingcloud_lb_enable` 为 true，启用并安装 QingCloud 负载均衡器插件。其中 `qingcloud_vxnet_id` 为可配项，此参数配置适用于私有云场景，若填写后将为集群的服务及应用路由生成内网 IP，服务仅支持集群内部访问，若需要配置则填写待安装机器所在的私有网络 ID。
 
 ```bash
 ## QingCloud LoadBlancer Plugin
 qingcloud_lb_enable: true
 qingcloud_vxnet_id: SHOULD_BE_REPLACED
-qingcloud_user_id: SHOULD_BE_REPLACED
 ```
 
 完成以上步骤的配置后，可继续参考安装指南完成其他配置并执行安装。
