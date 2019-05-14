@@ -6,7 +6,7 @@ title: "密钥"
 
 登录 KubeSphere 控制台，在所属的企业空间中选择已有 **项目** 或新建项目，访问左侧菜单栏，点击 **配置中心 ➡ 密钥**，进入密钥列表页。
 
-![](/create-secret-demo.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514094405.png)
 
 ## 创建 Secret
 

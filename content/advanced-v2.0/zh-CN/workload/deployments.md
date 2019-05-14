@@ -12,7 +12,7 @@ title: "部署"
 
 左上角为当前所在项目，如果是管理员登录，可以看到集群所有项目的部署情况，如果是普通用户，则只能查看授权项目下的所有部署。列表顶部显示了当前项目的部署 Pod 配额和数量信息。
 
-![部署列表](/ae_deployment_list.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514083958.png)
 
 ### 第一步：填写基本信息
 
@@ -29,7 +29,7 @@ title: "部署"
 
 点击 **下一步**。
 
-![创建部署 - 基础信息](/ae_deployment_create_basic.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514084226.png)
 
 ### 第二步：配置容器组模板
 
@@ -37,11 +37,32 @@ title: "部署"
 
 ![创建部署-设置HPA](/ae_deployment_HPA_setting.png)
 
-点击 **添加容器**，然后根据需求添加容器镜像，容器中定义的镜像默认从 Docker Hub 中拉取。输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 wordpress:4.8-apache。
+点击 **添加容器**，然后根据需求添加容器镜像，目前支持以下两种方式：
 
-> 说明：若需要使用私有镜像仓库如 Harbor，参见 [镜像仓库 - 添加镜像仓库](../../platform-management/image-registry/#添加镜像仓库)。
+#### 通过代码构建新的容器镜像
 
-为了实现集群的资源被有效调度和分配同时提高资源的利用率， 平台采用了 request 和 limit 两种限制类型对资源进行分配。request 通常是容器使用的最小资源需求, 而 limit 通常是容器能使用资源的最大值，设置为 0 表示对使用的资源不做限制, 可无限的使用。request 能保证 pod 有足够的资源来运行, 而 limit 则是防止某个 Pod 无限制的使用资源, 导致其他 Pod 崩溃。
+从已有的代码仓库中获取代码，并通过Source to Image的方式构建镜像的方式来完成部署，每次构建镜像的过程将以任务 (S2i Job) 的方式去完成。
+
+
+- 代码地址：源代码仓库地址(目前支持 git)并且可以指定代码分支及在源代码终端的相对路径，如 `https://github.com/kubesphere/devops-java-sample.git`；
+- 密钥：如果是私有代码仓库，请选择代码仓库密钥，参考 [创建 GitHub 密钥](../../configuration/secrets/#创建-github-密钥)；
+- 映像模板：选择编译环境和对应的编译模板作为 Builder image；
+- 代码相对路径：可以指定代码编译的相对路径，默认为 /；
+- 映像名称：根据您的 Docker Hub 账号填写，例如 `<dockerhub_username>/<image_name>`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限；
+- tag：镜像标签；
+- 目标镜像仓库：选择已创建的镜像仓库，若还未创建请参考 [创建 DockerHub 密钥](../../configuration/secrets/#创建-dockerhub-密钥)。注意，基于代码地址中的源代码构建的镜像在部署和 S2i 任务创建完成后，该镜像直接 Push 至目标镜像仓库；
+- 环境变量参数 (可选)：键值对，应用程序开发人员可以使用环境变量来配置此镜像的运行时行为。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514090311.png)
+
+
+#### 选择已有镜像部署容器
+
+从公开或者私有镜像仓库中拉取镜像，若不填写镜像仓库地址则镜像默认从 Docker Hub 中拉取。输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 nginx:1.16。
+
+> 说明：若需要使用私有镜像仓库如 Harbor，参见 [镜像仓库 - 添加镜像仓库](../../installation/harbor-installation/#kubesphere-中使用-harbor)。
+
+为了实现集群的资源被有效调度和分配同时提高资源的利用率，平台采用了 request 和 limit 两种限制类型对资源进行分配。request 通常是容器使用的最小资源需求, 而 limit 通常是容器能使用资源的最大值，设置为 0 表示对使用的资源不做限制, 可无限的使用。request 能保证 pod 有足够的资源来运行, 而 limit 则是防止某个 Pod 无限制的使用资源, 导致其他 Pod 崩溃。
 
 **表1：CPU 配额说明**
 
@@ -58,23 +79,27 @@ title: "部署"
 |**最大使用 (limits)**|容器能使用的内存最大值，如果内存使用量超过这个限定值，容器可能会被 kill。|
 
 
-![创建部署 - 容器组设置](/ae_deployment_container_setting.png)  
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514084643.png)
 
-2.2. 如果用户有更进一步的需求，可以点击 **高级选项**。
+2.2. 如果用户有更进一步的需求，可下滑至服务设置和高级设置部分。
 
-- **就绪探针/存活探针**：在业务级的监控检查方面，Kubernetes 定义了两种类型的健康检查探针，详见 [设置健康检查器](../../workload/health-check)。
+
+- **服务设置**： 即设置容器的访问策略，指定容器需要暴露的端口并自定义端口名称，端口协议可以选择 TCP 和 UDP。
+- **健康检查**：在业务级的监控检查方面，Kubernetes 定义了两种类型的健康检查探针，详见 [设置健康检查器](../../workload/health-check)。
    - 存活探针： 监测到容器实例不健康时，重启应用。
    - 就绪探针：监测到容器实例不健康时，将工作负载设置为未就绪状态，业务流量不会导入到该容器中。
-- **命令**： 可自定义容器的启动命令，Kubernetes 的容器启动命令可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell)。
-- **参数**： 可自定义容器的启动参数，Kubernetes 的容器启动的参数可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)。
-- **端口**： 即容器端口，用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP。
+- **启动命令**： 
+   - **运行命令**：可自定义容器的启动的运行命令，Kubernetes 的容器启动命令可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell)。
+   - **参数**： 可自定义容器的启动参数，Kubernetes 的容器启动的参数可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)。
 - **环境变量**： 环境变量是指容器运行环境中设定的一个变量，与 Dockerfile 中的 “ENV” 效果相同，为创建的工作负载提供极大的灵活性。
-- **引入配置中心**： 支持添加 Secret 和 ConfigMap 作为环境变量，用来保存键值对形式的配置数据，详见 [配置](../../configuration/configmaps) 和 [密钥](../../configuration/secrets)。 
-- **镜像拉取策略**：imagePullPolicy，默认的镜像拉取策略是 IfNotPresent，在镜像已经存在的情况下，kubelet 将不再去拉取镜像。如果需要频繁拉取镜像，则设置拉取策略为 Always。如果容器属性 imagePullPolicy 设置为 IfNotPresent 或者 Never， 则会优先使用本地镜像。
+   - **添加环境变量**： 以添加键值对的形式来设置环境变量。
+   - **引入配置中心**： 支持添加 Secret 和 ConfigMap 作为环境变量，用来保存键值对形式的配置数据，详见 [配置](../../configuration/configmaps) 和 [密钥](../../configuration/secrets)。 
+- **镜像拉取策略**：默认的镜像拉取策略是 IfNotPresent，在镜像已经在本地存在的情况下，kubelet 将不再去拉取镜像将使用本地已有的镜像。如果需要每次拉取仓库中的镜像，则设置拉取策略为 Always。如果设置为 IfNotPresent 或者 Never， 则会优先使用本地镜像。
+
 
 设置完成后点击 **保存**。
 
-![创建部署 - 容器组设置](/ae_deployment_container_setting-2.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514090510.png)
 
 **更新策略**
 
