@@ -295,6 +295,10 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514164245.png)
 
+4、由于我们在流水线最后一个阶段设置了邮件通知，因此可在邮箱中验证收到的构建通知邮件。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514200639.png)
+
 ### 访问示例服务
 
 若在内网环境访问部署的 HelloWorld 示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问：
