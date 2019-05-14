@@ -61,3 +61,31 @@ KubeSphere 拥有很多母语为中文的用户，但是 Jenkins 目前对中文
 
 5、镜像仓库替换需要修改 Jenkinsfile 的中 docker build、docker tag、docker push 命令的镜像名称，以及示例仓库中 `/deploy` 的 yaml 文件中的镜像地址，用户可以按照自己的情况进行镜像仓库地址的修改。
 
+
+## Jenkins 流水线质量门
+
+Jenkins 流水线质量门需要在流水线中先执行代码质量分析，在执行代码指令分析时应该使用加载 SonarQube 配置中执行质量分析。
+
+对应的 `Jenkinsfile` 为：
+```Groovy
+withSonarQubeEnv('sonar') {
+  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ks-devops -Dsonar.sources=.  -Dsonar.login=$SONAR_TOKEN"
+}
+```
+
+当执行完代码分析之后，用户就可以使用代码质量检查步骤来检查代码质量是否符合标准。对应的 `Jenkinsfile` 为：
+```Groovy
+waitForQualityGate abortPipeline: true
+```
+
+部分用户在使用 SonarQube 质量门时遇到下图所示问题：
+
+![no-previous-sonar-error](/no-previous-sonar.jpg)
+
+这是因为在 `Jenkinsfile` 当中`waitForQualityGate`的代码位置有误，`waitForQualityGate`应该在`withSonarQubeEnv`代码块之外，正确的`Jenkinsfile`为：
+```Groovy
+withSonarQubeEnv('sonar') {
+  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ks-devops -Dsonar.sources=.  -Dsonar.login=$SONAR_TOKEN"
+}
+waitForQualityGate abortPipeline: true
+```
