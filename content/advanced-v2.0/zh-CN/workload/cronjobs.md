@@ -8,11 +8,11 @@ title: "定时任务"
 
 登录 KubeSphere 控制台，在已创建的项目下，进入 **工作负载 → 定时任务**，进入定时任务列表页面，左上角为当前所在项目。如果是管理员登录，可以看到集群所有项目的定时任务情况，如果是普通用户，则只能查看授权项目下的定时任务。列表顶部显示了当前项目的定时任务 Pod 配额和数量信息。
 
-![创建定时任务](/ae-create-cronjob.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514093407.png)
 
 ### 第一步：填写基本信息
 
-1.1. 点击 **创建** 按钮，将弹出创建定时任务的详情页。创建定时任务支持三种方式，**页面创建**，**导入 yaml 文件**，**编辑模式** 。以下主要介绍页面创建的方式，若选择以编辑模式，可点击右上角编辑模式进入代码界面，支持 yaml 和 json 格式，且支持下载配置文件。其中导入 yaml 文件方式会自动将 yaml 文件内容填充到页面上，用户根据需要可以在页面上调整后再行创建。编辑模式可以方便习惯命令行操作的用户直接在页面上编辑 yaml 文件并创建任务。
+1.1. 点击 **创建定时任务**，将弹出创建定时任务的详情页。创建定时任务支持三种方式，**页面创建**，**导入 yaml 文件**，**编辑模式** 。以下主要介绍页面创建的方式，若选择以编辑模式，可点击右上角编辑模式进入代码界面，支持 yaml 和 json 格式，且支持下载配置文件。其中导入 yaml 文件方式会自动将 yaml 文件内容填充到页面上，用户根据需要可以在页面上调整后再行创建。编辑模式可以方便习惯命令行操作的用户直接在页面上编辑 yaml 文件并创建任务。
 
 ![创建任务 - 代码模式](/ae-cronjob-command.png)
 
@@ -55,9 +55,9 @@ title: "定时任务"
 - Never：任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失，返回的字段 “.status.failed” 加 1。
 - OnFailure：任务会在容器组出现故障时其内部重启容器，而不是创建新的容器组，返回的字段 “.status.failed” 不变。
 
-3.2. 点击 **添加容器**，然后根据需求添加容器镜像，容器中定义的镜像默认从 Docker Hub 中拉取。输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 perl:5.28.0。
+3.2. 点击 **添加容器**，然后根据需求添加容器镜像，容器中定义的镜像默认从 Docker Hub 中拉取。输入容器的名称和对应的镜像名，镜像名一般需要指定 tag，比如 perl:5.28。
 
-> 说明：若需要使用私有镜像仓库如 Harbor，参见 [镜像仓库 - 添加镜像仓库](../../platform-management/image-registry/#添加镜像仓库)。
+> 说明：若需要使用私有镜像仓库如 Harbor，参见 [镜像仓库 - 添加镜像仓库](../../installation/harbor-installation/#kubesphere-中使用-harbor)。
 
 为了实现集群的资源被有效调度和分配同时提高资源的利用率， 平台采用了 request 和 limit 两种限制类型对资源进行分配。request 通常是容器使用的最小资源需求, 而 limit 通常是容器能使用资源的最大值，设置为 0 表示对使用的资源不做限制, 可无限的使用。request 能保证 pod 有足够的资源来运行, 而 limit 则是防止某个 Pod 无限制的使用资源, 导致其他 Pod 崩溃。
 
@@ -75,16 +75,21 @@ title: "定时任务"
 |**最小使用 (requests)**|容器使用的最小内存需求，作为容器调度时资源分配的判断依赖。<br> 只有当节点上可分配内存总量 ≥ 容器内存申请数时，才允许将容器调度到该节点。|
 |**最大使用 (limits)**|容器能使用的内存最大值，如果内存使用量超过这个限定值，容器可能会被 kill。|
 
-![Job 容器组模板](/ae-cronjob-tmp.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514093547.png)
 
-3.3. 如果用户有更进一步的需求，可以点击 **高级选项**。
+3.3. 如果用户有更进一步的需求，可下滑至服务设置和高级设置部分。
 
-- **命令**： 可自定义容器的启动命令，Kubernetes 的容器启动命令可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell)。
-- **参数**： 可自定义容器的启动参数，Kubernetes 的容器启动的参数可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)。
-- **端口**： 即容器端口，用于指定容器需要暴露的端口，端口协议可以选择 TCP 和 UDP。
+
+- **服务设置**： 即设置容器的访问策略，指定容器需要暴露的端口并自定义端口名称，端口协议可以选择 TCP 和 UDP。
+- **启动命令**： 
+   - **运行命令**：可自定义容器的启动的运行命令，Kubernetes 的容器启动命令可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#run-a-command-in-a-shell)。
+   - **参数**： 可自定义容器的启动参数，Kubernetes 的容器启动的参数可参见 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/)。
 - **环境变量**： 环境变量是指容器运行环境中设定的一个变量，与 Dockerfile 中的 “ENV” 效果相同，为创建的工作负载提供极大的灵活性。
-- **引入配置中心**： 支持添加 Secret 和 ConfigMap 作为环境变量，用来保存键值对形式的配置数据，详见 [配置](../../configuration/configmaps) 和 [密钥](../../configuration/secrets)。 
-- **镜像拉取策略**：imagePullPolicy，默认的镜像拉取策略是 IfNotPresent，在镜像已经存在的情况下，kubelet 将不再去拉取镜像。如果需要频繁拉取镜像，则设置拉取策略为 Always。如果容器属性 imagePullPolicy 设置为 IfNotPresent 或者 Never， 则会优先使用本地镜像。
+   - **添加环境变量**： 以添加键值对的形式来设置环境变量。
+   - **引入配置中心**： 支持添加 Secret 和 ConfigMap 作为环境变量，用来保存键值对形式的配置数据，详见 [配置](../../configuration/configmaps) 和 [密钥](../../configuration/secrets)。 
+- **镜像拉取策略**：默认的镜像拉取策略是 IfNotPresent，在镜像已经在本地存在的情况下，kubelet 将不再去拉取镜像将使用本地已有的镜像。如果需要每次拉取仓库中的镜像，则设置拉取策略为 Always。如果设置为 IfNotPresent 或者 Never， 则会优先使用本地镜像。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514093746.png)
 
 上述配置信息填写完成以后，点击 **保存**，然后点击 **下一步**。
 
