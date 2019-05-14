@@ -150,12 +150,12 @@
           "entry": "./advanced-v2.0/zh-CN/quick-start/devops-online.md"
         },
         {
-          "title": "示例十一 - CI/CD 流水线(离线版)",
-          "entry": "./advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
+          "title": "示例十一 - Jenkinsfile-out-of-SCM",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
         },
         {
-          "title": "示例十二 - Jenkinsfile-out-of-SCM",
-          "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
+          "title": "示例十二 - CI/CD 流水线(离线版)",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
         }
       ]
     },
@@ -254,6 +254,10 @@
             {
               "title": "日志收集",
               "entry": "./advanced-v2.0/zh-CN/platform-settings/log-gathering.md"
+            },
+            {
+              "title": "添加 Fluentd 作为日志收集",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/output-fluentd.md"
             }
           ]
         },
