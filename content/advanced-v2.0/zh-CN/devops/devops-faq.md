@@ -64,7 +64,7 @@ KubeSphere 拥有很多母语为中文的用户，但是 Jenkins 目前对中文
 
 ## Jenkins 流水线质量门
 
-Jenkins 流水线质量门需要在流水线中先执行代码质量分析，在执行代码指令分析时应该使用加载 SonarQube 配置中执行质量分析。
+Jenkins 流水线质量门需要在流水线中先执行代码质量分析，在执行代码质量分析时应该使用加载 SonarQube 配置中执行质量分析。
 
 对应的 `Jenkinsfile` 为：
 ```Groovy
@@ -82,7 +82,7 @@ waitForQualityGate abortPipeline: true
 
 ![no-previous-sonar-error](/no-previous-sonar.jpg)
 
-这是因为在 `Jenkinsfile` 当中`waitForQualityGate`的代码位置有误，`waitForQualityGate`应该在`withSonarQubeEnv`代码块之外，正确的`Jenkinsfile`为：
+这是因为在 `Jenkinsfile` 当中 `waitForQualityGate` 的代码位置有误，`waitForQualityGate` 应该在 `withSonarQubeEnv` 代码块之外，正确的 `Jenkinsfile` 为：
 ```Groovy
 withSonarQubeEnv('sonar') {
   sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ks-devops -Dsonar.sources=.  -Dsonar.login=$SONAR_TOKEN"
