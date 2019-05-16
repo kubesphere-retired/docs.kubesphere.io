@@ -272,4 +272,4 @@ Hello,World!
 同上可访问 `http://192.168.0.20:30961/` (即 `http://IP:NodePort/`) 。
 
 
-至此，结合 GitLab 和 Harbor，在离线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../faq)。
+至此，结合 GitLab 和 Harbor，在离线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../devops/devops-faq)。
