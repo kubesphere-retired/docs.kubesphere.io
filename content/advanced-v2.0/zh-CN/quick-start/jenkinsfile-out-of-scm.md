@@ -30,7 +30,7 @@ title: "Jenkinsfile out of SCM - 图形化构建流水线"
 
 构建可视化流水线共包含以下 6 个阶段 (stage)，先通过一个流程图简单说明一下整个流水线的工作流：
 
-![流程图](/cicd-pipeline-02.svg)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190516091714.png)
 
 > 详细说明每个阶段所执行的任务：
 > - **阶段一. Checkout SCM**: 拉取 GitHub 仓库代码；
@@ -42,7 +42,7 @@ title: "Jenkinsfile out of SCM - 图形化构建流水线"
 
 ### 创建项目
 
-CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将该示例 Web 部署到开发环境 `kubesphere-sample-dev`，它对应的是 KubeSphere 中的一个项目，该项目需要预先创建，若还未创建请参考 [示例十 - 创建第一个项目](../jenkinsfile-in-scm/#创建项目) 使用 项目管理员 project-admin 账号创建 `kubesphere-sample-dev` 项目，并邀请项目普通用户 `project-regular` 进入该项目授予 `operator` 角色。
+CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev)，最终将该示例 Web 部署到开发环境 `kubesphere-sample-dev`，它对应的是 KubeSphere 中的一个项目，该项目需要预先创建，若还未创建请参考 [示例十 - 创建第一个项目](../devops-online/#创建项目) 使用 项目管理员 project-admin 账号创建 `kubesphere-sample-dev` 项目，并邀请项目普通用户 `project-regular` 进入该项目授予 `operator` 角色。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514112245.png)
 

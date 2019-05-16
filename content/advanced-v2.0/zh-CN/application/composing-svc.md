@@ -10,8 +10,8 @@ title: "自制应用"
 
 ### 前提条件
 
-- 已创建了企业空间、项目和普通用户 `project-regular` 账号，并且项目已开启了外网访问 (访问方式为 `NodePort`)，请参考 [多租户管理快速入门](../admin-quick-start)；
-- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)；
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，并且项目已开启了外网访问 (访问方式为 `NodePort`)，请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../../quick-start/admin-quick-start/#邀请成员)；
 - 已准备微服务的各个组件及镜像。
 
 ### 操作说明

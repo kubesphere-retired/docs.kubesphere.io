@@ -124,7 +124,7 @@ $ watch -n 0.5 "curl http://productpage.demo-namspace.139.198.111.111.nip.io:316
 
 从流量治理的链路图中，可以看到各个微服务之间的服务调用和依赖、健康状况、性能等情况。
 
-> 提示：点击其中一个应用组件，还可以为该服务组件设置流量治理策略，如连接池管理、熔断器等，详见 [流量治理](../../ingress-service/traffic-gov)。
+> 提示：点击其中一个应用组件，还可以为该服务组件设置流量治理策略，如连接池管理、熔断器等，详见 [流量治理](../../application/traffic-gov)。
 
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190415013123.png)

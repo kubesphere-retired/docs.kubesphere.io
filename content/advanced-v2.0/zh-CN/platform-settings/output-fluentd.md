@@ -6,7 +6,7 @@ KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 
 
 ## 前提条件
 
-已创建了企业空间、项目，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+已创建了企业空间、项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)；
 
 ## 第一步：创建配置 (ConfigMap)
 
