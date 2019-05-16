@@ -84,19 +84,13 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![next1](https://kubesphere-docs.pek3b.qingstor.com/png/next1.png)
 
-#### 第三步：存储卷设置
+#### 第三步：创建 s2i 部署
 
-默认即可，选择 `下一步`。
-
-#### 第四步：标签设置
-
-默认即可，选择 `创建`。
-
-以上部署创建完成。
+本示例无需配置存储卷，点击 「下一步」，标签保留默认值即可，选择 「创建」，s2i 示例部署创建完成。
 
 ### 构建完成
 
-出现如下图所依绿勾即表示镜像通过 s2i 构建成功。
+出现如下图绿勾即表示镜像通过 s2i 构建成功。
 
 ![succ](https://kubesphere-docs.pek3b.qingstor.com/png/succ.png)
 
@@ -122,9 +116,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 #### 第三步：服务设置
 
-1、选择服务类型为 `通过集群内部IP来访问服务 Virtual IP`，如下图。
-
-![type](https://kubesphere-docs.pek3b.qingstor.com/png/type.png)
+1、服务类型选择第一项 `通过集群内部IP来访问服务 Virtual IP`。
 
 2、然后点击 「指定工作负载」，选择刚刚创建的名称为 `s2i-test` 的部署，如下图。
 
@@ -133,35 +125,39 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 3、点击保存，参考如下提示配置端口信息。
 
 - 端口名称：s2i-port；
-- 协议默认 TCP，端口号：`30962`，目标端口为 `8080`；
+- 协议默认 TCP，端口号：`8080`，目标端口为 `8080`；
 - 设置完成后点击 「下一步」。
 
-![s2i-port](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-port.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190516112745.png)
 
 
 #### 第五步：标签设置
 
 默认即可，点击 「下一步」。
 
-#### 第六步：外网访问
+#### 第六步：配置外网访问
 
 选择访问方式为 `NodePort`。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190426113634.png)
 
-至此，查看服务创建完成。
+至此，查看服务创建完成，如下图所示，Virtual IP 为 10.233.40.25，服务端口设置的是 8080，节点端口 (NodePort) 为 30454。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-nodeport.png)
 
-可在内网通过 `http://{$nodeIP}:{$nodePort}` 进行访问。如上图所示，此示例中随机分配的 nodePort 为 30454，即可在内网通过 `http://{$nodeIP}:30454` 进行访问。
 
-#### 第七步：配置外网访问
 
-若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 `Hello World` 示例，以访问该项目管理下的服务的 `30454` 端口为例。
+#### 第七步：验证访问
 
-例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+若在内网环境访问部署的 HelloWorld 示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问：
 
-完成上述步骤后，即可访问`http://{$EIP}:30454/`，看到页面的 `Hello World!`。
+```shell
+# curl {$Virtual IP}:{$Port} 或者 curl {$内网 IP}:{$NodePort}
+curl 10.233.40.25:8080
+Hello,World!
+```
+
+> 提示：若需要在外网访问该服务，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将**内网端口** 30454 转发到**源端口** 30454，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 ### 查看推送的镜像
 
