@@ -260,8 +260,8 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
-| Dev        | 公网 IP : 30861 (`${EIP}:${NODEPORT}`) | kubesphere-sample-dev       | ks-sample-dev     | ks-sample-dev  |
-| Production | 公网 IP : 30961 (`${EIP}:${NODEPORT}`) | kubesphere-sample-prod      | ks-sample         | ks-sample      |
+| Dev        | `http://{$Virtual IP}:{$8080}` <br> 或者 `http://{$内网/公网 IP}:{$30861}` | kubesphere-sample-dev       | ks-sample-dev     | ks-sample-dev  |
+| Production | `http://{$Virtual IP}:{$8080}` <br> 或者 `http://{$内网/公网 IP}:{$30961}`  | kubesphere-sample-prod      | ks-sample         | ks-sample      |
 
 3、可通过 KubeSphere 回到项目列表，依次查看之前创建的两个项目中的部署和服务的状态。例如，以下查看 `kubesphere-sample-prod`项目下的部署。
 
@@ -269,34 +269,42 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![sample](https://pek3b.qingstor.com/kubesphere-docs/png/20190426084733.png)
 
-4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30961`。
+4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务的 Virtual IP 为 `10.233.42.3`，对外暴露的节点端口 (NodePort) 是 `30961`。
 
 **查看服务** 
 
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
-5、查看推送到您个人的 DockerHub 中的镜像，可以看到 `devops-java-sample`就是 APP_NAME 的值，而 tag也是在 jenkinsfile-online 中定义的 tag。
+5、查看推送到您个人的 DockerHub 中的镜像，可以看到 `devops-java-sample`就是 APP_NAME 的值，而 tag 也是在 jenkinsfile-online 中定义的 tag。
 
 ![查看 DockerHub](https://kubesphere-docs.pek3b.qingstor.com/png/deveops-dockerhub.png)
 
-6、点击 `release`，查看 Fork 到您个人 GitHub repo 中的 `v0.0.1`tag 和 release，它是由 jenkinsfile 中的 `push with tag`stage 生成的
-
-7、若需要在外网访问，可能需要进行端口转发并开放防火墙，即可访问成功部署的 Hello World 示例的首页，以访问生产环境 ks-sample 服务的 `30961` 端口为例。
-
-例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+6、点击 `release`，查看 Fork 到您个人 GitHub repo 中的 `v0.0.1` tag 和 release，它是由 jenkinsfile 中的 `push with tag` 生成的。
 
 ## 访问示例服务
 
-在浏览器访问部署到 KubeSphere Dev 和 Production 环境的服务：
+若在内网环境访问部署的 HelloWorld 示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问，其中 Virtual IP 和节点端口 (NodePort) 可通过对应项目下的服务中查看：
 
-**Dev 环境**
+**验证 Dev 环境的示例服务**
 
-访问 `http://127.0.0.1:30861/`或者 `http://EIP:30861/`。
+```shell
+# curl {$Virtual IP}:{$Port} 或者 curl {$内网 IP}:{$NodePort}
+curl 10.233.40.5:8080
+Hello,World!
+```
 
-**Prodcution 环境**
+Virtual IP 在
 
-访问 `http://127.0.0.1:30961/`或者 `http://EIP:30961/`。
+**验证 Prodcution 环境的示例服务**
 
-页面会出现 `Hello,World!`。
+```shell
+# curl {$Virtual IP}:{$Port} 或者 curl {$内网 IP}:{$NodePort}
+curl 10.233.42.3:8080
+Hello,World!
+```
 
-至此，结合 GitHub 和 DockerHub，在线环境下创建一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../devops/devops-faq)。
+若两个服务都能访问成功，则说明流水线运行结果也是符合预期的。
+
+> 提示：若需要在外网访问该服务，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将**内网端口**比如 30861 转发到**源端口** 30861，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+
+至此，基于 GitHub 和 DockerHub 的一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../devops/devops-faq)。

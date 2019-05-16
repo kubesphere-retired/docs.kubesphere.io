@@ -55,11 +55,11 @@ Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持
 
 #### 安装内置 Harbor (可选)
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，详见 [安装内置 Harbor](../harbor-installation)。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，需 `安装前` 在配置文件 `conf/vars.yml` 中进行配置。用户可以根据团队项目的需求来配置安装，详见 [安装内置 Harbor](../harbor-installation)。
 
 #### 安装内置 GitLab (可选)
 
-​KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Gitlab (版本为 v11.3.4)作为可选安装项，用户可以根据团队项目的需求来配置安装，详见 [安装内置 GitLab](../gitlab-installation)。
+​KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Gitlab (版本为 v11.3.4) 作为可选安装项，需 `安装前` 在配置文件 `conf/vars.yml` 中进行配置。用户可以根据团队项目的需求来配置安装，详见 [安装内置 GitLab](../gitlab-installation)。
 
 #### Master 和 etcd 节点高可用配置
 

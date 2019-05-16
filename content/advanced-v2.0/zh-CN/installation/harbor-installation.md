@@ -2,12 +2,15 @@
 title: "安装内置 Harbor" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需`安装前`在配置文件 `conf/vars.yml` 中简单配置即可，参考以下步骤安装和访问 Harbor。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需 `安装前` 在配置文件 `conf/vars.yml` 中简单配置即可。参考以下步骤安装和访问 Harbor。
+
+> 注意，Harbor 安装需要额外挂载 `5` 块硬盘，若 KubeSphere 部署在云平台则需要考虑硬盘数量是否满足配额要求，若硬盘数量或容量配额不够则需要提工单申请提高配额。
 
 ## 修改安装配置文件
 
 1、安装 KubeSphere 前，在 Installer 中的 `conf/vars.yml` 文件中，参考如下配置修改。
-```
+
+```yaml
 # harbor deployment
 harbor_enable: true
 harbor_domain: harbor.devops.kubesphere.local
@@ -53,14 +56,13 @@ docker push harbor.devops.kubesphere.local:30280/library/nginx:1.14-alpine
 
 ### 浏览器访问 Harbor
 
-KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harbor 服务对外暴露的节点端口 (NodePort) 为 30280，内置的 Harbor 镜像仓库目前仅支持 http 协议，在浏览器中可以通过 `{$公网 IP}:{$NodePort}` 如 `http://139.198.16.160:30280` 访问 Harbor 登录页面。
+KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harbor 服务对外暴露的节点端口 (NodePort) 为 30280，内置的 Harbor 镜像仓库目前仅支持 http 协议，在浏览器中可以通过 `{$IP}:{$NodePort}` 如 `http://139.198.16.160:30280` 访问 Harbor 登录页面。
 
+> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发和防火墙规则，端口转发需要将**内网端口** 30454 转发到**源端口** 30454，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，然后才可以通过 `http://{$公网 IP}:{$NodePort}` 访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 > 提示：在浏览器中还可通过域名访问 Harbor，在本地 `/etc/hosts` 添加一行记录 `139.198.16.160 harbor.devops.kubesphere.local`，即可通过 `http://harbor.devops.kubesphere.local:30280` 访问。
 
 1、输入默认的管理员用户名和密码 `admin / Harbor12345` 登录 Harbor。
 
-> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 `30280`，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
->
 > 提示：其它用户登录的账号密码与 KubeSphere 的 LDAP 用户账户体系一致。
 
 ![Harbor 登录](/harbor-console.png)
