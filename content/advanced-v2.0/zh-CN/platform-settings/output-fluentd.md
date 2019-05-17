@@ -6,11 +6,11 @@ KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 
 
 ## 前提条件
 
-已创建了企业空间、项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)；
+已创建了企业空间、项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。这里我们为本演示创建创建项目 `test-fluentd`；
 
 ## 第一步：创建配置 (ConfigMap)
 
-1、使用集群管理员账号登录 KubeSphere，进入已创建企业空间下的项目中，选择 「配置中心」 → 「配置」，点击 「创建配置」。
+1、使用集群管理员账号登录 KubeSphere，进入企业空间下的项目 `test-fluentd` 中，选择 「配置中心」 → 「配置」，点击 「创建配置」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514231449.png)
 
@@ -40,9 +40,11 @@ fluent.conf
 ```
 
 > 参数释义
-> - source：让 Fluentd 在 24224 端口接受数据
-> - filter：因为我们要把 Fluentd 接受到的日志输出到 stdout，为了避免 Fluent Bit 与 FluentD 循环采集日志，这里过滤 Fluentd 所在项目 test-fluentd 下的日志 
-> - match：输出到容器的 stdout 标准输出
+> - source：Fluentd 在 24224 端口接受数据
+> - filter：因为我们要把 Fluentd 接受到的日志输出至 stdout，为避免 Fluent Bit 与 FluentD 循环采集日志，这里过滤 Fluentd 所在项目 `test-fluentd` 下的日志 
+> - match：输出到标准输出
+
+> 注意：本示例仅演示输出到标准输出。 Fluentd 支持多种第三方接收器转发，比如 S3, Mongodb, Cassandra, MySQL, syslog, Splunk 等。如需配置其他 Fluentd 支持的外部存储收集日志，请参考 [FLuentd 官方文档](https://docs.fluentd.org/v1.0/articles/output-plugin-overview)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514232334.png)
 
@@ -64,7 +66,7 @@ fluent.conf
 
 1、选择 「网络与服务」→「服务」，点击「创建」。在基本信息中名称可自定义，例如 `fluentd-svc`，点击「下一步」。
 
-2、选择第一项 `通过集群内部IP来访问服务 Virtual IP`，点击指定工作负载，选择部署 `fluentd-loggings`，端口名称 fluentd，默认 TCP 协议的端口和目标端口都设置为 `24224`，点击「下一步」然后点击「创建」。
+2、选择第一项 `通过集群内部IP来访问服务 Virtual IP`，点击指定工作负载，选择部署 `fluentd-logging`，端口名称 fluentd，默认 TCP 协议的端口和目标端口都设置为 `24224`，点击「下一步」然后点击「创建」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514234315.png)
 
@@ -87,6 +89,10 @@ fluent.conf
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514235411.png)
 
+> 说明：若需要对 Fluent Bit 转发 Fluentd 做个性化配置，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/forward) `forward` 插件支持的参数项。并在 「Fluentd」 → 「更多操作」→ 「编辑配置文件」 中修改 `parameters`。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190517090410.png)
+
 ## 第五步：验证日志输出
 
 1、回到项目下的 「工作负载」 → 「部署」，进入 fluentd-logging，然后展开容器组点击进入容器日志。
@@ -94,7 +100,5 @@ fluent.conf
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514235728.png)
 
 2、在容器日志中，可以看到日志信息的实时数据在动态的输出，即说明 Fluentd 日志收集添加成功。
-
-> 注意：Fluent Bit 把日志转发给 Fluentd 后，Fluentd 可以继续转发到第三方接受者，本示例为方便演示仅输出到了容器的 stdout 标准输出。Fluentd 能够通过众多的 Output 插件转发日志到非常多的地方，比如 S3, Mongodb, Cassandra, MySQL, syslog, Splunk 等，在真实环境中使用需要配置外部的存储收集日志，请参考 [FLuentd 官方文档](https://docs.fluentd.org/v1.0/articles/output-plugin-overview)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514235834.png)
