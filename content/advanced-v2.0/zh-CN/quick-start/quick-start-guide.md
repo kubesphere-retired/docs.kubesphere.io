@@ -12,17 +12,17 @@ KubeSphere Advanced 2.0.0 相比较 1.0.1 提供了更强大的功能，比如�
 
 ## 应用路由与服务示例
 
-KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，即应用路由 (Ingress)，为了代理不同后端服务 (Service) 而设置的负载均衡服务，用户访问 URL 时，应用路由可以把请求转发给不同的后端服务，[服务与应用路由示例](../ingress-demo) 在 KubeSphere 创建相关资源来说明这个应用路由的示例。
+KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，即应用路由控制器 (Ingress Controller)，为了代理不同后端服务 (Service) 而设置的负载均衡服务，用户访问 URL 时，应用路由可以把请求转发给不同的后端服务，[服务与应用路由示例](../ingress-demo) 在 KubeSphere 创建相关资源来说明这个应用路由的示例。
 
 ## 工作负载快速入门
 
 - [部署 MySQL](../mysql-deployment)
 
-本文以创建一个有状态副本集 (statefulset) 为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。示例二依赖于示例一，请按顺序完成这两个示例。
+本文以创建一个有状态副本集 (statefulset) 为例，使用 `mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端。示例二依赖于示例一，请按顺序完成这两个示例。
 
 - [部署 Wordpress](../wordpress-deployment)
 
-本文以创建一个部署 (deployment) 为例，使用 `Wordpress:4.6-apache` 镜像部署一个无状态的 Wordpress 应用，最终可通过公网访问的 [Wordpress](https://wordpress.org/) 网站，其后端为示例一所演示的 MySQL 应用。
+本文以创建一个部署 (deployment) 为例，使用 `wordpress:4.6-apache` 镜像部署一个无状态的 Wordpress 应用，最终可通过公网访问的 [Wordpress](https://wordpress.org/) 网站，其后端为示例一所演示的 MySQL 应用。
 
 - [创建简单任务](../job-quick-start)
 
