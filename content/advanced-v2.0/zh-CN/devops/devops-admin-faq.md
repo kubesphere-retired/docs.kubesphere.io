@@ -45,7 +45,7 @@ init.groovy.d					   plugins.txt
 
 ### 对 Jenkins 的内存进行扩容(需要重启 Jenkins 服务)
 
-当您确定 Jenkins 的内存已经不足时，可以通过调整 Jenkins 的 JVM 参数等配置进行扩容进行扩容。
+当您确定 Jenkins 的内存已经不足时，可以通过调整 Jenkins 的 JVM 参数等配置进行扩容。
 
 使用 `kubectl edit` 编辑 `Jenkins` 部署
 
