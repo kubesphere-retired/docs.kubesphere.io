@@ -51,7 +51,7 @@ gitlab_hosts_domain: devops.kubesphere.local
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/fork-repo.png))
 
 
-​2、使用 Kubesphere 默认的用户名和密码 `admin / passw0rd` 登陆 GitLab 后，选择 `Create a project`。
+​2、使用 Kubesphere 默认的用户名和密码 `admin / passw0rd ` 登陆 GitLab 后，选择 `Create a project`。
 
 ![create](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-create.png)
 
