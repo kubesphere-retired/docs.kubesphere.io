@@ -483,8 +483,24 @@
     {
       "title": "常见问题",
       "icon": "/problem.svg",
-      "desc": "总结实际应用场景中可能遇到的问题并给出通用解决方案。",
-      "entry": "./advanced-v2.0/zh-CN/faq.md"
+      "chapters": [
+        {
+          "title": "安装常见问题",
+          "entry": "./advanced-v2.0/zh-CN/faq/faq-install.md"
+        },
+        {
+          "title": "存储常见问题",
+          "entry": "./advanced-v2.0/zh-CN/faq/faq-storage.md"
+        },
+        {
+          "title": "控制台使用常见问题",
+          "entry": "./advanced-v2.0/zh-CN/faq/faq-console.md"
+        },
+        {
+          "title": "DevOps 常见问题",
+          "entry": "./advanced-v2.0/zh-CN/faq/faq-devops.md"
+        }
+      ]
     },
     {
       "title": "附录",

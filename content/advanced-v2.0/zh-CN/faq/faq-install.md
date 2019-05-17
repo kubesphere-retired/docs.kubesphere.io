@@ -1,12 +1,23 @@
 ---
-title: "常见问题" 
+title: "安装常见问题" 
 ---
 
-### 如何快速了解 KubeSphere
+### KubeSphere 安装支持的存储类型
 
-1、作为新手，如何快速了解 KubeSphere 的使用？
+1、KubeSphere 安装支持的存储类型有哪些？如何配置？
 
-答：我们提供了多个快速入门的示例包括工作负载和 DevOps 工程，建议从 [快速入门](../../zh-CN/quick-start/quick-start-guide) 入手，参考 **快速入门** 并实践和操作每一个示例。
+答：目前，Installer 支持以下类型的存储作为存储服务端，为 KubeSphere 提供持久化存储 (更多的存储类型持续更新中)：
+
+- QingCloud 云平台块存储
+- QingStor NeonSAN (企业级分布式存储)
+- Ceph RBD
+- GlusterFS
+- NFS
+- Local Volume (仅限 all-in-one 部署测试使用)
+
+
+在安装前需要在 Installer 中配置已准备的存储服务端，配置方法详见 [存储安装配置说明](../../installation/storage-configuration)。
+
 
 ### Multi-Node 安装配置相关问题
 
@@ -111,54 +122,9 @@ $ yum-complete-transaction
 $ yum-complete-transaction --cleanup-only
 ```
 
-
-### 流水线运行报错相关问题
-
-5、创建 Jenkins 流水线后，运行时报错怎么处理？
-
-![流水线报错](/faq-pipeline-error.png)
-
-答：最快定位问题的方法即查看日志，点击 **查看日志**，具体查看出错的阶段 (stage) 输出的日志。比如，在 **push image** 这个阶段报错了，如下图中查看日志提示可能是 DockerHub 的用户名或密码错误。
-
-![查看日志](/faq-pipeline-log.png)
-
-6、运行流水线失败时，查看日志发现是 Docker 镜像 push 到 DockerHub 超时问题 (Timeout)，比如以下情况，要怎么处理？
-
-![docker超时问题](/pipeline-docker-timeout.png)
-
-答：可能由于网络问题造成，建议尝试再次运行该流水线。
-
-7、流水线运行时遇到如下报错应如何处理？
-
-```
-+ git push http://****:****@github.com/****/devops-java-sample.git --tags
-fatal: unable to access 'http://****:****@github.com/****/devops-java-sample.git/': Could not resolve host: yunify.com; Unknown error
-script returned exit code 128  
-```
-
-答：可能是 GitHub 账号或密码带有 "@" 这类特殊字符，需要用户在创建凭证时对密码进行 urlencode 编码，可通过一些第三方网站进行转换 (比如 `http://tool.chinaz.com/tools/urlencode.aspx`)，然后再将转换后的输出粘贴到对应的凭证信息中。
-
-### 如何查看 kubeconfig 文件
-
-8、如何查看当前集群的 Kubeconfig 文件？
-
-答：用户可以点击 “小锤子” 工具箱的图标，选择「kubeconfig」即可查看，仅管理员用户有权限查看。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190506151204.png)
-
-### CPU 用量异常问题
-
-9、为何安装后 CPU 用量数值异常大？
-
-![CPU 用量数值异常大](https://pek3b.qingstor.com/kubesphere-docs/png/20190425174519.png)
-
-答：Kubesphere 计算 CPU 用量的方法是求 user 、 nice 、 system 、 iowait 、 irq 、 softirq 以及 steal 七种 CPU 模式下的用量合，数据通过 node_exporter 采集。由于 Linux 内核 4.x 存在 steal 数值异常大的 bug，导致了如上图的异常值。建议尝试重启节点主机，或升级内核版本。
-
-更多信息请参考 [node_exporter issue #742](https://github.com/prometheus/node_exporter/issues/742)
-
 ### QingCloud 云平台快存储卷问题
 
-10、为何存储卷创建失败？
+5、为什么存储卷创建失败？
 
 答：用户可以查看存储卷的事件，查看 kube-system 项目的 csi-qingcloud-controller-0 容器组的 csi-qingcloud 容器日志，寻找错误关键字。详细问题原因列表：
 
@@ -169,7 +135,7 @@ script returned exit code 128
 |IO timeout|容器组与云平台 API Server 通信问题，通常私有云出现|使用 [QingCloud CLI](https://docs.qingcloud.com/product/cli/) 检查 config.yaml 配置文件正确性。可能是没有安装云平台 API Server或 Kubernetes 集群内部通信问题|
 |Cannot resolve host |私有云环境用户往往仅配置了 hosts 解析云平台 API Server 域名，在容器组内无此记录，造成无法通过 CSI 插件调用云平台 API Server。|需要用户配置 DNS 服务器。|
 
-11、为何存储卷挂载到容器组失败？
+6、为什么存储卷挂载到容器组失败？
 
 答：用户可以查看容器组事件，查看 kube-system 项目的 csi-qingcloud-controller-0 容器组的 csi-qingcloud 容器日志，寻找错误关键字。详细问题原因列表：
 
@@ -180,7 +146,3 @@ script returned exit code 128
 |PermissionDenied, ... volume can only be attached to ...|存储卷类型无法挂载至容器组调度的节点的类型|改变存储卷类型或设置容器组调度规则|
 |IO timeout|容器组与云平台 API Server 通信问题，通常私有云出现|使用 [QingCloud CLI](https://docs.qingcloud.com/product/cli/) 检查 config.yaml 配置文件正确性。可能是没有安装云平台 API Server 或 Kubernetes 集群内部通信问题|
 |Cannot resolve host |私有云环境用户往往仅配置了 hosts 解析云平台 API Server 域名，在容器组内无此记录，造成无法通过 CSI 插件调用云平台 API Server。|需要用户配置 DNS 服务器。|
-
-> 说明：
-> 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
- 
