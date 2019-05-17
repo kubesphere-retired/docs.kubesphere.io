@@ -6,11 +6,11 @@ KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 
 
 ## 前提条件
 
-已创建了企业空间、项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。这里我们为本演示创建创建项目 `test-fluentd`；
+已创建了企业空间、项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。这里我们为本演示创建项目 `test-fluentd`；
 
 ## 第一步：创建配置 (ConfigMap)
 
-1、使用集群管理员账号登录 KubeSphere，进入企业空间下的项目 `test-fluentd` 中，选择 「配置中心」 → 「配置」，点击 「创建配置」。
+1、使用集群管理员账号登录 KubeSphere，进入企业空间下的项目 `test-fluentd` 中，选择「配置中心」 → 「配置」，点击 「创建配置」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514231449.png)
 
@@ -89,9 +89,9 @@ fluent.conf
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514235411.png)
 
-> 说明：若需要对 Fluent Bit 转发 Fluentd 做个性化配置，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/forward) `forward` 插件支持的参数项。并在 「Fluentd」 → 「更多操作」→ 「编辑配置文件」 中修改 `parameters`。
+> 说明：若需要对 Fluent Bit 转发 Fluentd 做个性化配置，可在日志收集者页面下进入 「Fluentd」 → 「更多操作」，点击 「编辑配置文件」 然后修改 `parameters`，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/forward) `forward` 插件支持的参数项。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190517090410.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190517112230.png)
 
 ## 第五步：验证日志输出
 
