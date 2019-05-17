@@ -42,14 +42,31 @@ $ kubectl delete pod pod_name --grace-period=0 --force
 $ kubectl delete pod pod_name --grace-period=0 --force
 ```
 
-3、找到 Terminating Pod 挂载的 PVC，删除该 PVC 对应的 volumeattachment，可通过 -o yaml 命令重定向到文件，到文件里找到并将其删除。
+3、找到 Terminating 的 Pod 挂载的 PVC，假如我们发现 redis 的 Pod 状态为 Terminating，先找到该 PVC 的 VOLUME 名称 (以下返回的是 `pvc-1023666b779211e9`)：
 
 ```shell
-$ kubectl get volumeattachment -o yaml
+$ kubectl get pvc --all-namespaces | grep redis
+kubesphere-system  redis-pvc   Bound    pvc-1023666b779211e9   100Gi      RWO    csi-qingcloud   26h
 ```
+
+4、通过 VOLUME 名称找到对应的 volumeattachment，可通过 -o yaml 命令重定向到文件 (以下返回的是 `csi-90ef9b5f64f8156db2a2230f2c634e3afbd2abd5fd9c8238a0363a9b374e21d9`)：
 
 ```shell
-kubectl delete volumeattachment volumeattachment_name
+$ kubectl get volumeattachment -o yaml | grep pvc-1023666b779211e9 -B 14
+- apiVersion: storage.k8s.io/v1
+  kind: VolumeAttachment
+  ···
+    - external-attacher/csi-qingcloud
+    name: csi-90ef9b5f64f8156db2a2230f2c634e3afbd2abd5fd9c8238a0363a9b374e21d9
+    ···
+    source:
+      persistentVolumeName: pvc-1023666b779211e9
 ```
 
-4、等待一段时间，当旧 Pod 被删除后，NeonSAN PVC 将会自动挂载至 Kubernetes 新创建的 Pod 中，新创建的 Pod 也将会被自动调度到新节点上运行，此时可通过 kubectl get 或 describe 验证 Pod 的运行恢复和挂盘情况。
+5、删除对应的 volumeattachment：
+
+```shell
+$ kubectl delete volumeattachment csi-90ef9b5f64f8156db2a2230f2c634e3afbd2abd5fd9c8238a0363a9b374e21d9
+```
+
+6、等待一段时间，当旧 Pod 被删除后，NeonSAN PVC 将会自动挂载至 Kubernetes 新创建的 Pod 中，新创建的 Pod 也将会被自动调度到新节点上运行，此时可通过 kubectl get 或 describe 验证 Pod 的运行恢复和挂盘情况。
