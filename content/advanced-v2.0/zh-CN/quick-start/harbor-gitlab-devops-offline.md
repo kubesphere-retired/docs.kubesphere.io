@@ -154,25 +154,11 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件] (<https://github.com
 > - 保留分支的天数：如果分支达到一定的天数，则丢弃分支。
 > - 保留分支的个数：如果已经存在一定数量的分支，则丢弃最旧的分支。
 
-2、行为策略中，KubeSphere 默认添加了三种策略。由于本示例还未用到 **从 Fork 仓库中发现 PR和从原仓库中发现PR** 这两条策略，此处可以删除该策略，点击右侧删除按钮。
-
-![advance](https://kubesphere-docs.pek3b.qingstor.com/png/pipeline_advance.png)
-
-> 说明：
->
-> 支持添加三种类型的发现策略。需要说明的是，在 Jenkins 流水线被触发时，开发者提交的 PR (Pull Request) 也被视为一个单独的分支。
->
-> 发现分支：
->
-> - 排除也作为 PR 提交的分支：选择此项表示 CI 将不会扫描源分支 (比如 Origin 的 master branch)，也就是需要被 merge 的分支
-> - 只有被提交为 PR 的分支：仅扫描 PR 分支
-> - 所有分支：拉取的仓库 (origin) 中所有的分支
-
-3、默认的 **脚本路径** 为 Jenkinsfile，需要修改为 `Jenkinsfile-on-prem`。
+2、默认的 **脚本路径** 为 Jenkinsfile，需要修改为 `Jenkinsfile-on-prem`。
 
 > 注：路径是 Jenkinsfile 在代码仓库的路径，表示它在示例仓库的根目录，若文件位置变动则需修改其脚本路径。
 
-4、在 **扫描 Repo Trigger** 勾选 `如果没有扫描触发，则定期扫描`，扫描时间间隔可根据团队习惯设定，本示例设置为 `5 minutes`。
+3、在 **扫描 Repo Trigger** 勾选 `如果没有扫描触发，则定期扫描`，扫描时间间隔可根据团队习惯设定，本示例设置为 `5 minutes`。
 
 > 说明：定期扫描是设定一个周期让流水线周期性地扫描远程仓库，根据 **行为策略** 查看仓库有没有代码更新或新的 PR。
 >

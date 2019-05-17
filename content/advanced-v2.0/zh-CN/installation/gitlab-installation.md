@@ -39,7 +39,7 @@ gitlab_hosts_domain: devops.kubesphere.local
 >
 > 提示：若需要在外网使用 GitLab， HTTPS 端口 30443 和 SSH 端口 (输入 `kubectl get svc -n kubesphere-devops-system | grep 22:` 查看) 也需要保证外网流量可以通过这些端口。
 
-3、在浏览器中可以通过 `{$域名}:{$NodePort}` 即 `http://gitlab.devops.kubesphere.local:30080` 访问 GitLab 登录页面。默认的 GitLab 用户名和密码为 `admin / passw0rd `。
+3、在浏览器中可以通过 `{$域名}:{$NodePort}` 即 `http://gitlab.devops.kubesphere.local:30080` 访问 GitLab 登录页面。默认的 GitLab 用户名和密码为 `admin / P@88w0rd `。
 
 
 ![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-gitlab.png)
@@ -53,7 +53,7 @@ gitlab_hosts_domain: devops.kubesphere.local
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/fork-repo.png))
 
 
-​2、使用 Kubesphere 默认的用户名和密码 `admin / passw0rd` 登陆 GitLab 后，选择 `Create a project`。
+​2、使用 Kubesphere 默认的用户名和密码 `admin / P@88w0rd ` 登陆 GitLab 后，选择 `Create a project`。
 
 ![create](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-create.png)
 
