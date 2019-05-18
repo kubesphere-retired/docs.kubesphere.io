@@ -30,7 +30,7 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 登录 [QingCloud 云平台](https://console.qingcloud.com/login)，在 **网络与 CDN** 选择 **负载均衡器**，填写基本信息。如下示例在北京 3 区 - C 创建一个负载均衡器，部署方式选择 `单可用区`，网络选择了集群主机所在的 VPC 网络的私有网络 (例如本示例的六台主机都在 kubesphere 私有网络中)，其它设置保持默认即可。填写基本信息后，点击 **提交** 完成创建。
 
-![负载均衡器基本信息](/lb-info.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190518111133.png)
 
 #### 第二步：创建监听器
 

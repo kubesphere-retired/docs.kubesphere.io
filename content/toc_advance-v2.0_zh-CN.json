@@ -8,9 +8,13 @@
       "desc": "为您介绍 KubeSphere 已发布的版本功能与更新",
       "chapters": [
         {
-          "title": "Release Notes - 1.0.1",
-          "entry": "./advanced-v2.0/zh-CN/release/release-v101.md",
+          "title": "Release Notes - 2.0.0",
+          "entry": "./advanced-v2.0/zh-CN/release/release-v200.md",
           "tag": "最新"
+        },
+        {
+          "title": "Release Notes - 1.0.1",
+          "entry": "./advanced-v2.0/zh-CN/release/release-v101.md"
         },
         {
           "title": "Release Notes - 1.0.0",
@@ -85,6 +89,10 @@
         {
           "title": "安装内置 GitLab",
           "entry": "./advanced-v2.0/zh-CN/installation/gitlab-installation.md"
+        },
+        {
+          "title": "升级",
+          "entry": "./advanced-v2.0/zh-CN/installation/upgrade.md"
         },
         {
           "title": "访问 SonarQube 和 Jenkins 服务端",

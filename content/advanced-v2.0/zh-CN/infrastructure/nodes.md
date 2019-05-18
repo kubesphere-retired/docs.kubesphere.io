@@ -39,6 +39,27 @@ Kubernetes 集群中的计算能力由主机 (Node) 提供，Kubernetes 集群�
 
 ![主机 taint 管理](/ae-node_taints.png)
 
+### 如何将日志和监控的 Pod 调度到专用节点
+
+目前，在 KubeSphere 中已对日志和监控的 Pod 添加了如下的 toleration，若希望将监控和日志调度到专用节点可以给需要调度到的监控节点和日志节点分别打上与 tolerations 匹配的 taint。
+
+```yaml
+# 监控
+ tolerations:
+  - effect: NoSchedule
+    key: dedicated
+    operator: Equal
+    value: monitoring
+
+# 日志
+tolerations:
+  - key: CriticalAddonsOnly
+    operator: Exists
+  - effect: NoSchedule
+    key: dedicated
+    value: log
+```
+
 ## 查看主机详情  
 
 在主机列表页，点击某个主机节点打开其详情页，可以看到当前主机下所有资源的概况，包括主机的 CPU 、内存和容器组资源运行和使用状态，并且支持查看主机上所有容器组的资源使用情况和数量变化，以及注解 (Annotation) 和事件 (Events) 信息。

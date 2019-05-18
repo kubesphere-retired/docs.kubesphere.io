@@ -6,7 +6,7 @@ KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 
 
 ## 前提条件
 
-已创建了企业空间、项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。这里我们为本演示创建项目 `test-fluentd`；
+已创建了企业空间、项目，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。这里我们为本演示创建示例项目 `test-fluentd`；
 
 ## 第一步：创建配置 (ConfigMap)
 
@@ -44,7 +44,7 @@ fluent.conf
 > - filter：因为我们要把 Fluentd 接受到的日志输出至 stdout，为避免 Fluent Bit 与 FluentD 循环采集日志，这里过滤 Fluentd 所在项目 `test-fluentd` 下的日志 
 > - match：输出到标准输出
 
-> 注意：本示例仅演示输出到标准输出。 Fluentd 支持多种第三方接收器转发，比如 S3, Mongodb, Cassandra, MySQL, syslog, Splunk 等。如需配置其他 Fluentd 支持的外部存储收集日志，请参考 [FLuentd 官方文档](https://docs.fluentd.org/v1.0/articles/output-plugin-overview)。
+> 注意：本示例仅演示输出到标准输出。 Fluentd 支持多种第三方接收器转发，比如 S3, Mongodb, Cassandra, MySQL, syslog, Splunk 等。如需配置其他 Fluentd 支持的外部存储收集日志，请参考 [FLuentd 官方文档](https://docs.fluentd.org/output)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514232334.png)
 

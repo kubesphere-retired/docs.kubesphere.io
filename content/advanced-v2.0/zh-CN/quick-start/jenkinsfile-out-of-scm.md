@@ -170,13 +170,13 @@ mvn sonar:sonar -o -gs `pwd`/configuration/settings.xml -Dsonar.branch=$BRANCH_N
 
 2、点击 `添加步骤` 选择 `指定容器`，命名为 `maven`，完成后点击 `确定`。
 
-3、在右侧的 `SonarQube 配置` 中点击 `添加嵌套步骤`，右侧选择 `Shell`，在弹窗中如下输入以下命令：
+3、在右侧点击 `添加嵌套步骤`，右侧选择 `Shell`，在弹窗中如下输入以下命令：
 
 ```shell
 mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package
 ```
 
-4、点击 `添加嵌套步骤`，右侧选择 `Shell`，在弹窗中如下输入以下命令基于仓库中的 [Dockerfile](https://github.com/kubesphere/devops-java-sample/blob/master/Dockerfile-online) 构建 Docker 镜像，完成后点击确认保存：
+4、右侧继续点击 `添加嵌套步骤`，选择 `Shell`，在弹窗中如下输入以下命令基于仓库中的 [Dockerfile](https://github.com/kubesphere/devops-java-sample/blob/master/Dockerfile-online) 构建 Docker 镜像，完成后点击确认保存：
 
 ```shell
 docker build -f Dockerfile-online -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .

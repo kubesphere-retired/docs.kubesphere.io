@@ -2,7 +2,7 @@
 title: "安装内置 Harbor" 
 ---
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需 `安装前` 在配置文件 `conf/vars.yml` 中简单配置即可。参考以下步骤安装和访问 Harbor。
+KubeSphere Installer 集成了 Harbor 版本为 1.7.5，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需 `安装前` 在配置文件 `conf/vars.yml` 中简单配置即可。参考以下步骤安装和访问 Harbor。
 
 > 注意，Harbor 安装需要额外挂载 `5` 块硬盘，若 KubeSphere 部署在云平台则需要考虑硬盘数量是否满足配额要求，若硬盘数量或容量配额不够则需要提工单申请提高配额。
 

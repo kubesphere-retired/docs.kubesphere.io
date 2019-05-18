@@ -6,7 +6,7 @@ title: "控制台使用常见问题"
 
 1、作为新手，如何快速了解 KubeSphere 的使用？
 
-答：我们提供了多个快速入门的示例包括工作负载和 DevOps 工程，建议从 [快速入门](../../zh-CN/quick-start/quick-start-guide) 入手，参考 **快速入门** 并实践和操作每一个示例。
+答：我们提供了多个快速入门的示例包括工作负载和 DevOps 工程，建议从 [快速入门](../../quick-start/quick-start-guide) 入手，参考 **快速入门** 并实践和操作每一个示例。
 
 
 ### 如何查看 kubeconfig 文件

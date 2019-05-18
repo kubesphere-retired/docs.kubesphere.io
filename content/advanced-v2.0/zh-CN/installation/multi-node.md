@@ -4,6 +4,8 @@ title: "Multi-Node 模式"
 
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
+> 提示：若需要安装 Harbor 和 GitLab 请在**安装前**参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
+ 
 ## 前提条件
 
 <!-- - 下载最新的 [KubeSphere Advanced Edition 2.0.0 - dev](https://kubesphere.io/download/?type=advanced) 至待安装机器中。 -->
@@ -49,27 +51,27 @@ title: "Multi-Node 模式"
 
 ## 第二步: 准备安装配置文件
 
-**1.** 下载最新的 `KubeSphere Advanced v2.0.0 - dev` 安装包至任务执行机，并解压压缩包。
+**1.** 下载最新的 `KubeSphere Advanced v2.0.0` 安装包至任务执行机，并解压压缩包。
 
 ```bash
-$ curl -L https://kubesphere.io/download/nightly/latest -o installer.tgz
+$ curl -L https://kubesphere.io/download/stable/advanced-2.0.0 > advanced-2.0.0.tar.gz
 ```
 
 ```bash
-$ tar -zxf installer.tgz
+$ tar -zxf advanced-2.0.0.tar.gz
 ```
 
-**2.** 进入 “`kubesphere-all-advanced-2.0.0-dev-{$date}`” 目录。
+**2.** 进入 “`kubesphere-all-advanced-2.0.0`” 目录。
 
 ```bash
-$ cd kubesphere-all-advanced-2.0.0-dev-{$date}
+$ cd kubesphere-all-advanced-2.0.0
 ```
-
+ 
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
 
 > 说明：
 > - 若以非 root 用户 (如 ubuntu 用户) 进行安装，可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
-> - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [常见问题 - 问题 2](../../faq)。
+> - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [安装常见问题 - 问题 2](../../faq/faq-install/#multi-node-安装配置相关问题)。
 > - master, node1, node2 作为集群各个节点的主机名，若需要自定义主机名则所有主机名需要都使用小写形式。
 
 以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。
@@ -102,10 +104,12 @@ kube-master
 > - `[all]`： 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码：<br>主机名为 "master" 的节点作为已通过 SSH 连接的 Taskbox 所以无需填写密码。<br> Node 节点的参数比如 node1 和 node2 的 `ansible_host` 和 `ip` 都替换为当前 node1 和 node2 的内网 IP，将 `ansible_ssh_pass` 相应替换为 node1 和 node2 的 `root` 用户密码。
 >
 >   参数解释：<br>
->       - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接。
->       - `ansible_host`: 集群中将要连接的主机地址或域名。
->       - `ip`: 集群中将要连接的主机 IP。
->       - `ansible_ssh_pass`: 待连接主机 root 用户的密码。
+>       - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接
+>       - `ansible_host`: 集群中将要连接的主机地址或域名
+>       - `ip`: 集群中将要连接的主机 IP
+>       - `ansible_user`: 默认的 SSH 用户名 (非 root)，例如 ubuntu
+>       - `ansible_become_pass`: 默认的 SSH 用户登录密码
+>       - `ansible_ssh_pass`: 待连接主机 root 用户的密码
 > - `[kube-master]` 和 `[etcd]`：应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分，"master" 节点作为 taskbox，用来执行整个集群的安装任务，同时 "master" 节点在 KubeSphere 集群架构中也将作为 Master 节点管理集群和 etcd 节点负责保存集群的数据。
 > - `[kube-node]`：将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
 
@@ -117,8 +121,8 @@ kube-master
 - 其中值带有 * 号的值为必配项，参数释义详见 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)：
     - `qingcloud_access_key_id` 和 `qingcloud_secret_access_key`： 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥并下载获得 (填写时仅粘贴单引号内的值)；
     - `qingcloud_zone`：根据您的机器所在的 Zone 填写，例如：sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）；
-    - `qingcloud\_csi\_enabled`：是否使用 QingCloud-CSI 作为持久化存储，此处改为 true；
-    - `qingcloud\_csi\_is\_default\_class`：是否设定为默认的存储类型，此处改为 true；
+    - `qingcloud_csi_enabled`：是否使用 QingCloud-CSI 作为持久化存储，此处改为 true；
+    - `qingcloud_csi_is_default_class`：是否设定为默认的存储类型，此处改为 true；
 - 不带 * 号的最后六行为可配项所以在示例中无需修改，当前默认配置了容量型硬盘，type 为 2(可挂载至任意类型主机)。<br> <font color=red>注意，安装前需要确认您 QingCloud 账号在当前 Zone 的容量型硬盘的配额是否大于 14。</font> 若需要使用其他类型的硬盘，也需要满足最低配额，修改配置可参考 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)。
 
 
@@ -144,7 +148,7 @@ qingcloud_disk_replica: 2
 ```
 
 > 说明：
-> - 网络、存储、GitLab、Harbor、LB 插件等相关内容可在 `conf/vars.yml` 配置文件中修改或开启安装，其中网络的默认插件是 `Calico`。可按需修改相关配置项，未做修改将以默认参数执行；
+> - 网络、存储、GitLab、Harbor、负载均衡器插件等相关内容可在 `conf/vars.yml` 配置文件中修改或开启安装，其中网络的默认插件是 `Calico`。可按需修改相关配置项，未做修改将以默认参数执行；
 > - 支持存储类型：[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)；
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
@@ -180,13 +184,13 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-04-18
+https://kubesphere.io/               2018-05-18
 ################################################
 Please input an option: 2
 
 ```
 
-**4.** 测试 KubeSphere 集群部署是否成功：
+**4.** 验证 KubeSphere 集群部署是否成功：
 
 **(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。
 
@@ -213,3 +217,7 @@ NOTE：Please modify the default password after login.
 **(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 
 ![KubeSphere 控制台](/kubesphere-console.png)
+
+<font color=red>注意：登陆 Console 后请在 "集群状态" 查看服务组件的监控状态，待所有组件启动完成后即可开始使用，通常所有服务组件都将在 15 分钟内启动完成。</font>
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190519012928.png)
