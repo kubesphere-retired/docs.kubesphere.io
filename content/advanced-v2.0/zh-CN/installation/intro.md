@@ -47,7 +47,7 @@ Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持
 
 #### 集群组件配置释义
 
-如果需要查看或修改网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、邮件服务器等配置参数时，可参考以下说明进行修改，本文档对 installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义。
+如果需要查看或修改网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、SonarQube、邮件服务器等配置参数时，可参考以下说明进行修改，集群组件配置释义文档对 installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义，参考 [集群组件配置释义](../vars)。
 
 #### 安装 QingCloud 负载均衡器插件 (可选)
 
@@ -65,9 +65,9 @@ KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)�
 
 Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点，详见 [Master 和 etcd 节点高可用配置](../master-ha)。
 
-<!-- ## 升级
+## 升级
 
-若您的机器已安装的环境为 v1.0.1 版本，我们强烈建议您升级至最新的版本 v2.0.0，最新的 Installer 支持将 KubeSphere 从 v1.0.1 环境一键升级至目前最新的 v2.0.0，详见 [升级](../upgrade)。 -->
+若您的机器已安装的环境为高级版 1.0.1 (或 1.0.0) 版本，我们强烈建议您升级至最新的高级版 2.0.0，最新的 Installer 支持将 KubeSphere 从 1.0.1 (或 1.0.0) 环境一键升级至目前最新的 2.0.0，详见 [升级指南](../upgrade)。
 
 ## 集群节点扩容
 
@@ -104,9 +104,12 @@ KubeSphere Advanced 2.0.0 中的相关组件将默认安装以下版本：
 |---|---|
 |KubeSphere| Advanced Edition 2.0.0|
 |Kubernetes| v1.13.5|
+|Istio | 1.1.1 |
 |etcd|3.2.18|
 |OpenPitrix| v0.3.5|
 |Elasticsearch| v6.7.0 |
 |Prometheus| v2.3.1|
 |Jenkins| v2.138 |
 |SonarQube| v7.4 |
+|GitLab | 11.8.1 |
+|Harbor | 1.7.5 |

@@ -78,7 +78,7 @@ module.exports = {
     title: 'KubeSphere Documents',
     versions: [
       {
-        label: 'Advanced v2.0 - preview',
+        label: 'Advanced v2.0',
         value: 'advanced-v2.0',
       },
       {

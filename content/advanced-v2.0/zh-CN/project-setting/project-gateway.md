@@ -12,7 +12,7 @@ title: "外网访问"
 > - LoadBalancer: 此方式网关可以通过统一的一个外网 IP 来访问。
 > - 应用治理: 通过 Istio 提供完整的非入侵式的微服务治理解决方案，可以有效的解决云原生应用的网络治理问题，提供熔断、限流及灰度发布等功能。
 >
-> 注意：由于使用 Load Balancer 需要在安装前配置与安装与云服务商对接的 cloud-controller-manage 插件，参考 [安装负载均衡器插件](../../installation/qingcloud-lb)。
+> 注意：由于使用 Load Balancer 需要在安装前配置与安装与云服务商对接的 cloud-controller-manage 插件，参考 [安装负载均衡器插件](../../installation/qingcloud-lb) 来安装和使用负载均衡器插件。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514095052.png)
 
@@ -30,5 +30,5 @@ title: "外网访问"
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514095320.png)
 
-> 提示：若选择的是 LoadBalancer，负载均衡器插件将自动生成公网 EIP，提供内部服务和应用路由的访问。
+> 提示：若选择的是 LoadBalancer，负载均衡器插件将自动生成公网 EIP，提供内部服务和应用路由的访问，最终可通过公网 IP 或域名的方式访问应用路由和服务。
 

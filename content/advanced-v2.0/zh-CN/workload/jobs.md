@@ -80,9 +80,25 @@ title: "任务"
    - **引入配置中心**： 支持添加 Secret 和 ConfigMap 作为环境变量，用来保存键值对形式的配置数据，详见 [配置](../../configuration/configmaps) 和 [密钥](../../configuration/secrets)。 
 - **镜像拉取策略**：默认的镜像拉取策略是 IfNotPresent，在镜像已经在本地存在的情况下，kubelet 将不再去拉取镜像将使用本地已有的镜像。如果需要每次拉取仓库中的镜像，则设置拉取策略为 Always。如果设置为 IfNotPresent 或者 Never， 则会优先使用本地镜像。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514093314.png)
+
+<font color=red>注意，运行命令和参数部分需要参考如下规则进行使用：</font>
+
+如果在容器启动时执行一段 shell 命令，则需要在运行命令分别添加两行命令，然后在参数中填写需要执行的 shell 命令，如果是执行 bash 命令则需要把 sh 换成 bash。
+
+```shell
+# 运行命令
+sh  # 若执行 bash 命令这里需要替换为 bash
+-c
+# 参数 (填写需要执行的 shell 命令，如下给出一个示例)
+while true; do wget -q -O- http://php-apache.default.svc.cluster.local; done
+```
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190517171653.png)
 
 上述配置信息填写完成以后，点击 **保存**，然后点击 **下一步**。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514093314.png)
+
 
 ### 第四步：存储卷设置
 

@@ -51,7 +51,7 @@ kubesphere-system  redis-pvc   Bound    pvc-1023666b779211e9   100Gi      RWO   
 
 4、通过 VOLUME 名称找到对应的 volumeattachment，可通过 -o yaml 命令重定向到文件 (以下返回的是 `csi-90ef9b5f64f8156db2a2230f2c634e3afbd2abd5fd9c8238a0363a9b374e21d9`)：
 
-```shell
+```
 $ kubectl get volumeattachment -o yaml | grep pvc-1023666b779211e9 -B 14
 - apiVersion: storage.k8s.io/v1
   kind: VolumeAttachment
@@ -69,4 +69,4 @@ $ kubectl get volumeattachment -o yaml | grep pvc-1023666b779211e9 -B 14
 $ kubectl delete volumeattachment csi-90ef9b5f64f8156db2a2230f2c634e3afbd2abd5fd9c8238a0363a9b374e21d9
 ```
 
-6、等待一段时间，当旧 Pod 被删除后，NeonSAN PVC 将会自动挂载至 Kubernetes 新创建的 Pod 中，新创建的 Pod 也将会被自动调度到新节点上运行，此时可通过 kubectl get 或 describe 验证 Pod 的运行恢复和挂盘情况。
+6、等待一段时间，当旧 Pod 被删除后，NeonSAN 的 PVC 将会自动挂载至 Kubernetes 新创建的 Pod 中，新创建的 Pod 也将会被自动调度到新节点上运行，此时可通过 kubectl get 或 describe 验证 Pod 的运行恢复和挂盘情况。

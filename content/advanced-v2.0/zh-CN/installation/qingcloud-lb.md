@@ -6,7 +6,7 @@ title: "安装负载均衡器插件"
 
 ## 安装 QingCloud 云平台负载均衡器插件
 
-如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/vars.yml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)。
+如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/vars.yml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)。目前 QingCloud 负载均衡器插件只支持多节点集群的安装。
 
 ### 前提条件
 

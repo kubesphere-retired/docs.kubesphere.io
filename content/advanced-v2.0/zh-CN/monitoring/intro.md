@@ -26,26 +26,3 @@ KubeSphere 对资源的监控从两条线提供多维度的监控指标，即
 ![监控指标](/monitor-items.svg)
 
 从上图中不难发现，平台的监控指标和 IaaS 层相似，也就是我们常见的 CPU、内存、磁盘和网络等四个方面的使用量和使用率。另外我们也提供主机的 inode 监控，Kubernetes 对镜像和日志都有回收机制，但没有对 inode 的回收或清理机制，有可能发生 inode 已经用光，但是硬盘还未存满的情况，此时已无法在硬盘上创建新文件，可能会造成整个集群中某个节点无法创建工作负载。
-
-
-
-## 监控技术选型
-
-KubeSphere 监控模块的设计和架构主要是采用了开源的解决方案，经过长时间的技术选型，最后选择了 [Prometheus](https://prometheus.io/)，主要原因有：
-
-- Prometheus 和 Kubernetes 天然集成，为 CloudNative 而设计，多种工具和服务纷纷推出适配的 Exporter，供 Prometheus 抓取，Prometheus + Grafana 逐渐成为监控告警的首选；
-- 采用主动拉数据的 Pull 模式，相当于有了数据获取 Agent 的能力；
-- 2.0 之后重写了底层时序数据存储层，针对时序数据特点优化，能利用更少的资源存储和查询更多的数据；
-- 灵活好用的查询语言 PromQL，能把 PromQL 嵌入 http 请求的强大的 API；
-- OpenMetrics 项目推动 Prometheus exposure format 成为监控数据的标准格式； 
-- Prometheus Operator 打包了 Kubernetes 监控所需的所有必要组件，提供更丰富的监控数据；
-- 单节点处理海量数据的强大能力。
-
-KubeSphere 监控中心的所有组件都是容器化且可以部署在 Kubernetes 之上。下图是目前 KubeSphere 监控系统以及即将集成的告警模块的设计架构。
-
-![架构](/monitoring-design.png)
-
-
-## 展望未来
-
-目前 KubeSphere 监控中心已经具备了高可用和多维度的特性。在提供了监控之后，我们将在下一个版本支持创建告警、消息通知和日志收集等功能，支持根据给定阈值每隔一段时间发送告警，比如设置告警策略类型、告警规则和接收方式。
