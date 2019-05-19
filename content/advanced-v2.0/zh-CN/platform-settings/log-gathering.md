@@ -18,21 +18,15 @@ KubeSphere 提供了非常灵活的日志收集的管理配置功能，用户可
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190410012915.png)
 
-集群将内置的 Elasticsearch 作为默认的日志收集器，由于生产环境需要配置外部独立的 Elasticsearch 或者 Kafka 集群来存储日志数据，因此我们演示添加一个 Kafka 作为日志收集器，在弹窗中选择 Kafka，并填写 Kafka 集群的访问地址等相关信息。
+集群将内置的 Elasticsearch 作为默认的日志收集器。注意，生产环境需要配置外部独立的 Elasticsearch 或者 Kafka 集群来存储日志数据。以下分别演示添加 Fluentd 和 Kafka 作为日志收集器：
 
-![添加日志接收者](https://pek3b.qingstor.com/kubesphere-docs/png/20190410014858.png)
+### 添加 Fluentd 作为日志收集
 
-例如，在当前集群中已部署的 Kafka 集群访问地址如下，在弹窗中输入主题和访问地址和端口号：
+本文档演示如何在 KubeSphere 部署容器化的 Fluentd 并将其添加为日志收集者，展示 Fluentd 接收到日志数据后，输出到容器的 stdout 标准输出，参考 [添加 Fluentd 作为日志收集](../output-fluentd)。
 
-```bash
-192.168.0.5   9092
-192.168.0.15  9092
-192.168.0.9   9092
-```
+### 添加 Kafka 作为日志收集
 
-![添加 Kafka](https://pek3b.qingstor.com/kubesphere-docs/png/20190410014300.png)
-
-点击确认，即可看到 Kafka 已作为日志收集器同时为集群收集容器的标准输入输出日志。
+本文档演示如何添加 Kafka 为日志收集者，可以通过 Kafka Consumer 相关命令，验证添加日志收集者的流程是否成功，参考 [添加 Kafka 作为日志收集](../output-kafka)。
 
 ## 日志收集者设置
 

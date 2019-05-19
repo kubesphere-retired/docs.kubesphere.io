@@ -2,7 +2,7 @@ title: "添加 Kafka 作为日志收集"
 
 KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档演示如何添加 Kafka 为日志收集者。我们可以通过 Kafka Consumer 相关命令，验证添加日志收集者的流程是否成功。
 
-前提条件
+## 前提条件
 
 已创建的 Zookeeper + Kafka 集群。
 
@@ -35,7 +35,6 @@ KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 
 
 > 说明：若需要对 Fluent Bit 转发 Kafka 做个性化配置，可在日志收集者页面下进入 「Kafka」 → 「更多操作」，点击 「编辑配置文件」 然后修改 `parameters`，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/kafka) `kafka` 插件支持的参数项。
 
-![]()
 
 ## 第三步：验证日志输出
 
