@@ -1,4 +1,6 @@
+---
 title: "添加 Kafka 作为日志收集"
+---
 
 KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档演示如何添加 Kafka 为日志收集者。我们可以通过 Kafka Consumer 相关命令，验证添加日志收集者的流程是否成功。
 
@@ -40,6 +42,8 @@ KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 
 
 登录 Kafka 集群客户端节点（默认用户名 ubuntu，密码 kafka），输入以下消息消费命令观察日志输出：
 
-`kafka-console-consumer.sh --bootstrap-server 192.168.2.8:9092,192.168.2.9:9092,192.168.2.14:9092 --topic test`
+```shell
+kafka-console-consumer.sh --bootstrap-server 192.168.2.8:9092,192.168.2.9:9092,192.168.2.14:9092 --topic test
+```
 
 ![](https://kubesphere-docs.pek3b.qingstor.com/png/20190519101600.jpeg)
