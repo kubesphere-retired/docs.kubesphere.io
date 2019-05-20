@@ -18,7 +18,7 @@ title: "DevOps 运维常见问题"
 $ kubectl exec -n kubesphere-devops-system ks-jenkins-xxxxxx-xxxx -it bash
 ```
 
-属于下列命令进入`jenkins_home`目录您可以看到有 GC Log 相关文件：
+属于下列命令进入`jenkins_home`目录您可以看到有 GC Log 相关文件，在下面的文件中 `gc-2019-05-11_13-05-37.log.0.current` 为 当前的 GC LOG 文件：
 
 ```bash
 $ cd /var/jenkins_home
