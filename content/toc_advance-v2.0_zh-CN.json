@@ -302,6 +302,15 @@
               "entry": "./advanced-v2.0/zh-CN/devops/jenkins-setting.md"
             }
           ]
+        },
+        {
+          "title": "FAQ",
+          "entries": [
+            {
+              "title": "DevOps 运维FAQ",
+              "entry": "./advanced-v2.0/zh-CN/devops/devops-admin-faq.md"
+            }
+          ]
         }
       ]
     },
