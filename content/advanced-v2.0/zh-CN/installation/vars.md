@@ -66,13 +66,10 @@ Installer 默认使用 local 类型的存储方便 all-in-one 模式进行安装
 
 **GPU 节点配置示例**
 
-注意，在安装前可对 GPU 节点在 `vars.yml` 文件中进行设置，例如在 `hosts.ini` 文件配置的两台工作节点的主机名分别为 `node1, node2`，那么在 `vars.yml` 需要如下填写。
-
-> 提示：若节点是 CPU、GPU 混合部署的情况下，则仅需要在该处填写 GPU 节点的主机名，注意 "-" 前面需缩进两格。
+注意，在安装前可对 GPU 节点在 `vars.yml` 文件中进行设置，例如在 `hosts.ini` 文件配置的两台工作节点 `node1` 是 CPU 节点， `node2` 是 GPU 节点，那么在 `vars.yml` 仅需要在该处填写 node2，注意 "-" 前面需缩进两格。
 
 ```yaml
  nvidia_accelerator_enabled: true
  nvidia_gpu_nodes:
-   - node1
    - node2
 ```
