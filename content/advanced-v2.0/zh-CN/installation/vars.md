@@ -35,6 +35,7 @@ Installer 默认使用 local 类型的存储方便 all-in-one 模式进行安装
 | loadbalancer_apiserver.port | 外部负载均衡器端口 |
 | apiserver\_loadbalancer\_domain_name | 负载均衡器域名，默认 lb.kubesphere.local | 
 |periodic_cleaning_time| weekly，Docker 自动清理镜像的周期 |
+|docker_registry_mirrors| 默认 Docker 镜像仓库的 mirror 仓库，可以加快镜像下载 (国外地区下载可将此参数注释) |
 |etcd_backup_period | 默认备份的周期为 30 分钟|
 |keep_backup_number | 默认保留最近 5 次备份的数据 |
 |etcd_backup_dir | 默认备份的目录为 "/var/backups/kube_etcd" |
@@ -61,5 +62,15 @@ Installer 默认使用 local 类型的存储方便 all-in-one 模式进行安装
 | sonar\_server\_url | 对接已有的外部 SonarQube 地址（如需集成安装则取消注释） | 
 | sonar\_server\_token | 对接已有 SonarQube token（如需集成安装则取消注释） | 
 | nvidia\_accelerator\_enabled | 是否开启 Nvidia GPU 加速 | 
-| nvidia\_gpu\_nodes | hosts.ini 中要开启 GPU 加速的节点名称（列表） | 
+| nvidia\_gpu\_nodes | hosts.ini 中要开启 GPU 加速的节点名称（列表），参考以下配置示例 | 
 
+**GPU 节点配置示例**
+
+注意，在安装前可对 GPU 节点在 `vars.yml` 文件中进行设置，例如在 `hosts.ini` 文件配置的三台节点主机名分别为 `master, node1, node2`，那么在 `vars.yml` 需要如下填写。若主机是 CPU、GPU 混合的情况下，则仅需要在该处填写 GPU 节点的主机名。
+
+```yaml
+ nvidia_gpu_nodes:
+   - master
+   - node1
+   - node2
+```

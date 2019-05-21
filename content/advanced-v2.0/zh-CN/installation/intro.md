@@ -10,7 +10,15 @@ title: "安装说明"
 
 ## 安装 KubeSphere
 
+**安装模式**
+
 KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 两种模式，即支持单节点和多节点安装两种安装方式。
+
+**支持 GPU**
+
+KubeSphere 安装支持 GPU 节点，也支持 CPU 与 GPU 的混合部署模式，需在安装配置文件 `conf/vars.yml` 中进行设置，配置示例和说明参考 [集群组件配置释义](../vars)。
+
+**可选安装项**
 
 另外，KubeSphere Installer 集成了 **Harbor** 和 **GitLab**，但默认情况下不会安装 Harbor 和 GitLab，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
 
