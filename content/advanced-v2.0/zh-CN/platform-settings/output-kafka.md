@@ -37,6 +37,8 @@ KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 
 
 > 说明：若需要对 Fluent Bit 转发 Kafka 做个性化配置，可在日志收集者页面下进入 「Kafka」 → 「更多操作」，点击 「编辑配置文件」 然后修改 `parameters`，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/kafka) `kafka` 插件支持的参数项。
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190521100155.png)
+
 
 ## 第三步：验证日志输出
 
