@@ -14,11 +14,11 @@ KubeSphere 目前最新的版本 2.0.0 已发布，该版本相对于 1.0.1 提�
 **1.** 下载最新的 `KubeSphere Advanced v2.0.0` 安装包至任务执行机，并解压压缩包。
 
 ```bash
-$ curl -L https://kubesphere.io/download/nightly/latest -o installer.tgz
+$ curl -L https://kubesphere.io/download/stable/advanced-2.0.0 > advanced-2.0.0.tar.gz
 ```
 
 ```bash
-$ tar -zxf installer.tgz
+$ tar -zxf advanced-2.0.0.tar.gz
 ```
 
 **2.** 进入 “`kubesphere-all-advanced-2.0.0`” 目录。

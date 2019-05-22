@@ -2,11 +2,11 @@
 title: "Jenkinsfile out of SCM - 图形化构建流水线" 
 ---
 
-上一篇文档示例十是通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
+上一篇文档示例十是通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../devops-online)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
 
 ## 目的
 
-本示例演示基于 [示例十 - Jenkinsfile in SCM](../jenkinsfile-in-scm)，通过可视化构建流水线最终将一个 HelloWorld 示例服务部署到 KubeSphere 集群中的开发环境且能够允许用户访问，这里所谓的开发环境在底层的 Kubernetes 里是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例十的流程后，对于示例七的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 为例。
+本示例演示基于 [示例十 - Jenkinsfile in SCM](../devops-online)，通过可视化构建流水线最终将一个 HelloWorld 示例服务部署到 KubeSphere 集群中的开发环境且能够允许用户访问，这里所谓的开发环境在底层的 Kubernetes 里是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例十的流程后，对于示例七的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 为例。
 
 ## 前提条件
 

@@ -159,7 +159,7 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 -----END RSA PRIVATE KEY-----
 ```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424133358.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190522114545.png)
 
 ### 创建应用路由 cafe-ingress
 
