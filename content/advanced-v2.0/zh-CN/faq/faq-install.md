@@ -146,3 +146,12 @@ $ yum-complete-transaction --cleanup-only
 |PermissionDenied, ... volume can only be attached to ...|存储卷类型无法挂载至容器组调度的节点的类型|改变存储卷类型或设置容器组调度规则|
 |IO timeout|容器组与云平台 API Server 通信问题，通常私有云出现|使用 [QingCloud CLI](https://docs.qingcloud.com/product/cli/) 检查 config.yaml 配置文件正确性。可能是没有安装云平台 API Server 或 Kubernetes 集群内部通信问题|
 |Cannot resolve host |私有云环境用户往往仅配置了 hosts 解析云平台 API Server 域名，在容器组内无此记录，造成无法通过 CSI 插件调用云平台 API Server。|需要用户配置 DNS 服务器。|
+
+<!-- 7、如果想在安装前就将集群内置的 Elasticsearch 替换为外部 Elasticsearch，该如何配置？
+
+安装前需在 `conf/vars.yml` 中添加如下两行：
+
+```yaml
+external_es_url=SHOULD_BE_REPLACED
+external_es_port=SHOULD_BE_REPLACED
+``` -->
