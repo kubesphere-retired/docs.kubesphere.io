@@ -142,8 +142,9 @@ $ yum-complete-transaction --cleanup-only
 |问题字样|说明|解决办法|
 |----|-----|-----|
 |pki access frequency exceed permission denied|此问题通常由其他存储或者集群问题引起，需要继续检查集群状态，有无长时间正在删除的存储卷。|PKI 密钥访问次数过多，调大 PKI 密钥访问频率配额。|
-|cannot find device path |云平台挂盘没主机设备路径。可在 QingCloud Console 查看硬盘的确无设备路径|将存储卷挂载的容器组所属的 工作负载副本数设置为 0。容器组删除成功后，再将工作负载副本数设置为 1 即可|
+|cannot find device path |云平台挂盘没主机设备路径。可在 QingCloud Console 查看硬盘的确无设备路径|将存储卷挂载的容器组所属的工作负载副本数设置为 0。容器组删除成功后，再将工作负载副本数设置为 1 即可|
 |PermissionDenied, ... volume can only be attached to ...|存储卷类型无法挂载至容器组调度的节点的类型|改变存储卷类型或设置容器组调度规则|
+|PermissionDenied, you can only attach [10] volumes to one instance at most|云平台单个主机挂盘个数超过限制|尝试让容器组重新调度，如：将存储卷挂载的容器组所属的工作负载副本数设置为 0。容器组删除成功后，再将工作负载副本数设置为 1 |
 |IO timeout|容器组与云平台 API Server 通信问题，通常私有云出现|使用 [QingCloud CLI](https://docs.qingcloud.com/product/cli/) 检查 config.yaml 配置文件正确性。可能是没有安装云平台 API Server 或 Kubernetes 集群内部通信问题|
 |Cannot resolve host |私有云环境用户往往仅配置了 hosts 解析云平台 API Server 域名，在容器组内无此记录，造成无法通过 CSI 插件调用云平台 API Server。|需要用户配置 DNS 服务器。|
 
