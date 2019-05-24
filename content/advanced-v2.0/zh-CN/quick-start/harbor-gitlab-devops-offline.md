@@ -44,11 +44,7 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 
 通过 CoreDNS 的 hosts 插件配置 KubeSphere 集群的 DNS 服务，使集群内部可通过 hostname 域名访问外部服务，参考 [修改系统配置 - 如何修改 CoreDNS 配置](../../system-settings/edit-system-settings)。
 
-### 第二步：修改 Jenkins 初始化配置
-
-通过修改 Jenkins 初始化配置，使在执行构建任务的容器中配置 --insecure-registry，使 Harbor 能正常推送和拉取镜像，参考 [修改系统配置 - 如何修改 Jenkins 初始化配置](../../system-settings/edit-system-settings/#如何修改-jenkins-初始化配置)。
-
-### 第三步：上传基础镜像到 Harbor
+### 第二步：上传基础镜像到 Harbor
 
 参考 [如何上传基础镜像到 Harbor](../../system-settings/push-img-harbor) 导入预先准备好的基础镜像 `java:openjdk-8-jre-alpine`。
 
