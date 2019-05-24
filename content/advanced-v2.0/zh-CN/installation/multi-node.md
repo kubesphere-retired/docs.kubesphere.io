@@ -5,7 +5,7 @@ title: "Multi-Node 模式"
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
 > 提示：若需要安装 Harbor 和 GitLab 请在**安装前**参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
- 
+
 ## 前提条件
 
 <!-- - 下载最新的 [KubeSphere Advanced Edition 2.0.0 - dev](https://kubesphere.io/download/?type=advanced) 至待安装机器中。 -->
@@ -22,13 +22,14 @@ title: "Multi-Node 模式"
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
 > - 若使用 ubuntu 18.04，则需要使用 root 用户；
 > - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+> - 若需要选装 Harbor 和 GitLab，则所有主机的总内存需要 24 GiB 以上。
 
-| 操作系统 | 最小配置 (根据集群规模)| 
-| --- | --- | 
-| CentOS 7.5 (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G | 
-| Ubuntu 16.04/18.04 LTS (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G | 
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G | 
-|Debian Stretch 9.5 (64 bit)| 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G | 
+| 操作系统 | 最小配置 (根据集群规模)|
+| --- | --- |
+| CentOS 7.5 (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G |
+|Debian Stretch 9.5 (64 bit)| 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G |
 
 
 以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。
@@ -66,7 +67,7 @@ $ tar -zxf advanced-2.0.0.tar.gz
 ```bash
 $ cd kubesphere-all-advanced-2.0.0
 ```
- 
+
 **3.** 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
 
 > 说明：

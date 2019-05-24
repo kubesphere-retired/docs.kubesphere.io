@@ -4,7 +4,7 @@ title: "安装内置 GitLab"
 
 KubeSphere Installer 内置的 Gitlab (版本为 v11.8.1) 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对代码仓库的管理，仅需`安装前`在配置文件 `conf/vars.yml` 中简单配置即可。具体可参考以下步骤安装和访问 GitLab。
 
-> 注意，GitLab 安装需要额外挂载 `4` 块硬盘，若 KubeSphere 部署在云平台则需要考虑硬盘数量是否满足配额要求，若硬盘数量或容量配额不够则需要提工单申请提高配额。
+> 注意，目前 GitLab 安装暂不支持块存储，安装前需预先配置 NAS 作为存储后端，可参考 [QingCloud vNAS](../../faq/faq-install/#安装前如何配置-qingcloud-vnas)
 
 ## 第一步：修改配置文件
 
@@ -48,26 +48,26 @@ gitlab_hosts_domain: devops.kubesphere.local
 
 本示例以 `devops-java-sample` 为例展示如何从 GitHub 导入项目至 GitLab。
 
-​1、请先将 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub 仓库。
+1、请先将 GitHub 仓库 [devops-java-sample](<https://github.com/kubesphere/devops-java-sample>) Fork 至您个人的 GitHub 仓库。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/fork-repo.png))
 
 
-​2、使用 Kubesphere 默认的用户名和密码 `admin / P@88w0rd ` 登陆 GitLab 后，选择 `Create a project`。
+2、使用 Kubesphere 默认的用户名和密码 `admin / P@88w0rd ` 登陆 GitLab 后，选择 `Create a project`。
 
 ![create](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-create.png)
 
-​3、选择 「Import project from GitHub」。
+3、选择 「Import project from GitHub」。
 
 ![import](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-import.png)
 
-​4、按照提示加入个人 Token，Personal access token 可在 GitHub [Setting](<https://github.com/settings/tokens/new>) 页面生成。然后可选择 GitHub repositories。
+4、按照提示加入个人 Token，Personal access token 可在 GitHub [Setting](<https://github.com/settings/tokens/new>) 页面生成。然后可选择 GitHub repositories。
 
 ![token](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-token.png)
 
-​5、选择 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 项目 Import 至 GitLab。
+5、选择 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 项目 Import 至 GitLab。
 
-​6、等待 Status 显示为 Done，即导入成功。
+6、等待 Status 显示为 Done，即导入成功。
 
 ![done](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-done.png)
 
