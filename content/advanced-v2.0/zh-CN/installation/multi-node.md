@@ -22,6 +22,7 @@ title: "Multi-Node 模式"
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
 > - 若使用 ubuntu 18.04，则需要使用 root 用户；
 > - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+> - 若需要选装 Harbor 和 GitLab，则所有主机的总内存需要 24 GiB 以上。
 
 | 操作系统 | 最小配置 (根据集群规模)| 
 | --- | --- | 

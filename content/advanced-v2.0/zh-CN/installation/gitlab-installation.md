@@ -4,7 +4,7 @@ title: "安装内置 GitLab"
 
 KubeSphere Installer 内置的 Gitlab (版本为 v11.8.1) 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对代码仓库的管理，仅需`安装前`在配置文件 `conf/vars.yml` 中简单配置即可。具体可参考以下步骤安装和访问 GitLab。
 
-> 注意，GitLab 安装需要额外挂载 `4` 块硬盘，若 KubeSphere 部署在云平台则需要考虑硬盘数量是否满足配额要求，若硬盘数量或容量配额不够则需要提工单申请提高配额。
+> 注意，目前 GitLab 安装暂不支持块存储，安装前需预先配置 NAS 作为存储后端，可参考 [QingCloud vNAS](../../faq/faq-install/#安装前如何配置-qingcloud-vnas)
 
 ## 第一步：修改配置文件
 
