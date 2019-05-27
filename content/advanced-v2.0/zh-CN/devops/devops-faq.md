@@ -89,3 +89,24 @@ withSonarQubeEnv('sonar') {
 }
 waitForQualityGate abortPipeline: true
 ```
+
+## Jenkins Kubernetes Deploy 所支持的资源类型与资源版本
+
+受限于目前的 Kubernetes Deploy 的插件实现，目前仅能支持特定 API 版本的特定资源。
+
+支持的资源列表如下表格所示：
+
+
+| 资源类型 | API 版本 |
+| --- | --- | 
+| ConfigMap | v1 |
+| Daemon Set | extensions/v1beta1 |
+| Deployment | extensions/v1beta1 |
+| Ingress | extensions/v1beta1 | 
+| Job | batch/v1 | 
+| Namespace | v1 | 
+| Pod | v1 | 
+| Secret | v1 | 
+| Service | v1 | 
+
+
