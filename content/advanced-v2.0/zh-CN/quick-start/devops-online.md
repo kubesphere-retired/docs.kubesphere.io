@@ -83,6 +83,8 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 | APP_NAME                 | devops-java-sample     | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 SonarQube token凭证 ID，用于代码质量检测 |
 
+**注： Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。**
+
 3、修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
 ![提交更新](https://kubesphere-docs.pek3b.qingstor.com/png/commit-jenkinsfile.png)
