@@ -122,7 +122,7 @@ $ yum-complete-transaction
 $ yum-complete-transaction --cleanup-only
 ```
 
-### QingCloud 云平台快存储卷问题
+### QingCloud 云平台块存储卷问题
 
 5、为什么存储卷创建失败？
 

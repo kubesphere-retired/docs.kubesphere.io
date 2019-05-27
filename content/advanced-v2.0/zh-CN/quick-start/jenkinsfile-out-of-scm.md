@@ -210,7 +210,7 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 #### 阶段六：部署至 Dev 环境 (Deploy to DEV)
 
-1、在 `Build and Push` 阶段右侧点击 **“+”** 增加最后一个阶段，命名为 `Deploy to DEV`，用于将容器镜像部署到开发环境即 `kubesphere-sample-dev` 项目中。
+1、在 `Artifacts` 阶段右侧点击 **“+”** 增加最后一个阶段，命名为 `Deploy to DEV`，用于将容器镜像部署到开发环境即 `kubesphere-sample-dev` 项目中。
 
 2、点击 `添加步骤`，选择 `审核`，在弹窗中输入 `@project-admin` 指定项目管理员 project-admin 用户来进行流水线审核，点击确定保存。
 
