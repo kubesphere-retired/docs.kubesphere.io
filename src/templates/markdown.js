@@ -23,8 +23,8 @@ class MarkdownTemplate extends React.Component {
   }
 
   constructor(props) {
-    super(props);
-    
+    super(props)
+
     this.state = {
       isExpand: false,
       query: '',
@@ -41,7 +41,6 @@ class MarkdownTemplate extends React.Component {
       }
     }
   }
-  
 
   componentDidMount() {
     document.addEventListener('click', this.handleClick)
@@ -157,11 +156,17 @@ class MarkdownTemplate extends React.Component {
   }
 
   handleSearch = query => {
-    const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
-    this.setState({
-      results: [...results].reverse(),
-      showSearchResult: true,
-    })
+    const { searchUrl } = this.props.data.site.siteMetadata
+    const { version, lang } = this.props.pathContext
+    if (searchUrl) {
+      window.open(`${searchUrl}/${version}/${lang}+${query}`)
+    } else {
+      const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
+      this.setState({
+        results: [...results].reverse(),
+        showSearchResult: true,
+      })
+    }
   }
 
   hideSearch = () => {
@@ -177,7 +182,7 @@ class MarkdownTemplate extends React.Component {
   }
 
   getSearchResults(query) {
-    const {version, lang} = this.props.pathContext
+    const { version, lang } = this.props.pathContext
     const index = `${version}_${lang}`
     if (!query || !window.__LUNR__) return []
     const lunrIndex = window.__LUNR__[index]
@@ -244,7 +249,9 @@ class MarkdownTemplate extends React.Component {
             />
             <MarkdownWrapper>
               <MarkdownBody
-                className={classnames("md-body", {["md-en"]: postNode.fields.language === 'en'})}
+                className={classnames('md-body', {
+                  ['md-en']: postNode.fields.language === 'en',
+                })}
                 innerRef={ref => {
                   this.markdownRef = ref
                 }}
@@ -401,6 +408,7 @@ export const pageQuery = graphql`
           label
           value
         }
+        searchUrl
       }
     }
     postBySlug: markdownRemark(fields: { slug: { eq: $slug } }) {
