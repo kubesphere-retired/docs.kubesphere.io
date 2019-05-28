@@ -28,11 +28,21 @@ class IndexPage extends React.Component {
   }
 
   handleSearch = query => {
-    const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
-    this.setState({
-      results: [...results].reverse(),
-      showSearchResult: true,
-    })
+    const { searchUrl } = this.props.data.site.siteMetadata
+    const { selectVersion } = this.state
+    const { i18n } = this.props
+
+    const lang = getLanguage(i18n.language)
+
+    if (searchUrl) {
+      window.open(`${searchUrl}/${selectVersion.value}/${lang}+${query}`)
+    } else {
+      const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
+      this.setState({
+        results: [...results].reverse(),
+        showSearchResult: true,
+      })
+    }
   }
 
   hideSearch = () => {
@@ -60,7 +70,6 @@ class IndexPage extends React.Component {
   }
 
   handleVersionChange = value => {
-    console.log(value)
     this.setState({ selectVersion: value })
   }
 
@@ -134,7 +143,8 @@ const Versions = ({ t, current, versions, onChange }) => {
       <Wrapper>
         <div className="version-text">
           <div>
-            {t('The current document is available for')} KubeSphere {current.label}
+            {t('The current document is available for')} KubeSphere{' '}
+            {current.label}
           </div>
           <p>
             {t(
@@ -241,7 +251,9 @@ const Footer = ({ t }) => {
             </h3>
             <p>
               {t('Recommend you to download and use the latest free')}{' '}
-              <a href="https://kubesphere.io/download">{t('KubeSphere Advanced Edition')}</a>{' '}
+              <a href="https://kubesphere.io/download">
+                {t('KubeSphere Advanced Edition')}
+              </a>{' '}
             </p>
           </li>
           <li>
@@ -250,7 +262,7 @@ const Footer = ({ t }) => {
               {t('Report the Bug')}
             </h3>
             <p>
-            {t('KubeSphere uses')}{' '}
+              {t('KubeSphere uses')}{' '}
               <a href="https://github.com/kubesphere/kubesphere/issues">
                 GitHub issue
               </a>{' '}
@@ -623,6 +635,7 @@ export const query = graphql`
           label
           value
         }
+        searchUrl
       }
     }
     allContentJson {
