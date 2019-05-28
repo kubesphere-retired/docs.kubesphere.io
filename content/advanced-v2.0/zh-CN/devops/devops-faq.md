@@ -110,3 +110,38 @@ waitForQualityGate abortPipeline: true
 | Service | v1 | 
 
 
+## 为各种不同语言的项目执行代码分析
+
+在流水线示例当中，我们使用 `mvn sonar:sonar` 为 Maven 管理的 Java 项目执行代码分析。
+
+现在我们介绍一下如何为其他语言的项目执行代码分析，在为其他语言的项目做分析时候，我们大都会使用 [SonarQube Scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner)作为执行分析命令的工具。
+
+### 流水线中一键安装并使用 SonarQube Scanner
+
+下面我就来介绍一下如何在流水线中获取并使用 `SonarQube Scanner`:
+
+在 KubeSphere 所提供的 Jenkins 当中可以使用 Jenkins `tool` 命令在不同的 Pipeline agent 上安装 SonarQube Scanner，如下面的Jenkinsfile所示：
+
+```Groovy
+    stage('sonarqube analysis'){
+      steps{
+        script {
+          scannerHome = tool 'sonar';  // 安装sonar工具，并且获取sonar工具路径
+        }
+        withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+            withSonarQubeEnv('sonar') {
+               sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch=$BRANCH_NAME -Dsonar.projectKey=%{xxxx} -Dsonar.sources=.  -Dsonar.login=$SONAR_TOKEN"  // 执行 SonarQube Scanner 分析语句
+            }
+        }
+        timeout(time: 1, unit: 'HOURS') {
+          waitForQualityGate abortPipeline: true
+        }
+      }
+```
+
+### 各种语言的分析方式
+
+对于各种不同的语言，SonarQube 执行分析的配置不太相同，具体可以参考 [SonarQube 官方文档](https://docs.sonarqube.org/display/PLUG)。
+
+ 
+
