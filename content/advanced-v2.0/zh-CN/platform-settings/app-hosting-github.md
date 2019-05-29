@@ -108,8 +108,13 @@ git clone https://github.com/kubesphere/helm-repo-example
 git fetch
 git checkout app/mychart
 
-# 打包
+# 初始化
 helm init --client-only
+
+# 打包
+helm package mychart
+
+# 更新索引
 helm repo index .
 
 # 提交
