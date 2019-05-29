@@ -95,3 +95,26 @@ helm repo index .
 ### 5. 部署应用
 
 如果是第一次部署，参照 [添加应用仓库](../app-repo) 把 https://raw.githubusercontent.com/kubesphere/helm-repo-example/master 添加到 KubeSphere 就可以使用了。
+
+### 6. 自动化上传
+
+上述第 2〜4 步可以自动化，解放手工操作并减少人工错误。可以利用现有的 CICD 工具（如 Jenkins）或开源平台（如 Travis CI）实现。大体流程如下：
+
+```bash
+# 下载代码
+git clone https://github.com/kubesphere/helm-repo-example
+
+# 拉取分支
+git fetch
+git checkout app/mychart
+
+# 打包
+helm init --client-only
+helm repo index .
+
+# 提交
+git commit -a -m "[CI Build] Upload App"
+git push origin HEAD:app/mychart
+
+# Merge PR（人工或自动）
+```
