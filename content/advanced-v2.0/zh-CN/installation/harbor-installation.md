@@ -58,7 +58,7 @@ docker push harbor.devops.kubesphere.local:30280/library/nginx:1.14-alpine
 
 KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harbor 服务对外暴露的节点端口 (NodePort) 为 30280，内置的 Harbor 镜像仓库目前仅支持 http 协议，在浏览器中可以通过 `{$IP}:{$NodePort}` 如 `http://139.198.16.160:30280` 访问 Harbor 登录页面。
 
-> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发和防火墙规则，端口转发需要将**内网端口** 30454 转发到**源端口** 30454，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，然后才可以通过 `http://{$公网 IP}:{$NodePort}` 访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发和防火墙规则，端口转发需要将**内网端口** 30280 转发到**源端口** 30280，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，然后才可以通过 `http://{$公网 IP}:{$NodePort}` 访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 > 提示：在浏览器中还可通过域名访问 Harbor，在本地 `/etc/hosts` 添加一行记录 `139.198.16.160 harbor.devops.kubesphere.local`，即可通过 `http://harbor.devops.kubesphere.local:30280` 访问。
 
 1、输入默认的管理员用户名和密码 `admin / Harbor12345` 登录 Harbor。
