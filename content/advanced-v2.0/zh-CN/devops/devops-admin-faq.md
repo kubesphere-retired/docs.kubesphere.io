@@ -278,4 +278,6 @@ jenkins:
 
 修改完毕后，我们就可以参考文档 [Jenkins 系统设置](../jenkins-setting/#登陆-jenkins-重新加载)来重新加载我们的配置了。当重新加载配置完成后，我们的 Agent 版本也就更新成功了。
 
-可以在 Jenkins 系统管理的系统设置中看到 ![镜像版本](/update-nodejs-agent.jpg) 已经更新为我们设置的版本。
+可以在 Jenkins 系统管理的系统设置中已经更新为我们设置的镜像版本。
+
+![镜像版本](/update-nodejs-agent.jpg)
