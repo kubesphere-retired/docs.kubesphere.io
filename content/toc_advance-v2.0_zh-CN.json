@@ -256,6 +256,14 @@
               "entry": "./advanced-v2.0/zh-CN/platform-settings/app-repo.md"
             },
             {
+              "title": "上传应用到 KubeSphere 官方仓库",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/app-hosting-official.md"
+            },
+            {
+              "title": "基于 GitHub 搭建自有应用仓库",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/app-hosting-github.md"
+            },
+            {
               "title": "邮件服务器",
               "entry": "./advanced-v2.0/zh-CN/platform-settings/email-server.md"
             },
