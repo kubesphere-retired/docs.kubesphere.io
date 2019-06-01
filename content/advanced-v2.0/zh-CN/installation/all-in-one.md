@@ -4,7 +4,9 @@ title: "All-in-One 模式"
 
 对于首次接触 KubeSphere 高级版的用户，想寻找一个最快安装和体验 KubeSphere 高级版核心功能的方式，all-in-one 模式支持一键安装 KubeSphere 至一台目标机器。
 
-> 提示：若需要安装 Harbor 和 GitLab 请在**安装前**参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
+> 提示：
+> - 若需要安装 Harbor 和 GitLab 请在**安装前**参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
+> - 若在云平台使用在线安装，可通过调高带宽的方式来加快安装速度。
 
 ## 前提条件
 
@@ -31,17 +33,27 @@ title: "All-in-One 模式"
 
 ## 第二步: 准备安装包
 
-**1.** 执行以下命令下载最新的 `KubeSphere Advanced v2.0.0` 安装包至待安装机器，并解压压缩包。
+**1.** 执行以下命令下载最新的 `KubeSphere Advanced v2.0.0` 安装包至待安装机器。
+
+- **在线安装**
 
 ```bash
 $ curl -L https://kubesphere.io/download/stable/advanced-2.0.0 > advanced-2.0.0.tar.gz
 ```
 
+- **离线安装**
+
+若需要离线安装请下载`离线安装包`，离线安装步骤与在线安装一致，下载后可继续参考后续步骤。
+
+```bash
+$ curl -L https://kubesphere.io/download/offline/advanced-2.0.0 > advanced-2.0.0.tar.gz
+```
+ 
+**2.** 解压安装包并进入安装目录。
+
 ```bash
 $ tar -zxf advanced-2.0.0.tar.gz
 ```
-
-**2.** 进入 “`kubesphere-all-advanced-2.0.0`” 目录。
 
 ```bash
 $ cd kubesphere-all-advanced-2.0.0
@@ -49,7 +61,7 @@ $ cd kubesphere-all-advanced-2.0.0
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。最新的Installer 默认安装的 Kubernetes 版本是 v1.13.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
+KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。最新的 Installer 默认安装的 Kubernetes 版本是 v1.13.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
