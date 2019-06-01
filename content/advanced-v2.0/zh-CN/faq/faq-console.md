@@ -27,6 +27,20 @@ title: "控制台使用常见问题"
 
 更多信息请参考 [node_exporter issue #742](https://github.com/prometheus/node_exporter/issues/742)
 
+<!-- ### 如何修改配置使 KubeSphere 允许同一账号多人登录？
+
+1、在控制台中，进入企业空间 system-workspace → 项目 → kubesphere-system，然后在 「配置中心」→「配置」选择 ks-console-ae-config，点击 「编辑配置文件」。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190601102158.png)
+
+2、然后将 disableMultiLogin: True 的值修改为 False，并通过 kubectl 命令将 ks-console 应用更新。
+
+```shell
+$ kubectl scale --replicas=0 deployment/ks-console -n kubesphere-system
+
+$ kubectl scale --replicas=0 deployment/ks-console -n kubesphere-system
+``` -->
+
 
 > 说明：
 > 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
