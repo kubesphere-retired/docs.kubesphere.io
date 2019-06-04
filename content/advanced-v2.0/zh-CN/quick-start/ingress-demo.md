@@ -8,7 +8,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 以下将在 KubeSphere 创建相关资源来说明这个应用路由的示例。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424132454.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190603162857.png)
 
 
 ## 前提条件
