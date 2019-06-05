@@ -2,7 +2,7 @@
 title: "熔断"
 ---
 
-在微服务中，系统的各个服务之间在网络上存在大量的调用，在调用过程中，如果某个服务繁忙或者无法响应请求，可能会引发集群的大规模级联故障，从而造成整个系统不可用，引发服务雪崩效应。当下游服务因访问压力过大而响应变慢或失败，上游服务为了保护系统整体的可用性，可以暂时切断对下游服务的调用，达到服务降级的效果，通过牺牲局部保全整体的措施就叫做熔断（Circuit Breaking）。
+在微服务中，系统的各个服务之间在网络上存在大量的调用，在调用过程中，如果某个服务繁忙或者无法响应请求，可能会引发集群的大规模级联故障，从而造成整个系统不可用，引发服务雪崩效应。当下游服务因访问压力过大而响应变慢或失败，上游服务为了保护系统整体的可用性，可以暂时切断对下游服务的调用，达到服务降级的效果，通过牺牲局部保全整体的措施就叫做**熔断（Circuit Breaking）**。
 
 
 本文基于示例应用 Bookinfo，演示如何对其中的一个服务设置熔断规则，并通过一个负载测试客户端 ([fortio](https://github.com/istio/fortio)) 来触发熔断机制，在 KubeSphere 中演示熔断现象。
@@ -13,13 +13,13 @@ title: "熔断"
 
 ## 前提条件
 
-已完成了 [Bookinfo 微服务的灰度发布](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/bookinfo-canary) 示例中 [查看流量监测](../../quick-start/bookinfo-canary/#查看流量监测) 之前的所有步骤。
+已完成了 [Bookinfo 微服务的灰度发布](../../quick-start/bookinfo-canary) 示例中 [查看流量监测](../../quick-start/bookinfo-canary/#查看流量监测) 之前的所有步骤。
 
 ## 操作示例
 
 ### 第一步：设置熔断规则
 
-使用项目普通用户 `project-regular` 登录 KubeSphere，进入示例应用的详情页。由于在 [查看流量拓扑图](../../quick-start/bookinfo-canary/#查看流量拓扑图) 步骤中，通过 watch 命令引入真实的访问流量后，此时在流量治理中可以看到流量治理拓扑图。
+使用项目普通用户 `project-regular` 登录 KubeSphere，进入示例应用 Bookinfo 的详情页。由于在 [查看流量拓扑图](../../quick-start/bookinfo-canary/#查看流量拓扑图) 步骤中，通过 watch 命令引入真实的访问流量后，此时在流量治理中可以看到流量治理拓扑图。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190604100356.png)
 
@@ -38,7 +38,7 @@ title: "熔断"
 > - 每连接最大请求数：表示在任何给定时间内，上游集群中所有主机（比如这里是 ratings 服务）可以处理的最大请求数。对后端连接中最大的请求数量若设为 1 则会禁止 keep alive 特性；
 > - 最大请求重试次数：在指定时间内对目标主机最大重试次数；
 > - 连接超时时间：TCP 连接超时时间，最小值必须大于 1ms。最大连接数和连接超时时间是对 TCP 和 HTTP 都有效的通用连接设置；
-> - 最大等待请求数 (等待列队的长度)：表示待处理请求队列的长度，默认为 1024。如果该断路器溢出，集群的 upstream_rq_pending_overflow 计数器就会递增。
+> - 最大等待请求数 (等待列队的长度)：表示待处理请求队列的长度，默认为 1024。如果该断路器溢出，集群的 `upstream_rq_pending_overflow` 计数器就会递增。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190604132502.png)
 
@@ -56,13 +56,12 @@ title: "熔断"
 $ FORTIO_POD=$(kubectl get pod -n demo-namespace | grep reviews-v2 | awk '{pri
 nt $1}')
 
-$ kubectl exec -n demo-namespace -it $FORTIO_POD -c reviews /usr/bin/fortio --
- load -curl http://ratings:9080/ratings/0
+$ kubectl exec -n demo-namespace -it $FORTIO_POD -c reviews /usr/bin/fortio -- load -curl http://ratings:9080/ratings/0
 HTTP/1.1 200 OK
 ···
 ```
 
-## 第三步：触发熔断机制
+### 第三步：触发熔断机制
 
 1、在 ratings 中设置了连接池管理的熔断规则，`最大连接数` 和 `最大等待请求数(等待列队的长度)` 都设置为 1，接下来设置两个并发连接（-c 2），发送 20 请求（-n 20）：
 
@@ -106,8 +105,7 @@ Code 503 : 8 (26.7 %)
 5、查询 istio-proxy 的状态，获取更多相关信息。如下所示 `upstream_rq_pending_overflow` 的值是 10，说明有 10 次调用被熔断。
 
 ```bash
-$ kubectl exec -n demo-namespace -it $FORTIO_POD  -c istio-proxy  -- sh -c 'cu
-rl localhost:15000/stats' | grep ratings | grep pending
+$ kubectl exec -n demo-namespace -it $FORTIO_POD  -c istio-proxy  -- sh -c 'curl localhost:15000/stats' | grep ratings | grep pending
 ···
 cluster.outbound|9080|v1|ratings.demo-namespace.svc.cluster.local.upstream_rq_pending_overflow: 10
 cluster.outbound|9080|v1|ratings.demo-namespace.svc.cluster.local.upstream_rq_pending_total: 41
