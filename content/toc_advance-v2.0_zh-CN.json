@@ -341,6 +341,10 @@
             {
               "title": "流量治理",
               "entry": "./advanced-v2.0/zh-CN/application/traffic-gov.md"
+            },
+            {
+              "title": "熔断",
+              "entry": "./advanced-v2.0/zh-CN/application/circuit-breaking.md"
             }
           ]
         },
