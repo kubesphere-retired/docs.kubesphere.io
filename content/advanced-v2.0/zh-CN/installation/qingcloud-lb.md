@@ -49,6 +49,27 @@ qingcloud_vxnet_id: SHOULD_BE_REPLACED
 
 完成以上步骤的配置后，可继续参考安装指南完成其他配置并执行安装。
 
+### 如何使用 QingCloud LB 插件
+
+1、在「项目设置」→「外网访问」下，点击「设置网关」，选择 LoadBalancer
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190605235710.png)
+
+2、如下添加一条注解，保存后即可允许 LB 插件自动为网关创建和绑定公网 IP，同时在 QingCloud 云平台创建负载均衡器。您在创建和使用应用路由、服务时即可为其自动生成公网 IP。
+
+```annotation
+service.beta.kubernetes.io/qingcloud-load-balancer-eip-source : auto
+```
+
+3、等待 2 分钟左右负载均衡器将自动创建完毕并自动绑定公网 IP 至网关。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190606004135.png)
+
+4、在部署应用或创建应用路由、服务后，即可自动使用该公网 IP 或域名来暴露服务，方便用户快速访问。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190606004254.png)
+
+
 ## 安装负载均衡器插件 Porter 
 
 Porter 是一款适用于物理机部署 Kubernetes 的负载均衡器，该负载均衡器使用物理交换机实现，利用 BGP 和 ECMP 从而达到性能最优和高可用性，Porter 是一个提供用户在物理环境暴露服务和在云上暴露服务一致性体验的插件。
