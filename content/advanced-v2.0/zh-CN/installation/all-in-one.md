@@ -33,17 +33,33 @@ title: "All-in-One 模式"
 
 ## 第二步: 准备安装包
 
-**1.** 执行以下命令下载最新的 `KubeSphere Advanced v2.0.0` 安装包至待安装机器。
+<div class="md-tabs">
+<input type="radio" name="tabs" id="stable" checked="checked">
+<label for="stable">在线版 (2.0.1)</label>
+<span class="md-tab">
 
-- **在线安装**
+**1.** 下载 `KubeSphere Advanced Edition 2.0.1` 安装包至待安装机器。
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/advanced-2.0.0 > advanced-2.0.0.tar.gz
+$ curl -L https://kubesphere.io/download/stable/advanced-2.0.1 > advanced-2.0.1.tar.gz
+```
+ 
+**2.** 解压安装包并进入安装目录。
+
+```bash
+$ tar -zxf advanced-2.0.1.tar.gz
 ```
 
-- **离线安装**
+```bash
+$ cd kubesphere-all-advanced-2.0.1
+```
 
-若需要离线安装请下载`离线安装包`，离线安装步骤与在线安装一致，下载后可继续参考后续步骤。
+</span>
+<input type="radio" name="tabs" id="offline">
+<label for="offline">离线版 (2.0.0)</label>
+<span class="md-tab">
+
+**1.** 下载 `离线安装包 (2.0.0)` 至待安装机器 (2.0.1 的离线安装包即将上线)。
 
 ```bash
 $ curl -L https://kubesphere.io/download/offline/advanced-2.0.0 > advanced-2.0.0.tar.gz
@@ -58,6 +74,9 @@ $ tar -zxf advanced-2.0.0.tar.gz
 ```bash
 $ cd kubesphere-all-advanced-2.0.0
 ```
+
+</span>
+</div>
 
 ## 第三步: 安装 KubeSphere
 
@@ -131,7 +150,7 @@ NOTE：Please modify the default password after login.
 
 例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
-**(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
+**(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，**登录后请立即修改默认密码**。参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。 
 
 ![KubeSphere 控制台](/kubesphere-console.png)
 

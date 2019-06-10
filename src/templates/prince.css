@@ -124,13 +124,13 @@ h5 {
     'Courier New', Courier, monospace, 'PingFang SC';
 }
 
-.md-tabs {
+.markdown-all .md-tabs {
   display: block;
   flex-wrap: wrap;
   margin-bottom: 12px;
 }
 
-.md-tabs label {
+.markdown-all .md-tabs label {
   order: 1;
   display: block;
   padding: .5rem 0;
@@ -142,7 +142,7 @@ h5 {
   border-radius: 4px 4px 0 0;
 }
 
-.md-tabs .md-tab {
+.markdown-all .md-tabs .md-tab {
   order: 99;
   flex-grow: 1;
   display: inline;
@@ -151,6 +151,6 @@ h5 {
   border-radius: 0 4px 4px 4px;
 }
 
-.md-tabs input[type='radio'] {
+.markdown-all .md-tabs input[type='radio'] {
   display: none;
 }
