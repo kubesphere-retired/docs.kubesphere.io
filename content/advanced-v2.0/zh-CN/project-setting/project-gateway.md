@@ -34,15 +34,14 @@ title: "外网访问"
  
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514095320.png)
 
+
 ## 通过 LoadBalancer 暴露网关
 
 > 前提条件：若 KubeSphere 部署在 QingCloud 云平台，确保已安装了 [QingCloud LB 插件](../../installation/qingcloud-lb)。
 
 若选择的是 LoadBalancer，负载均衡器插件将自动在云平台创建负载均衡器并绑定公网 IP 至网关，提供内部服务和应用路由的快速访问，最终可通过公网 IP 或域名的方式访问应用路由和服务。
 
-在「项目设置」→「外网访问」下，点击「设置网关」，选择 `LoadBalancer`。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190605235710.png)
+在「项目设置」→「外网访问」下，点击「设置网关」，选择 LoadBalancer。
 
 > LB 插件可通过添加 Annotation 来配置使用，目前支持以下三种配置方式，参考 [公网 IP 配置](https://github.com/yunify/qingcloud-cloud-controller-manager/blob/master/docs/configure.md#%E4%BA%8C%E5%85%AC%E7%BD%91ip%E9%85%8D%E7%BD%AE)。
 > - **手动配置 EIP**：添加一条 Annotation 的 key 是 `service.beta.kubernetes.io/qingcloud-load-balancer-eip-ids`，值是 `公网IP 的 ID`；
@@ -53,11 +52,13 @@ title: "外网访问"
 > - **配置多个服务 (Service) 共享一个公网 IP**：由于 EIP 是稀缺资源，QingCloud-LB 插件提供了多个 Service 共享一个 EIP 的模式，使用这个模式有一定限制，详见 [配置多个Service共享一个EIP](https://github.com/yunify/qingcloud-cloud-controller-manager/blob/master/docs/configure.md#%E4%B8%89%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAservice%E5%85%B1%E4%BA%AB%E4%B8%80%E4%B8%AAeip)。
 
 
-以下仅以其中一种配置方式 “自动获取当前账户下处于可用的 EIP，如果找不到则申请一个新的，值设置为 `auto`” 演示如何在 KubeSphere 配置使用，
+以下仅以其中一种配置方式 “自动获取当前账户下处于可用的 EIP，如果找不到则申请一个新的，值设置为 `auto`” 演示如何在 KubeSphere 配置使用。
 
-> 注意，这种方式可能会造成同一账号下其他用户空闲的公网 IP 被使用。
+> 注意，示例中的这种方式可能会造成同一账号下其他用户空闲的公网 IP 被使用。
 
-1、如下添加一条注解，这种方式自动获取当前账户下处于可用的 EIP，如果找不到则申请一个新的。保存后即可允许 LB 插件自动为网关创建和绑定公网 IP，同时在 QingCloud 云平台创建负载均衡器。您在创建和使用应用路由、服务时即可为其自动生成公网 IP。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190605235710.png)
+
+1、如图在示例中添加一条注解，保存后即可允许 LB 插件自动为网关创建和绑定公网 IP，同时在 QingCloud 云平台创建负载均衡器。您在创建和使用应用路由、服务时即可为其自动生成公网 IP。
 
 ```annotation
 service.beta.kubernetes.io/qingcloud-load-balancer-eip-source : auto
