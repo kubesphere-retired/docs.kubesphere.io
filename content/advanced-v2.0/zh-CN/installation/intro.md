@@ -6,7 +6,7 @@ title: "安装说明"
 
 <!-- ## 前提条件
 
-下载最新的 [KubeSphere Advanced 2.0.0 - dev](https://kubesphere.io/download) 至待安装机器中。 -->
+下载最新的 [KubeSphere Advanced 2.0.1 - dev](https://kubesphere.io/download) 至待安装机器中。 -->
 
 ## 安装 KubeSphere
 
@@ -79,7 +79,7 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由
 
 ## 升级
 
-若您的机器已安装的环境为高级版 1.0.1 (或 1.0.0) 版本，我们强烈建议您升级至最新的高级版 2.0.0，最新的 Installer 支持将 KubeSphere 从 1.0.1 (或 1.0.0) 环境一键升级至目前最新的 2.0.0，详见 [升级指南](../upgrade)。
+若您的机器已安装的环境为高级版 1.0.x (或 2.0.0) 版本，我们强烈建议您升级至最新的高级版 2.0.1，最新的 Installer 支持将 KubeSphere 从 1.0.x (或 2.0.0) 环境一键升级至目前最新的 2.0.1，详见 [升级指南](../upgrade)。
 
 ## 集群节点扩容
 
@@ -110,11 +110,11 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 
 ## 组件版本信息
 
-KubeSphere Advanced 2.0.0 中的相关组件将默认安装以下版本：
+KubeSphere Advanced 2.0.1 中的相关组件将默认安装以下版本：
 
 |  组件 |  版本 |
 |---|---|
-|KubeSphere| Advanced Edition 2.0.0|
+|KubeSphere| Advanced Edition 2.0.1|
 |Kubernetes| v1.13.5|
 |Istio | 1.1.1 |
 |etcd|3.2.18|
