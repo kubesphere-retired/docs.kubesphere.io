@@ -46,7 +46,7 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 - [Source to Image](../../quick-start/source-to-image/)
 
-- [Jenkinsfile in SCM 流水线](../../quick-start/jenkinsfile-in-scm)
+- [Jenkinsfile in SCM 流水线](../../quick-start/devops-online)
 
 - [CI/CD 流水线 (离线版)](../../quick-start/devops-online)
 

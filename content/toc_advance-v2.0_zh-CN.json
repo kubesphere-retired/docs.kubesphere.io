@@ -15,14 +15,6 @@
         {
           "title": "Release Notes - 2.0.0",
           "entry": "./advanced-v2.0/zh-CN/release/release-v200.md"
-        },
-        {
-          "title": "Release Notes - 1.0.1",
-          "entry": "./advanced-v2.0/zh-CN/release/release-v101.md"
-        },
-        {
-          "title": "Release Notes - 1.0.0",
-          "entry": "./advanced-v2.0/zh-CN/release/release-v100.md"
         }
       ]
     },

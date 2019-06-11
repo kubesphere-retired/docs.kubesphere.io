@@ -57,4 +57,4 @@ KubeSphere 提供了公共应用仓库供开发测试使用，用户可以把做
 
 ### 第四步：部署应用
 
-PR 合进主分支后，应用就生效了。如果是第一次部署，参照 [添加应用仓库](../app-repo) 把 https://charts.kubesphere.io/experimenta 添加到 KubeSphere 就可以使用了。
+PR 合进主分支后，应用就生效了。如果是第一次部署，参照 [添加应用仓库](../app-repo) 把 `https://charts.kubesphere.io/experimental` 添加到 KubeSphere 就可以使用了。
