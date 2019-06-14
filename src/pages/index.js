@@ -638,7 +638,7 @@ export const query = graphql`
         searchUrl
       }
     }
-    allContentJson {
+    allContentJson(filter: { lang: { ne: null } }) {
       edges {
         node {
           version

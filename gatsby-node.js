@@ -1,4 +1,5 @@
 const path = require(`path`)
+const axios = require('axios')
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
@@ -17,9 +18,29 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 }
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage, createRedirect } = boundActionCreators
-  return new Promise(resolve => {
+const processSwaggerData = paths => {
+  const groupedPaths = {}
+
+  Object.keys(paths).forEach(key => {
+    const path = paths[key]
+    const methods = Object.keys(path)
+    methods.forEach(method => {
+      const tags = path[method].tags
+      tags &&
+        tags.forEach(tag => {
+          groupedPaths[tag] = groupedPaths[tag] || []
+          groupedPaths[tag].push({ method, path: key, ...path[method] })
+        })
+    })
+  })
+
+  return groupedPaths
+}
+
+const createMarkdownPages = ({ graphql, boundActionCreators }) =>
+  new Promise(resolve => {
+    const { createPage, createRedirect } = boundActionCreators
+
     graphql(`
       {
         pages: allMarkdownRemark {
@@ -88,4 +109,89 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       resolve()
     })
   })
+
+const createAPIPages = ({ graphql, boundActionCreators }) =>
+  new Promise(resolve => {
+    const { createPage, createRedirect } = boundActionCreators
+
+    graphql(`
+      {
+        apiTOC: allContentJson(filter: { swagger_url: { ne: null } }) {
+          edges {
+            node {
+              version
+              swagger_url
+              chapters {
+                name
+                description
+                groups {
+                  name
+                  description
+                }
+              }
+            }
+          }
+        }
+      }
+    `).then(({ data: { apiTOC } }) => {
+      if (apiTOC.edges.length > 0) {
+        Promise.all(
+          apiTOC.edges.map(({ node }) => {
+            if (node.swagger_url === 'local') {
+              const data = require(`./src/data/${node.version}_api.json`)
+              return Promise.resolve({ data: data })
+            } else {
+              return axios.get(node.swagger_url)
+            }
+          })
+        ).then(data => {
+          data.forEach((item, index) => {
+            if (item.data) {
+              const swaggerData = processSwaggerData(item.data.paths)
+              const edge = apiTOC.edges[index]
+
+              let firstPath
+
+              edge.node.chapters.forEach(chapter => {
+                const pagePath = `/${
+                  edge.node.version
+                }/api/${chapter.name.toLowerCase()}`
+
+                if (!firstPath) {
+                  firstPath = pagePath
+                }
+
+                createPage({
+                  path: pagePath,
+                  component: path.resolve(`./src/templates/api.js`),
+                  context: {
+                    version: edge.node.version,
+                    chapter: JSON.stringify(chapter),
+                    chapters: JSON.stringify(edge.node.chapters),
+                    content: JSON.stringify(swaggerData[chapter.name]),
+                    definitions: JSON.stringify(item.data.definitions),
+                  },
+                })
+              })
+
+              if (firstPath) {
+                createRedirect({
+                  fromPath: `/${edge.node.version}/api`,
+                  isPermanent: true,
+                  redirectInBrowser: true,
+                  toPath: firstPath,
+                })
+              }
+            }
+          })
+          resolve()
+        })
+      } else {
+        resolve()
+      }
+    })
+  })
+
+exports.createPages = (...rest) => {
+  return Promise.all([createMarkdownPages(...rest), createAPIPages(...rest)])
 }
