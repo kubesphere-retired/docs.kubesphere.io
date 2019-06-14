@@ -3,6 +3,7 @@
   "description": "KubeSphere Documents",
   "version": "1.0.0",
   "dependencies": {
+    "axios": "^0.19.0",
     "cheerio": "^1.0.0-rc.2",
     "classnames": "^2.2.6",
     "es6-shim": "^0.35.3",

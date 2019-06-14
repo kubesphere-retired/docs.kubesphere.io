@@ -1,0 +1,54 @@
+{
+  "version": "advanced-v2.0",
+  "swagger_url": "local",
+  "chapters": [
+    {
+      "name": "DevOps",
+      "description": "",
+      "groups": [
+        { "name": "project", "description": "" },
+        { "name": "permission", "description": "" },
+        { "name": "pipeline", "description": "" },
+        { "name": "credential", "description": "" },
+        { "name": "scm", "description": "" },
+        { "name": "expanded", "description": "" }
+      ]
+    },
+    {
+      "name": "IAM",
+      "description": "",
+      "groups": [
+        { "name": "users", "description": "" },
+        { "name": "roles", "description": "" }
+      ]
+    },
+    { "name": "Logging", "description": "", "groups": [] },
+    { "name": "Monitoring", "description": "", "groups": [] },
+    {
+      "name": "Resources",
+      "description": "",
+      "groups": [
+        { "name": "expanded", "description": "" },
+        { "name": "application", "description": "" },
+        { "name": "revision", "description": "" },
+        { "name": "router", "description": "" }
+      ]
+    },
+    {
+      "name": "Component",
+      "description": "",
+      "groups": [
+        { "name": "expanded", "description": "" },
+        { "name": "application", "description": "" }
+      ]
+    },
+    {
+      "name": "Tenant",
+      "description": "",
+      "groups": [
+        { "name": "resources", "description": "" },
+        { "name": "permission", "description": "" }
+      ]
+    }
+  ]
+}

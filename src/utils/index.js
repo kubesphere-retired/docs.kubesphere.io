@@ -28,3 +28,15 @@ export function formatAnchor(str) {
     .join('-')
     .toLowerCase()
 }
+
+export function safeParseJSON(json, defaultValue) {
+  let result
+  try {
+    result = JSON.parse(json)
+  } catch (e) {}
+
+  if (!result && defaultValue !== undefined) {
+    return defaultValue
+  }
+  return result
+}
