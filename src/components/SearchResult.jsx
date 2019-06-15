@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import Mark from 'mark.js'
-import { translate } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 import Modal from './Modal'
 import Search from './Search'
@@ -164,4 +164,4 @@ const ResultItem = styled.li`
   }
 `
 
-export default translate('base')(SearchResult)
+export default withTranslation()(SearchResult)

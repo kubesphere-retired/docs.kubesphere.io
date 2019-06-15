@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import { graphql } from 'gatsby'
 
+import Layout from '../layouts'
 import Tabs from '../components/Tabs'
 
 import { safeParseJSON } from '../utils'
@@ -237,30 +239,32 @@ class APIDocTemplate extends React.Component {
     super(props)
 
     this.state = {
-      content: safeParseJSON(props.pathContext.content, {}),
-      navs: safeParseJSON(props.pathContext.chapters, []),
-      chapter: safeParseJSON(props.pathContext.chapter, []),
-      definitions: safeParseJSON(props.pathContext.definitions, {}),
+      content: safeParseJSON(props.pageContext.content, {}),
+      navs: safeParseJSON(props.pageContext.chapters, []),
+      chapter: safeParseJSON(props.pageContext.chapter, []),
+      definitions: safeParseJSON(props.pageContext.definitions, {}),
     }
   }
 
   render() {
-    const { version } = this.props.pathContext
+    const { version } = this.props.pageContext
     const { content, definitions, navs, chapter } = this.state
 
     return (
-      <Wrapper>
-        <NavWrapper>
-          <Navs data={navs} version={version} selected={chapter.name} />
-        </NavWrapper>
-        <MainWrapper>
-          <Main
-            data={content}
-            groups={chapter.groups}
-            definitions={definitions}
-          />
-        </MainWrapper>
-      </Wrapper>
+      <Layout data={this.props.data}>
+        <Wrapper>
+          <NavWrapper>
+            <Navs data={navs} version={version} selected={chapter.name} />
+          </NavWrapper>
+          <MainWrapper>
+            <Main
+              data={content}
+              groups={chapter.groups}
+              definitions={definitions}
+            />
+          </MainWrapper>
+        </Wrapper>
+      </Layout>
     )
   }
 }
@@ -642,3 +646,14 @@ const HeaderCode = styled.div`
 `
 
 export default APIDocTemplate
+
+/* eslint no-undef: "off" */
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`

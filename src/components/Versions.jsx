@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { translate } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { ReactComponent as DocsIcon } from '../assets/docs.svg'
 import { ReactComponent as KubeSphere } from '../assets/kubesphere.svg'
 import { ReactComponent as Arrow } from '../assets/arrow.svg'
@@ -32,17 +32,16 @@ class Versions extends React.Component {
   }
 
   changeVersion = version => {
-    const { i18n } = this.props
-    const lang = getLanguage(i18n.language)
+    const lang = getLanguage(this.props.lang)
 
     if (version === 'express') {
-      location.href = `/express/${lang}/basic/`
+      window.location.href = `/express/${lang}/basic/`
     } else if (version === 'advanced-v1.0') {
-      location.href = `/advanced-v1.0/${lang}/introduction/intro/`
+      window.location.href = `/advanced-v1.0/${lang}/introduction/intro/`
     } else if (version === 'advanced-v2.0') {
-      location.href = `/advanced-v2.0/${lang}/introduction/intro/`
+      window.location.href = `/advanced-v2.0/${lang}/introduction/intro/`
     } else {
-      location.href = `/${version}/${lang}/`
+      window.location.href = `/${version}/${lang}/`
     }
   }
 
@@ -191,4 +190,4 @@ const Option = styled.div`
   }
 `
 
-export default translate('base')(Versions)
+export default withTranslation()(Versions)

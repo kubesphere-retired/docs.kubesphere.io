@@ -1,18 +1,21 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
 import 'react-tippy/dist/tippy.css'
 import { Tooltip } from 'react-tippy'
-import { translate } from 'react-i18next'
 
 import { getLanguage } from '../utils'
 
+import Layout from '../layouts'
 import Logo from '../components/Logo'
 import Select from '../components/Select'
 import Search from '../components/Search'
 import SearchResult from '../components/SearchResult'
 import Language from '../components/Language'
+import WithI18next from '../components/WithI18next'
 
 import { ReactComponent as RoadMapIcon } from '../assets/icon-roadmap.svg'
 import { ReactComponent as ChatIcon } from '../assets/icon-chat.svg'
@@ -30,9 +33,9 @@ class IndexPage extends React.Component {
   handleSearch = query => {
     const { searchUrl } = this.props.data.site.siteMetadata
     const { selectVersion } = this.state
-    const { i18n } = this.props
+    const { locale } = this.props.pageContext
 
-    const lang = getLanguage(i18n.language)
+    const lang = getLanguage(locale)
 
     if (searchUrl) {
       window.open(`${searchUrl}/${selectVersion.value}/${lang}+${query}`)
@@ -59,9 +62,9 @@ class IndexPage extends React.Component {
 
   getSearchResults(query) {
     const { selectVersion } = this.state
-    const { i18n } = this.props
+    const { locale } = this.props.pageContext
 
-    const index = `${selectVersion.value}_${getLanguage(i18n.language)}`
+    const index = `${selectVersion.value}_${getLanguage(locale)}`
 
     if (!query || !window.__LUNR__) return []
     const lunrIndex = window.__LUNR__[index]
@@ -76,39 +79,41 @@ class IndexPage extends React.Component {
   render() {
     const { query, results, showSearchResult, selectVersion } = this.state
     return (
-      <div>
-        <Header
-          {...this.props}
-          query={query}
-          onSearch={this.handleSearch}
-          onQueryChange={this.handleQueryChange}
-        />
-        <Content
-          {...this.props}
-          selectVersion={selectVersion}
-          onVersionChange={this.handleVersionChange}
-        />
-        <Footer t={this.props.t} />
-        <SearchResult
-          query={query}
-          results={results}
-          visible={showSearchResult}
-          onCancel={this.hideSearch}
-          onSearch={this.handleSearch}
-          onQueryChange={this.handleQueryChange}
-          t={this.props.t}
-        />
-      </div>
+      <Layout data={this.props.data}>
+        <div>
+          <Header
+            {...this.props}
+            query={query}
+            onSearch={this.handleSearch}
+            onQueryChange={this.handleQueryChange}
+          />
+          <Content
+            {...this.props}
+            selectVersion={selectVersion}
+            onVersionChange={this.handleVersionChange}
+          />
+          <Footer {...this.props} />
+          <SearchResult
+            query={query}
+            results={results}
+            visible={showSearchResult}
+            onCancel={this.hideSearch}
+            onSearch={this.handleSearch}
+            onQueryChange={this.handleQueryChange}
+            t={this.props.t}
+          />
+        </div>
+      </Layout>
     )
   }
 }
 
-export default translate('base')(IndexPage)
+export default WithI18next({ ns: 'common' })(IndexPage)
 
-const Header = ({ t, query, onSearch, onQueryChange }) => (
+const Header = ({ t, query, onSearch, onQueryChange, pageContext }) => (
   <HeaderWrapper>
     <LogoWrapper>
-      <Logo />
+      <Logo pageContext={pageContext} />
     </LogoWrapper>
     <Wrapper>
       <h1>{t('Welcome to the KubeSphere Documentation')}</h1>
@@ -220,7 +225,7 @@ const Documents = ({ tableOfContent }) => (
 )
 
 const Content = props => {
-  const lang = getLanguage(props.i18n.language)
+  const lang = getLanguage(props.pageContext.locale)
   const tableOfContent = props.data.allContentJson.edges.find(
     edge =>
       edge.node.version === props.selectVersion.value && edge.node.lang === lang
@@ -239,7 +244,8 @@ const Content = props => {
   )
 }
 
-const Footer = ({ t }) => {
+const Footer = props => {
+  const t = props.t
   return (
     <FooterWrapper>
       <Wrapper>
@@ -251,7 +257,11 @@ const Footer = ({ t }) => {
             </h3>
             <p>
               {t('Recommend you to download and use the latest free')}{' '}
-              <a href="https://kubesphere.io/download">
+              <a
+                href={`https://kubesphere.io/${
+                  props.pageContext.locale
+                }/download`}
+              >
                 {t('KubeSphere Advanced Edition')}
               </a>{' '}
             </p>
@@ -276,14 +286,18 @@ const Footer = ({ t }) => {
             </h3>
             <p>
               {t('Find us on the Slack channel')}:{' '}
-              <a href="https://kubesphere.slack.com" target="_blank">
+              <a
+                href="https://kubesphere.slack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 kubesphere.slack.com
               </a>
             </p>
           </li>
         </ul>
         <LanguageWrapper>
-          <Language />
+          <Language {...props} />
         </LanguageWrapper>
         <p className="icp">KubeSphere®️ 2019 All Rights Reserved.</p>
       </Wrapper>

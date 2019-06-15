@@ -1,7 +1,10 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import cheerio from 'cheerio'
+
+import Layout from '../layouts'
 
 import './markdown.css'
 import './prince.css'
@@ -77,27 +80,30 @@ export default class MarkdownTemplate extends React.Component {
   render() {
     const { tableOfContents, site } = this.props.data
 
-    const version = site.siteMetadata.versions.find(
-      version => version.value === tableOfContents.edges[0].node.version
-    ) || {}
+    const version =
+      site.siteMetadata.versions.find(
+        version => version.value === tableOfContents.edges[0].node.version
+      ) || {}
 
     return (
-      <div className="markdown-all">
-        <Helmet>
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="/PingFangSC/stylesheet.css"
-          />
-          <script>{`
+      <Layout data={this.props.data}>
+        <div className="markdown-all">
+          <Helmet>
+            <link
+              rel="stylesheet"
+              type="text/css"
+              href="/PingFangSC/stylesheet.css"
+            />
+            <script>{`
             document.body.style.backgroundColor = 'white'
           `}</script>
-        </Helmet>
-        <div className="first-page">KubeSphere 文档 {version.label}</div>
-        {tableOfContents.edges[0].node.chapters.map(chapter =>
-          this.renderChapter(chapter)
-        )}
-      </div>
+          </Helmet>
+          <div className="first-page">KubeSphere 文档 {version.label}</div>
+          {tableOfContents.edges[0].node.chapters.map(chapter =>
+            this.renderChapter(chapter)
+          )}
+        </div>
+      </Layout>
     )
   }
 }
