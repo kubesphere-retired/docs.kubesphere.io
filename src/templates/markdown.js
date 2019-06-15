@@ -1,18 +1,21 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { translate } from 'react-i18next'
 import styled from 'styled-components'
 import classnames from 'classnames'
 import Viewer from 'viewerjs'
 import 'viewerjs/dist/viewer.css'
 
+import Layout from '../layouts'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Headings from '../components/Headings'
 import Versions from '../components/Versions'
 import SearchResult from '../components/SearchResult'
 import TableOfContents from '../components/TableOfContents/index'
+import WithI18next from '../components/WithI18next'
 
 import './markdown.css'
 import './b16-tomorrow-dark.css'
@@ -32,13 +35,6 @@ class MarkdownTemplate extends React.Component {
       results: [],
       prev: {},
       next: {},
-    }
-
-    if (props.pathContext.lang) {
-      const { i18n } = this.props
-      if (i18n.language !== props.pathContext.lang) {
-        i18n.changeLanguage(props.pathContext.lang)
-      }
     }
   }
 
@@ -157,7 +153,7 @@ class MarkdownTemplate extends React.Component {
 
   handleSearch = query => {
     const { searchUrl } = this.props.data.site.siteMetadata
-    const { version, lang } = this.props.pathContext
+    const { version, lang } = this.props.pageContext
     if (searchUrl) {
       window.open(`${searchUrl}/${version}/${lang}+${query}`)
     } else {
@@ -182,7 +178,7 @@ class MarkdownTemplate extends React.Component {
   }
 
   getSearchResults(query) {
-    const { version, lang } = this.props.pathContext
+    const { version, lang } = this.props.pageContext
     const index = `${version}_${lang}`
     if (!query || !window.__LUNR__) return []
     const lunrIndex = window.__LUNR__[index]
@@ -194,8 +190,7 @@ class MarkdownTemplate extends React.Component {
   }
 
   render() {
-    const { t } = this.props
-    const { slug } = this.props.pathContext
+    const { slug, lang } = this.props.pageContext
     const postNode = this.props.data.postBySlug
 
     const post = postNode.frontmatter
@@ -203,6 +198,7 @@ class MarkdownTemplate extends React.Component {
       post.id = slug
     }
 
+    const { t } = this.props
     const {
       isExpand,
       query,
@@ -213,80 +209,84 @@ class MarkdownTemplate extends React.Component {
     } = this.state
 
     return (
-      <div>
-        <Helmet>
-          <title>{`${post.title} | ${
-            this.props.data.site.siteMetadata.title
-          }`}</title>
-        </Helmet>
-        <BodyGrid>
-          <NavContainer isExpand={isExpand}>
-            <Versions
-              versions={this.props.data.site.siteMetadata.versions}
-              current={postNode.fields.version}
-            />
-            <ToCContainer
-              innerRef={ref => {
-                this.tocRef = ref
-              }}
-            >
-              <TableOfContents
-                chapters={
-                  this.props.data.tableOfContents.edges[0].node.chapters
-                }
+      <Layout data={this.props.data}>
+        <div>
+          <Helmet>
+            <title>{`${post.title} | ${
+              this.props.data.site.siteMetadata.title
+            }`}</title>
+          </Helmet>
+          <BodyGrid>
+            <NavContainer isExpand={isExpand}>
+              <Versions
+                versions={this.props.data.site.siteMetadata.versions}
+                current={postNode.fields.version}
+                lang={lang}
               />
-              <ICP>KubeSphere®️ 2019 All Rights Reserved.</ICP>
-            </ToCContainer>
-          </NavContainer>
-          <MainContainer isExpand={isExpand}>
-            <Header
-              query={query}
-              isExpand={isExpand}
-              onSearch={this.handleSearch}
-              placeholder={t('Quick search')}
-              toggleExpand={this.handleExpand}
-              onQueryChange={this.handleQueryChange}
-            />
-            <MarkdownWrapper>
-              <MarkdownBody
-                className={classnames('md-body', {
-                  ['md-en']: postNode.fields.language === 'en',
-                })}
-                innerRef={ref => {
-                  this.markdownRef = ref
+              <ToCContainer
+                ref={ref => {
+                  this.tocRef = ref
                 }}
               >
-                <MarkdownTitle>{post.title}</MarkdownTitle>
-                <div
+                <TableOfContents
+                  chapters={
+                    this.props.data.tableOfContents.edges[0].node.chapters
+                  }
+                />
+                <ICP>KubeSphere®️ 2019 All Rights Reserved.</ICP>
+              </ToCContainer>
+            </NavContainer>
+            <MainContainer isExpand={isExpand}>
+              <Header
+                query={query}
+                isExpand={isExpand}
+                onSearch={this.handleSearch}
+                placeholder={t('Quick search')}
+                toggleExpand={this.handleExpand}
+                onQueryChange={this.handleQueryChange}
+                pageContext={this.props.pageContext}
+              />
+              <MarkdownWrapper>
+                <MarkdownBody
+                  className={classnames('md-body', {
+                    'md-en': postNode.fields.language === 'en',
+                  })}
                   ref={ref => {
                     this.markdownRef = ref
                   }}
-                  dangerouslySetInnerHTML={{ __html: postNode.html }}
+                >
+                  <MarkdownTitle>{post.title}</MarkdownTitle>
+                  <div
+                    ref={ref => {
+                      this.markdownRef = ref
+                    }}
+                    dangerouslySetInnerHTML={{ __html: postNode.html }}
+                  />
+                </MarkdownBody>
+                <FooterWrapper>
+                  <Footer prev={prev} next={next} />
+                </FooterWrapper>
+              </MarkdownWrapper>
+              <HeadingsWrapper>
+                <Headings
+                  title={postNode.frontmatter.title}
+                  headings={postNode.headings}
+                  current={this.props.location.hash}
+                  onHeadClick={this.handleHeadClick}
                 />
-              </MarkdownBody>
-              <FooterWrapper>
-                <Footer prev={prev} next={next} />
-              </FooterWrapper>
-            </MarkdownWrapper>
-            <HeadingsWrapper>
-              <Headings
-                title={postNode.frontmatter.title}
-                headings={postNode.headings}
-                current={this.props.location.hash}
-                onHeadClick={this.handleHeadClick}
-              />
-            </HeadingsWrapper>
-          </MainContainer>
-        </BodyGrid>
-        <SearchResult
-          query={query}
-          results={results}
-          visible={showSearchResult}
-          onCancel={this.hideSearch}
-          onSearch={this.handleSearch}
-          onQueryChange={this.handleQueryChange}
-        />
-      </div>
+              </HeadingsWrapper>
+            </MainContainer>
+          </BodyGrid>
+          <SearchResult
+            query={query}
+            results={results}
+            visible={showSearchResult}
+            onCancel={this.hideSearch}
+            onSearch={this.handleSearch}
+            onQueryChange={this.handleQueryChange}
+          />
+        </div>
+      </Layout>
     )
   }
 }
@@ -480,4 +480,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default translate('base')(MarkdownTemplate)
+export default WithI18next({ ns: 'common' })(MarkdownTemplate)

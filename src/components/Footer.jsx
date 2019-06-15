@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import isEmpty from 'lodash/isEmpty'
-import { translate } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 import { ReactComponent as Previous } from '../assets/previous.svg'
 import { ReactComponent as Next } from '../assets/next.svg'
@@ -64,4 +64,4 @@ const FooterText = styled.p`
   font-family: Proxima Nova;
 `
 
-export default translate('base')(Footer)
+export default withTranslation()(Footer)

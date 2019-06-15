@@ -14,7 +14,7 @@ const Link = ({ to, ...rest }, { location }) => {
     <GatsbyLink
       to={to}
       {...rest}
-      className={classnames({ ['selected-link']: selected })}
+      className={classnames({ 'selected-link': selected })}
     />
   )
 }
