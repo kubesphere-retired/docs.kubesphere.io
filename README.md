@@ -1,4 +1,4 @@
-# Documents for [KubeSphere](KubeSphere).
+# Documents for [KubeSphere](https://github.com/kubesphere/kubesphere).
 
 [![Build Status](https://travis-ci.org/kubesphere/docs.kubesphere.io.svg)](https://travis-ci.org/kubesphere/docs.kubesphere.io)
 
