@@ -1,6 +1,6 @@
 {
   "version": "advanced-v2.0",
-  "swagger_url": "local",
+  "swagger_url": ["local"],
   "chapters": [
     {
       "name": "DevOps",

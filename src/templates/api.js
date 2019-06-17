@@ -179,6 +179,7 @@ class Main extends React.Component {
 
   render() {
     const { detail } = this.state
+    const { data, groups, definitions } = this.props
     const showDetail = detail && detail.method
 
     return (
@@ -188,14 +189,14 @@ class Main extends React.Component {
         }}
       >
         <MainContent showDetail={showDetail}>
-          {this.props.groups.map(group => (
+          {groups.map(group => (
             <Group id={group.name} key={group.name}>
               <GroupTitle>
                 <h4>{group.name}</h4>
                 <p>{group.description}</p>
               </GroupTitle>
               <GroupContent>
-                {this.props.data
+                {data
                   .filter(item => item.tags.includes(group.name))
                   .map((item, index) => (
                     <Item
@@ -225,7 +226,7 @@ class Main extends React.Component {
         {showDetail && (
           <Detail
             data={detail}
-            definitions={this.props.definitions}
+            definitions={definitions}
             onClose={this.handleClose}
           />
         )}
@@ -239,9 +240,9 @@ class APIDocTemplate extends React.Component {
     super(props)
 
     this.state = {
-      content: safeParseJSON(props.pageContext.content, {}),
+      content: safeParseJSON(props.pageContext.content, []),
       navs: safeParseJSON(props.pageContext.chapters, []),
-      chapter: safeParseJSON(props.pageContext.chapter, []),
+      chapter: safeParseJSON(props.pageContext.chapter, {}),
       definitions: safeParseJSON(props.pageContext.definitions, {}),
     }
   }

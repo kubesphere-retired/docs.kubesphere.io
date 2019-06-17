@@ -1,6 +1,7 @@
 const fs = require('fs')
-const path = require(`path`)
+const path = require('path')
 const axios = require('axios')
+const merge = require('lodash/merge')
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 const localesNSContent = {
@@ -215,12 +216,24 @@ const createAPIPages = ({ graphql, actions }) =>
       if (apiTOC.edges.length > 0) {
         Promise.all(
           apiTOC.edges.map(({ node }) => {
-            if (node.swagger_url === 'local') {
-              const data = require(`./src/data/${node.version}_api.json`)
-              return Promise.resolve({ data: data })
-            } else {
-              return axios.get(node.swagger_url)
-            }
+            return new Promise((resolve, reject) => {
+              const promises = node.swagger_url.map(url => {
+                if (url === 'local') {
+                  const data = require(`./src/data/${node.version}_api.json`)
+                  return Promise.resolve({ data: data })
+                } else {
+                  return axios.get(url).then(resp => ({ data: resp.data }))
+                }
+              })
+
+              Promise.all(promises).then(resp => {
+                const ret = {}
+                resp.forEach(data => {
+                  merge(ret, data)
+                })
+                resolve(ret)
+              })
+            })
           })
         ).then(data => {
           data.forEach((item, index) => {
