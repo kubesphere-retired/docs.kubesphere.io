@@ -90,7 +90,13 @@ module.exports = {
         value: 'express',
       },
     ],
-    searchUrl: 'https://www2.bing.com/search?q=site:docs.kubesphere.io'
+    apiDocuments: [
+      {
+        version: 'advanced-v2.0',
+        swaggerUrl: '/advanced-v2.0_api.json',
+      },
+    ],
+    searchUrl: 'https://www2.bing.com/search?q=site:docs.kubesphere.io',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

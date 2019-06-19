@@ -8,15 +8,75 @@
       "url": "https://kubesphere.io",
       "email": "kubesphere@yunify.com"
     },
+    "x-logo": {
+      "url": "/ApiDocs.svg"
+    },
     "license": { "name": "Apache", "url": "http://www.apache.org/licenses/" },
     "version": "2.0.0"
   },
+  "x-servers": [{ "url": "https://console.kubesphere.io" }],
+  "x-tagGroups": [
+    {
+      "name": "DevOps",
+      "tags": [
+        "DevOps Project",
+        "DevOps Permission",
+        "Pipelines",
+        "Credentials",
+        "SCM",
+        "DevOps Expanded"
+      ]
+    },
+    {
+      "name": "IAM",
+      "tags": ["Users Management", "Roles Management"]
+    },
+    {
+      "name": "Logging",
+      "tags": ["Log Querying", "Logging Configuration"]
+    },
+    {
+      "name": "Monitoring",
+      "tags": [
+        "Cluster Metrics",
+        "Node Metrics",
+        "Namespace Metrics",
+        "Pod Metrics",
+        "Container Metrics",
+        "Workload Metrics",
+        "Workspace Metrics",
+        "Component Metrics"
+      ]
+    },
+    {
+      "name": "Core Resources",
+      "tags": [
+        "Core Resources",
+        "Project Expanded",
+        "Application",
+        "Quota Expanded",
+        "Revision"
+      ]
+    },
+    {
+      "name": "ServiceMesh",
+      "tags": ["ServiceMesh"]
+    },
+    {
+      "name": "Component",
+      "tags": ["expanded component", "application component"]
+    },
+    {
+      "name": "Tenant",
+      "tags": ["tenants", "permission"]
+    }
+  ],
   "paths": {
     "/kapis/devops.kubesphere.io/v1alpha2/devops/check/cron": {
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json", "charset=utf-8"],
-        "tags": ["DevOps", "expanded"],
+        "tags": ["DevOps Expanded"],
         "summary": "Check cron script compile.",
         "operationId": "CheckCron",
         "parameters": [
@@ -45,7 +105,7 @@
       "post": {
         "consumes": ["application/x-www-form-urlencoded", "charset=utf-8"],
         "produces": ["application/json", "charset=utf-8"],
-        "tags": ["DevOps", "expanded"],
+        "tags": ["DevOps Expanded"],
         "summary": "Check pipeline script compile.",
         "operationId": "CheckScriptCompile",
         "parameters": [
@@ -72,7 +132,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "expanded"],
+        "tags": ["DevOps Expanded"],
         "summary": "Get crumb issuer. A CrumbIssuer represents an algorithm to generate a nonce value, known as a crumb, to counter cross site request forgery exploits. Crumbs are typically hashes incorporating information that uniquely identifies an agent that sends a request, along with a guarded secret so that the crumb value cannot be forged by a third party.",
         "operationId": "GetCrumb",
         "responses": {
@@ -91,7 +151,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "expanded"],
+        "tags": ["DevOps Expanded"],
         "summary": "receive webhook request.",
         "operationId": "GithubWebhook",
         "responses": { "200": { "description": "OK" } }
@@ -101,7 +161,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "expanded"],
+        "tags": ["DevOps Expanded"],
         "summary": "Get notification commit by HTTP GET method.",
         "operationId": "GetNotifyCommit",
         "parameters": [
@@ -119,7 +179,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "expanded"],
+        "tags": ["DevOps Expanded"],
         "summary": "Get notify commit by  HTTP POST method.",
         "operationId": "PostNotifyCommit",
         "parameters": [
@@ -139,7 +199,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "scm"],
+        "tags": ["SCM"],
         "summary": "List organizations of SCM",
         "operationId": "GetSCMOrg",
         "parameters": [
@@ -181,7 +241,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "scm"],
+        "tags": ["SCM"],
         "summary": "Get SCM repositories in an organization",
         "operationId": "GetOrgRepo",
         "parameters": [
@@ -246,7 +306,7 @@
       "put": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "scm"],
+        "tags": ["SCM"],
         "summary": "Validate Github personal access token.",
         "operationId": "Validate",
         "parameters": [
@@ -274,7 +334,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "project"],
+        "tags": ["DevOps Project"],
         "summary": "Search DevOps resource.",
         "operationId": "SearchPipelines",
         "parameters": [
@@ -329,7 +389,7 @@
       "post": {
         "consumes": ["application/x-www-form-urlencoded"],
         "produces": ["application/json", "charset=utf-8"],
-        "tags": ["DevOps", "expanded"],
+        "tags": ["DevOps Expanded"],
         "summary": "Convert json to jenkinsfile format. Usually the frontend uses json to edit jenkinsfile",
         "operationId": "ToJenkinsfile",
         "parameters": [
@@ -356,7 +416,7 @@
       "post": {
         "consumes": ["application/x-www-form-urlencoded"],
         "produces": ["application/json", "charset=utf-8"],
-        "tags": ["DevOps", "expanded"],
+        "tags": ["DevOps Expanded"],
         "summary": "Convert jenkinsfile to json format. Usually the frontend uses json to edit jenkinsfile",
         "operationId": "ToJson",
         "parameters": [
@@ -383,7 +443,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "project"],
+        "tags": ["DevOps Project"],
         "summary": "Get devops project",
         "operationId": "GetDevOpsProjectHandler",
         "parameters": [
@@ -409,7 +469,7 @@
       "patch": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "project"],
+        "tags": ["DevOps Project"],
         "summary": "Update devops project",
         "operationId": "UpdateProjectHandler",
         "parameters": [
@@ -443,7 +503,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "credential"],
+        "tags": ["Credentials"],
         "summary": "Get project credential pipeline",
         "operationId": "GetDevOpsProjectCredentialsHandler",
         "parameters": [
@@ -497,7 +557,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "credential"],
+        "tags": ["Credentials"],
         "summary": "Add project credential pipeline",
         "operationId": "CreateDevOpsProjectCredentialHandler",
         "parameters": [
@@ -522,7 +582,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "credential"],
+        "tags": ["Credentials"],
         "summary": "Get project credential pipeline",
         "operationId": "GetDevOpsProjectCredentialHandler",
         "parameters": [
@@ -573,7 +633,7 @@
       "put": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "credential"],
+        "tags": ["Credentials"],
         "summary": "Update project credential pipeline",
         "operationId": "UpdateDevOpsProjectCredentialHandler",
         "parameters": [
@@ -603,7 +663,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "credential"],
+        "tags": ["Credentials"],
         "summary": "delete project credential pipeline",
         "operationId": "DeleteDevOpsProjectCredentialHandler",
         "parameters": [
@@ -629,7 +689,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "permission"],
+        "tags": ["DevOps Permission"],
         "summary": "Get devops project default roles",
         "operationId": "GetDevOpsProjectDefaultRoles",
         "parameters": [
@@ -663,7 +723,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "permission"],
+        "tags": ["DevOps Permission"],
         "summary": "Get devops project members",
         "operationId": "GetDevOpsProjectMembersHandler",
         "parameters": [
@@ -714,7 +774,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "permission"],
+        "tags": ["DevOps Permission"],
         "summary": "Add devops project members",
         "operationId": "AddDevOpsProjectMemberHandler",
         "parameters": [
@@ -742,7 +802,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "permission"],
+        "tags": ["DevOps Permission"],
         "summary": "Get devops project member",
         "operationId": "GetDevOpsProjectMemberHandler",
         "parameters": [
@@ -775,7 +835,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "permission"],
+        "tags": ["DevOps Permission"],
         "summary": "Delete devops project members",
         "operationId": "DeleteDevOpsProjectMemberHandler",
         "parameters": [
@@ -799,7 +859,7 @@
       "patch": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "permission"],
+        "tags": ["DevOps Permission"],
         "summary": "Update devops project members",
         "operationId": "UpdateDevOpsProjectMemberHandler",
         "parameters": [
@@ -831,7 +891,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Add devops project pipeline",
         "operationId": "CreateDevOpsProjectPipelineHandler",
         "parameters": [
@@ -865,7 +925,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get a Pipeline Inside a DevOps Project",
         "operationId": "GetPipeline",
         "parameters": [
@@ -898,7 +958,7 @@
       "put": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Update devops project pipeline",
         "operationId": "UpdateDevOpsProjectPipelineHandler",
         "parameters": [
@@ -937,7 +997,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Delete devops project pipeline",
         "operationId": "DeleteDevOpsProjectPipelineHandler",
         "parameters": [
@@ -963,7 +1023,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get devops project pipeline sonarStatus",
         "operationId": "GetMultiBranchesPipelineSonarStatusHandler",
         "parameters": [
@@ -1011,7 +1071,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get devops project pipeline config",
         "operationId": "GetDevOpsProjectPipelineHandler",
         "parameters": [
@@ -1046,7 +1106,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get devops project pipeline sonarStatus",
         "operationId": "GetPipelineSonarStatusHandler",
         "parameters": [
@@ -1087,7 +1147,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get MultiBranch pipeline branches.",
         "operationId": "GetPipeBranch",
         "parameters": [
@@ -1152,7 +1212,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get Pipeline run by branch.",
         "operationId": "GetBranchPipeline",
         "parameters": [
@@ -1194,7 +1254,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Run pipeline.",
         "operationId": "RunBranchPipeline",
         "parameters": [
@@ -1242,7 +1302,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get all runs in a branch",
         "operationId": "GetBranchPipelineRun",
         "parameters": [
@@ -1298,7 +1358,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get pipeline artifacts.",
         "operationId": "GetBranchArtifacts",
         "parameters": [
@@ -1367,7 +1427,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get Pipelines run log.",
         "operationId": "GetBranchRunLog",
         "parameters": [
@@ -1416,7 +1476,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get MultiBranch Pipeline run nodes.",
         "operationId": "GetPipelineRunNodesbyBranch",
         "parameters": [
@@ -1479,7 +1539,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get steps in node by branch.",
         "operationId": "GetBranchNodeSteps",
         "parameters": [
@@ -1548,7 +1608,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get pipeline steps status.",
         "operationId": "GetBranchStepsStatus",
         "parameters": [
@@ -1618,7 +1678,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Pauses pipeline execution and allows the user to interact and control the flow of the build.",
         "operationId": "CheckBranchPipeline",
         "parameters": [
@@ -1678,7 +1738,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get pipelines step log.",
         "operationId": "GetBranchStepLog",
         "parameters": [
@@ -1741,7 +1801,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Gives steps details inside a pipeline node by branch. For a Stage, the steps will include all the steps defined inside the stage.",
         "operationId": "GetBranchNodesDetail",
         "parameters": [
@@ -1804,7 +1864,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Replay pipeline",
         "operationId": "ReplayBranchPipeline",
         "parameters": [
@@ -1853,7 +1913,7 @@
       "put": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Stop pipeline in running",
         "operationId": "StopBranchPipeline",
         "parameters": [
@@ -1918,7 +1978,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get index console log.",
         "operationId": "GetConsoleLog",
         "parameters": [
@@ -1944,7 +2004,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Run pipeline.",
         "operationId": "RunPipeline",
         "parameters": [
@@ -1985,7 +2045,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Search DevOps Pipelines runs in branch.",
         "operationId": "SearchPipelineRuns",
         "parameters": [
@@ -2047,7 +2107,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get run pipeline in project.",
         "operationId": "GetPipelineRun",
         "parameters": [
@@ -2089,7 +2149,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get pipeline artifacts.",
         "operationId": "GetArtifacts",
         "parameters": [
@@ -2151,7 +2211,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get Pipelines run log.",
         "operationId": "GetRunLog",
         "parameters": [
@@ -2193,7 +2253,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get Pipeline run nodes.",
         "operationId": "GetPipelineRunNodes",
         "parameters": [
@@ -2248,7 +2308,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get steps in node.",
         "operationId": "GetNodeSteps",
         "parameters": [
@@ -2310,7 +2370,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get pipeline steps status.",
         "operationId": "GetStepsStatus",
         "parameters": [
@@ -2373,7 +2433,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Pauses pipeline execution and allows the user to interact and control the flow of the build.",
         "operationId": "CheckPipeline",
         "parameters": [
@@ -2426,7 +2486,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["text/plain; charset=utf-8"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Get pipelines step log.",
         "operationId": "GetStepLog",
         "parameters": [
@@ -2482,7 +2542,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Gives steps details inside a pipeline node. For a Stage, the steps will include all the steps defined inside the stage.",
         "operationId": "GetNodesDetail",
         "parameters": [
@@ -2545,7 +2605,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Replay pipeline",
         "operationId": "ReplayPipeline",
         "parameters": [
@@ -2587,7 +2647,7 @@
       "put": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Stop pipeline in running",
         "operationId": "StopPipeline",
         "parameters": [
@@ -2645,7 +2705,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["text/html; charset=utf-8"],
-        "tags": ["DevOps", "pipeline"],
+        "tags": ["Pipelines"],
         "summary": "Start a build.",
         "operationId": "ScanBranch",
         "parameters": [
@@ -2704,7 +2764,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "List all cluster roles.",
         "operationId": "ListClusterRoles",
         "responses": {
@@ -2723,7 +2783,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "List all policy rules of the specified cluster role.",
         "operationId": "ListClusterRoleRules",
         "parameters": [
@@ -2757,7 +2817,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "List all users that are bind the cluster role.",
         "operationId": "ListClusterRoleUsers",
         "parameters": [
@@ -2785,7 +2845,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "List all policy rules of the specified role.",
         "operationId": "ListDevopsRoleRules",
         "parameters": [
@@ -3017,7 +3077,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "This method is used to retrieve the roles that are assigned to the user in the specified namespace.",
         "operationId": "ListRoles",
         "parameters": [
@@ -3045,7 +3105,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "List all policy rules of the specified role.",
         "operationId": "ListRoleRules",
         "parameters": [
@@ -3086,7 +3146,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "This method is used to retrieve the users that are bind the role in the specified namespace.",
         "operationId": "ListRoleUsers",
         "parameters": [
@@ -3127,7 +3187,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "List all users in the specified namespace",
         "operationId": "ListNamespaceUsers",
         "parameters": [
@@ -3161,7 +3221,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "Get the mapping relationships between cluster roles and policy rules.",
         "operationId": "ClusterRulesMapping",
         "responses": {
@@ -3186,7 +3246,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "Get the mapping relationships between namespaced roles and policy rules.",
         "operationId": "RulesMapping",
         "responses": {
@@ -3211,7 +3271,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "List all users.",
         "operationId": "ListUsers",
         "responses": {
@@ -3228,7 +3288,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "Create a user account.",
         "operationId": "CreateUser",
         "parameters": [
@@ -3255,7 +3315,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "Describes the specified user.",
         "operationId": "DescribeUser",
         "parameters": [
@@ -3281,7 +3341,7 @@
       "put": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "Updates information about the specified user.",
         "operationId": "UpdateUser",
         "parameters": [
@@ -3313,7 +3373,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "Remove a specified user.",
         "operationId": "DeleteUser",
         "parameters": [
@@ -3341,7 +3401,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "This method is used to retrieve the \"login logs\" for the specified user.",
         "operationId": "UserLoginLog",
         "parameters": [
@@ -3369,7 +3429,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "This method is used to retrieve all the roles that are assigned to the user.",
         "operationId": "ListUserRoles",
         "parameters": [
@@ -3397,7 +3457,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "List all members in the specified workspace.",
         "operationId": "ListWorkspaceUsers",
         "parameters": [
@@ -3423,7 +3483,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "Invite members to a workspace.",
         "operationId": "InviteUser",
         "parameters": [
@@ -3457,7 +3517,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "Describes the specified user.",
         "operationId": "DescribeWorkspaceUser",
         "parameters": [
@@ -3494,7 +3554,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "users"],
+        "tags": ["Users Management"],
         "summary": "Remove members from workspace.",
         "operationId": "RemoveUser",
         "parameters": [
@@ -3529,7 +3589,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "List all workspace roles.",
         "operationId": "ListWorkspaceRoles",
         "parameters": [
@@ -3557,7 +3617,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "Describes the workspace role.",
         "operationId": "DescribeWorkspaceRole",
         "parameters": [
@@ -3592,7 +3652,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["IAM", "roles"],
+        "tags": ["Roles Management"],
         "summary": "List all policy rules of the specified workspace role.",
         "operationId": "ListWorkspaceRoleRules",
         "parameters": [
@@ -3633,7 +3693,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Log Querying"],
         "summary": "Log query against the cluster.",
         "operationId": "LoggingQueryCluster",
         "parameters": [
@@ -3766,7 +3826,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Log Querying"],
         "summary": "List all Fluent bit filter plugins. This API is work-in-process.",
         "operationId": "LoggingQueryFluentbitFilters",
         "responses": { "200": { "description": "OK" } }
@@ -3774,7 +3834,7 @@
       "post": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Log Querying"],
         "summary": "Add a new Fluent bit filter plugin. This API is work-in-process.",
         "operationId": "LoggingUpdateFluentbitFilters",
         "responses": { "200": { "description": "OK" } }
@@ -3784,7 +3844,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Logging Configuration"],
         "summary": "List all Fluent bit output plugins.",
         "operationId": "LoggingQueryFluentbitOutputs",
         "responses": {
@@ -3801,7 +3861,7 @@
       "post": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Logging Configuration"],
         "summary": "Add a new Fluent bit output plugin.",
         "operationId": "LoggingInsertFluentbitOutput",
         "parameters": [
@@ -3828,7 +3888,7 @@
       "post": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Logging Configuration"],
         "summary": "Update a Fluent bit output plugin.",
         "operationId": "LoggingUpdateFluentbitOutput",
         "parameters": [
@@ -3860,7 +3920,7 @@
       "delete": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Logging Configuration"],
         "summary": "Delete a Fluent bit output plugin.",
         "operationId": "LoggingDeleteFluentbitOutput",
         "parameters": [
@@ -3888,7 +3948,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Log Querying"],
         "summary": "Log query against a specific namespace.",
         "operationId": "LoggingQueryNamespace",
         "parameters": [
@@ -4004,7 +4064,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Log Querying"],
         "summary": "Log query against a specific pod.",
         "operationId": "LoggingQueryPod",
         "parameters": [
@@ -4103,7 +4163,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Log Querying"],
         "summary": "Log query against a specific container.",
         "operationId": "LoggingQueryContainer",
         "parameters": [
@@ -4197,7 +4257,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Log Querying"],
         "summary": "Log query against a specific workload.",
         "operationId": "LoggingQueryWorkload",
         "parameters": [
@@ -4308,7 +4368,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Logging"],
+        "tags": ["Log Querying"],
         "summary": "Log query against a specific workspace.",
         "operationId": "LoggingQueryWorkspace",
         "parameters": [
@@ -4436,7 +4496,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Cluster Metrics"],
         "summary": "Get cluster-level metrics.",
         "operationId": "MonitorCluster",
         "parameters": [
@@ -4487,7 +4547,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Component Metrics"],
         "summary": "Get service component-level metrics.",
         "operationId": "MonitorComponent",
         "parameters": [
@@ -4545,7 +4605,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Namespace Metrics"],
         "summary": "Get namespace-level metrics.",
         "operationId": "MonitorAllNamespaces",
         "parameters": [
@@ -4611,7 +4671,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Namespace Metrics"],
         "summary": "Get specific namespace metrics.",
         "operationId": "MonitorSpecificNamespace",
         "parameters": [
@@ -4669,7 +4729,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Pod Metrics"],
         "summary": "Get pod-level metrics of a given namespace.",
         "operationId": "MonitorAllPodsOfSpecificNamespace",
         "parameters": [
@@ -4742,7 +4802,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Pod Metrics"],
         "summary": "Get specific pod metrics.",
         "operationId": "MonitorSpecificPodOfSpecificNamespace",
         "parameters": [
@@ -4807,7 +4867,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Container Metrics"],
         "summary": "Get container-level metrics under a given namespace and pod.",
         "operationId": "MonitorAllContainersOfSpecificNamespace",
         "parameters": [
@@ -4887,7 +4947,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Container Metrics"],
         "summary": "Get specific container metrics under a given node and pod.",
         "operationId": "MonitorSpecificContainerOfSpecificNamespace",
         "parameters": [
@@ -4959,7 +5019,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Workload Metrics"],
         "summary": "Get workload-level metrics under a given namespace.",
         "operationId": "MonitorAllWorkloadsOfSpecificNamespace",
         "parameters": [
@@ -5032,7 +5092,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Workload Metrics"],
         "summary": "Get workload-level metrics of specific workload kind.",
         "operationId": "MonitorAllWorkloadsOfSpecificKind",
         "parameters": [
@@ -5113,7 +5173,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Workload Metrics"],
         "summary": "Get specific workload metrics under a given namespace.",
         "operationId": "MonitorSpecificWorkload",
         "parameters": [
@@ -5186,7 +5246,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Node Metrics"],
         "summary": "Get node-level metrics.",
         "operationId": "MonitorAllNodes",
         "parameters": [
@@ -5252,7 +5312,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Node Metrics"],
         "summary": "Get specific node metrics.",
         "operationId": "MonitorSpecificNode",
         "parameters": [
@@ -5310,7 +5370,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Node Metrics"],
         "summary": "Get metrics of all pod on a specific node.",
         "operationId": "MonitorAllPodsOnSpecificNode",
         "parameters": [
@@ -5383,7 +5443,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Node Metrics"],
         "summary": "Get specific pod metrics under a given namespace.",
         "operationId": "MonitorSpecificPodOnSpecificNode",
         "parameters": [
@@ -5448,7 +5508,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Node Metrics"],
         "summary": "Get container-level metrics under a given node and pod.",
         "operationId": "MonitorAllContainersOnSpecificNode",
         "parameters": [
@@ -5528,7 +5588,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Workspace Metrics"],
         "summary": "Get workspace-level metrics.",
         "operationId": "MonitorAllWorkspaces",
         "parameters": [
@@ -5594,7 +5654,7 @@
       "get": {
         "consumes": ["application/json", "application/xml"],
         "produces": ["application/json"],
-        "tags": ["Monitoring"],
+        "tags": ["Workspace Metrics"],
         "summary": "Get specific workspace metrics.",
         "operationId": "MonitorSpecificWorkspace",
         "parameters": [
@@ -5652,7 +5712,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "expanded"],
+        "tags": ["Job Expanded"],
         "summary": "Job rerun",
         "operationId": "RerunJob",
         "parameters": [
@@ -5693,7 +5753,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "expanded"],
+        "tags": ["Node Expanded"],
         "summary": "Drain node",
         "operationId": "DrainNode",
         "parameters": [
@@ -5721,7 +5781,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "application"],
+        "tags": ["Application"],
         "summary": "List applications in cluster",
         "operationId": "ListApplication",
         "parameters": [
@@ -5769,7 +5829,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Component"],
+        "tags": ["Components"],
         "operationId": "GetComponents",
         "responses": {
           "200": {
@@ -5791,7 +5851,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Component"],
+        "tags": ["Components"],
         "operationId": "GetComponentStatus",
         "parameters": [
           {
@@ -5818,7 +5878,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "expanded"],
+        "tags": ["Resources expanded"],
         "summary": "secret git read verify",
         "operationId": "GitReadVerify",
         "parameters": [
@@ -5845,7 +5905,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Component"],
+        "tags": ["Components"],
         "operationId": "GetSystemHealthStatus",
         "responses": {
           "200": {
@@ -5863,7 +5923,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "application"],
+        "tags": ["Application"],
         "summary": "List applications",
         "operationId": "ListNamespacedApplication",
         "parameters": [
@@ -5904,7 +5964,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "application"],
+        "tags": ["Application"],
         "summary": "Deploy application",
         "operationId": "DeployApplication",
         "parameters": [
@@ -5940,7 +6000,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "application"],
+        "tags": ["Application"],
         "summary": "Describe application",
         "operationId": "DescribeApplication",
         "parameters": [
@@ -5973,7 +6033,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "application"],
+        "tags": ["Application"],
         "summary": "Delete application",
         "operationId": "DeleteApplication",
         "parameters": [
@@ -6008,7 +6068,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "revision"],
+        "tags": ["Revision"],
         "summary": "Handle daemonset operation",
         "operationId": "GetDaemonSetRevision",
         "parameters": [
@@ -6092,7 +6152,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "expanded"],
+        "tags": ["Quota Expanded"],
         "summary": "get specified namespace's resource quota and usage",
         "operationId": "GetNamespaceQuotas",
         "parameters": [
@@ -6120,7 +6180,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "router"],
+        "tags": ["Project Expanded"],
         "summary": "List router of a specified project",
         "operationId": "GetRouter",
         "parameters": [
@@ -6137,7 +6197,7 @@
       "put": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "router"],
+        "tags": ["Project Expanded"],
         "summary": "Update a router for a specified project",
         "operationId": "UpdateRouter",
         "parameters": [
@@ -6154,7 +6214,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "router"],
+        "tags": ["Project Expanded"],
         "summary": "Create a router for a specified project",
         "operationId": "CreateRouter",
         "parameters": [
@@ -6171,7 +6231,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "router"],
+        "tags": ["Project Expanded"],
         "summary": "List router of a specified project",
         "operationId": "DeleteRouter",
         "parameters": [
@@ -6190,7 +6250,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "revision"],
+        "tags": ["Revision"],
         "summary": "Handle statefulset operation",
         "operationId": "GetStatefulSetRevision",
         "parameters": [
@@ -6232,7 +6292,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources"],
+        "tags": ["Project Expanded"],
         "summary": "get abnormal workloads' count of specified namespace",
         "operationId": "GetNamespacesResourceStatus",
         "parameters": [
@@ -6260,7 +6320,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources"],
+        "tags": ["Core Resources"],
         "summary": "Namespace level resource query",
         "operationId": "ListNamespacedResources",
         "parameters": [
@@ -6310,7 +6370,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "expanded"],
+        "tags": ["Quota Expanded"],
         "summary": "get whole cluster's resource usage",
         "operationId": "GetClusterQuotas",
         "deprecated": true,
@@ -6330,7 +6390,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "expanded"],
+        "tags": ["Registries"],
         "summary": "docker registry verify",
         "operationId": "RegistryVerify",
         "parameters": [
@@ -6357,7 +6417,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "router"],
+        "tags": ["Project Expanded"],
         "summary": "List all routers",
         "operationId": "GetAllRouters",
         "responses": {
@@ -6376,7 +6436,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["text/plain"],
-        "tags": ["Resources", "expanded"],
+        "tags": ["KubeCtl"],
         "summary": "get users' kubeconfig",
         "operationId": "GetKubeconfig",
         "parameters": [
@@ -6398,7 +6458,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources", "expanded"],
+        "tags": ["KubeCtl"],
         "summary": "get user's kubectl pod",
         "operationId": "GetKubectl",
         "parameters": [
@@ -6426,7 +6486,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources"],
+        "tags": ["Project Expanded"],
         "summary": "get abnormal workloads' count of whole cluster",
         "operationId": "GetClusterResourceStatus",
         "responses": {
@@ -6445,7 +6505,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Resources"],
+        "tags": ["Core Resources"],
         "summary": "Cluster level resource query",
         "operationId": "ListResources",
         "parameters": [
@@ -7320,7 +7380,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "permission"],
+        "tags": ["Tenant permission"],
         "summary": "List the rules for the current user",
         "operationId": "ListDevopsRules",
         "parameters": [
@@ -7348,7 +7408,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "Query cluster-level logs in a multi-tenants environment",
         "operationId": "LogQuery",
         "parameters": [
@@ -7481,7 +7541,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "permission"],
+        "tags": ["Tenant permission"],
         "summary": "List the rules for the current user",
         "operationId": "ListNamespaceRules",
         "parameters": [
@@ -7509,7 +7569,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "List workspace by user",
         "operationId": "ListWorkspaces",
         "responses": {
@@ -7528,7 +7588,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "Describe workspace",
         "operationId": "DescribeWorkspace",
         "parameters": [
@@ -7556,7 +7616,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "List devops projects for the current user",
         "operationId": "ListDevopsProjects",
         "parameters": [
@@ -7588,7 +7648,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "Create devops project",
         "operationId": "CreateDevopsProject",
         "parameters": [
@@ -7622,7 +7682,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "Delete devops project",
         "operationId": "DeleteDevopsProject",
         "parameters": [
@@ -7657,7 +7717,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "List the devops projects for the workspace member",
         "operationId": "ListDevopsProjectsByUsername",
         "parameters": [
@@ -7707,7 +7767,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "List the namespaces for the workspace member",
         "operationId": "ListNamespacesByUsername",
         "parameters": [
@@ -7748,7 +7808,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "List the namespaces for the current user",
         "operationId": "ListNamespaces",
         "parameters": [
@@ -7780,7 +7840,7 @@
       "post": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "Create namespace",
         "operationId": "CreateNamespace",
         "parameters": [
@@ -7814,7 +7874,7 @@
       "delete": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "resources"],
+        "tags": ["Tenant resources"],
         "summary": "Delete namespace",
         "operationId": "DeleteNamespace",
         "parameters": [
@@ -7849,7 +7909,7 @@
       "get": {
         "consumes": ["application/json"],
         "produces": ["application/json"],
-        "tags": ["Tenant", "permission"],
+        "tags": ["Tenant permission"],
         "summary": "List the rules for the current user",
         "operationId": "ListWorkspaceRules",
         "parameters": [
@@ -7875,6 +7935,9 @@
     }
   },
   "definitions": {
+    "inf.Scale": {},
+    "resource.Scale": {},
+    "error": {},
     "._links": {
       "properties": {
         "actions": { "$ref": "#/definitions/.actions" },
@@ -8698,7 +8761,7 @@
           "type": "string"
         },
         "status": {
-          "description": "DevOps project's status. e.g. active",
+          "description": "DevOps Project's status. e.g. active",
           "type": "string"
         },
         "visibility": { "description": "Desperated Field", "type": "string" },

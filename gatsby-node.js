@@ -1,7 +1,5 @@
 const fs = require('fs')
 const path = require('path')
-const axios = require('axios')
-const merge = require('lodash/merge')
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 const localesNSContent = {
@@ -93,25 +91,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 
-const processSwaggerData = paths => {
-  const groupedPaths = {}
-
-  Object.keys(paths).forEach(key => {
-    const path = paths[key]
-    const methods = Object.keys(path)
-    methods.forEach(method => {
-      const tags = path[method].tags
-      tags &&
-        tags.forEach(tag => {
-          groupedPaths[tag] = groupedPaths[tag] || []
-          groupedPaths[tag].push({ method, path: key, ...path[method] })
-        })
-    })
-  })
-
-  return groupedPaths
-}
-
 const createMarkdownPages = ({ graphql, actions }) =>
   new Promise(resolve => {
     const { createPage, createRedirect } = actions
@@ -191,95 +170,31 @@ const createMarkdownPages = ({ graphql, actions }) =>
 
 const createAPIPages = ({ graphql, actions }) =>
   new Promise(resolve => {
-    const { createPage, createRedirect } = actions
+    const { createPage } = actions
 
     graphql(`
       {
-        apiTOC: allContentJson(filter: { swagger_url: { ne: null } }) {
-          edges {
-            node {
+        site {
+          siteMetadata {
+            apiDocuments {
               version
-              swagger_url
-              chapters {
-                name
-                description
-                groups {
-                  name
-                  description
-                }
-              }
+              swaggerUrl
             }
           }
         }
       }
-    `).then(({ data: { apiTOC } }) => {
-      if (apiTOC.edges.length > 0) {
-        Promise.all(
-          apiTOC.edges.map(({ node }) => {
-            return new Promise((resolve, reject) => {
-              const promises = node.swagger_url.map(url => {
-                if (url === 'local') {
-                  const data = require(`./src/data/${node.version}_api.json`)
-                  return Promise.resolve({ data: data })
-                } else {
-                  return axios.get(url).then(resp => ({ data: resp.data }))
-                }
-              })
-
-              Promise.all(promises).then(resp => {
-                const ret = {}
-                resp.forEach(data => {
-                  merge(ret, data)
-                })
-                resolve(ret)
-              })
-            })
-          })
-        ).then(data => {
-          data.forEach((item, index) => {
-            if (item.data) {
-              const swaggerData = processSwaggerData(item.data.paths)
-              const edge = apiTOC.edges[index]
-
-              let firstPath
-
-              edge.node.chapters.forEach(chapter => {
-                const pagePath = `/${
-                  edge.node.version
-                }/api/${chapter.name.toLowerCase()}`
-
-                if (!firstPath) {
-                  firstPath = pagePath
-                }
-
-                createPage({
-                  path: pagePath,
-                  component: path.resolve(`./src/templates/api.js`),
-                  context: {
-                    version: edge.node.version,
-                    chapter: JSON.stringify(chapter),
-                    chapters: JSON.stringify(edge.node.chapters),
-                    content: JSON.stringify(swaggerData[chapter.name]),
-                    definitions: JSON.stringify(item.data.definitions),
-                  },
-                })
-              })
-
-              if (firstPath) {
-                createRedirect({
-                  fromPath: `/${edge.node.version}/api`,
-                  isPermanent: true,
-                  redirectInBrowser: true,
-                  toPath: firstPath,
-                })
-              }
-            }
-          })
-          resolve()
+    `).then(({ data: { site } }) => {
+      site.siteMetadata.apiDocuments.forEach(doc => {
+        createPage({
+          path: `/${doc.version}/api`,
+          component: path.resolve(`./src/templates/api.js`),
+          context: {
+            version: doc.version,
+            swaggerUrl: doc.swaggerUrl,
+          },
         })
-      } else {
-        resolve()
-      }
+      })
+      resolve()
     })
   })
 
