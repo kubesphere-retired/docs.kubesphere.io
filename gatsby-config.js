@@ -96,7 +96,7 @@ module.exports = {
         swaggerUrls: [
           {
             name: 'kubesphere',
-            url: 'https://console.kubesphere.io/swagger-ui/api.json',
+            url: 'http://cors.apis.guru/https://console.kubesphere.io/swagger-ui/api.json',
           },
           {
             name: 'notification',
