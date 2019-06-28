@@ -93,7 +93,17 @@ module.exports = {
     apiDocuments: [
       {
         version: 'advanced-v2.0',
-        swaggerUrl: '/advanced-v2.0_api.json',
+        swaggerUrls: [
+          {
+            name: 'kubesphere',
+            url: '\\\\cors.apis.guru/https://console.kubesphere.io/swagger-ui/api.json',
+          },
+          {
+            name: 'notification',
+            url:
+              'https://raw.githubusercontent.com/openpitrix/notification/master/doc/ks_api_json/api.swagger.json',
+          },
+        ],
       },
     ],
     searchUrl: 'https://www2.bing.com/search?q=site:docs.kubesphere.io',

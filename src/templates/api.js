@@ -201,6 +201,11 @@ const style = `
     height: 80px;
     margin-bottom: 0;
   }
+
+  label[type="tag"] > span {
+    font-weight: 500;
+    font-size: 14px;
+  }
 `
 
 class APIDocTemplate extends React.Component {
@@ -215,7 +220,10 @@ class APIDocTemplate extends React.Component {
         <Helmet>
           <style>{style}</style>
         </Helmet>
-        <RedocStandalone specUrl={swaggerUrl} options={{ theme: THEME }} />
+        <RedocStandalone
+          specUrl={`${swaggerUrl}?_=${new Date().getTime()}`}
+          options={{ theme: THEME }}
+        />
       </Layout>
     )
   }

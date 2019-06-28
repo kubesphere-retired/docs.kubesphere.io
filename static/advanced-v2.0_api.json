@@ -14,7 +14,15 @@
     "license": { "name": "Apache", "url": "http://www.apache.org/licenses/" },
     "version": "2.0.0"
   },
-  "x-servers": [{ "url": "https://console.kubesphere.io" }],
+  "externalDocs": {
+    "description": "> Read Notification API documents.",
+    "url": "/advanced-v2.0/api/notification"
+  },
+  "x-servers": [
+    {
+      "url": "https://console.kubesphere.io/"
+    }
+  ],
   "x-tagGroups": [
     {
       "name": "DevOps",
