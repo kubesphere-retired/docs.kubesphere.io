@@ -12,7 +12,7 @@ title: "日志查询"
 
 ## 日志系统架构
 
-![日志系统架构](https://pek3b.qingstor.com/kubesphere-docs/png/20190410010910.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190623121834.png)
 
 KubeSphere 的日志系统目前是通过 FluentBit Operator 在集群的所有节点上统一部署和配置 Fluent Bit，由 Fluent Bit 进行收集所有容器的日志信息，然后直接传到 Elasticsearch，集群管理员也可以指定 Kafka 或 Fluentd 等存储、消息队列中。
 

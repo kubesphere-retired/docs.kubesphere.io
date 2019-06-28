@@ -47,9 +47,9 @@ KubeSphere 多租户体系中，将资源划分为以下三个层级：
 
 项目和工程的创建者，可以通过邀请成员的方式将自己的项目共享给其他用户，赋予不同的成员不同的角色，在权限上加以区分。
 
-## IAM架构
+## IAM 架构
 
-![IAM架构](/api-design.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190627223641.png)
 
 
 ## 详细说明
