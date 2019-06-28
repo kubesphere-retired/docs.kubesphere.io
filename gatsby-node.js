@@ -178,21 +178,26 @@ const createAPIPages = ({ graphql, actions }) =>
           siteMetadata {
             apiDocuments {
               version
-              swaggerUrl
+              swaggerUrls {
+                name
+                url
+              }
             }
           }
         }
       }
     `).then(({ data: { site } }) => {
       site.siteMetadata.apiDocuments.forEach(doc => {
-        createPage({
-          path: `/${doc.version}/api`,
-          component: path.resolve(`./src/templates/api.js`),
-          context: {
-            version: doc.version,
-            swaggerUrl: doc.swaggerUrl,
-          },
-        })
+        doc.swaggerUrls.forEach(item => {
+          createPage({
+            path: `/${doc.version}/api/${item.name}`,
+            component: path.resolve(`./src/templates/api.js`),
+            context: {
+              version: doc.version,
+              swaggerUrl: item.url,
+            },
+          })
+        });
       })
       resolve()
     })
