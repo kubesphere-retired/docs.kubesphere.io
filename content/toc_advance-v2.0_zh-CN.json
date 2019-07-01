@@ -510,6 +510,24 @@
       ]
     },
     {
+      "title": "API 文档",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "如何调用 KubeSphere API",
+          "entry": "./advanced-v2.0/zh-CN/api-reference/api-guide.md"
+        },
+        {
+          "title": "API 常用术语对照",
+          "entry": "./advanced-v2.0/zh-CN/api-reference/api-glossary.md"
+        },
+        {
+          "title": "监控指标说明",
+          "entry": "./advanced-v2.0/zh-CN/api-reference/monitoring-metrics.md"
+        }
+      ]
+    },
+    {
       "title": "常见问题",
       "icon": "/problem.svg",
       "chapters": [
