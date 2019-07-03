@@ -20,17 +20,19 @@ ks-apigateway 是 KubeSphere 的 API 网关，当您部署 KubeSphere 之后，�
 1、使用 admin 账户登录 kubesphere，打开 terminal，执行下述命令。
 
 ```bash
-kubectl -n kubesphere-system patch svc ks-apigateway -p '{"spec":{"type":"NodePort"}}'
+$ kubectl -n kubesphere-system patch svc ks-apigateway -p '{"spec":{"type":"NodePort"}}'
+service/ks-apigateway patched
 ```
 
-2、通过以下命令查看生成的端口号。
+2、通过以下命令查看生成的端口号，如下查看的端口号返回是 31078。
 
 ```bash
-kubectl -n kubesphere-system get svc ks-apigateway -o jsonpath='{.spec.ports[0].nodePort}'
+$ kubectl -n kubesphere-system get svc ks-apigateway -o jsonpath='{.spec.ports[0].nodePort}'
+31078
 ```
 
-## 第二步：通过 NodePort 访问 API
+## 第二步：访问 API
 
-API Gateway 可以通过集群中任一节点的 `节点IP:NodePort` 调用，请参考 API docs。
+API Gateway 可以通过集群中任一节点的 `节点IP:NodePort`，请参考 API docs。
 
 **TBD**

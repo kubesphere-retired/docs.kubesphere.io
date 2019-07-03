@@ -1,8 +1,8 @@
 ---
-title: "物理资源监控"
+title: "集群状态监控"
 ---
 
-KubeSphere 监控中心在 **物理资源监控** 提供了物理资源层级的 CPU、内存、网络和磁盘等相关指标的监控，并支持回看历史监控和节点用量排行。物理资源状态在控制台的 **平台管理 → 监控中心** 页面可供查看。
+KubeSphere 监控中心在 **集群状态监控** 提供了集群的 CPU、内存、网络和磁盘等相关指标的监控，并支持回看历史监控和节点用量排行。在控制台的 **平台管理 → 监控中心** 页面可查看集群状态的监控指标。
 
 ## 前提条件
 
@@ -10,7 +10,7 @@ KubeSphere 监控中心在 **物理资源监控** 提供了物理资源层级的
 
 ## 查看集群状态
 
-在左侧选择 **物理资源监控**，可以看到集群状态的监控页面，包括 **集群节点状态、组件状态、集群资源使用情况** 等三个部分。
+在左侧选择 **集群状态**，可以看到集群状态的监控页面，包括 **集群节点状态、组件状态、集群资源使用情况** 等三个部分。
 
 ![集群状态监控](/cluster-status-monitoring.png)
 
@@ -45,9 +45,9 @@ KubeSphere 监控中心在 **物理资源监控** 提供了物理资源层级的
 ![集群资源使用情况](/cluster-resources-monitoring.png)
 
 
-## 查看历史监控
+## 物理资源监控
 
-历史监控数据能够帮助用户观察和建立资源和集群性能的正常标准，KubeSphere 支持查看集群物理资源的 7 天以内的监控数据，包括 CPU 利用率、内存利用率、CPU 平均负载 (1 分钟 / 5 分钟 / 15 分钟)、inode 使用率、磁盘吞吐 (读/写)、IOPS (读/写)、网卡速率 (出/入)、容器组运行状态。KubeSphere 支持自定义时间范围和时间间隔来查看历史监控状况。以下分别简单介绍每一项监控指标的意义。
+物理资源监控的数据能够帮助用户观察和建立资源和集群性能的正常标准，KubeSphere 支持查看集群 7 天以内的监控数据，包括 CPU 利用率、内存利用率、CPU 平均负载 (1 分钟 / 5 分钟 / 15 分钟)、inode 使用率、磁盘吞吐 (读/写)、IOPS (读/写)、网卡速率 (出/入)、容器组运行状态。KubeSphere 支持自定义时间范围和时间间隔来查看历史监控状况。以下分别简单介绍每一项监控指标的意义。
 
 ![历史监控](/history-monitoring-page.png)
 
@@ -124,4 +124,43 @@ IOPS 对于磁盘来说，一次磁盘的连续读或者连续写称为一次磁
 
 ![节点用量排行](/node-ranking-list.png)
 
+## ETCD 监控
+
+要想用好 ETCD ，特别是定位性能问题，ETCD 的监控必不可少，ETCD 服务原生提供了度量（metrics）接口，KubeSphere 监控系统对其原生的数据提供了很好的监控展示效果。
+
+|监控指标|指标说明|
+|---|---|
+|ETCD 节点 | `是否有 Leader`：表示该成员是否有 Leader，如果成员没有 Leader，则完全不可用。 如果群集中的所有成员都没有任何 Leader，则整个群集完全不可用 <br> `Leader 变更次数`： 用于计算集群中的成员自开始以来所看到的 Leader 变更的数量。 快速的领导变革会显着影响 ETCD 的表现。 它还表明 Leader 不稳定，可能是由于网络连接问题或过度负载击中了 ETCD 集群|
+|库大小 | ECTD 底层数据库的总大小（以 MiB 为单位），指标释义详见 [etcd Disk](https://github.com/etcd-io/etcd/blob/v3.2.17/Documentation/metrics.md#disk)|
+|客户端流量|包括发送给 grpc 客户端的总流量和收到 grpc 客户端的总流量，指标释义详见 [etcd Network](https://github.com/etcd-io/etcd/blob/v3.2.17/Documentation/metrics.md#network) |
+|gRPC 流式消息|Server 端的 gRPC 流式消息接收速率和发送速率，该速率可以反映集群中是否有大规模数据的读和写操作，指标释义详见 [go-grpc-prometheus](https://github.com/grpc-ecosystem/go-grpc-prometheus#counters)|
+|WAL 日志同步时间|WAL 调用 fsync 的延迟，当 ETCD 在应用它们之前将其日志条目保留到磁盘时，将调用wal_fsync，指标释义详见 [etcd Disk](https://etcd.io/docs/v3.3.12/metrics/#grpc-requests) |
+|库同步时间|后端调用的提交延迟分布，当 ETCD 提交其最近更改到磁盘的增量快照时，将调用 backend_commit。注意，磁盘操作高延迟（WAL 日志同步时间或库同步时间较长）通常表示磁盘问题，它可能会导致高请求延迟或使群集不稳定，指标释义详见 [etcd Disk](https://etcd.io/docs/v3.3.12/metrics/#grpc-requests) |
+|Raft 提议| - `提议提交速率`：记录已提交的共识提案的速率。如果集群健康，该指标应随时间增加。 ETCD 集群的几个健康成员可能同时拥有不同的总提议。单个成员与其领导者之间的持续大滞后表明成员缓慢或不健康。<br> - `提议应用速率`：记录所应用的共识提案总速率。 ETCD 服务器异步应用每个已提交的提议。提议提交速率和提议应用速率之间的差异通常应该很小（即使在高负载下也只有几千）。<br> 如果它们之间的差异继续上升，则表明 ETCD 服务器过载。 在使用大规模查询（如重范围查询或大型 txn 操作）时可能会发生这种情况。<br> - `提议失败速率`：失败提案总速率，通常与两个问题相关，与 Leader 选举相关的临时故障或由于群集中的仲裁丢失导致的更长停机时间。<br> - `排队提议数`：当前待处理提案的数量，上升的待定提案表明 Client 端负载较高或成员无法提交提案。<br> 提议相关参数释义详见 [etcd Server](https://etcd.io/docs/v3.3.12/metrics/#server)。
+|
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190702140014.png)
+
+
+## API Server 监控
+
+[API Server](https://kubernetes.io/docs/concepts/overview/kubernetes-api/) 作为 Kubernetes 集群中所有组件交互的枢纽，下表列出了 API Server 监控的主要指标。
+
+|监控指标|指标说明|
+|---|---|
+|请求延迟|每个 Method (例如 CREATE、DELETE、GET)，资源和子资源的响应延迟分布（以毫秒为单位）|
+|每秒请求数|针对每个 Method、API 资源、客户端和 HTTP 响应 contentType 和代码分发的 apiserver 请求数|
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190703101046.png)
+
+## 调度器监控
+
+[Scheduler](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-scheduler/) 监控新创建的 Pod 的 Kubernetes API，并确定新建的 Pod 应该运行在哪些节点。它根据可用数据做出此决策，包括收集的资源可用性以及 Pod 的资源需求。监控调度延迟的数据可确保您可以查看调度程序所面临的任何延迟。
+
+|监控指标|指标说明|
+|---|---|
+|调度次数|包括调度成功、错误、失败的次数|
+|调度速率(次/秒)|包括调度成功、错误、失败的调度速率|
+|调度延迟(毫秒)|端到端调度延迟，它是调度算法延迟和绑定延迟的总和 |
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190703104419.png)
 

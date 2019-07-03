@@ -223,12 +223,12 @@
               "entry": "./advanced-v2.0/zh-CN/monitoring/intro.md"
             },
             {
-              "title": "应用资源监控",
+              "title": "如何利用监控定位问题",
               "entry": "./advanced-v2.0/zh-CN/monitoring/monitoring-demo.md"
             },
             {
-              "title": "物理资源监控",
-              "entry": "./advanced-v2.0/zh-CN/monitoring/physical-resources.md"
+              "title": "集群状态监控",
+              "entry": "./advanced-v2.0/zh-CN/monitoring/cluster-resources.md"
             },
             {
               "title": "应用资源监控",
