@@ -1,5 +1,5 @@
 ---
-title: "如何调用 KubeSphere API"
+title: "如何调用 API"
 ---
 
 ks-apigateway 是 KubeSphere 的 API 网关，当您部署 KubeSphere 之后，可参考如下的 API 调用流程。
