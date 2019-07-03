@@ -40,7 +40,7 @@
     "react-modal": "^3.8.1",
     "react-select": "^3.0.4",
     "react-tippy": "^1.2.3",
-    "redoc": "^2.0.0-rc.8-1",
+    "redoc": "^2.0.0-rc.9",
     "smooth-scroll": "^16.1.0",
     "styled-components": "^4.3.1",
     "viewerjs": "^1.3.3"
