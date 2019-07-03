@@ -96,7 +96,7 @@ module.exports = {
         swaggerUrls: [
           {
             name: 'kubesphere',
-            url: '/advanced-v2.0_api.json',
+            url: 'data/advanced-v2.0_api.json',
           },
           {
             name: 'notification',
