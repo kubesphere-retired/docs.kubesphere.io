@@ -12054,10 +12054,10 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
-redoc@^2.0.0-rc.8-1:
-  version "2.0.0-rc.8-1"
-  resolved "https://registry.yarnpkg.com/redoc/-/redoc-2.0.0-rc.8-1.tgz#53e441f54e79ce25782525d937cd499af3b25e2d"
-  integrity sha512-/YoCdcl2QtveKz4CTXaqtOfCIaVgZZgcnfUNC5xK7xBl/LxTiNj3tUbgFmrYMLTZGzNdQ9TUJpsa7lXDKcr8Pw==
+redoc@^2.0.0-rc.9:
+  version "2.0.0-rc.9"
+  resolved "https://registry.yarnpkg.com/redoc/-/redoc-2.0.0-rc.9.tgz#3e602acee777890ac0fc493ac00659dec72afc9d"
+  integrity sha512-dezTEkRCLdnikfI8+CBKB2aBHrW8kdK6O+5N06bGNjoMbtuWJhCqsbfsPll6kO1FIS2x0lfueKwDYCkHRf0+cA==
   dependencies:
     classnames "^2.2.6"
     decko "^1.2.0"
@@ -12082,6 +12082,7 @@ redoc@^2.0.0-rc.8-1:
     stickyfill "^1.1.1"
     swagger2openapi "^5.2.3"
     tslib "^1.9.3"
+    uri-template-lite "^19.4.0"
 
 redux-thunk@^2.3.0:
   version "2.3.0"
@@ -14354,6 +14355,11 @@ uri-js@^4.2.2:
   integrity sha512-KY9Frmirql91X2Qgjry0Wd4Y+YTdrdZheS8TFwvkbLWf/G5KNJDCh6pKL5OZctEW4+0Baa5idK2ZQuELRwPznQ==
   dependencies:
     punycode "^2.1.0"
+
+uri-template-lite@^19.4.0:
+  version "19.4.0"
+  resolved "https://registry.yarnpkg.com/uri-template-lite/-/uri-template-lite-19.4.0.tgz#cbc2c072cf4931428a2f9d3aea36b8254a33cce5"
+  integrity sha512-VY8dgwyMwnCztkzhq0cA/YhNmO+YZqow//5FdmgE2fZU/JPi+U0rPL7MRDi0F+Ch4vJ7nYidWzeWAeY7uywe9g==
 
 urix@^0.1.0:
   version "0.1.0"
