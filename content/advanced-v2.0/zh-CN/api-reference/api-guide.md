@@ -50,30 +50,23 @@ $ kubectl -n kubesphere-system get svc ks-apigateway -o jsonpath='{.spec.ports[0
 
 ## 第二步：获取 Token
 
-KubeSphere 对所有 API 进行了加密处理，在开始调用之前需要登录 KubeSphere 后台获取 API Access Token 或访问 Swagger UI 登录后获得 API Access Token 并授权后，才可以使用 KubeSphere API。获取 Token 也有两种方式，您可以通过命令行或访问 Swaggui UI 使用 admin 账号密码登录查看。
+KubeSphere 所有 API 都需要通过 JWT Bearer token 进行认证，在开始 API 调用之前，需要先通过 `/kapis/iam.kubesphere.io/v1alpha2/login` 接口获取 access_token，并在之后的请求中带上认证请求头 `Authorization: Bearer <access_token>`。
 
-### 命令行
-
-在 KubeSphere 右下角的 「工具箱」 打开 Web Kubectl，执行下述命令，其中 `192.168.0.20` 是节点 IP。
+在 KubeSphere 右下角的 「工具箱」 打开 Web Kubectl，执行下述命令，其中 `192.168.0.20` 是本示例的节点 IP。
 
 ```
-curl -X POST "http://192.168.0.20:31078/kapis/iam.kubesphere.io/v1alpha2/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"password\": \"P@88w0rd\", \"username\": \"admin\"}"
+$ curl -X POST "http://192.168.0.20:31078/kapis/iam.kubesphere.io/v1alpha2/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"password\": \"P@88w0rd\", \"username\": \"admin\"}"
 {
  "access_token": "eyJhbGxxxxxxS44"
+}
 ```
-
-### Swagger UI
-
-1、在浏览器中通过 URL `http://IP:NodePort/swaggerui` 访问 Swagger UI，比如 `http://192.168.0.20:31078/swagger-ui/`。
-
-2、展开 IAM 进入 POST `/kapis/iam.kubesphere.io/v1alpha2/login` 下，点击 「Try it out」，然后在 body 中输入 admin 用户的账号密码，点击 「Execute」。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190704142518.png)
-
-3、在 Responses 中可以看到返回 200，并且 access_token 和 Request URL 也都返回在页面中。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190704142807.png)
 
 ## 第三步：调用 API
 
 通过上述步骤拿到 Access Token 后，即可在用户自定义的请求函数中调用 KubeSphere API，可进一步参考 [API 文档](../api-docs)。
+
+## 如何访问 Swagger UI
+
+KubeSphere 的 API 可以在 [Swagger UI](https://swagger.io/) 中预览，在浏览器中通过 URL `http://IP:NodePort/swaggerui` 访问 Swagger UI，比如 `http://192.168.0.20:31078/swagger-ui/`。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190704190556.png)
