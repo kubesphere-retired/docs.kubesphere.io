@@ -5028,7 +5028,7 @@
           {
             "type": "string",
             "description": "action",
-            "name": "a",
+            "name": "action",
             "in": "query"
           }
         ],
