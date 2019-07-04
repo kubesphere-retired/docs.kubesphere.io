@@ -45,6 +45,7 @@ title: "API 常用术语对照"
 |Mirror|流量镜像|
 |BlueGreen Release|蓝绿发布|
 
+## Notification
 
 |英文| 中文|
 |---|---|
