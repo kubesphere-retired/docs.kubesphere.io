@@ -9,9 +9,9 @@ title: "监控指标说明"
 |cluster\_cpu\_utilisation|集群 CPU 使用率||
 |cluster\_cpu\_usage|集群 CPU 用量|Core|
 |cluster\_cpu\_total|集群 CPU 总量|Core|
-|cluster\_load1|集群 1 分钟平均负载[^1]||
-|cluster\_load5|集群 5 分钟平均负载||
-|cluster\_load15|集群 15 分钟平均负载||
+|cluster\_load1|集群 1 分钟 CPU 平均负载[^1]||
+|cluster\_load5|集群 5 分钟 CPU 平均负载||
+|cluster\_load15|集群 15 分钟 CPU 平均负载||
 |cluster\_memory\_utilisation|集群内存使用率||
 |cluster\_memory\_available|集群可用内存|Byte|
 |cluster\_memory\_total|集群内存总量|Byte|
