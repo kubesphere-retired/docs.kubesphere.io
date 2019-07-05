@@ -190,3 +190,30 @@ KubeSphere 资源监控共分为八个层级：Cluster（集群），Node（节�
 |namespace\_service\_count|项目 Service 数||
 |namespace\_secret\_count|项目 Secret 数||
 |namespace\_ingresses\_extensions\_count|项目 Ingress 数||
+
+## Workload
+
+|指标名|说明|单位|
+|---|---|---|
+|workload\_pod\_cpu\_usage|工作负载[^1] CPU 用量|Core|
+|workload\_pod\_memory\_usage|工作负载内存使用量（包含缓存）|Byte|
+|workload\_pod\_memory\_usage\_wo\_cache|工作负载内存使用量|Byte|
+|workload\_pod\_net\_bytes\_transmitted|工作负载网络数据发送速率|Byte/s|
+|workload\_pod\_net\_bytes\_received|工作负载网络数据接受速率|Byte/s|
+|workload\_deployment\_replica| Deployment 期望副本数 ||
+|workload\_deployment\_replica\_available| Deployment 可用副本数[^2] ||
+|workload\_deployment\_unavailable\_replicas\_ratio| Deployment 不可用副本数比例[^3] ||
+|workload\_statefulset\_replica| StatefulSet 期望副本数||
+|workload\_statefulset\_replica\_available| StatefulSet 可用副本数||
+|workload\_statefulset\_unavailable\_replicas\_ratio| StatefulSet 不可用副本数比例||
+|workload\_daemonset\_replica| DaemonSet 期望副本数||
+|workload\_daemonset\_replica\_available| DaemonSet 可用副本数||
+|workload\_daemonset\_unavailable\_replicas\_ratio| DaemonSet 不可用副本数比例||
+
+**【说明】**
+
+[^1] 目前支持的工作负载类型包括：Deployment，StatefulSet 和 DaemonSet。
+
+[^2] 可用副本指工作负载创建出的 Pod 处于可用状态，即该 Pod 的 status.conditions.ContainersReady 字段值为 true。
+
+[^3] 不可用副本数比例：不可用副本数 / 期望副本数
