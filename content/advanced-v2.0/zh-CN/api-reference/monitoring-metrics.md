@@ -2,6 +2,8 @@
 title: "监控指标说明"
 ---
 
+KubeSphere 资源监控共分为八个层级：Cluster（集群），Node（节点），Workspace（企业空间），Namespace（项目），Workload（工作负载），Pod（容器组），Container（容器），Component（ KubeSphere 核心组件）。
+
 ## Cluster
 
 |指标名|说明|单位|
@@ -49,7 +51,7 @@ title: "监控指标说明"
 |cluster\_endpoint\_count|集群 Endpoint 数||
 |cluster\_hpa\_count|集群 Horizontal Pod Autoscaler 数||
 |cluster\_job\_count|集群 Job 数||
-|cluster\_statefulset\_count|集群 StatefulSets 数||
+|cluster\_statefulset\_count|集群 StatefulSet 数||
 |cluster\_replicaset\_count|集群 ReplicaSet 数||
 |cluster\_service\_count|集群 Service 数||
 |cluster\_secret\_count|集群 Secret 数||
@@ -133,7 +135,7 @@ title: "监控指标说明"
 |workspace\_endpoint\_count|企业空间 Endpoint 数||
 |workspace\_hpa\_count|企业空间 Horizontal Pod Autoscaler 数||
 |workspace\_job\_count|企业空间 Job 数||
-|workspace\_statefulset\_count|企业空间 StatefulSets 数||
+|workspace\_statefulset\_count|企业空间 StatefulSet 数||
 |workspace\_replicaset\_count|企业空间 ReplicaSet 数||
 |workspace\_service\_count|企业空间 Service 数||
 |workspace\_secret\_count|企业空间 Secret 数||
@@ -150,13 +152,41 @@ title: "监控指标说明"
 |workspace\_all\_organization\_count|集群企业空间总数||
 |workspace\_all\_account\_count|集群账号总数||
 |workspace\_all\_project\_count|集群项目总数||
-|workspace\_all\_devops\_project\_count|集群 DevOps 工程总数[^1]||
+|workspace\_all\_devops\_project\_count[^1]|集群 DevOps 工程总数||
 |workspace\_namespace\_count|企业空间项目总数||
 |workspace\_devops\_project\_count|企业空间 DevOps 工程总数||
 |workspace\_member\_count|企业空间成员数||
-|workspace\_role\_count|企业空间角色数[^2]||
+|workspace\_role\_count[^2]|企业空间角色数||
 
 **【说明】**
 
 [^1] 前四个指标适用于 /kapis/devops.kubesphere.io/v1alpha2/workspaces
+
 [^2] 后四个指标适用于 /kapis/devops.kubesphere.io/v1alpha2/workspaces/{workspace}
+
+## Namespace
+
+|指标名|说明|单位|
+|---|---|---|
+|namespace\_cpu\_usage|项目 CPU 用量|Core|
+|namespace\_memory\_usage|项目内存使用量（包含缓存）|Byte|
+|namespace\_memory\_usage\_wo\_cache|项目内存使用量|Byte|
+|namespace\_net\_bytes\_transmitted|项目网络数据发送速率|Byte/s|
+|namespace\_net\_bytes\_received|项目网络数据接受速率|Byte/s|
+|namespace\_pod\_count|项目内非终止阶段 Pod 数量||
+|namespace\_pod\_running\_count|项目内处于 Running 阶段的 Pod 数量||
+|namespace\_pod\_succeeded\_count|项目内处于 Succeeded 阶段的 Pod 数量||
+|namespace\_pod\_abnormal\_count|项目异常 Pod 数量||
+|namespace\_pod\_abnormal\_ratio|项目异常 Pod 比例||
+|namespace\_cronjob\_count|项目 CronJob 数||
+|namespace\_pvc\_count|项目 PersistentVolumeClaim 数||
+|namespace\_daemonset\_count|项目 DaemonSet 数||
+|namespace\_deployment\_count|项目 Deployment 数||
+|namespace\_endpoint\_count|项目 Endpoint 数||
+|namespace\_hpa\_count|项目 Horizontal Pod Autoscaler 数||
+|namespace\_job\_count|项目 Job 数||
+|namespace\_statefulset\_count|项目 StatefulSet 数||
+|namespace\_replicaset\_count|项目 ReplicaSet 数||
+|namespace\_service\_count|项目 Service 数||
+|namespace\_secret\_count|项目 Secret 数||
+|namespace\_ingresses\_extensions\_count|项目 Ingress 数||
