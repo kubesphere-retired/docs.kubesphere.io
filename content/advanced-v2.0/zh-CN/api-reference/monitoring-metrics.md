@@ -55,6 +55,8 @@ title: "监控指标说明"
 |cluster\_secret\_count|集群 Secret 数||
 |cluster\_namespace\_count|集群 Namespace 数||
 
+**【说明】**
+
 [^1] 指单位时间内，单位 CPU 运行队列中处于可运行或不可中断状态的平均进程数。如果数值大于 1，表示 CPU 不足以服务进程，有进程在等待。 
 
 [^2] 不包含 buffer、 cache。
@@ -105,4 +107,56 @@ title: "监控指标说明"
 |node\_pod\_abnormal\_count|节点异常 Pod 数量||
 |node\_pod\_abnormal\_ratio|节点异常 Pod 比例||
 
+**【说明】**
+
 [^1] 不包含 buffer、 cache。
+
+## Workspace
+
+|指标名|说明|单位|
+|---|---|---|
+|workspace\_cpu\_usage|企业空间 CPU 用量|Core|
+|workspace\_memory\_usage|企业空间内存使用量（包含缓存）|Byte|
+|workspace\_memory\_usage\_wo\_cache|企业空间内存使用量|Byte|
+|workspace\_net\_bytes\_transmitted|企业空间网络数据发送速率|Byte/s|
+|workspace\_net\_bytes\_received|企业空间网络数据接受速率|Byte/s|
+|workspace\_pod\_count|企业空间内非终止阶段 Pod 数量[^1]||
+|workspace\_pod\_running\_count|企业空间内处于 Running 阶段的 Pod 数量||
+|workspace\_pod\_succeeded\_count|企业空间内处于 Succeeded 阶段的 Pod 数量||
+|workspace\_pod\_abnormal\_count|企业空间异常 Pod 数量||
+|workspace\_pod\_abnormal\_ratio|企业空间异常 Pod 比例||
+|workspace\_ingresses\_extensions\_count|企业空间 Ingress 数||
+|workspace\_cronjob\_count|企业空间 CronJob 数||
+|workspace\_pvc\_count|企业空间 PersistentVolumeClaim 数||
+|workspace\_daemonset\_count|企业空间 DaemonSet 数||
+|workspace\_deployment\_count|企业空间 Deployment 数||
+|workspace\_endpoint\_count|企业空间 Endpoint 数||
+|workspace\_hpa\_count|企业空间 Horizontal Pod Autoscaler 数||
+|workspace\_job\_count|企业空间 Job 数||
+|workspace\_statefulset\_count|企业空间 StatefulSets 数||
+|workspace\_replicaset\_count|企业空间 ReplicaSet 数||
+|workspace\_service\_count|企业空间 Service 数||
+|workspace\_secret\_count|企业空间 Secret 数||
+|workspace\_all\_project\_count|企业空间下项目总数||
+
+**【说明】**
+
+[^1] 非终止阶段的 Pod 指处于 Pending、Running、Unkown 阶段的 Pod，不包含被成功终止，或者因非 0 状态退出被系统终止的 Pod。参考：[Pod Lifecycle](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-conditions)
+
+**若 Workspace Monitoring API 设置了查询参数 type 为 statistics，则返回企业空间统计信息：**
+
+|指标名|说明|单位|
+|---|---|---|
+|workspace\_all\_organization\_count|集群企业空间总数||
+|workspace\_all\_account\_count|集群账号总数||
+|workspace\_all\_project\_count|集群项目总数||
+|workspace\_all\_devops\_project\_count|集群 DevOps 工程总数[^1]||
+|workspace\_namespace\_count|企业空间项目总数||
+|workspace\_devops\_project\_count|企业空间 DevOps 工程总数||
+|workspace\_member\_count|企业空间成员数||
+|workspace\_role\_count|企业空间角色数[^2]||
+
+**【说明】**
+
+[^1] 前四个指标适用于 /kapis/devops.kubesphere.io/v1alpha2/workspaces
+[^2] 后四个指标适用于 /kapis/devops.kubesphere.io/v1alpha2/workspaces/{workspace}
