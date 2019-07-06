@@ -2,7 +2,7 @@
 title: "API 文档"
 ---
 
-KubeSphere 提供了丰富的 RESTful 规范的 API 供您使用，在开始调用之前需要登录 KubeSphere 后台或访问 Swagger UI 登录后获得 API Key 并授权后，才可以使用 KubeSphere API。
+KubeSphere 提供了丰富的 RESTful 规范的 API 供您使用，在开始调用之前需要登录 KubeSphere 后台或访问 Swagger UI 登录后获得 JWT Bearer token 后，才可以使用 KubeSphere API。
 
 - [KubeSphere API 文档](https://docs.kubesphere.io/advanced-v2.0/api/kubesphere)
 - [Notification API 文档](https://docs.kubesphere.io/advanced-v2.0/api/notification)

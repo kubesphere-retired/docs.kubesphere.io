@@ -28,6 +28,13 @@ title: "API 常用术语对照"
 |Capacity|容量|
 |Proposal|Etcd 提案|
 
+## Logging
+
+|英文| 中文|
+|---|---|
+|Fuzzy Matching |模糊匹配|
+
+
 ## Router
 
 |英文| 中文|
