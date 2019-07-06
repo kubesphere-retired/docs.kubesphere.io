@@ -235,3 +235,73 @@ KubeSphere 资源监控共分为八个层级：Cluster（集群），Node（节�
 |container\_cpu\_usage|容器 CPU 用量|Core|
 |container\_memory\_usage|容器内存使用量（包含缓存）|Byte|
 |container\_memory\_usage\_wo\_cache|容器内存使用量|Byte|
+
+## Component
+
+|指标名|说明|单位|
+|---|---|---|
+|etcd\_server\_list|etcd 集群节点列表[^1]||
+|etcd\_server\_total|etcd 集群节点总数||
+|etcd\_server\_up\_total|etcd 集群在线节点数||
+|etcd\_server\_has\_leader|etcd 集群各节点是否有 leader[^2]||
+|etcd\_server\_leader\_changes|etcd 集群各节点观察到 leader 变化数（ 1h 内）||
+|etcd\_server\_proposals\_failed\_rate|etcd 集群各节点提案失败[^3]频率平均数|次/s|
+|etcd\_server\_proposals\_applied\_rate|etcd 集群各节点提案应用频率平均数|次/s|
+|etcd\_server\_proposals\_committed\_rate|etcd 集群各节提案提交频率平均数|次/s|
+|etcd\_server\_proposals\_pending\_count|etcd 集群各节点排队提案数平均值||
+|etcd\_mvcc\_db\_size|etcd 集群各节点数据库大小平均值|Byte|
+|etcd\_network\_client\_grpc\_received\_bytes|etcd 集群向 gRPC 客户端发送数据速率|Byte/s|
+|etcd\_network\_client\_grpc\_sent\_bytes|etcd 集群接受 gRPC 客户端数据速率|Byte/s|
+|etcd\_grpc\_call\_rate|etcd 集群 gRPC 请求速率|次/s|
+|etcd\_grpc\_call\_failed\_rate|etcd 集群 gRPC 请求失败速率|次/s|
+|etcd\_grpc\_server\_msg\_received\_rate| etcd 集群 gRPC 流式消息接收速率|次/s|
+|etcd\_grpc\_server\_msg\_sent\_rate| etcd 集群 gRPC 流式消息发送速率|次/s|
+|etcd\_disk\_wal\_fsync\_duration|etcd 集群各节点 WAL 日志同步时间平均值|秒|
+|etcd\_disk\_wal\_fsync\_duration\_quantile|etcd 集群 WAL 日志同步时间平均值（按分位数统计）[^4]|秒|
+|etcd\_disk\_backend\_commit\_duration|etcd 集群各节点库同步时间[^5]平均值|秒|
+|etcd\_disk\_backend\_commit\_duration\_quantile|etcd 集群各节点库同步时间平均值（按分位数统计）|秒|
+|apiserver\_up\_sum|APIServer [^6]在线实例数||
+|apiserver\_request\_rate|APIServer 每秒接受请求数||
+|apiserver\_request\_by\_verb\_rate|APIServer 每秒接受请求数（按 HTTP 请求方法分类统计）||
+|apiserver\_request\_latencies|APIServer 请求平均迟延|秒|
+|apiserver\_request\_by\_verb\_latencies|APIServer 请求平均迟延（按 HTTP 请求方法分类统计）|秒|
+|scheduler\_up\_sum|调度器[^7]在线实例数||
+|scheduler\_schedule\_attempts|调度器累计调度次数 [^8]||
+|scheduler\_schedule\_attempt\_rate|调度器调度频率|次/s|
+|scheduler\_e2e\_scheduling\_latency|调度器调度延迟|秒|
+|scheduler\_e2e\_scheduling\_latency\_quantile|调度器调度延迟（按分位数统计）|秒|
+|controller\_manager\_up\_sum|Controller Manager[^9] 在线实例数||
+|coredns\_up\_sum|CoreDNS 在线实例数||
+|coredns\_cache\_hits|CoreDNS 缓存命中频率|次/s|
+|coredns\_cache\_misses| CoreDNS 缓存未命中频率|次/s|
+|coredns\_dns\_request\_rate|CoreDNS 每秒请求数||
+|coredns\_dns\_request\_duration|CoreDNS 请求耗时|秒|
+|coredns\_dns\_request\_duration\_quantile|CoreDNS 请求耗时（按分位数统计）|秒|
+|coredns\_dns\_request\_by\_type\_rate|CoreDNS 每秒请求数（按请求类型分类统计）||
+|coredns\_dns\_request\_by\_rcode\_rate|CoreDNS 每秒请求数（按 rcode 分类统计）||
+|coredns\_panic\_rate|CoreDNS 异常发生频率|次/s|
+|coredns\_proxy\_request\_rate|CoreDNS 代理每秒请求数||
+|coredns\_proxy\_request\_duration|CoreDNS 代理请求耗时|秒|
+|coredns\_proxy\_request\_duration\_quantile|CoreDNS 代理请求耗时（按分位数统计）|秒|
+|prometheus\_up\_sum|Prometheus 在线实例数量||
+|prometheus\_tsdb\_head\_samples\_appended\_rate|Prometheus 每秒存储监控指标数||
+
+**【说明】**
+
+[^1] 如果某一节点返回值为 1 说明该 etcd 节点在线，0 说明节点下线。
+
+[^2] 如果某一节点返回值为 0 说明该节点没有leader ，即该节点不可使用；如果集群中，所有节点都没有任何 leader ，则整个集群不可用。
+
+[^3] 中英文对照说明：提案（consensus proposals）,失败提案（failed proposals），已提交提案（commited proposals），应用提案（applied proposals），排队提案（pending proposals）。
+
+[^4] 支持三种分位数统计：99th 百分位数、90th 百分位数、中位数。
+
+[^5] 反映磁盘 I/O 延迟。如果数值过高，通常表示磁盘问题。
+
+[^6] 指 kube-apiserver。
+
+[^7] 指 kube-scheduler。
+
+[^8] 按调度结果分类统计：error（因调度器异常而无法调度的 Pod 数量），scheduled（成功被调度的 Pod 数量），unschedulable（无法被调度的 Pod 数量）。
+
+[^9] 指 kube-controller-manager。
