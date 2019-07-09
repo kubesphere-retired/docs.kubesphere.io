@@ -4,10 +4,6 @@ title: "安装说明"
 
 [KubeSphere](https://kubesphere.io) 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器管理平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
-<!-- ## 前提条件
-
-下载最新的 [KubeSphere Advanced 2.0.1 - dev](https://kubesphere.io/download) 至待安装机器中。 -->
-
 ## 安装 KubeSphere
 
 **安装模式**
@@ -110,11 +106,11 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 
 ## 组件版本信息
 
-KubeSphere Advanced 2.0.1 中的相关组件将默认安装以下版本：
+KubeSphere Advanced 2.0.2 中的相关组件将默认安装以下版本：
 
 |  组件 |  版本 |
 |---|---|
-|KubeSphere| Advanced Edition 2.0.1|
+|KubeSphere| Advanced Edition 2.0.2|
 |Kubernetes| v1.13.5|
 |Istio | 1.1.1 |
 |etcd|3.2.18|
