@@ -22,7 +22,7 @@ title: "Multi-Node 模式"
 > 说明：
 > - 若选择离线安装，则系统盘建议在 `100 G` 以上；
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
-> - 若使用 ubuntu 18.04，则需要使用 root 用户；
+> - 若使用 ubuntu 18.04，则需使用 root 用户；
 > - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
 > - 若需要选装 Harbor 和 GitLab，则所有主机的总内存需要 24 GiB 以上。
 
@@ -57,23 +57,13 @@ title: "Multi-Node 模式"
 
 <div class="md-tabs">
 <input type="radio" name="tabs" id="stable" checked="checked">
-<label for="stable">在线版 (2.0.1)</label>
+<label for="stable">在线版 (2.0.2)</label>
 <span class="md-tab">
 
-**1.** 下载 `KubeSphere Advanced Edition 2.0.1` 安装包至待安装机器。
+下载 `KubeSphere Advanced Edition 2.0.2` 安装包至待安装机器，进入安装目录。
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/advanced-2.0.1 > advanced-2.0.1.tar.gz
-```
- 
-**2.** 解压安装包并进入安装目录。
-
-```bash
-$ tar -zxf advanced-2.0.1.tar.gz
-```
-
-```bash
-$ cd kubesphere-all-advanced-2.0.1
+$ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/scripts
 ```
 
 </span>
@@ -81,20 +71,10 @@ $ cd kubesphere-all-advanced-2.0.1
 <label for="offline">离线版 (2.0.0)</label>
 <span class="md-tab">
 
-**1.** 下载 `离线安装包 (2.0.0)` 至待安装机器 (2.0.1 的离线安装包即将上线)。
+下载 `离线安装包 (2.0.0)` 至待安装机器 (2.0.2 的离线安装包即将上线)。
 
 ```bash
-$ curl -L https://kubesphere.io/download/offline/advanced-2.0.0 > advanced-2.0.0.tar.gz
-```
- 
-**2.** 解压安装包并进入安装目录。
-
-```bash
-$ tar -zxf advanced-2.0.0.tar.gz
-```
-
-```bash
-$ cd kubesphere-all-advanced-2.0.0
+$ curl -L https://kubesphere.io/download/offline/advanced-2.0.0 > advanced-2.0.0.tar.gz && tar -zxf advanced-2.0.0.tar.gz && cd kubesphere-all-advanced-2.0.0/scripts
 ```
 
 </span>
@@ -197,19 +177,13 @@ KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依
 
 > 说明：由于 multi-node 的安装时间跟网络情况和带宽、机器配置、安装节点个数等因素都有关，此处暂不提供时间标准。
 
-**1.** 进入 `scripts` 目录：
-
-```bash
-$ cd scripts
-```
-
-**2.** 建议使用 root 用户安装，执行 `install.sh` 脚本：
+**1.** 建议使用 root 用户安装，执行 `install.sh` 脚本：
 
 ```bash
 $ ./install.sh
 ```
 
-**3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
+**2.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
 
 ```bash
 ################################################
@@ -219,13 +193,13 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-05-18
+https://kubesphere.io/               2018-07-08
 ################################################
 Please input an option: 2
 
 ```
 
-**4.** 验证 KubeSphere 集群部署是否成功：
+**3.** 验证 KubeSphere 集群部署是否成功：
 
 **(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。
 
