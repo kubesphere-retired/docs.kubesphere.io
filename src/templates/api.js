@@ -12,8 +12,6 @@ import {
 
 import Layout from '../layouts'
 
-import { safeParseJSON } from '../utils'
-
 const THEME = {
   spacing: {
     unit: 5,
@@ -214,7 +212,7 @@ class APIDocTemplate extends React.Component {
   constructor(props) {
     super(props)
 
-    const spec = safeParseJSON(props.pageContext.swaggerData, {})
+    const spec = props.pageContext.swaggerData
     this.store = new AppStore(spec, '', { theme: THEME })
   }
 

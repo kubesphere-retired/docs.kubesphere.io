@@ -222,7 +222,7 @@ const createAPIPages = ({ graphql, actions }) =>
             component: path.resolve(`./src/templates/api.js`),
             context: {
               version: version,
-              swaggerData: JSON.stringify(data),
+              swaggerData: data,
             },
           })
         })
