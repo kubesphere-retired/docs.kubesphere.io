@@ -3,7 +3,7 @@
   "description": "KubeSphere Documents",
   "version": "1.0.0",
   "dependencies": {
-    "@leoendless/redoc": "^2.0.0-rc.9",
+    "@leoendless/redoc": "^2.0.0-rc.12",
     "@svgr/webpack": "^4.3.0",
     "cheerio": "^1.0.0-rc.3",
     "classnames": "^2.2.6",

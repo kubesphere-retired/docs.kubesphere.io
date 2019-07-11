@@ -962,10 +962,10 @@
     signedsource "^1.0.0"
     yargs "^9.0.0"
 
-"@leoendless/redoc@^2.0.0-rc.9":
-  version "2.0.0-rc.9"
-  resolved "https://registry.yarnpkg.com/@leoendless/redoc/-/redoc-2.0.0-rc.9.tgz#1392cde355e3e2564e45619cacf4e02dc364401a"
-  integrity sha512-xU8CdVFz+vJ2ap5J9/Emht2IedJ44AGtF1yxdoPmRaUxN2JjOIE1BgsixT2oQ3zxeGzbuAXskUsD9XygO5eEUg==
+"@leoendless/redoc@^2.0.0-rc.12":
+  version "2.0.0-rc.12"
+  resolved "https://registry.yarnpkg.com/@leoendless/redoc/-/redoc-2.0.0-rc.12.tgz#df0aa3bf8729652b8bf59583a918f1e4d58c84e3"
+  integrity sha512-SH0PWt4YemzYFPnvMPbCk8K4zJGAfdZudGz7IxasxIjVmKZMbTiZcr3MTb27E1piyxiREzm1Y3Vu8aGLRzeS+g==
   dependencies:
     classnames "^2.2.6"
     decko "^1.2.0"
