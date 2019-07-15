@@ -133,7 +133,7 @@ Kubesphere Jenkins 的每一个 agent 都是一个Pod，如果要替换内置的
 
 ### 构建最新 nodejs 版本的 agent 镜像
 
-我们 agent 的源代码都在 Github KubeSphere 组织下，其中 nodejs agent 的镜像的源代码仓库地址为 https://github.com/kubesphere/builder-nodejs。
+我们 agent 的源代码都在 Github KubeSphere 组织下，其中 nodejs agent 的镜像的源代码仓库地址为 [builder-nodejs](https://github.com/kubesphere/builder-nodejs)。
 
 可以看到我们现在镜像的 Dockerfile 为：
 
