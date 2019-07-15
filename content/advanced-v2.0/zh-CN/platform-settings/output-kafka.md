@@ -4,14 +4,14 @@ title: "添加 Kafka 作为日志收集"
 
 KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档通过以下两种方式说明如何创建 Kafka 和 Zookeeper 集群，并通过 KubeSphere 添加日志收集者将日志输出到 Kafka 的 topic，最终通过 [Kafkacat 客户端](https://github.com/edenhill/kafkacat) 验证接收实时的日志消息：
 
-- 在 Kubernetes 部署一个单节点的 Kafka 和 Zookeeper
-- 在 AppCenter 创建 Kafka 和 Zookeeper
+- 在 Kubernetes 部署一个单节点的 Kafka 和 Zookeeper (适用于测试或演示)
+- 在 AppCenter 创建 Kafka 和 Zookeeper 集群 (适用于正式环境)
 
 ## Kubernetes 部署单节点 Kafka 和 Zookeeper 
 
 ### 第一步：通过 yaml 创建 Zookeeper、Kafka
 
-> 注意：单节点 Kafka 和 Zookeeper 仅用于测试日志输出到 Kafka，正式环境建议搭建多节点的 Kafka 集群。
+> 注意：单节点 Kafka 和 Zookeeper 仅用于测试日志输出到 Kafka，正式环境建议搭建多节点的 Kafka 集群，例如可分别创建 3 个 Kafka 和 Zookeeper 的 Deployment 和 Service。
 
 1、在工具箱打开 web kubectl 或后台 SSH 到 KubeSphere 后台，新建一个 kafka 的 Namespace，然后在该 Namespace 中创建 Zookeeper 的 Service 和 Deployment。
 
