@@ -147,7 +147,7 @@ deployment.apps/zookeeper   1/1     1            1           6h44m
 4、安装 [Kafkacat 客户端](https://github.com/edenhill/kafkacat)，Kafkacat 是一款开源的 Kafka 调试工具。以下仅演示在 ubuntu 安装 Kafkacat (其它 OS 安装请参考 [Kafkacat](https://github.com/edenhill/kafkacat))：
 
 ```bash
-apt-get install kafkacat
+$ apt-get install kafkacat
 ```
 
 5、使用 Kafkacat 验证单节点 kafka 消息的发送和接收，如下表明发送和接收成功：
@@ -178,7 +178,7 @@ Hello KubeSphere!
 通过 Kafkacat 的消费命令观察日志的动态输出流信息：
 
 ```shell
-kafkacat -C -b 192.168.0.16:30092 -t test-topic
+$ kafkacat -C -b 192.168.0.16:30092 -t test-topic
 Hello KubeSphere!
 {"@timestamp":1563122754.655668, "log":"2019/07/14 16:45:54 config map updated\n", "time":"2019-07-14T16:45:54.655667686Z", "kubernetes":{"pod_name":"fluent-bit-ss5zr", "namespace_name":"kubesphere-logging-system", "host":"ks-allinone", "container_name":"config-reloader", "docker_id":"1475e0b4ccce582848b55463e4c1f405dceb4a117fa2c0aa29f047f782bb04a6"}}
 {"@timestamp":1563122754.659812, "log":"2019/07/14 16:45:54 successfully triggered reload\n", "time":"2019-07-14T16:45:54.659811676Z", "kubernetes":{"pod_name":"fluent-bit-ss5zr", "namespace_name":"kubesphere-logging-system", "host":"ks-allinone", "container_name":"config-reloader", "docker_id":"1475e0b4ccce582848b55463e4c1f405dceb4a117fa2c0aa29f047f782bb04a6"}}
@@ -205,6 +205,8 @@ Hello KubeSphere!
 
 ### 第二步：添加日志收集者并验证
 
-同上，在 KubeSphere 中添加 Kafka 集群作为日志收集者，可安装使用 Kafkacat 验证单节点 Kafka 消息的发送和接收。
+同上，在 KubeSphere 中添加 Kafka 集群作为日志收集者。登录 Kafka 集群客户端节点的 VNC，可安装使用 Kafkacat 验证 Kafka 集群的消息发送和接收，或通过 `kafka-console-consumer.sh` 脚本验证，参考 [Kafka 文档](https://docs.qingcloud.com/product/big_data/kafka/README.html)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190715010145.png)
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190715114334.png)
