@@ -1,5 +1,7 @@
 ---
 title: "存储类型"
+keywords: ''
+description: ''
 ---
 
 存储类型（StorageClass）是由 `集群管理员` 配置存储服务端参数，并按类型提供存储给集群用户使用。KubeSphere 目前支持 [Ceph RBD](http://docs.ceph.com/docs/master/) 和 [GlusterFS](https://www.gluster.org/install/) 存储类型以及青云研发的块存储插件 [QingCloud CSI](https://github.com/yunify/qingcloud-csi) (更多的存储类型持续更新中)，并且支持各种存储类型的展示。

@@ -1,5 +1,7 @@
 ---
 title: "安装常见问题" 
+keywords: ''
+description: ''
 ---
 
 ### KubeSphere 安装支持的存储类型

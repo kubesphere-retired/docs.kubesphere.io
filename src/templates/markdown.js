@@ -208,13 +208,23 @@ class MarkdownTemplate extends React.Component {
       next,
     } = this.state
 
+    const metas = []
+
+    if (post.description) {
+      meta.push({ name: 'description', content: post.description })
+    }
+    if (post.keywords) {
+      meta.push({ name: 'description', content: post.keywords })
+    }
+
     return (
       <Layout data={this.props.data}>
         <div>
-          <Helmet>
-            <title>{`${post.title} | ${
-              this.props.data.site.siteMetadata.title
-            }`}</title>
+          <Helmet
+            title={`${post.title} | ${this.props.data.site.siteMetadata.title}`}
+            meta={metas}
+          >
+            <title>{}</title>
           </Helmet>
           <BodyGrid>
             <NavContainer isExpand={isExpand}>
@@ -398,6 +408,8 @@ export const pageQuery = graphql`
     }
     frontmatter {
       title
+      keywords
+      description
     }
   }
   query MarkdownBySlug($slug: String!, $lang: String!, $version: String!) {

@@ -1,5 +1,7 @@
 ---
 title: "KubeSphere 安装指南"
+keywords: ''
+description: ''
 ---
 
 ## 简介

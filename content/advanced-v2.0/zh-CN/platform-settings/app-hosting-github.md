@@ -1,5 +1,7 @@
 ---
 title: "基于 GitHub 搭建自有应用仓库"
+keywords: ''
+description: ''
 ---
 
 GitHub 是流行的代码仓库，可以直接托管静态文件，利用这个特性可以搭建应用仓库。

@@ -1,5 +1,7 @@
 ---
 title: "Nodes"
+keywords: ''
+description: ''
 ---
 
 A node is a worker machine in Kubernetes, a node may be a VM or physical machine, depending on the cluster. Each node contains the services necessary to run pods and is managed by the master components. Node management in KubeSphere fully meets the enterprise's requirements for cluster operation and maintenance. It supports real-time monitoring of CPU, memory, storage, Pod usage and node status, as well as the running status of the Pod on any node. In addition, it also provides rich monitoring metrics, such as CPU and memory utilization, CPU load average, IOPS, disk throughput and utilization, network badwidth, etc.

@@ -1,5 +1,7 @@
 ---
 title: "Platform Roles Management"
+keywords: ''
+description: ''
 ---
 
 As mentioned in [Account-Management](../account-management), role management is also a very important part of user management. Role management is used to manage the role information and authorities of platform users. Role is an identity generalization of the certain group of people with common characteristics. In the role management module, we need to describe the role information and set permission rules, so that admin can easily identify the characteristics of roles, and give corresponding role identities to different users to manage resources in a more fine-grained way. The platform has preset three common roles, i.e. cluster-admin, wordspace-manager and cluster-regular, as well as supports admin to add custom roles. This document describes the permissions of built-in roles and how to customize new roles.

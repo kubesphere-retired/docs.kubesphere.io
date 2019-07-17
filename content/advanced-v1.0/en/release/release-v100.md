@@ -1,5 +1,7 @@
 ---
 title: "Release Notes For 1.0.0"
+keywords: ''
+description: ''
 ---
 
 KubeSphere Advanced Edition 1.0.0 was released on **December 10th, 2018**. 

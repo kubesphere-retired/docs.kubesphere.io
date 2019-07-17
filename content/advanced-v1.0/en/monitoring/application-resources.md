@@ -1,5 +1,7 @@
 ---
 title: "Application Resources"
+keywords: ''
+description: ''
 ---
 
 In addition to monitoring the data from physical resource level, the cluster admin needs to know how many application resources, such as the number of projects and DevOps projects, as well as how many specific types of workloads and services has already been used in the platform. Application resource monitoring is a summary of the resource usage and trends of the application level of the platform.

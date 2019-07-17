@@ -1,5 +1,7 @@
 ---
 title: "Deploy a WordPress Web Application" 
+keywords: ''
+description: ''
 ---
 
 ## Objective 

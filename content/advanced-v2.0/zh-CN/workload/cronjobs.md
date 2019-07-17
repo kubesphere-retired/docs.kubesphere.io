@@ -1,5 +1,7 @@
 ---
 title: "定时任务"
+keywords: ''
+description: ''
 ---
 
 定时任务 (CronJob)，是基于时间的 Job，就类似于 Linux 系统的 crontab，在指定的时间周期运行指定的 Job，在给定时间点只运行一次或周期性地运行，执行完成后 Pod 便会停止。定时计划设置可设置任务的执行周期，比如每隔 1 min 执行一次任务：`*/1 * * * *`，定时计划的格式参考 [CRON](https://en.wikipedia.org/wiki/Cron)。

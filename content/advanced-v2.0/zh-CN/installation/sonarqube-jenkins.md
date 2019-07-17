@@ -1,5 +1,7 @@
 ---
 title: "访问内置 SonarQube 和 Jenkins 服务端"
+keywords: ''
+description: ''
 ---
 
 ## 访问 SonarQube

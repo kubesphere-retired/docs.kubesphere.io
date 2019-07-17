@@ -1,5 +1,7 @@
 ---
 title: "CronJobs"
+keywords: ''
+description: ''
 ---
 
 A Cron Job creates Jobs on a time-based schedule. One CronJob object is like one line of a crontab (cron table) file. It runs a job periodically on a given schedule. The schedule of CronJob can be set, for example, `*/1 * * * *` means excute the job every 1 minute, the format of the timing plan please reference [CRON](https://en.wikipedia.org/wiki/Cron).

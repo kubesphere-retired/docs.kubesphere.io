@@ -1,5 +1,7 @@
 ---
 title: "Create a CI/CD Pipeline In a Visual Way" 
+keywords: ''
+description: ''
 ---
 
 ## Objective

@@ -1,5 +1,7 @@
 ---
 title: "Release Notes For 2.0.2"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 高级版 (Advanced Edition 2.0.2) 已于 2019 年 7 月 9 日 正式发布，修复了已知的 Bug，增强了现有的功能。建议下载并安装最新的 2.0.2 版本，若您已经安装了 1.0.x、2.0.0 或 2.0.1 版本，请下载 2.0.2 版本的 Installer，支持一键升级至 2.0.2。

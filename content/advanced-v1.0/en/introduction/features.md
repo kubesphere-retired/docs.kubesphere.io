@@ -1,5 +1,7 @@
 ---
 title: "Features"
+keywords: ''
+description: ''
 ---
 
 KubeSphere provides an easy-to-use console with the awesome user experience that allows you to quickly get started with various functions. KubeSphere integrates workload management, DevOps delivery, multi-tenant management, rich monitoring, service and network management, application scheduling, infrastructure management, image registry management, etc. It also supports multiple open source storage products and high-performance cloud storage services.

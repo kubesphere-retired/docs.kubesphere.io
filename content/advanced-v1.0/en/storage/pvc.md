@@ -1,5 +1,7 @@
 ---
 title: "Volumes"
+keywords: ''
+description: ''
 ---
 
 Volumes, generally represents persistent volume claim (PVC) in KubeSphere, has the capability of a single disk for workloads and is a resource object that persists workloads data.

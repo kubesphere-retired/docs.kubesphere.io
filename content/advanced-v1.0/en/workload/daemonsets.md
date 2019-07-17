@@ -1,5 +1,7 @@
 ---
 title: "DaemonSets"
+keywords: ''
+description: ''
 ---
 
 A DaemonSet ensures that all (or some) Nodes run a copy of a Pod. As nodes are added to the cluster, Pods are added to them.

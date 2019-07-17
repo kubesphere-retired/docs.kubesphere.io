@@ -1,5 +1,7 @@
 ---
 title: "安装内置 GitLab" 
+keywords: ''
+description: ''
 ---
 
 KubeSphere Installer 内置的 Gitlab (版本为 v11.8.1) 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对代码仓库的管理，仅需`安装前`在配置文件 `conf/vars.yml` 中简单配置即可。具体可参考以下步骤安装和访问 GitLab。

@@ -1,5 +1,7 @@
 ---
 title: "Integrating Harbor Registry" 
+keywords: ''
+description: ''
 ---
 
 [Harbor](https://goharbor.io/) is an an open source trusted cloud native registry project that stores, signs, and scans content. Harbor extends the open source Docker Distribution by adding the functionalities usually required by users such as security, identity and management.

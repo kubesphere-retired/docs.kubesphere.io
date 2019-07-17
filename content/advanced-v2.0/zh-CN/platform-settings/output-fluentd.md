@@ -1,5 +1,7 @@
 ---
 title: "添加 Fluentd 作为日志收集"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档演示如何在 KubeSphere 部署容器化的 Fluentd 并将其添加为日志收集者，展示 Fluentd 接收到日志数据后，输出到容器的 stdout 标准输出，最后可以通过查看 Fluentd 容器的日志，验证添加日志收集者的流程是否成功。

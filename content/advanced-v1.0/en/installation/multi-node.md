@@ -1,5 +1,7 @@
 ---
 title: "Multi-node Installation"
+keywords: ''
+description: ''
 ---
 
 `Multi-Node` installation means install KubeSphere on multiple instances. Typically, select any one host in the cluster to serve as a role of "taskbox" to execute the installation task for other hosts before multi-node installation, `SSH Communication` is required to be established between "taskbox" and other hosts.

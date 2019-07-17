@@ -1,5 +1,7 @@
 ---
 title: "Service"
+keywords: ''
+description: ''
 ---
 
 A Service is an abstraction which defines a logical set of Pods and a policy by which to access them - sometimes called a micro-service. As an example, consider an image-processing backend which is running with 3 replicas. Those replicas are fungible - frontends do not care which backend they use. While the actual Pods that compose the backend set may change, the frontend clients should not need to be aware of that or keep track of the list of backends themselves. 

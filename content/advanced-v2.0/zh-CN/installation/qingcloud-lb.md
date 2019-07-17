@@ -1,5 +1,7 @@
 ---
 title: "安装负载均衡器插件"
+keywords: ''
+description: ''
 ---
 
 服务或应用路由如果通过 LoadBalancer 的方式暴露到外网访问，则需要安装对应的负载均衡器插件来支持，集群可以部署云平台的虚拟机或直接部署在物理机，因此分别需要不同类型的负载均衡器插件进行对接，KubeSphere 分别开发了 [QingCloud 云平台负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager) 和适用于适用于物理机部署 Kubernetes 的 [负载均衡器插件 Porter](https://github.com/kubesphere/porter)，并且已将它们在 GitHub 开源。

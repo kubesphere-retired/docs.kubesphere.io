@@ -1,5 +1,7 @@
 ---
 title: "Web Kubectl"
+keywords: ''
+description: ''
 ---
 
 ### 如何使用 Web Kubectl

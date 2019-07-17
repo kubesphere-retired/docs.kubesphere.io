@@ -1,5 +1,7 @@
 ---
 title: "Add Source Code Management" 
+keywords: ''
+description: ''
 ---
 
 DevOps project currently supports the following mainstream source code management tools (Source Code Management) in KubeSphere, which can be added to the pipeline using Jenkinsfile-in-SCM. Before adding the code repository, you need to create an account credential in advance.

@@ -1,5 +1,7 @@
 ---
 title: "StatefulSets"
+keywords: ''
+description: ''
 ---
 
 A StatefulSet operates under the same pattern as any other Controller. You define your desired state in a StatefulSet object. StatefulSets are valuable for applications that require one or more of the following.
