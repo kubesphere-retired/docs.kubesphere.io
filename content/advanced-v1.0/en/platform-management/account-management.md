@@ -1,5 +1,7 @@
 ---
 title: "Account Management"
+keywords: ''
+description: ''
 ---
 
 User management usually consists of three parts, account management, role and authority management, which are the necessary modules of any product. Account management is the most commonly used function of the administrator. The cluster-admin role in the platform allows you to create accounts and assign platform roles to other users, as well as three commonly used roles built in for admin. This document explains how to create an account for a new user.

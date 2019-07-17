@@ -1,5 +1,7 @@
 ---
 title: "示例一 - 部署 MySQL 有状态应用" 
+keywords: ''
+description: ''
 ---
 
 ## 目的

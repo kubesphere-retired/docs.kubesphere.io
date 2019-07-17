@@ -1,5 +1,7 @@
 ---
 title: "应用模板"
+keywords: ''
+description: ''
 ---
 
 应用模板相当于 Helm 应用仓库中的 chart 模板，通过可视化的方式在 KubeSphere 中展示并提供部署及管理功能，用户可以基于应用模板快速地一键部署应用。

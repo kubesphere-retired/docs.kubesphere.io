@@ -1,5 +1,7 @@
 ---
 title: "主机管理"
+keywords: ''
+description: ''
 ---
 
 Kubernetes 集群中的计算能力由主机提供，Kubernetes 集群中的 Node 是所有 Pod 运行所在的工作主机，可以是物理机也可以是虚拟机。

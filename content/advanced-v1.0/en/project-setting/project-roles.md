@@ -1,5 +1,7 @@
 ---
 title: "Member Roles"
+keywords: ''
+description: ''
 ---
 
 User rights and access management relies on role definitions, which identify the user's identity and define the relationship between the user and the resources that are accessible/operable. When the built-in role does not meet the usage requirements, you can create a custom role for the user based on the actual scenario. The biggest advantage of the custom role is the fine-grained management of the platform resources. Specify which of the specified resources the role has Permissions.

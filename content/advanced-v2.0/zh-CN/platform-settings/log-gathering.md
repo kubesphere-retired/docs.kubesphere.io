@@ -1,5 +1,7 @@
 ---
 title: "日志收集"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 提供了非常灵活的日志收集的管理配置功能，用户可以添加日志接收者包括 Elasticsearch、Kafka 和 Fluentd，甚至可以暂停 (关闭) 向某个日志接收者输出日志，也支持稍后重新启用 (激活) 该日志接收者。

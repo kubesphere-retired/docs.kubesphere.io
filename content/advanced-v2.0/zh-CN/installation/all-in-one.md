@@ -1,5 +1,7 @@
 ---
 title: "All-in-One 模式"
+keywords: ''
+description: ''
 ---
 
 对于首次接触 KubeSphere 高级版的用户，想寻找一个最快安装和体验 KubeSphere 高级版核心功能的方式，all-in-one 模式支持一键安装 KubeSphere 至一台目标机器。

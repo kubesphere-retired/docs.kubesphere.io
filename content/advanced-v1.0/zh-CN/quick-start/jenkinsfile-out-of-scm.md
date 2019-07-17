@@ -1,5 +1,7 @@
 ---
 title: "示例七 - Jenkinsfile out of SCM" 
+keywords: ''
+description: ''
 ---
 
 上一篇文档示例六是通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../jenkinsfile-in-scm)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。

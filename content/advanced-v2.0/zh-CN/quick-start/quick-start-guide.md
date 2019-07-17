@@ -1,5 +1,7 @@
 ---
 title: "入门必读" 
+keywords: ''
+description: ''
 ---
 
 KubeSphere Advanced 2.0.0 相比较 1.0.1 提供了更强大的功能，比如新增微服务治理、Source-to-Image、日志收集与查询、监控告警、更多监控指标、代码质量检查工具 SonarQube 等，并提供适用于物理机部署 Kubernetes 的负载均衡器 [Porter](https://github.com/kubesphere/porter)，满足企业更复杂的业务场景和需求。

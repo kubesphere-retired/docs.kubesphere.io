@@ -1,5 +1,7 @@
 ---
 title: "Basic Information"
+keywords: ''
+description: ''
 ---
 
 The basic information supports managing the following resources information of the current project: 

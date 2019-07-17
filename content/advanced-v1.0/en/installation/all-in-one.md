@@ -1,5 +1,7 @@
 ---
 title: "All-in-One Installation"
+keywords: ''
+description: ''
 ---
 
 For those who are new to KubeSphere Advanced Edition and looking for the fastest way to install and experience the dashboard, the all-in-one installation must be your best choice since it supports one-click installation. Just follow the steps below to get started.

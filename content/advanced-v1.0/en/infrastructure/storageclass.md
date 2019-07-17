@@ -1,5 +1,7 @@
 ---
 title: "Storage Classes"
+keywords: ''
+description: ''
 ---
 
 The Storage Class is allow to be configured by the cluster admin and provide to users by type and parameter settings. Storage classes are usually created before storage volumes are created. Currently supported storage classes include following 6 types:

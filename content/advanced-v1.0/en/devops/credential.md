@@ -1,5 +1,7 @@
 ---
 title: "Credentials Management"
+keywords: ''
+description: ''
 ---
 
 A DevOps project user can configure credentials in the application for dedicated use by Jenkins Pipeline. Once a user (e.g. Owner and Maintainer) adds/configures these credentials in DevOps project, the credentials can be used by DevOps projects to interact with these 3rd party applications.

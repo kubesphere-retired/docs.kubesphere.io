@@ -1,5 +1,7 @@
 ---
 title: "集群组件配置释义"
+keywords: ''
+description: ''
 ---
 
 用户在获取 installer 并解压至目标安装机器后，如果需要查看或修改存储、网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、邮件服务器等配置参数时，可参考以下说明进行修改，本文档对 installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义。

@@ -1,5 +1,7 @@
 ---
 title: "Multi-Node 模式"
+keywords: ''
+description: ''
 ---
 
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。

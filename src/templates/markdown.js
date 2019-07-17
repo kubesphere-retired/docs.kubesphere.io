@@ -193,6 +193,7 @@ class MarkdownTemplate extends React.Component {
     const { slug, lang } = this.props.pageContext
     const postNode = this.props.data.postBySlug
 
+    const excerpt = postNode.excerpt
     const post = postNode.frontmatter
     if (!post.id) {
       post.id = slug
@@ -208,14 +209,22 @@ class MarkdownTemplate extends React.Component {
       next,
     } = this.state
 
+    const metas = []
+
+    if (post.description || excerpt) {
+      metas.push({ name: 'description', content: post.description || excerpt })
+    }
+    if (post.keywords) {
+      metas.push({ name: 'keywords', content: post.keywords })
+    }
+
     return (
       <Layout data={this.props.data}>
         <div>
-          <Helmet>
-            <title>{`${post.title} | ${
-              this.props.data.site.siteMetadata.title
-            }`}</title>
-          </Helmet>
+          <Helmet
+            title={`${post.title} | ${this.props.data.site.siteMetadata.title}`}
+            meta={metas}
+          />
           <BodyGrid>
             <NavContainer isExpand={isExpand}>
               <Versions
@@ -413,8 +422,11 @@ export const pageQuery = graphql`
     }
     postBySlug: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      excerpt
       frontmatter {
         title
+        keywords
+        description
       }
       headings {
         value

@@ -1,5 +1,7 @@
 ---
 title: "升级"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 目前最新的版本 2.0.2 已发布，该版本修复了已知的 Bug，关于 2.0.2 版本的更新详情可参考 [Release Note - v2.0.2](../../release/release-v202)。

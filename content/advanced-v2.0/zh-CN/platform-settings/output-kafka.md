@@ -1,5 +1,7 @@
 ---
 title: "添加 Kafka 作为日志收集"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档通过以下两种方式说明如何创建 Kafka 和 Zookeeper 集群，并通过 KubeSphere 添加日志收集者将日志输出到 Kafka 的 topic，最终通过 [Kafkacat 客户端](https://github.com/edenhill/kafkacat) 验证接收实时的日志消息：

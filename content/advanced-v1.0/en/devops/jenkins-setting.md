@@ -1,5 +1,7 @@
 ---
 title: "Jenkins System Settings"
+keywords: ''
+description: ''
 ---
 
 Jenkins is powerful and flexible and it has become the de facto standard for CI/CD workflow. But flexibility comes at a price: because in addition to the Jenkins itself, many plugins require some system-level configuration to get the job done.

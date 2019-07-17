@@ -1,5 +1,7 @@
 ---
 title: "Source-to-image" 
+keywords: ''
+description: ''
 ---
 
 Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包成可运行程序到 Docker 镜像的工具，在程序员不需要了解 Dockerfile 的情况下方便构建镜像。它是通过将源代码放入一个负责编译源代码的 Builder image 中，自动将编译后的代码打包成 Docker 镜像。

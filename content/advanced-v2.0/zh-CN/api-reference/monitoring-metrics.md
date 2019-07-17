@@ -1,5 +1,7 @@
 ---
 title: "监控指标说明"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 资源监控共分为八个层级：Cluster（集群），Node（节点），Workspace（企业空间），Namespace（项目），Workload（工作负载），Pod（容器组），Container（容器），Component（ KubeSphere 核心组件）。
