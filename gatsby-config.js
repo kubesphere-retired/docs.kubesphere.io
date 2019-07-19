@@ -74,6 +74,7 @@ const transformer = ({ data }) => {
 }
 
 module.exports = {
+  pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/docs',
   siteMetadata: {
     title: 'KubeSphere Documents',
     versions: [
@@ -100,8 +101,7 @@ module.exports = {
           },
           {
             name: 'notification',
-            url:
-              'https://raw.githubusercontent.com/openpitrix/notification/master/doc/ks_api_json/api.swagger.json',
+            url: 'data/notification.api.json',
           },
         ],
       },
@@ -159,6 +159,7 @@ module.exports = {
         query,
         indexes,
         transformer,
+        pathPrefix: '/docs',
         fields: [
           { name: 'title', store: true },
           { name: 'head_prefix', store: true },
