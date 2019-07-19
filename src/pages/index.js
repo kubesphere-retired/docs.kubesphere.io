@@ -86,6 +86,7 @@ class IndexPage extends React.Component {
             query={query}
             onSearch={this.handleSearch}
             onQueryChange={this.handleQueryChange}
+            pathPrefix={this.props.data.site.pathPrefix}
           />
           <Content
             {...this.props}
@@ -110,10 +111,10 @@ class IndexPage extends React.Component {
 
 export default WithI18next({ ns: 'common' })(IndexPage)
 
-const Header = ({ t, query, onSearch, onQueryChange, pageContext }) => (
+const Header = ({ t, query, onSearch, onQueryChange, pageContext, pathPrefix }) => (
   <HeaderWrapper>
     <LogoWrapper>
-      <Logo pageContext={pageContext} />
+      <Logo pageContext={pageContext} pathPrefix={pathPrefix}/>
     </LogoWrapper>
     <Wrapper>
       <h1>{t('Welcome to the KubeSphere Documentation')}</h1>
@@ -134,12 +135,12 @@ const Header = ({ t, query, onSearch, onQueryChange, pageContext }) => (
   </HeaderWrapper>
 )
 
-const Versions = ({ t, current, versions, onChange }) => {
+const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
   const handleDownload = current => {
     const a = document.createElement('a')
     a.target = '_blank'
     a.download = `KubeSphere-${current.value}.pdf`
-    a.href = `${window.location.origin}/KubeSphere-${current.value}.pdf`
+    a.href = `${window.location.origin}${pathPrefix}/KubeSphere-${current.value}.pdf`
     a.click()
   }
 
@@ -191,7 +192,7 @@ const getTitleLink = chapter => {
   return get(entry, 'childMarkdownRemark.fields.slug', '')
 }
 
-const Documents = ({ tableOfContent }) => (
+const Documents = ({ tableOfContent, pathPrefix }) => (
   <DocumentWrapper>
     <Wrapper>
       <ul className="chapter-list">
@@ -199,7 +200,9 @@ const Documents = ({ tableOfContent }) => (
           return (
             <li key={index}>
               <h3>
-                {chapter.icon && <img src={chapter.icon} alt="" />}
+                {chapter.icon && (
+                  <img src={`${pathPrefix}${chapter.icon}`} alt="" />
+                )}
                 <Link to={getTitleLink(chapter)}>{chapter.title}</Link>
                 {chapter.tag && <Tag>{chapter.tag}</Tag>}
               </h3>
@@ -237,9 +240,15 @@ const Content = props => {
         current={props.selectVersion}
         versions={props.data.site.siteMetadata.versions}
         onChange={props.onVersionChange}
+        pathPrefix={props.data.site.pathPrefix}
         t={props.t}
       />
-      {tableOfContent && <Documents tableOfContent={tableOfContent} />}
+      {tableOfContent && (
+        <Documents
+          tableOfContent={tableOfContent}
+          pathPrefix={props.data.site.pathPrefix}
+        />
+      )}
     </ContentWrapper>
   )
 }
@@ -297,7 +306,7 @@ const Footer = props => {
           </li>
         </ul>
         <LanguageWrapper>
-          <Language {...props} />
+          <Language {...props} pathPrefix={props.data.site.pathPrefix} />
         </LanguageWrapper>
         <p className="icp">KubeSphere®️ 2019 All Rights Reserved.</p>
       </Wrapper>
@@ -643,6 +652,7 @@ export const query = graphql`
 
   query Index {
     site {
+      pathPrefix
       siteMetadata {
         title
         versions {

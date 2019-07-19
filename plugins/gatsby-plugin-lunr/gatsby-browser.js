@@ -1,7 +1,7 @@
 const lunr = require('./lunr.js')
 
 exports.onClientEntry = () => {
-  fetch('/search_index.json')
+  fetch('/docs/search_index.json')
     .then(function(response) {
       return response.json()
     })

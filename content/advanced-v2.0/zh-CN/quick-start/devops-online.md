@@ -42,7 +42,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 创建凭证
 
-在 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
+在 [多租户管理快速入门](/advanced-v2.0/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
 
 1、本示例代码仓库中的 Jenkinsfile 需要用到 **DockerHub、GitHub** 和 **kubeconfig** (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，参考 [创建凭证](../../devops/credential/#创建凭证) 依次创建这三个凭证。
 
@@ -204,7 +204,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 >
 > Webhook 推送：
 >
-> Webhook 是一种高效的方式可以让流水线发现远程仓库的变化并自动触发新的运行，GitHub 和 Git (如 Gitlab) 触发 Jenkins 自动扫描应该以 Webhook 为主，以上一步在 KubeSphere 设置定期扫描为辅。在本示例中，可以通过手动运行流水线，如需设置自动扫描远端分支并触发运行，详见 [设置自动触发扫描 - GitHub SCM](https://docs.kubesphere.io/advanced-v2.0/zh-CN/devops/auto-trigger)。
+> Webhook 是一种高效的方式可以让流水线发现远程仓库的变化并自动触发新的运行，GitHub 和 Git (如 Gitlab) 触发 Jenkins 自动扫描应该以 Webhook 为主，以上一步在 KubeSphere 设置定期扫描为辅。在本示例中，可以通过手动运行流水线，如需设置自动扫描远端分支并触发运行，详见 [设置自动触发扫描 - GitHub SCM](/advanced-v2.0/zh-CN/devops/auto-trigger)。
 
 完成高级设置后点击 **创建**。
 
