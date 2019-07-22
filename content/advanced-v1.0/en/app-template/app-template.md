@@ -1,5 +1,7 @@
 ---
 title: "App Template"
+keywords: ''
+description: ''
 ---
 
 The application template is the storage, delivery, and management approach for the application in KubeSphere. The application template is built on the [Helm](https://helm.sh/) packaging specification and delivered through a unified public or private application repository. The application can be composed of one or more Kubernetes workloads and services according to the application's characteristics.

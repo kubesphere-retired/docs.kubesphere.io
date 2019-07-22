@@ -1,5 +1,7 @@
 ---
 title: "Release Notes For 1.0.1"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 高级版 (Advanced Edition 1.0.1) 已于 2019 年 1 月 28 日 正式发布。建议下载并安装最新的 1.0.1 版本，若您已经安装了 1.0.0 版本，请下载 1.0.1 版本的 Installer，支持一键升级 1.0.0 至 1.0.1。

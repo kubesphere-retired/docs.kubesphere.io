@@ -1,5 +1,7 @@
 ---
 title: "Master 和 etcd 节点高可用配置"
+keywords: ''
+description: ''
 ---
 
 Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节点集群用于开发和测试，在实际的生产环境我们还需要考虑 master 节点的高可用问题，

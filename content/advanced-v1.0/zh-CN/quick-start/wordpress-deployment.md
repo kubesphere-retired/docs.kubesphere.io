@@ -1,5 +1,7 @@
 ---
 title: "示例二 - 部署 Wordpress" 
+keywords: ''
+description: ''
 ---
 
 ## 目的

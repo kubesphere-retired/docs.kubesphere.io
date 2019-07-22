@@ -8,7 +8,8 @@ import { formatAnchor } from '../../utils/index'
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 
 const Link = ({ to, ...rest }, { location }) => {
-  const selected = location.pathname + decodeURIComponent(location.hash) === to
+  const selected =
+    (location.pathname + decodeURIComponent(location.hash)).indexOf(to) !== -1
 
   return (
     <GatsbyLink
@@ -37,7 +38,7 @@ class LinkWithHeadings extends React.Component {
     const { fields } = this.props.entry.childMarkdownRemark
 
     this.setState({
-      open: location.pathname === fields.slug,
+      open: location.pathname.indexOf(fields.slug) !== -1,
     })
   }
 
@@ -132,7 +133,7 @@ class ChapterList extends React.Component {
         ({ entry }) => entry.childMarkdownRemark.fields.slug
       )
 
-      open = slugs.includes(pathname)
+      open = slugs.some(slug => pathname.indexOf(slug) !== -1)
     } else if (props.chapters) {
       const slugs = []
       props.chapters.forEach(chapter => {
@@ -146,7 +147,7 @@ class ChapterList extends React.Component {
           )
         }
       })
-      open = slugs.includes(pathname)
+      open = slugs.some(slug => pathname.indexOf(slug) !== -1)
     }
 
     return open

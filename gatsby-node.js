@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const loadAndBundleSpec = require('@leoendless/redoc').loadAndBundleSpec
 
 const localesNSContent = {
   en: [
@@ -187,19 +188,46 @@ const createAPIPages = ({ graphql, actions }) =>
         }
       }
     `).then(({ data: { site } }) => {
+      const promises = []
       site.siteMetadata.apiDocuments.forEach(doc => {
         doc.swaggerUrls.forEach(item => {
+          promises.push(
+            new Promise(resolve => {
+              if (/^data/.test(item.url)) {
+                const data = require(`./src/${item.url}`)
+                loadAndBundleSpec(data).then(data => {
+                  resolve({
+                    data,
+                    name: item.name,
+                    version: doc.version,
+                  })
+                })
+              } else {
+                loadAndBundleSpec(item.url).then(data => {
+                  resolve({
+                    data,
+                    name: item.name,
+                    version: doc.version,
+                  })
+                })
+              }
+            })
+          )
+        })
+      })
+      Promise.all(promises).then(ret => {
+        ret.forEach(({ name, version, data }) => {
           createPage({
-            path: `/${doc.version}/api/${item.name}`,
+            path: `/${version}/api/${name}`,
             component: path.resolve(`./src/templates/api.js`),
             context: {
-              version: doc.version,
-              swaggerUrl: item.url,
+              version: version,
+              swaggerData: data,
             },
           })
-        });
+        })
+        resolve()
       })
-      resolve()
     })
   })
 

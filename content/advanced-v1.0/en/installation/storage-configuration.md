@@ -1,5 +1,7 @@
 ---
 title: "Storage Configuration Instruction"
+keywords: ''
+description: ''
 ---
 
 Currently, Installer supports the following types of storage as storage servers, providing persistent storage service for KubeSphere (more storage classes are continuously updated).

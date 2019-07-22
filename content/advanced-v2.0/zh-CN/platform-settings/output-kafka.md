@@ -11,7 +11,7 @@ KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 
 
 ### 第一步：通过 yaml 创建 Zookeeper、Kafka
 
-> 注意：单节点 Kafka 和 Zookeeper 仅用于测试日志输出到 Kafka，正式环境建议搭建多节点的 Kafka 集群，例如可分别创建 3 个 Kafka 和 Zookeeper 的 Deployment 和 Service。
+> 注意：单节点 Kafka 和 Zookeeper 仅用于测试日志输出到 Kafka，正式环境建议搭建多节点的 Kafka 集群。
 
 1、在工具箱打开 web kubectl 或后台 SSH 到 KubeSphere 后台，新建一个 kafka 的 Namespace，然后在该 Namespace 中创建 Zookeeper 的 Service 和 Deployment。
 

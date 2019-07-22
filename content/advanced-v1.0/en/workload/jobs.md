@@ -1,5 +1,7 @@
 ---
 title: "Jobs"
+keywords: ''
+description: ''
 ---
 
 A Job creates one or more Pods and ensures that a specified number of them successfully terminate. As pods successfully complete, the Job tracks the successful completions.

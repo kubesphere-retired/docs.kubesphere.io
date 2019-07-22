@@ -1,5 +1,7 @@
 ---
 title: "入门必读" 
+keywords: ''
+description: ''
 ---
 
 相比较易捷版，KubeSphere 高级版提供了更强大更灵活的功能，满足企业更复杂的业务需求，比如新增 HPA (水平自动伸缩)、 CI/CD、监控日志、LDAP 集成、多租户管理、Job/CronJob 等功能，以及 Secrets、ConfigMaps 配置管理。

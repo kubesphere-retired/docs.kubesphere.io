@@ -1,5 +1,7 @@
 ---
 title: KubeSphere Installation Guide
+keywords: ''
+description: ''
 ---
 
 

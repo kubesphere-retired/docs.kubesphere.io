@@ -1,5 +1,7 @@
 ---
 title: "有状态副本集"
+keywords: ''
+description: ''
 ---
 
 有状态副本集 (StatefulSet)，是为了解决有状态服务的问题 (对应 Deployments 和 ReplicaSets 是为无状态服务而设计)，可以保证资源创建和伸缩时候的顺序。应用场景包括：

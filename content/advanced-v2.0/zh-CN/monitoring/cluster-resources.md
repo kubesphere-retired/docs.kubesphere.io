@@ -1,5 +1,7 @@
 ---
 title: "集群状态监控"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 监控中心在 **集群状态监控** 提供了集群的 CPU、内存、网络和磁盘等相关指标的监控，并支持回看历史监控和节点用量排行。在控制台的 **平台管理 → 监控中心** 页面可查看集群状态的监控指标。
@@ -130,14 +132,13 @@ IOPS 对于磁盘来说，一次磁盘的连续读或者连续写称为一次磁
 
 |监控指标|指标说明|
 |---|---|
-|ETCD 节点 | `是否有 Leader`：表示该成员是否有 Leader，如果成员没有 Leader，则完全不可用。 如果集群中的所有成员都没有任何 Leader，则整个集群完全不可用 <br> `Leader 变更次数`： 用于计算集群中的成员自开始以来所看到的 Leader 变更的数量。 快速的领导变革会显着影响 ETCD 的表现。 它还表明 Leader 不稳定，可能是由于网络连接问题或过度负载击中了 ETCD 集群|
-|库大小 | ECTD 底层数据库的总大小（以 MiB 为单位），指标释义详见 [etcd Disk](https://github.com/etcd-io/etcd/blob/v3.2.17/Documentation/metrics.md#disk)|
+|ETCD 节点 | `是否有 Leader`：表示该成员是否有 Leader，如果成员没有 Leader，则完全不可用。 如果集群中的所有成员都没有任何 Leader，则整个集群完全不可用 <br> `Leader 变更次数`： 用于计算集群中的成员自开始以来所看到的 Leader 变更的数量。 频繁的 Leader 变更会显着影响 ETCD 的表现。 它还表明 Leader 不稳定，可能是由于网络连接问题或过度负载击中了 ETCD 集群|
+|库大小 | ECTD 底层数据库的大小（以 MiB 为单位），目前展示的是 ETCD 各成员数据库大小平均值。|
 |客户端流量|包括发送给 grpc 客户端的总流量和收到 grpc 客户端的总流量，指标释义详见 [etcd Network](https://github.com/etcd-io/etcd/blob/v3.2.17/Documentation/metrics.md#network) |
 |gRPC 流式消息|Server 端的 gRPC 流式消息接收速率和发送速率，该速率可以反映集群中是否有大规模数据的读和写操作，指标释义详见 [go-grpc-prometheus](https://github.com/grpc-ecosystem/go-grpc-prometheus#counters)|
 |WAL 日志同步时间|WAL 调用 fsync 的延迟，当 ETCD 在应用它们之前将其日志条目保留到磁盘时，将调用wal_fsync，指标释义详见 [etcd Disk](https://etcd.io/docs/v3.3.12/metrics/#grpc-requests) |
 |库同步时间|后端调用的提交延迟分布，当 ETCD 提交其最近更改到磁盘的增量快照时，将调用 backend_commit。注意，磁盘操作高延迟（WAL 日志同步时间或库同步时间较长）通常表示磁盘问题，它可能会导致高请求延迟或使集群不稳定，指标释义详见 [etcd Disk](https://etcd.io/docs/v3.3.12/metrics/#grpc-requests) |
-|Raft 提议| - `提议提交速率`：记录已提交的共识提案的速率。如果集群健康，该指标应随时间增加。 ETCD 集群的几个健康成员可能同时拥有不同的总提议。单个成员与其领导者之间的持续大滞后表明成员缓慢或不健康。<br> - `提议应用速率`：记录所应用的共识提案总速率。 ETCD 服务器异步应用每个已提交的提议。提议提交速率和提议应用速率之间的差异通常应该很小（即使在高负载下也只有几千）。<br> 如果它们之间的差异继续上升，则表明 ETCD 服务器过载。 在使用大规模查询（如重范围查询或大型 txn 操作）时可能会发生这种情况。<br> - `提议失败速率`：失败提案总速率，通常与两个问题相关，与 Leader 选举相关的临时故障或由于集群中的仲裁丢失导致的更长停机时间。<br> - `排队提议数`：当前待处理提案的数量，上升的待定提案表明 Client 端负载较高或成员无法提交提案。<br> 提议相关参数释义详见 [etcd Server](https://etcd.io/docs/v3.3.12/metrics/#server)。
-|
+|Raft 提议| - `提议提交速率`：记录已提交的共识提案的速率。如果集群健康，该指标应随时间增加。 ETCD 集群的几个健康成员可能同时拥有不同的总提议。单个成员与其 Leader 之间的持续大滞后表明成员缓慢或不健康。<br> - `提议应用速率`：记录所应用的共识提案总速率。 ETCD 服务器异步应用每个已提交的提议。提议提交速率和提议应用速率之间的差异通常应该很小（即使在高负载下也只有几千）。<br> 如果它们之间的差异继续上升，则表明 ETCD 服务器过载。 在使用大规模查询（如重范围查询或大型 txn 操作）时可能会发生这种情况。<br> - `提议失败速率`：失败提案总速率，通常与两个问题相关，与 Leader 选举相关的临时故障或由于集群中的仲裁丢失导致的更长停机时间。<br> - `排队提议数`：当前待处理提案的数量，上升的待定提案表明 Client 端负载较高或成员无法提交提案。<br> 目前，界面上展示的数据是 ETCD 各成员指标大小的平均值。提议相关参数释义详见 [etcd Server](https://etcd.io/docs/v3.3.12/metrics/#server)。|
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190702140014.png)
 
@@ -148,8 +149,8 @@ IOPS 对于磁盘来说，一次磁盘的连续读或者连续写称为一次磁
 
 |监控指标|指标说明|
 |---|---|
-|请求延迟|每个 Method (例如 CREATE、DELETE、GET)，资源和子资源的响应延迟分布（以毫秒为单位）|
-|每秒请求数|针对每个 Method、API 资源、客户端和 HTTP 响应 contentType 和代码分发的 apiserver 请求数|
+|请求延迟|按 HTTP 请求方法分类统计，资源请求响应的延迟（以毫秒为单位）|
+|每秒请求数|kube-apiserver 每秒接受请求数量|
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190703101046.png)
 

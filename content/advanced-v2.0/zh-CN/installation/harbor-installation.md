@@ -1,5 +1,7 @@
 ---
 title: "安装内置 Harbor" 
+keywords: ''
+description: ''
 ---
 
 KubeSphere Installer 集成了 Harbor 版本为 1.7.5，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需 `安装前` 在配置文件 `conf/vars.yml` 中简单配置即可。参考以下步骤安装和访问 Harbor。

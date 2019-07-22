@@ -1,5 +1,7 @@
 ---
 title: "上传应用到 KubeSphere 官方仓库"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 提供了公共应用仓库供开发测试使用，用户可以把做好的应用上传到此仓库，审核后便可以使用。

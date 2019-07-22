@@ -1,5 +1,7 @@
 ---
 title: "Add New Nodes"
+keywords: ''
+description: ''
 ---
 
 After installing KubeSphere, you may encounter insufficient capacity in the formal environment. In this case, it's required to add new nodes and then scale the system horizontally to complete the expansion. It allows cluster operator to expand the cluster according to actual business needs, and it's quite easy to add new nodes in the cluster. Adding new nodes are based on Kubelet's automatic registration mechanism, and the new nodes will automatically join the existing Kubernetes cluster.

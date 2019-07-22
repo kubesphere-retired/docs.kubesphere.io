@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next'
 
 import { ReactComponent as LogoIcon } from '../assets/logo.svg'
 
-const Logo = ({ t, pageContext: { locale } }) => (
+const Logo = ({ t, pageContext: { locale }, pathPrefix }) => (
   <Wrapper>
     <a
       href={`//kubesphere.io/${locale}`}
@@ -13,7 +13,7 @@ const Logo = ({ t, pageContext: { locale } }) => (
     >
       <LogoIcon className="logo" />
     </a>
-    <a href={`/${locale}`}>
+    <a href={`${pathPrefix}/${locale}`}>
       <p>{t('Documentation')}</p>
     </a>
   </Wrapper>

@@ -1,5 +1,7 @@
 ---
 title: "Routes"
+keywords: ''
+description: ''
 ---
 
 Route can be considered as ingress in Kubernetes, an Route can be configured to give services externally-reachable URLs, load balance traffic, terminate SSL, and offer name based virtual hosting. Route exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.

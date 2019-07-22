@@ -1,5 +1,7 @@
 ---
 title: "ConfigMap"
+keywords: ''
+description: ''
 ---
 
 ConfigMaps allow you to decouple configuration artifacts from image content to keep containerized applications portable. This page demonstrates how to create ConfigMaps and configure Pods using data stored in ConfigMaps.

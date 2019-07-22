@@ -35,7 +35,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { isExpand, ...rest } = this.props
+    const { isExpand, pathPrefix, ...rest } = this.props
 
     return (
       <HeaderWrapper isExpand={isExpand} ref={this.headerRef}>
@@ -45,7 +45,7 @@ class Header extends React.Component {
           <span className="v-line" />
         </div>
         <LogoWrapper>
-          <Logo pageContext={this.props.pageContext} />
+          <Logo pageContext={this.props.pageContext} pathPrefix={pathPrefix}/>
         </LogoWrapper>
         <SearchWrapper>
           <Search {...rest} />

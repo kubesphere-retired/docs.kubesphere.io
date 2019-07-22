@@ -1,5 +1,7 @@
 ---
 title: "CI/CD 流水线示例 (离线版)" 
+keywords: ''
+description: ''
 ---
 
 KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，需在安装前进行配置开启安装。用户可以根据团队项目的需求来安装，方便对项目的镜像和代码进行管理，本文档适用于离线环境的流水线构建。

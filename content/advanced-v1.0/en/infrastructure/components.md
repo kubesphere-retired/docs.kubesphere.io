@@ -1,5 +1,7 @@
 ---
 title: "Service Components"
+keywords: ''
+description: ''
 ---
 
 The service components panel provides health status monitoring of various service components in the cluster, which can help cluster administrators to monitor the status of the cluster and locate problems timely.

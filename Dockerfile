@@ -1,2 +1,2 @@
 FROM gatsbyjs/gatsby:latest
-ADD public/ /pub
+ADD public/ /pub/docs

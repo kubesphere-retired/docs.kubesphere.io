@@ -1,10 +1,12 @@
 ---
 title: "创建 SonarQube Token"
+keywords: ''
+description: ''
 ---
 
 ### 访问 SonarQube 
 
-参考 [访问内置 SonarQube](https://docs.kubesphere.io/advanced-v2.0/zh-CN/installation/sonarqube-jenkins/)。
+参考 [访问内置 SonarQube](/advanced-v2.0/zh-CN/installation/sonarqube-jenkins/)。
 
 ### 创建 SonarQube Token
 

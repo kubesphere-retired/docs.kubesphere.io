@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
-import { RedocStandalone } from 'redoc'
+import { Redoc, AppStore } from '@leoendless/redoc'
 import {
   darken,
   desaturate,
@@ -209,21 +209,22 @@ const style = `
 `
 
 class APIDocTemplate extends React.Component {
+  constructor(props) {
+    super(props)
+
+    const spec = props.pageContext.swaggerData
+    this.store = new AppStore(spec, '', { theme: THEME })
+  }
+
   render() {
-    const {
-      data,
-      pageContext: { swaggerUrl },
-    } = this.props
+    const { data } = this.props
 
     return (
       <Layout data={data}>
         <Helmet>
           <style>{style}</style>
         </Helmet>
-        <RedocStandalone
-          specUrl={`${swaggerUrl}?_=${new Date().getTime()}`}
-          options={{ theme: THEME }}
-        />
+        <Redoc store={this.store} />
       </Layout>
     )
   }

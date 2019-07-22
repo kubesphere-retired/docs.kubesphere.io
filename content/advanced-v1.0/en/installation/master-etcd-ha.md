@@ -1,5 +1,7 @@
 ---
 title: "Highly Available Master and Etcd Cluster"
+keywords: ''
+description: ''
 ---
 
 Multi-node installation can help users successfully deploy a Multi-node cluster for development and testing. In a production environment, we have to consider the high availability of master and etcd nodes. The reason is that if the key components on the master node, for example kube-apiserver, kube-scheduler, and kube-controller-manager are single-node running, if the master is down then KubeSphere might be unavailable, it might be a big risk for online business.
