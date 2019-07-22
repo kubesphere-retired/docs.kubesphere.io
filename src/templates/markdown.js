@@ -64,6 +64,12 @@ class MarkdownTemplate extends React.Component {
 
       this.viewer = viewer
     }
+
+    this.setLinkTargetBlank()
+  }
+
+  componentDidUpdate() {
+    this.setLinkTargetBlank()
   }
 
   componentWillUnmount() {
@@ -71,6 +77,13 @@ class MarkdownTemplate extends React.Component {
     if (this.viewer) {
       this.viewer.destroy()
     }
+  }
+
+  setLinkTargetBlank() {
+    const $links = document.querySelectorAll('.md-body a')
+    Array.prototype.forEach.call($links, el => {
+      el.setAttribute('target', '_blank')
+    })
   }
 
   isCurrentLink = link => {
