@@ -46,13 +46,13 @@ $ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.
 
 </span>
 <input type="radio" name="tabs" id="offline">
-<label for="offline">离线版 (2.0.0)</label>
+<label for="offline">离线版 (2.0.2)</label>
 <span class="md-tab">
 
-下载 `离线安装包 (2.0.0)` 至待安装机器 (2.0.2 的离线安装包即将上线)。
+下载 `离线安装包 (2.0.2)` 至待安装机器。
 
 ```bash
-$ curl -L https://kubesphere.io/download/offline/advanced-2.0.0 > advanced-2.0.0.tar.gz && tar -zxf advanced-2.0.0.tar.gz && cd kubesphere-all-advanced-2.0.0/scripts
+$ curl -L https://kubesphere.io/download/offline/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/scripts
 ```
 
 </span>

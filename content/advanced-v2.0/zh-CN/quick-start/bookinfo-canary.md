@@ -132,13 +132,13 @@ $ watch -n 0.5 "curl http://productpage.demo-namespace.139.198.111.111.nip.io:31
 > 提示：点击其中一个应用组件，还可以为该服务组件设置流量治理策略，如连接池管理、熔断器等，详见 [流量治理](../../application/traffic-gov)。
 
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190415013123.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718170342.png)
 
 ### 查看流量监测
 
 点击 reviews 服务，查看该服务的实时流量监测，包括每秒请求的流量 (RPS)、成功率、持续时间等指标，这类指标都可以分析该服务的健康状况和请求成功率。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190415013531.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718170442.png)
 
 ### 查看 Tracing
 

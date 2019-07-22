@@ -1,8 +1,8 @@
 ---
-title: "添加 Fluentd 作为日志收集"
+title: "添加 Fluentd 作为日志接收者"
 ---
 
-KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档演示如何在 KubeSphere 部署容器化的 Fluentd 并将其添加为日志收集者，展示 Fluentd 接收到日志数据后，输出到容器的 stdout 标准输出，最后可以通过查看 Fluentd 容器的日志，验证添加日志收集者的流程是否成功。
+KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档演示如何在 KubeSphere 部署容器化的 Fluentd 并将其添加为日志接收者，展示 Fluentd 接收到日志数据后，输出到容器的 stdout 标准输出，最后可以通过查看 Fluentd 容器的日志，验证添加日志接收者的流程是否成功。
 
 ## 前提条件
 
@@ -76,7 +76,7 @@ fluent.conf
 
 ## 第四步：添加 Fluentd 作为日志搜集者
 
-1、点击「平台管理」 → 「平台设置」，选择「日志收集」，点击「添加日志收集者」。
+1、点击「平台管理」 → 「平台设置」，选择「日志收集」，点击「添加日志接收者」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514234854.png)
 
@@ -89,7 +89,7 @@ fluent.conf
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514235411.png)
 
-> 说明：若需要对 Fluent Bit 转发 Fluentd 做个性化配置，可在日志收集者页面下进入 「Fluentd」 → 「更多操作」，点击 「编辑配置文件」 然后修改 `parameters`，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/forward) `forward` 插件支持的参数项。
+> 说明：若需要对 Fluent Bit 转发 Fluentd 做个性化配置，可在日志接收者页面下进入 「Fluentd」 → 「更多操作」，点击 「编辑配置文件」 然后修改 `parameters`，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/forward) `forward` 插件支持的参数项。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190517112230.png)
 

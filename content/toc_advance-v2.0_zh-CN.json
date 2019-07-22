@@ -272,11 +272,11 @@
               "entry": "./advanced-v2.0/zh-CN/platform-settings/log-gathering.md"
             },
             {
-              "title": "添加 Fluentd 作为日志收集",
+              "title": "添加 Fluentd 作为日志接收者",
               "entry": "./advanced-v2.0/zh-CN/platform-settings/output-fluentd.md"
             },
             {
-              "title": "添加 Kafka 作为日志收集",
+              "title": "添加 Kafka 作为日志接收者",
               "entry": "./advanced-v2.0/zh-CN/platform-settings/output-kafka.md"
             }
           ]
