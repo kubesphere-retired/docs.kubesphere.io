@@ -1,10 +1,8 @@
 ---
-title: "添加 Kafka 作为日志收集"
-keywords: ''
-description: ''
+title: "添加 Kafka 作为日志接收者"
 ---
 
-KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档通过以下两种方式说明如何创建 Kafka 和 Zookeeper 集群，并通过 KubeSphere 添加日志收集者将日志输出到 Kafka 的 topic，最终通过 [Kafkacat 客户端](https://github.com/edenhill/kafkacat) 验证接收实时的日志消息：
+KubeSphere 目前支持添加的日志接收者包括 Elasticsearch、Kafka 和 Fluentd，本文档通过以下两种方式说明如何创建 Kafka 和 Zookeeper 集群，并通过 KubeSphere 添加日志接收者将日志输出到 Kafka 的 topic，最终通过 [Kafkacat 客户端](https://github.com/edenhill/kafkacat) 验证接收实时的日志消息：
 
 - 在 Kubernetes 部署一个单节点的 Kafka 和 Zookeeper (适用于测试或演示)
 - 在 AppCenter 创建 Kafka 和 Zookeeper 集群 (适用于正式环境)
@@ -160,9 +158,9 @@ $ kafkacat -C -b 192.168.0.16:30092 -t test-topic
 Hello KubeSphere!
 ```
 
-### 第二步：添加 Kafka 作为日志搜集者
+### 第二步：添加 Kafka 作为日志接收者
 
-1、点击「平台管理」 → 「平台设置」，选择「日志收集」，点击「添加日志收集者」。
+1、点击「平台管理」 → 「平台设置」，选择「日志收集」，点击「添加日志接收者」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514234854.png)
 
@@ -170,7 +168,7 @@ Hello KubeSphere!
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190715004519.png)
 
-> 说明：若需要对 Fluent Bit 转发 Kafka 做个性化配置，可在日志收集者页面下进入 「Kafka」 → 「更多操作」，点击 「编辑配置文件」 然后修改 `parameters`，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/kafka) `kafka` 插件支持的参数项。
+> 说明：若需要对 Fluent Bit 转发 Kafka 做个性化配置，可在日志接收者页面下进入 「Kafka」 → 「更多操作」，点击 「编辑配置文件」 然后修改 `parameters`，可参看 [Fluent Bit 官方文档](https://docs.fluentbit.io/manual/output/kafka) `kafka` 插件支持的参数项。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190521100155.png)
 
@@ -205,9 +203,9 @@ Hello KubeSphere!
 
 ![Kafka 集群](https://kubesphere-docs.pek3b.qingstor.com/png/20190518114710.png)
 
-### 第二步：添加日志收集者并验证
+### 第二步：添加日志接收者并验证
 
-同上，在 KubeSphere 中添加 Kafka 集群作为日志收集者。登录 Kafka 集群客户端节点的 VNC，可安装使用 Kafkacat 验证 Kafka 集群的消息发送和接收，或通过 `kafka-console-consumer.sh` 脚本验证，参考 [Kafka 文档](https://docs.qingcloud.com/product/big_data/kafka/README.html)。
+同上，在 KubeSphere 中添加 Kafka 集群作为日志接收者。登录 Kafka 集群客户端节点的 VNC，可安装使用 Kafkacat 验证 Kafka 集群的消息发送和接收，或通过 `kafka-console-consumer.sh` 脚本验证，参考 [Kafka 文档](https://docs.qingcloud.com/product/big_data/kafka/README.html)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190715010145.png)
 

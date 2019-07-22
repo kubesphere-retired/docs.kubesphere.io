@@ -35,9 +35,9 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 > - **阶段二. Unit test**: 单元测试，如果测试通过了才继续下面的任务
 > - **阶段三. sonarQube analysis**：sonarQube 代码质量检测
 > - **阶段四. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 Harbor (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
-> - **阶段五. Push latest image**: 将 master 分支打上 tag 为 latest，并推送至 Harbor。
+> - **阶段五. Push latest image**: 将 master 分支打上 tag 为 latest，并推送至 DockerHub。
 > - **阶段六. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
-> - **阶段七. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 Harbor。
+> - **阶段七. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 DockerHub。
 > - **阶段八. Deploy to production**: 将发布的 tag 部署到 Production 环境。
 
 ## 创建凭证

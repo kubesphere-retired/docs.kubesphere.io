@@ -6,7 +6,7 @@ description: ''
 
 ## Objective
 
-This document is for cluster admin using KubeSphere for the first timee, guiding users to create workspaces, roles and accounts, and then invite new users into the workspace to create their projects and DevOps projects, as well as guiding cluster admin to use the web Kubectl tool. Help users to become familiar with users and roles management, and introduce the use of web Kubectl.
+This document is for cluster admin using KubeSphere for the first time, guiding users to create workspaces, roles and accounts, and then invite new users into the workspace to create their projects and DevOps projects, as well as guiding cluster admin to use the web Kubectl tool. Help users to become familiar with users and roles management, and introduce the use of web Kubectl.
 
 ## Prerequisites
 
