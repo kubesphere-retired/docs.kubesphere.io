@@ -5,20 +5,19 @@ import { ReactComponent as SearchIcon } from '../assets/search.svg'
 
 class Search extends React.Component {
   render() {
+    const { placeholder } = this.props
+
     return (
       <SearchWrapper className="ks-search">
         <SearchIcon />
-        <input type="text" placeholder="快速查找" />
+        <input type="text" placeholder={placeholder} />
       </SearchWrapper>
     )
   }
 }
 
 const SearchWrapper = styled.div`
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   width: 350px;
   height: 36px;
 
