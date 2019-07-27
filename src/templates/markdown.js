@@ -65,6 +65,15 @@ class MarkdownTemplate extends React.Component {
       this.viewer = viewer
     }
 
+    if (typeof docsearch !== 'undefined') {
+      docsearch({
+        apiKey: '221332a85783d16a5b930969fe4a934a',
+        indexName: 'kubesphere',
+        inputSelector: '.ks-search > input',
+        debug: false,
+      })
+    }
+
     this.setLinkTargetBlank()
   }
 
@@ -165,17 +174,11 @@ class MarkdownTemplate extends React.Component {
   }
 
   handleSearch = query => {
-    const { searchUrl } = this.props.data.site.siteMetadata
-    const { version, lang } = this.props.pageContext
-    if (searchUrl) {
-      window.open(`${searchUrl}/${version}/${lang}+${query}`)
-    } else {
-      const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
-      this.setState({
-        results: [...results].reverse(),
-        showSearchResult: true,
-      })
-    }
+    const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
+    this.setState({
+      results: [...results].reverse(),
+      showSearchResult: true,
+    })
   }
 
   hideSearch = () => {
@@ -446,7 +449,6 @@ export const pageQuery = graphql`
           label
           value
         }
-        searchUrl
       }
     }
     postBySlug: markdownRemark(fields: { slug: { eq: $slug } }) {

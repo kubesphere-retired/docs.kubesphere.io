@@ -30,22 +30,25 @@ class IndexPage extends React.Component {
     selectVersion: this.props.data.site.siteMetadata.versions[0],
   }
 
-  handleSearch = query => {
-    const { searchUrl } = this.props.data.site.siteMetadata
-    const { selectVersion } = this.state
-    const { locale } = this.props.pageContext
-
-    const lang = getLanguage(locale)
-
-    if (searchUrl) {
-      window.open(`${searchUrl}/${selectVersion.value}/${lang}+${query}`)
-    } else {
-      const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
-      this.setState({
-        results: [...results].reverse(),
-        showSearchResult: true,
+  componentDidMount() {
+    if (typeof docsearch !== 'undefined') {
+      /* eslint-disable no-undef */
+      docsearch({
+        apiKey: '221332a85783d16a5b930969fe4a934a',
+        indexName: 'kubesphere',
+        inputSelector: '.ks-search > input',
+        debug: false,
       })
+      /* eslint-enable no-undef */
     }
+  }
+
+  handleSearch = query => {
+    const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
+    this.setState({
+      results: [...results].reverse(),
+      showSearchResult: true,
+    })
   }
 
   hideSearch = () => {
@@ -84,8 +87,6 @@ class IndexPage extends React.Component {
           <Header
             {...this.props}
             query={query}
-            onSearch={this.handleSearch}
-            onQueryChange={this.handleQueryChange}
             pathPrefix={this.props.data.site.pathPrefix}
           />
           <Content
@@ -111,10 +112,10 @@ class IndexPage extends React.Component {
 
 export default WithI18next({ ns: 'common' })(IndexPage)
 
-const Header = ({ t, query, onSearch, onQueryChange, pageContext, pathPrefix }) => (
+const Header = ({ t, query, pageContext, pathPrefix }) => (
   <HeaderWrapper>
     <LogoWrapper>
-      <Logo pageContext={pageContext} pathPrefix={pathPrefix}/>
+      <Logo pageContext={pageContext} pathPrefix={pathPrefix} />
     </LogoWrapper>
     <Wrapper>
       <h1>{t('Welcome to the KubeSphere Documentation')}</h1>
@@ -123,13 +124,8 @@ const Header = ({ t, query, onSearch, onQueryChange, pageContext, pathPrefix }) 
           'We will introduce the services and features of KubeSphere with clear and concise pictures and texts as far as possible.'
         )}
       </p>
-      <div style={{ textAlign: 'center' }}>
-        <Search
-          placeholder={t('Enter keywords to get help quickly')}
-          query={query}
-          onSearch={onSearch}
-          onQueryChange={onQueryChange}
-        />
+      <div>
+        <Search placeholder={t('Enter keywords to get help quickly')} />
       </div>
     </Wrapper>
   </HeaderWrapper>
@@ -140,7 +136,9 @@ const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
     const a = document.createElement('a')
     a.target = '_blank'
     a.download = `KubeSphere-${current.value}.pdf`
-    a.href = `${window.location.origin}${pathPrefix}/KubeSphere-${current.value}.pdf`
+    a.href = `${window.location.origin}${pathPrefix}/KubeSphere-${
+      current.value
+    }.pdf`
     a.click()
   }
 
@@ -350,6 +348,15 @@ const HeaderWrapper = styled.div`
   p {
     line-height: 1.43;
     color: #657d95;
+  }
+
+  .ks-search {
+    width: 588px;
+    margin: 0 auto;
+  }
+
+  .ks-search > svg {
+    left: 24px;
   }
 
   .ks-search input {
@@ -659,7 +666,6 @@ export const query = graphql`
           label
           value
         }
-        searchUrl
       }
     }
     allContentJson(filter: { lang: { ne: null } }) {

@@ -75,6 +75,7 @@ const HeaderWrapper = styled.div`
   height: 80px;
   opacity: 0.92;
   background: #eff4f9;
+  z-index: 1000;
   transition: left 0.2s cubic-bezier(0.79, 0.33, 0.14, 0.53);
 
   @media only screen and (max-width: 768px) {
