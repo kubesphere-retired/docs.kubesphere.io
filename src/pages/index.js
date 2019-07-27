@@ -31,21 +31,11 @@ class IndexPage extends React.Component {
   }
 
   handleSearch = query => {
-    const { searchUrl } = this.props.data.site.siteMetadata
-    const { selectVersion } = this.state
-    const { locale } = this.props.pageContext
-
-    const lang = getLanguage(locale)
-
-    if (searchUrl) {
-      window.open(`${searchUrl}/${selectVersion.value}/${lang}+${query}`)
-    } else {
-      const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
-      this.setState({
-        results: [...results].reverse(),
-        showSearchResult: true,
-      })
-    }
+    const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
+    this.setState({
+      results: [...results].reverse(),
+      showSearchResult: true,
+    })
   }
 
   hideSearch = () => {
@@ -111,10 +101,17 @@ class IndexPage extends React.Component {
 
 export default WithI18next({ ns: 'common' })(IndexPage)
 
-const Header = ({ t, query, onSearch, onQueryChange, pageContext, pathPrefix }) => (
+const Header = ({
+  t,
+  query,
+  onSearch,
+  onQueryChange,
+  pageContext,
+  pathPrefix,
+}) => (
   <HeaderWrapper>
     <LogoWrapper>
-      <Logo pageContext={pageContext} pathPrefix={pathPrefix}/>
+      <Logo pageContext={pageContext} pathPrefix={pathPrefix} />
     </LogoWrapper>
     <Wrapper>
       <h1>{t('Welcome to the KubeSphere Documentation')}</h1>
@@ -140,7 +137,9 @@ const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
     const a = document.createElement('a')
     a.target = '_blank'
     a.download = `KubeSphere-${current.value}.pdf`
-    a.href = `${window.location.origin}${pathPrefix}/KubeSphere-${current.value}.pdf`
+    a.href = `${window.location.origin}${pathPrefix}/KubeSphere-${
+      current.value
+    }.pdf`
     a.click()
   }
 
@@ -659,7 +658,6 @@ export const query = graphql`
           label
           value
         }
-        searchUrl
       }
     }
     allContentJson(filter: { lang: { ne: null } }) {

@@ -106,7 +106,6 @@ module.exports = {
         ],
       },
     ],
-    searchUrl: 'https://www2.bing.com/search?q=site:docs.kubesphere.io',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
