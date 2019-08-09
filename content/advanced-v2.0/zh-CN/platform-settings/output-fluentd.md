@@ -74,7 +74,7 @@ fluent.conf
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514234627.png)
 
-## 第四步：添加 Fluentd 作为日志搜集者
+## 第四步：添加 Fluentd 作为日志接收者
 
 1、点击「平台管理」 → 「平台设置」，选择「日志收集」，点击「添加日志接收者」。
 
