@@ -1,6 +1,6 @@
 ---
 title: "自制应用"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

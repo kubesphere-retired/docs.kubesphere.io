@@ -1,6 +1,6 @@
 ---
 title: "产品优势"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

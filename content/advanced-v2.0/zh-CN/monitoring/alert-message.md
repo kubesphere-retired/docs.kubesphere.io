@@ -1,6 +1,6 @@
 ---
 title: "告警消息 —— 节点级别"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

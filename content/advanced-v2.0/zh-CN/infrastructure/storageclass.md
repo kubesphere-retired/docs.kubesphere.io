@@ -1,6 +1,6 @@
 ---
 title: "存储类型"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

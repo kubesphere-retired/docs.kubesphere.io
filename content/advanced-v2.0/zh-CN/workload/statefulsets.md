@@ -1,6 +1,6 @@
 ---
 title: "有状态副本集"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

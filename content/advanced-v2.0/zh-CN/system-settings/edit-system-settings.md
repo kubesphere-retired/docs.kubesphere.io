@@ -1,6 +1,6 @@
 ---
 title: "系统配置修改" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

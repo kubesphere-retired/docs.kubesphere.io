@@ -1,6 +1,6 @@
 ---
 title: "告警消息 —— 工作负载级别"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

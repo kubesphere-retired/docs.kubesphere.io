@@ -1,6 +1,6 @@
 ---
 title: "控制台使用常见问题" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

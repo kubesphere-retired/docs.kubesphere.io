@@ -111,7 +111,7 @@
     {
       "title": "快速入门",
       "icon": "/access.svg",
-      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器管理平台的基本使用流程，带您快速上手 KubeSphere",
+      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器平台的基本使用流程，带您快速上手 KubeSphere",
       "chapters": [
         {
           "title": "入门必读",
@@ -154,11 +154,11 @@
           "entry": "./advanced-v2.0/zh-CN/quick-start/bookinfo-canary.md"
         },
         {
-          "title": "示例十 - Jenkinsfile in SCM 流水线",
+          "title": "示例十 - 基于Spring Boot项目构建流水线", 
           "entry": "./advanced-v2.0/zh-CN/quick-start/devops-online.md"
         },
         {
-          "title": "示例十一 - Jenkinsfile-out-of-SCM",
+          "title": "示例十一 - 图形化构建流水线",
           "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
         },
         {

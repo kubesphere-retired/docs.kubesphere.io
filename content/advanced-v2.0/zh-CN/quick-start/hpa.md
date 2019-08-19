@@ -1,6 +1,6 @@
 ---
 title: "设置弹性伸缩" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

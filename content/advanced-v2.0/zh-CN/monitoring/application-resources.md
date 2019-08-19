@@ -1,6 +1,6 @@
 ---
 title: "应用资源监控"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

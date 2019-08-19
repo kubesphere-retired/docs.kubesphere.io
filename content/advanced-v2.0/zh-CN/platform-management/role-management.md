@@ -1,6 +1,6 @@
 ---
 title: "平台角色"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

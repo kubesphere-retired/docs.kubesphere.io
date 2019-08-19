@@ -1,6 +1,6 @@
 ---
 title: "流水线"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

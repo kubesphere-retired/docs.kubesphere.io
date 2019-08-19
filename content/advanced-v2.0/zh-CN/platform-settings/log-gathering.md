@@ -1,6 +1,6 @@
 ---
 title: "日志收集"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

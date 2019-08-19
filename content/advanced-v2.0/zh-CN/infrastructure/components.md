@@ -1,6 +1,6 @@
 ---
 title: "服务组件"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

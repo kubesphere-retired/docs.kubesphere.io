@@ -1,6 +1,6 @@
 ---
 title: "Master 和 etcd 节点高可用配置"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

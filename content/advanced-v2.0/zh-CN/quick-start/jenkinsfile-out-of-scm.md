@@ -1,6 +1,6 @@
 ---
-title: "Jenkinsfile out of SCM - 图形化构建流水线" 
-keywords: ''
+title: "图形化构建流水线 (Jenkinsfile out of SCM)" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

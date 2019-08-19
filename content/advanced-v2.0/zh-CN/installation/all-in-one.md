@@ -1,6 +1,6 @@
 ---
 title: "All-in-One 模式"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "守护进程集"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

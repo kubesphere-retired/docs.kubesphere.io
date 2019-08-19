@@ -1,6 +1,6 @@
 ---
 title: "基于 GitHub 搭建自有应用仓库"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

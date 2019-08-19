@@ -1,6 +1,6 @@
 ---
 title: "安装说明"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
