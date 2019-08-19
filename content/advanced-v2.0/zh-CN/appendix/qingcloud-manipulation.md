@@ -1,6 +1,6 @@
 ---
 title: "云平台配置端口转发和防火墙"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

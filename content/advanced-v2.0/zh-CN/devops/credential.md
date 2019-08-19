@@ -1,6 +1,6 @@
 ---
 title: "凭证管理"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

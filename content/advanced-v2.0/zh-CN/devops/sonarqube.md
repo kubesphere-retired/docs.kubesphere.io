@@ -1,6 +1,6 @@
 ---
 title: "创建 SonarQube Token"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

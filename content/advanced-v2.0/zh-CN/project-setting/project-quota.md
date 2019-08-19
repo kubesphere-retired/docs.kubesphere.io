@@ -1,6 +1,6 @@
 ---
 title: "基本信息"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "一键部署应用"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

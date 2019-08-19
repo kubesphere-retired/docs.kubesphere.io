@@ -1,6 +1,6 @@
 ---
 title: "安装负载均衡器插件"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

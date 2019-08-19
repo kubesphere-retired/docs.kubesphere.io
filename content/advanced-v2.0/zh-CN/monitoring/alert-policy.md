@@ -1,6 +1,6 @@
 ---
 title: "告警策略 —— 节点级别"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

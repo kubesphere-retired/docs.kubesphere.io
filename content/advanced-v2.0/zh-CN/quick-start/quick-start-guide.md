@@ -1,12 +1,12 @@
 ---
 title: "入门必读" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
 KubeSphere Advanced 2.0.0 相比较 1.0.1 提供了更强大的功能，比如新增微服务治理、Source-to-Image、日志收集与查询、监控告警、更多监控指标、代码质量检查工具 SonarQube 等，并提供适用于物理机部署 Kubernetes 的负载均衡器 [Porter](https://github.com/kubesphere/porter)，满足企业更复杂的业务场景和需求。
 
-本文旨在通过多个快速入门的示例帮助您了解 KubeSphere 容器管理平台的基本使用流程，带您快速上手 KubeSphere。建议参考示例文档的步骤实践操作一遍。为了帮助用户更快地了解 KubeSphere 并进一步理解底层 Kubernetes 的基础概念和知识，我们还精心准备了 [Kubernetes 入门视频教程](https://yunify.anybox.qingcloud.com/s/YTU9bP3YtzKanMkawJqv8Zd9TTZAwiMa)。
+本文旨在通过多个快速入门的示例帮助您了解 KubeSphere 容器平台的基本使用流程，带您快速上手 KubeSphere。建议参考示例文档的步骤实践操作一遍。为了帮助用户更快地了解 KubeSphere 并进一步理解底层 Kubernetes 的基础概念和知识，我们还精心准备了 [Kubernetes 入门视频教程](https://yunify.anybox.qingcloud.com/s/YTU9bP3YtzKanMkawJqv8Zd9TTZAwiMa)。
 
 ## 多租户管理快速入门
 
@@ -44,7 +44,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 Source to Image(S2I) 是一个创建 Docker 镜像的工具。它可以通过将源代码放入一个单独定义的负责编译源代码的 Builder image中，来将编译后的代码打包成 Docker 镜像。
 
-- [Jenkinsfile in SCM 流水线](../devops-online)
+- [基于Spring Boot项目构建流水线](../devops-online)
 
 本示例以文档和视频演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建 CI/CD 流水线，包括拉取代码、单元测试、代码质量检测、构建镜像、推送和发布版本，最终示例 Web 部署到 KubeSphere 集群中的开发环境和生产环境，并且能够通过公网访问。
 

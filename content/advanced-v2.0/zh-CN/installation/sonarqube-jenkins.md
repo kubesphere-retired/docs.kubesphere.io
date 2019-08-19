@@ -1,6 +1,6 @@
 ---
 title: "访问内置 SonarQube 和 Jenkins 服务端"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

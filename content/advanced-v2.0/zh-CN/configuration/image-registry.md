@@ -1,6 +1,6 @@
 ---
 title: "镜像仓库"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

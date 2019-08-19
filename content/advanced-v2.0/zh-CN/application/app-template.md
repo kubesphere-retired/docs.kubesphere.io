@@ -1,6 +1,6 @@
 ---
 title: "应用模板"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

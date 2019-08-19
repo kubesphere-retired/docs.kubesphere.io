@@ -1,6 +1,6 @@
 ---
 title: "CI/CD 流水线示例 (离线版)" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -101,7 +101,7 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 
 ## 创建两个项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件](https://github.com/kubesphere/devops-java-sample/tree/master/deploy)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，项目名为 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，可参考 [Jenkinsfile in SCM 流水线 - 创建项目](../devops-online/#创建项目) 进行创建。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件](https://github.com/kubesphere/devops-java-sample/tree/master/deploy)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，项目名为 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，可参考 [基于Spring Boot项目构建流水线 - 创建项目](../devops-online/#创建项目) 进行创建。
 
 ![project](https://kubesphere-docs.pek3b.qingstor.com/png/project.png)
 

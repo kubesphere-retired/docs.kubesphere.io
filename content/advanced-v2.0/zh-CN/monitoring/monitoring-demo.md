@@ -1,6 +1,6 @@
 ---
 title: "如何利用监控定位问题"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "DevOps 工程概述"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -48,7 +48,7 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 - [Source to Image](../../quick-start/source-to-image/)
 
-- [Jenkinsfile in SCM 流水线](../../quick-start/devops-online)
+- [基于Spring Boot项目构建流水线](../../quick-start/devops-online)
 
 - [CI/CD 流水线 (离线版)](../../quick-start/devops-online)
 

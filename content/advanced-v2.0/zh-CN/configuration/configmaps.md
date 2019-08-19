@@ -1,6 +1,6 @@
 ---
 title: '配置'
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

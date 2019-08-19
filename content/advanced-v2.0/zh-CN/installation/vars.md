@@ -1,6 +1,6 @@
 ---
 title: "集群组件配置释义"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "Jenkinsfile in SCM 流水线" 
-keywords: ''
+title: "基于Spring Boot项目构建流水线" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "角色权限概览"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

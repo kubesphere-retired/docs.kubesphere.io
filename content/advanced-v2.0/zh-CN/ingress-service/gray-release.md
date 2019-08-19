@@ -1,6 +1,6 @@
 ---
 title: "灰度策略 - 发布任务"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

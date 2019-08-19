@@ -1,6 +1,6 @@
 ---
 title: "上传应用到 KubeSphere 官方仓库"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

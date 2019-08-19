@@ -1,6 +1,6 @@
 ---
 title: "监控概述"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "集群状态监控"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

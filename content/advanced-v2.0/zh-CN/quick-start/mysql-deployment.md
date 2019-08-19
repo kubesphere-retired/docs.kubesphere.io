@@ -1,6 +1,6 @@
 ---
 title: "部署 MySQL 有状态应用" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

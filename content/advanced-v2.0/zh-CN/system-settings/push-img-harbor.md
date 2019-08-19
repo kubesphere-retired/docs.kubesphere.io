@@ -1,6 +1,6 @@
 ---
 title: "上传镜像至 Harbor" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

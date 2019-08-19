@@ -1,6 +1,6 @@
 ---
 title: "定时任务"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

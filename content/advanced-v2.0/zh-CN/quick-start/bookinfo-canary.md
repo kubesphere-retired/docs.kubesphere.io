@@ -1,6 +1,6 @@
 ---
 title: "Bookinfo 微服务的灰度发布示例"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

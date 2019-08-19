@@ -1,6 +1,6 @@
 ---
 title: "灰度发布"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

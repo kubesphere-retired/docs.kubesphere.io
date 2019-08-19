@@ -1,6 +1,6 @@
 ---
 title: "安装内置 GitLab" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "安装内置 Harbor" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

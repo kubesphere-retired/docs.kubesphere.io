@@ -1,6 +1,6 @@
 ---
 title: "名词解释"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

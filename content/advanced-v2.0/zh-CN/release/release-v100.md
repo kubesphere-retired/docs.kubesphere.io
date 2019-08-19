@@ -1,6 +1,6 @@
 ---
 title: "Release Notes For 1.0.0"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
