@@ -1,5 +1,7 @@
 ---
-title: "Jenkinsfile out of SCM - 图形化构建流水线" 
+title: "图形化构建流水线 (Jenkinsfile out of SCM)" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 上一篇文档示例十是通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../devops-online)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
@@ -13,6 +15,7 @@ title: "Jenkinsfile out of SCM - 图形化构建流水线"
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号；
 - 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
+- 邮件发送需安装前在 Installer 中配置，请参考 [集群组件配置释义](../../installation/vars) (下一版本将支持安装后在 UI 统一配置邮件服务器)。
 
 ## 预估时间
 
@@ -80,7 +83,7 @@ CI/CD 流水线会根据文档网站的 [yaml 模板文件](https://github.com/k
 
 #### 第二步：高级设置
 
-1、点击 **添加参数**，如下添加 **3 个** 字符串参数，将在流水线的 docker 命令中使用该参数，完成后点击确定保存。
+1、点击 **添加参数**，如下添加 **3 个** 字符串参数，将在流水线的 docker 命令中使用该参数，完成后点击确定。
 
 |参数类型|名称|默认值|描述信息|
 |---|---|---|---|
@@ -142,11 +145,11 @@ mvn clean -o -gs `pwd`/configuration/settings.xml test
 
 2、点击 `添加步骤` 选择 `指定容器`，命名为 `maven`，完成后点击 `确定`。
 
-3、右侧点击 `添加嵌套步骤`，选择 `添加凭证`，在弹窗中选择之前创建的凭证 ID `sonar-token`，文本变量填写 `SONAR_TOKEN`，点击确定保存。
+3、右侧点击 `添加嵌套步骤`，选择 `添加凭证`，在弹窗中选择之前创建的凭证 ID `sonar-token`，文本变量填写 `SONAR_TOKEN`，点击 「确定」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514140415.png)
 
-4、在右侧的添加凭证中，点击 `添加嵌套步骤`，然后选择 `SonarQube 配置`，默认名称为 sonar，点击确定保存。
+4、在右侧的添加凭证中，点击 `添加嵌套步骤`，然后选择 `SonarQube 配置`，默认名称为 sonar，点击确定。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514140846.png)
 
@@ -158,11 +161,13 @@ mvn sonar:sonar -o -gs `pwd`/configuration/settings.xml -Dsonar.branch=$BRANCH_N
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514141531.png)
 
-6、右侧点击第三个 `添加嵌套步骤`，选择 `超时`，时间输入 1，单位选择 `小时`，点击确定保存。
+6、右侧点击第三个 `添加嵌套步骤`，选择 `超时`，时间输入 1，单位选择 `小时`，点击「确定」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514141926.png)
 
-7、在超时的步骤中，点击 `添加嵌套步骤`，选择 `代码质量检查 (SonarQube)`，弹窗中保留默认的 `检查通过后开始后续任务`，点击确定保存。
+7、在超时的步骤中，点击 `添加嵌套步骤`，选择 `代码质量检查 (SonarQube)`，弹窗中保留默认的 `检查通过后开始后续任务`，点击「确定」。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232241.png)
 
 #### 阶段四：构建并推送镜像 (Build and Push)
 
@@ -181,7 +186,7 @@ mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package
 ```shell
 docker build -f Dockerfile-online -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .
 ```
-5、点击 `添加嵌套步骤`，右侧选择 `添加凭证`，在弹窗中填写如下信息，完成后点击确定保存信息：
+5、点击 `添加嵌套步骤`，右侧选择 `添加凭证`，在弹窗中填写如下信息，完成后点击「确定」保存信息：
 
 > 说明：因为考虑到用户信息安全，账号类信息都不以明文出现在脚本中，而以变量的方式。
 
@@ -202,26 +207,32 @@ echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --passwor
 docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 ```
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232407.png)
+
 #### 阶段五：保存制品 (Artifacts)
 
 1、在 `Build and Push` 阶段右侧点击 **“+”** 继续增加一个阶段用于保存制品，本示例用于保存项目的 jar 包，命名为 `Artifacts`。
 
-2、点击 `添加步骤`，选择 `保存制品`，在弹窗中输入 `target/*.jar`，用于捕获构建包含模式匹配的文件 (target/*.jar) 并保存到 Jenkins，点击确定保存信息。
+2、点击 `添加步骤`，选择 `保存制品`，在弹窗中输入 `target/*.jar`，用于捕获构建包含模式匹配的文件 (target/*.jar) 并保存到 Jenkins，点击「确定」。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232447.png)
 
 #### 阶段六：部署至 Dev 环境 (Deploy to DEV)
 
-1、在 `Build and Push` 阶段右侧点击 **“+”** 增加最后一个阶段，命名为 `Deploy to DEV`，用于将容器镜像部署到开发环境即 `kubesphere-sample-dev` 项目中。
+1、在 `Artifacts` 阶段右侧点击 **“+”** 增加最后一个阶段，命名为 `Deploy to DEV`，用于将容器镜像部署到开发环境即 `kubesphere-sample-dev` 项目中。
 
-2、点击 `添加步骤`，选择 `审核`，在弹窗中输入 `@project-admin` 指定项目管理员 project-admin 用户来进行流水线审核，点击确定保存。
+2、点击 `添加步骤`，选择 `审核`，在弹窗中输入 `@project-admin` 指定项目管理员 project-admin 用户来进行流水线审核，点击「确定」。
 
-3、点击 `添加步骤`，选择 `KubernetesDeploy`，在弹窗中参考以下填写，完成后点击确定保存信息：
+3、点击 `添加步骤`，选择 `KubernetesDeploy`，在弹窗中参考以下填写，完成后点击「确定」保存信息：
 
 - Kubeconfig：选择 `demo-kubeconfig`
 - 配置文件路径：输入 `deploy/no-branch-dev/**`，这里是本示例的 Kubernetes 资源部署 [yaml 文件](https://github.com/kubesphere/devops-java-sample/tree/master/deploy/no-branch-dev) 在代码仓库中的相对路径
 
 4、同上再添加一个步骤，用于在这一步部署和流水线执行成功后给用户发送通知邮件。点击 `添加步骤`，选择 `邮件`，自定义收件人、抄送、主题和内容。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514154244.png)
+> 注意，在流水线中发送邮件需要在安装前预先在 Installer 中配置邮件服务器，配置请参考 [集群组件配置释义](../../installation/vars)，若还未配置请跳过第 4 步 (下一版本将支持安装后在 UI 统一配置邮件服务器)。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232706.png)
 
 至此，图形化构建流水线的六个阶段都已经添加成功，点击 `确认 → 保存`，可视化构建的流水线创建完成，同时也会生成 Jenkinsfile 文件。
 

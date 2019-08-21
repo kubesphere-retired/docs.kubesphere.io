@@ -1,5 +1,7 @@
 ---
 title: "集群组件配置释义"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 用户在获取 installer 并解压至目标安装机器后，如果需要查看或修改存储、网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、邮件服务器等配置参数时，可参考以下说明进行修改，本文档对 installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义。
@@ -22,7 +24,7 @@ Installer 默认使用 local 类型的存储方便 all-in-one 模式进行安装
 | kube_version | Kubernetes 版本号 | 
 | etcd_version | etcd 版本号 | 
 | openpitrix_version | OpenPitrix 版本号 | 
-| ks_image_pull_policy| 默认 IfNotPresent，表示优先使用本地镜像，还支持 Always (尝试重新下载镜像) 和 Never (仅使用本地镜像) |
+| ks\_image\_pull\_policy| 默认 IfNotPresent，表示优先使用本地镜像，还支持 Always (尝试重新下载镜像) 和 Never (仅使用本地镜像) |
 | kube\_network\_plugin | 默认的网络插件（支持 Calico、Flannel） | 
 | kube\_service\_addresses | Service 网络 IP 地址段（未被使用的地址段） | 
 | kube\_pods\_subnet | Pod 网络 IP 地址段（未被使用的地址段） | 
@@ -33,23 +35,23 @@ Installer 默认使用 local 类型的存储方便 all-in-one 模式进行安装
 |disableMultiLogin | 禁止同一用户多点登录，默认 true 即禁用 |
 | loadbalancer_apiserver.address | 外部负载均衡器地址 | 
 | loadbalancer_apiserver.port | 外部负载均衡器端口 |
-| apiserver\_loadbalancer\_domain_name | 负载均衡器域名，默认 lb.kubesphere.local | 
-|periodic_cleaning_time| weekly，Docker 自动清理镜像的周期 |
-|docker_registry_mirrors| 默认 Docker 镜像仓库的 mirror 仓库，可以加快镜像下载 (国外地区下载可将此参数注释) |
-|etcd_backup_period | 默认备份的周期为 30 分钟|
-|keep_backup_number | 默认保留最近 5 次备份的数据 |
-|etcd_backup_dir | 默认备份的目录为 "/var/backups/kube_etcd" |
+| apiserver\_loadbalancer\_domain\_name | 负载均衡器域名，默认 lb.kubesphere.local | 
+|periodic\_cleaning\_time| weekly，Docker 自动清理镜像的周期 |
+|docker\_registry\_mirrors| 默认 Docker 镜像仓库的 mirror 仓库，可以加快镜像下载 (国外地区下载可将此参数注释) |
+|etcd\_backup\_period | 默认备份的周期为 30 分钟|
+|keep\_backup\_number | 默认保留最近 5 次备份的数据 |
+|etcd\_backup\_dir | 默认备份的目录为 "/var/backups/kube_etcd" |
 | prometheus\_memory\_size | Prometheus 内存请求大小 | 
 | prometheus\_volume\_size | Prometheus 存储空间大小 | 
 | keep\_log\_days | 集群内置的 Elasticsearch 中日志保留时间，默认是 7 天 |
 | kibana_enable | 是否部署 Kibana （默认 false） | 
 | elasticsearch\_volume\_size | Elasticsearch 存储空间 | 
-|EMAIL_SMTP_HOST | SMTP 邮件服务器地址 |
-|EMAIL_SMTP_PORT | SMTP 邮件服务器端口  |
-|EMAIL_FROM_ADDR | 发件人邮箱地址 |
-|EMAIL_FROM_NAME | 通知邮件名称 |
-|EMAIL_FROM_PASS | 密码|
-|EMAIL_USE_SSL | 是否开启 SSL 配置 |
+|EMAIL\_SMTP\_HOST | SMTP 邮件服务器地址 |
+|EMAIL\_SMTP\_PORT | SMTP 邮件服务器端口  |
+|EMAIL\_FROM\_ADDR | 发件人邮箱地址 |
+|EMAIL\_FROM\_NAME | 通知邮件名称 |
+|EMAIL\_FROM\_PASS | 密码|
+|EMAIL\_USE\_SSL | 是否开启 SSL 配置 |
 | jenkins\_memory\_lim | Jenkins 内存限制 | 
 | jenkins\_memory\_req | Jenkins 内存请求 | 
 | Java_Opts | jvm 启动参数 | 

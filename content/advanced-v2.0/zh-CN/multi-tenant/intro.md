@@ -1,5 +1,7 @@
 ---
 title: "多租户管理概述"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 多租户管理的核心是分配好人员 (组织) 和资源之间的权限关系。对于容器管理平台来说，主要关注的资源有计算资源、存储资源和网络资源，这也是 KubeSphere 多租户管理的核心。
@@ -47,9 +49,9 @@ KubeSphere 多租户体系中，将资源划分为以下三个层级：
 
 项目和工程的创建者，可以通过邀请成员的方式将自己的项目共享给其他用户，赋予不同的成员不同的角色，在权限上加以区分。
 
-## IAM架构
+## IAM 架构
 
-![IAM架构](/api-design.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190627223641.png)
 
 
 ## 详细说明

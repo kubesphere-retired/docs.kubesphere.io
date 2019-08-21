@@ -1,5 +1,7 @@
 ---
 title: "Web Kubectl"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ### 如何使用 Web Kubectl

@@ -1,5 +1,7 @@
 ---
 title: "告警策略 —— 节点级别"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 告警是 KubeSphere Advanced 2.0.0 的新功能，自研的多租户告警系统支持灵活的告警策略和告警规则，目前 KubeSphere 告警系统具备以下特性：

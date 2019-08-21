@@ -1,5 +1,7 @@
 ---
 title: "Deploy a MySQL Application" 
+keywords: ''
+description: ''
 ---
 
 ## Objective 

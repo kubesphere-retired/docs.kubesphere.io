@@ -1,5 +1,7 @@
 ---
 title: "DevOps Project Management"
+keywords: ''
+description: ''
 ---
 
 ## Prerequisites 

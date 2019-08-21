@@ -1,5 +1,7 @@
 ---
 title: "Bookinfo 微服务的灰度发布示例"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 灰度发布，是指在黑与白之间，能够平滑过渡的一种发布方式。通俗来说，即让产品的迭代能够按照不同的灰度策略对新版本进行线上环境的测试，灰度发布可以保证整体系统的稳定，在初始灰度的时候就可以对新版本进行测试、发现和调整问题，以保证其影响度。KubeSphere 基于 [Istio](https://istio.io/) 提供了蓝绿部署、金丝雀发布、流量镜像等三种灰度策略，无需修改应用的服务代码，即可实现灰度、流量治理、Tracing、流量监控、调用链等服务治理功能，关于每一种策略的描述参见 [灰度发布](../../ingress-service/grayscale)。
@@ -12,16 +14,20 @@ title: "Bookinfo 微服务的灰度发布示例"
 
 Bookinfo 应用分为四个单独的微服务：
 
+
 - productpage ：productpage 微服务会调用 details 和 reviews 两个微服务，用来生成页面。
 - details ：这个微服务包含了书籍的信息。
 - reviews ：这个微服务包含了书籍相关的评论，它还会调用 ratings 微服务。
 - ratings ：ratings 微服务中包含了由书籍评价组成的评级信息。
 
+
 reviews 微服务有 3 个版本：
 
-- v1 版本不会调用 ratings 服务。
+
+- v1 版本不会调用 ratings 服务，因此在界面不会显示星形图标。
 - v2 版本会调用 ratings 服务，并使用 1 到 5 个黑色星形图标来显示评分信息。
 - v3 版本会调用 ratings 服务，并使用 1 到 5 个红色星形图标来显示评分信息。
+
 
 下图展示了这个应用的端到端架构。
 
@@ -37,7 +43,8 @@ reviews 微服务有 3 个版本：
 <!-- - 使用 `project-regular` 账号登录 KubeSphere，进入已创建的企业空间下的项目 `demo-namespace`，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 请确保当前项目已在外网访问中开启了应用治理，若还未开启请参考 [设置外网访问](../admin-quick-start/#%E8%AE%BE%E7%BD%AE%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE)； -->
 
-- 已创建了企业空间、项目和普通用户 `project-regular` 账号，并且项目已开启了外网访问 (访问方式为 `NodePort`)，请参考 [多租户管理快速入门](../admin-quick-start)；
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，请参考 [多租户管理快速入门](../admin-quick-start)；
+- 查看 Tracing 需在当前项目下选择 「项目设置」→「外网访问」→「设置网关」，点击「应用治理」的开启按钮 (注意访问方式为 `NodePort`)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 
@@ -119,7 +126,7 @@ reviews 微服务有 3 个版本：
 打开命令行窗口输入以下命令，引入真实的访问流量，模拟对 bookinfo 应用每 0.5 秒访问一次。注意以下命令是模拟 `Normal user` 访问，需要输入完整的命令访问到具体的服务在链路图中才有流量数据。
 
 ```shell
-$ watch -n 0.5 "curl http://productpage.demo-namspace.139.198.111.111.nip.io:31680/productpage?u=normal"
+$ watch -n 0.5 "curl http://productpage.demo-namespace.139.198.111.111.nip.io:31680/productpage?u=normal"
 ```
 
 从流量治理的链路图中，可以看到各个微服务之间的服务调用和依赖、健康状况、性能等情况。
@@ -127,13 +134,13 @@ $ watch -n 0.5 "curl http://productpage.demo-namspace.139.198.111.111.nip.io:316
 > 提示：点击其中一个应用组件，还可以为该服务组件设置流量治理策略，如连接池管理、熔断器等，详见 [流量治理](../../application/traffic-gov)。
 
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190415013123.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718170342.png)
 
 ### 查看流量监测
 
 点击 reviews 服务，查看该服务的实时流量监测，包括每秒请求的流量 (RPS)、成功率、持续时间等指标，这类指标都可以分析该服务的健康状况和请求成功率。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190415013531.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718170442.png)
 
 ### 查看 Tracing
 

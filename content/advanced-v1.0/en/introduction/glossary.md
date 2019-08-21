@@ -1,5 +1,7 @@
 ---
 title: "Glossary"
+keywords: ''
+description: ''
 ---
 
 This document describes some frequently used glossaries in KubeSphere as shown below:

@@ -1,5 +1,7 @@
 ---
 title: '配置'
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 配置 (ConfigMap) 常用于存储工作负载所需的配置信息，许多应用程序会从配置文件、命令行参数或环境变量中读取配置信息。这些配置信息需要与 docker 镜像解耦，避免每修改一个配置需要重做一个镜像。配置给我们提供了向容器中注入配置信息的机制，可以被用来保存单个属性，也可以用来保存整个配置文件或者 JSON 二进制对象，在工作负载中作为文件或者环境变量使用。

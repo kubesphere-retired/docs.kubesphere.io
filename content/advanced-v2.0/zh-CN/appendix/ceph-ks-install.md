@@ -1,5 +1,7 @@
 ---
 title: "部署 Ceph RBD 存储服务端"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ## 简介

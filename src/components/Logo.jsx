@@ -1,15 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { translate } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 import { ReactComponent as LogoIcon } from '../assets/logo.svg'
 
-const Logo = ({ t }) => (
+const Logo = ({ t, pageContext: { locale }, pathPrefix }) => (
   <Wrapper>
-    <a href="//kubesphere.io/" target="_blank">
+    <a
+      href={`//kubesphere.io/${locale}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <LogoIcon className="logo" />
     </a>
-    <a href="/">
+    <a href={`${pathPrefix}/${locale}`}>
       <p>{t('Documentation')}</p>
     </a>
   </Wrapper>
@@ -47,4 +51,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default translate('base')(Logo)
+export default withTranslation()(Logo)

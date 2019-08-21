@@ -1,5 +1,7 @@
 ---
 title: "基本信息"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 基本信息支持管理当前项目的信息、配额和资源默认请求。其中配额信息是针对项目级别的，用于限制项目内的资源使用上限。而资源默认请求是相对容器级别的，在创建工作负载添加容器组时，默认情况下容器的 CPU 和内存的 requests 和 limits 值将使用其设置的值。

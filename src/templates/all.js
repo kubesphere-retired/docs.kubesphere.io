@@ -1,14 +1,17 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import cheerio from 'cheerio'
+
+import Layout from '../layouts'
 
 import './markdown.css'
 import './prince.css'
 import './b16-tomorrow-dark.css'
 
 export default class MarkdownTemplate extends React.Component {
-  renderEntry(entry) {
+  renderEntry(pathPrefix, entry) {
     let content = entry.childMarkdownRemark.html
 
     if (typeof window === 'undefined') {
@@ -24,7 +27,10 @@ export default class MarkdownTemplate extends React.Component {
         }
       })
 
-      content = $.html()
+      content = $.html().replace(
+        /"(\/.*\.(svg|png|jpg|jpeg|gif))/g,
+        `"${pathPrefix}$1`
+      )
     }
 
     return (
@@ -37,7 +43,7 @@ export default class MarkdownTemplate extends React.Component {
     )
   }
 
-  renderChapter(chapter, level = 1) {
+  renderChapter(pathPrefix, chapter, level = 1) {
     if (chapter.chapters) {
       return (
         <div key={chapter.title}>
@@ -45,7 +51,7 @@ export default class MarkdownTemplate extends React.Component {
             {chapter.title}
           </div>
           {chapter.chapters.map(_chapter =>
-            this.renderChapter(_chapter, level + 1)
+            this.renderChapter(pathPrefix, _chapter, level + 1)
           )}
         </div>
       )
@@ -57,7 +63,9 @@ export default class MarkdownTemplate extends React.Component {
           <div className={`h${level}`} id={chapter.title}>
             {chapter.title}
           </div>
-          {chapter.entries.map(entry => this.renderEntry(entry.entry))}
+          {chapter.entries.map(entry =>
+            this.renderEntry(pathPrefix, entry.entry)
+          )}
         </div>
       )
     }
@@ -69,7 +77,7 @@ export default class MarkdownTemplate extends React.Component {
             {chapter.title}
           </div>
         )}
-        {chapter.entry && this.renderEntry(chapter.entry)}
+        {chapter.entry && this.renderEntry(pathPrefix, chapter.entry)}
       </div>
     )
   }
@@ -77,27 +85,30 @@ export default class MarkdownTemplate extends React.Component {
   render() {
     const { tableOfContents, site } = this.props.data
 
-    const version = site.siteMetadata.versions.find(
-      version => version.value === tableOfContents.edges[0].node.version
-    ) || {}
+    const version =
+      site.siteMetadata.versions.find(
+        version => version.value === tableOfContents.edges[0].node.version
+      ) || {}
 
     return (
-      <div className="markdown-all">
-        <Helmet>
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="/PingFangSC/stylesheet.css"
-          />
-          <script>{`
+      <Layout data={this.props.data}>
+        <div className="markdown-all">
+          <Helmet>
+            <link
+              rel="stylesheet"
+              type="text/css"
+              href={`${site.pathPrefix}/PingFangSC/stylesheet.css`}
+            />
+            <script>{`
             document.body.style.backgroundColor = 'white'
           `}</script>
-        </Helmet>
-        <div className="first-page">KubeSphere 文档 {version.label}</div>
-        {tableOfContents.edges[0].node.chapters.map(chapter =>
-          this.renderChapter(chapter)
-        )}
-      </div>
+          </Helmet>
+          <div className="first-page">KubeSphere 文档 {version.label}</div>
+          {tableOfContents.edges[0].node.chapters.map(chapter =>
+            this.renderChapter(site.pathPrefix, chapter)
+          )}
+        </div>
+      </Layout>
     )
   }
 }
@@ -118,6 +129,7 @@ export const pageQuery = graphql`
   }
   query MarkdownByVersion($lang: String!, $version: String!) {
     site {
+      pathPrefix
       siteMetadata {
         title
         versions {

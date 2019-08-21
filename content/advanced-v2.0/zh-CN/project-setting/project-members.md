@@ -1,5 +1,7 @@
 ---
 title: "项目成员"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 您可以邀请新的成员来协助您的项目，在邀请新成员之前，请确保已预先创建了用户和成员角色，并且该成员已被邀请进入了该项目所在的企业空间，才可以被邀请进入项目，详见 [账户管理](../../platform-management/account-management) 和 [成员角色](../project-roles)。

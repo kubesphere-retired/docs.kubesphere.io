@@ -2,7 +2,7 @@ language: node_js
 sudo: false
 dist: trusty
 node_js:
-  - '9'
+  - '10'
 
 services:
   - docker
@@ -21,9 +21,9 @@ script:
   - yarn build
   - yarn serve
   - sleep 5
-  - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/express/zh-CN/all/ -o public/KubeSphere-express.pdf
-  - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/advanced-v1.0/zh-CN/all/ -o public/KubeSphere-advanced-v1.0.pdf
-
+  - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/docs/express/zh-CN/all/ -o public/KubeSphere-express.pdf
+  - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/docs/advanced-v1.0/zh-CN/all/ -o public/KubeSphere-advanced-v1.0.pdf
+  - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/docs/advanced-v2.0/zh-CN/all/ -o public/KubeSphere-advanced-v2.0.pdf
 before_deploy:
   - docker build -t kubesphere/docs.kubesphere.io .
 

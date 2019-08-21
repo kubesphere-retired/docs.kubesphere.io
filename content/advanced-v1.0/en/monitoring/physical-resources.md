@@ -1,5 +1,7 @@
 ---
 title: "Physical Resources"
+keywords: ''
+description: ''
 ---
 
 The KubeSphere Monitoring Center provides monitoring of CPU, memory, network, and disk metrics at the physical resource level, and supports historical monitoring and node usage rankings. The physical resource status is available on via **Platform → Monitoring Center**.

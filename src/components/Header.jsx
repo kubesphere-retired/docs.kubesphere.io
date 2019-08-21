@@ -6,6 +6,8 @@ import Logo from './Logo'
 import { getScrollTop } from '../utils/index'
 
 class Header extends React.Component {
+  headerRef = React.createRef()
+
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll)
   }
@@ -15,14 +17,16 @@ class Header extends React.Component {
   }
 
   handleScroll = () => {
-    const scrollTop = getScrollTop()
-    const classes = this.headerRef.classList
-    const headerShadow = classes.contains('header-shadow')
+    if (this.headerRef.current) {
+      const scrollTop = getScrollTop()
+      const classes = this.headerRef.current.classList
+      const headerShadow = classes.contains('header-shadow')
 
-    if (scrollTop >= 10 && !headerShadow) {
-      classes.add('header-shadow')
-    } else if (scrollTop < 10 && headerShadow) {
-      classes.remove('header-shadow')
+      if (scrollTop >= 10 && !headerShadow) {
+        classes.add('header-shadow')
+      } else if (scrollTop < 10 && headerShadow) {
+        classes.remove('header-shadow')
+      }
     }
   }
 
@@ -31,22 +35,17 @@ class Header extends React.Component {
   }
 
   render() {
-    const { isExpand, ...rest } = this.props
+    const { isExpand, pathPrefix, ...rest } = this.props
 
     return (
-      <HeaderWrapper
-        isExpand={isExpand}
-        innerRef={ref => {
-          this.headerRef = ref
-        }}
-      >
+      <HeaderWrapper isExpand={isExpand} ref={this.headerRef}>
         <div className="header-expand" onClick={this.handleExpand}>
           <span className="v-line" />
           <span className="v-line" />
           <span className="v-line" />
         </div>
         <LogoWrapper>
-          <Logo />
+          <Logo pageContext={this.props.pageContext} pathPrefix={pathPrefix}/>
         </LogoWrapper>
         <SearchWrapper>
           <Search {...rest} />
@@ -76,6 +75,7 @@ const HeaderWrapper = styled.div`
   height: 80px;
   opacity: 0.92;
   background: #eff4f9;
+  z-index: 1000;
   transition: left 0.2s cubic-bezier(0.79, 0.33, 0.14, 0.53);
 
   @media only screen and (max-width: 768px) {

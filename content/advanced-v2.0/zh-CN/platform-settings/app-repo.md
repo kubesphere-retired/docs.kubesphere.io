@@ -1,8 +1,17 @@
 ---
 title: "应用仓库"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服务，OpenPitrix 是由 [QingCloud](https://www.qingcloud.com) 主导开源的跨云应用管理平台，支持基于 Helm Chart 类型的 Kubernetes 应用。在应用仓库中，每个应用程序都是基础软件包存储库，如果要将 OpenPitrix 用于应用程序管理，则需要先创建存储库。应用程序管理器可以将包存储到 http / https 服务器或 S3 对象存储。OpenPitrix 应用仓库是独立于 OpenPitrix 的外部存储，可以是青云 QingCloud 的 QingStor 对象存储，也可以是 AWS 对象存储，里面存储的内容是开发者开发好的应用的配置包以及索引文件。注册好仓库后，存储的应用配置包会被自动索引成为可部署的应用。
+
+## 准备应用仓库
+
+[Helm 官方文档](https://helm.sh/docs/developing_charts/#the-chart-repository-guide) 已经提供了多种方式创建应用仓库，这里我们仅补充以下两种基于 GitHub 准备应用仓库方便用户使用：
+
+- [KubeSphere 官方应用仓库](../app-hosting-official)（极简操作，**推荐！**）
+- [基于 GitHub 搭建自己的应用仓库](../app-hosting-github)
 
 
 ## 添加应用仓库

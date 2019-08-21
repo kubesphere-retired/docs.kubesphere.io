@@ -1,5 +1,7 @@
 ---
 title: "部署 Wordpress" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ## 目的

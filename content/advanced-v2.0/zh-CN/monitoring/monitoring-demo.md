@@ -1,5 +1,7 @@
 ---
 title: "如何利用监控定位问题"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 KubeSphere 监控提供逐级钻取能力，对资源的监控从以下两条线提供多维度的监控指标，用户可以很方便地掌握资源和业务的运行情况并快速定位故障。
@@ -8,7 +10,7 @@ KubeSphere 监控提供逐级钻取能力，对资源的监控从以下两条线
 - 用户视角：**Cluster -> Workspace -> Namespace -> Workload/Pod -> Container**
 
 
-我们在 [示例五 - 设置弹性伸缩 (HPA)](../../quick-start/hpa/) 中设置过一个 Load-generator 循环地向 Nginx 应用发送无限的查询请求访问应用的服务，模拟多个用户同时访问该服务，造成了 CPU 负载迅速上升。那么在本示例中，将 Nginx 应用的 Pod 所有副本设置一个节点选择器，使其 2 个副本仅运行在其中某一个节点，然后通过多维度监控逐级地去排查是哪一个节点的哪些容器造成的资源消耗上升。
+我们在 [示例五 - 设置弹性伸缩 (HPA)](../../quick-start/hpa/) 中设置过一个 Load-generator 循环地向 `hpa-example` 应用发送无限的查询请求访问应用的服务，模拟多个用户同时访问该服务，造成了 CPU 负载迅速上升。那么在本示例中，将演示通过多维度监控逐级地去排查是哪一个节点的哪些容器造成的资源消耗上升，判断该监控图表的趋势是否符合预期。
 
 ## 查看负载前监控数据
 

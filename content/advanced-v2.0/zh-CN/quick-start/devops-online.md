@@ -1,5 +1,7 @@
 ---
-title: "Jenkinsfile in SCM 流水线" 
+title: "基于Spring Boot项目构建流水线" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Source Control Management) 的一部分，根据该文件内的流水线配置信息快速构建工程内的 CI/CD 功能模块，比如阶段 (Stage)，步骤 (Step) 和任务 (Job)。因此，在代码仓库中应包含 Jenkinsfile。
@@ -33,14 +35,14 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 > - **阶段二. Unit test**: 单元测试，如果测试通过了才继续下面的任务
 > - **阶段三. sonarQube analysis**：sonarQube 代码质量检测
 > - **阶段四. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 Harbor (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
-> - **阶段五. Push latest image**: 将 master 分支打上 tag 为 latest，并推送至 Harbor。
+> - **阶段五. Push latest image**: 将 master 分支打上 tag 为 latest，并推送至 DockerHub。
 > - **阶段六. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
-> - **阶段七. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 Harbor。
+> - **阶段七. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 DockerHub。
 > - **阶段八. Deploy to production**: 将发布的 tag 部署到 Production 环境。
 
 ## 创建凭证
 
-在 [多租户管理快速入门](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
+在 [多租户管理快速入门](/advanced-v2.0/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
 
 1、本示例代码仓库中的 Jenkinsfile 需要用到 **DockerHub、GitHub** 和 **kubeconfig** (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，参考 [创建凭证](../../devops/credential/#创建凭证) 依次创建这三个凭证。
 
@@ -82,6 +84,8 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 |GITHUB_ACCOUNT|your-github-account | 替换为您的 GitHub 账号名，例如 `https://github.com/kubesphere/` 则填写 `kubesphere` (它也可以是账户下的 Organization 名称) |
 | APP_NAME                 | devops-java-sample     | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 SonarQube token凭证 ID，用于代码质量检测 |
+
+**注： Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。**
 
 3、修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
@@ -200,7 +204,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 >
 > Webhook 推送：
 >
-> Webhook 是一种高效的方式可以让流水线发现远程仓库的变化并自动触发新的运行，GitHub 和 Git (如 Gitlab) 触发 Jenkins 自动扫描应该以 Webhook 为主，以上一步在 KubeSphere 设置定期扫描为辅。在本示例中，可以通过手动运行流水线，如需设置自动扫描远端分支并触发运行，详见 [设置自动触发扫描 - GitHub SCM](https://docs.kubesphere.io/advanced-v2.0/zh-CN/devops/auto-trigger)。
+> Webhook 是一种高效的方式可以让流水线发现远程仓库的变化并自动触发新的运行，GitHub 和 Git (如 Gitlab) 触发 Jenkins 自动扫描应该以 Webhook 为主，以上一步在 KubeSphere 设置定期扫描为辅。在本示例中，可以通过手动运行流水线，如需设置自动扫描远端分支并触发运行，详见 [设置自动触发扫描 - GitHub SCM](/advanced-v2.0/zh-CN/devops/auto-trigger)。
 
 完成高级设置后点击 **创建**。
 

@@ -1,10 +1,17 @@
-import React from 'react'
+import { graphql } from 'gatsby'
 
-const NotFoundPage = () => (
-  <div style={{ textAlign: 'center', marginTop: 200 }}>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
-)
+export default function NotFound({ data }) {
+  if (typeof window !== 'undefined') {
+    window.location = data.site.pathPrefix || '/'
+  }
 
-export default NotFoundPage
+  return null
+}
+
+export const query = graphql`
+  query {
+    site {
+      pathPrefix
+    }
+  }
+`

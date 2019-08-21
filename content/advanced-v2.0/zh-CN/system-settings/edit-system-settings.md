@@ -1,5 +1,7 @@
 ---
 title: "系统配置修改" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ## 如何修改 CoreDNS 配置

@@ -1,5 +1,7 @@
 ---
 title: "Project Gateway"
+keywords: ''
+description: ''
 ---
 
 The gateway in the project is a [Nginx Ingress Controller](https://www.nginx.com/products/nginx/kubernetes-ingress-controller). KubeSphere has a built‑in configuration for HTTP load balancing, called Routes, that defines rules for external connectivity to services. Users who need to provide external access to their services create a Route resource that defines rules, including the URI path, backing service name, and other information. Set the gateway can then automatically program a frontend load balancer to enable Route configuration.

@@ -17,7 +17,7 @@
     {
       "title": "快速入门",
       "icon": "/access.svg",
-      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器管理平台的基本使用流程，带您快速上手 KubeSphere",
+      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器平台的基本使用流程，带您快速上手 KubeSphere",
       "entry": "./express/zh-CN/user-case.md"
     },
     {

@@ -1,5 +1,7 @@
 ---
 title: "设置自动触发扫描"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 在含有 SCM (Source Code Management) 的 Pipeline 中，用户如果需要为流水线设置自动发现远程分支的变化，以生成新的 Pipeline 并使其自动地重新运行，可参考以下方式设置自动触发扫描。在 KubeSphere 中根据 SCM 类型的不同，也相应地提供了不同的方式进行触发。

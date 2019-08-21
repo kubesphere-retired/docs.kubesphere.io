@@ -1,5 +1,7 @@
 ---
 title: "快速入门 - 部署 WordPress 博客网站"
+keywords: ''
+description: ''
 ---
 
 WordPress 是使用 PHP 语言开发的博客平台，用户可以在支持 PHP 和 MySQL 数据库的服务器上架设属于自己的网站，也可以把 WordPress 当作一个内容管理系统（CMS）来使用。在本指南中，将引导用户通过 KubeSphere 控制台部署一个后端为 MySQL 数据库的 WordPress 博客网站，帮助您快速入门 KubeSphere。

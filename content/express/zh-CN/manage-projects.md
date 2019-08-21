@@ -1,5 +1,7 @@
 ---
 title: "项目管理"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来隔离不同的用户。

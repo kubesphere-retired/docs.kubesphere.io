@@ -1,5 +1,7 @@
 ---
 title: "应用仓库管理"
+keywords: ''
+description: ''
 ---
 
 KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服务，OpenPitrix 是由 [QingCloud](https://www.qingcloud.com) 主导开源的跨云应用管理平台，可以支持基于 Helm 的 Kubernetes 应用。

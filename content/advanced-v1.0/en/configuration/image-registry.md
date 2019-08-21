@@ -1,5 +1,7 @@
 ---
 title: "Image Registry"
+keywords: ''
+description: ''
 ---
 
 A Docker image is a read-only template that can be used to deploy container services, each with a specific unique identifier (i.e. Image name:Tag). For example, an image can contain a full Ubuntu operating system environment with only Apache or other applications that users need. The image registry is used to store and distribute Docker images.

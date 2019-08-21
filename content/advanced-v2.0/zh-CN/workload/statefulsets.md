@@ -1,5 +1,7 @@
 ---
 title: "有状态副本集"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 有状态副本集 (StatefulSet)，是为了解决有状态服务的问题，在运行过程中会保存数据或状态，例如 Mysql，它需要存储产生的新数据。而 Deployments 是为无状态服务而设计。应用场景包括：

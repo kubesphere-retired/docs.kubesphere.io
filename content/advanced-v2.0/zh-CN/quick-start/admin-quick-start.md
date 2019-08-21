@@ -1,5 +1,7 @@
 ---
 title: "多租户管理快速入门"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ## 目的

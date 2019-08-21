@@ -1,5 +1,7 @@
 ---
 title: "CI/CD 流水线示例 (离线版)" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab 作为可选安装项，需在安装前进行配置开启安装。用户可以根据团队项目的需求来安装，方便对项目的镜像和代码进行管理，本文档适用于离线环境的流水线构建。
@@ -44,11 +46,7 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 
 通过 CoreDNS 的 hosts 插件配置 KubeSphere 集群的 DNS 服务，使集群内部可通过 hostname 域名访问外部服务，参考 [修改系统配置 - 如何修改 CoreDNS 配置](../../system-settings/edit-system-settings)。
 
-### 第二步：修改 Jenkins 初始化配置
-
-通过修改 Jenkins 初始化配置，使在执行构建任务的容器中配置 --insecure-registry，使 Harbor 能正常推送和拉取镜像，参考 [修改系统配置 - 如何修改 Jenkins 初始化配置](../../system-settings/edit-system-settings/#如何修改-jenkins-初始化配置)。
-
-### 第三步：上传基础镜像到 Harbor
+### 第二步：上传基础镜像到 Harbor
 
 参考 [如何上传基础镜像到 Harbor](../../system-settings/push-img-harbor) 导入预先准备好的基础镜像 `java:openjdk-8-jre-alpine`。
 
@@ -103,7 +101,7 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 
 ## 创建两个项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件] (<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，项目名为 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，可参考 [Jenkinsfile in SCM 流水线 - 创建项目](../devops-online/#创建项目) 进行创建。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件](https://github.com/kubesphere/devops-java-sample/tree/master/deploy)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，项目名为 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，可参考 [基于Spring Boot项目构建流水线 - 创建项目](../devops-online/#创建项目) 进行创建。
 
 ![project](https://kubesphere-docs.pek3b.qingstor.com/png/project.png)
 
@@ -220,7 +218,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-result.png)
 
-2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 Harbor 中，我们在 Jenkinsfile-on-prem 中已经配置过 Harbor，登录 Harbor 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 Harbor，并且在 GitLab 中也生成了一个新的 tag 和 release。文档网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
+2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 Harbor 中，我们在 Jenkinsfile-on-prem 中已经配置过 Harbor，登录 Harbor 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 Harbor，并且在 GitLab 中也生成了一个新的 tag 和 release。示例网站最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |

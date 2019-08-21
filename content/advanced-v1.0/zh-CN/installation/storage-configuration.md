@@ -1,5 +1,7 @@
 ---
 title: "存储配置说明"
+keywords: ''
+description: ''
 ---
 
 目前，Installer 支持以下类型的存储作为存储服务端，为 KubeSphere 提供持久化存储 (更多的存储类型持续更新中)：
@@ -16,11 +18,11 @@ title: "存储配置说明"
 
 Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已测试过的版本如下：
 
-| **名称** | **版本** | **参考** |
+| **名称** | **版本** | **参考** | 
 | ----------- | --- |---|
-| Ceph RBD Server | v0.94.10 |若用于测试部署可参考 [部署 Ceph 存储服务端](/express/zh-CN/ceph-ks-install/)，如果是正式环境搭建请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)|
+| Ceph RBD Server | v0.94.10 |若用于测试部署可参考 [部署 Ceph 存储服务端](https://kubesphere.io/docs/advanced-v2.0/zh-CN/appendix/ceph-ks-install/)，如果是正式环境搭建请参考 [Ceph 官方文档](http://docs.ceph.com/docs/master/)|
 | Ceph RBD Client | v12.2.5 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，参考 [Ceph RBD](../storage-configuration/#ceph-rbd)|
-| GlusterFS Server | v3.7.6 |若用于测试部署可参考 [部署 GlusterFS 存储服务端](/express/zh-CN/glusterfs-ks-install/)， 如果是正式环境搭建请参考 [Gluster 官方文档](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) ，并且需要安装 [Heketi 管理端 (v3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin)|
+| GlusterFS Server | v3.7.6 |若用于测试部署可参考 [部署 GlusterFS 存储服务端](https://kubesphere.io/docs/advanced-v2.0/zh-CN/appendix/glusterfs-ks-install/)， 如果是正式环境搭建请参考 [Gluster 官方文档](https://www.gluster.org/install/) 或 [Gluster Docs](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) ，并且需要安装 [Heketi 管理端 (v3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin)|
 |GlusterFS Client |v3.12.10|在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，配置详见 [GlusterFS](../storage-configuration/#glusterfs)|
 |NFS Server in Kubernetes| v1.0.9 |配置详见 [NFS Server 配置](../storage-configuration/#nfs) |
 |NFS Client | v3.1.0 | 在安装 KubeSphere 前仅需在 `vars.yml` 配置相应参数即可对接其存储服务端，详见 [NFS Client](../storage-configuration/#nfs)  |

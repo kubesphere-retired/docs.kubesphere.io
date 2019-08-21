@@ -1,5 +1,7 @@
 ---
 title: "访问内置 SonarQube 和 Jenkins 服务端"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ## 访问 SonarQube
@@ -39,7 +41,7 @@ Jenkins 是一款由 Java 开发的开源的持续集成工具，KubeSphere 内�
 
 1、Jenkins Dashboard 服务暴露的端口 (NodePort) 默认为 `30180`，若在云平台部署 KubeSphere，则需要进行端口转发和添加防火墙规则，确保外网流量能够正常通过该端口。
 
-2、然后访问公网 IP 和端口号即 `http://${EIP}:${NODEPORT}`，Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码 (初始密码为 passw0rd) 登录 Jenkins Dashboard。
+2、然后访问公网 IP 和端口号即 `http://${EIP}:${NODEPORT}`，Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码 (初始密码为 P@88w0rd) 登录 Jenkins Dashboard。
 
 > 说明：若部署在私有环境，则可以在集群的任意节点通过 `http://{$节点 IP}:30180` 进行访问。
 

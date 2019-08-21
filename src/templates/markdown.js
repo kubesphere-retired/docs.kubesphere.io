@@ -1,18 +1,21 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { translate } from 'react-i18next'
 import styled from 'styled-components'
 import classnames from 'classnames'
 import Viewer from 'viewerjs'
 import 'viewerjs/dist/viewer.css'
 
+import Layout from '../layouts'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Headings from '../components/Headings'
 import Versions from '../components/Versions'
 import SearchResult from '../components/SearchResult'
 import TableOfContents from '../components/TableOfContents/index'
+import WithI18next from '../components/WithI18next'
 
 import './markdown.css'
 import './b16-tomorrow-dark.css'
@@ -23,8 +26,8 @@ class MarkdownTemplate extends React.Component {
   }
 
   constructor(props) {
-    super(props);
-    
+    super(props)
+
     this.state = {
       isExpand: false,
       query: '',
@@ -33,15 +36,7 @@ class MarkdownTemplate extends React.Component {
       prev: {},
       next: {},
     }
-
-    if (props.pathContext.lang) {
-      const { i18n } = this.props
-      if (i18n.language !== props.pathContext.lang) {
-        i18n.changeLanguage(props.pathContext.lang)
-      }
-    }
   }
-  
 
   componentDidMount() {
     document.addEventListener('click', this.handleClick)
@@ -69,6 +64,21 @@ class MarkdownTemplate extends React.Component {
 
       this.viewer = viewer
     }
+
+    if (typeof docsearch !== 'undefined') {
+      docsearch({
+        apiKey: '221332a85783d16a5b930969fe4a934a',
+        indexName: 'kubesphere',
+        inputSelector: '.ks-search > input',
+        debug: false,
+      })
+    }
+
+    this.setLinkTargetBlank()
+  }
+
+  componentDidUpdate() {
+    this.setLinkTargetBlank()
   }
 
   componentWillUnmount() {
@@ -76,6 +86,13 @@ class MarkdownTemplate extends React.Component {
     if (this.viewer) {
       this.viewer.destroy()
     }
+  }
+
+  setLinkTargetBlank() {
+    const $links = document.querySelectorAll('.md-body a')
+    Array.prototype.forEach.call($links, el => {
+      el.setAttribute('target', '_blank')
+    })
   }
 
   isCurrentLink = link => {
@@ -177,7 +194,7 @@ class MarkdownTemplate extends React.Component {
   }
 
   getSearchResults(query) {
-    const {version, lang} = this.props.pathContext
+    const { version, lang } = this.props.pageContext
     const index = `${version}_${lang}`
     if (!query || !window.__LUNR__) return []
     const lunrIndex = window.__LUNR__[index]
@@ -189,15 +206,17 @@ class MarkdownTemplate extends React.Component {
   }
 
   render() {
-    const { t } = this.props
-    const { slug } = this.props.pathContext
+    const { slug, lang } = this.props.pageContext
     const postNode = this.props.data.postBySlug
+    const pathPrefix = this.props.data.site.pathPrefix
 
+    const excerpt = postNode.excerpt
     const post = postNode.frontmatter
     if (!post.id) {
       post.id = slug
     }
 
+    const { t } = this.props
     const {
       isExpand,
       query,
@@ -207,79 +226,107 @@ class MarkdownTemplate extends React.Component {
       next,
     } = this.state
 
+    const metas = []
+
+    if (post.description || excerpt) {
+      metas.push({ name: 'description', content: post.description || excerpt })
+    }
+    if (post.keywords) {
+      metas.push({ name: 'keywords', content: post.keywords })
+    }
+
+    const html = pathPrefix
+      ? postNode.html.replace(
+          /"(\/.*\.(svg|png|jpg|jpeg|gif))/g,
+          `"${pathPrefix}$1`
+        )
+      : postNode.html
+
     return (
-      <div>
-        <Helmet>
-          <title>{`${post.title} | ${
-            this.props.data.site.siteMetadata.title
-          }`}</title>
-        </Helmet>
-        <BodyGrid>
-          <NavContainer isExpand={isExpand}>
-            <Versions
-              versions={this.props.data.site.siteMetadata.versions}
-              current={postNode.fields.version}
+      <>
+        <Layout data={this.props.data}>
+          <div>
+            <Helmet
+              title={`${post.title} | ${
+                this.props.data.site.siteMetadata.title
+              }`}
+              meta={metas}
             />
-            <ToCContainer
-              innerRef={ref => {
-                this.tocRef = ref
-              }}
-            >
-              <TableOfContents
-                chapters={
-                  this.props.data.tableOfContents.edges[0].node.chapters
-                }
-              />
-              <ICP>KubeSphere®️ 2019 All Rights Reserved.</ICP>
-            </ToCContainer>
-          </NavContainer>
-          <MainContainer isExpand={isExpand}>
-            <Header
+            <BodyGrid>
+              <NavContainer isExpand={isExpand}>
+                <Versions
+                  versions={this.props.data.site.siteMetadata.versions}
+                  current={postNode.fields.version}
+                  pathPrefix={pathPrefix}
+                  lang={lang}
+                />
+                <ToCContainer
+                  ref={ref => {
+                    this.tocRef = ref
+                  }}
+                >
+                  <TableOfContents
+                    chapters={
+                      this.props.data.tableOfContents.edges[0].node.chapters
+                    }
+                  />
+                  <ICP>KubeSphere®️ 2019 All Rights Reserved.</ICP>
+                </ToCContainer>
+              </NavContainer>
+              <MainContainer isExpand={isExpand}>
+                <Header
+                  query={query}
+                  isExpand={isExpand}
+                  onSearch={this.handleSearch}
+                  placeholder={t('Quick search')}
+                  toggleExpand={this.handleExpand}
+                  onQueryChange={this.handleQueryChange}
+                  pageContext={this.props.pageContext}
+                  pathPrefix={pathPrefix}
+                />
+                <MarkdownWrapper>
+                  <MarkdownBody
+                    className={classnames('md-body', {
+                      'md-en': postNode.fields.language === 'en',
+                    })}
+                    ref={ref => {
+                      this.markdownRef = ref
+                    }}
+                  >
+                    <MarkdownTitle>{post.title}</MarkdownTitle>
+                    <div
+                      ref={ref => {
+                        this.markdownRef = ref
+                      }}
+                      dangerouslySetInnerHTML={{ __html: html }}
+                    />
+                  </MarkdownBody>
+                  <FooterWrapper>
+                    <Footer prev={prev} next={next} />
+                  </FooterWrapper>
+                </MarkdownWrapper>
+                <HeadingsWrapper>
+                  <Headings
+                    title={postNode.frontmatter.title}
+                    headings={postNode.headings}
+                    current={this.props.location.hash}
+                    onHeadClick={this.handleHeadClick}
+                  />
+                </HeadingsWrapper>
+              </MainContainer>
+            </BodyGrid>
+            <SearchResult
               query={query}
-              isExpand={isExpand}
+              results={results}
+              visible={showSearchResult}
+              onCancel={this.hideSearch}
               onSearch={this.handleSearch}
-              placeholder={t('Quick search')}
-              toggleExpand={this.handleExpand}
               onQueryChange={this.handleQueryChange}
             />
-            <MarkdownWrapper>
-              <MarkdownBody
-                className={classnames("md-body", {["md-en"]: postNode.fields.language === 'en'})}
-                innerRef={ref => {
-                  this.markdownRef = ref
-                }}
-              >
-                <MarkdownTitle>{post.title}</MarkdownTitle>
-                <div
-                  ref={ref => {
-                    this.markdownRef = ref
-                  }}
-                  dangerouslySetInnerHTML={{ __html: postNode.html }}
-                />
-              </MarkdownBody>
-              <FooterWrapper>
-                <Footer prev={prev} next={next} />
-              </FooterWrapper>
-            </MarkdownWrapper>
-            <HeadingsWrapper>
-              <Headings
-                title={postNode.frontmatter.title}
-                headings={postNode.headings}
-                current={this.props.location.hash}
-                onHeadClick={this.handleHeadClick}
-              />
-            </HeadingsWrapper>
-          </MainContainer>
-        </BodyGrid>
-        <SearchResult
-          query={query}
-          results={results}
-          visible={showSearchResult}
-          onCancel={this.hideSearch}
-          onSearch={this.handleSearch}
-          onQueryChange={this.handleQueryChange}
-        />
-      </div>
+          </div>
+        </Layout>
+        <script src={`${pathPrefix}/smooth-scroll.polyfills.min.js`} />
+      </>
     )
   }
 }
@@ -395,6 +442,7 @@ export const pageQuery = graphql`
   }
   query MarkdownBySlug($slug: String!, $lang: String!, $version: String!) {
     site {
+      pathPrefix
       siteMetadata {
         title
         versions {
@@ -405,8 +453,11 @@ export const pageQuery = graphql`
     }
     postBySlug: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      excerpt
       frontmatter {
         title
+        keywords
+        description
       }
       headings {
         value
@@ -472,4 +523,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default translate('base')(MarkdownTemplate)
+export default WithI18next({ ns: 'common' })(MarkdownTemplate)

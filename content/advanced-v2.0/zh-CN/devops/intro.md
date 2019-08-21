@@ -1,5 +1,7 @@
 ---
 title: "DevOps 工程概述"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 由于软件开发复杂度的增高和更多的协同工作，团队开发成员间如何更好地在协同工作中确保软件开发和交付质量，逐渐成为研发过程中不可回避的问题。众所周知，敏捷开发 (Agile) 在业内日趋流行，团队如何在不断变化的需求中快速适应和保证软件质量就变得极其重要了。而 CI/CD 就是专门为解决上述需求的软件开发实践。CI/CD 要求每次的集成都是通过自动化的构建来验证，包括自动编译、发布和测试，从而尽快地发现集成错误，让团队能够更快的开发内聚的软件，减轻了软件发布时的压力。
@@ -46,7 +48,7 @@ KubeSphere 的 CI/CD 是基于底层 Kubernetes 的动态 Jenkins Slave，也就
 
 - [Source to Image](../../quick-start/source-to-image/)
 
-- [Jenkinsfile in SCM 流水线](../../quick-start/jenkinsfile-in-scm)
+- [基于Spring Boot项目构建流水线](../../quick-start/devops-online)
 
 - [CI/CD 流水线 (离线版)](../../quick-start/devops-online)
 

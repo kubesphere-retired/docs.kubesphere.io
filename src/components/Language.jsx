@@ -1,34 +1,25 @@
 import React from 'react'
-import classnames from 'classnames'
 import styled from 'styled-components'
-import { translate } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 import { ReactComponent as EarthIcon } from '../assets/earth.svg'
 
 import { getLanguage } from '../utils'
 
-const LANGS = [
-  { name: '简体中文', value: 'zh-CN' },
-  { name: 'English', value: 'en' },
-]
-
-const Language = ({ className, i18n }) => {
+const Language = ({ pageContext: { locale, originalPath, availableLocales }, pathPrefix }) => {
   const handleChange = e => {
-    i18n.changeLanguage(e.target.dataset.lang)
     if (typeof window !== 'undefined') {
-      window.location.reload()
+      window.location.href = `${pathPrefix}/${e.target.dataset.lang}${originalPath}`
     }
   }
-
-  const currentLang = getLanguage(i18n.language)
 
   return (
     <Wrapper>
       <EarthIcon />
-      {LANGS.map(lang => (
+      {availableLocales.map(lang => (
         <Item
           key={lang.value}
-          selected={lang.value === currentLang}
+          selected={lang.value === getLanguage(locale)}
           data-lang={lang.value}
           onClick={handleChange}
         >
@@ -73,4 +64,4 @@ const Item = styled.a`
   }
 `
 
-export default translate('base')(Language)
+export default withTranslation()(Language)

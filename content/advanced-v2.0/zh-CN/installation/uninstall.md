@@ -1,5 +1,7 @@
 ---
 title: "卸载"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 注意：卸载将从机器中删除 KubeSphere，该操作不可逆，也不会备份任何数据，请谨慎操作。

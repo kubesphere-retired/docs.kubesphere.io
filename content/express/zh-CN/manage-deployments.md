@@ -1,5 +1,7 @@
 ---
 title: "部署"
+keywords: ''
+description: ''
 ---
 
 部署（ Deployment ）为 Pod 和 ReplicaSet 提供了一个声明式定义 ( declarative ) 方法来管理应用。典型的应用场景包括定义 Deployment 来创建 Pod 和 ReplicaSet、滚动升级和回滚应用、扩容和缩容以及暂停和继续 Deployment。

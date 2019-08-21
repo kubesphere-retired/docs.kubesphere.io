@@ -1,5 +1,7 @@
 ---
 title: "Release Notes For 2.0.0"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 KubeSphere 高级版 (Advanced Edition 2.0.0) 已于 2019 年 5 月 18 日 正式发布。建议下载并安装最新的 2.0.0 版本，若您已经安装了 1.0.1 或 1.0.0 版本，请下载 2.0.0 版本的 Installer，支持一键升级 1.0.0 (或 1.0.1) 至 2.0.0。
@@ -20,7 +22,7 @@ KubeSphere 高级版 (Advanced Edition 2.0.0) 已于 2019 年 5 月 18 日 正�
 
  - 集成 Istio 1.1.1，支持图形化创建包含多个微服务组件的应用  
  - 支持为项目（外网访问）和应用开启/关闭应用治理  
- - 内置微服务治理示例 [Bookinfo](https://docs.kubesphere.io/advanced-v2.0/zh-CN/quick-start/bookinfo-canary/)  
+ - 内置微服务治理示例 [Bookinfo](/advanced-v2.0/zh-CN/quick-start/bookinfo-canary/)  
  - 支持流量治理
  - 支持流量镜像
  - 基于 Istio 提供微服务级别的负载均衡功能

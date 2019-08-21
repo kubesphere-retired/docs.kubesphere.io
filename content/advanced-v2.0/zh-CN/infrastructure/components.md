@@ -1,5 +1,7 @@
 ---
 title: "服务组件"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 服务组件提供集群内各项服务组件的健康状态监控，可以查看当前集群的健康状态和运行时间，能够帮助用户监测集群的状况和及时定位问题。
@@ -35,7 +37,7 @@ title: "服务组件"
 | ks-apiserver   | 是整个集群管理的 API 接口和集群内部各个模块之间通信的枢纽，以及集群安全控制   | 
 | ks-console   | 提供 KubeSphere 的控制台服务   | 
 | ks-docs | `docs.kubesphere.io` 文档服务 |
-| oepnldap   | 负责集中存储和管理用户账号信息   | 
+| OpenLDAP   | 负责集中存储和管理用户账号信息   | 
 | redis   | 将结构化的数据存储在内存中的存储系统   | 
 
 

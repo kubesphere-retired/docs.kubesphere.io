@@ -1,5 +1,7 @@
 ---
 title: "应用路由与服务示例"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，即应用路由控制器 (Ingress Controller)，为了代理不同后端服务 (Service) 而设置的负载均衡服务，用户访问 URL 时，应用路由控制器可以把请求转发给不同的后端服务。因此，应用路由的功能其实可以理解为 Service 的 “Service”。
@@ -8,7 +10,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 以下将在 KubeSphere 创建相关资源来说明这个应用路由的示例。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424132454.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190603162857.png)
 
 
 ## 前提条件
@@ -42,6 +44,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 3. 副本数增加至 2，点击 「添加容器」，在容器组模板的表单中，参考如下提示填写镜像和服务设置，其它信息默认即可：
 
+
 - 镜像：nginxdemos/hello:plain-text ；
 - 容器名称：tea
 - 服务设置：名称输入 port，协议默认 TCP，端口号输入 80 (容器端口)；
@@ -58,6 +61,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 1. 同上，点击「创建」，参考以上步骤创建一个名为 coffee 的咖啡点餐系统的部署 (deployment)。
 
 2. 副本数增加至 2，点击 「添加容器」，在容器组模板的表单中，参考如下提示填写 coffee 的镜像和服务设置，其它信息默认即可：
+
 
 - 镜像：nginxdemos/hello:plain-text ；
 - 容器名称：coffee
@@ -80,8 +84,10 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 2. 选择第一项 `通过集群内 IP 来访问服务 Virtual IP`，参考如下提示填写服务设置：
 
+
 - 点击 「指定工作负载」，选择 tea，点击保存；
 - 端口：名称为 port，默认 TCP 协议，端口和目标端口都填写 80 (前者表示暴露在 Cluster IP 上的端口，仅提供给集群内部访问服务的入口，目标端口是当前的服务后端 Pod 上的端口)。
+
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507203902.png)
 

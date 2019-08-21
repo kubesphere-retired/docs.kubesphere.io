@@ -1,5 +1,7 @@
 ---
 title: "存储类型"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 存储类型 (StorageClass) 是由 `集群管理员` 配置存储服务端的参数，并按类型提供存储给集群用户使用。通常情况下创建存储卷之前需要先创建存储类型，目前支持的存储类型如 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/)、 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume (仅 all-in-one 支持)](https://kubernetes.io/docs/concepts/storage/volumes/#local) 等。需要注意的是，当系统中存在多种存储类型时，只能设定一种为默认的存储类型。

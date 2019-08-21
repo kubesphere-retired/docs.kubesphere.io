@@ -1,5 +1,7 @@
 ---
 title: "云平台配置端口转发和防火墙"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 在 KubeSphere 中，若服务、应用路由或外网访问启用的是 NodePort 的方式，NodePort 会在主机上开放一个节点端口。一般来说，如果集群部署在 VPC 中，那么在云平台需要将该端口进行转发并在防火墙添加下行规则，确保流量能够通过该端口。

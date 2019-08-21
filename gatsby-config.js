@@ -74,6 +74,7 @@ const transformer = ({ data }) => {
 }
 
 module.exports = {
+  pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/docs',
   siteMetadata: {
     title: 'KubeSphere Documents',
     versions: [
@@ -88,6 +89,21 @@ module.exports = {
       {
         label: 'Express v1.0',
         value: 'express',
+      },
+    ],
+    apiDocuments: [
+      {
+        version: 'advanced-v2.0',
+        swaggerUrls: [
+          {
+            name: 'kubesphere',
+            url: 'data/advanced-v2.0_api.json',
+          },
+          {
+            name: 'notification',
+            url: 'data/notification.api.json',
+          },
+        ],
       },
     ],
   },
@@ -142,6 +158,7 @@ module.exports = {
         query,
         indexes,
         transformer,
+        pathPrefix: '/docs',
         fields: [
           { name: 'title', store: true },
           { name: 'head_prefix', store: true },

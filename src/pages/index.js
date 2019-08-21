@@ -1,18 +1,21 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
 import 'react-tippy/dist/tippy.css'
 import { Tooltip } from 'react-tippy'
-import { translate } from 'react-i18next'
 
 import { getLanguage } from '../utils'
 
+import Layout from '../layouts'
 import Logo from '../components/Logo'
 import Select from '../components/Select'
 import Search from '../components/Search'
 import SearchResult from '../components/SearchResult'
 import Language from '../components/Language'
+import WithI18next from '../components/WithI18next'
 
 import { ReactComponent as RoadMapIcon } from '../assets/icon-roadmap.svg'
 import { ReactComponent as ChatIcon } from '../assets/icon-chat.svg'
@@ -25,6 +28,19 @@ class IndexPage extends React.Component {
     results: [],
     showSearchResult: false,
     selectVersion: this.props.data.site.siteMetadata.versions[0],
+  }
+
+  componentDidMount() {
+    if (typeof docsearch !== 'undefined') {
+      /* eslint-disable no-undef */
+      docsearch({
+        apiKey: '221332a85783d16a5b930969fe4a934a',
+        indexName: 'kubesphere',
+        inputSelector: '.ks-search > input',
+        debug: false,
+      })
+      /* eslint-enable no-undef */
+    }
   }
 
   handleSearch = query => {
@@ -49,9 +65,9 @@ class IndexPage extends React.Component {
 
   getSearchResults(query) {
     const { selectVersion } = this.state
-    const { i18n } = this.props
+    const { locale } = this.props.pageContext
 
-    const index = `${selectVersion.value}_${getLanguage(i18n.language)}`
+    const index = `${selectVersion.value}_${getLanguage(locale)}`
 
     if (!query || !window.__LUNR__) return []
     const lunrIndex = window.__LUNR__[index]
@@ -60,46 +76,46 @@ class IndexPage extends React.Component {
   }
 
   handleVersionChange = value => {
-    console.log(value)
     this.setState({ selectVersion: value })
   }
 
   render() {
     const { query, results, showSearchResult, selectVersion } = this.state
     return (
-      <div>
-        <Header
-          {...this.props}
-          query={query}
-          onSearch={this.handleSearch}
-          onQueryChange={this.handleQueryChange}
-        />
-        <Content
-          {...this.props}
-          selectVersion={selectVersion}
-          onVersionChange={this.handleVersionChange}
-        />
-        <Footer t={this.props.t} />
-        <SearchResult
-          query={query}
-          results={results}
-          visible={showSearchResult}
-          onCancel={this.hideSearch}
-          onSearch={this.handleSearch}
-          onQueryChange={this.handleQueryChange}
-          t={this.props.t}
-        />
-      </div>
+      <Layout data={this.props.data}>
+        <div>
+          <Header
+            {...this.props}
+            query={query}
+            pathPrefix={this.props.data.site.pathPrefix}
+          />
+          <Content
+            {...this.props}
+            selectVersion={selectVersion}
+            onVersionChange={this.handleVersionChange}
+          />
+          <Footer {...this.props} />
+          <SearchResult
+            query={query}
+            results={results}
+            visible={showSearchResult}
+            onCancel={this.hideSearch}
+            onSearch={this.handleSearch}
+            onQueryChange={this.handleQueryChange}
+            t={this.props.t}
+          />
+        </div>
+      </Layout>
     )
   }
 }
 
-export default translate('base')(IndexPage)
+export default WithI18next({ ns: 'common' })(IndexPage)
 
-const Header = ({ t, query, onSearch, onQueryChange }) => (
+const Header = ({ t, query, pageContext, pathPrefix }) => (
   <HeaderWrapper>
     <LogoWrapper>
-      <Logo />
+      <Logo pageContext={pageContext} pathPrefix={pathPrefix} />
     </LogoWrapper>
     <Wrapper>
       <h1>{t('Welcome to the KubeSphere Documentation')}</h1>
@@ -108,24 +124,21 @@ const Header = ({ t, query, onSearch, onQueryChange }) => (
           'We will introduce the services and features of KubeSphere with clear and concise pictures and texts as far as possible.'
         )}
       </p>
-      <div style={{ textAlign: 'center' }}>
-        <Search
-          placeholder={t('Enter keywords to get help quickly')}
-          query={query}
-          onSearch={onSearch}
-          onQueryChange={onQueryChange}
-        />
+      <div>
+        <Search placeholder={t('Enter keywords to get help quickly')} />
       </div>
     </Wrapper>
   </HeaderWrapper>
 )
 
-const Versions = ({ t, current, versions, onChange }) => {
+const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
   const handleDownload = current => {
     const a = document.createElement('a')
     a.target = '_blank'
     a.download = `KubeSphere-${current.value}.pdf`
-    a.href = `${window.location.origin}/KubeSphere-${current.value}.pdf`
+    a.href = `${window.location.origin}${pathPrefix}/KubeSphere-${
+      current.value
+    }.pdf`
     a.click()
   }
 
@@ -134,7 +147,8 @@ const Versions = ({ t, current, versions, onChange }) => {
       <Wrapper>
         <div className="version-text">
           <div>
-            {t('The current document is available for')} KubeSphere {current.label}
+            {t('The current document is available for')} KubeSphere{' '}
+            {current.label}
           </div>
           <p>
             {t(
@@ -176,7 +190,7 @@ const getTitleLink = chapter => {
   return get(entry, 'childMarkdownRemark.fields.slug', '')
 }
 
-const Documents = ({ tableOfContent }) => (
+const Documents = ({ tableOfContent, pathPrefix }) => (
   <DocumentWrapper>
     <Wrapper>
       <ul className="chapter-list">
@@ -184,7 +198,9 @@ const Documents = ({ tableOfContent }) => (
           return (
             <li key={index}>
               <h3>
-                {chapter.icon && <img src={chapter.icon} alt="" />}
+                {chapter.icon && (
+                  <img src={`${pathPrefix}${chapter.icon}`} alt="" />
+                )}
                 <Link to={getTitleLink(chapter)}>{chapter.title}</Link>
                 {chapter.tag && <Tag>{chapter.tag}</Tag>}
               </h3>
@@ -210,7 +226,7 @@ const Documents = ({ tableOfContent }) => (
 )
 
 const Content = props => {
-  const lang = getLanguage(props.i18n.language)
+  const lang = getLanguage(props.pageContext.locale)
   const tableOfContent = props.data.allContentJson.edges.find(
     edge =>
       edge.node.version === props.selectVersion.value && edge.node.lang === lang
@@ -222,14 +238,21 @@ const Content = props => {
         current={props.selectVersion}
         versions={props.data.site.siteMetadata.versions}
         onChange={props.onVersionChange}
+        pathPrefix={props.data.site.pathPrefix}
         t={props.t}
       />
-      {tableOfContent && <Documents tableOfContent={tableOfContent} />}
+      {tableOfContent && (
+        <Documents
+          tableOfContent={tableOfContent}
+          pathPrefix={props.data.site.pathPrefix}
+        />
+      )}
     </ContentWrapper>
   )
 }
 
-const Footer = ({ t }) => {
+const Footer = props => {
+  const t = props.t
   return (
     <FooterWrapper>
       <Wrapper>
@@ -241,7 +264,13 @@ const Footer = ({ t }) => {
             </h3>
             <p>
               {t('Recommend you to download and use the latest free')}{' '}
-              <a href="https://kubesphere.io/download">{t('KubeSphere Advanced Edition')}</a>{' '}
+              <a
+                href={`https://kubesphere.io/${
+                  props.pageContext.locale
+                }/download`}
+              >
+                {t('KubeSphere Advanced Edition')}
+              </a>{' '}
             </p>
           </li>
           <li>
@@ -250,7 +279,7 @@ const Footer = ({ t }) => {
               {t('Report the Bug')}
             </h3>
             <p>
-            {t('KubeSphere uses')}{' '}
+              {t('KubeSphere uses')}{' '}
               <a href="https://github.com/kubesphere/kubesphere/issues">
                 GitHub issue
               </a>{' '}
@@ -264,14 +293,18 @@ const Footer = ({ t }) => {
             </h3>
             <p>
               {t('Find us on the Slack channel')}:{' '}
-              <a href="https://kubesphere.slack.com" target="_blank">
+              <a
+                href="https://kubesphere.slack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 kubesphere.slack.com
               </a>
             </p>
           </li>
         </ul>
         <LanguageWrapper>
-          <Language />
+          <Language {...props} pathPrefix={props.data.site.pathPrefix} />
         </LanguageWrapper>
         <p className="icp">KubeSphere®️ 2019 All Rights Reserved.</p>
       </Wrapper>
@@ -315,6 +348,15 @@ const HeaderWrapper = styled.div`
   p {
     line-height: 1.43;
     color: #657d95;
+  }
+
+  .ks-search {
+    width: 588px;
+    margin: 0 auto;
+  }
+
+  .ks-search > svg {
+    left: 24px;
   }
 
   .ks-search input {
@@ -617,6 +659,7 @@ export const query = graphql`
 
   query Index {
     site {
+      pathPrefix
       siteMetadata {
         title
         versions {
@@ -625,7 +668,7 @@ export const query = graphql`
         }
       }
     }
-    allContentJson {
+    allContentJson(filter: { lang: { ne: null } }) {
       edges {
         node {
           version

@@ -524,5 +524,6 @@
 }
 
 .md-tabs input[type='radio']:checked + label + .md-tab {
-  display: inline;
+  display: block;
+  width: 100%;
 }

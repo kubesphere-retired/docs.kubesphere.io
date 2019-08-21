@@ -1,5 +1,7 @@
 ---
 title: "工作负载概述"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 Kubernetes 中对一组 Pod 的抽象模型即工作负载，用于描述业务的运行载体，包括 部署 (Deployment)、有状态副本集 (Statefulset)、守护进程集 (Deamonset)、任务 (Job)、定时任务 (CronJob) 等。KubeSphere 控制台提供向导式的用户界面引导用户快速创建工作负载。

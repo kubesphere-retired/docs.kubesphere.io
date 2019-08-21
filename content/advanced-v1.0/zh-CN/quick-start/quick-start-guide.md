@@ -1,10 +1,12 @@
 ---
 title: "入门必读" 
+keywords: ''
+description: ''
 ---
 
 相比较易捷版，KubeSphere 高级版提供了更强大更灵活的功能，满足企业更复杂的业务需求，比如新增 HPA (水平自动伸缩)、 CI/CD、监控日志、LDAP 集成、多租户管理、Job/CronJob 等功能，以及 Secrets、ConfigMaps 配置管理。
 
-本文旨在通过几个快速入门的示例帮助您了解 KubeSphere 容器管理平台的基本使用流程，带您快速上手 KubeSphere。快速入门包含六个示例，建议参考文档示例的步骤实践操作一遍。为了帮助用户更快地了解 KubeSphere 并进一步理解底层 Kubernetes 的基础概念和知识，我们还精心准备了 [Kubernetes 入门视频教程](https://yunify.anybox.qingcloud.com/s/YTU9bP3YtzKanMkawJqv8Zd9TTZAwiMa)。
+本文旨在通过几个快速入门的示例帮助您了解 KubeSphere 容器平台的基本使用流程，带您快速上手 KubeSphere。快速入门包含六个示例，建议参考文档示例的步骤实践操作一遍。为了帮助用户更快地了解 KubeSphere 并进一步理解底层 Kubernetes 的基础概念和知识，我们还精心准备了 [Kubernetes 入门视频教程](https://yunify.anybox.qingcloud.com/s/YTU9bP3YtzKanMkawJqv8Zd9TTZAwiMa)。
 
 ## 管理员快速入门
 

@@ -8,17 +8,17 @@
       "desc": "为您介绍 KubeSphere 已发布的版本功能与更新",
       "chapters": [
         {
-          "title": "Release Notes - 2.0.0",
-          "entry": "./advanced-v2.0/zh-CN/release/release-v200.md",
+          "title": "Release Notes - 2.0.2",
+          "entry": "./advanced-v2.0/zh-CN/release/release-v202.md",
           "tag": "最新"
         },
         {
-          "title": "Release Notes - 1.0.1",
-          "entry": "./advanced-v2.0/zh-CN/release/release-v101.md"
+          "title": "Release Notes - 2.0.1",
+          "entry": "./advanced-v2.0/zh-CN/release/release-v201.md"
         },
         {
-          "title": "Release Notes - 1.0.0",
-          "entry": "./advanced-v2.0/zh-CN/release/release-v100.md"
+          "title": "Release Notes - 2.0.0",
+          "entry": "./advanced-v2.0/zh-CN/release/release-v200.md"
         }
       ]
     },
@@ -111,7 +111,7 @@
     {
       "title": "快速入门",
       "icon": "/access.svg",
-      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器管理平台的基本使用流程，带您快速上手 KubeSphere",
+      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器平台的基本使用流程，带您快速上手 KubeSphere",
       "chapters": [
         {
           "title": "入门必读",
@@ -154,11 +154,11 @@
           "entry": "./advanced-v2.0/zh-CN/quick-start/bookinfo-canary.md"
         },
         {
-          "title": "示例十 - Jenkinsfile in SCM 流水线",
+          "title": "示例十 - 基于Spring Boot项目构建流水线", 
           "entry": "./advanced-v2.0/zh-CN/quick-start/devops-online.md"
         },
         {
-          "title": "示例十一 - Jenkinsfile-out-of-SCM",
+          "title": "示例十一 - 图形化构建流水线",
           "entry": "./advanced-v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
         },
         {
@@ -227,12 +227,12 @@
               "entry": "./advanced-v2.0/zh-CN/monitoring/intro.md"
             },
             {
-              "title": "应用资源监控",
+              "title": "如何利用监控定位问题",
               "entry": "./advanced-v2.0/zh-CN/monitoring/monitoring-demo.md"
             },
             {
-              "title": "物理资源监控",
-              "entry": "./advanced-v2.0/zh-CN/monitoring/physical-resources.md"
+              "title": "集群状态监控",
+              "entry": "./advanced-v2.0/zh-CN/monitoring/cluster-resources.md"
             },
             {
               "title": "应用资源监控",
@@ -256,6 +256,14 @@
               "entry": "./advanced-v2.0/zh-CN/platform-settings/app-repo.md"
             },
             {
+              "title": "上传应用到 KubeSphere 官方仓库",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/app-hosting-official.md"
+            },
+            {
+              "title": "基于 GitHub 搭建自有应用仓库",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/app-hosting-github.md"
+            },
+            {
               "title": "邮件服务器",
               "entry": "./advanced-v2.0/zh-CN/platform-settings/email-server.md"
             },
@@ -264,11 +272,11 @@
               "entry": "./advanced-v2.0/zh-CN/platform-settings/log-gathering.md"
             },
             {
-              "title": "添加 Fluentd 作为日志收集",
+              "title": "添加 Fluentd 作为日志接收者",
               "entry": "./advanced-v2.0/zh-CN/platform-settings/output-fluentd.md"
             },
             {
-              "title": "添加 Kafka 作为日志收集",
+              "title": "添加 Kafka 作为日志接收者",
               "entry": "./advanced-v2.0/zh-CN/platform-settings/output-kafka.md"
             }
           ]
@@ -333,6 +341,10 @@
             {
               "title": "流量治理",
               "entry": "./advanced-v2.0/zh-CN/application/traffic-gov.md"
+            },
+            {
+              "title": "熔断",
+              "entry": "./advanced-v2.0/zh-CN/application/circuit-breaking.md"
             }
           ]
         },
@@ -498,6 +510,28 @@
               "entry": "./advanced-v2.0/zh-CN/devops/devops-faq.md"
             }
           ]
+        }
+      ]
+    },
+    {
+      "title": "API 文档",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "API 文档",
+          "entry": "./advanced-v2.0/zh-CN/api-reference/api-docs.md"
+        },
+        {
+          "title": "如何调用 API",
+          "entry": "./advanced-v2.0/zh-CN/api-reference/api-guide.md"
+        },
+        {
+          "title": "API 常用术语对照",
+          "entry": "./advanced-v2.0/zh-CN/api-reference/api-glossary.md"
+        },
+        {
+          "title": "监控指标说明",
+          "entry": "./advanced-v2.0/zh-CN/api-reference/monitoring-metrics.md"
         }
       ]
     },

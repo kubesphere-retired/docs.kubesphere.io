@@ -1,8 +1,83 @@
-const path = require(`path`)
+const fs = require('fs')
+const path = require('path')
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const loadAndBundleSpec = require('@leoendless/redoc').loadAndBundleSpec
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators
+const localesNSContent = {
+  en: [
+    {
+      content: fs.readFileSync(`src/locales/en/common.json`, 'utf8'),
+      ns: 'common',
+    },
+  ],
+  'zh-CN': [
+    {
+      content: fs.readFileSync(`src/locales/zh-CN/common.json`, 'utf8'),
+      ns: 'common',
+    },
+  ],
+}
+
+const availableLocales = [
+  { name: '简体中文', value: 'zh-CN' },
+  { name: 'English', value: 'en' },
+]
+
+const defaultLocales = { value: 'zh-CN', text: '简体中文' }
+
+exports.onCreatePage = async props => {
+  const {
+    page,
+    actions: { createPage, createRedirect, deletePage },
+  } = props
+
+  if (page.path.indexOf('404') !== -1) {
+    return
+  }
+
+  deletePage(page)
+
+  availableLocales.map(({ value }) => {
+    const newPath = `/${value}${page.path}`
+
+    const localePage = {
+      ...page,
+      originalPath: page.path,
+      path: newPath,
+      context: {
+        availableLocales,
+        locale: value,
+        routed: true,
+        data: localesNSContent[value],
+        originalPath: page.path,
+      },
+    }
+    createPage(localePage)
+  })
+
+  if (page.path === '/') {
+    createPage({
+      ...page,
+      context: {
+        availableLocales,
+        locale: defaultLocales.value,
+        routed: true,
+        data: localesNSContent[defaultLocales.value],
+        originalPath: page.path,
+      },
+    })
+  } else {
+    createRedirect({
+      fromPath: page.path,
+      isPermanent: true,
+      redirectInBrowser: true,
+      toPath: `/${defaultLocales.value}${page.path}`,
+    })
+  }
+}
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `content` })
@@ -17,9 +92,10 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 }
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage, createRedirect } = boundActionCreators
-  return new Promise(resolve => {
+const createMarkdownPages = ({ graphql, actions }) =>
+  new Promise(resolve => {
+    const { createPage, createRedirect } = actions
+
     graphql(`
       {
         pages: allMarkdownRemark {
@@ -51,6 +127,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             slug: slug,
             version: version,
             lang: language,
+            availableLocales,
+            locale: language,
+            routed: true,
+            data: localesNSContent[language],
           },
         })
       })
@@ -88,4 +168,69 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       resolve()
     })
   })
+
+const createAPIPages = ({ graphql, actions }) =>
+  new Promise(resolve => {
+    const { createPage } = actions
+
+    graphql(`
+      {
+        site {
+          siteMetadata {
+            apiDocuments {
+              version
+              swaggerUrls {
+                name
+                url
+              }
+            }
+          }
+        }
+      }
+    `).then(({ data: { site } }) => {
+      const promises = []
+      site.siteMetadata.apiDocuments.forEach(doc => {
+        doc.swaggerUrls.forEach(item => {
+          promises.push(
+            new Promise(resolve => {
+              if (/^data/.test(item.url)) {
+                const data = require(`./src/${item.url}`)
+                loadAndBundleSpec(data).then(data => {
+                  resolve({
+                    data,
+                    name: item.name,
+                    version: doc.version,
+                  })
+                })
+              } else {
+                loadAndBundleSpec(item.url).then(data => {
+                  resolve({
+                    data,
+                    name: item.name,
+                    version: doc.version,
+                  })
+                })
+              }
+            })
+          )
+        })
+      })
+      Promise.all(promises).then(ret => {
+        ret.forEach(({ name, version, data }) => {
+          createPage({
+            path: `/${version}/api/${name}`,
+            component: path.resolve(`./src/templates/api.js`),
+            context: {
+              version: version,
+              swaggerData: data,
+            },
+          })
+        })
+        resolve()
+      })
+    })
+  })
+
+exports.createPages = (...rest) => {
+  return Promise.all([createMarkdownPages(...rest), createAPIPages(...rest)])
 }

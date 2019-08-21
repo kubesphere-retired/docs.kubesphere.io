@@ -1,5 +1,7 @@
 ---
 title: "存储常见问题" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ### 物理环境灾难恢复相关问题

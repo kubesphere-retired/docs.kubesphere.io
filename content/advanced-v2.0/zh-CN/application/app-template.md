@@ -1,5 +1,7 @@
 ---
 title: "应用模板"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 应用模板是 KubeSphere 中应用的存储、交付、管理途径，应用模板所纳管的应用基于 [Helm](https://helm.sh/) 打包规范构建，并通过统一的公有或私有的应用仓库交付使用，应用可根据自身特性由一个或多个 Kubernetes 工作负载 (workload) 和服务 (Service) 组成。

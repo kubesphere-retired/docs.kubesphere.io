@@ -1,5 +1,7 @@
 ---
 title: "存储概述"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 存储是为 KubeSphere 平台的容器运行的工作负载 (Pod) 提供存储的组件，支持多种类型的存储，并且同一个工作负载中可以挂载任意数量的存储卷。

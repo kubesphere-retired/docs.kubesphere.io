@@ -1,14 +1,17 @@
 ---
 title: "Multi-Node 模式"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
-> 提示：若需要安装 Harbor 和 GitLab 请在**安装前**参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
+> 提示：
+> - 若需要安装 Harbor 和 GitLab 请在**安装前**参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
+> - 若在云平台使用在线安装，可通过调高带宽的方式来加快安装速度。
  
-## 前提条件
+## 前提条件 
 
-<!-- - 下载最新的 [KubeSphere Advanced Edition 2.0.0 - dev](https://kubesphere.io/download/?type=advanced) 至待安装机器中。 -->
 - 已准备 KubeSphere 支持的 [持久化存储服务端](../storage-configuration)，本篇文档以配置 QingCloud-CSI 插件对接 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 为例，需要有 [QingCloud 云平台](https://console.qingcloud.com/login) 的账号。
 - <font color=red>注意，使用 QingCloud 云平台块存储作为存储服务，安装前需要确保用户账号在当前 Zone 资源配额满足最低要求。Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，所需的容量型硬盘容量的最低配额为 1400 GB，若硬盘数量和容量配额不够请提工单申请配额。</font> 若使用其他类型的硬盘，参考 [QingCloud 各类型块存储配额表](../storage-configuration)。
 
@@ -19,9 +22,12 @@ title: "Multi-Node 模式"
 您可以参考以下节点规格准备 <font color=red>至少 3 台</font> 符合要求的主机开始 `multi-node` 模式的部署。
 
 > 说明：
+> - 若选择离线安装，则系统盘建议在 `100 G` 以上；
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
-> - 若使用 ubuntu 18.04，则需要使用 root 用户；
+> - 若使用 ubuntu 18.04，则需使用 root 用户；
 > - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+> - 若需要选装 Harbor 和 GitLab，则所有主机的总内存需要 24 GiB 以上。
+
 
 | 操作系统 | 最小配置 (根据集群规模)| 
 | --- | --- | 
@@ -51,26 +57,36 @@ title: "Multi-Node 模式"
 
 ## 第二步: 准备安装配置文件
 
-**1.** 下载最新的 `KubeSphere Advanced v2.0.0` 安装包至任务执行机，并解压压缩包。
+<div class="md-tabs">
+<input type="radio" name="tabs" id="stable" checked="checked">
+<label for="stable">在线版 (2.0.2)</label>
+<span class="md-tab">
+
+**1.** 下载 `KubeSphere Advanced Edition 2.0.2` 安装包至待安装机器，进入安装目录。
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/advanced-2.0.0 > advanced-2.0.0.tar.gz
+$ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/conf
 ```
+
+</span>
+<input type="radio" name="tabs" id="offline">
+<label for="offline">离线版 (2.0.2)</label>
+<span class="md-tab">
+
+**1.** 下载 `离线安装包 (2.0.2)` 至待安装机器。
 
 ```bash
-$ tar -zxf advanced-2.0.0.tar.gz
+$ curl -L https://kubesphere.io/download/offline/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-offline-advanced-2.0.2/scripts
 ```
 
-**2.** 进入 “`kubesphere-all-advanced-2.0.0`” 目录。
+</span>
+</div>
 
-```bash
-$ cd kubesphere-all-advanced-2.0.0
-```
- 
-**3.** 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
+  
+**2.** 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
 
 > 说明：
-> - 若以非 root 用户 (如 ubuntu 用户) 进行安装，可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
+> - 若以非 root 用户 (如 ubuntu 用户) 进行安装，[all] 部分可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
 > - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [安装常见问题 - 问题 2](../../faq/faq-install/#multi-node-安装配置相关问题)。
 > - master, node1, node2 作为集群各个节点的主机名，若需要自定义主机名则所有主机名需要都使用小写形式。
 
@@ -112,11 +128,12 @@ kube-master
 >       - `ansible_ssh_pass`: 待连接主机 root 用户的密码
 > - `[kube-master]` 和 `[etcd]`：应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分，"master" 节点作为 taskbox，用来执行整个集群的安装任务，同时 "master" 节点在 KubeSphere 集群架构中也将作为 Master 节点管理集群和 etcd 节点负责保存集群的数据。
 > - `[kube-node]`：将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
+> - `[local-registry]`：离线安装包中该参数值表示设置哪个节点作为本地镜像仓库，默认值为 master 节点。建议给该节点的 `/mnt/registry` 单独挂盘 (参考 fdisk 命令)，使镜像可保存在持久化存储并节省机器空间。
 
 
 
 
-**4.** 编辑 `conf/vars.yml` 配置文件，集群的存储以配置 QingCloud-CSI 插件对接 QingCloud 云平台块存储为例。
+**3.** 编辑 `conf/vars.yml` 配置文件，集群的存储以配置 QingCloud-CSI 插件对接 QingCloud 云平台块存储为例。
 
 - 其中值带有 * 号的值为必配项，参数释义详见 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)：
     - `qingcloud_access_key_id` 和 `qingcloud_secret_access_key`： 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥并下载获得 (填写时仅粘贴单引号内的值)；
@@ -162,19 +179,14 @@ KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依
 
 > 说明：由于 multi-node 的安装时间跟网络情况和带宽、机器配置、安装节点个数等因素都有关，此处暂不提供时间标准。
 
-**1.** 进入 `scripts` 目录：
+**1.** 进入安装目录，建议使用 root 用户执行 `install.sh` 安装脚本：
 
 ```bash
 $ cd scripts
-```
-
-**2.** 建议使用 root 用户安装，执行 `install.sh` 脚本：
-
-```bash
 $ ./install.sh
 ```
 
-**3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
+**2.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
 
 ```bash
 ################################################
@@ -184,13 +196,13 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-05-18
+https://kubesphere.io/               2018-07-08
 ################################################
 Please input an option: 2
 
 ```
 
-**4.** 验证 KubeSphere 集群部署是否成功：
+**3.** 验证 KubeSphere 集群部署是否成功：
 
 **(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。
 
@@ -214,7 +226,7 @@ NOTE：Please modify the default password after login.
 
 例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
-**(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
+**(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，**登录后请立即修改默认密码**。参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 
 ![KubeSphere 控制台](/kubesphere-console.png)
 

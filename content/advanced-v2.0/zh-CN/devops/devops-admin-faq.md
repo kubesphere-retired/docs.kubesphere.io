@@ -1,5 +1,7 @@
 ---
 title: "DevOps 运维常见问题" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ## 性能及缓存命中问题
@@ -121,3 +123,163 @@ $ kubectl edit -n kubesphere-devops-system deployments.apps ks-jenkins
 我们可以通过 DevOps流水线的设置来过滤一些不需要的分支，如下图所示。
 
 ![正则过滤分支](/devops-regex-filter.png)
+
+
+## 升级 Jenkins Agent 的包版本
+
+在默认的安装中，我们为用户内置了一部分 agent ，具体可以查看[内置 agent 信息](../jenkins-agent/#podtemplate-base)的相关文档。
+
+用户在自己的使用场景当中，可能会使用不同的语言版本活不同的工具版本。这篇文档主要介绍如何替换内置的 agent。
+
+Kubesphere Jenkins 的每一个 agent 都是一个Pod，如果要替换内置的agent，就需要替换 agent 的相应镜像。
+
+### 构建最新 nodejs 版本的 agent 镜像
+
+我们 agent 的源代码都在 Github KubeSphere 组织下，其中 nodejs agent 的镜像的源代码仓库地址为 [builder-nodejs](https://github.com/kubesphere/builder-nodejs)。
+
+可以看到我们现在镜像的 Dockerfile 为：
+
+```dockerfile
+FROM kubespheredev/builder-base:latest
+
+RUN curl -f --silent --location https://rpm.nodesource.com/setup_9.x | bash - && \
+  yum install -y nodejs gcc-c++ make bzip2 GConf2 gtk2 chromedriver chromium xorg-x11-server-Xvfb
+
+RUN npm i -g watch-cli vsce typescript
+
+# Yarn
+ENV YARN_VERSION 1.3.2
+RUN curl -f -L -o /tmp/yarn.tgz https://github.com/yarnpkg/yarn/releases/download/v${YARN_VERSION}/yarn-v${YARN_VERSION}.tar.gz && \
+	tar xf /tmp/yarn.tgz && \
+	mv yarn-v${YARN_VERSION} /opt/yarn && \
+	ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn
+```
+
+我们将修改 Dockerfile，将 nodejs 版本调整为10.x，并将 yarn 的版本调整到 1.16.0，则我们的 Dockerfile 如下所示：
+
+```dockerfile
+FROM kubesphere/builder-base:latest
+
+RUN curl -f --silent --location https://rpm.nodesource.com/setup_10.x | bash - && \      # 安装 10.x 版本 nodejs
+  yum install -y nodejs gcc-c++ make bzip2 GConf2 gtk2 chromedriver chromium xorg-x11-server-Xvfb
+
+RUN npm i -g watch-cli vsce typescript
+
+# Yarn
+ENV YARN_VERSION 1.16.0  # 安装 1.16.0 版本 的 yarn
+RUN curl -f -L -o /tmp/yarn.tgz https://github.com/yarnpkg/yarn/releases/download/v${YARN_VERSION}/yarn-v${YARN_VERSION}.tar.gz && \
+	tar xf /tmp/yarn.tgz && \
+	mv yarn-v${YARN_VERSION} /opt/yarn && \
+	ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn
+
+```
+
+当我们完成了 Dockerfile 的编写就可以构建 Docker 镜像并验证镜像是否满足要求：
+
+使用下面的命令构建 Docker 镜像, 其中 -t 后参数为镜像名称，可以根据自己的需要进行调整。
+
+```bash
+$ docker build -t runzexia/builder-nodejs:advanced-2.1.0-dev .
+Step 1/5 : FROM kubesphere/builder-base:latest
+ ---> 19d0e8ccd4bb
+Step 2/5 : RUN curl -f --silent --location https://rpm.nodesource.com/setup_10.x | bash - &&   yum install -y nodejs gcc-c++ make bzip2 GConf2 gtk2 chromedriver chromium xorg-x11-server-Xvfb
+
+………………
+
+Step 5/5 : RUN curl -f -L -o /tmp/yarn.tgz https://github.com/yarnpkg/yarn/releases/download/v${YARN_VERSION}/yarn-v${YARN_VERSION}.tar.gz &&         tar xf /tmp/yarn.tgz &&         mv yarn-v${YARN_VERSION} /opt/yarn &&         ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn
+ ---> Running in 5ce7b5e09e7e
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   609    0   609    0     0    566      0 --:--:--  0:00:01 --:--:--   566
+100 1145k  100 1145k    0     0  88823      0  0:00:13  0:00:13 --:--:--  101k
+Removing intermediate container 5ce7b5e09e7e
+ ---> a4ba9a74fd03
+Successfully built a4ba9a74fd03
+Successfully tagged runzexia/builder-nodejs:advanced-2.1.0-dev
+```
+
+可以看到我们成功完成了镜像的构建，现在让我们在本地运行容器来查看内置环境的版本是否满足需求：
+
+```bash
+$ docker run -it runzexia/builder-nodejs:advanced-2.1.0-dev bash
+
+$ node -v
+v10.16.0
+$ npm -v
+6.9.0
+$ yarn -v
+1.16.0
+```
+
+可以看到 nodejs 版本已经更新为较新的版本了，现在我们将镜像推送到镜像仓库当中。
+```bash
+$ docker push runzexia/builder-nodejs:advanced-2.1.0-dev
+```
+
+### 修改 Jenkins 配置，并重新加载 Jenkins 系统设置
+
+当我们完成了镜像的推送，就可以通过修改配置来修改 Jenkins 的系统设置。
+
+使用集群管理员账号登陆 KubeSphere 页面，进入 企业空间 -》 system-workspace（企业空间） -》 kubesphere-devops-system（项目) -》 配置中心  -》 配置 -》 jenkins-casc-config -》 更多操作 -》 编辑 ConfigMap 。
+
+我们现在可以修改 Agent 的镜像版本了，修改 `{{.jenkins.clouds.templates.nodejs.containers.nodejs.image}}` 为 `runzexia/builder-nodejs:advanced-2.1.0-dev`。
+
+```yaml
+jenkins:
+  mode: EXCLUSIVE
+  numExecutors: 5
+  scmCheckoutRetryCount: 2
+
+  clouds:
+    - kubernetes:
+        name: "kubernetes"
+        serverUrl: "https://kubernetes.default"
+        skipTlsVerify: true
+        namespace: "kubesphere-devops-system"
+        credentialsId: "k8s-service-account"
+        jenkinsUrl: "http://ks-jenkins.kubesphere-devops-system:80"
+        jenkinsTunnel: "ks-jenkins-agent.kubesphere-devops-system:50000"
+        containerCapStr: "100"
+        connectTimeout: "60"
+        readTimeout: "60"
+        maxRequestsPerHostStr: "32"
+        templates:
+          - name: "nodejs"
+            namespace: "kubesphere-devops-system"
+            label: "nodejs"
+            nodeUsageMode: "EXCLUSIVE"
+            idleMinutes: 0 # Do not reuse pod.
+            containers:
+            - name: "nodejs"
+              image: "runzexia/builder-nodejs:advanced-2.1.0-dev"  // 修改此处镜像版本
+              command: "cat"
+              ttyEnabled: true
+              envVars:
+              - containerEnvVar:
+                  key: "DOCKER_HOST"
+                  value: "tcp://localhost:2375"
+            - name: "jnlp"
+              image: "jenkins/jnlp-slave:3.27-1"
+              args: "${computer.jnlpmac} ${computer.name}"
+              resourceRequestCpu: "100m"
+              resourceRequestMemory: "32Mi"
+            - name: "docker-server"
+              image: "docker:18.06.1-ce-dind"
+              ttyEnabled: true
+              privileged: true
+              args: "--insecure-registry harbor.devops.kubesphere:30280"
+              envVars:
+              - containerEnvVar:
+                  key: "DOCKER_HOST"
+                  value: "tcp://localhost:2375"
+            workspaceVolume:
+              emptyDirWorkspaceVolume:
+                memory: false
+
+```
+
+修改完毕后，我们就可以参考文档 [Jenkins 系统设置](../jenkins-setting/#登陆-jenkins-重新加载)来重新加载我们的配置了。当重新加载配置完成后，我们的 Agent 版本也就更新成功了。
+
+可以在 Jenkins 系统管理的系统设置中已经更新为我们设置的镜像版本。
+
+![镜像版本](/update-nodejs-agent.jpg)

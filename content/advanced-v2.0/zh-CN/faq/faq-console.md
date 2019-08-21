@@ -1,5 +1,7 @@
 ---
 title: "控制台使用常见问题" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+description: ''
 ---
 
 ### 如何快速了解 KubeSphere
@@ -26,6 +28,20 @@ title: "控制台使用常见问题"
 答：Kubesphere 计算 CPU 用量的方法是求 user 、 nice 、 system 、 iowait 、 irq 、 softirq 以及 steal 七种 CPU 模式下的用量合，数据通过 node_exporter 采集。由于 Linux 内核 4.x 存在 steal 数值异常大的 bug，导致了如上图的异常值。建议尝试重启节点主机，或升级内核版本。
 
 更多信息请参考 [node_exporter issue #742](https://github.com/prometheus/node_exporter/issues/742)
+
+<!-- ### 如何修改配置使 KubeSphere 允许同一账号多人登录？
+
+1、在控制台中，进入企业空间 system-workspace → 项目 → kubesphere-system，然后在 「配置中心」→「配置」选择 ks-console-ae-config，点击 「编辑配置文件」。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190601102158.png)
+
+2、然后将 disableMultiLogin: True 的值修改为 False，并通过 kubectl 命令将 ks-console 应用更新。
+
+```shell
+$ kubectl scale --replicas=0 deployment/ks-console -n kubesphere-system
+
+$ kubectl scale --replicas=0 deployment/ks-console -n kubesphere-system
+``` -->
 
 
 > 说明：

@@ -1,5 +1,7 @@
 ---
 title: "名词解释"
+keywords: ''
+description: ''
 ---
 
 了解和使用 KubeSphere 管理平台，会涉及到以下的基本概念：
