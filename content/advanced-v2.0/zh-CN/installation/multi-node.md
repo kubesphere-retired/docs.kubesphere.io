@@ -76,7 +76,7 @@ $ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.
 **1.** 下载 `离线安装包 (2.0.2)` 至待安装机器。
 
 ```bash
-$ curl -L https://kubesphere.io/download/offline/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-offline-advanced-2.0.2/scripts
+$ curl -L https://kubesphere.io/download/offline/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-offline-advanced-2.0.2/conf
 ```
 
 </span>
