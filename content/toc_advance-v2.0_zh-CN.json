@@ -164,6 +164,10 @@
         {
           "title": "示例十二 - CI/CD 流水线(离线版)",
           "entry": "./advanced-v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
+        },
+        {
+          "title": "示例十三 - 使用 Ingress-Nginx 进行灰度发布",
+          "entry": "./advanced-v2.0/zh-CN/quick-start/ingress-canary.md"
         }
       ]
     },
