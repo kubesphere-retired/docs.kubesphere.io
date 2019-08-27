@@ -1,7 +1,7 @@
 ---
 title: "示例十三 - 使用 Ingress-Nginx 进行灰度发布" 
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+keywords: 'nginx, kubernetes, docker, helm, jenkins, istio, prometheus'
+description: '使用 Ingress-Nginx 进行灰度发布'
 ---
 
 在 [Bookinfo 微服务的灰度发布示例](../bookinfo-canary) 中，KubeSphere 基于 Istio 对 Bookinfo 微服务示例应用实现了灰度发布。有用户表示自己的项目还没有上 Istio，要如何实现灰度发布？
@@ -10,15 +10,17 @@ description: ''
 
 上一篇文章已经对灰度发布的几个应用场景进行了详细介绍，本文将直接介绍和演示基于 KubeSphere 使用应用路由 (Ingress) 和项目网关 (Ingress Controller) 实现灰度发布。
 
+> 说明： 本文用到的示例 yaml 源文件及代码已上传至 [GitHub](https://github.com/kubesphere/tutorial)，可 clone 至本地方便参考。
+
 ## Ingress-Nginx Annotation 简介
 
-KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx/#nginx-ingress-controller) 实现了项目的网关，作为项目对外的流量入口和项目中各个服务的反向代理。而 Ingress-Nginx 支持配置 Nginx Annotations 来实现不同场景下的灰度发布和测试，可以满足金丝雀发布、蓝绿部署与 A/B 测试等业务场景。
+KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx/#nginx-ingress-controller) 实现了项目的网关，作为项目对外的流量入口和项目中各个服务的反向代理。而 Ingress-Nginx 支持配置 Ingress Annotations 来实现不同场景下的灰度发布和测试，可以满足金丝雀发布、蓝绿部署与 A/B 测试等业务场景。
 
 > [Nginx Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary) 支持以下 4 种 Canary 规则：
-> - nginx.ingress.kubernetes.io/canary-by-header：基于 Request Header 的流量切分，适用于灰度发布以及 A/B 测试。当 Request Header 设置为 `always` 时，请求将会被一直发送到 Canary 版本；当 Request Header 设置为 `never` 时，请求不会被发送到 Canary 入口；对于任何其他 Header 值，将忽略 Header，并通过优先级将请求与其他金丝雀规则进行优先级的比较。
-> - nginx.ingress.kubernetes.io/canary-by-header-value：要匹配的 Request Header 的值，用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务。当 Request Header 设置为此值时，它将被路由到 Canary 入口。该规则允许用户自定义 Request Header 的值，必须与上一个 annotation (即：canary-by-header）一起使用。
-> - nginx.ingress.kubernetes.io/canary-weight：基于服务权重的流量切分，适用于蓝绿部署，权重范围 0 - 100 按百分比将请求路由到 Canary Ingress 中指定的服务。权重为 0 意味着该金丝雀规则不会向 Canary 入口的服务发送任何请求。权重为 100 意味着所有请求都将被发送到 Canary 入口。
-> - nginx.ingress.kubernetes.io/canary-by-cookie：基于 Cookie 的流量切分，适用于灰度发布与 A/B 测试。用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务的cookie。当 cookie 值设置为 `always` 时，它将被路由到 Canary 入口；当 cookie 值设置为 `never` 时，请求不会被发送到 Canary 入口；对于任何其他值，将忽略 cookie 并将请求与其他金丝雀规则进行优先级的比较。
+> - `nginx.ingress.kubernetes.io/canary-by-header`：基于 Request Header 的流量切分，适用于灰度发布以及 A/B 测试。当 Request Header 设置为 `always` 时，请求将会被一直发送到 Canary 版本；当 Request Header 设置为 `never` 时，请求不会被发送到 Canary 入口；对于任何其他 Header 值，将忽略 Header，并通过优先级将请求与其他金丝雀规则进行优先级的比较。
+> - `nginx.ingress.kubernetes.io/canary-by-header-value`：要匹配的 Request Header 的值，用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务。当 Request Header 设置为此值时，它将被路由到 Canary 入口。该规则允许用户自定义 Request Header 的值，必须与上一个 annotation (即：canary-by-header）一起使用。
+> - `nginx.ingress.kubernetes.io/canary-weight`：基于服务权重的流量切分，适用于蓝绿部署，权重范围 0 - 100 按百分比将请求路由到 Canary Ingress 中指定的服务。权重为 0 意味着该金丝雀规则不会向 Canary 入口的服务发送任何请求。权重为 100 意味着所有请求都将被发送到 Canary 入口。
+> - `nginx.ingress.kubernetes.io/canary-by-cookie`：基于 Cookie 的流量切分，适用于灰度发布与 A/B 测试。用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务的cookie。当 cookie 值设置为 `always` 时，它将被路由到 Canary 入口；当 cookie 值设置为 `never` 时，请求不会被发送到 Canary 入口；对于任何其他值，将忽略 cookie 并将请求与其他金丝雀规则进行优先级的比较。
 >
 > 注意：金丝雀规则按优先顺序进行如下排序：
 >
@@ -36,18 +38,13 @@ KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingre
 
 ## 第一步：创建项目和 Production 版本的应用
 
-1.1. 在 KubeSphere 中创建一个企业空间。为了快速创建应用，可使用 KubeSphere 右下角的**工具箱**打开 `web kubectl` 并使用以下命令和 yaml 文件，通过 kubectl 分别创建一个项目和 Production 版本的应用。
+1.1. 在 KubeSphere 中创建一个企业空间 (workspace) 和项目 (namespace) ，可参考 [多租户管理快速入门](../admin-quick-start)。如下已创建了一个示例项目。
 
-1.2. 通过 web kubectl 工具创建一个 `namespace` 作为项目。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190827104830.png)
 
-```bash
-$ kubectl create ns ingress-demo
-```
+1.2. 为了快速创建应用，在项目中创建工作负载和服务时可通过 `编辑 yaml` 的方式，或使用 KubeSphere 右下角的**工具箱**打开 `web kubectl` 并使用以下命令和 yaml 文件创建一个 Production 版本的应用并暴露给集群外访问。如下创建 Production 版本的 `deployment` 和 `service`。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826194831.png)
-
-
-1.3. 创建 Production 版本的 `deployment` 和 `service`。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190827111540.png)
 
 ```bash
 $ kubectl appy -f production.yaml -n ingress-demo
@@ -76,7 +73,7 @@ spec:
     spec:
       containers:
       - name: production
-        image: zhangmingkai4315/kubernetes-e2e-test-images-echoserver
+        image: mirrorgooglecontainers/echoserver:1.10
         ports:
         - containerPort: 8080
         env:
@@ -115,7 +112,7 @@ spec:
     app: production
 ```
 
-1.4. 创建 Production 版本的应用路由 (Ingress)。
+1.3. 创建 Production 版本的应用路由 (Ingress)。
 
 ```bash
 $ kubectl appy -f production.ingress -n ingress-demo
@@ -145,29 +142,22 @@ spec:
 
 ## 第二步：访问 Production 版本的应用
 
-2.1. 访问 Production 版本的应用需确保当前项目已开启了网关，我们可以将以上通过 kubectl 创建的 `namespace` (即 ingress-demo) 以及该 `namespace` 下的资源，通过以下给 `namespace` 打 `label` 的方式加入到 KubeSphere UI 的某个企业空间，便于更好的展示与管理，并在 KubeSphere 界面开启 `NodePort` 类型的网关。
-
-```bash
-$ kubectl label namespace ingress-demo kubesphere.io/workspace=demo-workspace
-namespace/ingress-demo labeled
-```
-
-2.2. 此时，在 KubeSphere UI 的企业空间 demo-workspace 下，可以看到 ingress-demo 项目下的所有资源。
+2.1. 此时，在 KubeSphere UI 的企业空间 demo-workspace 下，可以看到 ingress-demo 项目下的所有资源。
 
 **Deployment**
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826161618.png)
 
 **Service**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826161638.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190827143704.png)
 
 **Ingress**
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826161919.png)
 
-2.3. 在外网访问下打开网关，类型为 `NodePort`。
+2.2. 访问 Production 版本的应用需确保当前项目已开启了网关，在**外网访问**下打开网关，类型为 `NodePort`。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826161846.png)
 
-2.4. 如下访问 Production 版本的应用。
+2.3. 如下访问 Production 版本的应用。
 
 <!-- ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826140046.png) -->
 
@@ -214,9 +204,9 @@ Request Body:
 
 ## 第三步：创建 Canary 版本
 
-参考将上述 Production 版本的 `production.yaml` 文件，再创建一个 Canary 版本的应用 (为方便快速演示，仅需将 `production.yaml` 的 deployment 和 service 中的关键字 `production` 直接替换为 `canary`，实际场景中可能涉及业务代码变更)。
+参考将上述 Production 版本的 `production.yaml` 文件，再创建一个 Canary 版本的应用，包括一个 Canary 版本的 `deployment` 和 `service` (为方便快速演示，仅需将 `production.yaml` 的 deployment 和 service 中的关键字 `production` 直接替换为 `canary`，实际场景中可能涉及业务代码变更)。
 
-## 第四步：Nginx Annotation 规则
+## 第四步：Ingress-Nginx Annotation 规则
 
 ### 基于权重 (Weight)
 
