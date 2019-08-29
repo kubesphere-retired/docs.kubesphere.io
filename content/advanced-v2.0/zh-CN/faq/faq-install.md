@@ -245,7 +245,7 @@ kube-master
 4.19、FAILED - RETRYING: ks-alerting | Waiting for alerting-db-init (2 retries left).fatal: [ks-allinone]: FAILED! => {"attempts": 3, "changed": true, "cmd": "/usr/local/bin/kubectl -n kubesphere-alerting-system get pod | grep alerting-db-init | awk '{print $3}'", "delta":  "stdout": "Init:0/1"
 
 答：
-检查配置是否满足要求8核cpu、16G。检查存储相关配置。
+检查配置是否满足要求8核cpu、16G。检查存储相关配置。检查本地/etc/resolve.conf下的域名是否都可以ping通。
 
 4.20、2.0.2 版本安装后配置docker 私有库问题，配置了一个 docker 私有库，修改完 /etc/docker/daemon.json 文件，然后重新启动 docker报错。
 
