@@ -136,7 +136,7 @@ const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
     const a = document.createElement('a')
     a.target = '_blank'
     a.download = `KubeSphere-${current.value}.pdf`
-    a.href = `${window.location.origin}${pathPrefix}/KubeSphere-${
+    a.href = `${window.location.origin}${pathPrefix}/static/KubeSphere-${
       current.value
     }.pdf`
     a.click()
