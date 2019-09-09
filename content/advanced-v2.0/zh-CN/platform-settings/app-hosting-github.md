@@ -105,6 +105,10 @@ helm repo index .
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190530160609.png)
 
+> 提示：获取 GitHub 仓库中文件的 Raw 地址可参考如下截图。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190910004851.png)
+
 2、点击 「应用模板」，即可看到该仓库中的应用已成功导入至 KubeSphere，点击进入应用即可一键部署至指定项目中。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190530160753.png)

@@ -134,5 +134,11 @@ NOTE：Please modify the default password after login.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190519012821.png)
 
+## FAQ
+
+KubeSphere 已在阿里云、腾讯云、华为云、青云、AWS 上进行过部署测试，测试结果与相关的解决方法，请参考 [AE 2.0.2 云平台安装测试结果](https://github.com/kubesphere/ks-installer/issues/23)。另外，常见的安装问题我们也已整理相关的解决方法在 [安装常见问题](../../faq/faq-install)。
+
+若遇到其它的安装问题需要协助支持，请在 [GitHub](https://github.com/kubesphere/kubesphere/issues) 提交 Issue，我们会第一时间跟踪解决。
+
 
 

@@ -13,7 +13,7 @@ description: ''
 ## 前提条件 
 
 - 已准备 KubeSphere 支持的 [持久化存储服务端](../storage-configuration)，本篇文档以配置 QingCloud-CSI 插件对接 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 为例，需要有 [QingCloud 云平台](https://console.qingcloud.com/login) 的账号。
-- <font color=red>注意，使用 QingCloud 云平台块存储作为存储服务，安装前需要确保用户账号在当前 Zone 资源配额满足最低要求。Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，所需的容量型硬盘容量的最低配额为 1400 GB，若硬盘数量和容量配额不够请提工单申请配额。</font> 若使用其他类型的硬盘，参考 [QingCloud 各类型块存储配额表](../storage-configuration)。
+- <font color=red>注意，若使用 QingCloud 云平台块存储作为存储服务，安装前需要确保用户账号在当前 Zone 资源配额满足最低要求。Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，所需的容量型硬盘容量的最低配额为 1400 GB，若硬盘数量和容量配额不够请提工单申请配额。</font> 若使用其他类型的硬盘，参考 [QingCloud 各类型块存储配额表](../storage-configuration)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190509171820.png)
 
@@ -22,6 +22,7 @@ description: ''
 您可以参考以下节点规格准备 <font color=red>至少 3 台</font> 符合要求的主机开始 `multi-node` 模式的部署。
 
 > 说明：
+> - 所有节点需要时间同步，否则可能会安装不成功；
 > - 若选择离线安装，则系统盘建议在 `100 G` 以上；
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
 > - 若使用 ubuntu 18.04，则需使用 root 用户；
@@ -233,3 +234,9 @@ NOTE：Please modify the default password after login.
 <font color=red>注意：登陆 Console 后请在 "集群状态" 查看服务组件的监控状态，待所有组件启动完成后即可开始使用，通常所有服务组件都将在 15 分钟内启动完成。</font>
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190519012928.png)
+
+## FAQ
+
+KubeSphere 已在阿里云、腾讯云、华为云、青云、AWS 上进行过部署测试，测试结果与相关的解决方法，请参考 [AE 2.0.2 云平台安装测试结果](https://github.com/kubesphere/ks-installer/issues/23)。另外，常见的安装问题我们也已整理相关的解决方法在 [安装常见问题](../../faq/faq-install)。
+
+若遇到其它的安装问题需要协助支持，请在 [GitHub](https://github.com/kubesphere/kubesphere/issues) 提交 Issue，我们会第一时间跟踪解决。
