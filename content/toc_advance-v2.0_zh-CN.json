@@ -67,6 +67,14 @@
           "entry": "./advanced-v2.0/zh-CN/installation/multi-node.md"
         },
         {
+          "title": "在 Kubernetes 在线部署 KubeSphere",
+          "entry": "./advanced-v2.0/zh-CN/installation/install-on-k8s.md"
+        },
+        {
+          "title": "在 Kubernetes 离线部署 KubeSphere",
+          "entry": "./advanced-v2.0/zh-CN/installation/install-ks-offline.md"
+        },
+        {
           "title": "Master 和 etcd 节点高可用",
           "entry": "./advanced-v2.0/zh-CN/installation/master-ha.md"
         },

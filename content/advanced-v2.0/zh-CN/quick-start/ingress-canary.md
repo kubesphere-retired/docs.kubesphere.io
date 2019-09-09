@@ -162,7 +162,8 @@ spec:
 <!-- ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826140046.png) -->
 
 ```bash
-$ curl kubesphere.io:30205
+$ curl --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 
+# 注意，加上 --resolve 参数则无需在本地配置 /etc/hosts 中的 IP 与域名映射，否则需要预先在本地配置域名映射，其中 192.168.0.88 是项目内的网关地址。
 
 Hostname: production-6b4bb8d58d-7r889
 

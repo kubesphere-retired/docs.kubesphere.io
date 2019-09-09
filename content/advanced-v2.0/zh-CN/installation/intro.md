@@ -6,11 +6,21 @@ description: ''
 
 [KubeSphere](https://kubesphere.io) 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器管理平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
+KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，并且支持**在线安装与离线安装**，目前已在 **阿里云、腾讯云、华为云、青云、AWS、Kubernetes** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。 KubeSphere **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
+
 ## 安装 KubeSphere
 
-**安装模式**
+KubeSphere 安装支持以下 4 种安装模式：
 
-KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 两种模式，即支持单节点和多节点安装两种安装方式。
+**安装在 Linux**
+
+- [all-in-one](../all-in-one)：单节点安装（支持在线和离线安装）
+- [multi-node](../multi-node)：多节点安装（支持在线和离线安装）
+
+**安装在 Kubernetes** 
+
+- [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
+- [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline) 这四种模式，即支持单节点和多节点安装两种安装方式。
 
 **支持 GPU**
 
