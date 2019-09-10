@@ -20,5 +20,4 @@ KubeSphere 高级版提供了在生产环境集群部署的全栈化容器部署
 
 **Community Edition** （ [社区版](https://kubesphere.qingcloud.com/#category) ）=> **Express Edition** （ [易捷版](https://kubesphere.qingcloud.com/#category) ）=> **Advanced Edition** （ [高级版](https://kubesphere.qingcloud.com/#category) ）
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190910010009.png)
-
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190910144241.png)

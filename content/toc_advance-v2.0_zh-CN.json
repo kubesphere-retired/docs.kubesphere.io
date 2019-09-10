@@ -40,6 +40,10 @@
           "entry": "./advanced-v2.0/zh-CN/introduction/advantages.md"
         },
         {
+          "title": "架构说明",
+          "entry": "./advanced-v2.0/zh-CN/introduction/architecture.md"
+        },
+        {
           "title": "应用场景",
           "entry": "./advanced-v2.0/zh-CN/introduction/scenarios.md"
         },

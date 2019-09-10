@@ -22,7 +22,7 @@ description: ''
 
 使用集群管理员账号登录 KubeSphere 管理控制台，访问 **平台管理 → 服务组件** 进入列表页。作为集群管理员，可以查看当前集群下所有的服务组件:
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190511135905.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190910143931.png)
 
 ## 服务组件的作用
 
