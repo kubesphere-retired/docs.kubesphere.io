@@ -20,7 +20,7 @@ KubeSphere 安装支持以下 4 种安装模式：
 **安装在 Kubernetes** 
 
 - [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
-- [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline) 这四种模式，即支持单节点和多节点安装两种安装方式。
+- [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline) 
 
 **支持 GPU**
 
