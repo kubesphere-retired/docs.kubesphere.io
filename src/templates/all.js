@@ -11,7 +11,7 @@ import './prince.css'
 import './b16-tomorrow-dark.css'
 
 export default class MarkdownTemplate extends React.Component {
-  renderEntry(entry) {
+  renderEntry(pathPrefix, entry) {
     let content = entry.childMarkdownRemark.html
 
     if (typeof window === 'undefined') {
@@ -27,7 +27,10 @@ export default class MarkdownTemplate extends React.Component {
         }
       })
 
-      content = $.html()
+      content = $.html().replace(
+        /"(\/.*\.(svg|png|jpg|jpeg|gif))/g,
+        `"${pathPrefix}$1`
+      )
     }
 
     return (
@@ -40,7 +43,7 @@ export default class MarkdownTemplate extends React.Component {
     )
   }
 
-  renderChapter(chapter, level = 1) {
+  renderChapter(pathPrefix, chapter, level = 1) {
     if (chapter.chapters) {
       return (
         <div key={chapter.title}>
@@ -48,7 +51,7 @@ export default class MarkdownTemplate extends React.Component {
             {chapter.title}
           </div>
           {chapter.chapters.map(_chapter =>
-            this.renderChapter(_chapter, level + 1)
+            this.renderChapter(pathPrefix, _chapter, level + 1)
           )}
         </div>
       )
@@ -60,7 +63,9 @@ export default class MarkdownTemplate extends React.Component {
           <div className={`h${level}`} id={chapter.title}>
             {chapter.title}
           </div>
-          {chapter.entries.map(entry => this.renderEntry(entry.entry))}
+          {chapter.entries.map(entry =>
+            this.renderEntry(pathPrefix, entry.entry)
+          )}
         </div>
       )
     }
@@ -72,7 +77,7 @@ export default class MarkdownTemplate extends React.Component {
             {chapter.title}
           </div>
         )}
-        {chapter.entry && this.renderEntry(chapter.entry)}
+        {chapter.entry && this.renderEntry(pathPrefix, chapter.entry)}
       </div>
     )
   }
@@ -92,7 +97,7 @@ export default class MarkdownTemplate extends React.Component {
             <link
               rel="stylesheet"
               type="text/css"
-              href="/PingFangSC/stylesheet.css"
+              href={`${site.pathPrefix}/PingFangSC/stylesheet.css`}
             />
             <script>{`
             document.body.style.backgroundColor = 'white'
@@ -100,7 +105,7 @@ export default class MarkdownTemplate extends React.Component {
           </Helmet>
           <div className="first-page">KubeSphere 文档 {version.label}</div>
           {tableOfContents.edges[0].node.chapters.map(chapter =>
-            this.renderChapter(chapter)
+            this.renderChapter(site.pathPrefix, chapter)
           )}
         </div>
       </Layout>
@@ -124,6 +129,7 @@ export const pageQuery = graphql`
   }
   query MarkdownByVersion($lang: String!, $version: String!) {
     site {
+      pathPrefix
       siteMetadata {
         title
         versions {
