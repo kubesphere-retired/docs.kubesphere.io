@@ -7,11 +7,13 @@ description: ''
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
 > 提示：
+> - Multi-node 支持**将 KubeSphere 部署在任何云平台**，本文档仅使用 QingCloud 云平台作为部署演示。
 > - 若需要安装 Harbor 和 GitLab 请在**安装前**参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
 > - 若在云平台使用在线安装，可通过调高带宽的方式来加快安装速度。
  
 ## 前提条件 
 
+- 如果您的服务器上游有安全组管控，请参考 [需开放的端口列表](../port-firewall) 并根据实际情况开放相关的端口，如果您没有开启防火墙则无需在主机配置该项内容。
 - 已准备 KubeSphere 支持的 [持久化存储服务端](../storage-configuration)，本篇文档以配置 QingCloud-CSI 插件对接 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 为例，需要有 [QingCloud 云平台](https://console.qingcloud.com/login) 的账号。
 - <font color=red>注意，若使用 QingCloud 云平台块存储作为存储服务，安装前需要确保用户账号在当前 Zone 资源配额满足最低要求。Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，所需的容量型硬盘容量的最低配额为 1400 GB，若硬盘数量和容量配额不够请提工单申请配额。</font> 若使用其他类型的硬盘，参考 [QingCloud 各类型块存储配额表](../storage-configuration)。
 

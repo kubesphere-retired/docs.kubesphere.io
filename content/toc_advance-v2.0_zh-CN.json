@@ -63,6 +63,10 @@
           "entry": "./advanced-v2.0/zh-CN/installation/intro.md"
         },
         {
+          "title": "需开放的端口",
+          "entry": "./advanced-v2.0/zh-CN/installation/port-firewall.md"
+        },
+        {
           "title": "All-in-One 模式",
           "entry": "./advanced-v2.0/zh-CN/installation/all-in-one.md"
         },
