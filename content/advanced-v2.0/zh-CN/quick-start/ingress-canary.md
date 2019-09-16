@@ -47,7 +47,7 @@ KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingre
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190827111540.png)
 
 ```bash
-$ kubectl appy -f production.yaml -n ingress-demo
+$ kubectl apply -f production.yaml -n ingress-demo
 deployment.extensions/production created
 service/production created
 ```
@@ -115,7 +115,7 @@ spec:
 1.3. 创建 Production 版本的应用路由 (Ingress)。
 
 ```bash
-$ kubectl appy -f production.ingress -n ingress-demo
+$ kubectl apply -f production.ingress -n ingress-demo
 ingress.extensions/production created
 ```
 
