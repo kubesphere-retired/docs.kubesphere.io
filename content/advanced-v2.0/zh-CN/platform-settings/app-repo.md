@@ -8,8 +8,9 @@ KubeSphere 基于 [OpenPitrix](https://openpitrix.io) 构建了应用仓库服�
 
 ## 准备应用仓库
 
-[Helm 官方文档](https://helm.sh/docs/developing_charts/#the-chart-repository-guide) 已经提供了多种方式创建应用仓库，目前我们仅补充演示以下两种基于 GitHub 准备应用仓库方便用户使用：
+[Helm 官方文档](https://helm.sh/docs/developing_charts/#the-chart-repository-guide) 已经提供了多种方式创建应用仓库，目前我们补充演示以下三种方式，包括基于本地的 Local Helm Repo 和基于 GitHub 准备应用仓库方便用户使用：
 
+- [基于 Local Helm Repo 快速搭建应用仓库部署 Redis](../local-repo)（方便快速测试）
 - [KubeSphere 官方应用仓库](../app-hosting-official)（极简操作，**推荐！**）
 - [基于 GitHub 搭建自己的应用仓库](../app-hosting-github)
 

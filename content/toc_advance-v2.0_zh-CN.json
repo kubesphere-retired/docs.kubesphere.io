@@ -276,6 +276,10 @@
               "entry": "./advanced-v2.0/zh-CN/platform-settings/app-repo.md"
             },
             {
+              "title": "基于本地仓库搭建应用仓库部署Redis",
+              "entry": "./advanced-v2.0/zh-CN/platform-settings/local-repo.md"
+            },
+            {
               "title": "上传应用到 KubeSphere 官方仓库",
               "entry": "./advanced-v2.0/zh-CN/platform-settings/app-hosting-official.md"
             },
