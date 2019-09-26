@@ -11,7 +11,7 @@ KubeSphere 支持在已有 Kubernetes 集群之上部署 [KubeSphere](https://ku
 ```bash
 $ wget https://kubesphere-installer.pek3b.qingstor.com/ks-only/kubesphere-images-advanced-2.0.2.tar.gz
 ```
-
+ 
 ```bash
 $ tar -zxvf kubesphere-images-advanced-2.0.2.tar.gz
 ```
@@ -22,11 +22,12 @@ $ tar -zxvf kubesphere-images-advanced-2.0.2.tar.gz
 $ docker load < kubesphere-images-advanced-2.0.2.tar
 ```
 
-3. 将安装所需镜像导入本地镜像仓库。
+3. 克隆远端代码仓库，然后执行脚本将安装所需镜像导入本地镜像仓库。
 
 ```
+$ git clone https://github.com/kubesphere/ks-installer.git
 $ cd scripts
-./download-docker-images.sh 仓库地址
+$ ./download-docker-images.sh 仓库地址
 ```
 
 > 注意：“仓库地址” 请替换为本地镜像仓库地址，例： `./download-docker-images.sh  192.168.1.2:5000`
@@ -36,7 +37,7 @@ $ cd scripts
 > 注：以下命令中 `192.168.1.2:5000/kubespheredev/ks-installer:advanced-2.0.2` 为示例镜像，执行时请替换。
 
 ```yaml
-sed -i 's|kubespheredev/ks-installer:advanced-2.0.2|192.168.1.2:5000/kubespheredev/ks-installer:advanced-2.0.2|g' deploy/kubesphere-installer.yaml
+$ sed -i 's|kubespheredev/ks-installer:advanced-2.0.2|192.168.1.2:5000/kubespheredev/ks-installer:advanced-2.0.2|g' deploy/kubesphere-installer.yaml
 ```
 
 5. 参考 [部署 KubeSphere](../install-on-k8s/#部署-kubesphere) 中的步骤继续执行安装。
