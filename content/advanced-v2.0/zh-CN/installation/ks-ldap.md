@@ -10,14 +10,13 @@ description: ''
 
 
 > 提示：
-> - 将Kubesphere与AD账号对接后内置gitlab等可直接使用AD账号体系
+> - 将Kubesphere与AD账号对接后内置gitlab等也可直接使用AD账号体系
 
 
 
 ## 前提条件
 
-配置已有Windows AD域
-KubeSphere集群与Windows AD域服务器间可以通讯且对接域账号正常状态
+>KubeSphere集群与Windows AD域服务器间可以通讯且对接域账号正常状态
 
 ## 第一步: 创建AD账号
 
@@ -43,14 +42,10 @@ data:
     sync:
       interval: “300s"
     src:
-     #{ad_host}:{ad_port}
-      host: "192.168.60.224:389”
-      #{ad_username}@{domain name}
-      managerDN: "kubesphere@benlai.com”
-      #{ad_password}
-      managerPWD: "P@88w0rd”
-      #ou={GROUP_NAME},dc={domain},dc={domain}
-      userSearchBase: “ou=huadong,dc=benlai,dc=com"
+      host: "192.168.60.224:389” #{ad_host}:{ad_port}
+      managerDN: "kubesphere@benlai.com” #{ad_username}@{domain name}
+      managerPWD: "P@88w0rd” #{ad_password}
+      userSearchBase: “ou=huadong,dc=benlai,dc=com" #ou={GROUP_NAME},dc={domain},dc={domain}
       usernameAttribute: "sAMAccountName"
       descriptionAttribute: "description"
       mailAttribute: "mail"
@@ -99,16 +94,10 @@ kubectl get pods -n kubesphere-system -owide
 解决：如果AD内账号数大于MaxPageSize所设置的数量则会出错,需要[AD修改MaxPageSize](https://docs.microsoft.com/en-us/previous-versions/office/exchange-server-analyzer/aa998536(v=exchg.80)?redirectedfrom=MSDN)
 
 
+![avatar](https://github.com/53537/docs.kubesphere.io/blob/53537-patch-1/static/ks-ldap.png)
 
 
 
-
-
-## FAQ
-
-KubeSphere 已在阿里云、腾讯云、华为云、青云、AWS 上进行过部署测试，测试结果与相关的解决方法，请参考 [AE 2.0.2 云平台安装测试结果](https://github.com/kubesphere/ks-installer/issues/23)。另外，常见的安装问题我们也已整理相关的解决方法在 [安装常见问题](../../faq/faq-install)。
-
-若遇到其它的安装问题需要协助支持，请在 [GitHub](https://github.com/kubesphere/kubesphere/issues) 提交 Issue，我们会第一时间跟踪解决。
 
 
 
