@@ -80,3 +80,45 @@ gitlab_hosts_domain: devops.kubesphere.local
 ![succ](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-succ.png)
 
 > 提示：关于 GitLab 的使用详见 [GitLab 文档](<https://docs.gitlab.com/ee/README.html>)。
+
+## 如何单独 GitLab
+
+若安装前并未开启安装 GitLab，但在安装完成后想再单独安装 GitLab，应该如何安装？
+
+1、获取 yml 安装文件。
+
+```
+$ wget https://raw.githubusercontent.com/kubesphere/tutorial/master/tutorial%203%20-%20install-gitlab-harbor/install-gitlab-harbor.yml
+```
+
+2、将 `install-gitlab-harbor.yml` 文件放到安装包解压之后的 `kubesphere` 目录下；
+
+
+3、获取安装脚本。
+
+```
+$ wget https://raw.githubusercontent.com/kubesphere/tutorial/master/tutorial%203%20-%20install-gitlab-harbor/gitlab-harbor.sh
+```
+
+4、将 `gitlab-harbor.sh` 文件放到安装包解压之后的 `scripts` 目录下；
+
+
+5、在 `scripts` 目录下给执行脚本添加权限，同时执行安装脚本，输入 2 选择 GitLab 开始安装。
+
+```bash
+$ chmod +x gitlab-harbor.sh && ./gitlab-harbor.sh
+
+
+################################################
+         gitlab-harbor Installer Menu
+################################################
+*   1) Harbor
+*   2) Gitlab
+*   3) Harbor-Gitlab
+################################################
+https://kubesphere.io/               2019-09-27
+################################################
+Please input an option: 2
+```
+
+安装完成后，GitLab 的访问与使用可参考上述文档。
