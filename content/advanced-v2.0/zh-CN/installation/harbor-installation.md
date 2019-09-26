@@ -130,7 +130,7 @@ KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harb
 
 > 提示：关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
 
-## 如何单独 Harbor
+## 如何单独安装 Harbor
 
 若安装前并未开启安装 Harbor，但在安装完成后想再单独安装 Harbor，应该如何安装？
 
