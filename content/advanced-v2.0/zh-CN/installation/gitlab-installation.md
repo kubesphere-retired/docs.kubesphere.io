@@ -81,7 +81,7 @@ gitlab_hosts_domain: devops.kubesphere.local
 
 > 提示：关于 GitLab 的使用详见 [GitLab 文档](<https://docs.gitlab.com/ee/README.html>)。
 
-## 如何单独 GitLab
+## 如何单独安装 GitLab
 
 若安装前并未开启安装 GitLab，但在安装完成后想再单独安装 GitLab，应该如何安装？
 
