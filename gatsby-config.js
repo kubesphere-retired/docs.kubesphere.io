@@ -79,25 +79,25 @@ module.exports = {
     title: 'KubeSphere Documents',
     versions: [
       {
-        label: 'Advanced v2.0',
-        value: 'advanced-v2.0',
+        label: 'v2.0',
+        value: 'v2.0',
       },
       {
-        label: 'Advanced v1.0',
-        value: 'advanced-v1.0',
+        label: 'v1.0',
+        value: 'v1.0',
       },
       {
-        label: 'Express v1.0',
+        label: 'Express',
         value: 'express',
       },
     ],
     apiDocuments: [
       {
-        version: 'advanced-v2.0',
+        version: 'v2.0',
         swaggerUrls: [
           {
             name: 'kubesphere',
-            url: 'data/advanced-v2.0_api.json',
+            url: 'data/v2.0_api.json',
           },
           {
             name: 'notification',

@@ -16,7 +16,7 @@
   },
   "externalDocs": {
     "description": "> Read Notification API documents.",
-    "url": "/docs/advanced-v2.0/api/notification"
+    "url": "/docs/v2.0/api/notification"
   },
   "x-servers": [
     {
@@ -3656,7 +3656,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both cluster CPU usage and disk usage: `cluster_cpu_usage|cluster_disk_size_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both cluster CPU usage and disk usage: `cluster_cpu_usage|cluster_disk_size_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -3711,7 +3711,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both etcd server list and total size of the underlying database: `etcd_server_list|etcd_mvcc_db_size`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both etcd server list and total size of the underlying database: `etcd_server_list|etcd_mvcc_db_size`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -3759,7 +3759,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both namespace CPU usage and memory usage: `namespace_cpu_usage|namespace_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both namespace CPU usage and memory usage: `namespace_cpu_usage|namespace_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -3846,7 +3846,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both namespace CPU usage and memory usage: `namespace_cpu_usage|namespace_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both namespace CPU usage and memory usage: `namespace_cpu_usage|namespace_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -3901,7 +3901,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -3995,7 +3995,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4057,7 +4057,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both container CPU usage and memory usage: `container_cpu_usage|container_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both container CPU usage and memory usage: `container_cpu_usage|container_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4158,7 +4158,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both container CPU usage and memory usage: `container_cpu_usage|container_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both container CPU usage and memory usage: `container_cpu_usage|container_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4213,7 +4213,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both workload CPU usage and memory usage: `workload_pod_cpu_usage|workload_pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both workload CPU usage and memory usage: `workload_pod_cpu_usage|workload_pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4307,7 +4307,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both workload CPU usage and memory usage: `workload_pod_cpu_usage|workload_pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both workload CPU usage and memory usage: `workload_pod_cpu_usage|workload_pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4408,7 +4408,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4488,7 +4488,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both node CPU usage and disk usage: `node_cpu_usage|node_disk_size_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both node CPU usage and disk usage: `node_cpu_usage|node_disk_size_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4575,7 +4575,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both node CPU usage and disk usage: `node_cpu_usage|node_disk_size_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both node CPU usage and disk usage: `node_cpu_usage|node_disk_size_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4630,7 +4630,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4724,7 +4724,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both pod CPU usage and memory usage: `pod_cpu_usage|pod_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4786,7 +4786,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both container CPU usage and memory usage: `container_cpu_usage|container_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both container CPU usage and memory usage: `container_cpu_usage|container_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4866,7 +4866,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both workspace CPU usage and memory usage: `workspace_cpu_usage|workspace_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both workspace CPU usage and memory usage: `workspace_cpu_usage|workspace_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },
@@ -4959,7 +4959,7 @@
           },
           {
             "type": "string",
-            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both workspace CPU usage and memory usage: `workspace_cpu_usage|workspace_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/advanced-v2.0/zh-CN/api-reference/monitoring-metrics/).",
+            "description": "The metric name filter consists of a regexp pattern. It specifies which metric data to return. For example, the following filter matches both workspace CPU usage and memory usage: `workspace_cpu_usage|workspace_memory_usage`. View available metrics at [kubesphere.io](https://kubesphere.io/docs/v2.0/zh-CN/api-reference/monitoring-metrics/).",
             "name": "metrics_filter",
             "in": "query"
           },

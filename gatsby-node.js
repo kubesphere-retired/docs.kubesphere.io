@@ -151,9 +151,9 @@ const createMarkdownPages = ({ graphql, actions }) =>
       const redirects = {
         '/express/zh-CN/': '/express/zh-CN/basic/',
         '/express/en/': '/express/en/KubeSphere-Installer-Guide/',
-        '/advanced-v1.0/zh-CN/': '/advanced-v1.0/zh-CN/introduction/intro/',
-        '/advanced-v1.0/en/': '/advanced-v1.0/en/test-en/',
-        '/advanced-v2.0/zh-CN/': '/advanced-v2.0/zh-CN/introduction/intro/',
+        '/v1.0/zh-CN/': '/v1.0/zh-CN/introduction/intro/',
+        '/v1.0/en/': '/v1.0/en/test-en/',
+        '/v2.0/zh-CN/': '/v2.0/zh-CN/introduction/intro/',
       }
 
       Object.entries(redirects).forEach(([key, value]) => {
