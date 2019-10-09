@@ -1,0 +1,607 @@
+{
+  "version": "v2.1",
+  "lang": "zh-CN",
+  "chapters": [
+    {
+      "title": "Release Notes",
+      "icon": "/product.svg",
+      "desc": "为您介绍 KubeSphere 已发布的版本功能与更新",
+      "chapters": [
+        {
+          "title": "Release Notes - 2.0.2",
+          "entry": "./v2.0/zh-CN/release/release-v202.md",
+          "tag": "最新"
+        },
+        {
+          "title": "Release Notes - 2.0.1",
+          "entry": "./v2.0/zh-CN/release/release-v201.md"
+        },
+        {
+          "title": "Release Notes - 2.0.0",
+          "entry": "./v2.0/zh-CN/release/release-v200.md"
+        }
+      ]
+    },
+    {
+      "title": "产品介绍",
+      "icon": "/product.svg",
+      "desc": "通过简单的图文介绍帮助您了解 KubeSphere",
+      "chapters": [
+        {
+          "title": "产品简介",
+          "entry": "./v2.0/zh-CN/introduction/intro.md"
+        },
+        {
+          "title": "产品功能",
+          "entry": "./v2.0/zh-CN/introduction/features.md"
+        },
+        {
+          "title": "产品优势",
+          "entry": "./v2.0/zh-CN/introduction/advantages.md"
+        },
+        {
+          "title": "架构说明",
+          "entry": "./v2.0/zh-CN/introduction/architecture.md"
+        },
+        {
+          "title": "应用场景",
+          "entry": "./v2.0/zh-CN/introduction/scenarios.md"
+        },
+        {
+          "title": "名词解释",
+          "entry": "./v2.0/zh-CN/introduction/glossary.md"
+        }
+      ]
+    },
+    {
+      "title": "安装指南",
+      "icon": "/install.svg",
+      "desc": "KubeSphere Installer 采用 Ansible 对部署目标机器及部署流程进行集中化管理配置",
+      "chapters": [
+        {
+          "title": "安装说明",
+          "entry": "./v2.0/zh-CN/installation/intro.md"
+        },
+        {
+          "title": "需开放的端口",
+          "entry": "./v2.0/zh-CN/installation/port-firewall.md"
+        },
+        {
+          "title": "All-in-One 模式",
+          "entry": "./v2.0/zh-CN/installation/all-in-one.md"
+        },
+        {
+          "title": "Multi-Node 模式",
+          "entry": "./v2.0/zh-CN/installation/multi-node.md"
+        },
+        {
+          "title": "在 Kubernetes 在线部署 KubeSphere",
+          "entry": "./v2.0/zh-CN/installation/install-on-k8s.md"
+        },
+        {
+          "title": "在 Kubernetes 离线部署 KubeSphere",
+          "entry": "./v2.0/zh-CN/installation/install-ks-offline.md"
+        },
+        {
+          "title": "Master 和 etcd 节点高可用",
+          "entry": "./v2.0/zh-CN/installation/master-ha.md"
+        },
+        {
+          "title": "存储安装配置说明",
+          "entry": "./v2.0/zh-CN/installation/storage-configuration.md"
+        },
+        {
+          "title": "集群组件配置说明",
+          "entry": "./v2.0/zh-CN/installation/vars.md"
+        },
+        {
+          "title": "安装负载均衡器插件",
+          "entry": "./v2.0/zh-CN/installation/qingcloud-lb.md"
+        },
+        {
+          "title": "安装内置 Harbor",
+          "entry": "./v2.0/zh-CN/installation/harbor-installation.md"
+        },
+        {
+          "title": "安装内置 GitLab",
+          "entry": "./v2.0/zh-CN/installation/gitlab-installation.md"
+        },
+        {
+          "title": "升级",
+          "entry": "./v2.0/zh-CN/installation/upgrade.md"
+        },
+        {
+          "title": "访问 SonarQube 和 Jenkins 服务端",
+          "entry": "./v2.0/zh-CN/installation/sonarqube-jenkins.md"
+        },
+        {
+          "title": "集群节点扩容",
+          "entry": "./v2.0/zh-CN/installation/add-nodes.md"
+        },
+        {
+          "title": "卸载",
+          "entry": "./v2.0/zh-CN/installation/uninstall.md"
+        }
+      ]
+    },
+    {
+      "title": "快速入门",
+      "icon": "/access.svg",
+      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器平台的基本使用流程，带您快速上手 KubeSphere",
+      "chapters": [
+        {
+          "title": "入门必读",
+          "entry": "./v2.0/zh-CN/quick-start/quick-start-guide.md"
+        },
+        {
+          "title": "示例一 - 多租户管理快速入门",
+          "entry": "./v2.0/zh-CN/quick-start/admin-quick-start.md"
+        },
+        {
+          "title": "示例二 - 应用路由与服务示例",
+          "entry": "./v2.0/zh-CN/quick-start/ingress-demo.md"
+        },
+        {
+          "title": "示例三 - 部署 MySQL",
+          "entry": "./v2.0/zh-CN/quick-start/mysql-deployment.md"
+        },
+        {
+          "title": "示例四 - 部署 Wordpress",
+          "entry": "./v2.0/zh-CN/quick-start/wordpress-deployment.md"
+        },
+        {
+          "title": "示例五 - 创建简单任务",
+          "entry": "./v2.0/zh-CN/quick-start/job-quick-start.md"
+        },
+        {
+          "title": "示例六 - 一键部署应用",
+          "entry": "./v2.0/zh-CN/quick-start/one-click-deploy.md"
+        },
+        {
+          "title": "示例七 - 设置弹性伸缩 (HPA)",
+          "entry": "./v2.0/zh-CN/quick-start/hpa.md"
+        },
+        {
+          "title": "示例八 - Source-to-Image",
+          "entry": "./v2.0/zh-CN/quick-start/source-to-image.md"
+        },
+        {
+          "title": "示例九 - Bookinfo 微服务的灰度发布",
+          "entry": "./v2.0/zh-CN/quick-start/bookinfo-canary.md"
+        },
+        {
+          "title": "示例十 - 基于Spring Boot项目构建流水线", 
+          "entry": "./v2.0/zh-CN/quick-start/devops-online.md"
+        },
+        {
+          "title": "示例十一 - 图形化构建流水线",
+          "entry": "./v2.0/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
+        },
+        {
+          "title": "示例十二 - CI/CD 流水线(离线版)",
+          "entry": "./v2.0/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
+        },
+        {
+          "title": "示例十三 - 使用 Ingress-Nginx 进行灰度发布",
+          "entry": "./v2.0/zh-CN/quick-start/ingress-canary.md"
+        }
+      ]
+    },
+    {
+      "title": "管理员指南",
+      "icon": "/admin_reffer.svg",
+      "desc": "指导管理员如何使用平台提供的管理功能",
+      "chapters": [
+        {
+          "title": "多租户管理",
+          "entries": [
+            {
+              "title": "多租户管理概述",
+              "entry": "./v2.0/zh-CN/multi-tenant/intro.md"
+            },
+            {
+              "title": "角色权限概览",
+              "entry": "./v2.0/zh-CN/multi-tenant/role-overview.md"
+            }
+          ]
+        },
+        {
+          "title": "平台管理",
+          "entries": [
+            {
+              "title": "企业空间管理",
+              "entry": "./v2.0/zh-CN/platform-management/workspace-management.md"
+            },
+            {
+              "title": "账号管理",
+              "entry": "./v2.0/zh-CN/platform-management/account-management.md"
+            },
+            {
+              "title": "平台角色",
+              "entry": "./v2.0/zh-CN/platform-management/role-management.md"
+            }
+          ]
+        },
+        {
+          "title": "基础设施",
+          "entries": [
+            {
+              "title": "服务组件",
+              "entry": "./v2.0/zh-CN/infrastructure/components.md"
+            },
+            {
+              "title": "主机管理",
+              "entry": "./v2.0/zh-CN/infrastructure/nodes.md"
+            },
+            {
+              "title": "存储类型",
+              "entry": "./v2.0/zh-CN/infrastructure/storageclass.md"
+            }
+          ]
+        },
+        {
+          "title": "监控中心",
+          "entries": [
+            {
+              "title": "监控概述",
+              "entry": "./v2.0/zh-CN/monitoring/intro.md"
+            },
+            {
+              "title": "如何利用监控定位问题",
+              "entry": "./v2.0/zh-CN/monitoring/monitoring-demo.md"
+            },
+            {
+              "title": "集群状态监控",
+              "entry": "./v2.0/zh-CN/monitoring/cluster-resources.md"
+            },
+            {
+              "title": "应用资源监控",
+              "entry": "./v2.0/zh-CN/monitoring/application-resources.md"
+            },
+            {
+              "title": "监控策略 - 节点级别",
+              "entry": "./v2.0/zh-CN/monitoring/alert-policy.md"
+            },
+            {
+              "title": "监控消息 - 节点级别",
+              "entry": "./v2.0/zh-CN/monitoring/alert-message.md"
+            }
+          ]
+        },
+        {
+          "title": "平台设置",
+          "entries": [
+            {
+              "title": "应用仓库",
+              "entry": "./v2.0/zh-CN/platform-settings/app-repo.md"
+            },
+            {
+              "title": "基于本地仓库搭建应用仓库部署Redis",
+              "entry": "./v2.0/zh-CN/platform-settings/local-repo.md"
+            },
+            {
+              "title": "上传应用到 KubeSphere 官方仓库",
+              "entry": "./v2.0/zh-CN/platform-settings/app-hosting-official.md"
+            },
+            {
+              "title": "基于 GitHub 搭建自有应用仓库",
+              "entry": "./v2.0/zh-CN/platform-settings/app-hosting-github.md"
+            },
+            {
+              "title": "邮件服务器",
+              "entry": "./v2.0/zh-CN/platform-settings/email-server.md"
+            },
+            {
+              "title": "日志收集",
+              "entry": "./v2.0/zh-CN/platform-settings/log-gathering.md"
+            },
+            {
+              "title": "添加 Fluentd 作为日志接收者",
+              "entry": "./v2.0/zh-CN/platform-settings/output-fluentd.md"
+            },
+            {
+              "title": "添加 Kafka 作为日志接收者",
+              "entry": "./v2.0/zh-CN/platform-settings/output-kafka.md"
+            }
+          ]
+        },
+        {
+          "title": "工具箱",
+          "entries": [
+            {
+              "title": "Web Kubectl",
+              "entry": "./v2.0/zh-CN/toolbox/kubectl.md"
+            },
+            {
+              "title": "日志收集",
+              "entry": "./v2.0/zh-CN/toolbox/log-search.md"
+            }
+          ]
+        },
+        {
+          "title": "通用配置",
+          "entries": [
+            {
+              "title": "系统配置修改",
+              "entry": "./v2.0/zh-CN/system-settings/edit-system-settings.md"
+            },
+            {
+              "title": "上传镜像至 Harbor",
+              "entry": "./v2.0/zh-CN/system-settings/push-img-harbor.md"
+            },
+            {
+              "title": "Jenkins 系统设置",
+              "entry": "./v2.0/zh-CN/devops/jenkins-setting.md"
+            }
+          ]
+        },
+        {
+          "title": "FAQ",
+          "entries": [
+            {
+              "title": "DevOps 运维FAQ",
+              "entry": "./v2.0/zh-CN/devops/devops-admin-faq.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "用户指南",
+      "icon": "/reffer.svg",
+      "desc": "指导用户如何使用平台提供的基本功能",
+      "chapters": [
+        {
+          "title": "应用",
+          "entries": [
+            {
+              "title": "应用模板",
+              "entry": "./v2.0/zh-CN/application/app-template.md"
+            },
+            {
+              "title": "自制应用",
+              "entry": "./v2.0/zh-CN/application/composing-svc.md"
+            },
+            {
+              "title": "流量治理",
+              "entry": "./v2.0/zh-CN/application/traffic-gov.md"
+            },
+            {
+              "title": "熔断",
+              "entry": "./v2.0/zh-CN/application/circuit-breaking.md"
+            }
+          ]
+        },
+        {
+          "title": "工作负载",
+          "entries": [
+            {
+              "title": "工作负载概述",
+              "entry": "./v2.0/zh-CN/workload/workload.md"
+            },
+            {
+              "title": "部署",
+              "entry": "./v2.0/zh-CN/workload/deployments.md"
+            },
+            {
+              "title": "有状态副本集",
+              "entry": "./v2.0/zh-CN/workload/statefulsets.md"
+            },
+            {
+              "title": "守护进程集",
+              "entry": "./v2.0/zh-CN/workload/daemonsets.md"
+            },
+            {
+              "title": "任务",
+              "entry": "./v2.0/zh-CN/workload/jobs.md"
+            },
+            {
+              "title": "定时任务",
+              "entry": "./v2.0/zh-CN/workload/cronjobs.md"
+            },
+            {
+              "title": "设置健康检查器",
+              "entry": "./v2.0/zh-CN/workload/health-check.md"
+            },
+            {
+              "title": "工作负载管理",
+              "entry": "./v2.0/zh-CN/workload/workload-management.md"
+            },
+            {
+              "title": "自定义 S2i 模板",
+              "entry": "./v2.0/zh-CN/workload/s2i-template.md"
+            }
+          ]
+        },
+        {
+          "title": "存储",
+          "entries": [
+            {
+              "title": "存储概述",
+              "entry": "./v2.0/zh-CN/storage/volume.md"
+            },
+            {
+              "title": "存储卷",
+              "entry": "./v2.0/zh-CN/storage/pvc.md"
+            },
+            {
+              "title": "Local Volume 使用方法",
+              "entry": "./v2.0/zh-CN/storage/local-volume.md"
+            }
+          ]
+        },
+        {
+          "title": "网络与服务",
+          "entries": [
+            {
+              "title": "服务管理",
+              "entry": "./v2.0/zh-CN/ingress-service/services.md"
+            },
+            {
+              "title": "灰度发布",
+              "entry": "./v2.0/zh-CN/ingress-service/grayscale.md"
+            },
+            {
+              "title": "应用路由",
+              "entry": "./v2.0/zh-CN/ingress-service/ingress.md"
+            }
+          ]
+        },
+        {
+          "title": "监控告警",
+          "entries": [
+            {
+              "title": "告警策略 - 工作负载级别",
+              "entry": "./v2.0/zh-CN/workload-alert/workload-alert-policy.md"
+            },
+            {
+              "title": "告警消息 - 工作负载级别",
+              "entry": "./v2.0/zh-CN/workload-alert/workload-alert-message.md"
+            }
+          ]
+        },
+        {
+          "title": "配置中心",
+          "entries": [
+            {
+              "title": "密钥",
+              "entry": "./v2.0/zh-CN/configuration/secrets.md"
+            },
+            {
+              "title": "配置",
+              "entry": "./v2.0/zh-CN/configuration/configmaps.md"
+            },
+            {
+              "title": "镜像仓库",
+              "entry": "./v2.0/zh-CN/configuration/image-registry.md"
+            }
+          ]
+        },
+        {
+          "title": "项目设置",
+          "entries": [
+            {
+              "title": "基本信息",
+              "entry": "./v2.0/zh-CN/project-setting/project-quota.md"
+            },
+            {
+              "title": "成员角色",
+              "entry": "./v2.0/zh-CN/project-setting/project-roles.md"
+            },
+            {
+              "title": "项目成员",
+              "entry": "./v2.0/zh-CN/project-setting/project-members.md"
+            },
+            {
+              "title": "外网访问",
+              "entry": "./v2.0/zh-CN/project-setting/project-gateway.md"
+            }
+          ]
+        },
+        {
+          "title": "DevOps 工程",
+          "entries": [
+            {
+              "title": "DevOps 工程概述",
+              "entry": "./v2.0/zh-CN/devops/intro.md"
+            },
+            {
+              "title": "管理 DevOps 工程",
+              "entry": "./v2.0/zh-CN/devops/devops-project.md"
+            },
+            {
+              "title": "流水线",
+              "entry": "./v2.0/zh-CN/devops/pipeline.md"
+            },
+            {
+              "title": "凭证管理",
+              "entry": "./v2.0/zh-CN/devops/credential.md"
+            },
+            {
+              "title": "添加代码仓库",
+              "entry": "./v2.0/zh-CN/devops/add-scm.md"
+            },
+            {
+              "title": "访问 SonarQube 并创建 Token",
+              "entry": "./v2.0/zh-CN/devops/sonarqube.md"
+            },
+            {
+              "title": "设置自动触发扫描",
+              "entry": "./v2.0/zh-CN/devops/auto-trigger.md"
+            },
+            {
+              "title": "Jenkins Agent 说明",
+              "entry": "./v2.0/zh-CN/devops/jenkins-agent.md"
+            },
+            {
+              "title": "流水线常见问题",
+              "entry": "./v2.0/zh-CN/devops/devops-faq.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "API 文档",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "API 文档",
+          "entry": "./v2.0/zh-CN/api-reference/api-docs.md"
+        },
+        {
+          "title": "如何调用 API",
+          "entry": "./v2.0/zh-CN/api-reference/api-guide.md"
+        },
+        {
+          "title": "API 常用术语对照",
+          "entry": "./v2.0/zh-CN/api-reference/api-glossary.md"
+        },
+        {
+          "title": "监控指标说明",
+          "entry": "./v2.0/zh-CN/api-reference/monitoring-metrics.md"
+        }
+      ]
+    },
+    {
+      "title": "常见问题",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "安装常见问题",
+          "entry": "./v2.0/zh-CN/faq/faq-install.md"
+        },
+        {
+          "title": "存储常见问题",
+          "entry": "./v2.0/zh-CN/faq/faq-storage.md"
+        },
+        {
+          "title": "控制台使用常见问题",
+          "entry": "./v2.0/zh-CN/faq/faq-console.md"
+        },
+        {
+          "title": "DevOps 常见问题",
+          "entry": "./v2.0/zh-CN/faq/faq-devops.md"
+        }
+      ]
+    },
+    {
+      "title": "附录",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "部署 Ceph 存储服务端",
+          "entry": "./v2.0/zh-CN/appendix/ceph-ks-install.md"
+        },
+        {
+          "title": "部署 GlusterFS 存储服务端",
+          "entry": "./v2.0/zh-CN/appendix/glusterfs-ks-install.md"
+        },
+        {
+          "title": "云平台配置端口转发和防火墙",
+          "entry": "./v2.0/zh-CN/appendix/qingcloud-manipulation.md"
+        }
+      ]
+    }
+  ]
+}
