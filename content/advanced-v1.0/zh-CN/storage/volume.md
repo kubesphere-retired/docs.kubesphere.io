@@ -8,7 +8,7 @@ description: ''
 
 ## 存储分类
 
-作为一个容器管理平台，除了支持如 Local Volume(仅用于 all-in-one 测试安装), EmptyDir, HostPath 本地存储之外，还需要支持对接开源的分布式文件系统或网络文件系统。KubeSphere 提供多种网络存储方案作为持久化存储，目前支持的存储分类有本地存储和持久化存储，创建持久化存储卷之前需要预先创建存储类型，详见 [创建存储类型](../../infrastructure/storageclass)。
+作为一个容器平台，除了支持如 Local Volume(仅用于 all-in-one 测试安装), EmptyDir, HostPath 本地存储之外，还需要支持对接开源的分布式文件系统或网络文件系统。KubeSphere 提供多种网络存储方案作为持久化存储，目前支持的存储分类有本地存储和持久化存储，创建持久化存储卷之前需要预先创建存储类型，详见 [创建存储类型](../../infrastructure/storageclass)。
 
 ### 本地存储
 
