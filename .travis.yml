@@ -14,7 +14,7 @@ cache:
 
 install:
   - yarn
-  - bash ./princexml/install.sh
+  # - bash ./princexml/install.sh
 
 script:
   - yarn test
