@@ -13,7 +13,7 @@ KubeSphere 目前最新的版本 2.0.2 已发布，该版本修复了已知的 B
 
 ### 第一步：下载最新安装包
 
-下载最新的 `KubeSphere Advanced v2.0.2` 安装包至任务执行机，进入安装目录。
+下载最新的 `KubeSphere v2.1.0` 安装包至任务执行机，进入安装目录。
 
 ```bash
 $ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/scripts
