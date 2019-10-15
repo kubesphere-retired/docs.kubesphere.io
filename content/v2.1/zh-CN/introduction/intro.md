@@ -21,3 +21,11 @@ KubeSphere 2.1 提供了支持在生产环境集群部署的全栈化容器部�
 > 说明：KubeSphere **所有版本都 100% 开源免费**，已大规模服务于社区用户，广泛地应用在**以 Docker 和 Kubernetes 为中心**的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190910144241.png)
+
+## Landscapes
+
+KubeSphere 是 CNCF 基金会成员并且通过了 <a href="https://www.cncf.io/certification/software-conformance/#logos">Kubernetes 一致性认证
+</a>，进一步丰富了 <a href="https://landscape.cncf.io/landscape=observability-and-analysis&license=apache-license-2-0">CNCF 云原生的生态。
+</a>
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191011233719.png)
