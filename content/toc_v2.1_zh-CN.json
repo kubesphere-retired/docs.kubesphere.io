@@ -2,7 +2,7 @@
   "version": "v2.1",
   "lang": "zh-CN",
   "chapters": [
-    {
+    { 
       "title": "Release Notes",
       "icon": "/product.svg",
       "desc": "为您介绍 KubeSphere 已发布的版本功能与更新",
@@ -151,10 +151,6 @@
         {
           "title": "运维指南",
           "entries": [
-            {
-              "title": "升级",
-              "entry": "./v2.1/zh-CN/installation/upgrade.md"
-            },
             {
               "title": "集群节点扩容",
               "entry": "./v2.1/zh-CN/installation/add-nodes.md"

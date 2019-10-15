@@ -4,9 +4,9 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-KubeSphere 2.1 版本的 Installer 对各功能组件进行了第一次解耦，支持`自定义功能组件的安装方式`，使最小化安装**资源占用更轻量**，同时方便不同用户**按需选择不同的功能组件**。
+KubeSphere 2.1 版本的 Installer 对各功能组件进行了第一次解耦，支持 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件)，使最小化安装**资源占用更轻量**，同时方便不同用户**按需选择不同的功能组件**。
 
-用户在获取 Installer 并解压至目标安装机器后，如果需要修改存储、网络、组件版本，或选择可选安装项 (如 DevOps、Service Mesh、OpenPitrix、GitLab、Harbor)、外部负载均衡器、Jenkins、邮件服务器等配置参数时，可参考以下说明进行修改，本文档对 Installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义。
+用户在获取 Installer 并解压至目标安装机器后，如果需要修改存储、网络、组件版本，或选择可选安装项 (如 DevOps 流水线、Service Mesh、OpenPitrix、GitLab、Harbor)、外部负载均衡器、Jenkins、邮件服务器等配置参数时，可参考以下说明进行修改，本文档对 Installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义。
 
 ### 负载均衡器插件与 QingCloud CSI 配置
 
@@ -20,9 +20,11 @@ Installer 使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](h
 
 ### 集群组件相关配置
 
+开启可选功能组件的安装之前请确保当前环境的 CPU 与内存空间充足，请参考 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件) 在 `conf/vars.yml` 配置。
+
 **参数说明：**
 
-<details><summary> vars.yml 配置文件（点击展开）</summary>
+<details><summary> vars.yml 配置文件参数释义（点击展开）</summary>
 
 ```yaml
 ######################################################################

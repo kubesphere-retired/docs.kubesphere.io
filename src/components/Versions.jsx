@@ -41,6 +41,8 @@ class Versions extends React.Component {
       window.location.href = `${pathPrefix}/v1.0/${lang}/introduction/intro/`
     } else if (version === 'v2.0') {
       window.location.href = `${pathPrefix}/v2.0/${lang}/introduction/intro/`
+    } else if (version === 'v2.1') {
+      window.location.href = `${pathPrefix}/v2.1/${lang}/introduction/intro/`
     } else {
       window.location.href = `${pathPrefix}/${version}/${lang}/`
     }
