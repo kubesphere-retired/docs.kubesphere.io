@@ -1,5 +1,5 @@
 ---
-title: "安装内置 Harbor" 
+title: "安装使用内置 Harbor" 
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
