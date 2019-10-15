@@ -11,7 +11,7 @@ KubeSphere 2.1.0 目前公开的 Installer 是 dev 版，方便社区用户在 2
 ### Features
 
 
-- 核心组件解耦，可选装 DevOps、微服务模块
+- 核心组件解耦，可选装 DevOps、微服务治理（Service Mesh）、应用商店、日志、告警通知等模块
 
 - 增加 Grafana 可选安装组件，默认版本 5.2.4
 
