@@ -127,10 +127,10 @@ alerting_enabled: true # 是否安装内置的告警系统，若机器配置充�
 
 # Harbor
 harbor_enabled: false # 是否安装 Harbor 作为私有镜像仓库
-harbor_domain: harbor.devops.kubesphere.local #	Harbor 域名
+harbor_domain: harbor.devops.kubesphere.local #	Harbor 域名（这里可使用默认的域名）
 # GitLab
 gitlab_enabled: false # 是否安装 GitLab 作为私有代码仓库
-gitlab_hosts_domain: devops.kubesphere.local # GitLab 域名
+gitlab_hosts_domain: devops.kubesphere.local # GitLab 域名（这里可使用默认的域名）
 
 
 ## Container Engine Acceleration
