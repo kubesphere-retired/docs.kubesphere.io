@@ -58,7 +58,7 @@ description: ''
 
 ## 第二步: 准备安装配置文件
 
-**1.** 下载 `KubeSphere 2.1.0-dev` 安装包至待安装机器，进入安装目录。
+**1.** 下载 `KubeSphere 2.1.0-dev` 安装包至待安装机器，进入安装脚本目录。
 
 ```bash
 $ curl -L  https://kubesphere.io/download/nightly/latest > installer.tar.gz
