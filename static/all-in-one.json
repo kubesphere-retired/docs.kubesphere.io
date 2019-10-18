@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "width": 99,
+  "height": 41,
+  "duration": 19.565391,
+  "command": null,
+  "title": "all-in-one",
+  "env": {
+    "TERM": "vt100",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.02352,
+      "[root@i-cvswezkk ~]# "
+    ],
+    [
+      1.031742,
+      "curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2. \rtar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/scripts"
+    ],
+    [
+      1.143327,
+      "\r\n"
+    ],
+    [
+      0.007652,
+      "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n                                 Dload  Upload   Total   Spent    Left  Speed\r\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0"
+    ],
+    [
+      0.612568,
+      "\r100   175  100   175    0     0    285      0 --:--:-- --:--:-- --:--:--   285\r100   175  100   175    0     0    285      0 --:--:-- --:--:-- --:--:--   285\r\n"
+    ],
+    [
+      0.123477,
+      "\r100 1120k  100 1120k    0     0  1525k      0 --:--:-- --:--:-- --:--:-- 1525k\r\n"
+    ],
+    [
+      0.131386,
+      "[root@i-cvswezkk scripts]# "
+    ],
+    [
+      1.009026,
+      "l"
+    ],
+    [
+      0.069806,
+      "s"
+    ],
+    [
+      0.175769,
+      "\r\n"
+    ],
+    [
+      0.002025,
+      "\u001b[0m\u001b[01;32madd-nodes.sh\u001b[0m  \u001b[01;32mall-in-one.sh\u001b[0m  \u001b[01;32minstall.sh\u001b[0m  \u001b[01;32mmulti-node.sh\u001b[0m  \u001b[01;32muninstall.sh\u001b[0m\r\n\u001b[01;32maddons.sh\u001b[0m     ansible.cfg    \u001b[01;32mmenu.sh\u001b[0m     \u001b[01;34mos\u001b[0m             \u001b[01;32mupgrade.sh\u001b[0m\r\n"
+    ],
+    [
+      0.000128,
+      "[root@i-cvswezkk scripts]# "
+    ],
+    [
+      1.292529,
+      "."
+    ],
+    [
+      0.172036,
+      "/"
+    ],
+    [
+      0.31278,
+      "i"
+    ],
+    [
+      0.191544,
+      "n"
+    ],
+    [
+      0.21751,
+      "stall.sh "
+    ],
+    [
+      1.309762,
+      "\r\n"
+    ],
+    [
+      0.005687,
+      "\u001b[H\u001b[J"
+    ],
+    [
+      0.004083,
+      "\r\n\r\n################################################\r\n         \u001b[36mKubeSphere Installer Menu\u001b[0m\r\n################################################\r\n*   1) All-in-one\r\n*   2) Multi-node\r\n*   3) Quit\r\n################################################\r\nhttps://kubesphere.io/               2019-07-31\r\n################################################\r\n"
+    ],
+    [
+      1.628786,
+      "Please input an option: "
+    ],
+    [
+      0.88208,
+      "1"
+    ],
+    [
+      0.546702,
+      "\r\n"
+    ],
+    [
+      0.000337,
+      "1\r\n"
+    ],
+    [
+      0.192993,
+      "Loaded plugins: fastestmirror\r\n"
+    ],
+    [
+      0.05194,
+      "Loading mirror speeds from cached hostfile\r\n"
+    ],
+    [
+      4.434023,
+      " * epel: mirrors.tuna.tsinghua.edu.cn\r\n"
+    ],
+    [
+      0.408016,
+      "Package epel-release-7-11.noarch already installed and latest version\r\n"
+    ],
+    [
+      0.162077,
+      "Loaded plugins: fastestmirror\r\n"
+    ],
+    [
+      0.051909,
+      "Loading mirror speeds from cached hostfile\r\n"
+    ],
+    [
+      0.00044,
+      "[root@i-cvswezkk scripts]# "
+    ]
+  ]
+}
