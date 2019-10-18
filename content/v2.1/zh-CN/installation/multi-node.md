@@ -29,7 +29,8 @@ description: ''
 > - 所有节点需要时间同步，否则可能会安装不成功；
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
 > - 若使用 ubuntu 18.04，则需使用 root 用户；
-> - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+> - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装；
+> - 若选装 DevOps 功能组件时需保证有一台内存大于 8G 的节点，因为 Jenkins 默认的 JVM 设置会需要 `6~8 G` 的整块内存，若可用内存不足可能会造成该节点崩溃。
 
 
 | 操作系统 | 最小配置（每台） | 

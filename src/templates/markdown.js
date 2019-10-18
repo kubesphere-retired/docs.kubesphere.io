@@ -251,7 +251,14 @@ class MarkdownTemplate extends React.Component {
                 this.props.data.site.siteMetadata.title
               }`}
               meta={metas}
-            />
+            >
+              <link
+                rel="stylesheet"
+                type="text/css"
+                href="/asciinema-player.css"
+              />
+              <script src="/asciinema-player.js" />
+            </Helmet>
             <BodyGrid>
               <NavContainer isExpand={isExpand}>
                 <Versions
