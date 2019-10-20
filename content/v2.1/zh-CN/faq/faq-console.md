@@ -1,5 +1,5 @@
 ---
-title: "控制台使用常见问题" 
+title: "控制台使用常见问题"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -74,6 +74,6 @@ namespace/echo-production labeled
 apk add curl && curl -X PUT http://localhost:9090/kapis/iam.kubesphere.io/v1alpha2/users/admin -H 'Content-Type: application/json' -d '{"username": "admin","email":"admin@kubesphere.io","cluster_role": "cluster-admin","password":"xxxxxx"}'
 ```
 
+
 > 说明：
 > 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
- 
