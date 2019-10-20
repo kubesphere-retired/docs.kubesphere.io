@@ -77,7 +77,4 @@ apk add curl && curl -X PUT http://localhost:9090/kapis/iam.kubesphere.io/v1alph
 
 > 说明：
 > 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
-<<<<<<< HEAD
-=======
- 
->>>>>>> 0d7808fd2044ff3eb859de83b05af12baf925f5d
+
