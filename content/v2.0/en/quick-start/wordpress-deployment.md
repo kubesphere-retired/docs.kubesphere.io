@@ -1,6 +1,6 @@
 ---
 title: "Deploying a WordPress Web Application" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

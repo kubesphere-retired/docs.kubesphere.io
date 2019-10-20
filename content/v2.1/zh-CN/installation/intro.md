@@ -98,7 +98,7 @@ KubeSphere 2.1.0 中的相关组件包括了以下版本，其中带 * 号的组
 |  组件 |  版本 |
 |---|---|
 |* KubeSphere| 2.1.0|
-|* Kubernetes| v1.15.4 |
+|* Kubernetes| v1.15.5 |
 |* etcd|3.2.18|
 |* Prometheus| v2.3.1|
 |* Fluent Bit| v1.2.1|
@@ -154,6 +154,4 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 |---|---|
 | 1 |删除 `/var/lib/etcd/`，删除 `/var/lib/docker`，删除 `/etc/kubernetes/`，删除 `/etc/kubesphere/`。 |
 | 2 |磁盘格式化、分区。|
-
-
 

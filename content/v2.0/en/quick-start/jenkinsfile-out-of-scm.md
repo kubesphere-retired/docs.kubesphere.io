@@ -1,6 +1,6 @@
 ---
 title: "Create a CI/CD Pipeline in a Graphical Panel" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

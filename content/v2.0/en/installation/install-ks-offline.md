@@ -1,6 +1,6 @@
 ---
 title: "Install on Kubernetes (Offline)" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

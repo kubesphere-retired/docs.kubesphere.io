@@ -1,6 +1,6 @@
 ---
 title: "Deploying a Grafana to Kubernetes using Application Template"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

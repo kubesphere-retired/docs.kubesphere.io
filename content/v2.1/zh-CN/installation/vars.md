@@ -32,7 +32,7 @@ Installer 使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](h
 ######################################################################
 ## Change this to use another Kubernetes version
 ks_version: 2.1.0    # KubeSphere 版本号
-kube_version: v1.15.4 # Kubernetes 版本号
+kube_version: v1.15.5 # Kubernetes 版本号
 etcd_version: v3.2.18  # etcd 版本号
 
 ks_image_pull_policy: IfNotPresent # 平台的镜像拉取策略，默认 IfNotPresent，表示优先使用本地镜像，还支持 Always (尝试重新下载镜像) 和 Never (仅使用本地镜像)

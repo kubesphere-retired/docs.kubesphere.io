@@ -1,6 +1,6 @@
 ---
 title: "Creating Horizontal Pod Autoscaler for Deployment"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

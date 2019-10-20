@@ -1,6 +1,6 @@
 ---
 title: "Integrating Harbor Registry" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

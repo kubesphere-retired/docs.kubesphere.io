@@ -15,7 +15,7 @@ KubeSphere 2.1.0 目前公开的 Installer 是 dev 版，方便社区用户在 2
 
 - 增加 Grafana 可选安装组件，默认版本 5.2.4
 
-- Kubernetes 支持升级至 1.15.4，兼容 1.4.x 和 1.3.x
+- Kubernetes 支持升级至 1.15.5，兼容 1.4.x 和 1.3.x
 
 - [OpenPitrix](https://openpitrix.io) 应用商店后端管理模块升级至 0.4
 

@@ -1,6 +1,6 @@
 ---
 title: "Installing HA Master and Etcd Cluster"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
