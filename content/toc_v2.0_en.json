@@ -136,7 +136,7 @@
     {
       "title": "Quick Start",
       "icon": "/access.svg",
-      "desc": "Get a quick overview of the basic features of KubeSphere with 7 quick-start examples to walk you through the process, help you to get familiar with it.",
+      "desc": "Get a quick overview of the basic features of KubeSphere with 13 quick-start examples to walk you through the process, help you to get familiar with it.",
       "chapters": [
         {
           "title": "Getting Started with Multitenancy",
@@ -387,6 +387,7 @@
     {
       "title": "Development Guide",
       "icon": "/problem.svg",
+      "desc": "Instruction of development workflow, including build, test and development",
       "chapters": [
         {
           "title": "Preparing the Development Environment",
@@ -401,6 +402,7 @@
     {
       "title": "API Documentation",
       "icon": "/problem.svg",
+      "desc": "Introduction to KubeSphere API",
       "chapters": [
         {
           "title": "API Guide",
