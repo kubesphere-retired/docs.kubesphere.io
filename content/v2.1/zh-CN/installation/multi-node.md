@@ -117,7 +117,7 @@ kube-master
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 **Kubernetes 版本**是 `v1.15.4`。
+KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 **Kubernetes 版本**是 `v1.15.5`。
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。

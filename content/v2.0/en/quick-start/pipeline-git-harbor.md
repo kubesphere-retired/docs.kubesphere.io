@@ -1,6 +1,6 @@
 ---
 title: "Building a Pipeline based on GitLab and Harbor" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

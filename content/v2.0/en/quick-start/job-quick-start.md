@@ -1,6 +1,6 @@
 ---
 title: "Creating a Job to compute π to 2000 places"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

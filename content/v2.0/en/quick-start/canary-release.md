@@ -1,6 +1,6 @@
 ---
 title: "Managing Canary Release of Microservice App based on Istio"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

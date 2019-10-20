@@ -1,6 +1,6 @@
 ---
 title: "Exposing your App: Creating a Service and Ingress"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -23,12 +23,12 @@ description: ''
 > - 若使用 ubuntu 18.04，则需要使用 root 用户；
 > - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
 
-| 操作系统 | 最小配置 | 
+| 操作系统 | 最小配置 |
 | --- | --- |
-|CentOS 7.5 (64 bit) | CPU：4 核， 内存：8 G， 系统盘：100 G | 
+|CentOS 7.5 (64 bit) | CPU：4 核， 内存：8 G， 系统盘：100 G |
 |Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核， 内存：8 G， 系统盘：100 G  |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核， 内存：8 G， 系统盘：100 G  | 
-|Debian Stretch 9.5 (64 bit)| CPU：4 核， 内存：8 G， 系统盘：100 G  | 
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核， 内存：8 G， 系统盘：100 G  |
+|Debian Stretch 9.5 (64 bit)| CPU：4 核， 内存：8 G， 系统盘：100 G  |
 
 
 
@@ -44,7 +44,7 @@ $ curl -L  https://kubesphere.io/download/nightly/latest > installer.tar.gz \
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。Installer 默认安装的 **Kubernetes 版本**是 `v1.15.4`，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
+KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。Installer 默认安装的 **Kubernetes 版本**是 `v1.15.5`，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
@@ -103,9 +103,9 @@ NOTE：Please modify the default password after login.
 
 例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
-**(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，**登录后请立即修改默认密码**。参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。 
+**(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，**登录后请立即修改默认密码**。参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 
-![KubeSphere 控制台](/kubesphere-console.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191020153911.png)
 
 <font color=red>注意：登陆 Console 后请在 "集群状态" 查看服务组件的监控状态，待所有组件启动完成后即可开始使用，通常所有服务组件都将在 10 分钟内启动完成。</font>
 
@@ -116,6 +116,3 @@ NOTE：Please modify the default password after login.
 KubeSphere 已在阿里云、腾讯云、华为云、青云、AWS 上进行过部署测试，测试结果与相关的解决方法，请参考 [AE 2.0.2 云平台安装测试结果](https://github.com/kubesphere/ks-installer/issues/23)。另外，常见的安装问题我们也已整理相关的解决方法在 [安装常见问题](../../faq/faq-install)。
 
 若遇到其它的安装问题需要协助支持，请在 [GitHub](https://github.com/kubesphere/kubesphere/issues) 提交 Issue，我们会第一时间跟踪解决。
-
-
-

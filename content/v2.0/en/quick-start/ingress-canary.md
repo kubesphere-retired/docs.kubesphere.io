@@ -1,6 +1,6 @@
 ---
 title: "Using Ingress-Nginx for Grayscale Release" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
