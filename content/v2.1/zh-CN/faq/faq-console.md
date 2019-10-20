@@ -47,7 +47,7 @@ $ kubectl scale --replicas=0 deployment/ks-console -n kubesphere-system
 
 答：
 
-如果还没安装，安装前在 installer 可以修改 vars.yml 配置文件中的 kubelet_max_pods。
+如果还没安装，安装前在 installer 可以修改 vars.yml 配置文件中的 `kubelet_max_pods`。
 
 KubeSphere 安装后，可以在后台手工修改 master 节点 `/etc/kubernetes/kubelet.env` 中的 `max-pods` 参数，然后执行`systemctl restart kubelet` 重启 kubelet 服务。
 
@@ -77,3 +77,7 @@ apk add curl && curl -X PUT http://localhost:9090/kapis/iam.kubesphere.io/v1alph
 
 > 说明：
 > 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 0d7808fd2044ff3eb859de83b05af12baf925f5d
