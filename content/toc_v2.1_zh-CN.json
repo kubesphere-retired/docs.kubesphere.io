@@ -2,7 +2,7 @@
   "version": "v2.1",
   "lang": "zh-CN",
   "chapters": [
-    { 
+    {
       "title": "Release Notes",
       "icon": "/product.svg",
       "desc": "为您介绍 KubeSphere 已发布的版本功能与更新",
@@ -209,7 +209,7 @@
           "entry": "./v2.1/zh-CN/quick-start/bookinfo-canary.md"
         },
         {
-          "title": "示例十 - 基于Spring Boot项目构建流水线", 
+          "title": "示例十 - 基于Spring Boot项目构建流水线",
           "entry": "./v2.1/zh-CN/quick-start/devops-online.md"
         },
         {
@@ -575,6 +575,26 @@
             {
               "title": "流水线常见问题",
               "entry": "./v2.1/zh-CN/devops/devops-faq.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "开发者指南",
+      "icon": "/admin_reffer.svg",
+      "desc": "帮助用户以多种不同的方式快速安装 KubeSphere",
+      "chapters": [
+        {
+          "title": "Helm 应用开发",
+          "entries": [
+            {
+              "title": "开发模板规范",
+              "entry": "./v2.1/zh-CN/developer/helm-specification.md"
+            },
+            {
+              "title": "Helm 应用开发入门",
+              "entry": "./v2.1/zh-CN/developer/helm-developer-guide.md"
             }
           ]
         }
