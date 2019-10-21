@@ -90,7 +90,7 @@ Application management and orchestration
 
 ## Infrastructure Management
 
-Support storage management, host management and monitoring, resource quota management, image registry warehouse management, permission management and mirror security scanning. With Harbor mirror warehouse built-in, KubeSphere supports to Docker add or private Harbor mirror warehouse.
+Support storage management, host management and monitoring, resource quota management, image registry management, permission management and mirror security scanning. With Harbor image registry built-in, KubeSphere supports to Docker add or private Harbor image registry.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151554.png)
 
