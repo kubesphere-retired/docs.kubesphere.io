@@ -9,12 +9,14 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 ## 目的
 
 本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个 Hello World 页面部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问。
+其中 cache 分支为缓存测试用例，测试方式与master分支类似，对 cache 的多次测试可体现出利用缓存可以有效的提升构建速度。
 
 ## 前提条件
 
 - 本示例以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
 - 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 project-regular 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
+- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为s2i任务选择执行构建的节点。
 
 
 ## 预估时间
@@ -70,7 +72,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ![jenkins-online](https://kubesphere-docs.pek3b.qingstor.com/png/jenkinsonline.png)
 
-2、在 GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。
+2、在 GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。其中 `cache` 分支的修改与 `master` 分支类似，若不修改，则 `cache` 分支将无法完成构建。
 
 ![image-20190409121802459](https://kubesphere-docs.pek3b.qingstor.com/png/env.png)
 
@@ -85,7 +87,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 | APP_NAME                 | devops-java-sample     | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 SonarQube token凭证 ID，用于代码质量检测 |
 
-**注： Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。**
+**注：`master` 分支 Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。**
 
 3、修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
