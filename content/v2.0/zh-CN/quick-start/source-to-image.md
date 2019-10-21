@@ -64,7 +64,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 > 说明： KubeSphere 内置了常用的 Java、Node.js、Python 等 s2i 的模板，若需要自定义其它语言或依赖环境的 s2i 模板，请参考 [自定义 s2i 模板](../../workload/s2i-template)。
 
-- 代码地址：粘贴上一步复制的 git 地址（目前支持 Git，支持 HTTP、HTTPS，并且可以指定代码分支以及在源代码终端的相对路径）；
+- 代码地址：粘贴上一步复制的 git 地址（目前支持 Git，支持 HTTP、HTTPS，并且可以指定在源代码终端的相对路径）；
 - 密钥：选择之前创建的 `github-id`；
 - 映像模板：选择 `kubespheredev/java-8-centos7` 作为此示例的 Builder image；
 - 代码相对路径：使用默认的 `/` 即可；
