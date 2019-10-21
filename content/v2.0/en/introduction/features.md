@@ -4,9 +4,9 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-As an enterprise container management platform, KubeSphere provides an easy-to-use console with the awesome user experience that allows you to quickly get started with various functions. 
+As an enterprise container management platform, KubeSphere provides an easy-to-use console with the awesome user experience that allows you to quickly get started with various functions.
 
-KubeSphere ranging from the **workload management, microservice governance (Service Mesh), DevOps projects (CI/CD), Source to Image, multi-tenancy management, multi-dimensional monitoring, log query and collection, alerting and notification, service and network, application management, infrastructure management, image registry management, application management**. It also supports multiple open source storage and Network, as well as high-performance cloud storage services. 
+KubeSphere ranging from the **workload management, microservice governance (Service Mesh), DevOps projects (CI/CD), Source to Image, multi-tenancy management, multi-dimensional monitoring, log query and collection, alerting and notification, service and network, application management, infrastructure management, image registry management, application management**. It also supports multiple open source storage and Network, as well as high-performance cloud storage services.
 
 We have also developed [Porter](https://github.com/kubesphere/porter), the open source Load Balancer plugin which is suitable for Kubernetes on Bare Metal. Support multiple open source storage and network plans and back high-performance business storage network services.
 
@@ -16,7 +16,7 @@ The following modules elaborate on the KubeSphere services from a professional p
 
 ## Kubernetes Resource Management
 
-Provide easy graphical wizard UI for various Kubernetes’ underlying resources so as to manage workload, mirroring database, service and application router as well as the key configuration. Provide Horizontal Pod Autoscaler (HPA) and container check. Support million of container resource configuration to ensure businesses’ high availability under the peak concurrent.
+Provide easy graphical wizard UI for various Kubernetes’ underlying resources so as to manage workloads, image registry, service and application router as well as the key configuration. Provide Horizontal Pod Autoscaler (HPA) and container check. Support million of container resource configuration to ensure businesses’ high availability under the peak concurrent.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017150242.png)
 
@@ -58,7 +58,7 @@ Obtain the code from the existing code repository by providing Source to Image (
 - Three-dimensional second-level monitoring: Instruct the three-dimensional monitoring with second-level frequency and dual-dimensions for 16 indicators.
 - In the cluster resource dimension, we provide multiple indicators such as CPU utilization, memory utilization, CPU load average, disk usage, inode utilization, disk throughput, IOPS, network card rate, container group running state, ETCD monitoring, API Server monitoring.
 - In the dimension of application resources, we provide five monitoring indicators such as CPU consumption, memory consumption, number of container clusters, network outflow rate and network inflow rate for the application. Besides, we support the query by the amount of sorting and custom time range as well as fast location of exceptions.
-- Provide resource usage ranking by node, enterprise space, project, etc. 
+- Provide resource usage ranking by node, enterprise space, project, etc.
 - Provide service component monitoring to quickly locate component failures.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017150930.png)
@@ -90,7 +90,7 @@ Application management and orchestration
 
 ## Infrastructure Management
 
-Support storage management, host management and monitoring, resource quota management, mirroring database warehouse management, permission management and mirror security scanning. With Harbor mirror warehouse built-in, KubeSphere supports to Docker add or private Harbor mirror warehouse. 
+Support storage management, host management and monitoring, resource quota management, image registry management, permission management and mirror security scanning. With Harbor image registry built-in, KubeSphere supports to Docker add or private Harbor image registry.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151554.png)
 
