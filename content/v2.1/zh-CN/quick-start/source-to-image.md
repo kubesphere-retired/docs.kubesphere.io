@@ -8,7 +8,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ## 目的
 
-本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 KubeSphere 上使用 Source to Image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署到集群中。其中 cache 分支主要用于构建镜像的缓存测试。
+本示例通过官方给出的 Hello World 的 Java 示例，演示如何在 KubeSphere 上使用 Source to Image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署到集群中。其中 dependency 分支主要用于构建镜像的缓存测试。
 
 ## 前提条件
 
@@ -72,7 +72,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 - 映像名称：可根据自己情况定义，此示例使用 `<dockerhub_username>/hello`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限；
 - tag：镜像标签使用默认 `latest` 即可；
 - 目标镜像仓库：选择之前创建的 `dockerhub-id`。
-- 分支可选择 `master` 或者 `cache`，`cache` 分支主要用于缓存测试。
+- 分支可选择 `master` 或者 `dependency`，`dependency` 分支主要用于缓存测试。
 
 ![s2i](https://kubesphere-docs.pek3b.qingstor.com/png/s2i.png)
 
