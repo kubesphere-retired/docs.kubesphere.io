@@ -236,7 +236,7 @@ const Content = props => {
     <ContentWrapper>
       <Versions
         current={props.selectVersion}
-        versions={props.data.site.siteMetadata.versions}
+        versions={props.data.site.siteMetadata.versions.filter(v => !v.isDev)}
         onChange={props.onVersionChange}
         pathPrefix={props.data.site.pathPrefix}
         t={props.t}
@@ -665,6 +665,7 @@ export const query = graphql`
         versions {
           label
           value
+          isDev
         }
       }
     }

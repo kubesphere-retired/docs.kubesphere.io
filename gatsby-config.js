@@ -85,6 +85,7 @@ module.exports = {
       {
         label: 'v2.1-dev', 
         value: 'v2.1',
+        isDev: true,
       },
       {
         label: 'v1.0',
@@ -153,7 +154,6 @@ module.exports = {
         color: '#55BC8A',
       },
     },
-    'gatsby-plugin-sharp',
     'gatsby-plugin-catch-links',
     'gatsby-transformer-json',
     {

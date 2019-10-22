@@ -455,6 +455,7 @@ export const pageQuery = graphql`
         versions {
           label
           value
+          isDev
         }
       }
     }

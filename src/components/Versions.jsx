@@ -37,12 +37,8 @@ class Versions extends React.Component {
 
     if (version === 'express') {
       window.location.href = `${pathPrefix}/express/${lang}/basic/`
-    } else if (version === 'v1.0') {
-      window.location.href = `${pathPrefix}/v1.0/${lang}/introduction/intro/`
-    } else if (version === 'v2.0') {
-      window.location.href = `${pathPrefix}/v2.0/${lang}/introduction/intro/`
-    } else if (version === 'v2.1') {
-      window.location.href = `${pathPrefix}/v2.1/${lang}/introduction/intro/`
+    } else if (['v1.0', 'v2.0', 'v2.1'].includes(version)) {
+      window.location.href = `${pathPrefix}/${version}/${lang}/introduction/intro/`
     } else {
       window.location.href = `${pathPrefix}/${version}/${lang}/`
     }
@@ -63,7 +59,7 @@ class Versions extends React.Component {
             selected={version.value === current}
             onClick={() => this.changeVersion(version.value)}
           >
-            {version.label}
+            <span>{version.label}</span>
           </Option>
         ))}
       </OptionsWrapper>
