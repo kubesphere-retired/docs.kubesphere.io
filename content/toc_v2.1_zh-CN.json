@@ -223,6 +223,10 @@
         {
           "title": "示例十三 - 使用 Ingress-Nginx 进行灰度发布",
           "entry": "./v2.1/zh-CN/quick-start/ingress-canary.md"
+        },
+        {
+          "title": "示例十四 - Binary-to-Image",
+          "entry": "./v2.1/zh-CN/quick-start/b2i-war.md"
         }
       ]
     },
