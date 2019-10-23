@@ -15,7 +15,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 - 本示例以 GitHub 代码仓库和 DockerHub 镜像仓库为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
 - 已创建了企业空间、项目和普通用户 `project-regular` 账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
-- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为s2i任务选择执行构建的节点。
+- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为 S2I 任务选择执行构建的节点。
 
 ## 预估时间
 
@@ -63,7 +63,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 4、参考如下提示填写信息。
 
-> 说明： KubeSphere 内置了常用的 Java、Node.js、Python 等 s2i 的模板，若需要自定义其它语言或依赖环境的 s2i 模板，请参考 [自定义 s2i 模板](../../workload/s2i-template)。
+> 说明： KubeSphere 内置了常用的 Java、Node.js、Python 等 S2I 的模板，若需要自定义其它语言或依赖环境的 S2I 模板，请参考 [自定义 S2I 模板](../../workload/s2i-template)。
 
 - 代码地址：粘贴上一步复制的 git 地址（目前支持 Git，支持 HTTP、HTTPS，并且可以指定代码分支以及在源代码终端的相对路径）；
 - 分支：执行构建的分支，此示例默认使用 `master`，若希望测试缓存，可输入分支 `dependency`。
@@ -98,7 +98,7 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ### 验证运行结果
 
-若通过 s2i 部署顺利，则将会在设置的 Dockerhub 中查看到设置的镜像，名称和标签为 **构建设置** 中设置的值。若想在浏览器中查看到部署结果，可进行如下配置。
+若通过 S2I 部署顺利，则将会在设置的 Dockerhub 中查看到设置的镜像，名称和标签为 **构建设置** 中设置的值。若想在浏览器中查看到部署结果，可进行如下配置。
 
 #### 第七步：验证访问
 
