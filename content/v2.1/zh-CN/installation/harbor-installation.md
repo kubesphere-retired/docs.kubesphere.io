@@ -1,5 +1,5 @@
 ---
-title: "安装使用内置 Harbor" 
+title: "安装使用内置 Harbor"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -81,7 +81,7 @@ KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harb
 
 ## KubeSphere 中使用 Harbor
 
-### KubeSphere 添加 Harbor 
+### KubeSphere 添加 Harbor
 
 > 提示：以下需要在企业空间下的项目中添加镜像仓库，若还未创建企业空间和项目，请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)。
 
@@ -130,7 +130,7 @@ KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harb
 
 > 提示：关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
 
-## 如何单独安装 Harbor
+<!-- ## 如何单独安装 Harbor
 
 若安装前并未开启安装 Harbor，但在安装完成后想再单独安装 Harbor，应该如何安装？
 
@@ -170,4 +170,4 @@ https://kubesphere.io/               2019-09-27
 Please input an option: 1
 ```
 
-安装完成后，Harbor 的访问与使用可参考上述文档。
+安装完成后，Harbor 的访问与使用可参考上述文档。 -->
