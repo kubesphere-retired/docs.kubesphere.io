@@ -162,17 +162,21 @@ const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
             options={versions}
             onChange={onChange}
           />
-          <Tooltip
-            style={{ marginLeft: 12 }}
-            title={`${t('Download')} ${current.label} ${t('offline document')}`}
-            position="top"
-            distance={16}
-            arrow
-          >
-            <Button onClick={() => handleDownload(current)}>
-              <DownloadIcon />
-            </Button>
-          </Tooltip>
+          {!current.isDev && (
+            <Tooltip
+              style={{ marginLeft: 12 }}
+              title={`${t('Download')} ${current.label} ${t(
+                'offline document'
+              )}`}
+              position="top"
+              distance={16}
+              arrow
+            >
+              <Button onClick={() => handleDownload(current)}>
+                <DownloadIcon />
+              </Button>
+            </Tooltip>
+          )}
         </div>
       </Wrapper>
     </VersionsWrapper>
@@ -236,7 +240,7 @@ const Content = props => {
     <ContentWrapper>
       <Versions
         current={props.selectVersion}
-        versions={props.data.site.siteMetadata.versions.filter(v => !v.isDev)}
+        versions={props.data.site.siteMetadata.versions}
         onChange={props.onVersionChange}
         pathPrefix={props.data.site.pathPrefix}
         t={props.t}
