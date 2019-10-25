@@ -61,7 +61,7 @@ KubeSphere 支持可视化编辑 Helm Chart，在 `Values.yaml` 参考如下提�
 
 > 提示：关于 EMQ X 的 Helm Chart 更详细的参数释义，请参考 EMQ X 的官方 [EMQ X Chart](https://github.com/emqx/emqx-chart)。
 
-```yaml
+<!-- ```yaml
 namespace: demo-project # 此处替换为您实际创建的项目名称
 ···
 image: emqx/emqx:v3.2.3 # 指定 image 为 emqx/emqx:v3.2.3
@@ -69,7 +69,7 @@ image: emqx/emqx:v3.2.3 # 指定 image 为 emqx/emqx:v3.2.3
 service:
   type: NodePort # 将 service 从 ClusterIP 改为 NodePort
 ···
-```
+``` -->
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191025175948.png)
 
@@ -119,7 +119,7 @@ EMQ X 通过创建 PVC 资源挂载 `/opt/emqx/data/mnesia` 目录实现持久�
 
 在 KubeSphere 部署一个持久化的 EMQ X 集群步骤与上述步骤类似，因此这里仅提示参数配置。在准备好负载均衡器后，只需要在可视化编辑 Helm Chart 的 `Values.yaml` 中指定 StorageClass 相关参数即可。
 
-```yaml
+<!-- ```yaml
 ···
 namespace: demo-project # 此处替换为您实际创建的项目名称
 ···
@@ -133,7 +133,7 @@ persistence
 service:
   type: NodePort # 将 service 从 ClusterIP 改为 NodePort
   ···
-  ```
+  ``` -->
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191025180459.png)
 

@@ -1,0 +1,418 @@
+{
+  "version": "v2.1",
+  "lang": "en",
+  "chapters": [
+    {
+      "title": "Release Notes",
+      "icon": "/product.svg",
+      "desc": "Introduce the new features, capabilities and updates for the releases",
+      "chapters": [
+        {
+          "title": "Release Notes - 2.0.2",
+          "entry": "./v2.0/en/release/release-v202.md",
+          "tag": "Latest"
+        },
+        {
+          "title": "Release Notes - 2.0.1",
+          "entry": "./v2.0/en/release/release-v201.md"
+        },
+        {
+          "title": "Release Notes - 2.0.0",
+          "entry": "./v2.0/en/release/release-v200.md"
+        }
+      ]
+    },
+    {
+      "title": "Instroduction",
+      "icon": "/product.svg",
+      "desc": "Help you to better understand KubeSphere with detailed graphics and contents",
+      "chapters": [
+        {
+          "title": "Introduction",
+          "entry": "./v2.0/en/introduction/intro.md"
+        },
+        {
+          "title": "Features",
+          "entry": "./v2.0/en/introduction/features.md"
+        },
+        {
+          "title": "Architecture",
+          "entry": "./v2.0/en/introduction/architecture.md"
+        },
+        {
+          "title": "Advantages",
+          "entry": "./v2.0/en/introduction/advantages.md"
+        },
+        {
+          "title": "Glossary",
+          "entry": "./v2.0/en/introduction/glossary.md"
+        }
+      ]
+    },
+    {
+      "title": "Installation",
+      "icon": "/admin_reffer.svg",
+      "desc": "Reference the installation guide to download and install KubeSphere",
+      "chapters": [
+        {
+          "title": "Intruction",
+          "entries": [
+            {
+              "title": "Intro",
+              "entry": "./v2.0/en/installation/intro.md"
+            },
+            {
+              "title": "Port Requirements",
+              "entry": "./v2.0/en/installation/port-firewall.md"
+            }
+          ]
+        },
+        {
+          "title": "Install on Linux",
+          "entries": [
+            {
+              "title": "All-in-One Installation",
+              "entry": "./v2.0/en/installation/all-in-one.md"
+            },
+            {
+              "title": "Multi-Node Installation",
+              "entry": "./v2.0/en/installation/multi-node.md"
+            },
+            {
+              "title": "Installing HA Master and Etcd Cluster",
+              "entry": "./v2.0/en/installation/master-etcd-ha.md"
+            },
+            {
+              "title": "Storage Configuration Instruction",
+              "entry": "./v2.0/en/installation/storage-configuration.md"
+            }
+          ]
+        },
+        {
+          "title": "Install on Kubernetes",
+          "entries": [
+            {
+              "title": "Prerequisites",
+              "entry": "./v2.0/en/installation/prerequisites.md"
+            },
+            {
+              "title": "Online Installation",
+              "entry": "./v2.0/en/installation/install-on-k8s.md"
+            },
+            {
+              "title": "Offline Installation",
+              "entry": "./v2.0/en/installation/install-ks-offline.md"
+            }
+          ]
+        },
+        {
+          "title": "Related Tools",
+          "entries": [
+            {
+              "title": "Integrating Harbor Registry",
+              "entry": "./v2.0/en/installation/harbor-installation.md"
+            }
+          ]
+        },
+        {
+          "title": "Cluster Operation",
+          "entries": [
+            {
+              "title": "Adding New Nodes",
+              "entry": "./v2.0/en/installation/add-nodes.md"
+            },
+            {
+              "title": "High Risk Operation",
+              "entry": "./v2.0/en/installation/high-risk.md"
+            },
+            {
+              "title": "Uninstalling KubeSphere",
+              "entry": "./v2.0/en/installation/uninstall.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Quick Start",
+      "icon": "/access.svg",
+      "desc": "Get a quick overview of the basic features of KubeSphere with 13 quick-start examples to walk you through the process, help you to get familiar with it.",
+      "chapters": [
+        {
+          "title": "Getting Started with Multitenancy",
+          "entry": "./v2.0/en/quick-start/admin-quick-start.md"
+        },
+        {
+          "title": "Exposing your APP using Ingress",
+          "entry": "./v2.0/en/quick-start/ingress-demo.md"
+        },
+        {
+          "title": "Deploying a MySQL Application",
+          "entry": "./v2.0/en/quick-start/mysql-deployment.md"
+        },
+        {
+          "title": "Deploying a Wordpress Website",
+          "entry": "./v2.0/en/quick-start/wordpress-deployment.md"
+        },
+        {
+          "title": "Job to compute π to 2000 places",
+          "entry": "./v2.0/en/quick-start/job-quick-start.md"
+        },
+        {
+          "title": "Deploying Grafana using APP Template",
+          "entry": "./v2.0/en/quick-start/one-click-deploy.md"
+        },
+        {
+          "title": "Creating Horizontal Pod Autoscaler",
+          "entry": "./v2.0/en/quick-start/hpa.md"
+        },
+        {
+          "title": "S2i: Publish your app without Dockerfile",
+          "entry": "./v2.0/en/quick-start/source-to-image.md"
+        },
+        {
+          "title": "Canary Release of Microservice APP",
+          "entry": "./v2.0/en/quick-start/canary-release.md"
+        },
+        {
+          "title": "CI/CD based on Spring Boot Project",
+          "entry": "./v2.0/en/quick-start/devops-online.md"
+        },
+        {
+          "title": "Building a Pipeline in a Graphical Panel",
+          "entry": "./v2.0/en/quick-start/jenkinsfile-out-of-scm.md"
+        },
+        {
+          "title": "CI/CD based on GitLab and Harbor",
+          "entry": "./v2.0/en/quick-start/pipeline-git-harbor.md"
+        },
+        {
+          "title": "Ingress-Nginx for Grayscale Release",
+          "entry": "./v2.0/en/quick-start/ingress-canary.md"
+        }
+      ]
+    },
+    {
+      "title": "Cluster Admin Guide",
+      "icon": "/admin_reffer.svg",
+      "desc": "Instruction for cluster admin to manage platform and resources.",
+      "chapters": [
+        {
+          "title": "Multi-tenant Management",
+          "entries": [
+            {
+              "title": "Overview of Multi-tenant Management",
+              "entry": "./v2.0/en/multi-tenant/intro.md"
+            },
+            {
+              "title": "Overview of Role Management",
+              "entry": "./v2.0/en/multi-tenant/role-overview.md"
+            }
+          ]
+        },
+        {
+          "title": "Platform Management",
+          "entries": [
+            {
+              "title": "Account Management",
+              "entry": "./v2.0/en/platform-management/account-management.md"
+            },
+            {
+              "title": "Platform Roles Management",
+              "entry": "./v2.0/en/platform-management/role-management.md"
+            }
+          ]
+        },
+        {
+          "title": "Infrastructure",
+          "entries": [
+            {
+              "title": "Service Components",
+              "entry": "./v2.0/en/infrastructure/components.md"
+            },
+            {
+              "title": "Nodes",
+              "entry": "./v2.0/en/infrastructure/node.md"
+            },
+            {
+              "title": "Storage Classes",
+              "entry": "./v2.0/en/infrastructure/storageclass.md"
+            }
+          ]
+        },
+        {
+          "title": "Monitoring Center",
+          "entries": [
+            {
+              "title": "Physical Resources",
+              "entry": "./v2.0/en/monitoring/physical-resources.md"
+            },
+            {
+              "title": "Application Resources",
+              "entry": "./v2.0/en/monitoring/application-resources.md"
+            }
+          ]
+        },
+        {
+          "title": "Application Repository",
+          "entry": "./v2.0/en/platform-management/app-repo.md"
+        },
+        {
+          "title": "Jenkins System Settings",
+          "entry": "./v2.0/en/devops/jenkins-setting.md"
+        }
+      ]
+    },
+    {
+      "title": "User Guide",
+      "icon": "/reffer.svg",
+      "desc": "Instruct users on how to use the basic features provided by the platform",
+      "chapters": [
+        {
+          "title": "Application Template",
+          "entry": "./v2.0/en/app-template/app-template.md"
+        },
+        {
+          "title": "Workloads",
+          "entries": [
+            {
+              "title": "Deployments",
+              "entry": "./v2.0/en/workload/deployments.md"
+            },
+            {
+              "title": "StatefulSets",
+              "entry": "./v2.0/en/workload/statefulsets.md"
+            },
+            {
+              "title": "DaemonSets",
+              "entry": "./v2.0/en/workload/daemonsets.md"
+            },
+            {
+              "title": "Jobs",
+              "entry": "./v2.0/en/workload/jobs.md"
+            },
+            {
+              "title": "CronJobs",
+              "entry": "./v2.0/en/workload/cronjobs.md"
+            }
+          ]
+        },
+        {
+          "title": "Storage",
+          "entries": [
+            {
+              "title": "Volumes",
+              "entry": "./v2.0/en/storage/pvc.md"
+            }
+          ]
+        },
+        {
+          "title": "Network & Services",
+          "entries": [
+            {
+              "title": "Services",
+              "entry": "./v2.0/en/ingress-service/service.md"
+            },
+            {
+              "title": "Routes",
+              "entry": "./v2.0/en/ingress-service/ingress.md"
+            }
+          ]
+        },
+        {
+          "title": "Configuration Center",
+          "entries": [
+            {
+              "title": "Secret",
+              "entry": "./v2.0/en/configuration/secrets.md"
+            },
+            {
+              "title": "ConfigMap",
+              "entry": "./v2.0/en/configuration/configmaps.md"
+            },
+            {
+              "title": "Image Registry",
+              "entry": "./v2.0/en/configuration/image-registry.md"
+            }
+          ]
+        },
+        {
+          "title": "Project Settings",
+          "entries": [
+            {
+              "title": "Basic Information",
+              "entry": "./v2.0/en/project-setting/project-quota.md"
+            },
+            {
+              "title": "Member Roles",
+              "entry": "./v2.0/en/project-setting/project-roles.md"
+            },
+            {
+              "title": "Project Members",
+              "entry": "./v2.0/en/project-setting/project-members.md"
+            },
+            {
+              "title": "Internet Access",
+              "entry": "./v2.0/en/project-setting/project-gateway.md"
+            }
+          ]
+        },
+        {
+          "title": "DevOps Project",
+          "entries": [
+            {
+              "title": "DevOps Project Management",
+              "entry": "./v2.0/en/devops/devops-project.md"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "./v2.0/en/devops/pipeline.md"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "./v2.0/en/devops/credential.md"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "./v2.0/en/devops/add-scm.md"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "./v2.0/en/devops/jenkins-agent.md"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Development Guide",
+      "icon": "/problem.svg",
+      "desc": "Instruction of development workflow, including build, test and development",
+      "chapters": [
+        {
+          "title": "Preparing the Development Environment",
+          "entry": "./v2.0/en/developer/development-guide.md"
+        },
+        {
+          "title": "Development Workflow",
+          "entry": "./v2.0/en/developer/workflow.md"
+        }
+      ]
+    },
+    {
+      "title": "API Documentation",
+      "icon": "/problem.svg",
+      "desc": "Introduction to KubeSphere API",
+      "chapters": [
+        {
+          "title": "API Guide",
+          "entry": "./v2.0/en/api-reference/api-docs.md"
+        },
+        {
+          "title": "How to invoke KubeSphere API",
+          "entry": "./v2.0/en/api-reference/api-guide.md"
+        }
+      ]
+    }
+  ]
+}
