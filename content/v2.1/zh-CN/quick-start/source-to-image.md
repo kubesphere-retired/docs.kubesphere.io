@@ -76,13 +76,13 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat3aa969a5c0c6f5d42ecfae9fdae2e68e.png)
 
-4、点击 「下一步」，设置容器的访问策略，**协议 **默认为 `HTTP`，**容器端口** 和 **服务端口 **设置为8080，其余默认即可。
+4、点击 「下一步」，设置容器的访问策略，**协议** 默认为 `HTTP`，**容器端口** 和 **服务端口** 设置为8080，其余默认即可。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/image-20191022153341058.png)
 
 #### 第二步：挂在存储及高级设置
 
-1、然后点击「下一步」，无需挂在存储，存储默认即可，继续下一步，设置 **外网访问 **方式为 `NodePort`，最后「创建」
+1、然后点击「下一步」，无需挂在存储，存储默认即可，继续下一步，设置 **外网访问** 方式为 `NodePort`，最后「创建」
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatf97e4aef415ed5bc2381cf69670fbd6d.png)
 
@@ -110,7 +110,7 @@ curl 10.233.40.25:8080
 Really appreaciate your star, that's the power of our life.
 ```
 
-> 提示：若需要在外网访问该服务，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将**内网端口**  转发到**源端口** ，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+> 提示：若需要在外网访问该服务，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将 **内网端口**  转发到 **源端口** ，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 ### 查看推送的镜像
 
