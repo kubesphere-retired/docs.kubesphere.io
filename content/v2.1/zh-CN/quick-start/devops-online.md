@@ -9,14 +9,14 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 ## 目的
 
 本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个 Hello World 页面部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问。
-其中 cache 分支为缓存测试用例，测试方式与master分支类似，对 cache 的多次测试可体现出利用缓存可以有效的提升构建速度。
+其中 dependency 分支为缓存测试用例，测试方式与master分支类似，对 dependency 的多次构建会体现出利用缓存可以有效的提升构建速度。
 
 ## 前提条件
 
 - 本示例以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
 - 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 project-regular 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
-- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为s2i任务选择执行构建的节点。
+- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为流水线选择执行构建的节点。
 
 
 ## 预估时间
@@ -72,7 +72,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ![jenkins-online](https://kubesphere-docs.pek3b.qingstor.com/png/jenkinsonline.png)
 
-2、在 GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。其中 `cache` 分支的修改与 `master` 分支类似，若不修改，则 `cache` 分支将无法完成构建。
+2、在 GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。其中 `dependency` 分支的修改与 `master` 分支类似。
 
 ![image-20190409121802459](https://kubesphere-docs.pek3b.qingstor.com/png/env.png)
 
@@ -92,6 +92,8 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 3、修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
 ![提交更新](https://kubesphere-docs.pek3b.qingstor.com/png/commit-jenkinsfile.png)
+
+4、在 `dependency` 分支进行同样的上述操作，修改 `Jenkinsfile-online` 文件中相关环境变量。
 
 ## 创建项目
 
@@ -214,7 +216,8 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ### 第四步：运行流水线
 
-流水线创建后，点击浏览器的 **刷新** 按钮，可见一条自动触发远程分支后的运行记录。
+流水线创建后，点击浏览器的 **刷新** 按钮，可见两条自动触发远程分支后的运行记录，分别为 `master` 和 `dependency` 分支的构建记录。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatb68b13f091b9e9ec52ee3ff12dd5dd8e.png)
 
 1、点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master`分支，系统将根据输入的分支加载 Jenkinsfile-online (默认是根目录下的 Jenkinsfile)。
 
@@ -314,3 +317,15 @@ Hello,World!
 > 提示：若需要在外网访问该服务，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将**内网端口**比如 30861 转发到**源端口** 30861，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 至此，基于 GitHub 和 DockerHub 的一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../devops/devops-faq)。
+
+## devops缓存测试
+
+若希望测试该示例使用缓存后的提升效果，可在第一次自动触发的 `dependency` 分支构建完成后，再次手动触发 `dependency` 分支进行构建。
+
+1、点击右侧 **运行**，将根据之前设置的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `dependency` 分支，系统将根据输入的分支加载 Jenkinsfile-online (默认是根目录下的 Jenkinsfile)。并且输入 `TAG_NAME`，点击确定。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatbdd81b896658a6958a1b315592db2306.png)
+
+2、流水线开始运行，等待其构建完成。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatfcb5ea2d1f042a12f9120f234148ced6.png)
+
+可发现，第二次构建相比与第一次构建，在速度上有了很大的提升。第一次构建时所有的依赖包都需要重新的下载，然后第二次构建时因为已经把第一次构建时将所需依赖进行了缓存，无需重新下载，所以构建速度有了极大的提升。
