@@ -22,7 +22,7 @@ description: ''
  1. 在节点所在界面选择 `更多操作` 下的 `污点管理`。
  ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat29f987aa5df21b3fb91fa9152bfed8d6.png)
 
- 2. 设置污点的键为 `node.kubernetes.io/ci`, 无需设置污点的值，并可根据自己的情况选择 `不允许调度` 、`尽量不调度` 还是 `不允许并驱逐已有容器组`。
+ 2. 设置污点的键为 `node.kubernetes.io/ci`, 无需设置污点的值，并可根据自己的情况选择 `不允许调度` 或 `尽量不调度`。
  ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat97eea56f0a74d899fa497b8e9a165826.png)
 
  3. 最后点击保存即可。
