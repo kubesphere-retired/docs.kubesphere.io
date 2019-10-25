@@ -113,7 +113,7 @@ description: ''
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190512180433.png)
 
-`ws-admin` 可以从集群成员中邀请新成员加入当前企业空间，然后创建项目和 DevOps 工程。在左侧菜单栏选择 `企业空间管理` 进入企业空间概览页，然后选择 `企业空间管理` → `成员管理`，点击 `邀请成员`。 
+`ws-admin` 可以从集群成员中邀请新成员加入当前企业空间，然后创建项目和 DevOps 工程。在左侧菜单栏选择 `企业空间管理` 进入企业空间概览页，然后选择 `企业空间管理` → `成员管理`，点击 `邀请成员`。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190512180724.png)
 
