@@ -4,9 +4,9 @@ keywords: 'Kubernetes, docker, jenkins, devops, istio'
 description: 'What is KubeSphere'
 ---
 
-[KubeSphere](https://kubesphere.io/en/) ️is an enterprise-grade multi-tenant container platform, which is based on [Kubernetes](http://kubernetes.io) and provides easy-to-use dashboard to reduce learning cost for employing the container management platform and make it easier to develop, test and maintain your daily work. It aims to resolve the challenge problems Kubernetes users have such as storage, network, security, usability and so on. 
+[KubeSphere](https://kubesphere.io/en/) ️is an enterprise-grade multi-tenant container platform, which is based on [Kubernetes](http://kubernetes.io) and provides easy-to-use dashboard to reduce learning cost and make it easier to develop, test and maintain your daily work. It aims to resolve the challenge problems Kubernetes users have such as storage, network, security, usability and so on. 
 
-In addition, the platform has integrated and optimized a range of functional modules which are suitable for containers. KubeSphere provides enterprises with a complete solution for development, automation operation and maintenance, microservice governance, multi-tanency management. Besides, the platform provides the visual ablility to manage workload, container cluster, service and network, application lifecycle management as well as database mirroring and storage.
+In addition, the platform has integrated and optimized a range of functional modules which are suitable for containers. KubeSphere provides enterprises with a complete solution for development, automation operation and maintenance, microservice governance, multi-tanency management. Besides, the platform provides the visual abilility to manage workload, Kubernetes cluster, service and network, application lifecycle management as well as image registry and storage.
 
 <table>
   <tr>
