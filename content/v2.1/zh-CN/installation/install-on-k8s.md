@@ -7,9 +7,9 @@ description: '将 KubeSphere 部署在 Kubernetes 之上'
 KubeSphere 支持在已有 Kubernetes 集群之上在线安装 [KubeSphere](https://kubesphere.io/)。在安装之前，请确认您的环境满足以下 [前提条件](../prerequisites)：
 
 
-> - `Kubernetes` 版本 `>=1.13.0`
+> - `Kubernetes` 版本： `1.13.0 ≤ K8s version ≤ 1.16`
 > - `Helm`，版本 `>= 2.10.0`
-> - 集群可用`内存 >= 10G` 
+> - 集群可用`内存 >= 10G`
 > - 建议配合持久化存储使用（可选）
 
 可参考 [前提条件](../prerequisites) 验证，若待安装的环境满足以上条件则可以开始部署 KubeSphere。
@@ -40,7 +40,7 @@ EOF
 ```bash
 $ kubectl -n kubesphere-system create secret generic kubesphere-ca  \
 --from-file=ca.crt=/etc/kubernetes/pki/ca.crt  \
---from-file=ca.key=/etc/kubernetes/pki/ca.key 
+--from-file=ca.key=/etc/kubernetes/pki/ca.key
 ```
 
 3. 创建 etcd 的证书 Secret。
@@ -201,5 +201,3 @@ $ kubectl get svc -n kubesphere-system
  </tr>
  <![endif]>
 </table>
-
-

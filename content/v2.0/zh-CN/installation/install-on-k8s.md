@@ -8,7 +8,7 @@ KubeSphere 支持在已有 Kubernetes 集群之上部署 [KubeSphere](https://ku
 
 ## 准备工作
 
-1. 确认现有的 `Kubernetes` 版本在 `>=1.13.0`，KubeSphere 依赖 `Kubernetes 1.13.0` 版本之后的新特性，可以在执行 `kubectl version` 来确认 :
+1. `Kubernetes` 版本要求为 `1.13.0 ≤ K8s Version ≤ 1.16`，KubeSphere 依赖 `Kubernetes 1.13.0` 版本之后的新特性，可以在执行 `kubectl version` 来确认 :
 
 ```bash
 $ kubectl version | grep Server
@@ -77,7 +77,7 @@ EOF
 ```bash
 $ kubectl -n kubesphere-system create secret generic kubesphere-ca  \
 --from-file=ca.crt=/etc/kubernetes/pki/ca.crt  \
---from-file=ca.key=/etc/kubernetes/pki/ca.key 
+--from-file=ca.key=/etc/kubernetes/pki/ca.key
 ```
 
 3. 创建 etcd 的证书 Secret。
