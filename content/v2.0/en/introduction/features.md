@@ -56,7 +56,7 @@ KubeSphere provides easy-to-use visual wizard UI for various Kubernetes resource
 
 - fully monitoring dashboard can be operated through a visual interface, while at the same time, the open standard interface is easy to connect with the enterprise operation and maintenance system, so as to unify the operation and maintenance entry to realize centralized operation and maintenance.
 - Three-dimensional second-level monitoring: Instruct the three-dimensional monitoring with second-level frequency and dual-dimensions for 16 indicators.
-- In the cluster resource dimension, we provide multiple indicators such as CPU utilization, memory utilization, CPU load average, disk usage, inode utilization, disk throughput, IOPS, network card rate, container group running state, ETCD monitoring, API Server monitoring.
+- In the cluster resource dimension, we provide multiple indicators such as CPU utilization, memory utilization, CPU load average, disk usage, inode utilization, disk throughput, IOPS, network card rate, Pod running state, ETCD monitoring, API Server monitoring.
 - In the dimension of application resources, we provide five monitoring indicators such as CPU consumption, memory consumption, number of container clusters, network outflow rate and network inflow rate for the application. Besides, we support the query by the amount of sorting and custom time range as well as fast location of exceptions.
 - Provide resource usage ranking by node, enterprise space, project, etc.
 - Provide service component monitoring to quickly locate component failures.
@@ -77,7 +77,7 @@ KubeSphere provides easy-to-use visual wizard UI for various Kubernetes resource
 ## Log Query and Collection
 
 - Provides multi-tenant log management. In KubeSphere's log search system, different tenants can only see their own log information.
-- Contains multi-level log queries (project/workload/container group/container and keywords) as well as flexible and convenient log collection configuration options.
+- Contains multi-level log queries (project/workload/Pod/container and keywords) as well as flexible and convenient log collection configuration options.
 - Supports a variety of log collection platforms such as Elasticsearch, Kafka, Fluentd.
 
 Application management and orchestration
