@@ -6,12 +6,23 @@ description: '将 KubeSphere 部署在 Kubernetes 之上'
 
 KubeSphere 支持在已有 Kubernetes 集群之上部署 [KubeSphere](https://kubesphere.io/)，以下方式适合无外网情况下的离线部署 KubeSphere 在 Kubernetes 之上。
 
+## 前提条件
+
+在部署之前请确认您的 Kubernetes 是否满足以下条件，可参考 [在 Kubernetes 在线部署 KubeSphere - 前提条件](../install-on-k8s) 的步骤进行确认。
+
+> - `Kubernetes` 版本 `>=1.13.0`
+> - `Helm`，版本 `>= 2.10.0`
+> - 集群可用`内存 >= 10G`
+> - 建议配合持久化存储使用（可选）
+
+## 准备部署
+
 1. 下载镜像包并解压。
 
 ```bash
 $ wget https://kubesphere-installer.pek3b.qingstor.com/ks-only/kubesphere-images-advanced-2.0.2.tar.gz
 ```
- 
+
 ```bash
 $ tar -zxvf kubesphere-images-advanced-2.0.2.tar.gz
 ```
@@ -31,7 +42,7 @@ $ ./download-docker-images.sh 仓库地址
 ```
 
 > 注意：“仓库地址” 请替换为本地镜像仓库地址，例： `./download-docker-images.sh  192.168.1.2:5000`
-   
+
 4. 替换 `deploy/kubesphere-installer.yaml` 中的镜像。
 
 > 注：以下命令中 `192.168.1.2:5000/kubespheredev/ks-installer:advanced-2.0.2` 为示例镜像，执行时请替换。
