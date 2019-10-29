@@ -1,45 +1,45 @@
 ---
-title: "告警消息 —— 工作负载级别"
+title: "Alarm —— workload class"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-告警消息记录了在工作负载级别的告警策略中，所有已发出的满足告警规则的告警信息。在 [告警策略 —— 工作负载级别](../workload-alert-policy) 这篇文档中，演示了创建一个工作负载级别的告警策略并发送邮件通知，同时所有平台发出的告警消息都已经记录在了告警消息列表中，管理员可以进一步查看告警详情、监控指标、告警策略、最近通知和处理意见等详细信息。
+The alert message records all the alert message that meets the workload level alert policies. The file of [Alarm strategy —— alarm workload level](../workload-alert-policy) demonstrates how to create a workload level alert policy, send an email notification and record the alert message from all platforms in the alert message list. From the list managers can check alarm details, monitor indexes, edit alarm policy, latest notification and make suggestions, etc.
 
-## 前提条件
+## Prerequisites
 
-已创建了告警策略并收到了告警消息，若还未创建请参考 [告警策略 —— 工作负载级别](../workload-alert-policy)。
- 
-## 查看告警消息
+Build the alert policy and receive alert message at first. Otherwise, please refer to [Alert policy —— alarm workload level](../workload-alert-policy).
 
-1. 以项目普通用户 project-regular 账号登录 KubeSphere，进入示例项目 demo-namespace，选择 「监控告警」→ 「告警消息」，
+## Check warnings
 
-2. 点击 「告警消息」，在告警消息列表中查看**全部**的告警消息。由于我们在告警策略的示例中设置的监控对象为 reviews-v1 和 details-v1，并且这两个示例工作负载的内存用量都大于告警的阈值 20 MiB，因此在告警消息列表中看到了 2 条与监控目标对应的告警消息。
+1. Login KubeSphere with the account of project-regular. Enter into the project of demo-namespace and select 「Monitoring alarms」→ 「alert message」.
+
+2. Click 「alert message」and check **all** the alert message from the list. Since we have set the monitoring target as reviews-v1 and details-v1 in the alert policy sample, and the two sample workloads' memories are larger than the alarm's threshold as 20 MiB, the 2 alert message according to the monitoring targets can be seen in the alert message list.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430153418.png)
 
-3. 点击其中一条告警消息进入详情页，在告警详情中查看被监控工作负载的内存用量，可以看到在最近一段时间内监控对象的内存用量持续高于设定的阈值 20 MiB，因此触发了告警。
+3. Click one of the alert message to the details page. Check monitored workload memories in the alarm details. You can find that the monitored target's memories have been higher than the 20 MiB for some time, which triggered the alarm.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430150116.png)
 
-## 查看告警策略
+## Strategies for warning checking
 
-切换到 「告警策略」 查看本条告警消息对应的告警策略，可以看到该工作负载告警策略的触发规则正是在上一篇工作负载告警策略示例中设定的。
+Switch to 「Alert policy」 to check the alert policy for this alarm. You can find the triggering rule of the workload's alert policy was set in the previous workload alert policy sample.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430150247.png)
 
-## 查看最近通知
+## Check latest notification
 
-点击 「最近通知」 即可看到当前的通知人已收到了 3 条告警通知，因为当前监控工作负载的告警指标 (内存用量) 连续 2 次超过了阈值，通知规则设置的是 **每 5 分钟警告一次，最多重发 3 次**。
+ Click 「Latest Notification」. You can see the three received alarms. This is because the workload's memories have passed the thresholds twice and the notification policy is **Alarm every 5 minuets and 3 notification is the maximum**.  
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430150346.png)
 
-### 验证邮件通知
+### Verification email notification
 
-登录通知邮箱即可看到 KubeSphere 的邮件服务器给通知人发送的告警消息。示例邮箱先后一共收到了 6 封邮件，这是因为告警目标设置的 2 个工作负载 (部署) 内存利用率都 **连续 2 次** 超过了阈值 **20 MiB**，并且告警的通知规则设置的是 **每 5 分钟警告一次，最多重发 3 次**。
+Login the notification email-box to see the alarms sent by KubeSphere's email server. The sample email-box received 6 emails because the 2 workloads memory utilizations set by the alert policy has overpassed the threshold **20 MiB** **twice continuously**. The alert policy was set as **Alarm every 5 minuets and 3 notification is the maximum**.  
 
-## 添加处理意见
+## Add processing comments
 
-点击 「处理意见」 可以对当前告警进行处理，添加意见信息。例如，由于当前告警工作负载的内存用量高于阈值，所以我们可以在处理意见的窗口中添加一条信息：**需要对该部署提高默认的最大内存使用的配额**。
+Click 「Processing comments」 to process current alarms and add comments. For an example, since the current alarm workload's memory is higher than the threshold, we can add a message in the processing comment window, which is **the maximum memories in the deployment needs to be raised**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190418100512.png)
