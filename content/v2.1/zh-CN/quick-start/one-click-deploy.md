@@ -35,7 +35,7 @@ KubeSphere 应用商店对内可作为团队间共享企业内部的中间件、
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191025004747.png)
 
-2. 在添加应用仓库的创建，填入 `https://repos.emqx.io/charts`，验证通过后即可创建。
+2. 在添加应用仓库的窗口，URL 填入 `https://repos.emqx.io/charts`，验证通过后即可创建。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191025004847.png)
 
