@@ -183,7 +183,7 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 
 以上访问将通过 `http://{$节点 IP}:{$节点端口 NodePort}` 访问 WordPress 博客网站。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190509082952.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027213826.png)
 
 至此，您已经熟悉了如何通过创建一个 KubeSphere 应用的方式，通过快速添加多个组件来完成一个应用的构建，最终发布至 Kubernetes。这种创建应用的形式非常适合微服务的构建，只需要将各个组件容器化以后，即可通过这种方式快速创建一个完整的微服务应用并发布 Kubernetes。
 
