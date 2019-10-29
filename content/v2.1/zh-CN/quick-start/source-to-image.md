@@ -4,9 +4,31 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-Source to Image (S2I) 是一个允许用户直接输入源代码然后打包成可运行程序到 Docker 镜像的工具，在用户不需要了解 Dockerfile 的情况下方便构建镜像。它是通过将源代码放入一个负责编译源代码的 Builder image 中，自动将编译后的代码打包成 Docker 镜像。
+## 什么是Source-to-image
 
-## 目的
+**Source-to-image（S2I）** 是一个允许用户直接输入源代码然后打包成可运行程序到 Docker 镜像的工具，在用户不需要了解 Dockerfile 的情况下方便构建镜像。它是通过将源代码放入一个负责编译源代码的 Builder image 中，自动将编译后的代码打包成 Docker 镜像。在 Kubesphere 中支持以创建服务的形式，一键将源代码生成镜像推送到仓库，并创建其部署（Deployment）和服务（Service）最终自动发布到 Kubernetes 中。
+
+## Source-to-image 特性
+
+**Source-to-image（S2I）**能够在实际的项目**快速部署上线、微服务改造**的过程中，极大地赋能开发者和运维用户。S2I 无需编写一行 Dockerfile，**降低学习成本的同时提升发布效率，使用户能够更好地专注在业务本身。**
+
+下图简述了 S2I 的业务实现流程，**S2I 已将以下多个步骤工具化和流程化，因此只需要在一个表单中完成。**
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-svg-2.png)
+
+> - ① 在 KubeSphere 创建 S2I 类型的服务，上传项目源代码
+> - ② S2I 将在后台创建 K8s Job、Deployment 和 Service
+> - ③ 将源代码自动打包成 Docker 镜像
+> - ④ 推送镜像至 DockerHub 或 harbor 或其他 Registry
+> - ⑤ S2I Job 将在第二步创建的 Deloyment 中使用仓库中的镜像
+> - ⑥ 自动发布至 Kubernetes
+>
+> 说明：在上述流程中，S2I Job 还会在后台执行状态上报的功能
+
+接下来将用一个 Java 示例来演示介绍 S2I 的使用方式。
+
+
+## 演示目的
 
 本示例通过官方给出的 Java 示例，演示如何在 KubeSphere 上使用 Source to Image 来实现构建镜像，并且实现自动推送到镜像仓库，最后部署到集群中，暴露给外网访问。其中测试示例仓库中的 dependency 分支主要用于构建镜像的缓存测试。
 
