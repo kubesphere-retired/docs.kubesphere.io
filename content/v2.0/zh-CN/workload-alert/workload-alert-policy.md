@@ -1,91 +1,83 @@
 ---
-title: "告警策略 —— 工作负载级别"
+title: "Alert policy —— workload level"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-## 目的
+## Objective
 
-KubeSphere 提供节点和工作负载级别的告警策略，普通用户可以在项目中设置工作负载级别的告警策略。本篇文档以创建一个工作负载级别的告警策略并发送邮件通知作为示例，引导用户在项目中如何设置工作负载级别的告警策略。
+KubeSphere provides nodes and workload level alert policy and ordinary users can set workload level alert policy in the project. This guidebook will create a workload level alert policy and send notification email as an example. Here is to guide users to set workload level alert policy in projects.
 
-## 操作示例
+## Hand-on example
 
-### 前提条件
+### Prerequisites
 
-- 需由集群管理员预先配置邮件服务器，若还未配置可参考 [邮件服务器](../../platform-settings/email-server)；
+- Cluster managers need to set email server in the first place. Otherwise, please refer to [Email server](../../platform-settings/email-server)；
 - 已创建了企业空间和项目并且创建了项目普通用户 project-regular 的账号，若还未创建请参考 [多租户管理快速入门](../../quick-start/admin-quick-start)；
-- 项目中已有工作负载，若没有可在 「应用」→「部署新应用」，选择 「部署示例应用 Bookinfo」 快速部署一个应用。
+Project-regular account and workspace are needed. Otherwise, please refer to [Multi-tenant management fast guide](../../quick-start/admin-quick-start)；
+- Workload is needed in the project. Otherwise, select 「Deployment sample application Bookinfo」 from 「Application」→「New deployment application」 to deploy an application immediately.
 
 <!-- <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/kubesphere%20%E5%91%8A%E8%AD%A6.mov">
 </video> -->
 
-### 第一步：添加告警策略
+### Step 1: Add alert policies
 
-以项目普通用户 `project-regular` 登录 KubeSphere，进入示例项目 demo-namespace，选择 「监控告警」→「告警策略」，点击 「添加策略」。
+Login KubeSphere with `project-regular` account. Enter into sample project demo-namespace and select 「Monitoring Alarm」→「Alert policy」. Click 「Add policy」.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430100932.png)
 
-### 第二步：填写基本信息
+### Step 2: Fill in basic information
 
-在弹窗中，参考如下提示填写基本信息，完成后点击 「下一步」。
+In the pop-up window, refer to the following detailed information. Click 「Next」 after completion.
 
-- 名称：为告警策略起一个简洁明了的名称，便于用户浏览和搜索，比如 `alert-demo`；
-- 别名：帮助您更好的区分资源，并支持中文名称，比如 `告警策略示例`；
-- 描述信息：简单介绍该告警策略。
+- Name: Use a simple name for the alert policy for user browse and search;
+- Nickname: Nicknames can help you distribute resources better；
+- Description: Briefly introduce the alert policy.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430101057.png)
 
+### Step 3: Select monitoring targets
 
-### 第三步：选择监控目标
-
-监控目标支持部署、有状态副本集、守护进程集三种工作负载，这里选择 **部署**，选择 reviews-v1 和 details-v1 作为监控目标，然后点击 「下一步」。
+Monitor targets support three workloads including deployment, stateful replica set and daemon. Select **deployment** and select reviews-v1 and details-v1 as monitoring targets. The click 「Next」.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430101829.png)
 
-### 第四步：添加告警规则
+### Step 4: Add alert policies
 
-点击 「添加规则」，本示例以设置 **内存用量** 作为告警指标，监控周期为 **1 分钟/周期**，选择 **连续 2 次**，内存用量的阈值 **> 20 MiB**，级别为重要告警，设置的规则如截图所示：
+Click 「Add policy」. The sample here sets **Memory utilization** as alert indexes. The monitoring cycle is **1 minute/ cycle** and select **twice continuously**. Set the memory utilization threshold as **> 20 MiB** and set the level as important alert. The setting rule is shown as follows:
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430104015.png)
 
-> 说明：
-> 工作负载支持的告警规则如下：
-> - CPU 用量；
-> - 内存用量 (包含缓存)；
-> - 内存用量；
-> - 网络：网络发送数据速率、网络接收数据速率；
-> - 工作负载指标：部署副本不可用率、有状态副本集副本不可用率、守护进程集不可用率 (工作负载的副本不可用率： 比如对 Nginx 的 部署设置 5 个副本后正常运行的副本状态是 5/5， 如果部署不可用率设置了大于等于 20%，那么只要当副本运行状态为 4/5 的时刻就会发送告警)
+> Note：
+> The workload alert policy is as below:
+> - CPU usage；
+> - Memory usage (including cache)；
+> - Memory usage；
+> - Network: Network's data sending rate and data receiving rate;
+> - Workload index: Deploy copy unavailability rate, stateful replica set replica unavailability rate and daemon set unavailability rate (Workload copy unavailability rate: if Ngix's 5 copies of deployment run properly, the copies' status is 5/5. If the deployment unavailability rate is over 20%, the alert message will be sent when the copy's status is 4/5.)
 
-完成后点击 「保存」，然后点击 「下一步」。
 
-### 第五步：设置通知规则
+Click 「Save」 after completion and then click 「Next」.
 
-1. 通知有效时间可以设置发送通知邮件的时间范围，例如 `09:00 ~ 19:00`，通知渠道目前仅支持邮箱，在通知列表中输入需要通知的成员邮箱。
+### Step 5: Set notification rules
 
-2. 重复规则设置的是告警通知的发送周期和重发频度，如果告警一直未解决，相隔一定的时间将会重复发送告警。针对不同级别的告警也可以设置不同的重复规则，由于上一步设置的告警级别是重要告警，因此选择重要告警的规则为 **每 5 分钟警告一次，最多重发 3 次**。参考如下截图设置通知规则：
+1. You can set notification email time scale by setting the notifying valid time such as `09:00 ~ 19:00`. Currently, the email notification is available. You can add members' email addresses in the notification list.
+
+2. The repetitive rule configures notification sending cycle and repetitive frequency. If the alert has not been solved for some time, the alerts will be sent repetitively. For different levels of alerts, different repetitive rules can be configured. Since the alarm level set in the previous step is important, the rule should be chosen is **alarm every 5 minutes and 3 times is the maximum**. Please refer to the following screenshots to set notification rules:
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190417182721.png)
 
-3. 点击 「创建」，可以看到示例告警策略创建成功。
+3. Click 「Create」. You can see the sample alert policy has been set successfully.
 
-> 说明：告警的等待时间 = 检测周期 x 连续次数。例如检测周期为 **1 分钟/周期**，连续次数为 2 次，那么需要等待 2 分钟。
+> Note: The alert waiting time = checking cycle x times. For example, when the check cycle is **1 minute/cycle**, for twice continuously, the waiting time is 2 minutes.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430113250.png)
 
-### 第六步：查看告警策略
+### Step 6: Check the alert policy
 
-告警策略创建成功后，点击进入 `alert-demo` 告警策略的详情页，查看告警规则当前的状态和详细信息，包括监控目标、通知规则和告警历史等。
+After setting the alert policy, click `alert-demo` to access alert policy page. Check the policy details, the current status and detailed information about monitoring targets, notification rules and alert calendar, etc.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190430113351.png)
 
-左侧点击 「更多操作」 → 「更改状态」，支持启用或停用告警策略。
-
-
-
-
-
-
-
-
-
+Click 「More actions」 → 「Change status」to start or stop the alert policy.
