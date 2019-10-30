@@ -6,7 +6,7 @@ description: ''
 
 ## 什么是Source-to-image
 
-**Source-to-image（S2I）** 是一个允许用户直接输入源代码然后打包成可运行程序到 Docker 镜像的工具，在用户不需要了解 Dockerfile 的情况下方便构建镜像。它是通过将源代码放入一个负责编译源代码的 Builder image 中，自动将编译后的代码打包成 Docker 镜像。在 Kubesphere 中支持以创建服务的形式，一键将源代码生成镜像推送到仓库，并创建其部署（Deployment）和服务（Service）最终自动发布到 Kubernetes 中。
+**Source-to-image（S2I）** 是一个允许用户直接输入源代码然后打包成可运行程序到 Docker 镜像的工具，在用户不需要了解 Dockerfile 的情况下方便构建镜像。它是通过将源代码放入一个负责编译源代码的 Builder image 中，自动将编译后的代码打包成 Docker 镜像。在 KubeSphere 中支持以创建服务的形式，一键将源代码生成镜像推送到仓库，并创建其部署（Deployment）和服务（Service）最终自动发布到 Kubernetes 中。
 
 ## Source-to-image 特性
 
@@ -63,7 +63,7 @@ description: ''
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat9cdcd15e9c7189e45685918b23a9538b.png)
 
-2、点击创建服务，在 `**通过代码构建新的服务**` 下选择 `Java`。
+2、点击创建服务，在 `通过代码构建新的服务` 下选择 `Java`。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatfe3be88f9bc6875179d868bd5a0a7236.png)
 
