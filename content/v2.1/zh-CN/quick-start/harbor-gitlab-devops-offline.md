@@ -100,9 +100,7 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 | APP_NAME                 | devops-docs-sample                   | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID      | sonar-token                          | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
 
-**注：`master` 分支 Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。**
-
-3、示例仓库中的 `dependency` 分支主要用于缓存测试，离线环境中可忽略该分支的构建。
+**注：`master` 分支 Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。示例仓库中的 `dependency` 分支主要用于缓存测试，离线环境中可忽略该分支的构建。**
 
 ## 创建两个项目
 

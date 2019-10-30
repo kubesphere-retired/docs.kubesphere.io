@@ -8,7 +8,7 @@ description: ''
 
 ## 目的
 
-本示例演示基于 [示例十 - Jenkinsfile in SCM](../devops-online)，通过可视化构建流水线最终将一个 HelloWorld 示例服务部署到 KubeSphere 集群中的开发环境且能够允许用户访问，这里所谓的开发环境在底层的 Kubernetes 里是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例十的流程后，对于示例七的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 为例。
+本示例演示基于 [示例十 - Jenkinsfile in SCM](../devops-online)，通过可视化构建流水线最终将示例服务部署到 KubeSphere 集群中的开发环境且能够允许用户访问，这里所谓的开发环境在底层的 Kubernetes 里是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例十的流程后，对于示例七的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 为例。
 
 ## 前提条件
 
@@ -16,6 +16,7 @@ description: ''
 - 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
 - 邮件发送需安装前在 Installer 中配置，请参考 [集群组件配置释义](../../installation/vars) (下一版本将支持安装后在 UI 统一配置邮件服务器)。
+- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为流水线选择执行构建的节点。
 
 ## 预估时间
 
@@ -257,9 +258,9 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514160931.png)
 
 ### 查看流水线
-   
+
 1、几分钟后，流水线将运行成功。点击流水线中 `活动` 列表下查看当前正在运行的流水线序列号，页面展示了流水线中每一步骤的运行状态。黑色框标注了流水线的步骤名称，示例中流水线的 6 个 stage 就是以上创建的六个阶段。
-   
+
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514161723.png)
 
 2、当前页面中点击右上方的 `查看日志`，查看流水线运行日志。页面展示了每一步的具体日志、运行状态及时间等信息，点击左侧某个具体的阶段可展开查看其具体的日志，若出现错误可根据日志信息来分析定位问题，日志支持下载至本地查看。
