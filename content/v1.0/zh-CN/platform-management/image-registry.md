@@ -48,7 +48,6 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 ```bash
 [Service]
 Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --graph=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
---iptables=false \
 --insecure-registry=139.198.16.232"
 ```
 

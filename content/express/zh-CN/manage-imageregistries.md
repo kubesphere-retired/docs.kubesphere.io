@@ -55,7 +55,6 @@ Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜�
 ```bash
 [Service]
 Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --graph=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
---iptables=false \
 --insecure-registry=139.198.16.232"
 ```
 
