@@ -72,7 +72,6 @@ According to the address type of the Harbor, you need to divide into http and ht
 ```bash
 [Service]
 Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --graph=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
---iptables=false \
 --insecure-registry=139.198.16.232"
 ```
 

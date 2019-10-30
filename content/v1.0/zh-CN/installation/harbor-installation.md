@@ -30,7 +30,7 @@ harbor_domain: harbor.devops.kubesphere.local
 
 ```bash
 [Service]
-Environment="DOCKER_OPTS=  --registry-mirror=https://registry.docker-cn.com --data-root=/var/lib/docker --log-opt max-size=10m --log-opt max-file=3 --iptables=false --insecure-registry=harbor.devops.kubesphere.local:30280"
+Environment="DOCKER_OPTS=  --registry-mirror=https://registry.docker-cn.com --data-root=/var/lib/docker --log-opt max-size=10m --log-opt max-file=3 --insecure-registry=harbor.devops.kubesphere.local:30280"
 ```
 
 > 注意：Environment 配置应写在一行，不能手动换行。
