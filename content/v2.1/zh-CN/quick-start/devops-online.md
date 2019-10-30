@@ -8,8 +8,8 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 目的
 
-本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个 Hello World 页面部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问。
-其中 dependency 分支为缓存测试用例，测试方式与master分支类似，对 dependency 的多次构建会体现出利用缓存可以有效的提升构建速度。
+本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将演示示例部署到 KubeSphere 集群中的开发环境和生产环境且能够通过公网访问。
+仓库中的 dependency 分支为缓存测试用例，测试方式与 master 分支类似，对 dependency 的多次构建可体现出利用缓存可以有效的提升构建速度。
 
 ## 前提条件
 
@@ -72,7 +72,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ![jenkins-online](https://kubesphere-docs.pek3b.qingstor.com/png/jenkinsonline.png)
 
-2、在 GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。其中 `dependency` 分支的修改与 `master` 分支类似。
+2、在 GitHub UI 点击编辑图标，需要修改如下环境变量 (environment) 的值。
 
 ![image-20190409121802459](https://kubesphere-docs.pek3b.qingstor.com/png/env.png)
 
@@ -93,11 +93,11 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ![提交更新](https://kubesphere-docs.pek3b.qingstor.com/png/commit-jenkinsfile.png)
 
-4、在 `dependency` 分支进行同样的上述操作，修改 `Jenkinsfile-online` 文件中相关环境变量。
+4、若需要测试缓存，需要切换至 `dependency` 分支，对 `dependency` 分支下的 Jenkinsfile-online 做类似的修改，否则该分支的流水线将构建失败。
 
 ## 创建项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 这两个项目 (Namespace) 环境中，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
 ### 第一步：创建第一个项目
 
@@ -163,13 +163,13 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 完成代码仓库相关设置后，进入高级设置页面，高级设置支持对流水线的构建记录、行为策略、定期扫描等设置的定制化，以下对用到的相关配置作简单释义。
 
-1、构建设置中，勾选 `丢弃旧的构建`，此处的 **保留分支的天数** 和 **保留分支的最大个数** 默认为 -1。
+1、分支设置中，勾选 `丢弃旧的分支`，此处的 **保留分支的天数** 和 **保留分支的最大个数** 默认为 -1。
 
-![丢弃旧的分支](https://pek3b.qingstor.com/kubesphere-docs/png/20190425224048.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat6b0ca0cf57ea9c1eaf44dbac633bb459.png)
 
 > 说明：
 >
-> 分支设置的保留分支的天数和保持分支的最大个数两个选项可以同时对分支进行作用，只要某个分支的保留天数和个数不满足任何一个设置的条件，则将丢弃该分支。假设设置的保留天数和个数为 2 和 3，则分支的保留天数一旦超过 2 或者保留个数超过 3，则将丢弃该分支。默认两个值为 -1，表示不自动删除分支。
+> 分支设置的保留分支的天数和保持分支的最大个数两个选项可以同时对分支进行作用，只要某个分支的保留天数和个数不满足任何一个设置的条件，则将丢弃该分支。假设设置的保留天数和个数为 2 和 3，则分支的保留天数一旦超过 2 或者保留个数超过 3，则将丢弃该分支。默认两个值为 -1，表示将会丢弃已经被删除的分支。
 >
 > 丢弃旧的分支将确定何时应丢弃项目的分支记录。分支记录包括控制台输出，存档工件以及与特定分支相关的其他元数据。保持较少的分支可以节省 Jenkins 所使用的磁盘空间，我们提供了两个选项来确定应何时丢弃旧的分支：
 >
@@ -328,4 +328,4 @@ Hello,World!
 2、流水线开始运行，等待其构建完成。
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatfcb5ea2d1f042a12f9120f234148ced6.png)
 
-可发现，第二次构建相比与第一次构建，在速度上有了很大的提升。第一次构建时所有的依赖包都需要重新的下载，然后第二次构建时因为已经把第一次构建时将所需依赖进行了缓存，无需重新下载，所以构建速度有了极大的提升。
+可发现，第二次构建利用了第一次构建时缓存的依赖，无需再次进行依赖下载。
