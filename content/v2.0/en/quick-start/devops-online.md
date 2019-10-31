@@ -121,13 +121,13 @@ Similarly, create a project named `kubesphere-sample-prod` following the two st
 > 
 > 
         ![](/api/filetransfer/images?url=https%3A%2F%2Fkubesphere-docs.pek3b.qingstor.com%2Fpng%2Fproject.png&sign=e9214c7a0e7f299c2a21919eeaa58c8dff5b82107116e3e88b51f90d15d8133f)
-          
+
   
-  
-          
-      
-    
-  
+
+
+​      
+​    
+
 
 
 
@@ -177,7 +177,7 @@ After completing the repositories' configurations, enter into the advanced setti
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190425224048.png#align=left&display=inline&height=492&originHeight=492&originWidth=1968&search=&status=done&width=1968)
 
 > Note:
-> The branches can be controlled by both of the preservation days and the branch number. If the branch has expired the preservation dates or exceeded the limitation number, the branch should be discarded. For example, if the preservation day is 2 and the branch number is  3, any branches that do not meet the requirements should be discarded. Set both of the limitation to -1 by default means not to delete branched automatically. 
+> The branches can be controlled by both of the preservation days and the branch number. If the branch has expired the preservation dates or exceeded the limitation number, the branch should be discarded. For example, if the preservation day is 2 and the branch number is  3, any branches that do not meet the requirements should be discarded. Set both of the limitation to -1 by default means will delete the branch that has been deleted. 
 > 
 > Discarding old branches means that you will discard the branch record all together. The branch record includes console output, archive artifacts and other relevant data. Keeping less branches saves Jenkins' disk space. We provide two options to determine when to discard old branches:
 > 
