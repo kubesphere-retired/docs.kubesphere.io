@@ -265,7 +265,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-result.png)
 
-2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。Hello World 示例页面最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
+2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。演示示例页面最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
@@ -292,14 +292,14 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 访问示例服务
 
-若在内网环境访问部署的 HelloWorld 示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问，其中 Virtual IP 和节点端口 (NodePort) 可通过对应项目下的服务中查看：
+若在内网环境访问部署的演示示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问，其中 Virtual IP 和节点端口 (NodePort) 可通过对应项目下的服务中查看：
 
 **验证 Dev 环境的示例服务**
 
 ```shell
 # curl {$Virtual IP}:{$Port} 或者 curl {$内网 IP}:{$NodePort}
 curl 10.233.40.5:8080
-Hello,World!
+Really appreaciate your star, that's the power of our life.
 ```
 
 Virtual IP 在
@@ -309,7 +309,7 @@ Virtual IP 在
 ```shell
 # curl {$Virtual IP}:{$Port} 或者 curl {$内网 IP}:{$NodePort}
 curl 10.233.42.3:8080
-Hello,World!
+Really appreaciate your star, that's the power of our life.
 ```
 
 若两个服务都能访问成功，则说明流水线运行结果也是符合预期的。
