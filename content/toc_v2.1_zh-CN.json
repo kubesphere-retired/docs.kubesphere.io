@@ -223,6 +223,10 @@
         {
           "title": "示例十三 - Binary-to-Image",
           "entry": "./v2.1/zh-CN/quick-start/b2i-war.md"
+        },
+        {
+          "title": "示例十四 - 应用商店",
+          "entry": "./v2.1/zh-CN/quick-start/app-store.md"
         }
       ]
     },
