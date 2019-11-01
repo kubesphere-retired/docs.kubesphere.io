@@ -102,14 +102,22 @@ waitForQualityGate abortPipeline: true
 | 资源类型 | API 版本 |
 | --- | --- | 
 | ConfigMap | v1 |
-| Daemon Set | extensions/v1beta1 |
-| Deployment | extensions/v1beta1 |
+| Daemon Set | apps/v1、extensions/v1beta1、apps/v1beta2 |
+| Deployment | apps/v1、apps/v1beta1、extensions/v1beta1、apps/v1beta2 |
 | Ingress | extensions/v1beta1 | 
 | Job | batch/v1 | 
 | Namespace | v1 | 
 | Pod | v1 | 
+| Replica Set | apps/v1、extensions/v1beta1、apps/v1beta2 | 
+| Replication Controller | v1 | 
 | Secret | v1 | 
 | Service | v1 | 
+| Stateful Set | apps/v1、apps/v1beta1、apps/v1beta2 | 
+| Cron Job | batch/v1beta1、batch/v2alpha1 | 
+| Horizontal Pod Autoscaler | autoscaling/v1、autoscaling/v2beta1、autoscaling/v2beta2 | 
+| Network Policy | networking.k8s.io/v1 | 
+| Persistent Volume  | v1 | 
+| Persistent Volume Claim  | v1 | 
 
 
 ## 为各种不同语言的项目执行代码分析
