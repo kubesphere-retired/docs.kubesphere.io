@@ -57,7 +57,7 @@ Login GitHub. Fork the GitHub repository [devops-java-sample](https://github.com
 > Note: KubeSphere has built in common s2i templates for Java, Node.js and Python. If you need to customize other languages or use the s2i template, please refer to [Customized s2i template](https://kubesphere.io/docs/advanced-v2.0/zh-CN/workload/s2i-template/).
 
 
-- Code URL: Paste the git address fromt he last step (Git, HTTP and HTTPS are fine. You can also specify the related route in the source code terminal);
+- Code URL: Paste the git address fromt he last step (Git, HTTP and HTTPS are fine. You can also specify the related path in the source code terminal);
 - Secret: Inject the secret `github-id`into the S2I Pod;
 - Mirroring Template: Choose `kubespheredev/java-8-centos7` as the Builder image.
 - Code relative path: Use `/` by default.
