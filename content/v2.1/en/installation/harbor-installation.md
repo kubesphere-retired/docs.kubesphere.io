@@ -106,7 +106,7 @@ Click **Next** when you're done.
 
 
 
-- Registry Address: Enter `http://harbor.devops.kubesphere.local:30280`
+- Registry Address: Enter `harbor.devops.kubesphere.local:30280`
 - Username: admin
 - Password: Harbor12345
 - Email: Fill in your personal email address
@@ -114,7 +114,7 @@ Click **Next** when you're done.
 
 Click **Create** when you're done.
 
-![Fill in the Harbor Authentication](https://pek3b.qingstor.com/kubesphere-docs/png/20190322205236.png)
+![Fill in the Harbor Authentication](https://pek3b.qingstor.com/kubesphere-docs/png/harbor-secret.png)
 
 2.2. If the Harbor configuration and the authentication information are both correct, then it can be created successfully. Once the Harbor registry has been added, you can upload and pull the image.
 

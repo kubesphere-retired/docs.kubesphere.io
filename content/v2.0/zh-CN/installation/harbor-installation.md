@@ -101,12 +101,12 @@ KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harb
 
 2.1. 参考如下提示填写 Harbor 仓库的登录信息。
 
-- 仓库地址：填写内置的 Harbor 镜像仓库域名和节点端口 `http://harbor.devops.kubesphere.local:30280`
+- 仓库地址：填写内置的 Harbor 镜像仓库域名和节点端口 `harbor.devops.kubesphere.local:30280`
 - 用户名：admin
 - 密码：Harbor12345
 - 邮箱：填写个人邮箱
 
-![](/harbor-docker-login.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat6512aa8ad5d967a0cf0cdbc6f9b1eb37.png)
 
 2.2. 如果 Harbor 安装配置都正确，并且验证信息都填写无误，即可添加成功。Harbor 镜像仓库添加完成后，可以上传镜像和拉取镜像。
 
