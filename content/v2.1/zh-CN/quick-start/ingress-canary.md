@@ -18,9 +18,9 @@ KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingre
 
 > [Nginx Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary) 支持以下 4 种 Canary 规则：
 > - `nginx.ingress.kubernetes.io/canary-by-header`：基于 Request Header 的流量切分，适用于灰度发布以及 A/B 测试。当 Request Header 设置为 `always` 时，请求将会被一直发送到 Canary 版本；当 Request Header 设置为 `never` 时，请求不会被发送到 Canary 入口；对于任何其他 Header 值，将忽略 Header，并通过优先级将请求与其他金丝雀规则进行优先级的比较。
-> - `nginx.ingress.kubernetes.io/canary-by-header-value`：要匹配的 Request Header 的值，用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务。当 Request Header 设置为此值时，它将被路由到 Canary 入口。该规则允许用户自定义 Request Header 的值，必须与上一个 annotation (即：canary-by-header）一起使用。
-> - `nginx.ingress.kubernetes.io/canary-weight`：基于服务权重的流量切分，适用于蓝绿部署，权重范围 0 - 100 按百分比将请求路由到 Canary Ingress 中指定的服务。权重为 0 意味着该金丝雀规则不会向 Canary 入口的服务发送任何请求。权重为 100 意味着所有请求都将被发送到 Canary 入口。
-> - `nginx.ingress.kubernetes.io/canary-by-cookie`：基于 Cookie 的流量切分，适用于灰度发布与 A/B 测试。用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务的cookie。当 cookie 值设置为 `always` 时，它将被路由到 Canary 入口；当 cookie 值设置为 `never` 时，请求不会被发送到 Canary 入口；对于任何其他值，将忽略 cookie 并将请求与其他金丝雀规则进行优先级的比较。
+> - `nginx.ingress.kubernetes.io/canary-by-header-value`：要匹配的 Request Header 的值，用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务。当 Request Header 设置为此值时，它将被路由到 Canary 入口。该规则允许用户自定义 Request Header 的值，必须与上一个 annotation (即：canary-by-header) 一起使用。
+> - `nginx.ingress.kubernetes.io/canary-weight`：基于服务权重的流量切分，适用于蓝绿部署，权重范围 0 - 100 按百分比将请求路由到 Canary Ingress 中指定的服务。权重为 0 意味着该金丝雀规则不会向 Canary 入口的服务发送任何请求，权重为 100 意味着所有请求都将被发送到 Canary 入口。
+> - `nginx.ingress.kubernetes.io/canary-by-cookie`：基于 cookie 的流量切分，适用于灰度发布与 A/B 测试。用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务的cookie。当 cookie 值设置为 `always` 时，它将被路由到 Canary 入口；当 cookie 值设置为 `never` 时，请求不会被发送到 Canary 入口；对于任何其他值，将忽略 cookie 并将请求与其他金丝雀规则进行优先级的比较。
 >
 > 注意：金丝雀规则按优先顺序进行如下排序：
 >
@@ -247,7 +247,7 @@ spec:
 
 ### 基于 Request Header
 
-4.3. 基于 Request Header 进行流量切分的典型应用场景即`灰度发布或 A/B 测试场景`。参考以下截图，在 KubeSphere 给 Canary 版本的 Ingress 新增一条 annotation `nginx.ingress.kubernetes.io/canary-by-header: canary` (这里的 annotation 的 value 可以是任意值)，使当前的 Ingress 实现基于 Request Header 进行流量切分。
+4.3. 基于 Request Header 进行流量切分的典型应用场景即`灰度发布或 A/B 测试场景`。参考以下截图，在 KubeSphere 给 Canary 版本的应用路由 (Ingress) 新增一条 annotation `nginx.ingress.kubernetes.io/canary-by-header: canary` (这里的 annotation 的 value 可以是任意值)，使当前的 Ingress 实现基于 Request Header 进行流量切分。
 
 > 说明：金丝雀规则按优先顺序 `canary-by-header - > canary-by-cookie - > canary-weight` 进行如下排序，因此以下情况将忽略原有 canary-weight 的规则。
 
