@@ -34,10 +34,10 @@ $ docker load < XXX.tar
 
 然后重启 Docker。
 
-4、登陆 Harbor，执行命令 `docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280`。
+4、登陆 Harbor，执行命令 `docker login -u admin -p Harbor12345 harbor.devops.kubesphere.local:30280`。
 
 ```dockerfile
-$ docker login -u admin -p Harbor12345 http://harbor.devops.kubesphere.local:30280
+$ docker login -u admin -p Harbor12345 harbor.devops.kubesphere.local:30280
 
 WARNING! Using --password via the CLI is insecure. Use --password-stdin.
 WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
