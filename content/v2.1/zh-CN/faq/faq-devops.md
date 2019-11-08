@@ -30,7 +30,7 @@ script returned exit code 128
 
 答：可能是 GitHub 账号或密码带有 "@" 这类特殊字符，需要用户在创建凭证时对密码进行 urlencode 编码，可通过一些第三方网站进行转换 (比如 `http://tool.chinaz.com/tools/urlencode.aspx`)，然后再将转换后的输出粘贴到对应的凭证信息中。
 
-4、流水线还未开始运行，已经执行失败，重新执行流水线遇到如下报错，如何处理？
+4、在流水线还未开始运行，已经执行失败的情况下，重新执行流水线遇到如下报错，如何处理？
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WechatIMG6074.png)
 
