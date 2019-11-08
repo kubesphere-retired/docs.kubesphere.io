@@ -36,8 +36,6 @@ description: ''
 - 描述信息：介绍凭证，比如此处可以备注为 DockerHub 登录凭证
 
 
-> 注意：若用户的凭证信息如账号或密码中包含了 `@`，`$`这类特殊符号，可能在运行时无法识别而报错，这类情况需要用户在创建凭证时对密码进行 urlencode 编码，可通过一些第三方网站进行转换 (比如 `http://tool.chinaz.com/tools/urlencode.aspx`)，然后再将转换后的输出粘贴到对应的凭证信息中。
-
 2、完成后点击 **确定**。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190427133655.png)
@@ -45,6 +43,7 @@ description: ''
 ### 创建 GitHub 凭证
 
 同上，创建一个用于 GitHub 的凭证，凭证 ID 可命名为 **github-id**，类型选择 `账户凭证`，输入您个人的 GitHub 用户名和密码，备注描述信息，完成后点击 **确定**。
+> 注意：若用户的凭证信息如账号或密码中包含了 `@`，`$`这类特殊符号，可能在运行时无法识别而报错，这类情况需要用户在创建凭证时对密码进行 urlencode 编码，可通过一些第三方网站进行转换 (比如 `http://tool.chinaz.com/tools/urlencode.aspx`)，然后再将转换后的输出粘贴到对应的凭证信息中。
 
 ### 创建 kubeconfig 凭证
 
@@ -78,5 +77,3 @@ description: ''
 4. 点击删除按钮，可删除此凭证。
 
    ![credential_delete](/credential_delete.png)
-
-
