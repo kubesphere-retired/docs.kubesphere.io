@@ -17,14 +17,15 @@ KubeSphere 安装支持以下 4 种安装模式：
 - [all-in-one](../all-in-one)：单节点安装（支持在线和离线安装）
 - [multi-node](../multi-node)：多节点安装（支持在线和离线安装）
 
-**安装在 Kubernetes** 
+**安装在 Kubernetes**
 
 - [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
-- [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline) 
+- [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline)
 
 **支持 GPU**
 
 KubeSphere 安装支持 GPU 节点，也支持 CPU 与 GPU 的混合部署模式，需在安装配置文件 `conf/vars.yml` 中进行设置，配置示例和说明参考 [集群组件配置释义](../vars)。
+
 
 **可选安装项**
 
@@ -53,7 +54,7 @@ KubeSphere 安装支持 GPU 节点，也支持 CPU 与 GPU 的混合部署模式
 KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安装包进行安装。
 
 离线的安装步骤与在线安装一致，因此可直接参考 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 的安装指南下载安装。目前离线安装支持的操作系统如下，系统盘需保证 `100 G` 以上，主机配置规格的其它参数可参考在线安装的主机配置。
- 
+
 - CentOS 7.4/7.5   
 - Ubuntu 16.04.4/16.04.5
 
