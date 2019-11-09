@@ -6,25 +6,25 @@ description: ''
 
 KubeSphere 2.1 版本的 Installer 对各功能组件进行了第一次解耦，支持 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件)，使最小化安装**资源占用更轻量**，同时方便不同用户**按需选择不同的功能组件**。
 
-用户在获取 Installer 并解压至目标安装机器后，如果需要修改存储、网络、组件版本，或选择可选安装项 (如 DevOps 流水线、Service Mesh、OpenPitrix、GitLab、Harbor)、外部负载均衡器、Jenkins、邮件服务器等配置参数时，可参考以下说明进行修改，本文档对 Installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义。
+用户在获取 Installer 并解压至目标安装机器后，如果需要修改存储、网络、组件版本，或选择可选安装项 (如 DevOps 流水线、Service Mesh、OpenPitrix、GitLab、Harbor)、外部负载均衡器、Jenkins、邮件服务器等配置参数时，可参考以下说明进行修改，本文档对 Installer 中的安装配置文件 `conf/common.yaml` 进行说明，简单介绍每一个字段的意义。
 
 ### 负载均衡器插件与 QingCloud CSI 配置
 
-配置文件 `conf/vars.yml` 中的前 9 项 qingcloud 开头的配置项是与 QingCloud 云平台负载均衡器插件和 QingCloud CSI 块存储插件相关的公共配置参数，第 10、11 项是启用安装 QingCloud 负载均衡器插件和私有网络配置，释义分别在 [安装负载均衡器插件](../qingcloud-lb) 与 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)。
+配置文件 `conf/common.yaml` 中的前 9 项 qingcloud 开头的配置项是与 QingCloud 云平台负载均衡器插件和 QingCloud CSI 块存储插件相关的公共配置参数，第 10、11 项是启用安装 QingCloud 负载均衡器插件和私有网络配置，释义分别在 [安装负载均衡器插件](../qingcloud-lb) 与 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)。
 
 ### 存储相关配置
 
 Installer 使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，方便初次安装但没有准备存储服务端的场景下进行**部署测试**和**快速体验**。
 
-注意，若在正式环境安装 KubeSphere，则需要配置持久化存储作为存储服务端再执行安装，在 `conf/vars.yml` 支持配置 Ceph RBD、NFS、GlusterFS、QingCloud CSI、NeonSAN CSI 等，存储配置相关参数释义请参考 [存储配置说明](../storage-configuration)。
+注意，若在正式环境安装 KubeSphere，则需要配置持久化存储作为存储服务端再执行安装，在 `conf/common.yaml` 支持配置 Ceph RBD、NFS、GlusterFS、QingCloud CSI、NeonSAN CSI 等，存储配置相关参数释义请参考 [存储配置说明](../storage-configuration)。
 
 ### 集群组件相关配置
 
-开启可选功能组件的安装之前请确保当前环境的 CPU 与内存空间充足，请参考 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件) 在 `conf/vars.yml` 配置。
+开启可选功能组件的安装之前请确保当前环境的 CPU 与内存空间充足，请参考 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件) 在 `conf/common.yaml` 配置。
 
 **参数说明：**
 
-<details><summary> vars.yml 配置文件参数释义（点击展开）</summary>
+<details><summary> common.yaml 配置文件参数释义（点击展开）</summary>
 
 ```yaml
 ######################################################################
@@ -198,7 +198,7 @@ gitlab_hosts_domain: devops.kubesphere.local # GitLab 域名（这里可使用�
 
 **GPU 节点配置示例**
 
-注意，在安装前可对 GPU 节点在 `vars.yml` 文件中进行设置，例如在 `hosts.ini` 文件配置的两台工作节点 `node1` 是 CPU 节点， `node2` 是 GPU 节点，那么在 `vars.yml` 仅需要在该处填写 node2，注意 "-" 前面需缩进两格。
+注意，在安装前可对 GPU 节点在 `common.yaml` 文件中进行设置，例如在 `hosts.ini` 文件配置的两台工作节点 `node1` 是 CPU 节点， `node2` 是 GPU 节点，那么在 `common.yaml` 仅需要在该处填写 node2，注意 "-" 前面需缩进两格。
 
 ```yaml
  nvidia_accelerator_enabled: true

@@ -48,7 +48,7 @@ KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
-> - 网络插件默认是 `calico`，若您需要自定义安装参数，如网络、存储、负载均衡器插件、可选组件等相关配置需在 **`conf/vars.yml`** 文件中指定或修改，参考 [集群组件配置说明](../vars)。
+> - 网络插件默认是 `calico`，若您需要自定义安装参数，如网络、存储、负载均衡器插件、可选组件等相关配置需在 **`conf/common.yaml`** 文件中指定或修改，参考 [集群组件配置说明](../vars)。
 > - 存储默认用 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，方便初次安装但没有准备存储服务端的场景下进行**部署测试**，即本地存储设备作为存储类型。
 > - 支持存储类型：[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)、[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/) (QingCloud 公有云单节点挂盘限制为 10 块)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此安装 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。

@@ -4,22 +4,39 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-KubeSphere Installer 集成了 Harbor 版本为 1.7.5，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需 `安装前` 在配置文件 `conf/vars.yml` 中简单配置即可。参考以下步骤安装和访问 Harbor。
+KubeSphere Installer 集成了 Harbor 版本为 1.7.5，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需 `安装前` 在配置文件 `conf/common.yaml` 中简单配置即可。以下步骤演示在 KubeSphere 安装前和安装后如何开启 Harbor 的安装，并访问 Harbor 控制台。
 
-> 注意：
-> - 若安装前未选择安装 Harbor，可参考本文末在安装后单独安装 Harbor 组件。
-> - Harbor 安装需要额外挂载 `5` 块硬盘，若 KubeSphere 部署在云平台则需要考虑硬盘数量是否满足配额要求，若硬盘数量或容量配额不够则需要提工单申请提高配额。
+> 注意：Harbor 安装需要额外挂载 `5` 块硬盘，若 KubeSphere 部署在云平台则需要考虑硬盘数量是否满足配额要求，若硬盘数量或容量配额不够则需要提工单申请提高配额。
 
-## 修改安装配置文件
+## 安装前如何开启 Harbor 的安装
 
-1、安装 KubeSphere 前，在 Installer 中的 `conf/vars.yml` 文件中，参考如下配置修改。
+**修改安装配置文件**
+
+1、安装 KubeSphere 前，在 Installer 中的 `conf/common.yaml` 文件中，参考如下配置修改。
 
 ```yaml
 # harbor deployment
 harbor_enable: true
 harbor_domain: harbor.devops.kubesphere.local
 ```
-2、修改后保存，然后执行安装脚本，即可通过 Helm Chart 的方式来安装 Harbor。
+2、修改后保存，然后继续参考安装指南执行安装脚本，即可通过 Helm Chart 的方式来安装 Harbor。
+
+
+## 安装后如何开启 Harbor 的安装
+
+通过修改 ks-installer 的 configmap 可以选装组件，执行以下命令。
+
+```bash
+$ kubectl edit cm -n kubesphere-system ks-installer
+```
+
+**参考如下修改 ConfigMap**
+
+```yaml
+    harbor:
+      enabled: False
+      domain: harbor.devops.kubesphere.local
+```
 
 ## 访问 Harbor
 
@@ -129,45 +146,3 @@ KubeSphere 安装成功后，即可在浏览器访问 Harbor 镜像仓库。Harb
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190510231807.png)
 
 > 提示：关于 Harbor 的使用详见 [Harbor 官方文档](https://goharbor.io/docs/)。
-
-<!-- ## 如何单独安装 Harbor
-
-若安装前并未开启安装 Harbor，但在安装完成后想再单独安装 Harbor，应该如何安装？
-
-1、获取 yml 安装文件。
-
-```
-$ wget https://raw.githubusercontent.com/kubesphere/tutorial/master/tutorial%203%20-%20install-gitlab-harbor/install-gitlab-harbor.yml
-```
-
-2、将 `install-gitlab-harbor.yml` 文件放到安装包解压之后的 `kubesphere` 目录下；
-
-
-3、获取安装脚本。
-
-```
-$ wget https://raw.githubusercontent.com/kubesphere/tutorial/master/tutorial%203%20-%20install-gitlab-harbor/gitlab-harbor.sh
-```
-
-4、将 `gitlab-harbor.sh` 文件放到安装包解压之后的 `scripts` 目录下；
-
-
-5、在 `scripts` 目录下给执行脚本添加权限，同时执行安装脚本，输入 1 选择 Harbor 开始安装。
-
-```bash
-$ chmod +x gitlab-harbor.sh && ./gitlab-harbor.sh
-
-
-################################################
-         gitlab-harbor Installer Menu
-################################################
-*   1) Harbor
-*   2) Gitlab
-*   3) Harbor-Gitlab
-################################################
-https://kubesphere.io/               2019-09-27
-################################################
-Please input an option: 1
-```
-
-安装完成后，Harbor 的访问与使用可参考上述文档。 -->

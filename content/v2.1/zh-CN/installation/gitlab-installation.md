@@ -1,5 +1,5 @@
 ---
-title: "安装使用内置 GitLab" 
+title: "安装使用内置 GitLab"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -9,11 +9,13 @@ KubeSphere Installer 内置的 Gitlab (版本为 v11.8.1) 作为可选安装项�
 > 注意：目前 GitLab 安装暂不支持块存储，安装前需预先配置 Local Volume、NAS 或 GlusterFS 作为集群的存储服务端。
 > - 测试环境可以直接使用默认 Local Volume 进行安装。
 > - 若您在 QingCloud 云平台部署请参考 [QingCloud vNAS](../../faq/faq-install/#安装前如何配置-qingcloud-vnas)。
-> - 若您自行部署的 NFS 或 GlusterFS 服务端，在 `conf/vars.yml` 的配置请参考 [存储配置说明 - GlusterFS 或 NFS](../../installation/storage-configuration/#glusterfs)。
+> - 若您自行部署的 NFS 或 GlusterFS 服务端，在 `conf/common.yaml` 的配置请参考 [存储配置说明 - GlusterFS 或 NFS](../../installation/storage-configuration/#glusterfs)。
 
-## 第一步：修改配置文件
+## 安装前开启 GitLab 组件安装
 
-1、安装 KubeSphere 前，在 Installer 中的 `conf/vars.yml` 文件中，参考如下配置修改。
+### 第一步：修改配置文件
+
+1、安装 KubeSphere 前，在 Installer 中的 `conf/common.yaml` 文件中，参考如下配置修改。
 
 ```yml
 # GitLab deployment
@@ -23,7 +25,7 @@ gitlab_hosts_domain: devops.kubesphere.local
 
 2、修改后保存，然后执行安装脚本，即可通过 Helm Chart 的方式来安装 GitLab。
 
-## 第二步：配置 GitLab 访问
+### 第二步：配置 GitLab 访问
 
 <!-- 在集群中所有节点的 `/etc/hosts` 文件中，需要参考如下添加一条记录：
 
@@ -36,7 +38,7 @@ gitlab_hosts_domain: devops.kubesphere.local
 2、KubeSphere 和 GitLab 都安装完成后，若需要在集群外部访问 GitLab，请在本地的 `/etc/hosts` 文件中参考如下示例添加一行记录，然后即可在浏览器访问 GitLab。
 
 ```bash
-# {$公网 IP} {$GitLab 域名}
+# {$IP} {$GitLab 域名}
 139.198.10.10 gitlab.devops.kubesphere.local
 ```
 
@@ -48,6 +50,22 @@ gitlab_hosts_domain: devops.kubesphere.local
 
 
 ![gitlab](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-gitlab.png)
+
+## 安装后开启 GitLab 组件安装
+
+通过修改 ks-installer 的 configmap 可以选装组件，执行以下命令。
+
+```bash
+$ kubectl edit cm -n kubesphere-system ks-installer
+```
+
+**参考如下修改 ConfigMap**
+
+```yaml
+    gitlab:
+      enabled: True
+      domain: devops.kubesphere.local
+```
 
 ## 使用 GitLab 示例
 
@@ -81,45 +99,3 @@ gitlab_hosts_domain: devops.kubesphere.local
 ![succ](https://kubesphere-docs.pek3b.qingstor.com/png/gitlab-succ.png)
 
 > 提示：关于 GitLab 的使用详见 [GitLab 文档](<https://docs.gitlab.com/ee/README.html>)。
-
-## 如何单独安装 GitLab
-
-若安装前并未开启安装 GitLab，但在安装完成后想再单独安装 GitLab，应该如何安装？
-
-1、获取 yml 安装文件。
-
-```
-$ wget https://raw.githubusercontent.com/kubesphere/tutorial/master/tutorial%203%20-%20install-gitlab-harbor/install-gitlab-harbor.yml
-```
-
-2、将 `install-gitlab-harbor.yml` 文件放到安装包解压之后的 `kubesphere` 目录下；
-
-
-3、获取安装脚本。
-
-```
-$ wget https://raw.githubusercontent.com/kubesphere/tutorial/master/tutorial%203%20-%20install-gitlab-harbor/gitlab-harbor.sh
-```
-
-4、将 `gitlab-harbor.sh` 文件放到安装包解压之后的 `scripts` 目录下；
-
-
-5、在 `scripts` 目录下给执行脚本添加权限，同时执行安装脚本，输入 2 选择 GitLab 开始安装。
-
-```bash
-$ chmod +x gitlab-harbor.sh && ./gitlab-harbor.sh
-
-
-################################################
-         gitlab-harbor Installer Menu
-################################################
-*   1) Harbor
-*   2) Gitlab
-*   3) Harbor-Gitlab
-################################################
-https://kubesphere.io/               2019-09-27
-################################################
-Please input an option: 2
-```
-
-安装完成后，GitLab 的访问与使用可参考上述文档。

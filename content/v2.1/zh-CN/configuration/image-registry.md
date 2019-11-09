@@ -57,7 +57,7 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 
 #### 添加内置 Harbor 镜像仓库
 
-KubeSphere Installer 集成了 **Harbor** 的 Helm Chart，内置的 **Harbor** 作为可选安装项，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，关于如何安装和使用内置的 Harbor 镜像仓库详见 [安装内置 Harbor](../../installation/harbor-installation)。
+KubeSphere Installer 集成了 **Harbor** 的 Helm Chart，内置的 **Harbor** 作为可选安装项，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/common.yaml` 中简单配置即可，关于如何安装和使用内置的 Harbor 镜像仓库详见 [安装内置 Harbor](../../installation/harbor-installation)。
 
 #### 对接外部 Harbor 镜像仓库
 

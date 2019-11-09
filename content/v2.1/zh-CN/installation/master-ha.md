@@ -1,14 +1,14 @@
 ---
-title: "Master 和 etcd 节点高可用配置"
+title: "在青云部署高可用的 KubeSphere"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
 Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节点集群用于开发和测试，在实际的生产环境我们还需要考虑 master 节点的高可用问题，因为如果 master 节点上的几个服务 kube-apiserver、kube-scheduler 和 kube-controller-manager 都是单点的而且都位于同一个节点上，一旦 master 节点宕机，可能不应答当前正在运行的应用，将导致 KubeSphere 集群无法变更，对线上业务存在很大的风险。
 
-负载均衡器 (Load Balancer) 可以将来自多个公网地址的访问流量分发到多台主机上，并支持自动检测并隔离不可用的主机，从而提高业务的服务能力和可用性。**用户可以使用任何云厂商提供的负载均衡器或相关的 LB 硬件设备，还可以通过 Keepalived 和 Haproxy 的方式实现多个 master 节点的高可用部署。**
+负载均衡器 (Load Balancer) 可以将来自多个公网地址的访问流量分发到多台主机上，并支持自动检测并隔离不可用的主机，从而提高业务的服务能力和可用性。**用户可以使用任何云厂商提供的负载均衡器或相关的 LB 硬件设备，还可以通过 Keepalived 和 Haproxy 的方式实现多个 master 节点的高可用部署。** 而 etcd 作为一个高可用键值存储系统，整个集群的持久化数据，则由 kube-apiserver 处理后保存到 etcd 中。etcd 节点至少需要 1 个，但部署多个 etcd (奇数个) 能够使集群更可靠。
 
-而 etcd 作为一个高可用键值存储系统，整个集群的持久化数据，则由 kube-apiserver 处理后保存到 etcd 中。etcd 节点至少需要 1 个，但部署多个 etcd (奇数个) 能够使集群更可靠。本文档以配置 [QingCloud 云平台](https://www.qingcloud.com) 的 [负载均衡器 (Load Balancer)](https://docs.qingcloud.com/product/network/loadbalancer) 为例，引导您如何配置高可用的 master 节点，并说明如何配置和部署高可用的 etcd 集群。
+本文档将在 [QingCloud 云平台](https://www.qingcloud.com) 创建 `2` 个 [负载均衡器 (Load Balancer)](https://docs.qingcloud.com/product/network/loadbalancer)，分别作为外网和内网的负载均衡，引导您如何配置高可用的 master 节点，并说明如何配置和部署高可用的 etcd 集群。
 
 
 
@@ -35,7 +35,7 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 #### 第二步：创建监听器
 
-进入上一步创建成功的负载均衡器，为其创建一个监听器，监听 TCP 协议的 6443 端口，监听的端口号也可以是其它任意端口，但在 vars.yml 中配置应与 port 一致，监听器的基本信息应参考如下填写。 
+进入上一步创建成功的负载均衡器，为其创建一个监听器，监听 TCP 协议的 6443 端口，监听的端口号也可以是其它任意端口，但在 common.yaml 中配置应与 port 一致，监听器的基本信息应参考如下填写。
 
 - 监听协议：选择 TCP 协议
 - 端口：填写 6443 端口
@@ -98,12 +98,12 @@ kube-master
 
 ### 配置负载均衡器参数
 
-在 QingCloud 云平台准备好负载均衡器后，需在 `vars.yaml` 配置文件中修改相关参数。假设负载均衡器的内网 IP 地址是 `192.168.0.10` (这里需替换为您的负载均衡器实际 IP 地址)，负载均衡器设置的 TCP 协议的监听端口 (port) 为 `6443`，那么在 `conf/vars.yml` 中参数配置参考如下示例 (`loadbalancer_apiserver` 作为可选配置项，在配置文件中应取消注释)。
+在 QingCloud 云平台准备好负载均衡器后，需在 `vars.yaml` 配置文件中修改相关参数。假设负载均衡器的内网 IP 地址是 `192.168.0.10` (这里需替换为您的负载均衡器实际 IP 地址)，负载均衡器设置的 TCP 协议的监听端口 (port) 为 `6443`，那么在 `conf/common.yaml` 中参数配置参考如下示例 (`loadbalancer_apiserver` 作为可选配置项，在配置文件中应取消注释)。
 
 > - 注意，address 和 port 在配置文件中应缩进两个空格。
 > - 负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问。如果需要修改域名则先取消注释再自行修改。
 
-**vars.yml 配置示例**
+**common.yaml 配置示例**
 
 ```yaml
 ## External LB example config
@@ -113,5 +113,4 @@ loadbalancer_apiserver:
   port: 6443
 ```
 
-完成 master 和 etcd 高可用的参数配置后，请继续参阅 [Multi-Node 模式 - 存储配置示例](../multi-node) 在 vars.yml 中配置持久化存储相关参数，并继续多节点的安装。
-
+完成 master 和 etcd 高可用的参数配置后，请继续参阅 [Multi-Node 模式 - 存储配置示例](../multi-node) 在 common.yaml 中配置持久化存储相关参数，并继续多节点的安装。
