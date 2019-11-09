@@ -107,7 +107,7 @@ B2I 创建完成后，在 `构建镜像` 下查看 B2I 的构建状态，包括�
 
 ### 访问服务
 
-从服务的列表中，可以看到 NodePort 是 30571，因此在浏览器通过 `<$IP>:<$NodePort>/spring-mvc-showcase/` 访问 Spring-MVC-Showcase 服务（默认的访问路径 `<$IP>:<$NodePort>` 是 Tomcat 服务）。
+从服务的列表中，可以看到 NodePort 是 30571，因此在浏览器通过 `<$IP>:<$NodePort>/b2i-war-java8/` 访问 Spring-MVC-Showcase 服务（默认的访问路径 `<$IP>:<$NodePort>` 是 tomcat 服务）。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191021181242.png)
 
