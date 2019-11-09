@@ -6,11 +6,11 @@ description: ''
 
 ## 什么是 Binary-to-image
 
-**Binary-to-image（B2I）** 是 2.1.0 版本新增的功能，旨在帮助开发者和运维在项目打包成 WAR、JAR、Binary 这一类的制品后，快速将制品或二进制的 Package 打包成 Docker 镜像，并发布到 DockerHub 或 Harbor 等镜像仓库中。并且支持以创建服务的形式，一键将制品生成镜像推送到仓库，并创建其部署（Deployment）和服务（Service）最终自动发布到 Kubernetes 中。
+**Binary-to-image (B2I)** 是 2.1.0 版本新增的功能，旨在帮助开发者和运维在项目打包成 WAR、JAR、Binary 这一类的制品后，快速将制品或二进制的 Package 打包成 Docker 镜像，并发布到 DockerHub 或 Harbor 等镜像仓库中。并且支持以创建服务的形式，一键将制品生成镜像推送到仓库，并创建其部署 (Deployment) 和服务 (Service) 最终自动发布到 Kubernetes 中。
 
 ## Binary-to-image 特性
 
-**Binary-to-image（B2I）**能够在实际的项目**快速部署上线、微服务改造**的过程中，极大地赋能开发者和运维用户。B2I 无需编写一行 Dockerfile，**降低学习成本的同时提升发布效率，使用户能够更好地专注在业务本身。**
+**Binary-to-image (B2I)**能够在实际的项目**快速部署上线、微服务改造**的过程中，极大地赋能开发者和运维用户。B2I 无需编写一行 Dockerfile，**降低学习成本的同时提升发布效率，使用户能够更好地专注在业务本身。**
 
 下图简述了 B2I 的业务实现流程，**B2I 已将以下多个步骤工具化和流程化，因此只需要在一个表单中完成。**
 
@@ -19,7 +19,7 @@ description: ''
 > - ① 在 KubeSphere 创建 B2I 类型的服务，上传制品或二进制包
 > - ② B2I 将在后台创建 K8s Job、Deployment 和 Service
 > - ③ 将制品自动打包成 Docker 镜像
-> - ④ 推送镜像至 DockerHub 或 harbor
+> - ④ 推送镜像至 DockerHub 或 Harbor
 > - ⑤ B2I Job 将在第二步创建的 Deloyment 中使用仓库中的镜像
 > - ⑥ 自动发布至 Kubernetes
 >
@@ -44,11 +44,11 @@ description: ''
 ## 前提条件
 
 - B2I 属于 DevOps 功能组件，因此使用前需开启安装 DevOps 组件
-- 已创建了企业空间、项目和普通用户 `project-regular` 账号（该已账号已被邀请至示例项目），请参考 [多租户管理快速入门](../admin-quick-start)
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号 (该已账号已被邀请至示例项目)，请参考 [多租户管理快速入门](../admin-quick-start)
 
 ### 创建密钥
 
-由于 B2I 的自动构建流程中需要将打包的 Docker 镜像推送到镜像仓库，因此需要先创建一个镜像仓库的密钥（Secret），以下创建一个 DockerHub 的密钥，可参考 [创建常用的几类密钥](../../configuration/secrets#创建常用的几类密钥)。
+由于 B2I 的自动构建流程中需要将打包的 Docker 镜像推送到镜像仓库，因此需要先创建一个镜像仓库的密钥 (Secret)，以下创建一个 DockerHub 的密钥，可参考 [创建常用的几类密钥](../../configuration/secrets#创建常用的几类密钥)。
 
 
 ### 创建服务
@@ -80,7 +80,7 @@ description: ''
 
 ### 验证状态
 
-B2I 创建完成后，在 `构建镜像` 下查看 B2I 的构建状态，包括执行记录（动态日志）、资源状态、镜像制品、环境变量和 Events。
+B2I 创建完成后，在 `构建镜像` 下查看 B2I 的构建状态，包括执行记录 (动态日志)、资源状态、镜像制品、环境变量和 Events。
 
 **查看构建镜像**
 
@@ -99,7 +99,7 @@ B2I 创建完成后，在 `构建镜像` 下查看 B2I 的构建状态，包括�
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191021180741.png)
 
-若您习惯使用 kubectl 命令行，也可以通过 `工具箱 → Web Kubectl` 通过 `kubectl get all -n PRJECT_NAME` 来查看 b2i 具体创建了哪些资源。
+若您习惯使用 kubectl 命令行，也可以通过 `工具箱 → Web Kubectl` 通过 `kubectl get all -n PRJECT_NAME` 来查看 B2I 具体创建了哪些资源。
 
 **web kubectl 查看资源**
 
@@ -152,6 +152,6 @@ B2I 创建完成后，在 `构建镜像` 下查看 B2I 的构建状态，包括�
 
 ## 总结
 
-您可以根据需求使用上述两种不同的方式来完成 B2I 的自动镜像构建。一般来说，像 Java 语言的项目，可以通过 `mvn package` 命令打成 JAR/WAR 包，而像 C、C++ 和 Go 这类不需要运行时的语言，可以使用其语言自身的 build 命令打包成 binary 格式的制品，最终就可以通过 KubeSphere B2I 来快速将制品打包成 Docker 镜像，并发布到镜像仓库和 Kubernetes 中。而像 Python、Nodejs 和 PHP 这类脚本式语言的项目，可以通过 KubeSphere [Source-to-Image（S2I）](https://kubesphere.io/docs/v2.0/zh-CN/quick-start/source-to-image/) 完成类似 B2I 的自动构建与发布。
+您可以根据需求使用上述两种不同的方式来完成 B2I 的自动镜像构建。一般来说，像 Java 语言的项目，可以通过 `mvn package` 命令打成 JAR/WAR 包，而像 C、C++ 和 Go 这类不需要运行时的语言，可以使用其语言自身的 build 命令打包成 binary 格式的制品，最终就可以通过 KubeSphere B2I 来快速将制品打包成 Docker 镜像，并发布到镜像仓库和 Kubernetes 中。而像 Python、Nodejs 和 PHP 这类脚本式语言的项目，可以通过 KubeSphere [Source-to-Image (S2I)](https://kubesphere.io/docs/v2.0/zh-CN/quick-start/source-to-image/) 完成类似 B2I 的自动构建与发布。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191023135504.png)

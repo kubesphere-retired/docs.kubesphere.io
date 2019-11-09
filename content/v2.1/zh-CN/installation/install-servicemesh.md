@@ -1,5 +1,5 @@
 ---
-title: "安装可插拔组件 - 微服务治理（Service Mesh）"
+title: "微服务治理（Service Mesh）"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: 'Service Mesh'
 ---

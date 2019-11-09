@@ -15,7 +15,7 @@ description: ''
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号；
 - 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
-- 邮件发送需安装前在 Installer 中配置，请参考 [集群组件配置释义](../../installation/vars) (下一版本将支持安装后在 UI 统一配置邮件服务器)。
+- 邮件发送需安装前需要单独配置 Jenkins 邮件设置，具体请参考文档 [配置 Jenkins 邮件发送](../../devops/jenkins-setting#修改-jenkins-邮件服务器设置)
 - 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为流水线选择执行构建的节点。
 
 ## 预估时间

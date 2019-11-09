@@ -1,5 +1,5 @@
 ---
-title: "安装可插拔组件 - KubeSphere 日志系统"
+title: "KubeSphere 日志系统"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: '应用商店'
 ---

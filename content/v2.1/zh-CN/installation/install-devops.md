@@ -1,5 +1,5 @@
 ---
-title: "安装可插拔组件 - KubeSphere DevOps 系统"
+title: "KubeSphere DevOps 系统"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: 'DevOps'
 ---

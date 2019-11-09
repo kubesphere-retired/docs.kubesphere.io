@@ -4,25 +4,25 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-## 如何配置 ci 节点进行构建
+## 如何配置 CI 节点进行构建
 
-为了更加稳定的运行流水线，以及更加充分的利用缓存加快构建速度，可以配置一个或一组 ci 节点，流水线以及s2i构建任务会更加偏向于绑定至 ci 节点上。
+应用程序在构建过程中往往需要拉取很多依赖，这会导致一些问题，如拉取时间长，网络不稳定导致构建异常等。为了更加稳定的运行流水线，以及更加充分的利用缓存加快构建速度，可以配置一个或一组 CI 节点，流水线以及 S2I 构建任务会更加偏向于绑定至 CI 节点上。
 
- 1. 使用admin账户登陆kubesphere，点击 `平台管理`，并进入 `基础设置` 界面。
+ 1. 使用 admin 账户登陆 KubeSphere，点击 `平台管理`，并进入 `基础设置` 界面。
  ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat758b433a7469f64fee9fffc59aac275b.png)
 
- 2. 选择希望作为构建 ci 任务的节点，进入，然后选择 `更多操作` 下的 `编辑标签`。
+ 2. 选择希望作为构建 CI 任务的节点，进入详情页，然后选择 `更多操作` 下的 `编辑标签`。
  ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat947ac3c7ab08ea8b0c7121044c1d93a2.png)
 
- 3. 为该节点设置标签: `node-role.kubernetes.io/worker=ci`, 然后点击保存即可。
+ 3. 为该节点设置标签: `node-role.kubernetes.io/worker=ci`，然后点击保存即可。
  ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatf4976c9ae64d596b7b7a5c5ac1f97c31.png)
 
-流水线以及s2i构建任务会根据 [Node affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity) 的特性优先调度至该节点。若希望设置 ci 节点组为构建任务专用节点，不允许或者尽量不允许其他pod调度至 ci 节点，可以为 ci 节点设置 [污点](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)。
+流水线以及 S2I 构建任务会根据 [Node affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity) 的特性优先调度至该节点。若希望设置 CI 节点组为构建任务专用节点，不允许或者尽量不允许其他 Pod 调度至 CI 节点，可以按照下列操作为 CI 节点设置 [污点](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)。
 
  1. 在节点所在界面选择 `更多操作` 下的 `污点管理`。
  ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat29f987aa5df21b3fb91fa9152bfed8d6.png)
 
- 2. 设置污点的键为 `node.kubernetes.io/ci`, 无需设置污点的值，并可根据自己的情况选择 `不允许调度` 或 `尽量不调度`。
+ 2. 设置污点的键为 `node.kubernetes.io/ci`，无需设置污点的值，并可根据自己的情况选择 `不允许调度` 或 `尽量不调度`。
  ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat97eea56f0a74d899fa497b8e9a165826.png)
 
  3. 最后点击保存即可。
