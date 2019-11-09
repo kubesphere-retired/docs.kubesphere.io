@@ -61,8 +61,8 @@ KubeSphere 默认的存储类型为 Local，该存储类型方便用户快速部
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191109003949.png)
 
-准备响应的存储服务端后，在 common.yaml 中配置对应的存储参数即可。
+准备相应的存储服务端后，在 common.yaml 中配置对应的存储参数即可。
 
 ## 开始部署
 
-完成上述步骤后，即可继续参考 [Multi-node 模式安装](../multi)，下载 installer 至一台目标机器，开始执行安装。
+完成上述步骤后，即可继续参考 [Multi-node 模式安装](../multi-node)，下载 installer 至一台目标机器，开始执行安装。注意，**执行 Installer 的主机要保证可以 SSH 到其他节点上，否则安装可能不成功**。

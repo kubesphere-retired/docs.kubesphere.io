@@ -73,14 +73,6 @@
             {
               "title": "网络防火墙配置",
               "entry": "./v2.1/zh-CN/installation/port-firewall.md"
-            },
-            {
-              "title": "开启可选功能组件 - 安装前",
-              "entry": "./v2.1/zh-CN/installation/vars.md"
-            },
-            {
-              "title": "开启可选功能组件 - 安装后",
-              "entry": "./v2.1/zh-CN/installation/components.md"
             }
           ]
         },
@@ -98,11 +90,36 @@
           ]
         },
         {
+          "title": "安装可插拔的功能组件",
+          "entries": [
+            {
+              "title": "安装应用商店",
+              "entry": "./v2.1/zh-CN/installation/install-openpitrix.md"
+            },
+            {
+              "title": "安装内置的 DevOps 系统",
+              "entry": "./v2.1/zh-CN/installation/install-devops.md"
+            },
+            {
+              "title": "安装内置的日志系统",
+              "entry": "./v2.1/zh-CN/installation/install-logging.md"
+            },
+            {
+              "title": "安装微服务治理组件（Service Mesh）",
+              "entry": "./v2.1/zh-CN/installation/install-servicemesh.md"
+            }
+          ]
+        },
+        {
           "title": "集群高可用配置安装",
           "entries": [
             {
-              "title": "Master 和 etcd 节点高可用",
+              "title": "在青云安装 HA 集群",
               "entry": "./v2.1/zh-CN/installation/master-ha.md"
+            },
+            {
+              "title": "在华为云安装 HA 集群",
+              "entry": "./v2.1/zh-CN/installation/install-on-huawei.md"
             },
             {
               "title": "持久化存储配置说明",
@@ -449,6 +466,10 @@
             {
               "title": "工作负载管理",
               "entry": "./v2.1/zh-CN/workload/workload-management.md"
+            },
+            {
+              "title": "落盘日志收集",
+              "entry": "./v2.1/zh-CN/workload/logs-on-disk.md"
             },
             {
               "title": "自定义 S2i 模板",
