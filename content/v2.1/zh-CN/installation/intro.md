@@ -112,15 +112,15 @@ KubeSphere 2.1.0 中的相关组件包括了以下版本，其中带 * 号的组
 
 > 说明：KubeSphere 对 Kubernetes 版本的兼容原则是 `最新的版本 + 往前两个版本`，因为 Kubernetes v1.16 淘汰了一些 API group，如 extensions/v1beta1，这个 API group 被 helm 和很多 charts 使用到，需要等 helm 和 charts 更新后才能兼容 1.16，并且 v2.1 是在 1.5.x 上开发测试的，所以目前 v2.1 对 Kubernetes 兼容并支持的版本包括 1.5.x、1.4.x 和 1.3.x，近期刚发布的 Kubernetes 1.6 会在 KubeSphere 下一个版本兼容。
 
-> 提示：如果需要查看或修改存储、网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、SonarQube、邮件服务器等配置参数时，可参考以下说明进行修改，集群组件配置释义文档对 installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义，参考 [自定义组件安装（安装前）](../vars)。
+> 提示：如果需要查看或修改存储、网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、SonarQube、邮件服务器等配置参数时，可参考以下说明进行修改，集群组件配置释义文档对 installer 中的安装配置文件 `conf/common.yaml` 进行说明，简单介绍每一个字段的意义，参考 [自定义组件安装（安装前）](../vars)。
 
 <!-- #### 安装 QingCloud 负载均衡器插件 (可选)
 
-服务或应用路由如果通过 LoadBalancer 的方式暴露到外网访问，则需要安装对应的云平台负载均衡器插件来支持。如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/vars.yml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)，详见 [安装 QingCloud 负载均衡器插件](../qingcloud-lb)。 -->
+服务或应用路由如果通过 LoadBalancer 的方式暴露到外网访问，则需要安装对应的云平台负载均衡器插件来支持。如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/common.yaml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)，详见 [安装 QingCloud 负载均衡器插件](../qingcloud-lb)。 -->
 
 ### 如何开启可选功能组件的安装
 
-- 安装前，请下载 installer 后参考 [自定义组件安装（安装前）](../vars) 在 `conf/vars.yml` 中进行修改。
+- 安装前，请下载 installer 后参考 [自定义组件安装（安装前）](../vars) 在 `conf/common.yaml` 中进行修改。
 - 安装后，请参考 [自定义组件安装（安装后）](../components) 通过 kubectl 编辑 ConfigMap 进行修改。
 
 ## 运维指南（开发中）

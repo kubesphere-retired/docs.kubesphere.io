@@ -95,7 +95,7 @@ kube-master
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190307235523.png)
 
-如下，在 `/conf/vars.yml` 中先将 Local Volume Provisioner 设置为 false，然后在 NFS-Client provisioner 进行如下设置：
+如下，在 `/conf/common.yaml` 中先将 Local Volume Provisioner 设置为 false，然后在 NFS-Client provisioner 进行如下设置：
 
 
 ```bash
@@ -292,7 +292,7 @@ kubesphere 在安装时指定了 DOCKER_OPTS= --insecure-registry ，所以不�
 
 <!-- 7、如果想在安装前就将集群内置的 Elasticsearch 替换为外部 Elasticsearch，该如何配置？
 
-安装前需在 `conf/vars.yml` 中添加如下两行：
+安装前需在 `conf/common.yaml` 中添加如下两行：
 
 ```yaml
 external_es_url=SHOULD_BE_REPLACED

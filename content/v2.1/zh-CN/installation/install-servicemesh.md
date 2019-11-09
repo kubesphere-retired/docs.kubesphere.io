@@ -6,6 +6,8 @@ description: 'Service Mesh'
 
 KubeSphere 基于 [Istio](https://istio.io) 微服务框架提供了可视化的微服务治理功能，无需代码无侵入即可实现 **熔断、蓝绿发布、金丝雀发布、流量镜像、流量管控、限流、链路追踪（Tracing）等完善的微服务治理功能**，从业务角度为微服务组件提供了服务治理的能力，降低了 Istio 服务网格的学习门槛。
 
+可参考文档 [微服务的灰度发布与 Tracing](../../quick-start/bookinfo-canary)、[熔断](../../application/circuit-breaking)、[流量治理](../../application/traffic-gov)，进一步了解 KubeSphere 内置的微服务治理功能。
+
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191109212935.png)
 
 ## 安装前如何开启安装微服务治理

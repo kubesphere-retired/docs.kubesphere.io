@@ -107,6 +107,14 @@
             {
               "title": "安装微服务治理组件（Service Mesh）",
               "entry": "./v2.1/zh-CN/installation/install-servicemesh.md"
+            },
+            {
+              "title": "安装告警通知系统",
+              "entry": "./v2.1/zh-CN/installation/install-alert-notification.md"
+            },
+            {
+              "title": "验证可插拔功能组件的安装",
+              "entry": "./v2.1/zh-CN/installation/verify-components.md"
             }
           ]
         },

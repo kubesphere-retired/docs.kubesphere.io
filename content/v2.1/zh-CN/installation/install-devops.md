@@ -8,7 +8,7 @@ KubeSphere 针对容器与 Kubernetes 的应用场景，基于 Jenkins 提供了
 
 内置的 DevOps 系统将应用的开发和自动发布与容器平台进行了很好的结合，还支持对接第三方的私有镜像仓库和代码仓库形成完善的私有场景下的 CI/CD，提供了端到端的用户体验。
 
-可参考如下文档进一步了解内置的 DevOps 系统功能：
+可参考如下文档进一步了解 KubeSphere DevOps 系统的功能：
 
 > - [Binary-to-Image](../../quick-start/b2i-war)：将 WAR、JAR、Binary 这一类的制品快速打包成 Docker 镜像，并发布到镜像仓库中，最终将服务自动发布至 Kubernetes；
 > - [Source-to-Image](../../quick-start/source-to-image)：无需写 Dockerfile，仅输入源代码地址即可自动打包成可运行程序到 Docker 镜像的工具，方便构建镜像发布至镜像仓库和 Kubernetes；

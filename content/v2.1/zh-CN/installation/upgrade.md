@@ -27,16 +27,16 @@ $ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.
 
 #### All-in-One
 
-若 2.0.1 是以 **all-in-one** 模式安装的单节点集群，那么升级前在 2.0.2 中无需修改 `conf/hosts.ini` 文件，仅需要确认 2.0.1 的 `conf/vars.yml` 参数配置是否修改，若有修改则需要在 2.0.2 的对应文件中同步所有修改的参数。
+若 2.0.1 是以 **all-in-one** 模式安装的单节点集群，那么升级前在 2.0.2 中无需修改 `conf/hosts.ini` 文件，仅需要确认 2.0.1 的 `conf/common.yaml` 参数配置是否修改，若有修改则需要在 2.0.2 的对应文件中同步所有修改的参数。
 
-例如，目前 2.0.2 中默认使用 [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为存储类型，如果您的 2.0.1 配置使用了其它存储类型，如 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 等，那么在 2.0.2 安装包的 `conf/vars.yml` 中也需要进行相应的设置（即与 2.0.1 的配置保持一致），参数释义详见 [存储配置参数](../storage-configuration)。
+例如，目前 2.0.2 中默认使用 [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为存储类型，如果您的 2.0.1 配置使用了其它存储类型，如 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 等，那么在 2.0.2 安装包的 `conf/common.yaml` 中也需要进行相应的设置（即与 2.0.1 的配置保持一致），参数释义详见 [存储配置参数](../storage-configuration)。
 
 #### Multi-Node 
 
 若 2.0.1 是以 **multi-node** 模式安装的多节点集群，那么升级前需将当前 Installer 中的 `conf/hosts.ini` 和 `conf/vars.yaml` 中的配置都同步到 2.0.2 的对应文件中：
    - 将 2.0.1 的 `conf/hosts.ini` 中的主机参数配置覆盖至 2.0.2 安装包的 `conf/hosts.ini`，参数释义详见 [Multi-Node 模式 - 准备安装配置文件](../multi-node)。
-   - 选取 2.0.1 的 `conf/vars.yml` 中所有修改过的参数配置项的值同步至 2.0.2 `conf/vars.yml` 中的对应项。例如，2.0.1 配置使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 2.0.2 安装包的 `conf/vars.yml` 中也要进行相应的设置（即与 2.0.1 的配置保持一致），参数释义详见 [存储配置参数](../storage-configuration)。
-   - 注意，2.0.2 可选配置项如负载均衡器插件、邮件服务器、SonarQube 配置，在 Installer 的 `conf/vars.yml` 中可按需进行安装。
+   - 选取 2.0.1 的 `conf/common.yaml` 中所有修改过的参数配置项的值同步至 2.0.2 `conf/common.yaml` 中的对应项。例如，2.0.1 配置使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 2.0.2 安装包的 `conf/common.yaml` 中也要进行相应的设置（即与 2.0.1 的配置保持一致），参数释义详见 [存储配置参数](../storage-configuration)。
+   - 注意，2.0.2 可选配置项如负载均衡器插件、邮件服务器、SonarQube 配置，在 Installer 的 `conf/common.yaml` 中可按需进行安装。
 
 
 ### 第三步：开始升级

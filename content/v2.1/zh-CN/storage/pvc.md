@@ -8,7 +8,7 @@ description: ''
 
 在 all-in-one 部署方式中，可以使用 Local 存储卷将数据持久化，无需存储服务端支持，但此类型存储卷不支持动态分配方式。如果希望体验 KubeSphere 推荐的动态分配 (Dynamic Provisioning) 方式创建存储卷，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储和 [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) 插件，支持使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 或 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为平台的存储服务，免去手动配置存储服务端的繁琐。
 
-另外，Installer 也已集成了 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/) 等存储的客户端，需在 `conf/vars.yml` 中配置，但需要自行准备和安装相应的存储服务端，若用于 KubeSphere 测试存储服务端部署可参考附录中的 [部署 Ceph RBD 存储服务端](../../appendix/ceph-ks-install/) 或 [部署 GlusterFS 存储服务端](../../appendix/glusterfs-ks-install/)。
+另外，Installer 也已集成了 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/) 等存储的客户端，需在 `conf/common.yaml` 中配置，但需要自行准备和安装相应的存储服务端，若用于 KubeSphere 测试存储服务端部署可参考附录中的 [部署 Ceph RBD 存储服务端](../../appendix/ceph-ks-install/) 或 [部署 GlusterFS 存储服务端](../../appendix/glusterfs-ks-install/)。
 
 存储卷生命周期包括存储卷创建、挂载、卸载、删除等操作，如下演示一个存储卷完整生命周期的操作。
 
