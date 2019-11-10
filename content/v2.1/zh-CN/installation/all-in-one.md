@@ -1,10 +1,10 @@
 ---
-title: "All-in-One 模式（Dev 版）"
+title: "All-in-One 模式"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-对于首次接触 KubeSphere 高级版的用户，想寻找一个最快安装和体验 KubeSphere 高级版核心功能的方式，all-in-one 模式支持一键安装 KubeSphere 至一台目标机器。
+对于首次接触 KubeSphere 高级版的用户，想寻找一个最快安装和体验 KubeSphere 高级版核心功能的方式，all-in-one 模式可一键安装 KubeSphere 和 Kubernetes v1.15.5 至一台目标机器。
 
 > 提示：
 > - KubeSphere 2.1 已支持 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件)，用户可根据**业务需求和机器配置选择安装所需的组件**，默认仅开启`最小化安装`，参考 [安装说明](../intro/#自定义安装可插拔的功能组件) 开启可选组件的安装。
@@ -25,26 +25,26 @@ description: ''
 
 | 操作系统 | 最小配置 |
 | --- | --- |
-|CentOS 7.5 (64 bit) | CPU：4 核， 内存：8 G， 系统盘：100 G |
-|Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核， 内存：8 G， 系统盘：100 G  |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核， 内存：8 G， 系统盘：100 G  |
-|Debian Stretch 9.5 (64 bit)| CPU：4 核， 内存：8 G， 系统盘：100 G  |
+|CentOS 7.5 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：100 G |
+|Ubuntu 16.04/18.04 LTS (64 bit) | CPU：2 核， 内存：4 G， 系统盘：100 G  |
+|Red Hat Enterprise Linux Server 7.4 (64 bit) |  CPU：2 核， 内存：4 G， 系统盘：100 G  |
+|Debian Stretch 9.5 (64 bit)| CPU：2 核， 内存：4 G， 系统盘：100 G  |
 
 
 
 ## 第二步: 准备安装包
 
-下载 `KubeSphere 2.1.0-dev` 安装包至待安装机器，进入安装目录。
+下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入安装目录。
 
 ```bash
-$ curl -L  https://kubesphere.io/download/nightly/latest > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-2.1.0-dev/scripts
+$ $ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/scripts
 ```
 
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置。Installer 默认安装的 **Kubernetes 版本**是 `v1.15.5`，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
+KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 的自动化安装，以及存储的自动化配置，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。

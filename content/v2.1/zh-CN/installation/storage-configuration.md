@@ -79,7 +79,7 @@ nfs_server: SHOULD_BE_REPLACED
 
 # Basepath of the mount point
 nfs_path: SHOULD_BE_REPLACED
-nfs_nfsvers3_enabled: false
+nfs_vers3_enabled: false
 nfs_archiveOnDelete: false
     ···
 ```
@@ -106,7 +106,7 @@ nfs_archiveOnDelete: false
 | nfs\_client\_is\_default\_class | 是否设定为默认存储类型，是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认存储类型 |
 | nfs\_server | 允许其访问的 NFS 服务端地址，可以是 IP 或 Hostname |
 | nfs\_path | NFS 共享目录，即服务器上共享出去的文件目录，可参考 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
-|nfs_vers3_enabled | 指定要使用的 NFS 协议版本，默认 false 表示 v4，设置 true 则为 v3 |
+|nfs\_vers3\_enabled | 指定要使用的 NFS 协议版本，默认 false 表示 v4，设置 true 则为 v3 |
 |nfs_archiveOnDelete | 指定 archiveOnDelete 为 false 时，则会自动删除 oldPath 下的所有数据，即 Pod 对应的数据持久化存储数据 |
 
 
@@ -229,20 +229,8 @@ $ heketi-cli cluster list
 
 ### QingCloud 云平台块存储
 
-<br>
 
-<details><summary> GlusterFS 配置文件（点击展开）</summary>
-
-```yaml
-
-    ···
-```
-
-</details>
-
--------
-
-KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务，并支持在 UI **快速扩容存储卷**。
+KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务，**并且支持扩容、拓扑、创建/删除快照以及基于快照创建 PVC**。
 
 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户在 QingCloud 云平台可创建访问模式 (Access Mode) 为 **单节点读写（ReadWriteOnce）** 的存储卷并挂载至工作负载，包括以下几种类型：
 
