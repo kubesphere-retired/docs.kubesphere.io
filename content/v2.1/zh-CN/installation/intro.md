@@ -1,10 +1,8 @@
 ---
-title: "安装说明（Dev 版）"
+title: "安装说明"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: 'KubeSphere 安装说明'
 ---
-
-> 注意：KubeSphere 2.1.0 目前公开的 Installer 是 dev 版，方便社区用户在 2.1.0 GA 发布前的公测与体验，因此当前版本不建议用于正式环境。若在安装使用中遇到问题或发行 Bug，欢迎提交到 [GitHub issue](https://github.com/kubesphere/kubesphere/issues/new/choose)，产品使用问题与技术交流请在 [开发者社区](https://kubesphere.io/forum/) 提问。
 
 [KubeSphere](https://kubesphere.io) 是在 [Kubernetes](https://kubernetes.io) 之上构建的**以应用为中心**的**企业级分布式容器平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
@@ -28,13 +26,13 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，�
 
 快速安装的方式**无需配置持久化存储**，仅建议您用来快速安装测试和体验 2.1 的功能特性。正式环境建议配置持久化存储与集群的高可用部署。
 
-> **安装在 Linux（Dev 版）**
+> **安装在 Linux**
 > - [all-in-one](../all-in-one)：单节点安装，支持一键安装。
 > - [multi-node](../multi-node)：多节点安装，支持一键安装。
 >
-> **安装在 Kubernetes（开发中）** 
+> **安装在 Kubernetes（开发中）**
 > - [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
-> - [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline) 
+> - [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline)
 
 
 <!-- ### 离线安装
@@ -42,15 +40,13 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，�
 KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安装包进行安装。
 
 离线的安装步骤与在线安装一致，因此可直接参考 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 的安装指南下载安装。目前离线安装支持的操作系统如下，系统盘需保证 `100 G` 以上，主机配置规格的其它参数可参考在线安装的主机配置。
- 
+
 - CentOS 7.4/7.5   
 - Ubuntu 16.04.4/16.04.5 -->
 
-## 正式环境安装（需 2.1 GA 后安装）
+## 正式环境安装
 
-目前的 Installer 还处于 Dev 版，不建议在正式环境安装。
-
-正式环境建议使用多节点（Multi-node）部署，并且同时配置**持久化存储**与**集群的高可用**。
+正式环境建议使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
 
 > - [持久化存储配置说明](../storge-configuration)：快速安装 KubeSphere 可选择配置部署 [OpenEBS](https://openebs.io/) 来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行**部署测试**。若在正式环境安装使用需配置 KubeSphere 支持的持久化存储服务，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置持久化存储服务端。
 > - [高可用集群配置与安装](../master-ha)：Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点
@@ -58,7 +54,6 @@ KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安
 
 ## 自定义安装可插拔的功能组件
 
-<!-- > 注意，在 CI/CD 流水线中发送邮件通知需要安装前预先在 Installer 中配置邮件服务器，配置请参考 [集群组件配置释义](../vars) (下一版本将支持安装后在 UI 统一配置邮件服务器)。 -->
 
 Installer 支持在 KubeSphere 安装前和安装后单独安装可选的功能组件，您可以根据**业务需求和机器配置选择安装所需的组件**，体验 KubeSphere **完整的端到端的容器产品解决方案**，并且**所有组件都是开源免费**的。
 
@@ -127,7 +122,7 @@ KubeSphere 2.1.0 中的相关组件包括了以下版本，其中带 * 号的组
 
 <!-- ### 升级
 
-若您的机器已安装的环境为 1.0.x 或 2.0.x 版本，我们强烈建议您升级至最新的高级版 2.1.0，最新的 Installer 支持将 KubeSphere 从 1.0.x (或 2.0.0) 环境一键升级至目前最新的 2.1.0，详见 [升级指南](../upgrade)。 -->
+若您的机器已安装的环境为 2.0.x 版本，我们强烈建议您升级至最新的高级版 2.1.0，最新的 Installer 支持将 KubeSphere 从 2.0.x 环境一键升级至目前最新的 2.1.0，详见 [升级指南](../upgrade)。 -->
 
 ### 集群节点扩容
 
@@ -154,4 +149,3 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 |---|---|
 | 1 |删除 `/var/lib/etcd/`，删除 `/var/lib/docker`，删除 `/etc/kubernetes/`，删除 `/etc/kubesphere/`。 |
 | 2 |磁盘格式化、分区。|
-

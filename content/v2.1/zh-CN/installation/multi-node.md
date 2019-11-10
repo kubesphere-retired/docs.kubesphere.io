@@ -1,5 +1,5 @@
 ---
-title: "Multi-Node 模式（Dev 版）"
+title: "Multi-Node 模式"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -8,11 +8,11 @@ description: ''
 
 > 提示：
 > - KubeSphere 2.1 已支持 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件)，用户可根据**业务需求和机器配置选择安装所需的组件**，默认仅开启`最小化安装`，参考 [安装说明](../intro/#自定义安装可插拔的功能组件) 开启可选组件的安装。
-> - 本安装示例仅作为快速测试部署的演示，因此将使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，方便初次安装但没有准备存储服务端的场景下进行**部署测试**，**正式环境建议配置使用 KubeSphere 支持的存储类型。**
+> - 本安装示例仅作为快速测试部署的演示，因此将使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，**方便初次安装但没有准备存储服务端的场景下进行部署测试**，**正式环境建议配置使用 KubeSphere 支持的存储类型**，参考 [持久化存储配置说明](../storage-configuration)。
 > - Multi-node 支持 Master 和 etcd 节点高可用配置，本示例为了方便多节点的快速测试安装演示，仅部署单个 Master 和单个 etcd，正式环境建议配置 Master 和 etcd 节点的高可用，请参阅 [集群高可用部署配置](../master-ha)。
 > - 若在云平台使用在线安装，可通过调高带宽的方式来加快安装速度。
- 
-## 前提条件 
+
+## 前提条件
 
 检查安装机器的网络防火墙是否已关闭，若未关闭防火墙则需要开放相关的指定端口，参考 [需开放的端口](../port-firewall)。
 
@@ -23,7 +23,7 @@ description: ''
 
 您可以参考以下节点规格准备 <font color=red>至少 3 台</font> 符合要求的主机开始 `multi-node` 模式的部署。为防止软件版本冲突，**建议您选择多台干净的机器进行安装**。
 
-<font color=red>Installer 默认执行最小化安装，下表为最小化安装时的最低配置要求，若希望安装体验 KubeSphere 完整的功能组件，请参考安装说明 - 自定义安装各组件资源占用统计，使用资源更充足的机器开启安装其它功能组件。</font>
+<font color=red>Installer 默认执行最小化安装，下表为最小化安装时的最低配置要求，若希望安装体验 KubeSphere 完整的功能组件，请参考安装说明和安装可插拔功能组件，查看各组件资源占用统计，使用资源更充足的机器开启安装其它功能组件。</font>
 
 > 说明：
 > - 所有节点需要时间同步，否则可能会安装不成功；
@@ -33,12 +33,12 @@ description: ''
 > - 若选装 DevOps 功能组件时需保证有一台内存大于 8G 的节点，因为 Jenkins 默认的 JVM 设置会需要 `6~8 G` 的整块内存，若可用内存不足可能会造成该节点崩溃。
 
 
-| 操作系统 | 最小配置（每台） | 
-| --- | --- | 
-| CentOS 7.5 (64 bit) | CPU：4 核， 内存：8 G， 系统盘：40 G  | 
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核， 内存：8 G， 系统盘：40 G  |  
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核， 内存：8 G， 系统盘：40 G  |  
-|Debian Stretch 9.5 (64 bit)| CPU：4 核， 内存：8 G， 系统盘：40 G  |  
+| 操作系统 | 最小配置（每台） |
+| --- | --- |
+| CentOS 7.5 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G  |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G   |  
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G   |  
+|Debian Stretch 9.5 (64 bit)| CPU：2 核， 内存：4 G， 系统盘：40 G   |  
 
 
 以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。
@@ -59,14 +59,14 @@ description: ''
 
 ## 第二步: 准备安装配置文件
 
-**1.** 下载 `KubeSphere 2.1.0-dev` 安装包至待安装机器，进入安装脚本目录。
+**1.** 下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入安装脚本目录。
 
 ```bash
-$ curl -L  https://kubesphere.io/download/nightly/latest > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-2.1.0-dev/scripts
+$ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/scripts
 ```
 
-  
+
 **2.** 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
 
 > 说明：
@@ -136,7 +136,7 @@ $ cd scripts
 $ ./install.sh
 ```
 
-**2.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
+**2.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已有持久化存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
 
 ```bash
 ################################################

@@ -1,10 +1,9 @@
 ---
-title: "Release Notes For 2.1.0（Dev 版）"
+title: "Release Notes For 2.1.0"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: 'KubeSphere Release Notes'
 ---
 
-KubeSphere 2.1.0 目前公开的 Installer 是 dev 版，方便社区用户在 2.1.0 GA 发布前的公测与体验，因此当前版本不建议用于正式环境。若在安装使用中遇到问题或发行 Bug，欢迎提交到 [GitHub issue](https://github.com/kubesphere/kubesphere/issues/new/choose)，产品使用问题与技术交流请在 [开发者社区](https://kubesphere.io/forum/) 提问。
 
 ## Installer 改进
 
@@ -23,7 +22,7 @@ KubeSphere 2.1.0 目前公开的 Installer 是 dev 版，方便社区用户在 2
 
 - 升级 DevOps 组件 Jenkins 至 v2.176.2
 
-- Istio 组件升级至 1.3.2 
+- Istio 组件升级至 1.3.2
 
 
 

@@ -10,12 +10,11 @@
         {
           "title": "Release Notes - 2.1.0",
           "entry": "./v2.1/zh-CN/release/release-v210.md",
-          "tag": "Dev 版"
+          "tag": "最新"
         },
         {
           "title": "Release Notes - 2.0.2",
-          "entry": "./v2.1/zh-CN/release/release-v202.md",
-          "tag": "Stable 版"
+          "entry": "./v2.1/zh-CN/release/release-v202.md"
         },
         {
           "title": "Release Notes - 2.0.1",
@@ -80,11 +79,11 @@
           "title": "在 Linux 快速安装 KubeSphere",
           "entries": [
             {
-              "title": "All-in-One 模式（Dev 版）",
+              "title": "All-in-One 模式",
               "entry": "./v2.1/zh-CN/installation/all-in-one.md"
             },
             {
-              "title": "Multi-Node 模式（Dev 版）",
+              "title": "Multi-Node 模式",
               "entry": "./v2.1/zh-CN/installation/multi-node.md"
             }
           ]
@@ -179,6 +178,10 @@
             {
               "title": "集群节点扩容",
               "entry": "./v2.1/zh-CN/installation/add-nodes.md"
+            },
+            {
+              "title": "升级",
+              "entry": "./v2.1/zh-CN/installation/upgrade.md"
             },
             {
               "title": "卸载",

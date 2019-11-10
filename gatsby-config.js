@@ -79,13 +79,13 @@ module.exports = {
     title: 'KubeSphere Documents',
     versions: [
       {
-        label: 'v2.0', 
-        value: 'v2.0',
-      },
-      {
-        label: 'v2.1-dev', 
+        label: 'v2.1', 
         value: 'v2.1',
         isDev: true,
+      },
+      {
+        label: 'v2.0',
+        value: 'v2.0',
       },
       {
         label: 'v1.0',
