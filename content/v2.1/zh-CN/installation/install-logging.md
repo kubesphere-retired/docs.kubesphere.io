@@ -21,14 +21,14 @@ KubeSphere 提供了 **强大且易用的日志查询、接收与管理功能**�
 ```yaml
 # Logging
 logging_enabled: true # 是否安装内置的日志系统
-elasticsearch_master_replica: 1  #
-elasticsearch_data_replica: 2  #
+elasticsearch_master_replica: 1  # es 主节点副本数，主节点数不能为偶数
+elasticsearch_data_replica: 2  # 数据节点副本数
 elasticsearch_volume_size: 20Gi # Elasticsearch 存储卷大小
 log_max_age: 7 # 集群内置的 Elasticsearch 中日志保留时间，默认是 7 天
-elk_prefix: logstash
+elk_prefix: logstash # 自定义 index 命名方式，index 将以 ks-<elk_prefix>-log 形式命名
 kibana_enabled: true # 是否额外部署 Kibana
 logsidecar_injector_enabled: true # 是否安装和增加落盘日志收集器到用户创建的工作负载副本中
-#external_es_url: SHOULD_BE_REPLACED # 安装支持对接外部的 Elasticsearch，可减少资源消耗，此处填写 ES 服务的地址
+#external_es_url: SHOULD_BE_REPLACED # 安装支持对接外部的 Elasticsearch 7.x，可减少资源消耗，此处填写 ES 服务的地址
 #external_es_port: SHOULD_BE_REPLACED # 此处填写 ES 服务暴露的端口号
 ```
 
