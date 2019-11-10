@@ -37,7 +37,7 @@ description: ''
 下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入安装目录。
 
 ```bash
-$ $ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
+$ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
 && tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/scripts
 ```
 

@@ -72,6 +72,10 @@
             {
               "title": "网络防火墙配置",
               "entry": "./v2.1/zh-CN/installation/port-firewall.md"
+            },
+            {
+              "title": "集群其它参数配置",
+              "entry": "./v2.1/zh-CN/installation/vars.md"
             }
           ]
         },
@@ -144,10 +148,6 @@
             {
               "title": "在 Kubernetes 在线安装 KubeSphere",
               "entry": "./v2.1/zh-CN/installation/install-on-k8s.md"
-            },
-            {
-              "title": "在 Kubernetes 离线安装 KubeSphere",
-              "entry": "./v2.1/zh-CN/installation/install-ks-offline.md"
             }
           ]
         },
