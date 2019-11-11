@@ -4,7 +4,7 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-对于首次接触 KubeSphere 高级版的用户，想寻找一个最快安装和体验 KubeSphere 高级版核心功能的方式，all-in-one 模式可一键安装 KubeSphere 和 Kubernetes v1.15.5 至一台目标机器。
+对于首次接触 KubeSphere 的用户，想寻找一个最快安装和体验 KubeSphere 核心功能的方式，all-in-one 模式可一键安装 KubeSphere 和 Kubernetes v1.15.5 至一台目标机器。
 
 > 提示：
 > - KubeSphere 2.1 已支持 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件)，用户可根据**业务需求和机器配置选择安装所需的组件**，默认仅开启`最小化安装`，参考 [安装说明](../intro/#自定义安装可插拔的功能组件) 开启可选组件的安装。

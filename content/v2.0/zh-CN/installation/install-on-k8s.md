@@ -8,7 +8,7 @@ KubeSphere 支持在已有 Kubernetes 集群之上部署 [KubeSphere](https://ku
 
 ## 准备工作
 
-1. `Kubernetes` 版本要求为 `1.13.0 ≤ K8s Version ≤ 1.16`，KubeSphere 依赖 `Kubernetes 1.13.0` 版本之后的新特性，可以在执行 `kubectl version` 来确认 :
+1. `Kubernetes` 版本要求为 `1.13.0 ≤ K8s Version < 1.16`，KubeSphere 依赖 `Kubernetes 1.13.0` 版本之后的新特性，可以在执行 `kubectl version` 来确认 :
 
 ```bash
 $ kubectl version | grep Server

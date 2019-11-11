@@ -105,7 +105,7 @@ KubeSphere 2.1.0 中的相关组件包括了以下版本，其中带 * 号的组
 |GitLab | 11.8.1 |
 |Harbor | 1.7.5 |
 
-> 说明：KubeSphere 对 Kubernetes 版本的兼容原则是 `最新的版本 + 往前两个版本`，因为 Kubernetes v1.16 淘汰了一些 API group，如 extensions/v1beta1，这个 API group 被 helm 和很多 charts 使用到，需要等 helm 和 charts 更新后才能兼容 1.16，并且 v2.1 是在 1.5.x 上开发测试的，所以目前 v2.1 对 Kubernetes 兼容并支持的版本包括 1.5.x、1.4.x 和 1.3.x，近期刚发布的 Kubernetes 1.6 会在 KubeSphere 下一个版本兼容。
+> 说明：KubeSphere 对 Kubernetes 版本的兼容原则是 `最新的版本 + 往前两个版本`，因为 Kubernetes v1.16 淘汰了一些 API group，如 extensions/v1beta1，这个 API group 被 helm 和很多 charts 使用到，需要等 helm 和 charts 更新后才能兼容 1.16，并且 v2.1 是在 1.15.x 上开发测试的，所以目前 v2.1 对 Kubernetes 兼容并支持的版本包括 1.15.x、1.14.x 和 1.13.x，近期刚发布的 Kubernetes 1.16 会在 KubeSphere 下一个版本兼容。
 
 > 提示：如果需要查看或修改存储、网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、SonarQube、邮件服务器等配置参数时，可参考以下说明进行修改，集群组件配置释义文档对 installer 中的安装配置文件 `conf/common.yaml` 进行说明，简单介绍每一个字段的意义，参考 [自定义组件安装（安装前）](../vars)。
 

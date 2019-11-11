@@ -7,7 +7,7 @@ description: ''
 KubeSphere 支持离线和在线的方式部署至现有的 Kubernetes 集群，部署之前请确保您的 Kubernetes 环境满足以下 4 个前提条件：
 
 
-> - `Kubernetes` 版本： `1.13.0 ≤ K8s version ≤ 1.16`；
+> - `Kubernetes` 版本： `1.13.0 ≤ K8s version < 1.16`；
 > - `Helm`，版本 `>= 2.10.0`，且已安装了 Tiller，参考 [如何安装与配置 Helm](https://devopscube.com/install-configure-helm-kubernetes/)；
 > - 集群的可用 CPU > 1 C，可用内存 > 2 G；
 > - 集群已有存储类型（StorageClass）。
