@@ -10,7 +10,7 @@ KubeSphere 支持在已有 Kubernetes 集群之上部署 [KubeSphere](https://ku
 
 在部署之前请确认您的 Kubernetes 是否满足以下条件，可参考 [在 Kubernetes 在线部署 KubeSphere - 前提条件](../install-on-k8s) 的步骤进行确认。
 
-> - `Kubernetes` 版本 `>=1.13.0`
+> - `Kubernetes` 版本： `1.13.0 ≤ K8s Version < 1.16`
 > - `Helm`，版本 `>= 2.10.0`
 > - 集群可用`内存 >= 10G`
 > - 建议配合持久化存储使用（可选）
