@@ -38,6 +38,7 @@ $ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
 
 > - 将 2.0.x 的 `conf/hosts.ini` 中的主机参数配置覆盖至 2.1.0 安装包的 `conf/hosts.ini`，参数释义详见 [Multi-Node 模式 - 准备安装配置文件](../multi-node)。
 > - 注意，选取 2.0.x 的 `conf/vars.yaml` 中所有修改过的参数配置项的值同步至 2.1.0 `conf/common.yaml` 中的对应项。例如，2.0.x 配置使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 2.1.0 安装包的 `conf/common.yaml` 中存储类型的配置也需要与 2.0.x 的存储类型保持一致），参数释义详见 [持久化存储配置说明](../storage-configuration)。
+> - 提示：若 2.0.x 使用的存储类型不是 local volume，升级前需要先在 `conf/common.yaml` 中将 local volume 的两个字段设置为 false，再将之前的存储类型配置参数同步到 `conf/common.yaml`。
 
 
 ### 第三步：开始升级
