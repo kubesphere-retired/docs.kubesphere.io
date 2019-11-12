@@ -8,7 +8,7 @@ KubeSphere 支持在已有 Kubernetes 集群之上在线安装 [KubeSphere](http
 
 
 > - `Kubernetes` 版本： `1.13.0 ≤ K8s version < 1.16`；
-> - `Helm`，版本 `>= 2.10.0`，且已安装了 Tiller，参考 [如何安装与配置 Helm](https://devopscube.com/install-configure-helm-kubernetes/)；
+> - `Helm`，版本 `>= 2.10.0`（不支持 helm 2.16.0 [#6894](https://github.com/helm/helm/issues/6894)），且已安装了 Tiller，参考 [如何安装与配置 Helm](https://devopscube.com/install-configure-helm-kubernetes/)；
 > - 集群的可用 CPU > 1 C，可用内存 > 2 G；
 > - 集群已有存储类型（StorageClass）；
 > - 集群能够访问外网（离线安装正在开发中）。

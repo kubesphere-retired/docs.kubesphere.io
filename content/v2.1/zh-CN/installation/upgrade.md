@@ -28,15 +28,16 @@ $ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
 
 #### All-in-One
 
-若 2.0.x 是以 **all-in-one** 模式安装的单节点集群，那么升级前在 2.0.x 中无需修改 `conf/hosts.ini` 文件，仅需要确认 2.0.x 的 `conf/common.yaml` 参数配置是否修改，若有修改则需要在 2.1.0 的对应文件中同步所有修改的参数。
+若 2.0.x 是以 **all-in-one** 模式安装的单节点集群，那么升级前在 2.0.x 中无需修改 `conf/hosts.ini` 文件，仅需要确认 2.0.x 的 `conf/vars.yaml` 参数配置是否修改，若有修改则需要在 2.1.0 的对应文件中同步所有修改的参数。
 
 例如，目前 2.1.0 中默认使用 [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) 作为存储类型，如果您的 2.0.x 配置使用了其它存储类型，如 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 等，那么在 2.1.0 安装包的 `conf/common.yaml` 中也需要进行相应的设置（即与 2.0.x 的配置保持一致），参数释义详见 [存储配置参数](../storage-configuration)。
 
 #### Multi-Node
 
-若 2.0.x 是以 **multi-node** 模式安装的多节点集群，那么升级前需将当前 Installer 中的 `conf/hosts.ini` 和 `conf/common.yaml` 中的配置都同步到 2.1.0 的对应文件中：
-   - 将 2.0.x 的 `conf/hosts.ini` 中的主机参数配置覆盖至 2.1.0 安装包的 `conf/hosts.ini`，参数释义详见 [Multi-Node 模式 - 准备安装配置文件](../multi-node)。
-   - 选取 2.0.x 的 `conf/common.yaml` 中所有修改过的参数配置项的值同步至 2.1.0 `conf/common.yaml` 中的对应项。例如，2.0.x 配置使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 2.1.0 安装包的 `conf/common.yaml` 中存储类型的配置也需要与 2.0.x 的存储类型保持一致），参数释义详见 [持久化存储配置说明](../storage-configuration)。
+若 2.0.x 是以 **multi-node** 模式安装的多节点集群，那么升级前需先将 2.0.x Installer 中的 `conf/hosts.ini` 和 `conf/vars.yaml` 中的配置都同步到 2.1.0 的对应文件中：
+
+> - 将 2.0.x 的 `conf/hosts.ini` 中的主机参数配置覆盖至 2.1.0 安装包的 `conf/hosts.ini`，参数释义详见 [Multi-Node 模式 - 准备安装配置文件](../multi-node)。
+> - 注意，选取 2.0.x 的 `conf/vars.yaml` 中所有修改过的参数配置项的值同步至 2.1.0 `conf/common.yaml` 中的对应项。例如，2.0.x 配置使用的是 QingCloud 块存储、NFS、Ceph RBD 或 GlusterFS 这一类存储，那么在 2.1.0 安装包的 `conf/common.yaml` 中存储类型的配置也需要与 2.0.x 的存储类型保持一致），参数释义详见 [持久化存储配置说明](../storage-configuration)。
 
 
 ### 第三步：开始升级

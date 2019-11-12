@@ -6,8 +6,10 @@ description: ''
 
 `Multi-Node` 即多节点部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
-> 提示：
-> - KubeSphere 2.1 已支持 [自定义安装各个功能组件](../intro/#自定义安装可插拔的功能组件)，用户可根据**业务需求和机器配置选择安装所需的组件**，默认仅开启`最小化安装`，参考 [安装说明](../intro/#自定义安装可插拔的功能组件) 开启可选组件的安装。
+<font color=red>KubeSphere 2.1 默认仅开启最小化安装，Installer 已支持自定义安装各个可插拔的功能组件，用户可根据业务需求和机器配置选择安装所需的组件，**请确保开启可插拔组件之前机器资源满足最低要求**，参考 [安装说明](../intro/#自定义安装可插拔的功能组件) 开启可选组件的安装。</font>
+
+
+> 说明：
 > - 本安装示例仅作为快速测试部署的演示，因此将使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，**方便初次安装但没有准备存储服务端的场景下进行部署测试**，**正式环境建议配置使用 KubeSphere 支持的存储类型**，参考 [持久化存储配置说明](../storage-configuration)。
 > - Multi-node 支持 Master 和 etcd 节点高可用配置，本示例为了方便多节点的快速测试安装演示，仅部署单个 Master 和单个 etcd，正式环境建议配置 Master 和 etcd 节点的高可用，请参阅 [集群高可用部署配置](../master-ha)。
 > - 若在云平台使用在线安装，可通过调高带宽的方式来加快安装速度。
@@ -16,14 +18,12 @@ description: ''
 
 检查安装机器的网络防火墙是否已关闭，若未关闭防火墙则需要开放相关的指定端口，参考 [需开放的端口](../port-firewall)。
 
-<!-- - <font color=red>注意，若使用 QingCloud 云平台块存储作为存储服务，安装前需要确保用户账号在当前 Zone 资源配额满足最低要求。Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，所需的容量型硬盘容量的最低配额为 1400 GB，若硬盘数量和容量配额不够请提工单申请配额。</font> 若使用其他类型的硬盘，参考 [QingCloud 各类型块存储配额表](../storage-configuration)。 -->
-
 
 ## 第一步: 准备主机
 
 您可以参考以下节点规格准备 <font color=red>至少 3 台</font> 符合要求的主机开始 `multi-node` 模式的部署。为防止软件版本冲突，**建议您选择多台干净的机器进行安装**。
 
-<font color=red>Installer 默认执行最小化安装，下表为最小化安装时的最低配置要求，若希望安装体验 KubeSphere 完整的功能组件，请参考安装说明和安装可插拔功能组件，查看各组件资源占用统计，使用资源更充足的机器开启安装其它功能组件。</font>
+<font color=red>Installer 默认执行最小化安装，下表为最小化安装时的最低配置要求，若希望安装体验 KubeSphere 完整的功能组件，请参考 [可插拔功能组件列表](../intro/#自定义安装可插拔的功能组件)，查看各组件资源占用统计，准备资源更充足的机器开启安装其它功能组件。</font>
 
 > 说明：
 > - 所有节点需要时间同步，否则可能会安装不成功；
@@ -123,7 +123,7 @@ KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依
 > - 通常情况您不需要修改任何配置，直接安装即可。
 > - 网络插件默认是 `calico`，存储默认用 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，若您需要自定义安装参数，如网络、存储、负载均衡器插件、可选功能组件等相关配置需在 **`conf/common.yaml`** 文件中指定或修改，参考 [集群组件配置说明](../vars)。
 > - 支持存储类型：[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)、[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/) (QingCloud 公有云单节点挂盘限制为 10 块)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
-> - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此安装 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
+> - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此安装 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/common.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
 参考以下步骤开始 multi-node 部署。
 
