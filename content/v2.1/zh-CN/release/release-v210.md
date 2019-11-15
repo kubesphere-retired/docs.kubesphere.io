@@ -11,7 +11,7 @@ description: 'KubeSphere Release Notes'
 
 - 核心组件解耦，可选装 DevOps、微服务治理（Service Mesh）、应用商店、日志、告警通知等模块
 - 增加 Grafana 可选安装组件，默认版本 5.2.4
-- Kubernetes 支持升级至 1.15.5，兼容 1.4.x 和 1.3.x
+- Kubernetes 支持升级至 1.15.5，兼容 1.14.x 和 1.13.x
 - [OpenPitrix](https://openpitrix.io/) 应用商店后端管理模块升级至 0.4.5
 - 升级日志采集组件 Fluent Bit 至 v1.3.2
 - 升级 DevOps 组件 Jenkins 至 v2.176.2

@@ -67,6 +67,8 @@ $ kubectl edit cm -n kubesphere-system ks-installer
       domain: devops.kubesphere.local
 ```
 
+保存退出，参考 [验证可插拔功能组件的安装](../verify-components) ，通过查询 ks-installer 日志或 Pod 状态验证功能组件是否安装成功。
+
 ## 使用 GitLab 示例
 
 本示例以 `devops-java-sample` 为例展示如何从 GitHub 导入项目至 GitLab。

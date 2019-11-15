@@ -6,7 +6,7 @@ description: 'KubeSphere 是在 Kubernetes 之上构建的企业级分布式多�
 
 [KubeSphere](https://kubesphere.io) 是在 [Kubernetes](https://kubernetes.io) 之上构建的**以应用为中心**的**企业级分布式容器平台**，提供简单易用的操作界面以及向导式操作方式，在降低用户使用容器调度平台学习成本的同时，极大减轻开发、测试、运维的日常工作的复杂度，旨在解决 Kubernetes 本身存在的存储、网络、安全和易用性等痛点。除此之外，平台已经整合并优化了多个适用于容器场景的功能模块，以完整的解决方案帮助企业轻松应对**敏捷开发与自动化运维、DevOps、微服务治理、灰度发布、多租户管理、工作负载和集群管理、监控告警、日志查询与收集、服务与网络、应用商店、镜像构建与镜像仓库管理和存储管理**等多种业务场景。后续版本还将提供和支持**多集群管理、大数据、人工智能**等更为复杂的业务场景。
 
-KubeSphere 从项目初始阶段就采用**开源**的方式来进行项目的良性发展，相关的项目源代码和文档都在 [GitHub](https://github.com/kubesphere) 可见。KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，并且支持**在线安装与离线安装**，目前已在 **阿里云、腾讯云、华为云、青云、AWS、Kubernetes** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。 
+KubeSphere 从项目初始阶段就采用**开源**的方式来进行项目的良性发展，相关的项目源代码和文档都在 [GitHub](https://github.com/kubesphere) 可见。KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，并且支持**在线安装与离线安装**，目前已在 **阿里云、腾讯云、华为云、青云、AWS、Kubernetes** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。
 
 ## 功能架构
 

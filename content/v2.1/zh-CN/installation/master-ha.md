@@ -19,7 +19,7 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 ## Master 和 etcd 节点高可用架构
 
-本示例准备了 6 台主机，主机规格参考 [Multi-Node 模式 - 节点规格](../multi-node)，将在其中 3 台部署 Master 和 etcd 集群，可编辑主机配置文件 `conf/hosts.ini` 来配置 Master 和 etcd 的高可用。
+本示例准备了 6 台主机，将创建 `2` 个负载均衡器，主机规格参考 [Multi-Node 模式 - 节点规格](../multi-node)，将在其中 3 台部署 Master 和 etcd 集群，可编辑主机配置文件 `conf/hosts.ini` 来配置 Master 和 etcd 的高可用。
 
 ![Master 和 etcd 节点高可用架构](/master-ha-design.svg)
 
@@ -126,7 +126,7 @@ kube-master
 ## External LB example config
 ## apiserver_loadbalancer_domain_name: "lb.kubesphere.local"
 loadbalancer_apiserver:
-  address: 192.168.0.10
+  address: 192.168.0.253
   port: 6443
 ```
 
