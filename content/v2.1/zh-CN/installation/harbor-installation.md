@@ -38,6 +38,8 @@ $ kubectl edit cm -n kubesphere-system ks-installer
       domain: harbor.devops.kubesphere.local
 ```
 
+保存退出，参考 [验证可插拔功能组件的安装](../verify-components) ，通过查询 ks-installer 日志或 Pod 状态验证功能组件是否安装成功。
+
 ## 访问 Harbor
 
 ### Docker 登录 Harbor

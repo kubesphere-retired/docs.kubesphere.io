@@ -32,7 +32,7 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，�
 >
 > **安装在 Kubernetes**
 > - [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
-> - [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline)
+> - [在 Kubernetes 离线部署 KubeSphere（开发中）](../install-ks-offline)
 
 
 <!-- ### 离线安装
@@ -48,8 +48,8 @@ KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安
 
 正式环境建议使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
 
-> - [持久化存储配置说明](../storge-configuration)：快速安装 KubeSphere 可选择配置部署 [OpenEBS](https://openebs.io/) 来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行**部署测试**。若在正式环境安装使用需配置 KubeSphere 支持的持久化存储服务，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置持久化存储服务端。
-> - [高可用集群配置与安装](../master-ha)：Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点
+> - [持久化存储配置说明](../storge-configuration)： KubeSphere 默认开启了 Local Volume 方便初次安装但没有准备存储服务端的场景下进行**部署测试**。若在 **正式环境安装使用需配置 KubeSphere 支持的持久化存储服务**，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置持久化存储服务端。
+> - [高可用集群配置与安装](../master-ha)：Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点。
 
 
 ## 自定义安装可插拔的功能组件
@@ -107,7 +107,7 @@ KubeSphere 2.1.0 中的相关组件包括了以下版本，其中带 * 号的组
 
 > 说明：KubeSphere 对 Kubernetes 版本的兼容原则是 `最新的版本 + 往前两个版本`，因为 Kubernetes v1.16 淘汰了一些 API group，如 extensions/v1beta1，这个 API group 被 helm 和很多 charts 使用到，需要等 helm 和 charts 更新后才能兼容 1.16，并且 v2.1 是在 1.15.x 上开发测试的，所以目前 v2.1 对 Kubernetes 兼容并支持的版本包括 1.15.x、1.14.x 和 1.13.x，近期刚发布的 Kubernetes 1.16 会在 KubeSphere 下一个版本兼容。
 
-> 提示：如果需要查看或修改存储、网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、SonarQube、邮件服务器等配置参数时，可参考以下说明进行修改，集群组件配置释义文档对 installer 中的安装配置文件 `conf/common.yaml` 进行说明，简单介绍每一个字段的意义，参考 [自定义组件安装（安装前）](../vars)。
+> 提示：用户在获取 Installer 并解压至目标安装机器后，如果需要修改网络、组件版本等集群配置相关参数，可参考以下说明进行修改，本文档对 Installer 中的安装配置文件 conf/common.yaml进行说明，简单介绍每一个字段的意义。参考 [集群参数配置）](../vars)。
 
 <!-- #### 安装 QingCloud 负载均衡器插件 (可选)
 
@@ -115,8 +115,7 @@ KubeSphere 2.1.0 中的相关组件包括了以下版本，其中带 * 号的组
 
 ### 如何开启可选功能组件的安装
 
-- 安装前，请下载 installer 后参考 [自定义组件安装（安装前）](../vars) 在 `conf/common.yaml` 中进行修改。
-- 安装后，请参考 [自定义组件安装（安装后）](../components) 通过 kubectl 编辑 ConfigMap 进行修改。
+参考 [安装可插拔的功能组件](../install-openpitrix) 目录下的 7 篇文档，开启可插拔功能组件的安装。**注意，在开启安装前，请先确保机器的 CPU 与内存资源满足最低要求，参考上述的可插拔功能组件列表**
 
 ## 运维指南
 

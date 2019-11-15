@@ -116,6 +116,10 @@
               "entry": "./v2.1/zh-CN/installation/install-alert-notification.md"
             },
             {
+              "title": "安装 Metrics-server 开启 HPA",
+              "entry": "./v2.1/zh-CN/installation/install-metrics-server.md"
+            },
+            {
               "title": "验证可插拔功能组件的安装",
               "entry": "./v2.1/zh-CN/installation/verify-components.md"
             }

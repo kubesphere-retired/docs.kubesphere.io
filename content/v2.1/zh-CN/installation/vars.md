@@ -48,7 +48,7 @@ kube_proxy_mode: ipvs # kube-proxy 模式默认 ipvs (支持 ipvs, iptables)
 kubelet_max_pods: 110 # 单个节点默认的 Pod 数量上限
 
 # Enable nodelocal dns cache
-enable_nodelocaldns: true #
+enable_nodelocaldns: true # 见下方表格
 
 
 ## HA(Highly Available) loadbalancer example config
