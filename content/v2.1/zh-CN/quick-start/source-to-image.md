@@ -1,5 +1,5 @@
 ---
-title: "Source-to-image" 
+title: "Source-to-image"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -111,7 +111,7 @@ description: ''
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatd820170af0f7ae8d5da427b84c2fa7d5.png)
 
 - 协议：必填，该示例默认使用 `HTTP`；
-- 路径：必填，该示例默认使用根路径 `\`；
+- 路径：必填，该示例默认使用根路径 `/`；
 - 端口：必填，修改为示例应用所暴露的端口 `8080`；
 - 初始延迟(秒)：在检查其运行状况之前，容器启动后需要等待多长时间，该示例推荐延迟 `30s`；
 - 超时时间(秒)：等待探针完成多长时间。如果超过时间，则认为探测失败，该示例推荐延迟 `10s`；
@@ -153,4 +153,3 @@ Really appreaciate your star, that's the power of our life.
 由于我们在容器组模板设置中设置的目标镜像仓库为 DockerHub，此时可以登录您个人的 DockerHub 查看 Source to Image 示例推送的镜像，以下验证发现 `s2i-sample:latest` 镜像已成功推送至 DockerHub。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat6d72050f14c2591aa99b0e60c5c13041.png)
-
