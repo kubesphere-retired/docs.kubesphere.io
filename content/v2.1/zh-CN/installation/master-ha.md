@@ -115,9 +115,9 @@ kube-master
 
 ### 配置负载均衡器参数
 
-在 QingCloud 云平台准备好负载均衡器后，需在 `vars.yaml` 配置文件中修改相关参数。假设内网负载均衡器的内网 IP 地址是 `192.168.0.10` (这里需替换为您的负载均衡器实际 IP 地址)，负载均衡器设置的 TCP 协议的监听端口 (port) 为 `6443`，那么在 `conf/common.yaml` 中参数配置参考如下示例 (`loadbalancer_apiserver` 作为可选配置项，在配置文件中应取消注释)。
+在 QingCloud 云平台准备好负载均衡器后，需在 `common.yaml` 配置文件中修改相关参数。假设内网负载均衡器的内网 IP 地址是 `192.168.0.10` (这里需替换为您的负载均衡器实际 IP 地址)，负载均衡器设置的 TCP 协议的监听端口 (port) 为 `6443`，那么在 `conf/common.yaml` 中参数配置参考如下示例 (`loadbalancer_apiserver` 作为可选配置项，在配置文件中应取消注释)。
 
-> - 注意，address 和 port 在配置文件中应缩进两个空格。
+> - 注意，address 和 port 在配置文件中应缩进两个空格。address 地址应填写 VIP（虚拟地址）。
 > - 负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问。如果需要修改域名则先取消注释再自行修改。
 
 **common.yaml 配置示例**

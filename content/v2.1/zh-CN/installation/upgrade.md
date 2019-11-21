@@ -24,6 +24,8 @@ $ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
 
 升级将默认读取 2.1.0 的 conf 目录下的配置文件，因此在升级前需要将原有安装包中 conf 目录下的配置文件中的参数都同步到 2.1.0 版本安装包的对应文件中，修改配置文件分以下两种情况。
 
+> 提示：若您的 2.0.x 集群是部署在 QingCloud 云平台，`vars.yaml` 文件中的与 QingCloud 云平台相关配置需在 2.1.0 的 `plugin-qingcloud.yaml` 中进行同步。
+
 <font color=red>注意，在升级前请确保主机规格满足主机最低规格配置。</font> 请根据您的安装模式参考 [All-in-One 模式 - 准备主机](../all-in-one/#第一步-准备主机) 或 [Multi-Node 模式](../multi-node/#第一步-准备主机) 主机规格表。
 
 #### All-in-One
