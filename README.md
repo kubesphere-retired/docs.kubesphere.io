@@ -6,7 +6,7 @@
 
 ## Prerequisites
 
-We recomend you to install following 3 software:
+We recomend you to install the following 3 dependent softwares:
 
 > - git
 > - node.js
@@ -15,9 +15,12 @@ We recomend you to install following 3 software:
 Then check if these prerequisites have been installed successfully.
 
 ```shell
-git --version
-node -v
-yarn -v
+$ git --version
+git version 2.21.0
+$ node -v
+v10.15.1
+$ yarn -v
+1.15.2
 ```
 
 ## Fork it
@@ -93,9 +96,9 @@ After above steps done, open a new Pull Request in GitHub:
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123163627.png)
 
-When PR has been created, you should preview your changes and verify it in the Netlify notification as following, click the `Details` button with `Deploy preview ready!` row to preview your changes in browser.
+When PR has been created, you should preview your changes and verify it in the Netlify notification as following, click the `Details` button near `Deploy preview ready!` to preview your changes in browser.
 
-
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123170208.png)
 
 ## Edit navigation
 
