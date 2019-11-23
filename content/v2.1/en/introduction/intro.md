@@ -4,7 +4,7 @@ keywords: 'Kubernetes, docker, jenkins, devops, istio'
 description: 'What is KubeSphere'
 ---
 
-[KubeSphere](https://kubesphere.io/en/) ️is a multi-tenant cluster management platform which is based on [Kubernetes](http://kubernetes.io). KubeSphere provides easy-to-use UI to reduce your learning cost for employing the container management platform and make it easier to develop, test and maintain your daily work. It's aimed to resolve the problems relating to Kubernetes’ storage, network, security and its usability. 
+[KubeSphere](https://kubesphere.io/en/) ️is a multi-tenant cluster management platform which is based on [Kubernetes](http://kubernetes.io). KubeSphere provides easy-to-use UI to reduce your learning cost for employing the container management platform and make it easier to develop, test and maintain your daily work. It's aimed to resolve the problems relating to Kubernetes’ storage, network, security and its usability.
 
 In addition, the platform has integrated and optimized a range of functional modules which are suitable for containers. KubeSphere provides enterprises with a complete solution for development, automation operation and maintenance, microservice governance, multi-tanency management. Besides, our platform is also able to manage workload, container cluster, service and network, application orchestration as well as database mirroring and storage.
 
@@ -27,9 +27,9 @@ In addition, the platform has integrated and optimized a range of functional mod
   </tr>
 </table>
 
-## What's New in 2.0
+## What's New in 2.1
 
-In contrast to the express edition, [KubeSphere 2.0](../../release/release-v200) provides richer services for application management, supports multiple functions and flexible configuration to meet the complex business requirements. It supports **master and etcd node HA, visualized CI/CD pipeline, multi-dimensional monitoring and logging, multi-tenancy management, LDAP integration**. Additionally, It added supports for **HPA (Horizontal Pod Autoscaler), container health check and configurations for Secrets and ConfigMaps** etc. 
+In contrast to the express edition, [KubeSphere 2.0](../../release/release-v200) provides richer services for application management, supports multiple functions and flexible configuration to meet the complex business requirements. It supports **master and etcd node HA, visualized CI/CD pipeline, multi-dimensional monitoring and logging, multi-tenancy management, LDAP integration**. Additionally, It added supports for **HPA (Horizontal Pod Autoscaler), container health check and configurations for Secrets and ConfigMaps** etc.
 
 The newly added functions include microservice governance, grayscale release, S2i and code quality analysis, etc. What also deserves expecting is **multi-cluster management, big data, AI** and other more complex business scenarios in future releases.
 
@@ -47,7 +47,7 @@ KubeSphere has been developing by applying the open source approach since the ve
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190926000413.png)
 
 
-## Landscapes                        
+## Landscapes                       
 
 KubeSphere is a member of CNCF and a [Kubernetes Conformance Certified platform
 ](https://www.cncf.io/certification/software-conformance/#logos), which enriches the [CNCF CLOUD NATIVE Landscape.
