@@ -127,7 +127,7 @@ NOTE：Please modify the default password after login.
 
 <font color=red>Note: After log in to console, please verify the monitoring status of service components in the "Cluster Status". If the service is not ready, please wait patiently. You can start to use when all components are totally ready.</font>
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191014095317.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191125003158.png)
 
 ## Enable Pluggable Components
 
