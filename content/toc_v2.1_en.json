@@ -110,6 +110,15 @@
           ]
         },
         {
+          "title": "Enable Pluggable Components",
+          "entries": [
+            {
+              "title": "Enable Pluggable Components Installation",
+              "entry": "./v2.1/en/installation/pluggable-components.md"
+            }
+          ]
+        },
+        {
           "title": "Related Tools",
           "entries": [
             {

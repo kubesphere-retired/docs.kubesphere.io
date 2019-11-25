@@ -4,49 +4,58 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-[KubeSphere](https://kubesphere.io) is an enterprise-grade multi-tenant container management platform that built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI enables creation of computing resources with a few clicks and one-click deployment, which reduces the learning curve and empower the DevOps teams. It greatly reduces the complexity of the daily work of development, testing, operation and maintenance, aiming to solve the pain spots of Kubernetes' storage, network, security and ease of use, etc. 
+[KubeSphere](https://kubesphere.io) is an enterprise-grade multi-tenant container platform that built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI enables creation of computing resources with a few clicks and one-click deployment, which reduces the learning curve and empower the DevOps teams. It greatly reduces the complexity of the daily work of development, testing, operation and maintenance, aiming to solve the pain points of Kubernetes' storage, network, security and ease of use, etc.
+
+**KubeSphere supports installing on cloud-hosted and on-premises Kubernetes clusters and Linux host (including VM and BM), both of the 2 installation methods are easy and friendly for getting start.**
+
+
+## Installing KubeSphere on Kubernetes
+
+> - [Installing KubeSphere on Kubernetes (Online)](../install-on-k8s)
+> - [Installing KubeSphere on GKE cluster](../install-on-gke)
+
 
 ## Installing KubeSphere on Linux
 
-KubeSphere installation supports [all-in-one](../all-in-one) and [multi-node](../multi-node).
+KubeSphere installer supports [all-in-one](../all-in-one) and [multi-node](../multi-node) installation, which will help you to install **Kubernetes v1.15.5, Prometheus and KubeSphere** together to target marchines.
 
-All-in-one means a single host that includes the master, node, etcd, and other components, thus multi-node means multiple hosts with all components included on each (master, node, etcd, and other components).
+### Quickstart (For development and testing)
 
-In addition, you can choose to integrate Harbor image registry into cluster (optional). By default, Harbor will not be installed, users need to pre-configure the `conf/vars.yml` to install harbor, see [Integrate Harbor Installation](../harbor-installation).
+> - [All-in-One](../all-in-one): Means single-node installation, supports one-click deployment, it's only recommended to test and experience.
+> - [Multi-Node](../multi-node): Installing KubeSphere on multiple instances, it allows you to configure machine addresses in `hosts.ini`, without seperate storage server (e.g. Ceph, GlusterFS) and HA load balance configuration.
 
-> **Note:** 
-> - The external network must be accessible because of installation is required to update the OS and pull images and dependencies from the external source.
-> - There are two roles in the architecture of KubeSphere cluster, i.e. Master and Node. The master node consists of three components, namely, **kube-apiserver** for exposing the Kubernetes API, **kube-scheduler** for scheduling decisions, and **kube-controller-manager** for running controllers.
-> - Etcd as the consistent and highly-available key value store used as Kubernetes’ backing store for all cluster data.
-> - All-in-one is used for a single-node installation, the node is both a management and a working node.
-> - When you start multi-node installation, you can set the roles of the cluster nodes in the configuration file.
-> - Notice that select OpenSSH Server from the Software Selection step if your host(s) is a newly installed system,.
+### HA Install (For production environments)
 
-### All-in-One
+KubeSphere installer supports installing a highly available cluster which is able to use in a production environment, the prerequisites are load balancer and persistent storage service configuration.
 
-`All-in-One` is single-node installation that supports one-click installation, it's only recommended to test and experienc the features of 2.0.2, see [All-in-One](../all-in-one). By contrast, the multi-node installation is recommended in a formal environment.
+> - [Persistent Service Configuration](../storage-configuration): By default, KubeSphere Installer uses [Local volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) based on [openEBS](https://openebs.io/) to provide storage service with dynamic provisioning in Kubernetes cluster, it's convienient for quickstart. However, this is not recommended to use in production environments, we recomend you to prepare a storage server and reference [Persistent Service Configuration](../storage-configuration) for production environments.
+> - [Load Balancer Configuration for HA install](../master-ha): Before you get started with Multi-node installation in production environments, you are supposed to configure load balancer, cloud LB or `HAproxy + keepalived` could be a solution for HA install.
 
-### Multi-Node 
+## Enable Pluggable Components Installation
 
-`Multi-node` is used for installing KubeSphere on multiple instances, supports for installing a highly available master and etcd cluster which is able to use in a formal environment, see [Multi-Node](../multi-node).
+ KubeSphere has decoupled some core feature components in v2.1.0, these components are designed to be pluggable and support enabling them before or after installation. By default, installer will trigger minimal installation if you don't enable pluggable components in related configuration file. See [Enable Pluggable Components Installation](../pluggable-components) for pluggable components installation guide.
 
-#### Components Version
 
-|Components | Version|
+## Components Version
+
+The components with `*` are required in minimal installation, others are corresponding to pluggable components.
+
+|  Component |  Version |
 |---|---|
-|KubeSphere| v2.0.2|
-|Kubernetes| v1.13.5|
-|Istio | v1.1.1 |
-|etcd| v3.2.18|
-|OpenPitrix| v0.3.5|
-|Elasticsearch| v6.7.0 |
-|Prometheus| v2.3.1|
-|Jenkins| v2.138 |
+|* KubeSphere| 2.1.0|
+|* Kubernetes| v1.15.5 |
+|* etcd|3.2.18|
+|* Prometheus| v2.3.1|
+|Fluent Bit| v1.2.1|
+|Elasticsearch | v6.7.0 ( **Support using external ElasticSearch 7.x** )|
+|Istio | v1.3.3 |
+|OpenPitrix (App Store)| v0.4.5 |
+|Jenkins| v2.176.2 |
 |SonarQube| v7.4 |
-|GitLab | v11.8.1 |
-|Harbor | v1.7.5 |
+|GitLab | 11.8.1 |
+|Harbor | 1.7.5 |
 
-#### Storage Configuration Instruction
+## Storage Configuration Instruction
 
 *Storage Configuration Instruction* explains how to configure different types of persistent storage services as following, see [Storage Configuration Instruction](../storage-configuration).
 
@@ -55,27 +64,13 @@ In addition, you can choose to integrate Harbor image registry into cluster (opt
 - [Ceph RBD](https://ceph.com/)
 - [QingCloud Block Storage](https://docs.qingcloud.com/product/storage/volume/)
 - [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)
- 
 
-#### Creating HA Master and Etcd Cluster
 
-Multi-node installation can help uses to deploy KubeSphere to a cluster. However, we also need to consider the high availability of the master and etcd in a production environment. This page uses the Load balancer as an example, walk you through how to configure highly available Master and etcd nodes installation, see [Creating Highly Available Master and Etcd Cluster](../master-etcd-ha).
-
-#### Adding new node
+## Add new nodes
 
 After you install KubeSphere, you may run out of server capacity in a formal environment and need to add a new node, then scale the cluster horizontally to complete the system expansion, see [Add new node](../add-nodes).
 
-## Installing KubeSphere on Kubernetes
 
-In addition to supporting deploy on VM and BM, KubeSphere also supports installing on cloud-hosted and on-premises Kubernetes clusters.
+## Uninstall
 
-> - [Installing KubeSphere on Kubernetes (Online)](../install-on-k8s)
-> - [Installing KubeSphere on Kubernetes (Offline)](../install-ks-offline)
-
-
-
-## Uninstalling
-
-Uninstall will remove KubeSphere from the machine, this operation is irreversible, see [Uninstall](../uninstall).
-
-
+Uninstall will remove KubeSphere from the machine, this operation is irreversible and dangerous, see [Uninstall](../uninstall).

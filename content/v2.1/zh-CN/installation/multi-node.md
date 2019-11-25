@@ -59,11 +59,11 @@ description: ''
 
 ## 第二步: 准备安装配置文件
 
-**1.** 下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入安装脚本目录。
+**1.** 下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入 `conf` 目录。
 
 ```bash
 $ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/scripts
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/conf
 ```
 
 
@@ -136,7 +136,7 @@ $ cd scripts
 $ ./install.sh
 ```
 
-**2.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已有持久化存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
+**2.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您的环境是否前提条件，若满足请输入 "yes" 开始安装。
 
 ```bash
 ################################################
