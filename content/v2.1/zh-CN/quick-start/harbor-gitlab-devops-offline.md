@@ -1,5 +1,5 @@
 ---
-title: "CI/CD 流水线示例 (离线版)" 
+title: "CI/CD 流水线示例 (离线版)"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -12,6 +12,7 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 
 ## 前提条件
 
+- 开启安装了 DevOps 功能组件，参考 [安装 DevOps 系统](../../installation/install-devops)；
 - 本示例以 GitLab 和 Harbor 为例，请确保已安装 [内置 Harbor](../../installation/harbor-installation/) 和 [内置 GitLab](../../installation/gitlab-installation/)，已准备了基础镜像 `java:openjdk-8-jre-alpine`；
 - 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
@@ -236,7 +237,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30961`。
 
-**查看服务** 
+**查看服务**
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
 5、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-java-sample` 就是 APP_NAME 的值，而 tag也是在 Jenkinsfile-on-prem 中定义的 tag。

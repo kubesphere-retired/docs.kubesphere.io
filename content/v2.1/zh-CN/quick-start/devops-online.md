@@ -1,5 +1,5 @@
 ---
-title: "基于Spring Boot项目构建流水线" 
+title: "基于Spring Boot项目构建流水线"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -13,6 +13,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 前提条件
 
+- 开启安装了 DevOps 功能组件，参考 [安装 DevOps 系统](../../installation/install-devops)；
 - 本示例以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
 - 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 project-regular 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
@@ -155,7 +156,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 4、复制生成的 token，在 KubeSphere Token 框中输入该 token 然后点击保存。
 
-5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample)，点击 **选择此仓库**，完成后点击 **下一步**。 
+5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample)，点击 **选择此仓库**，完成后点击 **下一步**。
 
 ![image-20190409122653070](https://kubesphere-docs.pek3b.qingstor.com/png/image-20190409122653070.png)
 
@@ -280,7 +281,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务的 Virtual IP 为 `10.233.42.3`，对外暴露的节点端口 (NodePort) 是 `30961`。
 
-**查看服务** 
+**查看服务**
 
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 

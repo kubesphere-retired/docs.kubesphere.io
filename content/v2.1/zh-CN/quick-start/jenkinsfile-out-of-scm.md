@@ -1,5 +1,5 @@
 ---
-title: "图形化构建流水线 (Jenkinsfile out of SCM)" 
+title: "图形化构建流水线 (Jenkinsfile out of SCM)"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -12,6 +12,7 @@ description: ''
 
 ## 前提条件
 
+- 开启安装了 DevOps 功能组件，参考 [安装 DevOps 系统](../../installation/install-devops)；
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号；
 - 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
@@ -324,8 +325,3 @@ Really appreaciate your star, that's the power of our life.
 > 提示：若需要在外网访问该服务，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将**内网端口** 30861 转发到**源端口** 30861，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 至此，图形化构建流水线的示例已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../devops/devops-faq)。
-
-
-
-
-

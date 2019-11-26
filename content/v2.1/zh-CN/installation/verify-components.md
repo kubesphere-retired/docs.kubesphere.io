@@ -14,6 +14,29 @@ description: ''
 $ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
+当动态日志出现如下提示，说明开启的组件已安装成功。
+
+
+```
+#####################################################
+###              Welcome to KubeSphere!           ###
+#####################################################
+
+Console: http://192.168.0.53:30880
+Account: admin
+Password: P@88w0rd
+
+NOTES：
+  1. After logging into the console, please check the
+     monitoring status of service components in
+     the "Cluster Status". If the service is not
+     ready, please wait patiently. You can start
+     to use when all components are ready.
+  2. Please modify the default password after login.
+
+#####################################################
+```
+
 2. 安装成功后，可登陆控制台，在 `服务组件` 下查看可插拔功能组件下的所有组件是否都已经安装启动完毕。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191014190116.png)
