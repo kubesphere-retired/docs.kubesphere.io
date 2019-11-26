@@ -43,7 +43,7 @@ description: ''
 
 ## 前提条件
 
-- B2I 属于 DevOps 功能组件，因此使用前需开启安装 DevOps 组件
+- B2I 属于 DevOps 功能组件，因此使用前需开启安装 DevOps 功能组件
 - 已创建了企业空间、项目和普通用户 `project-regular` 账号 (该已账号已被邀请至示例项目)，请参考 [多租户管理快速入门](../admin-quick-start)
 
 ### 创建密钥

@@ -19,7 +19,7 @@ KubeSphere 应用商店 **对内可作为团队间共享企业内部的中间件
 
 ## 前提条件
 
-- 已安装了 OpenPitrix 功能组件
+- 已安装了 OpenPitrix（应用商店）功能组件
 - 已创建了企业空间和项目（可参考 [管理员快速入门](../../quick-start/admin-quick-start) 创建）
 
 ## 创建自定义角色与账号
