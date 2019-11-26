@@ -6,7 +6,7 @@ description: ''
 
 ## Separation of front and back ends
 
-KubeSphere adopts the separation of front and back ends, also realizes a cloud native design, the back ends' service components can communicate with external systems through the REST API, see [API documentation](https://kubesphere.io/docs/v2.0/api/kubesphere) for more details. All component are included in the architecture diagram below. KubeSphere can run anywhere from on-premise datacenter to any cloud to edge. In addition, it can be deployed on any Kubernetes distribution.
+KubeSphere adopts the separation of front and back ends, also realizes a cloud native design, the back ends' service components can communicate with external systems through the REST API, see [API documentation](/docs/v2.0/api/kubesphere) for more details. All component are included in the architecture diagram below. KubeSphere can run anywhere from on-premise datacenter to any cloud to edge. In addition, it can be deployed on any Kubernetes distribution.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190810073322.png)
 

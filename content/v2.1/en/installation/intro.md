@@ -4,7 +4,7 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-[KubeSphere](https://kubesphere.io) is an enterprise-grade multi-tenant container platform that built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI enables creation of computing resources with a few clicks and one-click deployment, which reduces the learning curve and empower the DevOps teams. It greatly reduces the complexity of the daily work of development, testing, operation and maintenance, aiming to solve the pain points of Kubernetes' storage, network, security and ease of use, etc.
+[KubeSphere](/en/) is an enterprise-grade multi-tenant container platform that built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI enables creation of computing resources with a few clicks and one-click deployment, which reduces the learning curve and empower the DevOps teams. It greatly reduces the complexity of the daily work of development, testing, operation and maintenance, aiming to solve the pain points of Kubernetes' storage, network, security and ease of use, etc.
 
 **KubeSphere supports installing on cloud-hosted and on-premises Kubernetes clusters and Linux host (including VM and BM), both of the 2 installation methods are easy and friendly for getting start.**
 

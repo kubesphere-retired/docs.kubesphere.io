@@ -7,11 +7,11 @@ import styled from 'styled-components'
 import classnames from 'classnames'
 import Viewer from 'viewerjs'
 import 'viewerjs/dist/viewer.css'
+import * as tocbot from 'tocbot'
 
 import Layout from '../layouts'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Headings from '../components/Headings'
 import Versions from '../components/Versions'
 import SearchResult from '../components/SearchResult'
 import TableOfContents from '../components/TableOfContents/index'
@@ -39,6 +39,8 @@ class MarkdownTemplate extends React.Component {
   }
 
   componentDidMount() {
+    const { version } = this.props.pageContext
+
     document.addEventListener('click', this.handleClick)
 
     if (
@@ -70,11 +72,36 @@ class MarkdownTemplate extends React.Component {
         apiKey: '221332a85783d16a5b930969fe4a934a',
         indexName: 'kubesphere',
         inputSelector: '.ks-search > input',
+        algoliaOptions: {
+          facetFilters: ['lang:zh-CN', `version:${version}`],
+        },
+        transformData: function(hits) {
+          hits.forEach(hit => {
+            if (
+              typeof window !== undefined &&
+              process.env.NODE_ENV !== 'development'
+            ) {
+              hit.url = hit.url.replace('kubesphere.io', window.location.host)
+            }
+          })
+          return hits
+        },
         debug: false,
       })
     }
 
     this.setLinkTargetBlank()
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.md-body',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h2, h3',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+    })
   }
 
   componentDidUpdate() {
@@ -86,6 +113,8 @@ class MarkdownTemplate extends React.Component {
     if (this.viewer) {
       this.viewer.destroy()
     }
+
+    tocbot.destroy()
   }
 
   setLinkTargetBlank() {
@@ -313,12 +342,7 @@ class MarkdownTemplate extends React.Component {
                   </FooterWrapper>
                 </MarkdownWrapper>
                 <HeadingsWrapper>
-                  <Headings
-                    title={postNode.frontmatter.title}
-                    headings={postNode.headings}
-                    current={this.props.location.hash}
-                    onHeadClick={this.handleHeadClick}
-                  />
+                  <div className="toc" />
                 </HeadingsWrapper>
               </MainContainer>
             </BodyGrid>
@@ -416,6 +440,47 @@ const HeadingsWrapper = styled.div`
   @media only screen and (max-width: 1280px) {
     display: none;
   }
+
+  .toc {
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    li {
+      margin-bottom: 0;
+    }
+
+    .node-name--H2,
+    .node-name--H3 {
+      display: block;
+      width: 260px;
+      height: 24px;
+      padding-left: 20px;
+      font-size: 14px;
+      line-height: 1.71;
+      color: #141f29;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        color: #55bc8a;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+
+      &.is-active-link {
+        color: #55bc8a;
+        font-weight: 500;
+      }
+    }
+
+    .node-name--H3 {
+      padding-left: 40px;
+    }
+  }
 `
 
 const MarkdownTitle = styled.h1``
@@ -466,10 +531,6 @@ export const pageQuery = graphql`
         title
         keywords
         description
-      }
-      headings {
-        value
-        depth
       }
       fields {
         version

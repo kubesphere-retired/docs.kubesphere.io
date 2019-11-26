@@ -6,8 +6,8 @@ description: 'This is API Documentation'
 
 KubeSphere provides you with a rich RESTful specification API. Before calling API, you need to log in KubeSphere background or access to Swagger UI. Only after logging in and getting the JWT Bearer token, can you use KubeSphere API.
 
-> - [KubeSphere API Docs](https://kubesphere.io/docs/v2.0/api/kubesphere)
-> - [Notification API Docs](https://kubesphere.io/docs/v2.0/api/notification)
+> - [KubeSphere API Docs](/docs/v2.0/api/kubesphere)
+> - [Notification API Docs](/docs/v2.0/api/notification)
 
 ## API Architecture
 

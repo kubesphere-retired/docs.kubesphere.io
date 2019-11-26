@@ -9,7 +9,7 @@ KubeSphere 高级版 (Advanced Edition 1.0.1) 已于 2019 年 1 月 28 日 正�
 
 ## 下载高级版 1.0.1
 
-请前往 KubeSphere 官网下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced)。
+请前往 KubeSphere 官网下载最新的 [KubeSphere Advanced Edition 1.0.1](/download/?type=advanced)。
 
 ### 安装指南
 
