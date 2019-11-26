@@ -6,12 +6,12 @@ description: ''
 
 ## Objective
 
-Take the setting up of a Statefulset for an example. Here is a presentation of how to use the mirroring deployment, `mysql:5.6`, to set up a stateful MySQL app as the [Wordpress](https://wordpress.org/) website's backend. It will show you how to use Statefulset. The MySQL initial password for this example will be created and saved as [Secret](https://kubesphere.io/docs/advanced-v2.0/zh-CN/configuration/secrets/). For presenting, here will only demonstrate processes. For relevant parameters and fields' detailed explanation, please refer to the [Secret](https://kubesphere.io/docs/advanced-v2.0/zh-CN/configuration/secrets/) and [StatefulSets](https://kubesphere.io/docs/advanced-v2.0/zh-CN/workload/statefulsets/)
+Take the setting up of a Statefulset for an example. Here is a presentation of how to use the mirroring deployment, `mysql:5.6`, to set up a stateful MySQL app as the [Wordpress](https://wordpress.org/) website's backend. It will show you how to use Statefulset. The MySQL initial password for this example will be created and saved as [Secret](/docs/advanced-v2.0/zh-CN/configuration/secrets/). For presenting, here will only demonstrate processes. For relevant parameters and fields' detailed explanation, please refer to the [Secret](/docs/advanced-v2.0/zh-CN/configuration/secrets/) and [StatefulSets](/docs/advanced-v2.0/zh-CN/workload/statefulsets/)
 
 ## Prerequisites
 
-- The workspace, projects and the general user account `project-regular` should be created. If not, please refer to [Quick Start Guide of Multi-tenant Management](https://kubesphere.io/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/)
-- Use `project-admin` to invite `project regular` to the project and grant it with the role of `operator`. Please refer to [Quick Start Guide of Multi-tenant Management-Inviting Members](https://kubesphere.io/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/)
+- The workspace, projects and the general user account `project-regular` should be created. If not, please refer to [Quick Start Guide of Multi-tenant Management](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/)
+- Use `project-admin` to invite `project regular` to the project and grant it with the role of `operator`. Please refer to [Quick Start Guide of Multi-tenant Management-Inviting Members](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/)
 
 ## Estimated Time
 

@@ -13,8 +13,8 @@ The example below is an official Java demonstration for Hello World. It will sho
 ## Prerequisites
 
 - The example below takes the GitHub codes repository and DockerHub repositories for example. Make sure you have created [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) accounts.
-- Build workspace, projects and `project-regular` accounts for common users at first. If not, please refer to [Quick Start Guide of Multi-tenant Management](https://kubesphere.io/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/).
-- Use `project-admin` to invite `project-regular`, regular users, to join in the project. Refer to [Quick Start Guide of Multi-tenant Management-inviting members](https://kubesphere.io/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/) to grant the `operator`role.
+- Build workspace, projects and `project-regular` accounts for common users at first. If not, please refer to [Quick Start Guide of Multi-tenant Management](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/).
+- Use `project-admin` to invite `project-regular`, regular users, to join in the project. Refer to [Quick Start Guide of Multi-tenant Management-inviting members](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/) to grant the `operator`role.
 
 ## Estimated Time
 
@@ -24,7 +24,7 @@ The example below is an official Java demonstration for Hello World. It will sho
 
 ### Create Secrets
 
-Create the secrets for DockerHub repository and GitHub codes repository as dockerhub-id and github-id. Please refer to [Creating Common Secrets](https://kubesphere.io/docs/advanced-v2.0/zh-CN/configuration/secrets/#%E5%88%9B%E5%BB%BA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%A0%E7%B1%BB%E5%AF%86%E9%92%A5)
+Create the secrets for DockerHub repository and GitHub codes repository as dockerhub-id and github-id. Please refer to [Creating Common Secrets](/docs/advanced-v2.0/zh-CN/configuration/secrets/#%E5%88%9B%E5%BB%BA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%A0%E7%B1%BB%E5%AF%86%E9%92%A5)
 
 #### Fork Project
 
@@ -54,7 +54,7 @@ Login GitHub. Fork the GitHub repository [devops-java-sample](https://github.com
 
 2.4. Refer to the following information and fill in.
 
-> Note: KubeSphere has built in common s2i templates for Java, Node.js and Python. If you need to customize other languages or use the s2i template, please refer to [Customized s2i template](https://kubesphere.io/docs/advanced-v2.0/zh-CN/workload/s2i-template/).
+> Note: KubeSphere has built in common s2i templates for Java, Node.js and Python. If you need to customize other languages or use the s2i template, please refer to [Customized s2i template](/docs/advanced-v2.0/zh-CN/workload/s2i-template/).
 
 
 - Code URL: Paste the git address fromt he last step (Git, HTTP and HTTPS are fine. You can also specify code branch and the related route in the source code terminal);
@@ -143,7 +143,7 @@ $ curl 10.233.60.196:8080
 Hello,World!
 ```
 
-> Tip: If you need to access to this service from external network, you may need to bind to the public network EIP and set port forwarding and firewall rules. Forward the Internal Network Port 30454 to the source port 30454 in the forwarding rule. Then open this port in the firewall to ensure the external network traffic can pass this port. For operations on the QingCloud platform, you can refer to [Cloud Platform Setting Port Forward and Firewall](https://kubesphere.io/docs/advanced-v2.0/zh-CN/appendix/qingcloud-manipulation/).
+> Tip: If you need to access to this service from external network, you may need to bind to the public network EIP and set port forwarding and firewall rules. Forward the Internal Network Port 30454 to the source port 30454 in the forwarding rule. Then open this port in the firewall to ensure the external network traffic can pass this port. For operations on the QingCloud platform, you can refer to [Cloud Platform Setting Port Forward and Firewall](/docs/advanced-v2.0/zh-CN/appendix/qingcloud-manipulation/).
 
 
 ## Verify the Service and Image Push

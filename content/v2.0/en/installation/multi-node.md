@@ -219,4 +219,4 @@ NOTE：Please modify the default password after login.
 
 ## FAQ
 
-KubeSphere has run the deployment test on Aliyun, Tencent cloud, Huawei cloud, Qingcloud and AWS. For test results and relevant solutions, please refer to [Multiple Cloud Platform Installation Testing Result](https://github.com/kubesphere/ks-installer/issues/23). Besides, we have arranged related solutions to common installation issues in the [Common Installation Issues](https://kubesphere.io/docs/advanced-v2.0/zh-CN/faq/faq-install/). If you have other installation problems, please submit on [GitHub](https://github.com/kubesphere/kubesphere/issues). 
+KubeSphere has run the deployment test on Aliyun, Tencent cloud, Huawei cloud, Qingcloud and AWS. For test results and relevant solutions, please refer to [Multiple Cloud Platform Installation Testing Result](https://github.com/kubesphere/ks-installer/issues/23). Besides, we have arranged related solutions to common installation issues in the [Common Installation Issues](/docs/advanced-v2.0/zh-CN/faq/faq-install/). If you have other installation problems, please submit on [GitHub](https://github.com/kubesphere/kubesphere/issues). 

@@ -8,11 +8,12 @@
   color: #303e5a;
   max-width: 1217px;
   overflow-x: auto;
+  min-height: calc(100vh - 100px);
 }
 
 .md-en {
-  font-family: 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue',
-    Helvetica, Arial, 'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
+  font-family: 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', Helvetica,
+    Arial, 'Microsoft YaHei', 微软雅黑, STHeitiSC-Light, simsun, 宋体,
     'WenQuanYi Zen Hei', 'WenQuanYi Micro Hei', sans-serif;
 }
 
@@ -131,6 +132,18 @@
   font-weight: 500;
   line-height: 2;
   color: #171c34;
+}
+
+.md-body h2::before,
+.md-body h3::before,
+.md-body h4::before,
+.md-body h5::before,
+.md-body h6::before {
+  display: block;
+  content: ' ';
+  height: 80px;
+  margin-top: -80px;
+  visibility: hidden;
 }
 
 .md-body h1 .octicon-link,

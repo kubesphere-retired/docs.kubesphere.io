@@ -110,6 +110,23 @@ module.exports = {
           },
         ],
       },
+      {
+        version: 'v2.1',
+        swaggerUrls: [
+          {
+            name: 'kubesphere',
+            url: 'data/v2.1_api.json',
+          },
+          {
+            name: 'kubesphere-crd',
+            url: 'data/v2.1_crd_api.json',
+          },
+          {
+            name: 'notification',
+            url: 'data/notification.api.json',
+          },
+        ],
+      },
     ],
   },
   plugins: [

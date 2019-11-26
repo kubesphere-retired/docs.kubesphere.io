@@ -12,7 +12,7 @@ KubeSphere 共提供社区版、易捷版以及高级版三个版本，其中社
 
 ## 下载高级版 1.0.0
 
-请前往 KubeSphere 官网下载最新的 [KubeSphere Advanced Edition 1.0.0](https://kubesphere.io/download)。
+请前往 KubeSphere 官网下载最新的 [KubeSphere Advanced Edition 1.0.0](/download)。
 
 ## 安装
 

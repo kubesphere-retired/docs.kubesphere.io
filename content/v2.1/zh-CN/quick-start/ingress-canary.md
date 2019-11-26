@@ -6,7 +6,7 @@ description: '使用 Ingress-Nginx 进行灰度发布'
 
 在 [Bookinfo 微服务的灰度发布示例](../bookinfo-canary) 中，KubeSphere 基于 Istio 对 Bookinfo 微服务示例应用实现了灰度发布。有用户表示自己的项目还没有上 Istio，要如何实现灰度发布？
 
-在 [Ingress-Nginx (0.21.0 版本)](https://github.com/kubernetes/ingress-nginx/releases/tag/nginx-0.21.0) 中，引入了一个新的 Canary 功能，可用于为网关入口配置多个后端服务，还可以使用指定的 annotation 来控制多个后端服务之间的流量分配。 KubeSphere 在 [2.0.2 的版本](https://kubesphere.io/docs/v2.0/zh-CN/release/release-v202/) 中，升级了项目网关 (Ingress Controller) 版本至 0.24.1，支持基于 [Ingress-Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary) 的灰度发布。
+在 [Ingress-Nginx (0.21.0 版本)](https://github.com/kubernetes/ingress-nginx/releases/tag/nginx-0.21.0) 中，引入了一个新的 Canary 功能，可用于为网关入口配置多个后端服务，还可以使用指定的 annotation 来控制多个后端服务之间的流量分配。 KubeSphere 在 [2.0.2 的版本](/docs/v2.0/zh-CN/release/release-v202/) 中，升级了项目网关 (Ingress Controller) 版本至 0.24.1，支持基于 [Ingress-Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary) 的灰度发布。
 
 上一篇文章已经对灰度发布的几个应用场景进行了详细介绍，本文将直接介绍和演示基于 KubeSphere 使用应用路由 (Ingress) 和项目网关 (Ingress Controller) 实现灰度发布。
 

@@ -152,6 +152,6 @@ B2I 创建完成后，在 `构建镜像` 下查看 B2I 的构建状态，包括�
 
 ## 总结
 
-您可以根据需求使用上述两种不同的方式来完成 B2I 的自动镜像构建。一般来说，像 Java 语言的项目，可以通过 `mvn package` 命令打成 JAR/WAR 包，而像 C、C++ 和 Go 这类不需要运行时的语言，可以使用其语言自身的 build 命令打包成 binary 格式的制品，最终就可以通过 KubeSphere B2I 来快速将制品打包成 Docker 镜像，并发布到镜像仓库和 Kubernetes 中。而像 Python、Nodejs 和 PHP 这类脚本式语言的项目，可以通过 KubeSphere [Source-to-Image (S2I)](https://kubesphere.io/docs/v2.0/zh-CN/quick-start/source-to-image/) 完成类似 B2I 的自动构建与发布。
+您可以根据需求使用上述两种不同的方式来完成 B2I 的自动镜像构建。一般来说，像 Java 语言的项目，可以通过 `mvn package` 命令打成 JAR/WAR 包，而像 C、C++ 和 Go 这类不需要运行时的语言，可以使用其语言自身的 build 命令打包成 binary 格式的制品，最终就可以通过 KubeSphere B2I 来快速将制品打包成 Docker 镜像，并发布到镜像仓库和 Kubernetes 中。而像 Python、Nodejs 和 PHP 这类脚本式语言的项目，可以通过 KubeSphere [Source-to-Image (S2I)](/docs/v2.0/zh-CN/quick-start/source-to-image/) 完成类似 B2I 的自动构建与发布。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191023135504.png)

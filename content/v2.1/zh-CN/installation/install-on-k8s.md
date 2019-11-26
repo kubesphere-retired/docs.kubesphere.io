@@ -4,7 +4,7 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: '将 KubeSphere 部署在 Kubernetes 之上'
 ---
 
-KubeSphere 支持在已有 Kubernetes 集群之上在线安装 [KubeSphere](https://kubesphere.io/)。在安装之前，请确认您的环境满足以下 [前提条件](../prerequisites)：
+KubeSphere 支持在已有 Kubernetes 集群之上在线安装 [KubeSphere](/zh-CN/)。在安装之前，请确认您的环境满足以下 [前提条件](../prerequisites)：
 
 
 > - `Kubernetes` 版本： `1.13.0 ≤ K8s version < 1.16`；

@@ -37,6 +37,23 @@ class IndexPage extends React.Component {
         apiKey: '221332a85783d16a5b930969fe4a934a',
         indexName: 'kubesphere',
         inputSelector: '.ks-search > input',
+        algoliaOptions: {
+          facetFilters: [
+            'lang:zh-CN',
+            `version:${this.state.selectVersion.value}`,
+          ],
+        },
+        transformData: function(hits) {
+          hits.forEach(hit => {
+            if (
+              typeof window !== undefined &&
+              process.env.NODE_ENV !== 'development'
+            ) {
+              hit.url = hit.url.replace('kubesphere.io', window.location.host)
+            }
+          })
+          return hits
+        },
         debug: false,
       })
       /* eslint-enable no-undef */
@@ -268,12 +285,8 @@ const Footer = props => {
             </h3>
             <p>
               {t('Recommend you to download and use the latest free')}{' '}
-              <a
-                href={`https://kubesphere.io/${
-                  props.pageContext.locale
-                }/download`}
-              >
-                {t('KubeSphere Advanced Edition')}
+              <a href={`/${props.pageContext.locale}/download`}>
+                {t('KubeSphere v2.1.0')}
               </a>{' '}
             </p>
           </li>
