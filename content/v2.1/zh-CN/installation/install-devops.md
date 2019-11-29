@@ -18,7 +18,9 @@ KubeSphere 针对容器与 Kubernetes 的应用场景，基于 Jenkins 提供了
 
 ## 安装前如何开启安装 DevOps 系统
 
-> 注意：开启可选功能组件之前，请先参考 [可插拔功能组件列表](../../installation/intro/#可插拔功能组件列表)，**确认集群的可用 CPU 与内存空间是否充足，开启安装前可能需要提前扩容集群或机器配置，否则可能会因为资源不足而导致的机器崩溃或其它问题。**
+<font color=red> 注意：开启可选功能组件之前，请先参考 [可插拔功能组件列表](../../installation/intro/#可插拔功能组件列表)，确认集群的可用 CPU 与内存空间是否充足，开启安装前可能需要提前扩容集群或机器配置，否则可能会因为资源不足而导致的机器崩溃或其它问题。</font>
+
+> 注意，本篇文档仅适用于 Linux Installer 安装的环境，若 KubeSphere 部署在 Kubernetes 之上，需提前创建 CA 证书，请参考 [ks-installer](https://github.com/kubesphere/ks-installer)。
 
 安装前，在 installer 目录下编辑 `conf/common.yaml` 文件，然后参考如下开启。
 
