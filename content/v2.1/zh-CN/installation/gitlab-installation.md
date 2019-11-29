@@ -6,6 +6,8 @@ description: ''
 
 KubeSphere Installer 内置的 Gitlab (版本为 v11.8.1) 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对代码仓库的管理，KubeSphere 安装前或安装后都可以通过简单的配置单独开启 GitLab 的安装，具体可参考以下步骤安装和访问 GitLab。
 
+<font color=red>注意，内置的 GitLab 不建议用在生产环境，仅建议用于开发测试环境方便快速搭建测试；关于如何搭建高可用的 GitLab 请参考 [GitLab 官方文档](https://docs.gitlab.com/)</font>。
+
 > 注意：目前 GitLab 安装暂不支持块存储，安装前需预先配置 Local Volume、NAS 或 GlusterFS 作为集群的存储服务端。
 > - 测试环境可以直接使用默认 Local Volume 进行安装。
 > - 若您在 QingCloud 云平台部署请参考 [QingCloud vNAS](../../faq/faq-install/#安装前如何配置-qingcloud-vnas)。

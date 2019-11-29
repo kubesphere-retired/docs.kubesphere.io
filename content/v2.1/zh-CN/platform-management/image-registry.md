@@ -21,7 +21,7 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 - 用户名/密码：guest / guest 。
 - 描述信息：简单介绍镜像仓库的主要特性，让用户进一步了解该镜像仓库。
 
-![创建 QingCloud 仓库](/ae-image-registry-basic.png) 
+![创建 QingCloud 仓库](/ae-image-registry-basic.png)
 
 2、 将镜像仓库授权给项目，点击项目右侧 ”+“ 完成授权。
 
@@ -66,9 +66,12 @@ $ sudo systemctl restart docker
 ![创建 Harbor 仓库-http](/ae-harbor-http.png)
 
 #### https
+
+> 提示：可参考 [docker login 如何支持 https 证书的 Harbor 仓库](https://kubesphere.com.cn/forum/d/294-docker-login-https-harbor)。
+
 1. 对于 https 协议的镜像仓库，首先需要获取镜像仓库的证书，记为 `ca.crt`，以 `https://harbor.openpitrix.io` 这个镜像仓库的地址为例，对集群中的所有节点都需要执行以下操作:
 
-```bash 
+```bash
 $ sudo cp ca.crt  /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
 ```
 
@@ -108,6 +111,5 @@ $ sudo systemctl restart docker
 ## 使用镜像仓库
 
 以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 QingCloud 镜像仓库中有 `mysql:5.6` 的 docker 镜像，镜像地址为 `dockerhub.qingcloud.com/mysql/mysql:5.6`。在镜像仓库已经授权的项目中，创建 Deployment，在容器组模板中填写镜像仓库地址和镜像名称 + tag。
-   
-![创建部署](/ae-docker-hub-setting.png)
 
+![创建部署](/ae-docker-hub-setting.png)

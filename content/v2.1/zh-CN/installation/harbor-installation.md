@@ -6,7 +6,9 @@ description: ''
 
 KubeSphere Installer 集成了 Harbor 版本为 1.7.5，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需 `安装前` 在配置文件 `conf/common.yaml` 中简单配置即可。以下步骤演示在 KubeSphere 安装前和安装后如何开启 Harbor 的安装，并访问 Harbor 控制台。
 
-> 注意：Harbor 安装需要额外挂载 `5` 块硬盘，若 KubeSphere 部署在云平台则需要考虑硬盘数量是否满足配额要求，若硬盘数量或容量配额不够则需要提工单申请提高配额。
+> Harbor 安装需要额外挂载 `5` 块硬盘，若 KubeSphere 部署在云平台则需要考虑硬盘数量是否满足配额要求，若硬盘数量或容量配额不够则需要提工单申请提高配额。
+
+<font color=red>注意，内置的 Harbor 不建议用在生产环境，仅建议用于开发测试环境，关于如何搭建高可用的 Harbor 请参考 [Harbor 官方文档](https://github.com/goharbor/harbor/blob/master/docs/installation_guide.md)</font>。
 
 ## 安装前如何开启 Harbor 的安装
 
