@@ -26,7 +26,7 @@ elasticsearch_data_replica: 2  # 数据节点副本数
 elasticsearch_volume_size: 20Gi # Elasticsearch 存储卷大小
 log_max_age: 7 # 集群内置的 Elasticsearch 中日志保留时间，默认是 7 天
 elk_prefix: logstash # 自定义 index 命名方式，index 将以 ks-<elk_prefix>-log 形式命名
-kibana_enabled: true # 是否额外部署 Kibana
+kibana_enabled: false # 是否部署内置的 Kibana
 logsidecar_injector_enabled: true # 是否安装和增加落盘日志收集器到用户创建的工作负载副本中
 #external_es_url: SHOULD_BE_REPLACED # 安装支持对接外部的 Elasticsearch 7.x，可减少资源消耗，此处填写 ES 服务的地址
 #external_es_port: SHOULD_BE_REPLACED # 此处填写 ES 服务暴露的端口号
@@ -52,7 +52,19 @@ logging:
      elkPrefix: logstash
      containersLogMountedPath: ""
      kibana:
-       enabled: False
+       enabled: False  ## 是否开启安装 Kibana
 ```
 
 保存退出，参考 [验证可插拔功能组件的安装](../verify-components) ，通过查询 ks-installer 日志或 Pod 状态验证功能组件是否安装成功。
+
+## 如何开启安装 Kibana
+
+KubeSphere 内置的日志系统已经足够满足大多数应用场景，并支持了基于多租户的日志查询。
+
+若需要结合 Kibana 使用，可参考上述文档，在 Kibana enable 的对应参数值设置为 "true"。
+
+待安装完成后，在项目 `kubesphere-logging-system` 下的 `elasticsearch-logging-kibana` 服务中，将服务类型设置为 NodePort，即可通过 `{$NodeIP}:{$NodePort}` 访问 Kibana。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191129214711.png)
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191129215132.png)
