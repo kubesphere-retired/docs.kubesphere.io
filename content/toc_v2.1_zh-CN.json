@@ -163,16 +163,29 @@
               "entry": "./v2.1/zh-CN/installation/qingcloud-lb.md"
             },
             {
-              "title": "访问内置 Harbor",
+              "title": "安装内置 Harbor",
               "entry": "./v2.1/zh-CN/installation/harbor-installation.md"
             },
             {
-              "title": "访问内置 GitLab",
+              "title": "安装内置 GitLab",
               "entry": "./v2.1/zh-CN/installation/gitlab-installation.md"
+            },
+            {
+              "title": "安装内置 Grafana",
+              "entry": "./v2.1/zh-CN/installation/install-grafana.md"
             },
             {
               "title": "访问 SonarQube 和 Jenkins 服务端",
               "entry": "./v2.1/zh-CN/installation/sonarqube-jenkins.md"
+            }
+          ]
+        },
+        {
+          "title": "认证与安全",
+          "entries": [
+            {
+              "title": "接入 LDAP / AD 域账号（Beta）",
+              "entry": "./v2.1/zh-CN/installation/ldap-ad.md"
             }
           ]
         },

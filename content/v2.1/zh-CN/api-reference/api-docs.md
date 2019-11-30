@@ -6,8 +6,8 @@ description: ''
 
 KubeSphere 提供了丰富的 RESTful 规范的 API 供您使用，在开始调用之前需要登录 KubeSphere 后台或访问 Swagger UI 登录后获得 JWT Bearer token 后，才可以使用 KubeSphere API。
 
-- <a href="/v2.1/api/kubesphere" target="_blank">KubeSphere API 文档</a>
-- <a href="/v2.1/api/notification" target="_blank">Notification API 文档</a>
+- <a href="/docs/v2.1/api/kubesphere" target="_blank">KubeSphere API 文档</a>
+- <a href="/docs/v2.1/api/notification" target="_blank">Notification API 文档</a>
 
 ## API 架构
 
