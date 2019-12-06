@@ -8,6 +8,7 @@ description: ''
 
 **KubeSphere supports installing on cloud-hosted and on-premises Kubernetes clusters (including native K8s and GKE, EKS) and Linux host (including VM and BM), both of the 2 installation methods are easy and friendly for getting start.**
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191207004917.png)
 
 ## Installing KubeSphere on Kubernetes
 

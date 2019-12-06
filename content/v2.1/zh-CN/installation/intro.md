@@ -8,6 +8,8 @@ description: 'KubeSphere 安装说明'
 
 KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，并且支持**在线安装与离线安装**，目前已在 **阿里云、腾讯云、华为云、青云 QingCloud、AWS、Google Cloud、Kubernetes** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。 KubeSphere **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191207004917.png)
+
 ## 安装须知
 
 
