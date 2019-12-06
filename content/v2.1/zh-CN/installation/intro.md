@@ -55,9 +55,11 @@ KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安
 ## 自定义安装可插拔的功能组件
 
 
-Installer 支持在 KubeSphere 安装前和安装后单独安装可选的功能组件，您可以根据**业务需求和机器配置选择安装所需的组件**，体验 KubeSphere **完整的端到端的容器产品解决方案**，并且**所有组件都是开源免费**的。
+Installer 支持在 KubeSphere 安装前和安装后单独安装可选的功能组件，您可以根据**业务需求和机器配置选择安装所需的组件**，体验 KubeSphere **完整的端到端的容器产品解决方案**，并且 **所有组件都是开源免费的**。
 
 ### 可插拔功能组件介绍
+
+![](/pluggable-components-2.png)
 
 > 提示：各功能组件的介绍可参考 [产品功能](../../introduction/features)，还可以在 [视频资源 - 入门教程](/zh-CN/videos/) 下查看各个功能模块的视频 Demo，以下文档也提供了各模块的使用示例。
 > - KubeSphere 多租户日志系统（Logging）：[日志查询](../../toolbox/log-search) 与 [日志收集](../../platform-settings/log-gathering)；
