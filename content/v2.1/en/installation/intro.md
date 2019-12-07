@@ -34,7 +34,7 @@ KubeSphere installer supports installing a highly available cluster which is abl
 
 ## Pluggable Components Overview
 
-![](/pluggable-components-2.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191207140846.png)
 
 ## Enable Pluggable Components Installation
 
