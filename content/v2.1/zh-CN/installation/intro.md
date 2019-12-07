@@ -4,9 +4,14 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: 'KubeSphere 安装说明'
 ---
 
-[KubeSphere](/zh-CN/) 是在 [Kubernetes](https://kubernetes.io) 之上构建的**以应用为中心**的**企业级分布式容器平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
+[KubeSphere](https://kubesphere.com.cn) 是在 [Kubernetes](https://kubernetes.io) 之上构建的**以应用为中心**的**企业级分布式容器平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
-KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，并且支持**在线安装与离线安装**，目前已在 **阿里云、腾讯云、华为云、青云 QingCloud、AWS、Google Cloud、Kubernetes** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。 KubeSphere **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
+KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，KubeSphere 可以部署在公有云托管的 Kubernetes 之上（如 GKE、EKS、ACK），也支持部署在私有化的 Kubernetes 之上（如 kubeadm、k3s、RKE 部署的集群）。目前已在 **阿里云、腾讯云、华为云、青云 QingCloud、AWS、Google Cloud、Kubernetes、GKE、RKE** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。同时，KubeSphere 支持**在线安装与离线安装**。
+
+KubeSphere **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191207004917.png)
+
 
 ## 安装须知
 
@@ -22,7 +27,7 @@ KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 K
 
 ## 快速安装（适用于快速体验测试）
 
-KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，支持 [自定义功能组件的安装方式](../intro#自定义安装可插拔的功能组件)，使最小化安装**更快速轻量且资源占用更少**，同时方便不同用户**按需选择不同的功能组件**。
+KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，**快速安装将默认仅开启最小化安装（Minimal Installation），** 支持在安装前或安装后 [自定义可插拔的功能组件的安装](../intro#自定义安装可插拔的功能组件)，使最小化安装**更快速轻量且资源占用更少**，方便不同用户**按需选择安装不同的功能组件**。
 
 快速安装的方式**无需配置持久化存储**，仅建议您用来快速安装测试和体验 2.1 的功能特性。正式环境建议配置持久化存储与集群的高可用部署。
 
@@ -34,6 +39,13 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，�
 > - [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
 > - [在 Kubernetes 离线部署 KubeSphere（开发中）](../install-ks-offline)
 
+## 正式环境安装
+
+正式环境建议使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
+
+> - [持久化存储配置说明](../storage-configuration)： KubeSphere 默认开启了 Local Volume 方便初次安装但没有准备存储服务端的场景下进行**部署测试**。若在 **正式环境安装使用需配置 KubeSphere 支持的持久化存储服务**，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置持久化存储服务端。
+> - [高可用集群配置与安装](../master-ha)：Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点。
+
 
 <!-- ### 离线安装
 
@@ -44,20 +56,15 @@ KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安
 - CentOS 7.4/7.5   
 - Ubuntu 16.04.4/16.04.5 -->
 
-## 正式环境安装
-
-正式环境建议使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
-
-> - [持久化存储配置说明](../storage-configuration)： KubeSphere 默认开启了 Local Volume 方便初次安装但没有准备存储服务端的场景下进行**部署测试**。若在 **正式环境安装使用需配置 KubeSphere 支持的持久化存储服务**，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置持久化存储服务端。
-> - [高可用集群配置与安装](../master-ha)：Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点。
-
 
 ## 自定义安装可插拔的功能组件
 
 
-Installer 支持在 KubeSphere 安装前和安装后单独安装可选的功能组件，您可以根据**业务需求和机器配置选择安装所需的组件**，体验 KubeSphere **完整的端到端的容器产品解决方案**，并且**所有组件都是开源免费**的。
+Installer 支持在 KubeSphere 安装前和安装后单独安装可选的功能组件，您可以根据**业务需求和机器配置选择安装所需的组件**，体验 KubeSphere **完整的端到端的容器产品解决方案**，并且 **所有组件都是开源免费的**。
 
 ### 可插拔功能组件介绍
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191207140846.png)
 
 > 提示：各功能组件的介绍可参考 [产品功能](../../introduction/features)，还可以在 [视频资源 - 入门教程](/zh-CN/videos/) 下查看各个功能模块的视频 Demo，以下文档也提供了各模块的使用示例。
 > - KubeSphere 多租户日志系统（Logging）：[日志查询](../../toolbox/log-search) 与 [日志收集](../../platform-settings/log-gathering)；
@@ -107,7 +114,6 @@ KubeSphere 2.1.0 中的相关组件包括了以下版本，其中带 * 号的组
 
 > 说明：KubeSphere 对 Kubernetes 版本的兼容原则是 `最新的版本 + 往前两个版本`，因为 Kubernetes v1.16 淘汰了一些 API group，如 extensions/v1beta1，这个 API group 被 helm 和很多 charts 使用到，需要等 helm 和 charts 更新后才能兼容 1.16，并且 v2.1 是在 1.15.x 上开发测试的，所以目前 v2.1 对 Kubernetes 兼容并支持的版本包括 1.15.x、1.14.x 和 1.13.x，近期刚发布的 Kubernetes 1.16 会在 KubeSphere 下一个版本兼容。
 
-> 提示：用户在获取 Installer 并解压至目标安装机器后，如果需要修改网络、组件版本等集群配置相关参数，可参考以下说明进行修改，本文档对 Installer 中的安装配置文件 conf/common.yaml进行说明，简单介绍每一个字段的意义。参考 [集群参数配置）](../vars)。
 
 <!-- #### 安装 QingCloud 负载均衡器插件 (可选)
 
@@ -115,7 +121,13 @@ KubeSphere 2.1.0 中的相关组件包括了以下版本，其中带 * 号的组
 
 ### 如何开启可选功能组件的安装
 
-参考 [安装可插拔的功能组件](../install-openpitrix) 目录下的 7 篇文档，开启可插拔功能组件的安装。**注意，在开启安装前，请先确保机器的 CPU 与内存资源满足最低要求，参考上述的可插拔功能组件列表**
+参考 [安装可插拔的功能组件](../install-openpitrix) 目录下的 7 篇文档，开启可插拔功能组件的安装。**注意，在开启安装前，请先确保机器的 CPU 与内存资源满足最低要求，参考上述的可插拔功能组件列表**。
+
+
+## 集群参数配置
+
+在获取 Installer 并解压至目标安装机器后，如果需要修改网络、组件版本等集群配置相关参数，可参考以下说明进行修改，本文档对 Installer 中的安装配置文件 `conf/common.yaml` 进行说明，简单介绍每一个字段的意义。参考 [集群参数配置）](../vars)。
+
 
 ## 运维指南
 

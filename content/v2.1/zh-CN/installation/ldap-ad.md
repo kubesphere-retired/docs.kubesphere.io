@@ -6,6 +6,8 @@ description: 'LDAP, AD account'
 
 以下将说明 KubeSphere 如何接入 AD 域账号，同样适用于对接外部 LDAP。
 
+> 说明：本方法将通过后台脚本接入，下一版本将支持在 UI 接入。
+
 ## 查看 AD 域
 
 在 windows server 2016 上，进入 Active Director 管理中心，获取 managerDN (**可以是只读账号**)
@@ -70,7 +72,7 @@ kubectl -n kubesphere-system get svc ks-account -o json | jq '.spec.ports[0].tar
 
 创建完成后，后台执行 `inject-ks-account.sh`
 
-待 ks-account 的 pod 就绪后, 登录 KubeSphere 可以看到 AD 中的账户数据：
+该脚本会重启 ks-account 的 Pod，会有短暂几分钟账号无法登陆。待 ks-account 的 pod 就绪后, 登录 KubeSphere 可以看到 AD 中的账户数据：
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191113182235.png)
 

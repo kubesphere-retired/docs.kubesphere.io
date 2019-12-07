@@ -91,7 +91,7 @@ description: 'KubeSphere Release Notes'
 - 支持 SonarQube 自定义链接
 - 支持流水线事件触发构建
 - 优化流水线 Agent 节点选择
-- 减少流水线启动速度
+- 加快流水线启动速度
 - 使用动态卷作为流水线 Agent 的工作目录，并贡献给社区[#589](https://github.com/jenkinsci/kubernetes-plugin/pull/598)
 - 优化 Jenkins kubernetesDeploy 插件，新增更多资源和版本（v1、apps/v1、extensions/v1beta1、apps/v1beta2、apps/v1beta1、autoscaling/v1、autoscaling/v2beta1、autoscaling/v2beta2、networking.k8s.io/v1、batch/v1beta1、batch/v2alpha1），并贡献给社区[#600](https://github.com/jenkinsci/kubernetes-plugin/pull/600)、[#614](https://github.com/jenkinsci/kubernetes-plugin/pull/614)
 - 流水线部署步骤新增 PV、PVC、Network Policy 支持，并贡献给社区[#87](https://github.com/jenkinsci/kubernetes-cd-plugin/pull/87)、[#88](https://github.com/jenkinsci/kubernetes-cd-plugin/pull/88)
