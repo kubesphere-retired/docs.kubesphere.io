@@ -23,7 +23,7 @@ const availableLocales = [
   { name: 'English', value: 'en' },
 ]
 
-const defaultLocales = { value: 'zh-CN', text: '简体中文' }
+const defaultLocales = { value: 'en', text: 'English' }
 
 exports.onCreatePage = async props => {
   const {
