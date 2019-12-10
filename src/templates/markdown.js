@@ -329,7 +329,19 @@ class MarkdownTemplate extends React.Component {
                       this.markdownRef = ref
                     }}
                   >
-                    <MarkdownTitle>{post.title}</MarkdownTitle>
+                    <MarkdownTitle>
+                      {post.title}
+                      <a
+                        href={`https://github.com/kubesphere/docs.kubesphere.io/edit/master/content/${slug.slice(
+                          1,
+                          slug.length - 1
+                        )}.md`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {t('Edit This Page')}
+                      </a>
+                    </MarkdownTitle>
                     <div
                       ref={ref => {
                         this.markdownRef = ref
@@ -483,7 +495,17 @@ const HeadingsWrapper = styled.div`
   }
 `
 
-const MarkdownTitle = styled.h1``
+const MarkdownTitle = styled.h1`
+  position: relative;
+
+  & > a {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 14px !important;
+  }
+`
 
 const FooterWrapper = styled.div`
   max-width: 1217px;
