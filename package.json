@@ -12,6 +12,7 @@
     "gatsby-i18n": "^1.1.5",
     "gatsby-link": "^2.1.1",
     "gatsby-plugin-catch-links": "^2.0.15",
+    "gatsby-plugin-no-sourcemaps": "^2.1.1",
     "gatsby-plugin-nprogress": "^2.0.10",
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-sharp": "^2.2.32",
