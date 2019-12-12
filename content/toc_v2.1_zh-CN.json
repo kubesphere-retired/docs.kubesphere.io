@@ -193,6 +193,10 @@
           "title": "运维指南",
           "entries": [
             {
+              "title": "安装后添加新的存储类型",
+              "entry": "./v2.1/zh-CN/installation/add-storageclass.md"
+            },
+            {
               "title": "集群节点扩容",
               "entry": "./v2.1/zh-CN/installation/add-nodes.md"
             },

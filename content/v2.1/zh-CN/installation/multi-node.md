@@ -10,10 +10,10 @@ description: ''
 - <font color=red>安装时间跟网络情况和带宽、机器配置、安装节点个数等因素有关，可通过调高带宽的方式，或在安装前 [配置镜像加速器](https://kubesphere.com.cn/forum/d/149-kubesphere-v2-1-0) 来加快安装速度。</font>
 
 
-> 说明：
+> 注意：
 > - 本安装示例仅作为快速测试部署的演示，因此将使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，**方便初次安装但没有准备存储服务端的场景下进行部署测试**，**正式环境建议配置使用 KubeSphere 支持的存储类型**，参考 [持久化存储配置说明](../storage-configuration)。
-> - Multi-node 支持 Master 和 etcd 节点高可用配置，本示例为了方便多节点的快速测试安装演示，仅部署单个 Master 和单个 etcd，正式环境建议配置 Master 和 etcd 节点的高可用，请参阅 [集群高可用部署配置](../master-ha)。
-> - 若在云平台使用在线安装，可通过调高带宽的方式来加快安装速度。
+> - Multi-node 支持 Master 和 etcd 节点高可用配置，本示例为了方便多节点的快速测试安装演示，仅部署单个 Master 和单个 etcd，正式环境建议配置多个 Master 节点的高可用，若安装多个 Master 节点，请参阅 [集群高可用部署配置](../master-ha)。
+
 
 ## 前提条件
 
