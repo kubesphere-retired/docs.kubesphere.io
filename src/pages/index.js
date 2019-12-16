@@ -98,13 +98,31 @@ class IndexPage extends React.Component {
 
   render() {
     const { query, results, showSearchResult, selectVersion } = this.state
+
+    const pathPrefix = this.props.data.site.pathPrefix
+    const { locale } = this.props.pageContext
+    if (!locale) {
+      if (typeof window !== 'undefined') {
+        if (
+          navigator.language.toLowerCase().indexOf('zh') !== -1 ||
+          navigator.language.toLowerCase().indexOf('cn') !== -1
+        ) {
+          window.location.href = `${pathPrefix}/zh-CN/`
+        } else {
+          window.location.href = `${pathPrefix}/en/`
+        }
+      }
+
+      return null
+    }
+
     return (
       <Layout data={this.props.data}>
         <div>
           <Header
             {...this.props}
             query={query}
-            pathPrefix={this.props.data.site.pathPrefix}
+            pathPrefix={pathPrefix}
           />
           <Content
             {...this.props}
