@@ -3,7 +3,7 @@ import { I18nextProvider, Translation } from 'react-i18next'
 import { I18nProvider } from 'gatsby-i18n'
 import setupI18next from '../i18n'
 
-const lngFormat = locale => locale.replace(/-[a-z]{2}$/, e => e.toUpperCase())
+const lngFormat = locale => locale && locale.replace(/-[a-z]{2}$/, e => e.toUpperCase())
 
 const WithI18next = (options = {}) => Comp => {
   class I18nHOC extends Component {
