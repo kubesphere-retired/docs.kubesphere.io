@@ -27,7 +27,6 @@ elasticsearch_volume_size: 20Gi # Elasticsearch 存储卷大小
 log_max_age: 7 # 集群内置的 Elasticsearch 中日志保留时间，默认是 7 天
 elk_prefix: logstash # 自定义 index 命名方式，index 将以 ks-<elk_prefix>-log 形式命名
 kibana_enabled: false # 是否部署内置的 Kibana
-logsidecar_injector_enabled: true # 是否安装和增加落盘日志收集器到用户创建的工作负载副本中
 #external_es_url: SHOULD_BE_REPLACED # 安装支持对接外部的 Elasticsearch 7.x，可减少资源消耗，此处填写 ES 服务的地址
 #external_es_port: SHOULD_BE_REPLACED # 此处填写 ES 服务暴露的端口号
 ```

@@ -84,7 +84,6 @@ Please input an option: 1
 **(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。
 
 ```bash
-successsful!
 #####################################################
 ###              Welcome to KubeSphere!           ###
 #####################################################
@@ -96,7 +95,7 @@ Password: P@88w0rd
 NOTE：Please modify the default password after login.
 #####################################################
 ```
-> 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat kubesphere/kubesphere_running` 命令查看。
+> 提示：如需要再次查看以上的界面信息，可参考 [验证安装](../verify-components) 的查看安装日志命令。
 
 **(2)** 若需要在外网访问，在云平台需要在端口转发规则中将**内网端口** 30880 转发到**源端口** 30880，然后在防火墙开放这个**源端口**，确保外网流量可以通过该端口。
 
@@ -114,4 +113,4 @@ NOTE：Please modify the default password after login.
 
 KubeSphere 已在阿里云、腾讯云、华为云、青云、AWS 上进行过部署测试，测试结果与相关的解决方法，请参考 [AE 2.0.2 云平台安装测试结果](https://github.com/kubesphere/ks-installer/issues/23)。另外，常见的安装问题我们也已整理相关的解决方法在 [安装常见问题](../../faq/faq-install)。
 
-若遇到其它的安装问题需要协助支持，请在 [GitHub](https://github.com/kubesphere/kubesphere/issues) 提交 Issue，我们会第一时间跟踪解决。
+若遇到其它的安装问题需要协助支持，请在 [GitHub](https://github.com/kubesphere/kubesphere/issues) 提交 Issue，社区会第一时间跟踪解决。
