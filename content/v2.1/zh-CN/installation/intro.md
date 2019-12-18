@@ -31,11 +31,15 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，*
 
 快速安装的方式**无需配置持久化存储**，仅建议您用来快速安装测试和体验 2.1 的功能特性。正式环境建议配置持久化存储与集群的高可用部署。
 
-> **安装在 Linux**
+### 安装在 Linux
+
 > - [all-in-one](../all-in-one)：单节点安装，支持一键安装。
 > - [multi-node](../multi-node)：多节点安装，支持一键安装。
->
-> **安装在 Kubernetes**
+> 提示：离线安装可参考 [离线安装多节点 Kubesphere 2.1](https://kubesphere.com.cn/forum/d/437-centos7-7-multinode-kubesphere2-1-offline)。
+
+
+### 安装在 Kubernetes
+
 > - [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
 > - [在 Kubernetes 离线部署 KubeSphere（开发中）](../install-ks-offline)
 
