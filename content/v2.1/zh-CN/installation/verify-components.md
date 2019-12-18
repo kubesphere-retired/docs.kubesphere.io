@@ -16,6 +16,17 @@ $ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l ap
 
 当动态日志出现如下提示，说明开启的组件已安装成功。
 
+以下提示信息已经与 2.1 安装完成后显示的信息不一致了，应该是滚动显示：
+
+**************************************************
+task monitoring status is successful
+total: 2     completed:1
+**************************************************
+task monitoring status is successful
+total: 2     completed:1
+**************************************************
+
+请同步更新。
 
 ```
 #####################################################
