@@ -10,6 +10,10 @@ KubeSphere 基于 [Istio](https://istio.io) 微服务框架提供了可视化的
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191109212935.png)
 
+## 安装微服务治理的前提条件
+
+注意，目前 KubeSphere 微服务治理系统中的 Tracing 功能（Jaeger 组件）会依赖 KubeSphere 日志组件（Logging），在安装微服务治理之前，请先开启 [KubeSphere 日志系统](../install-logging) 的安装。
+
 ## 安装前如何开启安装微服务治理
 
 安装前，在 installer 目录下编辑 `conf/common.yaml` 文件，然后参考如下开启。开启后请继续参考安装指南执行后续的安装步骤。

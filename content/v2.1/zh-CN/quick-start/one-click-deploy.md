@@ -27,6 +27,10 @@ KubeSphere 应用商店对内可作为团队间共享企业内部的中间件、
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191025004214.png)
 
+## 前提条件
+
+已开启安装了 [KubeSphere 应用商店](../../installation/install-openpitrix)。
+
 ## 部署简单的 EMQ X 集群
 
 ### 导入应用仓库
