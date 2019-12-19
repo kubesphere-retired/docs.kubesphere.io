@@ -27,7 +27,7 @@ KubeSphere 针对容器与 Kubernetes 的应用场景，基于 Jenkins 提供了
 > 提示：KubeSphere 支持对接外置的 SonarQube，若您已有外置的 SonarQube，建议在以下参数中配置对接，可减少 KubeSphere 集群的资源消耗。
 
 ```yaml
-#DevOps
+#DevOps Configuration
 devops_enabled: true # 是否安装内置的 DevOps 系统（支持流水线、 S2i 和 B2i 等功能），若机器配置充裕建议安装
 jenkins_memory_lim: 8Gi # Jenkins 内存限制，默认 8 Gi
 jenkins_memory_req: 4Gi # Jenkins 内存请求，默认 4 Gi
@@ -42,7 +42,7 @@ sonarqube_enabled: true # 是否安装内置的 SonarQube （代码静态分析�
 
 ## 安装后如何开启安装 DevOps 系统
 
-通过修改 ks-installer 的 configmap 可以选装组件，执行以下命令。
+通过修改 ks-installer 的 configmap 可以选装组件，执行以下命令（kubectl 命令需要以 root 用户执行）。
 
 ```bash
 $ kubectl edit cm -n kubesphere-system ks-installer
@@ -53,12 +53,12 @@ $ kubectl edit cm -n kubesphere-system ks-installer
 ```yaml
 devops:
       enabled: True
-      jenkinsMemoryLim: 8Gi
-      jenkinsMemoryReq: 4Gi
+      jenkinsMemoryLim: 2Gi
+      jenkinsMemoryReq: 1500Mi
       jenkinsVolumeSize: 8Gi
-      jenkinsJavaOpts_Xms: 3g
-      jenkinsJavaOpts_Xmx: 6g
-      jenkinsJavaOpts_MaxRAM: 8g
+      jenkinsJavaOpts_Xms: 512m
+      jenkinsJavaOpts_Xmx: 512m
+      jenkinsJavaOpts_MaxRAM: 2g
       sonarqube:
         enabled: True
 ```

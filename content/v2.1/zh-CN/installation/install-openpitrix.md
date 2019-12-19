@@ -49,3 +49,7 @@ openpitrix:
 ```
 
 保存退出，参考 [验证可插拔功能组件的安装](../verify-components) ，通过查询 ks-installer 日志或 Pod 状态验证功能组件是否安装成功。
+
+## 应用商店安装常见问题
+
+参考 [openpitrix(AppStore) FAQ](https://kubesphere.com.cn/forum/d/471-openpitrix-appstore-faq-and-answer)。
