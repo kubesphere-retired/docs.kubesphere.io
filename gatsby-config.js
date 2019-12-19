@@ -81,7 +81,6 @@ module.exports = {
       {
         label: 'v2.1', 
         value: 'v2.1',
-        isDev: true,
       },
       {
         label: 'v2.0',
