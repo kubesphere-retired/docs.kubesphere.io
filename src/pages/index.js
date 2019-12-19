@@ -700,7 +700,6 @@ export const query = graphql`
         versions {
           label
           value
-          isDev
         }
       }
     }
