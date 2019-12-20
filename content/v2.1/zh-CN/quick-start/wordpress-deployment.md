@@ -10,6 +10,7 @@ WordPress 是使用 PHP 开发的博客平台，用户可以在支持 PHP 和 My
 
 一个完整的 Wordpress 应用会包括以下 Kubernetes 对象，其中 MySQL 作为后端数据库，Wordpress 本身作为前端提供浏览器访问。
 
+*****注意，下图不准确，应该更正。 应该是 wordpress service 调用 mysql service，所以图示里的虚线，应该是在两个 service 之间，而不是 service 和 deployment 之间。
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027200444.png)
 
 
