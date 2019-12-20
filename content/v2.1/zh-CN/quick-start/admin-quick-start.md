@@ -48,7 +48,7 @@ description: ''
 |---|---|---|
 |user-manager|users-manager|管理集群的账户和角色|
 
-在这里加一张图，让读者更清楚地了解本示例的逻辑：
+通过下图您可以更清楚地了解本示例的逻辑：
 ![](https://hello-world-20181219.pek3b.qingstor.com/KS2.1/%E5%A4%9A%E7%A7%9F%E6%88%B7%E7%AE%A1%E7%90%86%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.png
 )
 
