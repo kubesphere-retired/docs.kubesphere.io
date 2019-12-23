@@ -29,7 +29,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/mas
 $ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-3. 通过 `kubectl get pod --all-namespace` 查看 kubesphere 的 namespace 下所有 Pod 状态是否为 Running。确认 Pod 都正常运行后，可使用 `IP:30880` 访问 KubeSphere UI 界面，默认的集群管理员账号为 `admin/P@88w0rd`。
+3. 通过 `kubectl get pod --all-namespaces` 查看 kubesphere 的 namespace 下所有 Pod 状态是否为 Running。确认 Pod 都正常运行后，可使用 `IP:30880` 访问 KubeSphere UI 界面，默认的集群管理员账号为 `admin/P@88w0rd`。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191020153911.png)
 
