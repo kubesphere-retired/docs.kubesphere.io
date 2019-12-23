@@ -22,6 +22,12 @@ KubeSphere 应用商店 **对内可作为团队间共享企业内部的中间件
 - 已安装了 OpenPitrix（应用商店）功能组件
 - 已创建了企业空间和项目（可参考 [管理员快速入门](../../quick-start/admin-quick-start) 创建）
 
+## 示例视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97Demo.mp4">
+</video>
+
 ## 创建自定义角色与账号
 
 1. 参考 [管理员快速入门](../../quick-start/admin-quick-start)，分别创建一个 workspace-admin (作为 ISV) 和一个 app-review (作为技术审核，自定义的角色) 的账号，这两个账号在集群层级授予 `cluster-regular` 权限。

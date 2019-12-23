@@ -6,11 +6,11 @@ description: ''
 
 [Harbor](https://goharbor.io/) is an an open source trusted cloud native registry project that stores, signs, and scans content. Harbor extends the open source Docker Distribution by adding the functionalities usually required by users such as security, identity and management.
 
-KubeSphere Installer integrates Harbor's Helm Chart (v18.11.1), built-in Harbor as an optional installation item, users can configure the installation according to the project needs, users just need to simply configure it in `conf/vars.yml` before installation. Follow the steps below to install and access the Harbor.
+KubeSphere Installer integrates Harbor's Helm Chart (v18.11.1), built-in Harbor as an optional installation item, users can configure the installation according to the project needs, users just need to simply configure it in `conf/common.yml` before installation. Follow the steps below to install and access the Harbor.
 
 ## Modify the Configuration
 
-1. Before installing KubeSphere, set `Harbor_enable: true` in `conf/vars.yml`.
+1. Before installing KubeSphere, set `Harbor_enable: true` in `conf/common.yml`.
 
 ```
 # harbor deployment

@@ -6,6 +6,14 @@ description: '应用商店'
 
 KubeSphere 支持多种日志收集的方式，便于运维人员对日志的统一收集、管理和分析，本篇向您介绍如何收集一个示例应用的落盘日志。
 
+## 示例视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/%E8%90%BD%E7%9B%98%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86.mp4">
+</video>
+
+## 操作步骤
+
 0. 确保已在项目的高级设置下使用管理员开启了 `落盘日志收集`。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191030102441.png)
