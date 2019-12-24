@@ -1,5 +1,5 @@
 ---
-title: "系统配置修改" 
+title: "系统配置修改"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -25,7 +25,10 @@ description: ''
  2. 设置污点的键为 `node.kubernetes.io/ci`，无需设置污点的值，并可根据自己的情况选择 `不允许调度` 或 `尽量不调度`。
  ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat97eea56f0a74d899fa497b8e9a165826.png)
 
- 3. 最后点击保存即可。
+ 3. 最后点击保存即可，至此就完成了快速入门示例的前提条件，**可返回快速入门下的 DevOps 流水线示例继续操作**。
+
+
+ --------
 
 ## 如何修改 CoreDNS 配置
 
@@ -121,4 +124,3 @@ data:
 ```
 
 修改更新后，需要登陆 Jenkins 重新加载，具体步骤请参考 [登陆 Jenkins 重新加载](../../devops/jenkins-setting/#%E7%99%BB%E9%99%86-jenkins-%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD>)。
-
