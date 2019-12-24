@@ -6,7 +6,7 @@ description: ''
 
 For those who are new to KubeSphere Advanced Edition and looking for the fastest way to install and experience the new features, the all-in-one mode must be your best choice since it supports one-click installation, it will install KubeSphere v2.1.0 and Kubernetes v1.15.5 in your host.
 
-> Attention: Following section is only used for minimal installation by default, KubeSphere has decoupled some core components in v2.1.0, for more pluggable components installation, see `Enable Pluggable Components` below.
+<font color=red>Following section is only used for minimal installation by default, KubeSphere has decoupled some core components in v2.1.0, for more pluggable components installation, see `Enable Pluggable Components` below.</font>
 
 
 <!-- <asciinema-player src="/all-in-one.json" cols="99" rows="41"></asciinema-player> -->
@@ -34,32 +34,6 @@ The following section identifies the hardware specifications and system-level re
 |Debian Stretch 9.5 (64 bit)| CPU：2 Core,  Memory：4 G, Disk Space：100 G  |
 
 ### Step 2: Provision Installation Files
-
-<!-- <div class="md-tabs">
-<input type="radio" name="tabs" id="stable" checked="checked">
-<label for="stable">Online Installer (2.0.2)</label>
-<span class="md-tab">
-
-Download `KubeSphere Advanced Edition 2.0.2` and enter into the installation folder.
-
-```bash
-$ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.tar.gz \
-&& tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/scripts
-```
-
-</span>
-<input type="radio" name="tabs" id="offline">
-<label for="offline">Offline Installer (2.0.2)</label>
-<span class="md-tab">
-
-Download `KubeSphere Advanced Edition 2.0.2` and enter into the installation folder.
-
-```bash
-$ curl -L https://kubesphere.io/download/offline/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-offline-advanced-2.0.2/scripts
-```
-
-</span>
-</div> -->
 
 Download Installer 2.1.0 and enter into the installation folder.
 
@@ -121,7 +95,7 @@ NOTE：Please modify the default password after login.
 #####################################################
 ```
 
-> Note: If you need to view the above interface, just execute `cat kubesphere/kubesphere_running` command in the installer directory.
+> Note: If you need to view the above interface, you can get by detecting the logs of ks-installer pod.
 
 **(2).** You will be able to use default account and password to log in to the KubeSphere console to experience the features, it also has an English version UI.
 

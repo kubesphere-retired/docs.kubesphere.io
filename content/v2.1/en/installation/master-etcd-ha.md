@@ -118,7 +118,7 @@ kube-master
 
 ### Configure the LB Parameters
 
-Finally, you need to modify the relevant parameters in the `vars.yaml` after prepare the Load Balancer. Assume the internal IP address of the Load Balancer is `192.168.0.10` (replaced it with your actual Load Balancer IP address), and the listening port of the TCP protocol is `6443`, then the parameter configuration in `conf/vars.yml` can be modified like the following example (`loadbalancer_apiserver` as an optional configuration which should be uncommented in the configuration file).
+Finally, you need to modify the relevant parameters in the `vars.yaml` after prepare the Load Balancer. Assume the internal IP address of the Load Balancer is `192.168.0.10` (replaced it with your actual Load Balancer IP address), and the listening port of the TCP protocol is `6443`, then the parameter configuration in `conf/common.yml` can be modified like the following example (`loadbalancer_apiserver` as an optional configuration which should be uncommented in the configuration file).
 
 > - Note that address and port should be indented by two spaces in the configuration file.
 > - The domain name of the Load Balancer is "lb.kubesphere.local" by default for internal access. If you need to modify the domain name, please uncomment and modify it.

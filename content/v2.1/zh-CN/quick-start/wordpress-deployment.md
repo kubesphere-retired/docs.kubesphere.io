@@ -22,6 +22,12 @@ WordPress 是使用 PHP 开发的博客平台，用户可以在支持 PHP 和 My
 
 约 10 分钟。
 
+## 示例视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_3-%E5%88%9B%E5%BB%BA%20Wordpress%20%E5%BA%94%E7%94%A8%E5%B9%B6%E5%8F%91%E5%B8%83%E8%87%B3%20Kubernetes.mp4">
+</video>
+
 ## 创建密钥
 
 MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感信息，不适合以明文的方式表现在步骤中，因此以创建密钥的方式来代替该环境变量。创建的密钥将在创建 MySQL 的容器组设置时作为环境变量写入。

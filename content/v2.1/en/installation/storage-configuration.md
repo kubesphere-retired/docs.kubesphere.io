@@ -6,16 +6,13 @@ description: ''
 
 Currently, Installer supports the following types of storage as storage servers, providing persistent storage service for KubeSphere (more storage classes are continuously updated).
 
+
+- NFS
 - Ceph RBD
 - GlusterFS
-- NFS
 - QingCloud Block Storage
 - QingStor NeonSAN
 - Local Volume (All-in-One installation test only)
-
-At the same time, Installer integrates the [QingCloud-CSI (Block Storage Plugin)](https://github.com/yunify/qingcloud-csi/blob/master/README.md) and the [QingStor NeonSAN CSI Plugin](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12.md). It can be connected to the QingCloud block storage or QingStor NeonSAN as a storage, just need simple configuration before installation. 
-
-Make sure you have [QingCloud](https://console.qingcloud.com/login) account. In addition, The Installer also integrates storage clients such as NFS, GlusterFS and Ceph RBD. Users need to prepare the relevant storage server in advance, and then configure the corresponding parameters in `vars.yml` to connect to the corresponding storage server.
 
 
 The versions of open source storage servers and clients that have been tested using Installer, as well as the CSI plugins, are listed as following:
@@ -35,17 +32,28 @@ NeonSAN-CSI|v0.3.0| Before installing KubeSphere, you just need to configure the
 
 ## Storage Configuration Definition
 
-After preparing the storage server, then you need to reference the parameter description in the following table. Then modify the corresponding storage class part in the configuration file (`conf/vars.yml` ) according to your storage server. 
+After preparing the storage server, then you need to reference the parameter description in the following table. Then modify the corresponding storage class part in the configuration file (`conf/common.yml` ) according to your storage server.
 
 The following is a brief description of the parameter configuration related to `vars.yml` storage, also see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/)) for the details.
 
-> Note: By default, Local Volume is configured as the default storage class of the cluster in `vars.yml`. If you are going to configure other storage class as the default class, firstly you have to modify the related configuration of Local to **false**, and then modify the configuration of the corresponding storage according to your storage server before start installation. 
+> Note: By default, Local Volume is configured as the default storage class of the cluster in `vars.yml`. If you are going to configure other storage class as the default class, firstly you have to modify the related configuration of Local to **false**, and then modify the configuration of the corresponding storage according to your storage server before start installation.
+
+### NFS
+
+An NFS volume allows an existing NFS (Network File System) share to be mounted into your Pod. NFS can be configured in `conf/common.yml`, assume you have prepared Ceph storage servers in advance.
+
+| **NFS** | **Description** |
+| --- | --- |
+| nfs\_client\_enable | Determines whether to use NFS as the persistent storage, can be set to true or false. Defaults to false |
+| nfs\_client\_is\_default\_class | Determines whether to set NFS as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default  |
+| nfs\_server | The NFS server address, either IP or Hostname |
+| nfs\_path | NFS shared directory, which is the file directory shared on the server, see [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
 
 
 ### Ceph RBD
 
 
-The open source [Ceph RBD](https://ceph.com/) distributed storage system, can be configured in `conf/vars.yml`, assume you have prepared Ceph storage servers in advance, thus you can reference the following definition. See [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) for more details.
+The open source [Ceph RBD](https://ceph.com/) distributed storage system, can be configured in `conf/common.yml`, assume you have prepared Ceph storage servers in advance, thus you can reference the following definition. See [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) for more details.
 
 | **Ceph\_RBD** | **Description** |
 | --- | --- |
@@ -69,7 +77,7 @@ The open source [Ceph RBD](https://ceph.com/) distributed storage system, can be
 $ ceph auth get-key client.admin
 ```
 
-### GlusterFS 
+### GlusterFS
 
 [GlusterFS](https://docs.gluster.org/en/latest/) is a scalable network filesystem suitable for data-intensive tasks such as cloud storage and media streaming. Assume you have prepared GlusterFS storage servers in advance, thus you can reference the following definition，see [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) for more details.
 
@@ -90,23 +98,13 @@ $ ceph auth get-key client.admin
 
 **Attention：**<br/>
  > In Glusterfs, `"glusterfs_provisioner_clusterid"` could be returned from glusterfs server. Execute the following command:
- 
+
  ```bash
  $ export HEKETI_CLI_SERVER=http://localhost:8080
- 
+
  $ heketi-cli cluster list
  ```
 
-### NFS
-
-An NFS volume allows an existing NFS (Network File System) share to be mounted into your Pod. NFS can be configured in `conf/vars.yml`, assume you have prepared Ceph storage servers in advance. By the way, you can use [QingCloud vNAS](https://www.qingcloud.com/products/nas/) as NFS server.
-
-| **NFS** | **Description** |
-| --- | --- |
-| nfs\_client\_enable | Determines whether to use NFS as the persistent storage, can be set to true or false. Defaults to false |
-| nfs\_client\_is\_default\_class | Determines whether to set NFS as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default  |
-| nfs\_server | The NFS server address, either IP or Hostname |
-| nfs\_path | NFS shared directory, which is the file directory shared on the server, see [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
 
 
 ### QingCloud Block Storage
@@ -130,7 +128,7 @@ qingcloud\_access\_key\_id , <br> qingcloud\_secret\_access\_key| Get from [Qing
 
 ### QingStor NeonSAN
 
-The NeonSAN-CSI plugin supports the enterprise-level distributed storage [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) as the platform storage service. If you have prepared the NeonSAN server, you will be able to configure the NeonSAN-CSI plugin to connect to its storage server in `conf/vars.yml`, see [NeonSAN-CSI Reference](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
+The NeonSAN-CSI plugin supports the enterprise-level distributed storage [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) as the platform storage service. If you have prepared the NeonSAN server, you will be able to configure the NeonSAN-CSI plugin to connect to its storage server in `conf/common.yml`, see [NeonSAN-CSI Reference](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
 
 | **NeonSAN** | **Description** |
 | --- | --- |
@@ -146,11 +144,10 @@ Neonsan\_csi\_protocol | tranportation protocol, user must set the option, such 
 
 ### Local Volume (All-in-One installation test only)
 
-A [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume. Dynamic provisioning is not supported yet. So it's only recommended to use Local volume for All-in-One installation test only, it can help you to quickly & easily install KubeSphere on a single node. The definition of the `conf/vars.yml` is as following table. 
+A [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume. Dynamic provisioning is not supported yet. So it's only recommended to use Local volume for All-in-One installation test only, it can help you to quickly & easily install KubeSphere on a single node. The definition of the `conf/common.yml` is as following table.
 
 | **Local volume** | **Description** |
 | --- | --- |
 | local\_volume\_provisioner\_enabled | Determines whether to use Local as the persistent storage, can be set to true or false. Defaults to true |
 | local\_volume\_provisioner\_storage\_class | Storage class name, default value：local |
 | local\_volume\_is\_default\_class | Determines whether to set Local as the default storage class, can be set to true or false. Defaults to true. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default |
-

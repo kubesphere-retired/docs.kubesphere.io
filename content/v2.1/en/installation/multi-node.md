@@ -4,7 +4,7 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-`Multi-Node` installation enables install KubeSphere on multiple instances. Typically, select any one host in the cluster to serve as a role of "taskbox" to execute the installation task for other hosts before multi-node installation, `SSH Communication` is required to be established between "taskbox" and other hosts.
+`Multi-Node` installation enables installing KubeSphere on multiple instances. Typically, select any one host in the cluster to serve as a role of "taskbox" to execute the installation task for other hosts before multi-node installation, `SSH Communication` is required to be established between "taskbox" and other hosts.
 
 <!-- <asciinema-player src="/multi-node.json" cols="99" rows="41"></asciinema-player>
  -->
@@ -116,12 +116,12 @@ kube-master
 > - `ansible_ssh_pass`: The password of the host to be connected using root.
 
 
-## Step 3: Install KubeSphere
+## Step 3: Install KubeSphere to Linux Machines
 
 > Note:
-> - Generally, you can install KubeSphere without any modification, it will trigger minimal installation by default.
+> - Generally, you can install KubeSphere without any modification, it will start with minimal installation by default.
 > - If you want to enable pluggable feature components installation, modify common.yaml and reference [Enable Pluggable Components Installation](../pluggable-components).
-> - Installer uses [Local volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) based on [openEBS](https://openebs.io/) to provide storage service with dynamic provisioning, for production environments, please [configure supported persistent storage service](../storage-configuration).
+> - Installer uses [Local volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) based on [openEBS](https://openebs.io/) to provide storage service with dynamic provisioning, for production environments, please [configure supported persistent storage service](../storage-configuration) after installation.
 > - Since the default subnet for Cluster IPs is 10.233.0.0/18, default subnet for Pod IPs is 10.233.64.0/18 in Kubernetes cluster. The node IPs must not overlap with those 2 default IPs. If any conflicts happened with the IP address, go to `conf/common.yaml` and modify `kube_service_addresses` or `kube_pods_subnet` to avoid this senario.
 
 **1.** Enter into `scripts` folder, it's recommended to execute `install.sh` using `root` user:
@@ -166,7 +166,7 @@ NOTE：Please modify the default password after login.
 ```
 
 
-> Note: If you need to view the above interface, execute `cat kubesphere/kubesphere_running`.
+> Note: If you need to view the above interface, you can get by detecting the logs of ks-installer pod.
 
 **(2).** Access KubeSphere console with `http://{$IP}:30880` in your browser, you can use default account and password `admin / P@88w0rd` to log in to console. Please change the default password after logging in.
 
@@ -179,4 +179,4 @@ NOTE：Please modify the default password after login.
 
 ## FAQ
 
-KubeSphere has run the deployment test on Aliyun, Tencent cloud, Huawei cloud, Qingcloud and AWS. For test results and relevant solutions, please refer to [Multiple Cloud Platform Installation Testing Result](https://github.com/kubesphere/ks-installer/issues/23). If you have other installation problems, please submit on [GitHub](https://github.com/kubesphere/kubesphere/issues).
+KubeSphere has run the deployment test on Aliyun, Tencent cloud, Huawei cloud, Qingcloud and AWS. For test results and relevant solutions, please refer to [Cloud Platform Installation Testing Result](https://github.com/kubesphere/ks-installer/issues/23). If you have other installation problems, please submit on [GitHub](https://github.com/kubesphere/kubesphere/issues).

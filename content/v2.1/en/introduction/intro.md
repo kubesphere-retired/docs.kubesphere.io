@@ -27,22 +27,27 @@ In addition, the platform has integrated and optimized a range of functional mod
   </tr>
 </table>
 
+## Video on Youtube
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u5lQvhi_Xlc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## What's New in 2.1
 
-In contrast to the express edition, [KubeSphere 2.0](../../release/release-v200) provides richer services for application management, supports multiple functions and flexible configuration to meet the complex business requirements. It supports **master and etcd node HA, visualized CI/CD pipeline, multi-dimensional monitoring and logging, multi-tenancy management, LDAP integration**. Additionally, It added supports for **HPA (Horizontal Pod Autoscaler), container health check and configurations for Secrets and ConfigMaps** etc.
+We have decoupled some main feature components and makes them being pluggable. Meanwhile, there were greate enhancements in Helm application store, especially in application lifecycle management.
 
-The newly added functions include microservice governance, grayscale release, S2i and code quality analysis, etc. What also deserves expecting is **multi-cluster management, big data, AI** and other more complex business scenarios in future releases.
+It's worth mentioning that both **DevOps** and **observability** components have been improved obviously. For example, we added lots of new features including Binary-to-Image, dependency cache support in pipeline, support switch branch and git logs output within DevOps component. We also bring upgrade, enhancements and bugfix in storage, authentication and security, as well as user experience improvements. See [Release Notes For 2.1.0](../../release/release-v210) for details.
 
 ## Open Source
 
-KubeSphere has been developing by applying the open source approach since the very beginning. All the relevant source codes and documents are available on [GitHub](https://github.com/kubesphere/kubesphere). KubeSphere supports installing on **public cloud, private cloud, VM, BM, Kubernetes and any other infrastructures**. Besides, it supports online and offline installation, which has been tested on **AWS, Google Cloud and Kubernetes, Aliyun, Tencent cloud, Huawei cloud, QingCloud**.
+KubeSphere has been developing by applying the open source approach since the very beginning. All the relevant source codes and documents are available on [GitHub](https://github.com/kubesphere/kubesphere).
+
 
 
 ## Roadmap
 
-**Express Edition => KubeSphere 1.0.x => KubeSphere 2.0.x => KubeSphere 2.1.0 (Coming soon!)**
+**Express Edition => KubeSphere 1.0.x => KubeSphere 2.0.x => KubeSphere 2.1.0 => KubeSphere 2.1.1 => KubeSphere 3.0.0**
 
-> Note: All versions of KubeSphere are **100% open source** and free which has been providing services for a great scale of user community and it has been widely installed and used in development testing and productions environments centered around Docker and Kubernetes. A large number of services are running smoothly in KubeSphere.
+> Note: All versions of KubeSphere are **100% open source** and free which has been providing services for a great scale of user community and it has been widely installed and used in development testing and production environments. A large number of services are running smoothly in KubeSphere.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190926000413.png)
 

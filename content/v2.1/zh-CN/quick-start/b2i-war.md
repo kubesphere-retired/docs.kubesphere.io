@@ -46,6 +46,12 @@ description: ''
 - B2I 属于 DevOps 功能组件，因此使用前需开启安装 DevOps 功能组件
 - 已创建了企业空间、项目和普通用户 `project-regular` 账号 (该已账号已被邀请至示例项目)，请参考 [多租户管理快速入门](../admin-quick-start)
 
+## 示例视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/Binary-to-image.mp4">
+</video>
+
 ### 创建密钥
 
 由于 B2I 的自动构建流程中需要将打包的 Docker 镜像推送到镜像仓库，因此需要先创建一个镜像仓库的密钥 (Secret)，以下创建一个 DockerHub 的密钥，可参考 [创建常用的几类密钥](../../configuration/secrets#创建常用的几类密钥)。
