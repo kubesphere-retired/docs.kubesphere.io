@@ -13,7 +13,6 @@ import Layout from '../layouts'
 import Logo from '../components/Logo'
 import Select from '../components/Select'
 import Search from '../components/Search'
-import SearchResult from '../components/SearchResult'
 import Language from '../components/Language'
 import WithI18next from '../components/WithI18next'
 
@@ -24,9 +23,6 @@ import { ReactComponent as DownloadIcon } from '../assets/download.svg'
 
 class IndexPage extends React.Component {
   state = {
-    query: '',
-    results: [],
-    showSearchResult: false,
     selectVersion: this.props.data.site.siteMetadata.versions[0],
   }
 
@@ -60,44 +56,12 @@ class IndexPage extends React.Component {
     }
   }
 
-  handleSearch = query => {
-    const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
-    this.setState({
-      results: [...results].reverse(),
-      showSearchResult: true,
-    })
-  }
-
-  hideSearch = () => {
-    this.setState({
-      query: '',
-      results: [],
-      showSearchResult: false,
-    })
-  }
-
-  handleQueryChange = query => {
-    this.setState({ query })
-  }
-
-  getSearchResults(query) {
-    const { selectVersion } = this.state
-    const { locale } = this.props.pageContext
-
-    const index = `${selectVersion.value}_${getLanguage(locale)}`
-
-    if (!query || !window.__LUNR__) return []
-    const lunrIndex = window.__LUNR__[index]
-    const results = lunrIndex.index.search(query)
-    return results.map(({ ref }) => lunrIndex.store[ref])
-  }
-
   handleVersionChange = value => {
     this.setState({ selectVersion: value })
   }
 
   render() {
-    const { query, results, showSearchResult, selectVersion } = this.state
+    const { selectVersion } = this.state
 
     const pathPrefix = this.props.data.site.pathPrefix
     const { locale } = this.props.pageContext
@@ -121,7 +85,6 @@ class IndexPage extends React.Component {
         <div>
           <Header
             {...this.props}
-            query={query}
             pathPrefix={pathPrefix}
           />
           <Content
@@ -130,15 +93,6 @@ class IndexPage extends React.Component {
             onVersionChange={this.handleVersionChange}
           />
           <Footer {...this.props} />
-          <SearchResult
-            query={query}
-            results={results}
-            visible={showSearchResult}
-            onCancel={this.hideSearch}
-            onSearch={this.handleSearch}
-            onQueryChange={this.handleQueryChange}
-            t={this.props.t}
-          />
         </div>
       </Layout>
     )

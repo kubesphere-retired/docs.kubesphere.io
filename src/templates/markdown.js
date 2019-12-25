@@ -13,7 +13,6 @@ import Layout from '../layouts'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Versions from '../components/Versions'
-import SearchResult from '../components/SearchResult'
 import TableOfContents from '../components/TableOfContents/index'
 import WithI18next from '../components/WithI18next'
 
@@ -30,9 +29,6 @@ class MarkdownTemplate extends React.Component {
 
     this.state = {
       isExpand: false,
-      query: '',
-      showSearchResult: false,
-      results: [],
       prev: {},
       next: {},
     }
@@ -202,36 +198,8 @@ class MarkdownTemplate extends React.Component {
     })
   }
 
-  handleSearch = query => {
-    const results = this.getSearchResults(`title:*${query}* head:*${query}*`)
-    this.setState({
-      results: [...results].reverse(),
-      showSearchResult: true,
-    })
-  }
-
-  hideSearch = () => {
-    this.setState({
-      query: '',
-      results: [],
-      showSearchResult: false,
-    })
-  }
-
   handleQueryChange = query => {
     this.setState({ query })
-  }
-
-  getSearchResults(query) {
-    const { version, lang } = this.props.pageContext
-    const index = `${version}_${lang}`
-    if (!query || !window.__LUNR__) return []
-    const lunrIndex = window.__LUNR__[index]
-    if (!lunrIndex) {
-      return []
-    }
-    const results = lunrIndex.index.search(query)
-    return results.map(({ ref }) => lunrIndex.store[ref])
   }
 
   render() {
@@ -248,9 +216,6 @@ class MarkdownTemplate extends React.Component {
     const { t } = this.props
     const {
       isExpand,
-      query,
-      showSearchResult,
-      results,
       prev,
       next,
     } = this.state
@@ -311,12 +276,9 @@ class MarkdownTemplate extends React.Component {
               </NavContainer>
               <MainContainer isExpand={isExpand}>
                 <Header
-                  query={query}
                   isExpand={isExpand}
-                  onSearch={this.handleSearch}
                   placeholder={t('Quick search')}
                   toggleExpand={this.handleExpand}
-                  onQueryChange={this.handleQueryChange}
                   pageContext={this.props.pageContext}
                   pathPrefix={pathPrefix}
                 />
@@ -358,14 +320,6 @@ class MarkdownTemplate extends React.Component {
                 </HeadingsWrapper>
               </MainContainer>
             </BodyGrid>
-            <SearchResult
-              query={query}
-              results={results}
-              visible={showSearchResult}
-              onCancel={this.hideSearch}
-              onSearch={this.handleSearch}
-              onQueryChange={this.handleQueryChange}
-            />
           </div>
         </Layout>
         <script src={`${pathPrefix}/smooth-scroll.polyfills.min.js`} />
