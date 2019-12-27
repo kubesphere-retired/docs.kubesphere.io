@@ -64,7 +64,7 @@ To get started, we'll create a tea deployment and a coffee deployment respective
 
 ### Create Services
 
-In this section, we'll create a tea service and a coffee service for their deployments respectively. Choose **Network & Services → Services**, then click **Create Service**.
+In this section, we'll create a tea service and a coffee service for their deployments respectively. Choose **Application Workloads → Services**, then click **Create**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716160348.png#alt=)
 
@@ -72,14 +72,22 @@ In this section, we'll create a tea service and a coffee service for their deplo
 
 3.1. Name it as `tea-svc`, click **Next**.
 
-3.2. Choose the first item `Virtual IP: Access the service through the internal IP of the cluster`, then fill in the Service Settings page according to the following hints.
+3.2. Under **Custom Creation** Choose  **specify workloads**: Name it **tea-svc**, then fill in the Service Settings page according to the following hints:
 
-- Click `Specify Workload` and select `tea`, click **Save**.
-- Ports:
+- Under `Specify Workload` name: `tea`,
 
+  - label: tea-svc
+  - value: tea
+  - Protocol: tcp
   - Name it as `port`
   - Service Port: 80
   - Container Port: 80
+  
+// here there is a bug. After you fill in the name, it returns with a value that is doesn´t accept.
+unless you give it a correct value in thius case tcp-tea //
+
+
+
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716160742.png#alt=)
 
