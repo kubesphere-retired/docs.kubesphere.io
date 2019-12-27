@@ -44,7 +44,7 @@ To get started, we'll create a tea deployment and a coffee deployment respective
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716153503.png#alt=)
 
-1.4. Click **Save** and then click **Next → Create** to complete `tea` deployment creation.
+1.4. Click **Next → Create** to complete `tea` deployment creation.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716154022.png#alt=)
 
@@ -58,13 +58,13 @@ To get started, we'll create a tea deployment and a coffee deployment respective
 - Container Name: coffee
 - Service Settings: Name it as `port`, fill in `80` with the `TCP` protocol.
 
-2.3. Click **Save** and then click **Next → Create** to complete `coffee` deployment creation.
+2.3. Click **Next → Create** to complete `coffee` deployment creation.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716155835.png#alt=)
 
 ### Create Services
 
-In this section, we'll create a tea service and a coffee service for their deployments respectively. Choose **Network & Services → Services**, then click **Create Service**.
+In this section, we'll create a tea service and a coffee service for their deployments respectively. Choose **Network & Services → Services**, then click **Create**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716160348.png#alt=)
 
@@ -74,7 +74,7 @@ In this section, we'll create a tea service and a coffee service for their deplo
 
 3.2. Choose the first item `Virtual IP: Access the service through the internal IP of the cluster`, then fill in the Service Settings page according to the following hints.
 
-- Click `Specify Workload` and select `tea`, click **Save**.
+- Click `Specify Workload` and select `tea`, click **Next**.
 - Ports:
 
   - Name it as `port`
@@ -180,7 +180,7 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716170243.png#alt=)
 
-6.4. Click **Save** after you've done, then skip to the final step to click **Create**, we can see the `cafe-ingress` has been created successfully.
+6.4. Click **Next** after you've done, then skip to the final step to click **Create**, we can see the `cafe-ingress` has been created successfully.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716170813.png#alt=)
 
