@@ -166,7 +166,7 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716163434.png#alt=)
 
-6.2. Name it as `cafe-ingress`, then click **Add Route Rule**.
+6.2. Name it as `cafe-ingress`, then click **Next**.
 
 6.3. Choose **Specify Domain** and fill in the table as following:
 
