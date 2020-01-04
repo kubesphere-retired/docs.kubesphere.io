@@ -129,10 +129,10 @@ spec:
 2. 使用 kubectl 命令创建相关资源：
 
 ```
-$ kubectl apply -f hostpath-deploy.yaml -n openebs
+$ kubectl apply -f demo-openebs-hostpath.yaml -n openebs
 ```
 
-3. 如果 PVC 的状态为 `Bound` 说明已经成功挂载，证明了默认的 StorageClass（openebs-hostpath）是正常工作的。接下来可以回到 [在已有 Kubernetes 集群之上安装 KubeSphere](../../installation/install-on-k8s) 继续安装 KubeSphere。
+3. 如果 PVC 的状态为 `Bound` 并且 Pod 状态为 `running`，则说明已经成功挂载，证明了默认的 StorageClass（openebs-hostpath）是正常工作的。接下来可以回到 [在已有 Kubernetes 集群之上安装 KubeSphere](../../installation/install-on-k8s) 继续安装 KubeSphere。
 
 ```
 $ kubectl get pvc -n openebs
