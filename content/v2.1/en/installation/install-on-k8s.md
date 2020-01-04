@@ -1,5 +1,5 @@
 ---
-title: "Install KubeSphere on existing Kubernetes (Online)"
+title: "Install on existing K8s (Online)"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -57,4 +57,4 @@ $ kubectl edit cm -n kubesphere-system ks-installer
 
 ## Configuration Table
 
-Some components can be optional before installation, please refer to [Parameter Configuration](https://github.com/kubesphere/ks-installer/blob/master/README.md).
+Other components are optional and you can install them according to your demands, it's highly recommend you to install these components if you have resource in your machine, please refer to [Parameter Configuration](https://github.com/kubesphere/ks-installer/blob/master/README.md).

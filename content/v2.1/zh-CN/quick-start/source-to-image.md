@@ -101,6 +101,9 @@ description: ''
 - 目标镜像仓库：选择之前创建的 `dockerhub-id`。
 - **高级设置**-代码相对路径：使用默认的 `/` 即可；
 
+
+> 提示：若希望将镜像推送到公共镜像仓库（如阿里云镜像仓库）或私有镜像仓库（如 Harbor），可以在映像名称前面填写仓库的命名空间或项目名，例如 `libraby/s2i-sample`。
+
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat3aa969a5c0c6f5d42ecfae9fdae2e68e.png)
 
 4、点击 「下一步」，设置容器的访问策略，**协议** 默认为 `HTTP`，**容器端口** 和 **服务端口** 设置为8080。

@@ -14,6 +14,14 @@ description: ''
 > - 本安装示例仅作为快速测试部署的演示，因此将使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，**方便初次安装但没有准备存储服务端的场景下进行部署测试**，**正式环境建议配置使用 KubeSphere 支持的存储类型**，参考 [持久化存储配置说明](../storage-configuration)。
 > - Multi-node 支持 Master 和 etcd 节点高可用配置，本示例为了方便多节点的快速测试安装演示，仅部署单个 Master 和单个 etcd，正式环境建议配置多个 Master 节点的高可用，若安装多个 Master 节点，请参阅 [集群高可用部署配置](../master-ha)。
 
+## 视频教程
+
+**视频教程以 QingCloud 云平台创建 VM 用作安装示例，其它平台安装步骤类似，具体以其官方文档为准。**
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P002C202001_MultiNode.mp4">
+</video>
+
 
 ## 前提条件
 
