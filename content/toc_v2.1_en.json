@@ -159,7 +159,7 @@
             },
             {
               "title": "Load Balancer plugin in Bare Metal - Porter",
-              "entry": "./v2.1/en/installation/harbor-installation.md"
+              "entry": "./v2.1/en/installation/install-porter.md"
             }
           ]
         },

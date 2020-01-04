@@ -9,6 +9,13 @@ description: ''
 - <font color=red>KubeSphere 2.1 默认仅开启最小化安装，Installer 已支持自定义安装各个可插拔的功能组件，用户可根据业务需求和机器配置选择安装所需的组件，**请确保开启可插拔组件之前机器资源满足最低要求**，参考 [安装说明](../intro/#自定义安装可插拔的功能组件) 开启可选组件的安装。</font>
 - <font color=red>安装时间跟网络情况和带宽、机器配置、安装节点个数等因素有关，可通过调高带宽的方式，或在安装前 [配置镜像加速器](https://kubesphere.com.cn/forum/d/149-kubesphere-v2-1-0) 来加快安装速度。</font>
 
+## 视频教程
+
+**视频教程以 QingCloud 云平台创建 VM 用作安装示例，其它平台安装步骤类似，具体以其官方文档为准。**
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P001C201912_AllinOne.mp4">
+</video>
 
 ## 前提条件
 

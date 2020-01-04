@@ -714,6 +714,10 @@
           "entry": "./v2.1/zh-CN/appendix/glusterfs-ks-install.md"
         },
         {
+          "title": "安装 OpenEBS 创建 LocalPV 存储类型",
+          "entry": "./v2.1/zh-CN/appendix/install-openebs.md"
+        },
+        {
           "title": "云平台配置端口转发和防火墙",
           "entry": "./v2.1/zh-CN/appendix/qingcloud-manipulation.md"
         }

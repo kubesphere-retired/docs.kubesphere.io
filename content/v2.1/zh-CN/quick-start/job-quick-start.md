@@ -16,6 +16,13 @@ Job 负责批处理任务，即仅执行一次的任务。任务具有并发的�
 
 已创建了企业空间、项目和普通用户 `project-regular` 账号（该已账号已被邀请至示例项目），并开启了外网访问，请参考 [多租户管理快速入门](../admin-quick-start)。
 
+## 视频教程
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KS2.1_4-job-quick-start.mp4">
+</video>
+
+
 ## 预估时间
 
 约 15 分钟。
