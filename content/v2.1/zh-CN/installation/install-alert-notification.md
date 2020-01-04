@@ -21,7 +21,6 @@ KubeSphere 多租户告警系统支持灵活的告警策略和告警规则，支
 
 安装前，在 installer 目录下编辑 `conf/common.yaml` 文件，然后参考如下开启。
 
-> 提示：KubeSphere 支持对接外置的 SonarQube，若您已有外置的 SonarQube，建议在以下参数中配置对接，可减少 KubeSphere 集群的资源消耗。
 
 ```yaml
 # Following components are all optional for KubeSphere,

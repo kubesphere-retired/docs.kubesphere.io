@@ -144,7 +144,7 @@ Neonsan\_csi\_protocol | tranportation protocol, user must set the option, such 
 
 ### Local Volume (All-in-One installation test only)
 
-A [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume. Dynamic provisioning is not supported yet. So it's only recommended to use Local volume for All-in-One installation test only, it can help you to quickly & easily install KubeSphere on a single node. The definition of the `conf/common.yml` is as following table.
+A [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume. It's only recommended to use Local volume in test environment only, it can help you to quickly and easily install KubeSphere if you don't prepare storage server. The definition of the `conf/common.yml` is as following table.
 
 | **Local volume** | **Description** |
 | --- | --- |

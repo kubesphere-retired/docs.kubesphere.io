@@ -110,11 +110,39 @@
           ]
         },
         {
-          "title": "Enable Pluggable Components",
+          "title": "Enable Pluggable Components Installation",
           "entries": [
             {
               "title": "Enable Pluggable Components Installation",
               "entry": "./v2.1/en/installation/pluggable-components.md"
+            },
+            {
+              "title": "Install KubeSphere Application Store",
+              "entry": "./v2.1/en/installation/install-openpitrix.md"
+            },
+            {
+              "title": "Install KubeSphere DevOps System",
+              "entry": "./v2.1/en/installation/install-devops.md"
+            },
+            {
+              "title": "Install KubeSphere Logging System",
+              "entry": "./v2.1/en/installation/install-logging.md"
+            },
+            {
+              "title": "Install KubeSphere Service Mesh",
+              "entry": "./v2.1/en/installation/install-servicemesh.md"
+            },
+            {
+              "title": "Install Alerting and Notification",
+              "entry": "./v2.1/en/installation/install-alert-notification.md"
+            },
+            {
+              "title": "Install Metrics-server to enable HPA",
+              "entry": "./v2.1/en/installation/install-metrics-server.md"
+            },
+            {
+              "title": "Verify Components Installation",
+              "entry": "./v2.1/en/installation/verify-components.md"
             }
           ]
         },
@@ -122,7 +150,15 @@
           "title": "Related Tools",
           "entries": [
             {
-              "title": "Integrating Harbor Registry",
+              "title": "Enable Harbor Installation",
+              "entry": "./v2.1/en/installation/install-harbor.md"
+            },
+            {
+              "title": "Enable GitLab Installation",
+              "entry": "./v2.1/en/installation/install-gitlab.md"
+            },
+            {
+              "title": "Load Balancer plugin in Bare Metal - Porter",
               "entry": "./v2.1/en/installation/harbor-installation.md"
             }
           ]
