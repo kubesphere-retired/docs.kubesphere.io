@@ -35,7 +35,7 @@ class MarkdownTemplate extends React.Component {
   }
 
   componentDidMount() {
-    const { version } = this.props.pageContext
+    const { lang, version } = this.props.pageContext
 
     document.addEventListener('click', this.handleClick)
 
@@ -69,7 +69,7 @@ class MarkdownTemplate extends React.Component {
         indexName: 'kubesphere',
         inputSelector: '.ks-search > input',
         algoliaOptions: {
-          facetFilters: ['lang:zh-CN', `version:${version}`],
+          facetFilters: [`lang:${lang}`, `version:${version}`],
         },
         transformData: function(hits) {
           hits.forEach(hit => {

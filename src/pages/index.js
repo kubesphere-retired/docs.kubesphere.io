@@ -27,6 +27,7 @@ class IndexPage extends React.Component {
   }
 
   componentDidMount() {
+    const lang = getLanguage(this.props.pageContext.locale)
     if (typeof docsearch !== 'undefined') {
       /* eslint-disable no-undef */
       docsearch({
@@ -35,7 +36,7 @@ class IndexPage extends React.Component {
         inputSelector: '.ks-search > input',
         algoliaOptions: {
           facetFilters: [
-            'lang:zh-CN',
+            `lang:${lang}`,
             `version:${this.state.selectVersion.value}`,
           ],
         },
@@ -101,7 +102,7 @@ class IndexPage extends React.Component {
 
 export default WithI18next({ ns: 'common' })(IndexPage)
 
-const Header = ({ t, query, pageContext, pathPrefix }) => (
+const Header = ({ t, pageContext, pathPrefix }) => (
   <HeaderWrapper>
     <LogoWrapper>
       <Logo pageContext={pageContext} pathPrefix={pathPrefix} />
