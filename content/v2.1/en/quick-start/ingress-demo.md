@@ -4,11 +4,9 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-KubeSphere has built a global load balancer into each project (namespace), Ingress Controller, which is responsible for fulfilling the Ingress. Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster. Traffic routing is controlled by rules defined on the Ingress resource.
+KubeSphere has built a global load balancer into each project (namespace), that is Nginx Ingress Controller. [Kubernetes-ingress](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) provides such an example: As for website `https://cafe.example.com`, if users access the URL `https://cafe.example.com/coffee` then it will return "Coffee Ordering System". Similarly, when access the URL `https://cafe.example.com/tea` then it will return "Tea Ordering System".
 
-[Kubernetes-ingress](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) provides such an example: As for website `https://cafe.example.com`, if users access the URL `https://cafe.example.com/coffee` then it will return "Coffee Ordering System". Similarly, when access the URL `https://cafe.example.com/tea` then it will return "Tea Ordering System".
-
-To elaborate this process, we will create a Deployment, Service and Ingress to expose an application in this tutorial.
+To elaborate this process, we will create two stateless appliations which includes Deployments, Services and Ingress in this tutorial.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716144703.png#alt=)
 
@@ -22,86 +20,47 @@ About 20 minutes.
 
 ## Hands-on Lab
 
-### Create Deployments
+### Create a Tea Service
 
-To get started, we'll create a tea deployment and a coffee deployment respectively.
+In this section, we will create a "Tea Ordering System" service as following.
 
-#### Step 1: Create a Tea
+1. Sign in with `project-regular`, then enter into `demo-project`. Choose **Application Workloads → Services** and click **Create Service**.
 
-1.1. Sign in with `project-regular`, then enter into `demo-project`. Choose **Workloads → Deployments** and click **Create Deployment**.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105164644.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716151135.png#alt=)
+2. Choose the type `Stateless Service` in Service Type, Name it as `tea-svc`, click **Next**.
 
-1.2. Name it as `tea`, click **Next**.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105164821.png)
 
-1.3. Set the replicas to `2`, and click **Add Container**. Then fill in the Pod Template according to the following hints.
 
-- Image: `nginxdemos/hello:plain-text`
-- Container Name: tea
-- Service Settings: Name it as `port`, fill in `80` with the `TCP` protocol.
+3. Click **Add Container Image**. Then fill in the **Image** with `nginxdemos/hello:plain-text`, click `Use Default Ports` and choose `√`, then click **Next**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716153100.png#alt=)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105165118.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716153503.png#alt=)
+4. No need to mount volumes and advanced settings, just click **Next** to skip it, finally you need click **Create** to complete `tea-svc`  creation.
 
-1.4. Click **Next → Create** to complete `tea` deployment creation.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105165745.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716154022.png#alt=)
+### Create a Coffee Service
 
-#### Step 2: Create a Coffee
+1. Similarly, click **Create** button to create a "Coffee Ordering System" service.
 
-2.1. Similarly, click **Create** button to create a "Coffee Ordering System" deployment.
+2. Name it as `coffee-svc` and click **Next**, click **Add Container Image**. Then fill in the **Image** with `nginxdemos/hello:plain-text`, click `Use Default Ports` and choose `√`, other steps are the same with create tea-svc.
 
-2.2. Name it as `coffee` and click **Next**, then set the replicas to `2`, and click **Add Container**. Then fill in the Pod Template according to the following hints.
+3. Click **Save** and then click **Next → Create** to complete `coffee-svc` service creation.
 
-- Image: `nginxdemos/hello:plain-text`
-- Container Name: coffee
-- Service Settings: Name it as `port`, fill in `80` with the `TCP` protocol.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105171944.png)
 
-2.3. Click **Next → Create** to complete `coffee` deployment creation.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716155835.png#alt=)
+### Create a TLS Certificate
 
-### Create Services
+Since the domain name bound in the route is the HTTPS protocol, we need to create a Secret to reserve the TLS certificate.
 
-In this section, we'll create a tea service and a coffee service for their deployments respectively. Choose **Network & Services → Services**, then click **Create**.
+1. Choose **Configuration Center → Secrets**, then click **Create**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716160348.png#alt=)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105174409.png)
 
-#### Step 3: Create a tea-svc
-
-3.1. Name it as `tea-svc`, click **Next**.
-
-3.2. Choose the first item `Virtual IP: Access the service through the internal IP of the cluster`, then fill in the Service Settings page according to the following hints.
-
-- Click `Specify Workload` and select `tea`, click **Next**.
-- Ports:
-
-  - Name it as `port`
-  - Service Port: 80
-  - Container Port: 80
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716160742.png#alt=)
-
-3.3. Then click **Next → Create** to complete the creation.
-
-#### Step 4: Create a coffee-svc
-
-4.1. Similarly, click **Create** button to create a Service, name it as `coffee-svc`.
-
-4.2. Then Specify the workload to `coffee`, the other options are the same with `tea-svc`. Finally, click **Create** after other blanks are filled. At this point, two services have been successfully created.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716162410.png#alt=)
-
-#### Step 5: Create a TLS Certificate
-
-Since the domain name bound in the route is the HTTPS protocol, we need to create the TLS certificate as a Secret.
-
-5.1. Choose **Configuration Center → Secrets**, then click **Create**.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716162728.png#alt=)
-
-5.2. Name it as `cafe-secret`, click **Next**. Select the `TLS` as the Type, then copy and paste Credential and Private Key as following, click **Create** when you've done.
+2. Name it as `cafe-secret`, click **Next**. Select the `TLS` as the Type, then copy and paste Credential and Private Key as following, click **Create** when you've done.
 
 ```bash
 #Credential
@@ -160,15 +119,14 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716163243.png#alt=)
 
-#### Step 6: Create a cafe-ingress
+### Create a cafe-ingress
 
-6.1. Choose **Network & Services → Routes**, and click **Create Route** button.
+1. Choose **Application Workloads → Routes**, and click **Create Route** button.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716163434.png#alt=)
+2. Name it as `cafe-ingress`, then click **Next → Add Route Rule**.
 
-6.2. Name it as `cafe-ingress`, then click **Next**.
+3. Choose **Specify Domain** and fill in the table as following:
 
-6.3. Choose **Specify Domain** and fill in the table as following:
 
 - HostName: `cafe.example.com`
 - Protocol: Choose `https`
@@ -178,46 +136,47 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
   - Input `/coffee`, then choose `coffee-svc` as the service and select `80` as the port
   - Click **Add Path**, input `/tea`, then choose `tea-svc` as the service and select `80` as the port
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716170243.png#alt=)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105175539.png)
 
-6.4. Click **Next** after you've done, then skip to the final step to click **Create**, we can see the `cafe-ingress` has been created successfully.
+4. Click **√** and **Next** after you've done, then skip to the final step to click **Create**, we can see the `cafe-ingress` has been created successfully.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716170813.png#alt=)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105175641.png)
 
-#### Step 7: Access the Application via Route
+### Access the Application Ingress
 
 So far, we have exposed two different application via route and its rules. We can access the **tea** and **coffee** application through different path.
 
-For example, when we visit `https://cafe.example.com:{$HTTPS_PORT}/coffee`, any one of the coffee Pod should respond to the request. As following demo, the Server name and Server address is corresponding to the Pod `coffee-5db79467d6-ghm95`.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105180222.png)
+
+For example, when we visit `https://cafe.example.com:{$HTTPS_PORT}/coffee`, the back-end Pod of coffee-svc should respond to the request. We can switch to `admin` account to log in KubeSphere and open **web kubectl** from **Toolbox** at the bottom right corner.
+
+As following demo, the Server name and Server address is corresponding to the Pod `coffee-svc-yfhqwu-7b7bbf49f4-6c55l`.
 
 ```bash
-$ curl --resolve cafe.example.com:30972:192.168.0.88 https://cafe.example.com:30972/coffee --insecure
-Server address: 10.233.87.215:80
-Server name: coffee-5db79467d6-ghm95
-Date: 16/Jul/2019:09:24:33 +0000
+$ curl --resolve cafe.example.com:30000:192.168.0.54 https://cafe.example.com:30000/coffee --insecure
+Server address: 10.233.90.5:80
+Server name: coffee-svc-yfhqwu-7b7bbf49f4-6c55l
+Date: 05/Jan/2020:10:01:48 +0000
 URI: /coffee
-Request ID: d396d300af9df6d31e0c1edd50d5da54
-
-$ kubectl get pod -n demo-project -o wide
-NAME                      READY   STATUS    RESTARTS   AGE    IP       NODE          NOMINATED NODE   READINESS GATES
-coffee-5db79467d6-ghm95   1/1     Running   0          93m    10.233.87.215   ks-allinone   <none>           <none>
+Request ID: 6fb79c32e0b99653d2f226eef374e798
 ```
 
-Similarly, when we visit `https://cafe.example.com:{$HTTPS_PORT}/tea`, any one of the tea Pod should respond to the request. As following demo, the Server name and Server address is corresponding to the Pod `tea-5bf6c889c4-vlv69`.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105180954.png)
+
+Similarly, when we visit `https://cafe.example.com:{$HTTPS_PORT}/tea`, the back-end Pod of tea-svc  should respond to the request. As following demo, the Server name and Server address is corresponding to the Pod `tea-svc-9fukgs-754cbc8b9b-rfhpr`.
 
 ```bash
-$ curl --resolve cafe.example.com:30972:192.168.0.88 https://cafe.example.com:30972/tea --insecure
-Server address: 10.233.87.174:80
-Server name: tea-5bf6c889c4-vlv69
-Date: 16/Jul/2019:09:31:01 +0000
+$ curl --resolve cafe.example.com:30000:192.168.0.54 https://cafe.example.com:30000/tea --insecure
+Server address: 10.233.90.4:80
+Server name: tea-svc-9fukgs-754cbc8b9b-rfhpr
+Date: 05/Jan/2020:10:07:16 +0000
 URI: /tea
-Request ID: 3f047c0461640da52c6d152039d016e1
-
-$ kubectl get pod -n demo-project -o wide
-NAME                      READY   STATUS    RESTARTS   AGE    IP     NODE          NOMINATED NODE   READINESS GATES
-tea-5bf6c889c4-vlv69      1/1     Running   0          106m   10.233.87.174   ks-allinone   <none>           <none>
+Request ID: 2173c1565b368a5258368d15f55ca050
 ```
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105181039.png)
+
 
 #### Conclusion
 
-According to above instruction, it indicates that the route has successfully forwarded different requests to the corresponding back-end service, and the service redirects that traffic to one of the Service’s backend Pods.
+According to above instruction, it demonstrates that the route has successfully forwarded different requests to the corresponding back-end service, and the service redirects that traffic to one of the Service’s backend Pods.
