@@ -257,7 +257,7 @@ const Footer = props => {
             </h3>
             <p>
               {t('Recommend you to download and use the latest free')}{' '}
-              <a href={`/${props.pageContext.locale}/download`}>
+              <a href={`/${props.pageContext.locale}/install`}>
                 {t('KubeSphere v2.1.0')}
               </a>{' '}
             </p>

@@ -196,20 +196,16 @@
           "entry": "./v2.1/en/quick-start/ingress-demo.md"
         },
         {
-          "title": "Deploying a MySQL Application",
-          "entry": "./v2.1/en/quick-start/mysql-deployment.md"
+          "title": "Compose and Deploy a Wordpress App to K8s",
+          "entry": "./v2.1/en/quick-start/wordpress-deployment.md"
         },
         {
-          "title": "Deploying a Wordpress Website",
-          "entry": "./v2.1/en/quick-start/wordpress-deployment.md"
+          "title": "Deploy Grafana App using APP Template",
+          "entry": "./v2.1/en/quick-start/one-click-deploy.md"
         },
         {
           "title": "Job to compute π to 2000 places",
           "entry": "./v2.1/en/quick-start/job-quick-start.md"
-        },
-        {
-          "title": "Deploying Grafana using APP Template",
-          "entry": "./v2.1/en/quick-start/one-click-deploy.md"
         },
         {
           "title": "Creating Horizontal Pod Autoscaler",

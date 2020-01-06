@@ -6,7 +6,7 @@ description: ''
 
 As an enterprise container management platform, KubeSphere provides an easy-to-use console with the awesome user experience that allows you to quickly get started with various functions.
 
-KubeSphere ranging from the **workload management, microservice governance (Service Mesh), DevOps projects (CI/CD), Source to Image, multi-tenancy management, multi-dimensional monitoring, log query and collection, alerting and notification, service and network, application management, infrastructure management, image registry management, application management**. It also supports multiple open source storage and Network, as well as high-performance cloud storage services.
+KubeSphere provides **workload management, Service Mesh (Istio-based), DevOps projects (CI/CD), Source to Image, multi-tenancy management, multi-dimensional monitoring, log query and collection, alerting and notification, service and network, application management, infrastructure management, image registry management, application management**. It also supports multiple open source storage and Network, as well as high-performance cloud storage services.
 
 We have also developed [Porter](https://github.com/kubesphere/porter), the open source Load Balancer plugin which is suitable for Kubernetes on Bare Metal. Support multiple open source storage and network plans and back high-performance business storage network services.
 
@@ -60,7 +60,7 @@ S2I allows you to publish your service to Kubernetes without writing Dockerfile.
 As similar as S2i, Binary to Image (B2i) is a toolkit and workflow for building reproducible container images from binary (e.g. Jar, War, Binary package). You just need to upload your application binary package, and specify the image repo which you want to push, other configurations will setted automaticly. And all configurations are stored as different resources in Kubernetes, and your project will be automaticly published to Kubernetes as well.
 
 
-## Multidimensional Monitoring
+## Multi-dimensional Monitoring
 
 - Fully monitoring dashboard can be operated through a visual interface, while at the same time, the open standard interface is easy to connect with the enterprise operation and maintenance system, so as to unify the operation and maintenance entry to realize centralized operation and maintenance.
 - Three-dimensional second-level monitoring: Instruct the three-dimensional monitoring with second-level frequency and dual-dimensions for 16 indicators.
@@ -102,7 +102,7 @@ Support storage management, host management and monitoring, resource quota manag
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151554.png)
 
-## Multiple Storage Support
+## Multiple Storage Solutions Support
 
 - Support GlusterFS, CephRBD, NFS and other open source storage.
 - Enable NeonSAN CSI plug-in to connect QingStor NeonSAN to meet core business requirements with lower latency, more resilient, higher performance storage.
@@ -110,7 +110,7 @@ Support storage management, host management and monitoring, resource quota manag
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151706.png)
 
-## Multiple Network Support
+## Multiple Network Solutions Support
 
 - Support Calico, Flannel and other open source network solutions.
 - Developed load balancer plug-in Porter for Kubernetes deployment on physical machines.
