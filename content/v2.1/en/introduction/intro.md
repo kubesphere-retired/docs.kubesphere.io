@@ -14,16 +14,16 @@ In addition, the platform has integrated and optimized a range of functional mod
       <td width="50%" align="center"><b>Project Resources</b></td>
   </tr>
   <tr>
-     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925003707.png"/></td>
-     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925003504.png"/></td>
+     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20200106120504.png"/></td>
+     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20200106120559.png"/></td>
   </tr>
   <tr>
       <td width="50%" align="center"><b>CI/CD Pipeline</b></td>
-      <td width="50%" align="center"><b>Application Template</b></td>
+      <td width="50%" align="center"><b>Application Store</b></td>
   </tr>
   <tr>
      <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925000712.png"/></td>
-     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925231623.png"/></td>
+     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20200106120638.png"/></td>
   </tr>
 </table>
 
