@@ -54,7 +54,7 @@ Job 负责批处理任务，即仅执行一次的任务。任务具有并发的�
 > 说明：
 > [重启策略 (RestartPolicy)](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy) 指通过同一节点上的 kubelet 重新启动容器，支持 Never 或 OnFailure。RestartPolicy 表示当任务未完成的情况下：
 > - Never：任务会在容器组出现故障时创建新的容器组，且故障容器组不会消失。
-> - OnFailure：任务会在容器组出现故障时其内部重启容器，而不是创建新的容器组。
+> - OnFailure：任务会在容器组出现故障时在其内部重启容器，而不是创建新的容器组。
 
 
 4. 下一步点击 **添加容器镜像**，镜像名输入 `perl`，然后按回车键或点击 DockerHub。

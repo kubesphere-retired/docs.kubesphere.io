@@ -23,19 +23,15 @@ const availableLocales = [
   { name: 'English', value: 'en' },
 ]
 
-const defaultLocales = { value: 'zh-CN', text: '简体中文' }
-
 exports.onCreatePage = async props => {
   const {
     page,
-    actions: { createPage, createRedirect, deletePage },
+    actions: { createPage, deletePage },
   } = props
 
   if (page.path.indexOf('404') !== -1) {
     return
   }
-
-  deletePage(page)
 
   availableLocales.map(({ value }) => {
     const newPath = `/${value}${page.path}`
@@ -54,26 +50,6 @@ exports.onCreatePage = async props => {
     }
     createPage(localePage)
   })
-
-  if (page.path === '/') {
-    createPage({
-      ...page,
-      context: {
-        availableLocales,
-        locale: defaultLocales.value,
-        routed: true,
-        data: localesNSContent[defaultLocales.value],
-        originalPath: page.path,
-      },
-    })
-  } else {
-    createRedirect({
-      fromPath: page.path,
-      isPermanent: true,
-      redirectInBrowser: true,
-      toPath: `/${defaultLocales.value}${page.path}`,
-    })
-  }
 }
 
 exports.onCreateNode = ({ node, getNode, actions }) => {

@@ -43,25 +43,14 @@ In this section, we will create a "Tea Ordering System" service as following.
 
 ### Create a Coffee Service
 
-2.1. Similarly, click **Create** button to create a "Coffee Ordering System" service.
+1. Similarly, click **Create** button to create a "Coffee Ordering System" service.
 
-2.2. Name it as `coffee-svc` and click **Next**, click **Add Container Image**. Then fill in the **Image** with `nginxdemos/hello:plain-text`, click `Use Default Ports` and choose `√`, other steps are the same with create tea-svc.
+2. Name it as `coffee-svc` and click **Next**, click **Add Container Image**. Then fill in the **Image** with `nginxdemos/hello:plain-text`, click `Use Default Ports` and choose `√`, other steps are the same with create tea-svc.
 
-2.3. Click **Save** and then click **Next → Create** to complete `coffee-svc` service creation.
+3. Click **Save** and then click **Next → Create** to complete `coffee-svc` service creation.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105171944.png)
 
-### Create Services
-
-In this section, we'll create a tea service and a coffee service for their deployments respectively. Choose **Network & Services → Services**, then click **Create Service**.
-
-**Services**
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716160348.png#alt=)
-
-**Deployments**
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105173725.png)
 
 ### Create a TLS Certificate
 
@@ -71,7 +60,7 @@ Since the domain name bound in the route is the HTTPS protocol, we need to creat
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105174409.png)
 
-5.2. Name it as `cafe-secret`, click **Next**. Select the `TLS` as the Type, then copy and paste Credential and Private Key as following, click **Create** when you've done.
+2. Name it as `cafe-secret`, click **Next**. Select the `TLS` as the Type, then copy and paste Credential and Private Key as following, click **Create** when you've done.
 
 ```bash
 #Credential
@@ -149,11 +138,11 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105175539.png)
 
-6.4. Click **√** and **Next** after you've done, then skip to the final step to click **Create**, we can see the `cafe-ingress` has been created successfully.
+4. Click **√** and **Next** after you've done, then skip to the final step to click **Create**, we can see the `cafe-ingress` has been created successfully.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105175641.png)
 
-#### Step 7: Access the Application via Route
+### Access the Application Ingress
 
 So far, we have exposed two different application via route and its rules. We can access the **tea** and **coffee** application through different path.
 

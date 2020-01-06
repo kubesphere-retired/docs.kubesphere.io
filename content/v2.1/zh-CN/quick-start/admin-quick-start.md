@@ -48,6 +48,10 @@ description: ''
 |---|---|---|
 |user-manager|users-manager|管理集群的账户和角色|
 
+通过下图您可以更清楚地了解本示例的逻辑：
+![](https://hello-world-20181219.pek3b.qingstor.com/KS2.1/%E5%A4%9A%E7%A7%9F%E6%88%B7%E7%AE%A1%E7%90%86%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.png
+)
+
 1.1. 点击控制台左上角 **平台管理 → 平台角色**，可以看到当前的角色列表，点击 **创建**，创建一个角色用于管理所有账户和角色。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027144314.png)

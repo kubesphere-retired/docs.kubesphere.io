@@ -442,7 +442,7 @@
 
 .md-body pre > code {
   display: inline-block;
-  white-space: pre;
+  white-space: pre-wrap;
   font-family: Monaco;
   font-size: 0.875rem;
   line-height: 1.7;

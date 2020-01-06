@@ -63,4 +63,4 @@ devops:
         enabled: True
 ```
 
-保存退出，参考 [验证可插拔功能组件的安装](../verify-components) ，通过查询 ks-installer 日志或 Pod 状态验证功能组件是否安装成功。
+保存退出，参考 [验证可插拔功能组件的安装](../verify-components) ，无需再次执行安装命令 ./install.sh，仅需通过查询 ks-installer 日志或 Pod 状态即可验证功能组件是否安装成功。
