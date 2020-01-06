@@ -26,7 +26,7 @@ const availableLocales = [
 exports.onCreatePage = async props => {
   const {
     page,
-    actions: { createPage, deletePage },
+    actions: { createPage },
   } = props
 
   if (page.path.indexOf('404') !== -1) {
