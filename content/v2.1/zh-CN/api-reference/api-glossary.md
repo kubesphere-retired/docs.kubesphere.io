@@ -51,7 +51,7 @@ description: ''
 |ServiceMesh|服务网格|
 |Tracing|追踪(分布式追踪)|
 |Canary Release| 金丝雀发布|
-|Mirror|流量镜像|
+|Traffic mirroring|流量镜像|
 |BlueGreen Release|蓝绿发布|
 
 ## Notification
