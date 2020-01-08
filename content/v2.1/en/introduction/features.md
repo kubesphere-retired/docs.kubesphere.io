@@ -36,7 +36,9 @@ Provide easy graphical wizard UI for various Kubernetes’ underlying resources 
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017150642.png)
 
-## DevOps (CI/CD)
+## DevOps
+
+### CI/CD Pipeline
 
 - Out-of-the-box DevOps: Based visual CI/CD pipeline editing, no Jenkins configuration is required and there are rich CI/CD pipeline plug-ins.
 - CI/CD graphical pipelining provides mail notification and adds multiple execution conditions
@@ -55,7 +57,7 @@ S2I allows you to publish your service to Kubernetes without writing Dockerfile.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017152542.png)
 
-## Binary to Image
+### Binary to Image
 
 As similar as S2i, Binary to Image (B2i) is a toolkit and workflow for building reproducible container images from binary (e.g. Jar, War, Binary package). You just need to upload your application binary package, and specify the image repo which you want to push, other configurations will setted automaticly. And all configurations are stored as different resources in Kubernetes, and your project will be automaticly published to Kubernetes as well.
 
