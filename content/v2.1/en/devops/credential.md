@@ -9,9 +9,9 @@ A DevOps project user can configure credentials in the application for dedicated
 Currently, it can store the following 4 types of credentials in DevOps project:
 
 - Account credentials: Username and password - which could be handled as separate components or as a colon separated string in the format username:password, such as GitHub, GitLab, Docker Hub, etc.
-- SSH Username with private key - an SSH public/private key pair.
-- Secret text - which is essentially secret content in a file.
-- kubeconfig: It's used to configure cross-cluster authentication, the page will automatically generate the contents of the kubeconfig file of the current Kubernetes cluster. You can also fill 
+- SSH: Username with private key - an SSH public/private key pair.
+- Secret text: Secret content in a file.
+- kubeconfig: It's used to configure cross-cluster authentication, the page will automatically generate the contents of the kubeconfig file of the current Kubernetes cluster. 
 
 ## Create a Credential
 

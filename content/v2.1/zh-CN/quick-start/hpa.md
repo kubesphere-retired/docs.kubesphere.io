@@ -152,9 +152,7 @@ while true; do wget -q -O- http://hpa.demo-project.svc.cluster.local; done
 
 ### 修改弹性伸缩
 
-创建后若需要修改弹性伸缩的参数，可以在部署详情页，点击 **更多操作 → 弹性伸缩**，如下页面支持修改其参数：
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191103003334.png)
+创建后若需要修改弹性伸缩的参数，可以在部署详情页，点击 **更多操作 → 弹性伸缩**。
 
 ### 取消弹性伸缩
 
