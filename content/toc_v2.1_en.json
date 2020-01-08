@@ -212,6 +212,10 @@
           "entry": "./v2.1/en/quick-start/hpa.md"
         },
         {
+          "title": "B2i: Publish Artifact to Kubernete",
+          "entry": "./v2.1/en/quick-start/binary-to-image.md"
+        },
+        {
           "title": "S2i: Publish your app without Dockerfile",
           "entry": "./v2.1/en/quick-start/source-to-image.md"
         },

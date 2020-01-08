@@ -52,14 +52,14 @@ Provide easy graphical wizard UI for various Kubernetes’ underlying resources 
 
 Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution.
 
-S2I allows you to publish your service to Kubernetes without writing Dockerfile. You just provide source code url, and specify the image repo which you want to push, other configurations will setted automaticly. And all configurations are stored as different resources in Kubernetes, and your project will be automaticly published to Kubernetes as well.
+S2I allows you to publish your service to Kubernetes without writing Dockerfile. You just provide source code url, and specify the image repo which you want to push, other configurations will be set automaticly. And all configurations are stored as different resources in Kubernetes, and your project will be automaticly published to Kubernetes as well.
 
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017152542.png)
 
 ### Binary to Image
 
-As similar as S2i, Binary to Image (B2i) is a toolkit and workflow for building reproducible container images from binary (e.g. Jar, War, Binary package). You just need to upload your application binary package, and specify the image repo which you want to push, other configurations will setted automaticly. And all configurations are stored as different resources in Kubernetes, and your project will be automaticly published to Kubernetes as well.
+As similar as S2i, Binary to Image (B2i) is a toolkit and workflow for building reproducible container images from binary (e.g. Jar, War, Binary package). You just need to upload your application binary package, and specify the image repo which you want to push, other configurations will be set automaticly. And all configurations are stored as different resources in Kubernetes, and your project will be automaticly published to Kubernetes as well.
 
 
 ## Multi-dimensional Monitoring
