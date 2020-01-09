@@ -213,7 +213,7 @@
         },
         {
           "title": "B2i: Publish Artifact to Kubernete",
-          "entry": "./v2.1/en/quick-start/binary-to-image.md"
+          "entry": "./v2.1/en/quick-start/b2i-war.md"
         },
         {
           "title": "S2i: Publish your app without Dockerfile",
