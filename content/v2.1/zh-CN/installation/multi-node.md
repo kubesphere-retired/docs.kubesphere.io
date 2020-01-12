@@ -141,6 +141,7 @@ KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依
 **1.** 进入安装目录，建议使用 root 用户执行 `install.sh` 安装脚本：
 
 ```bash
+$ cd ..
 $ cd scripts
 $ ./install.sh
 ```
