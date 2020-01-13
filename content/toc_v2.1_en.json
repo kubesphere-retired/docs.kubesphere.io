@@ -33,7 +33,7 @@
       "chapters": [
         {
           "title": "Introduction",
-          "entry": "./v2.1/en/introduction/intro.md"
+          "entry": "./v2.1/en/introduction/what-is-kubesphere.md"
         },
         {
           "title": "Features",
