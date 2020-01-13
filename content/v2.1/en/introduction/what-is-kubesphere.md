@@ -4,9 +4,17 @@ keywords: 'Kubernetes, docker, jenkins, devops, istio'
 description: 'What is KubeSphere'
 ---
 
-[KubeSphere](/en/) ️is a multi-tenant cluster management platform which is based on [Kubernetes](http://kubernetes.io). KubeSphere provides easy-to-use UI to reduce your learning cost for employing the container management platform and make it easier to develop, test and maintain your daily work. It's aimed to resolve the problems relating to Kubernetes’ storage, network, security and its usability.
+## Overview
 
-In addition, the platform has integrated and optimized a range of functional modules which are suitable for containers. KubeSphere provides enterprises with a complete solution for development, automation operation and maintenance, microservice governance, multi-tanency management. Besides, our platform is also able to manage workload, container cluster, service and network, application orchestration as well as database mirroring and storage.
+**KubeSphere** is a multi-tenant enterprise-grade container platform built on [Kubernetes](http://kubernetes.io), with full-stack automated IT operation and streamlined DevOps workflows. KubeSphere provides developer-friendly wizard interface, helps enterprises to build out a more robust and feature-rich platform, includes most common functionalities needed for enterprise Kubernetes strategy, such as the **container engine, Kubernetes resource management, DevOps (CI/CD), application lifecycle management, monitoring, logging, Service Mesh, multi-tenancy, alerting and notification, storage and networking, autoscaling**.
+
+Not only support upstream Kubernetes, KubeSphere works with its users to alleviate the pain points of Kubernetes including **storage, network, security and ease of use**, also develop new features and capabilies not yet included in upstream Kubernetes. KubeSphere provides a complete user experience around Kubernetes that incorporates set of cloud native ecosystem tools, allows developers and DevOps teams use their favorite tools in a single front-end interface. KubeSphere delivers **consolidated views while integrating a wide breadth of ecosystem tools** upon Kubernetes and offer consistent user experience to reduce complexity. Most importantly, these functionalities are loosely coupled with the platform since they are pluggable and optional based on your demands, it will not impact the flexibilty of Kubernetes.
+
+With KubeSphere container platform, developers can focus on application development since KubeSphere helps your enterprise migrate, deploy and manage existing and containerized apps seamlessly accross VM, bare metal, Kubernetes, on-premise and public cloud infrastructures. This platform also helps your Ops team with enterprise-level **observability and troubleshooting, unified monitoring and logging, centralized storage and networking management, easy-to-use CI/CD pipelines**, letting IT operation team embrace DevOps and automated workflows.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200113102629.png)
+
+## Screenshots
 
 <table>
   <tr>
