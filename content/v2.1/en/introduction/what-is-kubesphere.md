@@ -12,7 +12,8 @@ Not only support upstream Kubernetes, KubeSphere works with its users to allevia
 
 With KubeSphere container platform, developers can focus on application development since KubeSphere helps your enterprise migrate, deploy and manage existing and containerized apps seamlessly accross VM, bare metal, Kubernetes, on-premise and public cloud infrastructures. This platform also helps your Ops team with enterprise-level **observability and troubleshooting, unified monitoring and logging, centralized storage and networking management, easy-to-use CI/CD pipelines**, letting IT operation team embrace DevOps and automated workflows.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200113102629.png)
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200113104106.png)
 
 ## Screenshots
 
