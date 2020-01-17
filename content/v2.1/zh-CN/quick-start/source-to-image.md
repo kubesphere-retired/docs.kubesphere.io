@@ -78,7 +78,7 @@ description: ''
 
 #### 第二步：构建设置
 
-1、点击 「下一步」，进入容构建设置界面。
+1、点击 「下一步」，进入构建设置界面。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatb0a0109a0bfc17f36b94b0e50e1588d3.png)
 
