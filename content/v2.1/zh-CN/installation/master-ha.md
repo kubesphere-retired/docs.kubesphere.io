@@ -10,6 +10,11 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 本文档将在 [QingCloud 云平台](https://www.qingcloud.com) 创建 `2` 个 [负载均衡器 (Load Balancer)](https://docs.qingcloud.com/product/network/loadbalancer)，分别作为外网和内网的负载均衡，引导您如何配置高可用的 master 节点，并说明如何配置和部署高可用的 etcd 集群。
 
+## 示例视频
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P003C202001_HA-install-on-QingCloud.mp4">
+</video>
 
 
 ## 前提条件
