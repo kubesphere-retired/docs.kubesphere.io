@@ -89,6 +89,10 @@
             {
               "title": "Multi-Node 模式",
               "entry": "./v2.1/zh-CN/installation/multi-node.md"
+            },
+            {
+              "title": "完整安装（开启所有功能组件）",
+              "entry": "./v2.1/zh-CN/installation/complete-installation.md"
             }
           ]
         },

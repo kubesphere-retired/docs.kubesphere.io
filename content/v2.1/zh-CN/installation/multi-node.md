@@ -7,6 +7,7 @@ description: ''
 `Multi-Node` 即多节点部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
 - <font color=red>KubeSphere 2.1 默认仅开启最小化安装，Installer 已支持自定义安装各个可插拔的功能组件，用户可根据业务需求和机器配置选择安装所需的组件，**请确保开启可插拔组件之前机器资源满足最低要求**，参考 [安装说明](../intro/#自定义安装可插拔的功能组件) 开启可选组件的安装。</font>
+- <font color=red>若您的机器资源配置充足（所有机器总 CPU 不小于 8 核，总内存不小于 16 G），非常建议您在安装前 [将 KubeSphere 所有功能组件都开启](../complete-installation) 后再执行安装，体验 KubeSphere 容器平台端到端完整的容器管理与运维能力。</font>
 - <font color=red>安装时间跟网络情况和带宽、机器配置、安装节点个数等因素有关，可通过调高带宽的方式，或在安装前 [配置镜像加速器](https://kubesphere.com.cn/forum/d/149-kubesphere-v2-1-0) 来加快安装速度。</font>
 
 
