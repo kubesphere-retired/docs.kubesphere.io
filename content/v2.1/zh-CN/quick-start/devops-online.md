@@ -43,7 +43,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 > - **阶段七. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 DockerHub。
 > - **阶段八. Deploy to production**: 将发布的 tag 部署到 Production 环境。
 
-## 创建凭证
+## 创建凭证(注意，不是密钥/Secret)
 
 > 注意：GitHub 账号或密码带有 "@" 这类特殊字符，需要创建凭证前对其进行 urlencode 编码，可通过一些 [第三方网站](http://tool.chinaz.com/tools/urlencode.aspx)进行转换，然后再将转换后的结果粘贴到对应的凭证信息中。
 
