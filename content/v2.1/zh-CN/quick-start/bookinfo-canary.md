@@ -42,7 +42,7 @@ reviews 微服务有 3 个版本：
 
 - 开启了 Service Mesh 的安装，参考 [开启微服务治理（Service Mesh）](../../installation/install-service)；
 - 已创建了企业空间、项目和普通用户 `project-regular` 账号，且已邀请 `project-regular` 加入项目并授予 `operator` 角色，请参考 [多租户管理快速入门](../admin-quick-start)；
-- 需在当前项目下选择 「项目设置」→「高级设置」→「设置网关」，点击「应用治理」的开启按钮。
+- 使用管理员账号 `admin` 在示例项目 `demo-project` 下选择 「项目设置」→「高级设置」→「设置网关」，点击「应用治理」的开启按钮。
 
 
 ## 操作示例
