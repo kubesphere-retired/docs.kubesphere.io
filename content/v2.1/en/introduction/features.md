@@ -1,31 +1,84 @@
 ---
-title: "Features"
+title: "Features and Benefits"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-As an enterprise container management platform, KubeSphere provides an easy-to-use console with the awesome user experience that allows you to quickly get started with various functions.
+## Overview
+
+As an enterprise container platform, KubeSphere helps enterprises to build out a more robust and feature-rich platform, includes most common functionalities needed for enterprise Kubernetes strategy.
 
 KubeSphere provides **workload management, Service Mesh (Istio-based), DevOps projects (CI/CD), Source to Image, multi-tenancy management, multi-dimensional monitoring, log query and collection, alerting and notification, service and network, application management, infrastructure management, image registry management, application management**. It also supports multiple open source storage and Network, as well as high-performance cloud storage services.
 
-We have also developed [Porter](https://github.com/kubesphere/porter), the open source Load Balancer plugin which is suitable for Kubernetes on Bare Metal. Support multiple open source storage and network plans and back high-performance business storage network services.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200202153355.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200106120504.png)
+The following modules elaborate on the key features and benefits provided by KubeSphere container platform.
 
-The following modules elaborate on the KubeSphere services from a professional point of view.
+## Provisioning and Maintaining Kubernetes
 
-## Kubernetes Resource Management
+### Provisioning Kubernetes Cluster
 
-Provide easy graphical wizard UI for various Kubernetes’ underlying resources so as to manage workload, mirroring database, service and application router as well as the key configuration. Provide Horizontal Pod Autoscaler (HPA) and container check. Support million of container resource configuration to ensure businesses’ high availability under the peak concurrent.
+KubeSphere Installer can help you to deploy Kubernetes on your infrastructure out of box, provisioning Kubernetes cluster with high availability and self healing. It's recommended that at least three master nodes need to be configured behind a load balancer with integrated or independent clustered deployment of etcd that stores all the cluster state information.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200106120559.png)
+### Kubernetes Resource Operation
 
-## Microservice Governance (Service Mesh)
+KubeSphere provides graphical interface for creating and managing Kubernetes’ resources, including Pods and Containers, Workloads, Secrets and ConfigMaps, Services and Ingress, Jobs and CronJobs, HPA, etc. As well as strong observability includes resources' monitoring, events and logging.
 
-- Flexible microservice framework: Based on the Istio microservice framework, KubeSphere provides a visualized microservice governance function to subdivide Kubernete’s services into more detailed parts.
-- Complete governance functions: Support microservice governances such as circuit breaker, gray release, traffic control, current limitation, link tracking and the intelligent routing. At the same time, we back the non-invasive microservice governance.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190713002111.png)
+### Cluster Upgrades and Scaling
+
+An enterprise-grade solution should support rolling upgrades of Kubernetes clusters, such that the cluster and the cluster API is always available even while the cluster is being upgraded. KubeSphere Installer provides ease of setup, installation, management and maintenance. Additionally, it will provide the ability to rollback to previous stable version upon failure. Also, a single Kubernetes cluster can scale horizontally to support large sets of workloads by using KubeSphere Installer.
+
+## Built-in DevOps Support
+
+KubeSphere integrates tightly with Jenkins and other standard CI/CD tools, or automated workflows and tools including binary-to-image (B2I) and source-to-image (S2I) process to get source code into ready-to-run container images.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200202220455.png)
+
+### CI/CD Pipeline
+
+- CI/CD pipelines and build strategies based on Jenkins, streamline the creation and automation of Development, Test and Production pipelines, supports for dependency cache to accelerate build and deployment.
+- Ships out of box a Jenkins build strategy and client
+plugin to create a Jenkins pipeline based on Git repository/SVN, you can define any steps and stages in built-in jenkinsfile.
+- Design a visualized control panel to create CI/CD pipelines, delivers complete visibility simplifying user interaction.
+- Integrated source code quality analysis, supports output and collect logs of each step.
+
+
+### Source to Image
+
+Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution.
+
+S2I allows you to publish your service to Kubernetes without writing Dockerfile. You just provide source code repository address, and specify the target image registry, other configurations will be set automaticly. And all configurations are stored as different resources in Kubernetes, your project will be automaticly published to Kubernetes and the image will be pushed to target registry as well.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200204131749.png)
+
+### Binary to Image
+
+As similar as S2I, Binary to Image (B2I) is a toolkit and workflow for building reproducible container images from binary (e.g. Jar, War, Binary package).
+
+You just need to upload your application binary package, and specify the image registry which you want to push, other configurations will be set automaticly. And all configurations are stored as different resources in Kubernetes, then your project will be automaticly published to Kubernetes as well.
+
+## Service Mesh (Istio-based)
+
+KubeSphere service mesh composed of a set of ecosystem projects, including Istio (v1.3.3), Envoy and Jaeger, etc. We've designed a unified user interface to use and manage these sophisticated tools in a single console, and most features are out-of-box and has been designed from developer's perspective, which means KubeSphere can help you to reduce the learning curve since you don't need to deep dive into those seperated tools.
+
+KubeSphere service mesh provides fine-grained **traffic management**, **observability**, **tracing**, and **service identity and security** for a distributed microservice architecture, so the developer can focus on business value. With a service mesh layer on KubeSphere, cloud native apps can better track, route and optimize communications with Kubernetes.
+
+
+### Traffic Management
+
+- **Canary release** provides canary rollouts, and staged rollouts with percentage-based traffic splits.
+- **Blue-green deployment** allows the new version of the application is deployed in the green environment and tested for functionality and performance. Once the testing results are successful, application traffic is routed from blue to green. Green then becomes the new production.
+- **Traffic mirroring** enables teams to bring changes to production with as little risk as possible. Mirroring sends a copy of live traffic to a mirrored service.
+- **Circuit breakers** allows users to set limits for calls to individual hosts within a service, such as the number of concurrent connections or how many times calls to this host have failed.
+
+### Visualization
+
+KubeSphere service mesh has the ability to visualize the connections between microservices and look at the topology of how they interconnect. Observability also be useful in understanding cloud-native microservice interconnections.
+
+### Distributed Tracing
+
+Based on Jaeger, KubeSphere service mesh enables users to track how each service interacts with these other functions. This allows a deeper understanding about request latency, bottlenecks, serialization and parallelism via visualization.
 
 
 ## Multi-tenant Management
@@ -34,32 +87,6 @@ Provide easy graphical wizard UI for various Kubernetes’ underlying resources 
 - Unified authentication: Support the docking to the centralized authentication system with enterprises based on LDAP/AD protocol. And support single sign-on (SSO) to realize the unified authentication of tenant identity.
 - Authority management: The authority level is divided into three levels, namely, cluster, enterprise space and project. From high to low, we ensure the resource sharing as well as the isolation among different roles at multiple levels. Fully guarantee resource security.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017150642.png)
-
-## DevOps
-
-### CI/CD Pipeline
-
-- Out-of-the-box DevOps: Based visual CI/CD pipeline editing, no Jenkins configuration is required and there are rich CI/CD pipeline plug-ins.
-- CI/CD graphical pipelining provides mail notification and adds multiple execution conditions
-- End-to-end pipeline setup: Support end-to-end pipeline setup from repository (GitHub/SVN/Git), code compilation, mirror database production, mirror database security, push repository, release, and scheduled construction.
-- Security management: Support code static analysis scanning to manage the security of code quality in DevOps project.
-- Log: Logs completely records the whole process of CI/CD pipeline operation.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017153203.png)
-
-### Source to Image
-
-Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution.
-
-S2I allows you to publish your service to Kubernetes without writing Dockerfile. You just provide source code url, and specify the image repo which you want to push, other configurations will be set automaticly. And all configurations are stored as different resources in Kubernetes, and your project will be automaticly published to Kubernetes as well.
-
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017152542.png)
-
-### Binary to Image
-
-As similar as S2i, Binary to Image (B2i) is a toolkit and workflow for building reproducible container images from binary (e.g. Jar, War, Binary package). You just need to upload your application binary package, and specify the image repo which you want to push, other configurations will be set automaticly. And all configurations are stored as different resources in Kubernetes, and your project will be automaticly published to Kubernetes as well.
 
 
 ## Multi-dimensional Monitoring
@@ -71,7 +98,6 @@ As similar as S2i, Binary to Image (B2i) is a toolkit and workflow for building 
 - Provide resource usage ranking by node, enterprise space, project, etc.
 - Provide service component monitoring to quickly locate component failures.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017150930.png)
 
 ## Alerting and Notification System
 
@@ -82,7 +108,6 @@ As similar as S2i, Binary to Image (B2i) is a toolkit and workflow for building 
 - Flexible notification delivery rules: You can customize the notification delivery period and notification list. Mail notification is currently supported.
 - Custom repeat alerting rules: Support to set the repeat alerting cycle, maximum repeat times, and the alerting level
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151933.png)
 
 ## Log Query and Collection
 
@@ -94,15 +119,12 @@ Application management and orchestration
 - Use open source OpenPitrix to provide app store and app repository services to provide users with the management of the application lifecycle.
 - Users can quickly and easily deploy all the services of a complete application based on application templates.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151418.png)
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017152007.png)
 
 ## Infrastructure Management
 
 Support storage management, host management and monitoring, resource quota management, mirroring database warehouse management, permission management and mirror security scanning. With Harbor mirror warehouse built-in, KubeSphere supports to Docker add or private Harbor mirror warehouse.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151554.png)
+
 
 ## Multiple Storage Solutions Support
 
@@ -110,7 +132,6 @@ Support storage management, host management and monitoring, resource quota manag
 - Enable NeonSAN CSI plug-in to connect QingStor NeonSAN to meet core business requirements with lower latency, more resilient, higher performance storage.
 - QingCloud CSI plug-in connects QingCloud platform with various performance block storage services.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151706.png)
 
 ## Multiple Network Solutions Support
 

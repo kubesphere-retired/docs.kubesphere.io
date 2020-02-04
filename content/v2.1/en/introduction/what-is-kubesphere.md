@@ -15,26 +15,6 @@ With KubeSphere container platform, developers can focus on application developm
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200114144301.png)
 
-## Screenshots
-
-<table>
-  <tr>
-      <td width="50%" align="center"><b>KubeSphere Dashboard</b></td>
-      <td width="50%" align="center"><b>Project Resources</b></td>
-  </tr>
-  <tr>
-     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20200106120504.png"/></td>
-     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20200106120559.png"/></td>
-  </tr>
-  <tr>
-      <td width="50%" align="center"><b>CI/CD Pipeline</b></td>
-      <td width="50%" align="center"><b>Application Store</b></td>
-  </tr>
-  <tr>
-     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925000712.png"/></td>
-     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20200106120638.png"/></td>
-  </tr>
-</table>
 
 ## Video on Youtube
 
@@ -48,7 +28,9 @@ It's worth mentioning that both **DevOps** and **observability** components have
 
 ## Open Source
 
-KubeSphere has been developing by applying the open source approach since the very beginning. All the relevant source codes and documents are available on [GitHub](https://github.com/kubesphere/kubesphere).
+As we adopt open source development model, development is completed in the open and has been driven by KubeSphere community, and the source code is available from GitHub. This open collaboration fosters rapid innovation and development.
+
+> Note: All the relevant source codes and documents are available on [GitHub](https://github.com/kubesphere/kubesphere).
 
 
 
