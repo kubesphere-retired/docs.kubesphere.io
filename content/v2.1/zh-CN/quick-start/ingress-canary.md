@@ -1,5 +1,5 @@
 ---
-title: "示例十三 - 使用 Ingress-Nginx 进行灰度发布" 
+title: "示例十三 - 使用 Ingress-Nginx 进行灰度发布"
 keywords: 'nginx, kubernetes, docker, helm, jenkins, istio, prometheus'
 description: '使用 Ingress-Nginx 进行灰度发布'
 ---
@@ -162,7 +162,7 @@ spec:
 <!-- ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826140046.png) -->
 
 ```bash
-$ curl --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 
+$ curl --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205
 # 注意，加上 --resolve 参数则无需在本地配置 /etc/hosts 中的 IP 与域名映射，否则需要预先在本地配置域名映射，其中 192.168.0.88 是项目内的网关地址。
 
 Hostname: production-6b4bb8d58d-7r889
@@ -242,8 +242,11 @@ spec:
 
 > 说明：应用的 Canary 版本基于权重 (30%) 进行流量切分后，访问到 Canary 版本的概率接近 30%，流量比例可能会有小范围的浮动。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826163309.png)
+```
+$ for i in $(seq 1 10); do curl -s --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
+```
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200205162603.png)
 
 ### 基于 Request Header
 
@@ -261,7 +264,18 @@ spec:
 >
 > 对于任何其他 Header 值，将忽略 Header，并通过优先级将请求与其他 Canary 规则进行优先级的比较（如下第二次请求已将`基于 30% 权重`作为第一优先级）。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826182043.png)
+
+```
+$ for i in $(seq 1 10); do curl -s -H "canary: never" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
+```
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200205231401.png)
+
+```
+$ for i in $(seq 1 10); do curl -s -H "canary: other-value" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
+```
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200205231455.png)
 
 4.5. 此时可以在上一个 annotation (即 canary-by-header）的基础上添加一条 `nginx.ingress.kubernetes.io/canary-by-header-value: user-value` 。用于通知 Ingress 将请求路由到 Canary Ingress 中指定的服务。
 
@@ -269,10 +283,13 @@ spec:
 
 4.6. 如下访问应用的域名，当 Request Header 满足此值时，所有请求被路由到 Canary 版本（该规则允许用户自定义 Request Header 的值）。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826185701.png)
+```
+$ for i in $(seq 1 10); do curl -s -H "canary: user-value" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
+```
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200205231634.png)
 
-### 基于 Cookie 
+### 基于 Cookie
 
 4.7. 与基于 Request Header 的 annotation 用法规则类似。例如在 `A/B 测试场景` 下，需要让地域为北京的用户访问 Canary 版本。那么当 cookie 的 annotation 设置为 `nginx.ingress.kubernetes.io/canary-by-cookie: "users_from_Beijing"`，此时后台可对登录的用户请求进行检查，如果该用户访问源来自北京则设置 cookie  `users_from_Beijing` 的值为 `always`，这样就可以确保北京的用户仅访问 Canary 版本。
 
