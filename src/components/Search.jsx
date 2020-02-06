@@ -18,7 +18,7 @@ class Search extends React.Component {
 
 const SearchWrapper = styled.div`
   position: relative;
-  width: 350px;
+  width: 300px;
   height: 36px;
 
   .algolia-autocomplete {
