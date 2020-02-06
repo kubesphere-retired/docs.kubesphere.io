@@ -6,7 +6,7 @@ description: ''
 
 In actual work, we often need to process and analyze data in batch and execute jobs according to the time. The container technology in KubeSphere can help you. To be more specific, you can use Job and CronJob to execute, which is easier to maintain the clean execution environent and reduce the mutual interface of different job tools. At the same time, the dynamic scaling can be escuted on the cluster according to job requirement and resource status.
 
-Job is responsible for batch jobs, namely it only excute the job once. The job has concurrent features and it can be abstracted to multiple Pods to run in parrallel. Such feature can ensure the successful completion of one or multiple Pods. In day-to-day work,
+Job is responsible for batch jobs, namely it only excute the job once. The job has concurrent features and it can be abstracted to multiple Pods to run in parrallel. Such feature can ensure the successful completion of one or multiple Pods.
 
 ## Objective
 
@@ -100,4 +100,3 @@ Skip the Volume Settings, then click **Next** to the tag setting. Tag is `app: j
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716213657.png#alt=)
 
 For now, you have learned Job's basic functions. For further details, please refer to [Job](/docs/advanced-v2.0/zh-CN/workload/jobs/)
-
