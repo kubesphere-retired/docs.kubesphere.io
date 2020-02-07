@@ -1,5 +1,5 @@
 ---
-title: "在青云部署高可用的 KubeSphere"
+title: "部署高可用的 KubeSphere"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
