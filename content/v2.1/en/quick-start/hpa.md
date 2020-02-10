@@ -5,13 +5,13 @@ description: ''
 ---
 
 
-The Horizontal Pod Autoscaler automatically scales the number of pods in a deployment based on observed CPU utilization or Memory usage. The controller periodically adjusts the number of replicas in a deployment to match the observed average CPU utilization to the target value specified by user.
+The Horizontal Pod Autoscaler (HPA) automatically scales the number of pods in a deployment based on observed CPU utilization or Memory usage. The controller periodically adjusts the number of replicas in a deployment to match the observed average CPU utilization or Memory usage to the target value specified by user.
 
 ## How does the HPA work
 
 The Horizontal Pod Autoscaler is implemented as a control loop, with a period controlled by the controller manager’s HPA sync-period flag (with a default value of 30 seconds). For per-pod resource metrics (like CPU), the controller fetches the metrics from the resource metrics API for each pod targeted by the Horizontal Pod Autoscaler. See [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for more details.
 
-After creating HPA in the deployment, Controller Manager can access to Metrics-server. And it can obtain the utilization ratio or the original value's (which is determined by the target type) average value of each container cluster in the customized resources. Then, the Controller Manager will compare the average value with the HPA's setting index. At the same time, the Controller Manager can calculate the specific value of Pod's elastic expansion in the deployment. For the Pod's CPU and its storage resources, it should be considered the limits and requests. When scheduling, Kube-scheduler will calculate according to the requests. Thus, if Pod has not been set the requst, the flexible expansion will not work.
+After creating HPA in the deployment, Controller Manager can access to Metrics-server. And it can obtain the utilization ratio or the original value's (which is determined by the target type) average value of each container cluster in the customized resources. Then, the Controller Manager will compare the average value with the HPA's setting index. At the same time, the Controller Manager can calculate the specific value of Pod's elastic expansion in the deployment. For the Pod's CPU and its storage resources, it should be considered the limits and requests. When scheduling, Kube-scheduler will calculate according to the requests. Thus, if Pod has not been set the request, the flexible expansion will not work.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716214909.png#alt=)
 
@@ -19,7 +19,7 @@ After creating HPA in the deployment, Controller Manager can access to Metrics-s
 
 This document walks you through an example of configuring Horizontal Pod Autoscaler for the hpa-example deployment.
 
-We will create a deployment to send an infinite loop of queries to the hpa example application, demonstrating its autoscaling function and the HPA Principle.
+We will create a deployment to send an infinite loop of queries to the hpa example application, demonstrating its autoscaling function and the HPA principle.
 
 ## Estimate Time
 
@@ -27,14 +27,14 @@ About 25 minutes.
 
 ## Prerequisites
 
-- You need to create a workspace and project, see the [Getting Started with Multi-tenant Management](../admin-quick-start.md) if not yet.
-- You need to sign in with `project-regular` and enter into the corresponding project.
+- You need to create a workspace and a project, see the [Getting Started with Multi-tenant Management](../admin-quick-start.md) if not yet.
+- You need to log in with `project-regular` and enter the corresponding project.
 
 ## Hands-on Lab
 
 ### Step 1: Create a Deployment
 
-1.1. Enter into `demo-project`, then select **Workload → Deployments** and click **Create Deployment** button.
+1.1. Enter `demo-project`, then select **Workload → Deployments** and click **Create Deployment** button.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716215848.png#alt=)
 
@@ -42,7 +42,7 @@ About 25 minutes.
 
 ### Step 2: Configure the HPA
 
-2.1. Choose **Horizontal Pod Autoscaling**, and fill in the table as following:
+2.1. Choose **Horizontal Pod Autoscaling**, and fill in the table as follows:
 
 - Min Replicas Number: 2
 - Max Replicas Number: 10
@@ -52,7 +52,7 @@ Then click on the **Add Container** button.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716220122.png#alt=)
 
-2.2. Fill in the Pod Template with following values, then click **Save** to save these settings.
+2.2. Fill in the Pod Template with the following values, then click **Save** to save these settings.
 
 - Image: `mirrorgooglecontainers/hpa-example`
 - Service Settings
@@ -117,26 +117,26 @@ Click on the **Save** button when you've done, then click **Next**.
 
 4.3. Click **Next → Create** to complete creation.
 
-So far, we've created 2 deployments (i.e. hpa-example and load-generator) and 1 service (i.e. hpa-example).
+So far, we've created two deployments (i.e. hpa-example and load-generator) and one service (i.e. hpa-example).
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716222833.png#alt=)
 
 ### Step 5: Verify the HPA
 
-5.1. Click into `hpa-example` and inspect the changes, please pay attention to the HPA status and the CPU utilization, as well as the Pods monitoring graphs.
+5.1. Click into `hpa-example` and inspect the changes. Please pay attention to the HPA status and the CPU utilization, as well as the Pods monitoring graphs.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190322010021.png#alt=)
 
 ### Step 6: Verify the Auto Scaling
 
-6.1. When all of the load-generator pods are successfully created and begin to access the hpe-example service, as shown in the following figure, the CPU utilization is significantly increased after refreshing the page, currently rising to `722%`, and the desired replicas and current replicas is rising to `10/10`.
+6.1. When all of the load-generator pods are successfully created and begin to access the hpa-example service, as shown in the following figure, the CPU utilization is significantly increased after refreshing the page, currently rising to `722%`, and the desired replicas and current replicas is rising to `10/10`.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716223104.png#alt=)
 
-> Note: Since the Horizontal Pod Autoscaler is working right now, the load-generator looply requests the hpa-example service to make the CPU utilization rised rapidly. After the HPA starts working, it makes the backend of the service increases fast to handle a large number of requests together. Also the replicas of hpa-example continues to increase follow with the CPU utilization increases, which demonstrates the working principle of HPA.
+> Note: Since the Horizontal Pod Autoscaler is working right now, the load-generator looply requests the hpa-example service to make the CPU utilization rised rapidly. After the HPA starts working, it makes the backend of the service increase fast to handle a large number of requests together. Also the replicas of hpa-example continue to increase following with the CPU utilization increase, which demonstrates the working principle of HPA.
 
 
-6.2. In the monitoring graph, it can be seen that the CPU usage of the first Pod that we originally created, showing a significant upward trend. When HPA started working, the CPU usage has a significant decreased trend, finally it tends to be smooth. Accordingly, the CPU usage is increasing on the newly created Pods.
+6.2. In the monitoring graph, we can see the CPU usage of the first created Pod shows a significant upward trend. When HPA starts working, the CPU usage has a significant decreased trend. Finally it tends to be smooth. Accordingly, the CPU usage is increasing on the newly created Pods.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716223415.png#alt=)
 
@@ -146,22 +146,22 @@ So far, we've created 2 deployments (i.e. hpa-example and load-generator) and 1 
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716225225.png#alt=)
 
-7.2. Inspect the status of the `hpa-example` again, you'll find that its current CPU utilization has slowly dropped to 10% in a few minutes, eventually the HPA has reduced its deployment replicas to 1 (initial value). The trend reflected by the monitoring curve can also help us to further understand the working principle of HPA;
+7.2. Inspect the status of the `hpa-example` again, you'll find that its current CPU utilization has slowly dropped to 10% in a few minutes. Eventually the HPA reduces its deployment replicas to one (initial value). The trend reflected by the monitoring curve can also help us to further understand the working principle of HPA.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716230725.png#alt=)
 
-7.3. It enables user to inspect the monitoring graph of Deloyment, see the CPU utilization and Network inbound/outbound trend, they just match with the HPA example.
+7.3. Now inspect the monitoring graph of the Deployment and review the CPU utilization and Network inbound/outbound trends. We can find the trends match with the HPA example.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716230333.png#alt=)
 
 ## Modify HPA Settings
 
-If you need to modify the settings of the HPA, you can click into the deployment, and click **More → Horizontal Pod Autoscaler**.
+If you need to modify the settings of the HPA, you can go into the deployment, and click **More → Horizontal Pod Autoscaler**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716225918.png#alt=)
 
 ## Cancel HPA
 
-Click **···** button on the right and **Cancel** if you don't need HPA within this deployment.
+Click **···** button on the right and **Cancel** if you don't need HPA for this deployment.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716225953.png#alt=)
