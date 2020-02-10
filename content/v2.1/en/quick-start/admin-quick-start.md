@@ -24,7 +24,7 @@ KubeSphere system is organized into **three** hierarchy levels which are Cluster
 
 As shown below, you can create multiple workspaces within a Kubernetes cluster. Under each workspace you can also create multiple projects.
 
-For each level, there are multiple built-in roles. It allows you to create role with customized authorization as well. This hierarchy is appropriate for enterprise uaers who have different teams or groups, as well as different roles within each team.
+For each level, there are multiple built-in roles. It allows you to create role with customized authorization as well. This hierarchy is appropriate for enterprise users who have different teams or groups, as well as different roles within each team.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105121616.png)
 
@@ -78,8 +78,8 @@ Here is an example showing you how to create a new `role` named _users-manager_,
 | --- | --- | --- |
 | ws-manager | workspaces-manager | Create and manage all workspaces |
 | ws-admin | cluster-regular | Manage all resources under the specified workspace  (This example is used to invite new members to join the workspace.) |
-| project-admin | cluster-regular | Create and manage projects and invite new members into the projects |
-| project-regular | cluster-regular | The regular user will be invited to the project by the project-admin. We use this account to create workloads and other resources under the specified project. |
+| project-admin | cluster-regular | Create and manage projects, DevOps projects and invite new members into the projects |
+| project-regular | cluster-regular | The regular user will be invited to the project and DevOps project by the project-admin. We use this account to create workloads, pipelines and other resources under the specified project. |
 
 
 
@@ -128,52 +128,52 @@ Click **Create** in the workspace list:
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716131852.png#align=left&display=inline&height=1322&originHeight=1322&originWidth=2810&search=&status=done&width=2810)
 
-3.2. Name it as `demo-project`, then set the CPU limit as 1 Core and memory limit as 1000 Mi in the Advanced Settings, then click **Create**.
+3.2. Name it as `demo-project`, then set the CPU limit to 1 Core and memory limit to 1000 Mi in the Advanced Settings, then click **Create**.
 
-3.3. Choosing **Project Settings → Project Members** and click **Invite Member**.
+3.3. Choose **Project Settings → Project Members** and click **Invite Member**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105160247.png)
 
-3.4. Invite `project-regular` to this project and grant this user **operator** accordingly.
+3.4. Invite `project-regular` to this project and grant this user the role **operator**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716132840.png#align=left&display=inline&height=1038&originHeight=1038&originWidth=1646&search=&status=done&width=1646)
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716132920.png#align=left&display=inline&height=518&originHeight=518&originWidth=2288&search=&status=done&width=2288)
 
 
-#### Step 4: Set the Gateway
+#### Step 4: Set Gateway
 
-Before creating a route, you need to enable a gateway for this project, the gateway is a [Nginx ingress controller](https://github.com/kubernetes/ingress-nginx) of each K8s namespace.
+Before creating a route, you need to enable a gateway for this project. The gateway is a [Nginx ingress controller](https://github.com/kubernetes/ingress-nginx) running in the project.
 
-4.1. We still use `project-admin`, Choose **Project Settings → Advanced Settings** and click **Set Gateway**.
+4.1. We continue to use `project-admin`, Choose **Project Settings → Advanced Settings** and click **Set Gateway**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105161214.png)
 
-4.2. Keep the access method as `NodePort` and click `Save`.
+4.2. Choose the access method `NodePort` and click `Save`.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716134742.png#align=left&display=inline&height=946&originHeight=946&originWidth=2030&search=&status=done&width=2030)
 
 4.3. Now we are able to see the Gateway Address (192.168.0.53
 ), the NodePort of http and https respectively.
 
-> Note: If you want expose services using LoadBalancer type, it requires the [LoadBalancer plugin of cloud provider](https://kubernetes.io/docs/concepts/cluster-administration/cloud-providers/), if your K8s cluster are running on bare metal environment, we recommend you to adopt [Porter](https://github.com/kubesphere/porter) as your LoadBalancer plugin.
+> Note: If you want to expose services using LoadBalancer type, it requires the [LoadBalancer plugin of cloud provider](https://kubernetes.io/docs/concepts/cluster-administration/cloud-providers/). If your K8s cluster are running on bare metal environment, we recommend you to use [Porter](https://github.com/kubesphere/porter) as your LoadBalancer plugin.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105161335.png)
 
 #### Step 5: Create DevOps Project (Optional)
 
-> Prerequisite: You have to install [KubeSphere DevOps system](../../installation/install-devops), which is a pluggable component provides CI/CD pipeline, Binary-to-image and Source-to-image features.
+> Prerequisite: You need to install [KubeSphere DevOps system](../../installation/install-devops), which is a pluggable component providing CI/CD pipeline, Binary-to-image and Source-to-image features.
 
-5.1. In this step, we still use `project-admin` to demonstrate. Click **Workbench** and click `Create` button, then select **Create a DevOps project**.
+5.1. We still use the account `project-admin` to demonstrate this step. Click **Workbench** and click `Create` button, then select **Create a DevOps project**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105162512.png)
 
-5.2. Fill in the basic information, e.g. `demo-devops`, then click **Create** button, it will jump to `demo-devops` page.
+5.2. Fill in the basic information, e.g. `demo-devops`, then click **Create** button. It will switch to `demo-devops` page.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105162623.png)
 
-5.3. Similarly, navigate to **Project Management → Project Members**, then click **Invite Member** and grant `project-regular` as the role of `maintainer`, which is used to create pipeline, credentials, etc.
+5.3. Similarly, navigate to **Project Management → Project Members**, then click **Invite Member** and grant `project-regular` the role of `maintainer`, which is allowed to create pipeline, credentials, etc.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105162710.png)
 
-Congratulations! You've been familiar with KubeSphere multi-tenant management mechanism. In the next few tutorials, we will use account `project-regular` to demonstrate how to create applications and resources under project and DevOps project.
+Congratulations! You've been familiar with KubeSphere multi-tenant management mechanism. In the next few tutorials, we will use the account `project-regular` to demonstrate how to create applications and resources under project and DevOps project.
