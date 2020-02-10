@@ -4,21 +4,28 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-Source to Image (S2I) is a tool that allows a programmer to input source codes and transfer the codes into runnable program to Docker image. This tool enables programers to build images even when they don't know about Dockerfile. By inputing source codes into the source code compiler, Builder image, Source to Image can transfer the codes into Docker images.
+## What is Source to Image
+
+As [Features and Benefits](../../introduction/features) elaborates, Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution. KubeSphere integrates S2i to enable automatically build images and publish to Kubernetes without writing Dockerfile.
+
 
 ## Objective
 
-The example below is an official Java demonstration for Hello World. It will show you how to use Source to Image on KubeSphere to build image, push the images to mirroring repositories and finally deploy them to clusters.
+This tutorial will use S2I to import source code repository of Java sample project into KubeSphere, build a docker image and push to the target registry, finally publish to Kubernetes and expose externally.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200207162613.png)
+
 
 ## Prerequisites
 
-- The example below takes the GitHub codes repository and DockerHub repositories for example. Make sure you have created [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) accounts.
-- Build workspace, projects and `project-regular` accounts for common users at first. If not, please refer to [Quick Start Guide of Multi-tenant Management](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/).
-- Use `project-admin` to invite `project-regular`, regular users, to join in the project. Refer to [Quick Start Guide of Multi-tenant Management-inviting members](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/) to grant the `operator`role.
+- You have [enabled KubeSphere DevOps system](../../installation/install-devops).
+- You have created [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) accounts. GitLab and Harbor are also supported, but we will use GitHub and DockerHub in this tutorial.
+- You have created workspace, projects and `project-regular` accounts (with role of "operator"), see [Quick Start Guide of Multi-tenant Management](/../../quick-start/admin-quick-start/).
+
 
 ## Estimated Time
 
-20-30 minutes (The time varies according to the Internet speed and other factors.)
+20-30 minutes
 
 ## Hands-on Lab
 

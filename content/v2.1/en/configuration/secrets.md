@@ -66,7 +66,7 @@ Type: kubernetes.io/tls
 
 ## Using a Secret
 
-Secrets can be mounted as data volumes or be exposed as environment variables to be used by a container in a pod. 
+Secrets can be mounted as data volumes or be exposed as environment variables to be used by a container in a pod.
 
 - In Volume, click on **Reference Config Center**, then select the created Secret.
 - In the Environment Variables, click **Reference Config Center** then select the created key.
@@ -77,4 +77,26 @@ Secrets can be mounted as data volumes or be exposed as environment variables to
 
 For more information on how to use the Secret, see [Quick-Start - Deploy a MySQL Application](../../quick-start/mysql-deployment).
 
+## Create common-used Secrets
 
+### Create Secret of DockerHub
+
+Enter into **Configuration Center→ Secrets**, click **Create**.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200207165442.png)
+
+Enter its name, e.g. **dockerhub-id**, then choose **Next**.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200207165617.png)
+
+Select **Image Repository Secret** from the dropdown list, enter **docker.io** into **Registry Address**, then input your DockerHub user name and password into blanks.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200207171625.png)
+
+Click **Create** when you've done.
+
+### Create GitHub
+
+The same as above, create a GitHub secret, Enter its name, e.g. **github-id**, and choose **Account Password Secret**. Then input your GitHub user name and password into blanks.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200207174736.png)
