@@ -25,7 +25,7 @@ WordPress 是使用 PHP 开发的博客平台，用户可以在支持 PHP 和 My
 ## 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_3-%E5%88%9B%E5%BB%BA%20Wordpress%20%E5%BA%94%E7%94%A8%E5%B9%B6%E5%8F%91%E5%B8%83%E8%87%B3%20Kubernetes.mp4">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_3-wordpress-k8s.mp4">
 </video>
 
 ## 创建密钥

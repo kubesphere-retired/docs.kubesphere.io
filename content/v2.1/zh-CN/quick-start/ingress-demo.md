@@ -25,7 +25,7 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 ## 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_2-%E5%BA%94%E7%94%A8%E8%B7%AF%E7%94%B1%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%A4%BA%E4%BE%8B.mp4">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_2-service-ingress.mp4">
 </video>
 
 ## 创建 tea 服务
