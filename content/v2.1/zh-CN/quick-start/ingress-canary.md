@@ -1,5 +1,5 @@
 ---
-title: "示例十三 - 使用 Ingress-Nginx 进行灰度发布"
+title: "示例十二 - 使用 Ingress-Nginx 进行灰度发布"
 keywords: 'nginx, kubernetes, docker, helm, jenkins, istio, prometheus'
 description: '使用 Ingress-Nginx 进行灰度发布'
 ---
