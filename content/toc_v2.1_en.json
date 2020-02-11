@@ -228,14 +228,6 @@
           "entry": "./v2.1/en/quick-start/devops-online.md"
         },
         {
-          "title": "Building a Pipeline in a Graphical Panel",
-          "entry": "./v2.1/en/quick-start/jenkinsfile-out-of-scm.md"
-        },
-        {
-          "title": "CI/CD based on GitLab and Harbor",
-          "entry": "./v2.1/en/quick-start/pipeline-git-harbor.md"
-        },
-        {
           "title": "Ingress-Nginx for Grayscale Release",
           "entry": "./v2.1/en/quick-start/ingress-canary.md"
         }

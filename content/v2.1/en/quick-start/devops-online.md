@@ -13,9 +13,9 @@ In this tutorial we will show you how to create a pipeline based on the built-i
 
 ## Prerequisites
 
-- You have enabled KubeSphere DevOps System installation
-- You have an account for DokcerHub and GitHub.
-- You have created a workspace, a DevOps project, and a **project-regular** user account, and this account has been invited into a DevOps project, see [Get started with multi-tenant management](../admin-quick-start).
+- You need to [enable KubeSphere DevOps System](../../installation/install-devops)
+- You need to create an account for DokcerHub and GitHub respectively.
+- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account has been invited into a DevOps project, see [Get started with multi-tenant management](../admin-quick-start).
 - Set CI dedicated node for building pipeline.
 
 ## Hands-on Lab
