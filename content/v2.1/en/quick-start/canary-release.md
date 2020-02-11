@@ -4,14 +4,26 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-Istio's service mesh is able to manage traffic distribution without dependence on deployment scaling, which enables a simpler, yet significantly and functional way to realize canary release and rollout. It allows users to introduce a new version of a service by  testing it with a small percentage of user traffic in the first place. And then if all goes well, increase, possibly gradually in increments. The percentage will simultaneously phase out the old version.
+Istio’s service mesh provides the control necessary to manage traffic distribution with complete independence from deployment scaling. This allows for a simpler, yet significantly more functional, way to do canary test and rollout. **Canary release** provides canary rollouts, and staged rollouts with percentage-based traffic splits.
 
-KubeSphere provides three kinds of grayscale strategies based on Istio, including blue-green deployment, canary release and traffic mirroring. Without modifying the source code, KubeSphere can realize grayscale, traffic governance, tracing, traffic monitoring and other service mesh features.
+KubeSphere provides three kinds of grayscale strategies based on Istio, including blue-green deployment, canary release and traffic mirroring.
+
+## Objective
+
+In this tutorial, we're going to deploy a Bookinfo sample application composed of four separate microservices used to demonstrate the canary release, tracing and traffic monitoring using Istio on KubeSphere.
+
+## Prerequisites
+
+- You need to [Enable Service Mesh System](../../installation/install-servicemesh)
+- You need to complete all steps in [Getting Started with Multi-tenant Management](../admin-quick-start.md)
+- Log in with `project-admin`, then navigate to **Project Settings → Advanced Settings → Set Gateway → Turn On the Application Governance**
 
 
-## What is Bookinfo Application
+## Hands-on Lab
 
-The Bookinfo application is broken into four separate microservices (There are 3 versions of the reviews microservice):
+### What is Bookinfo Application
+
+The Bookinfo application is composed of four distributed microservices (There are 3 versions of the Reviews microservice):
 
 - Productpage. The productpage microservice calls the details and reviews microservices to populate the page.
 - Details. The details microservice contains book information.
@@ -22,30 +34,17 @@ The end-to-end architecture of the application is shown below, see [Bookinfo App
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718152533.png#align=left&display=inline&height=1030&originHeight=1030&originWidth=1712&search=&status=done&width=1712)
 
-## Objective
-
-In this tutorial, we're going to deploy a Bookinfo sample application composed of four separate microservices used to demonstrate the canary release, tracing and traffic monitoring using Istio on KubeSphere.
-
-## Prerequisites
-
-- You've completed all steps in [Getting Started with Multi-tenant Management](../admin-quick-start.md).
-- You need to turn on the **Application Governance** to enable the tracing feature. (Choose **Project Settings → Internet Access → Edit Gateway → Turn it On**)
-
-
-## Hands-on Lab
-
 
 ### Step 1: Deploy Bookinfo Application
 
-1.1. Sign in with `project-regular` account and enter into the `demo-project`, navigate to **Application**, click on the **Deploy New Application** then choose **Deploy sample app Bookinfo**.
+1.1. Log in with account `project-regular` and enter the `demo-project`, navigate to **Application Workloads → Applications**, click on the **Deploy New Application** then choose **Deploy Sample Application**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718154143.png#align=left&display=inline&height=808&originHeight=808&originWidth=2848&search=&status=done&width=2848)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200210234559.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718154251.png#align=left&display=inline&height=946&originHeight=946&originWidth=2276&search=&status=done&width=2276)
 
 1.2. Click **Create** in the pop-up window, then Bookinfo application has been deployed successfully, application components are listed in this following page, as well as the routes and hostname.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718154424.png#align=left&display=inline&height=1558&originHeight=1558&originWidth=2816&search=&status=done&width=2816)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200210235159.png)
 
 1.3. Next you can access the Bookinfo homepage as following screenshot via **Click to visit** button. Click on the **Normal user** to enter into the summary page.
 

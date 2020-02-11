@@ -1,10 +1,10 @@
 ---
-title: "Using Ingress-Nginx for Grayscale Release" 
+title: "Using Ingress-Nginx for Grayscale Release"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-In [Managing Canary Release of Microservice App based on Istio](), KubeSphere implemented grayscale publishing for the Bookinfo microservices sample application based on Istio. Some users have indicated that their project has not yet been on Istio. How do you implement grayscale publishing?
+In [Managing Canary Release of Microservice App based on Istio](../ingress-canary), KubeSphere implemented grayscale publishing for the Bookinfo microservices sample application based on Istio. Some users have indicated that their project has not yet been on Istio. How do you implement grayscale publishing?
 
 In [Ingress-Nginx (v0.21.0)](https://github.com/kubernetes/ingress-nginx/releases/tag/nginx-0.21.0), a new Canary feature has been introduced that can be used to configure multiple backend services for gateway portals, as well as to control traffic distribution between multiple backend services using specified annotations. . In [v2.0.2](/docs/advanced-v2.0/zh-CN/release/release-v202/), KubeSphere upgraded the Ingress Controller version to 0.24.1 to support [Ingress-Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary)-based grayscale publishing.
 
@@ -23,7 +23,7 @@ Based on the [Nginx Ingress Controller](https://github.com/kubernetes/ingress-ng
 > - `nginx.ingress.kubernetes.io/canary-by-header-value`：The value of the Request Header to match to tell Ingress to route the request to the service specified in Canary Ingress. When the Request Header is set to this value, it will be routed to the Canary entry. This rule allows the user to customize the value of the Request Header and must be used with the previous annotation (ie: canary-by-header).
 > - `nginx.ingress.kubernetes.io/canary-weight`：Service-weighted traffic segmentation for blue-green deployments, weight range 0 - 100 Route requests to services specified in Canary Ingress. A weight of 0 means that the Canary Rules will not send any requests to the services of the Canary portal. A weight of 100 means that all requests will be sent to the Canary portal.
 > - `nginx.ingress.kubernetes.io/canary-by-cookie`：Cookie-based traffic segmentation for grayscale publishing and A/B testing. A cookie that tells Ingress to route requests to the service specified in Canary Ingress. When the value of cookie is set to `always` , it will be routed to the Canary portal; when set to `never` , the request will not be sent to the Canary entry; for any other value, the cookie is ignored and the request is prioritized against other Canary rules.
-> 
+>
 Note: The Canary Rules are sorted in order of priority:
 > `canary-by-header - > canary-by-cookie - > canary-weight`
 
@@ -166,7 +166,7 @@ spec:
 
 2.3. Access the Production version of the app below.
 ```bash
-$ curl --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 
+$ curl --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205
 # Note that adding the --resolve parameter eliminates the need to configure IP and domain name mappings in /etc/hosts locally, otherwise you need to configure the domain name mapping locally, where 192.168.0.88 is the gateway address within the project.
 
 Hostname: production-6b4bb8d58d-7r889
