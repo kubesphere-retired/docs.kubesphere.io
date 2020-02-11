@@ -48,7 +48,7 @@ plugin to create a Jenkins pipeline based on Git repository/SVN, you can define 
 
 Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution.
 
-S2I allows you to publish your service to Kubernetes without writing Dockerfile. You just provide source code repository address, and specify the target image registry, other configurations will be set automaticly. And all configurations are stored as different resources in Kubernetes, your project will be automaticly published to Kubernetes and the image will be pushed to target registry as well.
+S2I allows you to publish your service to Kubernetes without writing Dockerfile. You just provide source code repository address, and specify the target image registry, other configurations will be set automatically. And all configurations are stored as different resources in Kubernetes, your project will be automatically published to Kubernetes and the image will be pushed to target registry as well.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200204131749.png)
 
@@ -56,7 +56,7 @@ S2I allows you to publish your service to Kubernetes without writing Dockerfile.
 
 As similar as S2I, Binary to Image (B2I) is a toolkit and workflow for building reproducible container images from binary (e.g. Jar, War, Binary package).
 
-You just need to upload your application binary package, and specify the image registry which you want to push, other configurations will be set automaticly. And all configurations are stored as different resources in Kubernetes, then your project will be automaticly published to Kubernetes as well.
+You just need to upload your application binary package, and specify the image registry which you want to push, other configurations will be set automatically. And all configurations are stored as different resources in Kubernetes, then your project will be automatically published to Kubernetes as well.
 
 ## Service Mesh (Istio-based)
 
