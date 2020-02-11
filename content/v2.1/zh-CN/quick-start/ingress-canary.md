@@ -40,9 +40,9 @@ KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingre
 
 1.1. 在 KubeSphere 中创建一个企业空间 (workspace) 和项目 (namespace) ，可参考 [多租户管理快速入门](../admin-quick-start)。如下已创建了一个示例项目。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190827104830.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200211101511.png)
 
-1.2. 为了快速创建应用，在项目中创建工作负载和服务时可通过 `编辑 yaml` 的方式，或使用 KubeSphere 右下角的**工具箱**打开 `web kubectl` 并使用以下命令和 yaml 文件创建一个 Production 版本的应用并暴露给集群外访问。如下创建 Production 版本的 `deployment` 和 `service`。
+1.2. 本文为了快速创建应用，使用集群的 **admin** 账号登录，在项目中创建工作负载和服务时可通过 `编辑 yaml` 的方式，或使用 KubeSphere 右下角的**工具箱**打开 `web kubectl` 并使用以下命令和 yaml 文件创建一个 Production 版本的应用并暴露给集群外访问。如下创建 Production 版本的 `deployment` 和 `service`。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190827111540.png)
 
