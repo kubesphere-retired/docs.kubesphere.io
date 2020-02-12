@@ -32,7 +32,7 @@ KubeSphere 支持所有用户进行日志查询，登录 KubeSphere 后，点击
 
 ![日志查询](https://pek3b.qingstor.com/kubesphere-docs/png/20190308101943.png)
 
-在弹窗的日志查询页面，即可看到搜索框和日志总数的变化趋势。目前支持以下几种查询规则，其中关键字查询可通过 “Error” “Fail” “Fatal” “Exception ” “Warning” 等关键字查找错误日志，查询条件支持组合规则查询，并支持精确匹配和模糊匹配。
+在弹窗的日志查询页面，即可看到搜索框和日志总数的变化趋势。目前支持以下几种查询规则，其中关键字查询可通过 “Error” “Fail” “Fatal” “Exception ” “Warning” 等关键字查找错误日志，查询条件支持组合规则查询，并支持精确匹配和模糊匹配。模糊查询支持大小写模糊匹配，以及通过单词或短语的前半部分检索完整词条（下划线属于单词的一部分）。由于 Elasticsearch 分词的缘故，您可以通过 node_cpu 检索出 node_cpu_totoal，但无法通过 cpu 检索到。
 
 - 关键字
 - 项目名称

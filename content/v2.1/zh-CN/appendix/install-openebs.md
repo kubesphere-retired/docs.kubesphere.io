@@ -85,7 +85,7 @@ storageclass.storage.k8s.io/openebs-hostpath patched
 
 
 ```
-$ kubectl taint nodes master node-role.kubernetes.io/master:NoSchedule
+$ kubectl taint nodes master node-role.kubernetes.io=master:NoSchedule
 ```
 
 ## 创建工作负载测试 StorageClass

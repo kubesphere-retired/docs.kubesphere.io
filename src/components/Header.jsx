@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Search from './Search'
 import Logo from './Logo'
+import Language from './Language'
 
 import { getScrollTop } from '../utils/index'
 
@@ -45,11 +46,14 @@ class Header extends React.Component {
           <span className="v-line" />
         </div>
         <LogoWrapper>
-          <Logo pageContext={this.props.pageContext} pathPrefix={pathPrefix}/>
+          <Logo pageContext={this.props.pageContext} pathPrefix={pathPrefix} />
         </LogoWrapper>
         <SearchWrapper>
           <Search {...rest} />
         </SearchWrapper>
+        <LanguageWrapper>
+          <Language {...this.props} pathPrefix={pathPrefix} noIcon />
+        </LanguageWrapper>
       </HeaderWrapper>
     )
   }
@@ -78,11 +82,16 @@ const HeaderWrapper = styled.div`
   z-index: 1000;
   transition: left 0.2s cubic-bezier(0.79, 0.33, 0.14, 0.53);
 
+  @media only screen and (max-width: 1440px) {
+    left: 240px;
+    width: calc(100% - 240px);
+  }
+
   @media only screen and (max-width: 768px) {
     width: 100%;
     height: 60px;
     left: ${({ isExpand }) => {
-      return isExpand ? '280px' : 0
+      return isExpand ? '240px' : 0
     }};
   }
 
@@ -127,9 +136,20 @@ const HeaderWrapper = styled.div`
   }
 `
 
-const SearchWrapper = styled.span`
+const LanguageWrapper = styled.div`
   position: absolute;
   right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+`
+
+const SearchWrapper = styled.span`
+  position: absolute;
+  right: 140px;
   top: 50%;
   transform: translateY(-50%);
 
@@ -139,7 +159,7 @@ const SearchWrapper = styled.span`
 
   .ks-search {
     & > input {
-      width: 350px;
+      width: 300px;
       height: 37px;
       font-size: 12px;
       line-height: 2;

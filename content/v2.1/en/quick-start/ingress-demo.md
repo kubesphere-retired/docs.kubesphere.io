@@ -4,9 +4,9 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-KubeSphere has built a global load balancer into each project (namespace), that is Nginx Ingress Controller. [Kubernetes-ingress](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) provides such an example: As for website `https://cafe.example.com`, if users access the URL `https://cafe.example.com/coffee` then it will return "Coffee Ordering System". Similarly, when access the URL `https://cafe.example.com/tea` then it will return "Tea Ordering System".
+In each project (namespace), KubeSphere has pre-installed a load balancer which is Nginx Ingress Controller. You need to activate it before using it. The website [Kubernetes-ingress](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) provides an example showing how to use ingress: For a demo website like `https://cafe.example.com`, if users access the URL `https://cafe.example.com/coffee` then it will return "Coffee Ordering System". Similarly, when access the URL `https://cafe.example.com/tea` then it will return "Tea Ordering System".
 
-To elaborate this process, we will create two stateless appliations which includes Deployments, Services and Ingress in this tutorial.
+To elaborate this process, we will create two stateless applications which includes Deployments, Services and Ingress in this tutorial.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716144703.png#alt=)
 
@@ -22,13 +22,13 @@ About 20 minutes.
 
 ### Create a Tea Service
 
-In this section, we will create a "Tea Ordering System" service as following.
+In this section, we will create a "Tea Ordering System" service as the following.
 
-1. Sign in with `project-regular`, then enter into `demo-project`. Choose **Application Workloads → Services** and click **Create Service**.
+1. Sign in with `project-regular`, then enter `demo-project`. Choose **Application Workloads → Services** and click **Create Service**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105164644.png)
 
-2. Choose the type `Stateless Service` in Service Type, Name it as `tea-svc`, click **Next**.
+2. Choose the type `Stateless Service` in Service Type, Name it `tea-svc`, click **Next**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105164821.png)
 
@@ -37,7 +37,7 @@ In this section, we will create a "Tea Ordering System" service as following.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105165118.png)
 
-4. No need to mount volumes and advanced settings, just click **Next** to skip it, finally you need click **Create** to complete `tea-svc`  creation.
+4. It is not required to mount volumes and configure advanced settings in this step. Just click **Next** to skip it, then click **Create** to complete `tea-svc`  creation.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105165745.png)
 
@@ -45,7 +45,7 @@ In this section, we will create a "Tea Ordering System" service as following.
 
 1. Similarly, click **Create** button to create a "Coffee Ordering System" service.
 
-2. Name it as `coffee-svc` and click **Next**, click **Add Container Image**. Then fill in the **Image** with `nginxdemos/hello:plain-text`, click `Use Default Ports` and choose `√`, other steps are the same with create tea-svc.
+2. Name it `coffee-svc` and click **Next**, click **Add Container Image**. Then fill in the **Image** with `nginxdemos/hello:plain-text`, click `Use Default Ports` and choose `√`, other steps are the same as the creation of the service tea-svc.
 
 3. Click **Save** and then click **Next → Create** to complete `coffee-svc` service creation.
 
@@ -54,13 +54,13 @@ In this section, we will create a "Tea Ordering System" service as following.
 
 ### Create a TLS Certificate
 
-Since the domain name bound in the route is the HTTPS protocol, we need to create a Secret to reserve the TLS certificate.
+Since the domain name bound in the route is the HTTPS protocol, we need to create a Secret to store the TLS certificate.
 
 1. Choose **Configuration Center → Secrets**, then click **Create**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105174409.png)
 
-2. Name it as `cafe-secret`, click **Next**. Select the `TLS` as the Type, then copy and paste Credential and Private Key as following, click **Create** when you've done.
+2. Name it `cafe-secret`, click **Next**. Select the `TLS` as the Type, then copy and paste Credential and Private Key as following, click **Create** when you've done.
 
 ```bash
 #Credential
@@ -119,13 +119,13 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716163243.png#alt=)
 
-### Create a cafe-ingress
+### Create a cafe ingress
 
 1. Choose **Application Workloads → Routes**, and click **Create Route** button.
 
-2. Name it as `cafe-ingress`, then click **Next → Add Route Rule**.
+2. Name it `cafe-ingress`, then click **Next → Add Route Rule**.
 
-3. Choose **Specify Domain** and fill in the table as following:
+3. Choose **Specify Domain** and fill in the table as follows:
 
 
 - HostName: `cafe.example.com`
@@ -133,8 +133,8 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 - Secret Name: Choose `cafe-secret`
 - Paths:
 
-  - Input `/coffee`, then choose `coffee-svc` as the service and select `80` as the port
-  - Click **Add Path**, input `/tea`, then choose `tea-svc` as the service and select `80` as the port
+  - Input `/coffee`, then choose `coffee-svc` as the backend service and select `80` as the port
+  - Click **Add Path**, input `/tea`, then choose `tea-svc` as the backend service and select `80` as the port
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105175539.png)
 
@@ -144,13 +144,13 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 
 ### Access the Application Ingress
 
-So far, we have exposed two different application via route and its rules. We can access the **tea** and **coffee** application through different path.
+So far, we have exposed two different applications via route and its rules. We can access the **tea** and **coffee** applications through different paths.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105180222.png)
 
 For example, when we visit `https://cafe.example.com:{$HTTPS_PORT}/coffee`, the back-end Pod of coffee-svc should respond to the request. We can switch to `admin` account to log in KubeSphere and open **web kubectl** from **Toolbox** at the bottom right corner.
 
-As following demo, the Server name and Server address is corresponding to the Pod `coffee-svc-yfhqwu-7b7bbf49f4-6c55l`.
+As the following demo shown, the Server name and Server address is corresponding to the Pod `coffee-svc-yfhqwu-7b7bbf49f4-6c55l`.
 
 ```bash
 $ curl --resolve cafe.example.com:30000:192.168.0.54 https://cafe.example.com:30000/coffee --insecure
@@ -163,7 +163,7 @@ Request ID: 6fb79c32e0b99653d2f226eef374e798
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200105180954.png)
 
-Similarly, when we visit `https://cafe.example.com:{$HTTPS_PORT}/tea`, the back-end Pod of tea-svc  should respond to the request. As following demo, the Server name and Server address is corresponding to the Pod `tea-svc-9fukgs-754cbc8b9b-rfhpr`.
+Similarly, when we visit `https://cafe.example.com:{$HTTPS_PORT}/tea`, the back-end Pod of tea-svc  should respond to the request. As the following demo shown, the Server name and Server address is corresponding to the Pod `tea-svc-9fukgs-754cbc8b9b-rfhpr`.
 
 ```bash
 $ curl --resolve cafe.example.com:30000:192.168.0.54 https://cafe.example.com:30000/tea --insecure
@@ -179,4 +179,4 @@ Request ID: 2173c1565b368a5258368d15f55ca050
 
 #### Conclusion
 
-According to above instruction, it demonstrates that the route has successfully forwarded different requests to the corresponding back-end service, and the service redirects that traffic to one of the Service’s backend Pods.
+As we can see from the instructions above, it demonstrates that the route has successfully forwarded different requests to the corresponding back-end services, and the services redirect traffic to one of the corresponding Service’s backend Pods.

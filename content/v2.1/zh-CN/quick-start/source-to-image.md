@@ -78,7 +78,7 @@ description: ''
 
 #### 第二步：构建设置
 
-1、点击 「下一步」，进入容构建设置界面。
+1、点击 「下一步」，进入构建设置界面。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatb0a0109a0bfc17f36b94b0e50e1588d3.png)
 
@@ -106,7 +106,7 @@ description: ''
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat3aa969a5c0c6f5d42ecfae9fdae2e68e.png)
 
-4、点击 「下一步」，设置容器的访问策略，**协议** 默认为 `HTTP`，**容器端口** 和 **服务端口** 设置为8080。
+4、点击 「下一步」，设置容器的访问策略，**协议** 默认为 `HTTP`，**名称** 可以自定义，如 `http-1`，**容器端口** 和 **服务端口** 设置为8080。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/image-20191022153341058.png)
 

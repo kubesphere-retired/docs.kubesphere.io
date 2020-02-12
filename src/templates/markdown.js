@@ -301,7 +301,7 @@ class MarkdownTemplate extends React.Component {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {t('Edit This Page')}
+                        {t('Edit')}
                       </a>
                     </MarkdownTitle>
                     <div
@@ -345,6 +345,10 @@ const NavContainer = styled.div`
   color: #fff;
   z-index: 2;
 
+  @media only screen and (max-width: 1440px) {
+    width: 240px;
+  }
+
   @media only screen and (max-width: 768px) {
     left: ${({ isExpand }) => {
       return isExpand ? 0 : '-290px'
@@ -363,10 +367,14 @@ const MainContainer = styled.div`
     color: #303e5a;
   }
 
+  @media only screen and (max-width: 1440px) {
+    margin-left: 240px;
+  }
+
   @media only screen and (max-width: 768px) {
     width: 100vw;
     margin-left: ${({ isExpand }) => {
-      return isExpand ? '280px' : '0'
+      return isExpand ? '240px' : '0'
     }};
     transition: margin-left 0.2s ease-in-out;
   }
@@ -380,6 +388,10 @@ const ToCContainer = styled.div`
 
 const MarkdownWrapper = styled.div`
   padding-right: 280px;
+
+  @media only screen and (max-width: 1440px) {
+    padding-right: 240px;
+  }
 
   @media only screen and (max-width: 1280px) {
     padding-right: 0;
@@ -402,6 +414,10 @@ const HeadingsWrapper = styled.div`
   height: calc(100vh - 120px);
   overflow-y: auto;
   box-shadow: -1px 0 0 0 #d5dee7;
+
+  @media only screen and (max-width: 1440px) {
+    right: 10px;
+  }
 
   @media only screen and (max-width: 1280px) {
     display: none;
@@ -431,6 +447,11 @@ const HeadingsWrapper = styled.div`
       overflow: hidden;
       text-overflow: ellipsis;
 
+
+      @media only screen and (max-width: 1440px) {
+        width: 250px;
+      }
+
       &:hover {
         color: #55bc8a;
         cursor: pointer;
@@ -455,9 +476,13 @@ const MarkdownTitle = styled.h1`
   & > a {
     position: absolute;
     top: 50%;
-    right: 20px;
+    right: 0;
     transform: translateY(-50%);
     font-size: 14px !important;
+
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
   }
 `
 
@@ -469,7 +494,7 @@ const FooterWrapper = styled.div`
 
 const ICP = styled.div`
   position: absolute;
-  padding: 20px;
+  padding: 20px 0;
   bottom: 0;
   left: 0;
   right: 0;
