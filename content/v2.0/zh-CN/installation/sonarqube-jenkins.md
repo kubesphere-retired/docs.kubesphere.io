@@ -17,7 +17,7 @@ $ kubectl get svc -n kubesphere-devops-system | grep ks-sonarqube-sonarqube
 ks-sonarqube-sonarqube               NodePort    10.233.20.169   <none>        9000:31359/TCP   48m
 ```
 ### 第二步： 查看 SonarQube 服务所在节点内部IP
-执行如下命令，查看 SonarQube 服务所在节点， 再对比部署配置得道节点内部ip:
+执行如下命令，查看 SonarQube 服务所在节点， 再对比部署配置得到节点内部ip:
 
 ```bash
 $ kubectl get pod -n kubesphere-devops-system | grep "ks-sonarqube-sonarqube-*"
