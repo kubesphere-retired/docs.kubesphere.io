@@ -108,7 +108,7 @@ reviews 微服务有 3 个版本：
 
 
 - 灰度版本号：v2；
-- 镜像：istio/examples-bookinfo-reviews-v2:1.10.1 (将 v1 改为 v2)。
+- 镜像：kubesphere/examples-bookinfo-reviews-v2:1.13.0 (将 原镜像TAG中的 v1 改为 v2)。
 
 
 6. 金丝雀发布允许按流量比例下发与按请求内容下发等两种发布策略，来控制用户对新老版本的请求规则。本示例选择 **按流量比例下发**，流量比例选择 v1 与 v2 各占 **50 %**，点击 「创建」。
