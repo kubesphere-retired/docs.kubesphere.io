@@ -15,6 +15,14 @@ KubeSphere 支持在已有 Kubernetes 集群之上在线安装 [KubeSphere](/zh-
 
 可参考 [前提条件](../prerequisites) 验证，若待安装的环境满足以上条件则可以开始部署 KubeSphere。
 
+## 视频教程
+
+**视频教程以 QingCloud 云平台先安装 K8s 集群和 StorageClass 来准备安装示例的前提条件（即 K8s 集群），然后再在 K8s 集群一键安装 KubeSphere，与其它云平台安装步骤类似，具体以其官方文档为准。**
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KSInstall_200P004C202002_install-kubesphere-on-k8s.mp4">
+</video>
+
 ## 最小化安装 KubeSphere
 
 1. 最小化安装仅需要一条命令，即可安装在 Kubernetes 之上。

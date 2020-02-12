@@ -6,7 +6,7 @@ description: ''
 
 ## What is Source to Image
 
-As [Features and Benefits](../../introduction/features) elaborates, Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution. KubeSphere integrates S2i to enable automatically build images and publish to Kubernetes without writing Dockerfile.
+As [Features and Benefits](../../introduction/features) elaborates, Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution. KubeSphere integrates S2I to enable automatically build images and publish to Kubernetes without writing Dockerfile.
 
 
 ## Objective
@@ -20,7 +20,7 @@ This tutorial will use S2I to import source code repository of Java sample proje
 
 - You need to enable [KubeSphere DevOps system](../../installation/install-devops).
 - You need to create [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) accounts. GitLab and Harbor are also supported, but we will use GitHub and DockerHub in this tutorial.
-- You need to create workspace, projects and `project-regular` accounts (with role of "operator"), see [Quick Start Guide of Multi-tenant Management](/../../quick-start/admin-quick-start/).
+- You need to create a workspace, project and `project-regular` account (with the role of "operator"), see [Quick Start Guide of Multi-tenant Management](/../../quick-start/admin-quick-start/).
 
 
 ## Estimated Time
@@ -43,14 +43,14 @@ At first, Log in GitHub and fork the GitHub repository [devops-java-sample](http
 
 #### Step 1: Fill in basic information
 
-1.1 Navigate to **Application Workloads → Services**, click **Create Service**.
+1.1 Navigate to **Application Workloads → Services**, click on the **Create Service**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200210180908.png)
 
 1.2 Choose `Java` under **Build a new service from source code repository**, then name it `s2i-demo`;
 
 
-### Step 2: Build Settings
+### Build Settings
 
 2.1. Click **Next**, then open GitHub page and copy the URL of the forked repository.
 
@@ -58,7 +58,7 @@ At first, Log in GitHub and fork the GitHub repository [devops-java-sample](http
 
 2.2. Then paste it in Code URL, enter **<dockerhub_username>/<image_name>** into image name, e.g. **pengfeizhou/s2i-sample**. As for **secret** and **Target image repository**, you can choose `dockerhub-id` and `github-id` respectively. Remain other blanks as default values in this tutorial.
 
-> Note: KubeSphere has built in common s2i templates for Java, Node.js and Python. If you need to customize other languages or use the S2I template, you can customize it.
+> Note: KubeSphere has built in common S2I templates for Java, Node.js and Python. If you need to customize other languages or use the S2I template, you can customize it.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200210220057.png)
 
@@ -76,7 +76,7 @@ At first, Log in GitHub and fork the GitHub repository [devops-java-sample](http
 
 Then click **√** to save it when you've done.
 
-### Step 3: Create s2i Deployment
+### Create S2I Deployment
 
 No need to mount volumes, click **Next** to skip it. Click **Internet Access** checkbox then choose **NodePort** to expose S2I service through `<NodeIP>:<NodePort>`.
 
@@ -85,7 +85,7 @@ No need to mount volumes, click **Next** to skip it. Click **Internet Access** c
 At this point, you can click **Create** to publish S2I service to Kubernetes.
 
 
-### Step 4: Verify Build Progress
+### Verify Build Progress
 
 Choose **Image Builder**, then click on the new generated S2I build.
 
@@ -109,7 +109,7 @@ Currently S2I build has created corresponding Job, Deployment and Service accord
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200210230239.png)
 
-### Step 5: Access S2I Service
+### Access S2I Service
 
 Go into S2I service detailed page, access this service through `Endpoints` / `<ClusterIP>:<Service Port>` / `<NodeIP>:<NodePort>`.
 
