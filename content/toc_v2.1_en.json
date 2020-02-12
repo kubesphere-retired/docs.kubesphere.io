@@ -221,7 +221,7 @@
         },
         {
           "title": "9. Canary Release of Microservice APP",
-          "entry": "./v2.1/en/quick-start/canary-release.md"
+          "entry": "./v2.1/en/quick-start/bookinfo-canary.md"
         },
         {
           "title": "10. CI/CD based on Spring Boot Project",

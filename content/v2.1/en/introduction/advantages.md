@@ -40,7 +40,7 @@ KubeSphere provides high-performance and scalable managing containerized service
 ## Out-of-Box Microservice Governance
 
 - Flexible Micro-service Framework: Providing visual micro-service governance capabilities based on Istio micro-service framework, and dividing Kubernetes services into finer-grained services to support non-intrusive micro-service governance.
-- Comprehensive governance services: offer excellent microservice governance such as gray scale releasing, circuit break, traffic monitoring, traffic control, rate limit, traffic tracking, intelligent routing, etc.
+- Comprehensive governance services: offer excellent microservice governance such as grayscale releasing, circuit break, traffic monitoring, traffic control, rate limit, tracing, intelligent routing, etc.
 
 ## Multiple Persistent Storage Support
 
