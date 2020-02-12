@@ -42,7 +42,7 @@ The end-to-end architecture of the application is shown below, see [Bookinfo App
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200210234559.png)
 
 
-1.2. Click **Create** in the pop-up window, then Bookinfo application has been deployed successfully, application components are listed in this following page, as well as the routes and hostname.
+1.2. Click **Create** in the pop-up window, then Bookinfo application will be deployed successfully, application components are listed in this following page, as well as the routes and hostname.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200210235159.png)
 
