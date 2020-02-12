@@ -62,7 +62,7 @@ description: ''
 
 1. 在 `应用负载 → 服务` 下点击 `创建服务`。
 
-2. 下拉至 `通过制品构建新的服务`，选择 `WAR`，此处仅以一个 [Spring-MVC-Showcase](https://github.com/spring-projects/spring-mvc-showcase) 的项目仓库作为示例，将它的 **WAR 包（b2i-war-java8）** [b2i-war-java8.war](https://github.com/kubesphere/tutorial/raw/master/tutorial%204%20-%20s2i-b2i/b2i-war-java11.war) 上传到 KubeSphere。
+2. 下拉至 `通过制品构建新的服务`，选择 `WAR`，此处仅以一个 [Spring-MVC-Showcase](https://github.com/spring-projects/spring-mvc-showcase) 的项目仓库作为示例，将它的 **WAR 包（b2i-war-java8）** [b2i-war-java8.war](https://github.com/kubesphere/tutorial/raw/master/tutorial%204%20-%20s2i-b2i/b2i-war-java8.war) 上传到 KubeSphere。
 
 3. 自定义名称，如 `b2i-war-java8`，下一步构建设置中，默认无状态服务，点击将本地的制品 `b2i-war-java8.war` 上传，构建环境选择 `tomcat85-java8-centos7:latest`。
 
