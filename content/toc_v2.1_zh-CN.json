@@ -33,7 +33,7 @@
       "chapters": [
         {
           "title": "产品简介",
-          "entry": "./v2.1/zh-CN/introduction/intro.md"
+          "entry": "./v2.1/zh-CN/introduction/what-is-kubesphere.md"
         },
         {
           "title": "产品功能",
