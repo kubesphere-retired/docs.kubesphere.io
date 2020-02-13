@@ -41,7 +41,7 @@ Click **Create** when you've done.
 
 ## Upload and Submit App
 
-1. Log in KubeSphere with `isv`, enter existing workspace and upload an EMQ X app to this workspace, please download [EMQ X chart](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-beta.1.tgz) and click **Upload Template** by choosing **App Templates**.
+1. Log in KubeSphere with `isv`, enter existing workspace and upload the EMQ X App to this workspace, please download [EMQ X chart](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-beta.1.tgz) and click **Upload Template** by choosing **App Templates**.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200212183110.png)
 
@@ -49,4 +49,16 @@ Click **Create** when you've done.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200212183634.png)
 
-3. 
+3. Click **OK**, then [download EMQ Icon](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-logo.png) click on the **Upload icon** to upload App logo. Click **OK** when you've done.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200212232222.png)
+
+4. At this point, you'll be able to see the status displays `draft`, which means this App is in development. The uploaded App is visible for all members in the same workspace.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200212232332.png)
+
+5. Enter app template detailed page by clicking on EMQ X from the list, you can edit the basic information of this App, then click on the **Edit Info** to fill in the basic information table.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200212232811.png)
+
+6. You can customize the App's basic information by filling in the table as following screenshot.
