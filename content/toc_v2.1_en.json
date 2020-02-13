@@ -226,6 +226,10 @@
         {
           "title": "10. CI/CD based on Spring Boot Project",
           "entry": "./v2.1/en/quick-start/devops-online.md"
+        },
+        {
+          "title": "11. Application Store",
+          "entry": "./v2.1/en/quick-start/app-store.md"
         }
       ]
     },
