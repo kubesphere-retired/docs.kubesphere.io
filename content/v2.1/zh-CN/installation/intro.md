@@ -6,9 +6,9 @@ description: 'KubeSphere 安装说明'
 
 [KubeSphere](https://kubesphere.com.cn) 是在 [Kubernetes](https://kubernetes.io) 之上构建的**以应用为中心**的**企业级分布式容器平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
-KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，KubeSphere 可以部署在公有云托管的 Kubernetes 之上（如 GKE、EKS、ACK），也支持部署在私有化的 Kubernetes 之上（如 kubeadm、k3s、RKE 部署的集群）。目前已在 **阿里云、腾讯云、华为云、青云 QingCloud、AWS、Google Cloud、Kubernetes、GKE、RKE** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。同时，KubeSphere 支持**在线安装与离线安装**。
+KubeSphere 支持部署和运行在包括**公有云、私有云、虚机、裸机 和 Kubernetes 等任何基础设施之上**，KubeSphere 可以部署在公有云托管的 Kubernetes 之上 (如 GKE、EKS、ACK)，也支持部署在私有化的 Kubernetes 之上 (如 kubeadm、k3s、RKE 部署的集群)。目前已在 **阿里云、腾讯云、华为云、青云 QingCloud、AWS、Google Cloud、Kubernetes、GKE、RKE** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。同时，KubeSphere 支持**在线安装与离线安装**。
 
-KubeSphere **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
+[KubeSphere](https://github.com/kubesphere) **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191207004917.png)
 
