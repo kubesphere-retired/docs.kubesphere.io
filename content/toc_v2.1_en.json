@@ -72,23 +72,6 @@
           ]
         },
         {
-          "title": "Install on Kubernetes",
-          "entries": [
-            {
-              "title": "Prerequisites",
-              "entry": "./v2.1/en/installation/prerequisites.md"
-            },
-            {
-              "title": "Online Installation",
-              "entry": "./v2.1/en/installation/install-on-k8s.md"
-            },
-            {
-              "title": "Install on GKE",
-              "entry": "./v2.1/en/installation/install-on-gke.md"
-            }
-          ]
-        },
-        {
           "title": "Install on Linux",
           "entries": [
             {
@@ -98,14 +81,6 @@
             {
               "title": "Multi-Node Installation",
               "entry": "./v2.1/en/installation/multi-node.md"
-            },
-            {
-              "title": "Installing HA Master and Etcd Cluster",
-              "entry": "./v2.1/en/installation/master-etcd-ha.md"
-            },
-            {
-              "title": "Storage Configuration Instruction",
-              "entry": "./v2.1/en/installation/storage-configuration.md"
             }
           ]
         },
@@ -143,6 +118,36 @@
             {
               "title": "Verify Components Installation",
               "entry": "./v2.1/en/installation/verify-components.md"
+            }
+          ]
+        },
+        {
+          "title": "HA Configuration",
+          "entries": [
+            {
+              "title": "Installing HA Master and Etcd Cluster",
+              "entry": "./v2.1/en/installation/master-etcd-ha.md"
+            },
+            {
+              "title": "Storage Configuration Instruction",
+              "entry": "./v2.1/en/installation/storage-configuration.md"
+            }
+          ]
+        },
+        {
+          "title": "Install on Kubernetes",
+          "entries": [
+            {
+              "title": "Prerequisites",
+              "entry": "./v2.1/en/installation/prerequisites.md"
+            },
+            {
+              "title": "Online Installation",
+              "entry": "./v2.1/en/installation/install-on-k8s.md"
+            },
+            {
+              "title": "Install on GKE",
+              "entry": "./v2.1/en/installation/install-on-gke.md"
             }
           ]
         },
@@ -226,6 +231,10 @@
         {
           "title": "10. CI/CD based on Spring Boot Project",
           "entry": "./v2.1/en/quick-start/devops-online.md"
+        },
+        {
+          "title": "11. Application Store",
+          "entry": "./v2.1/en/quick-start/app-store.md"
         }
       ]
     },
