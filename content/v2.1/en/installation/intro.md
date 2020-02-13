@@ -19,6 +19,7 @@ KubeSphere is open source project on [GitHub](https://github.com/kubesphere). Th
 > - For all-in-one installation, the only one node is both the master and the worker.
 > - For multi-node installation, you are asked to specify the node roles in the configuration file before installation.
 > - You linux host must have OpenSSH Server installed.
+> - please check the [ports requirement](../port-firewall) before installation.
 
 ## Quick Install For Development and Testing
 
