@@ -47,7 +47,7 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，*
 
 ### 安装在 Linux
 
-正式环境建议使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
+正式环境需要使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
 
 > - [持久化存储配置说明](../storage-configuration)： KubeSphere 默认开启了 Local Volume 方便初次安装但没有准备存储服务端的场景下进行**部署测试**。若在 **正式环境安装使用需配置 KubeSphere 支持的持久化存储服务**，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置持久化存储服务端。
 > - [高可用集群配置与安装](../master-ha)：Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点。
