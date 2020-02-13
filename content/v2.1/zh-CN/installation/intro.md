@@ -45,21 +45,21 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，*
 
 ## 正式环境安装
 
+### 安装在 Linux
+
 正式环境建议使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
 
 > - [持久化存储配置说明](../storage-configuration)： KubeSphere 默认开启了 Local Volume 方便初次安装但没有准备存储服务端的场景下进行**部署测试**。若在 **正式环境安装使用需配置 KubeSphere 支持的持久化存储服务**，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置持久化存储服务端。
 > - [高可用集群配置与安装](../master-ha)：Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点。
 
+### 安装在 Kubernetes
 
-<!-- ### 离线安装
+需要注意的是，为方便快速安装测试，[在 Kubernetes 在线部署 KubeSphere](../install-on-k8s) 文档中使用的存储类型是基于 OpenEBS 创建的 Local Volume。在正式环境安装 KubeSphere 之前，建议您保证 Kubernetes 集群本身已配置了高可用，即 Kubernetes 集群满足以下两个条件：
 
-KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安装包进行安装。
+- 集群已配置了持久化存储，并创建了 [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/)
+- Master 节点数量 ≥ 3，且配置了负载均衡方案满足高可用
 
-离线的安装步骤与在线安装一致，因此可直接参考 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 的安装指南下载安装。目前离线安装支持的操作系统如下，系统盘需保证 `100 G` 以上，主机配置规格的其它参数可参考在线安装的主机配置。
-
-- CentOS 7.4/7.5   
-- Ubuntu 16.04.4/16.04.5 -->
-
+若满足以上两个条件，即可参考 [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s) 进行安装。
 
 ## 自定义安装可插拔的功能组件
 

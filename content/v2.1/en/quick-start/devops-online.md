@@ -1,5 +1,5 @@
 ---
-title: "a CI/CD Pipeline based on Spring Boot Project"
+title: "Create a CI/CD Pipeline based on Spring Boot Project"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
