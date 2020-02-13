@@ -188,63 +188,44 @@
       "desc": "Get a quick overview of the basic features of KubeSphere with 13 quick-start examples to walk you through the process, help you to get familiar with it.",
       "chapters": [
         {
-          "title": "Getting Started with Multitenancy",
+          "title": "1. Getting Started with Multitenancy",
           "entry": "./v2.1/en/quick-start/admin-quick-start.md"
         },
         {
-          "title": "Exposing your APP using Ingress",
+          "title": "2. Exposing your APP using Ingress",
           "entry": "./v2.1/en/quick-start/ingress-demo.md"
         },
         {
-          "title": "Compose and Deploy a Wordpress App to K8s",
+          "title": "3. Compose and Deploy a Wordpress App to K8s",
           "entry": "./v2.1/en/quick-start/wordpress-deployment.md"
         },
         {
-          "title": "Deploy Grafana App using APP Template",
+          "title": "4. Deploy Grafana App using APP Template",
           "entry": "./v2.1/en/quick-start/one-click-deploy.md"
         },
         {
-          "title": "Job to compute π to 2000 places",
+          "title": "5. Job to compute π to 2000 places",
           "entry": "./v2.1/en/quick-start/job-quick-start.md"
         },
         {
-          "title": "Creating Horizontal Pod Autoscaler",
+          "title": "6. Creating Horizontal Pod Autoscaler",
           "entry": "./v2.1/en/quick-start/hpa.md"
         },
         {
-          "title": "B2i: Publish Artifact to Kubernete",
+          "title": "7. B2i: Publish Artifact to Kubernete",
           "entry": "./v2.1/en/quick-start/b2i-war.md"
         },
         {
-          "title": "S2i: Publish your app without Dockerfile",
+          "title": "8. S2i: Publish your app without Dockerfile",
           "entry": "./v2.1/en/quick-start/source-to-image.md"
         },
         {
-          "title": "Canary Release of Microservice APP",
-          "entry": "./v2.1/en/quick-start/canary-release.md"
+          "title": "9. Canary Release of Microservice APP",
+          "entry": "./v2.1/en/quick-start/bookinfo-canary.md"
         },
         {
-          "title": "CI/CD based on Spring Boot Project",
+          "title": "10. CI/CD based on Spring Boot Project",
           "entry": "./v2.1/en/quick-start/devops-online.md"
-        },
-        {
-          "title": "Ingress-Nginx for Grayscale Release",
-          "entry": "./v2.1/en/quick-start/ingress-canary.md"
-        }
-      ]
-    },
-    {
-      "title": "Development Guide",
-      "icon": "/problem.svg",
-      "desc": "Instruction of development workflow, including build, test and development",
-      "chapters": [
-        {
-          "title": "Preparing the Development Environment",
-          "entry": "./v2.1/en/developer/development-guide.md"
-        },
-        {
-          "title": "Development Workflow",
-          "entry": "./v2.1/en/developer/workflow.md"
         }
       ]
     },
