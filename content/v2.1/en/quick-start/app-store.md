@@ -1,7 +1,7 @@
 ---
 title: "Application Store"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: 'Application lifecycle management in Helm-based application store'
 ---
 
 KubeSphere integrates open source [OpenPitrix](https://github.com/openpitrix/openpitrix) to set up app store and app repository services which provides full lifecycle of application management. Application Store supports three kinds of application deployment as follows:

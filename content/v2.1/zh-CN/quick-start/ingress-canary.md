@@ -36,6 +36,11 @@ KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingre
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826204915.png)
 
+## 前提条件
+
+- 使用 project-admin 登陆创建 ingress-demo 项目
+- 使用 admin 用户登陆，在KubeSphere 右下角的工具箱打开 web kubectl
+
 ## 第一步：创建项目和 Production 版本的应用
 
 1.1. 在 KubeSphere 中创建一个企业空间 (workspace) 和项目 (namespace) ，可参考 [多租户管理快速入门](../admin-quick-start)。如下已创建了一个示例项目。
@@ -157,9 +162,8 @@ spec:
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826161846.png)
 
-2.3. 如下访问 Production 版本的应用。
+2.3. 如下访问 Production 版本的应用，注意以下命令需要在 SSH 客户端中执行。
 
-<!-- ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826140046.png) -->
 
 ```bash
 $ curl --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205
@@ -238,7 +242,7 @@ spec:
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826162507.png)
 
-4.2. 访问应用的域名。
+4.2. 访问应用的域名（在 SSH 中执行以下命令）。
 
 > 说明：应用的 Canary 版本基于权重 (30%) 进行流量切分后，访问到 Canary 版本的概率接近 30%，流量比例可能会有小范围的浮动。
 

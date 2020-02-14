@@ -28,7 +28,7 @@ About 25 minutes.
 ## Prerequisites
 
 - You need to create a workspace and a project, see the [Getting Started with Multi-tenant Management](../admin-quick-start.md) if not yet.
-- You need to log in with `project-regular` and enter the corresponding project.
+- You need to log in with `project-regular` account and enter the corresponding project.
 
 ## Hands-on Lab
 

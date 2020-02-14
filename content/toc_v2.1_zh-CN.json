@@ -163,10 +163,6 @@
           "title": "相关工具与插件",
           "entries": [
             {
-              "title": "安装负载均衡器插件",
-              "entry": "./v2.1/zh-CN/installation/qingcloud-lb.md"
-            },
-            {
               "title": "安装内置 Harbor",
               "entry": "./v2.1/zh-CN/installation/harbor-installation.md"
             },
@@ -181,6 +177,14 @@
             {
               "title": "访问 SonarQube 和 Jenkins 服务端",
               "entry": "./v2.1/zh-CN/installation/sonarqube-jenkins.md"
+            },
+            {
+              "title": "安装 Porter",
+              "entry": "./v2.1/zh-CN/installation/install-porter.md"
+            },
+            {
+              "title": "安装 QingCloud 负载均衡器插件",
+              "entry": "./v2.1/zh-CN/installation/qingcloud-lb.md"
             }
           ]
         },
