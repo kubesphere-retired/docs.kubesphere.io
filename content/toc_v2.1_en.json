@@ -169,6 +169,15 @@
           ]
         },
         {
+          "title": "Related Tools",
+          "entries": [
+            {
+              "title": "Configure LDAP/AD",
+              "entry": "./v2.1/en/installation/ldap-ad.md"
+            }
+          ]
+        },
+        {
           "title": "Cluster Operation",
           "entries": [
             {
