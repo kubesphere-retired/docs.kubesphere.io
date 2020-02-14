@@ -155,16 +155,25 @@
           "title": "Related Tools",
           "entries": [
             {
-              "title": "Enable Harbor Installation",
-              "entry": "./v2.1/en/installation/install-harbor.md"
+              "title": "Access Built-in SonarQube and Jenkins",
+              "entry": "./v2.1/en/installation/sonarqube-jenkins.md"
             },
             {
-              "title": "Enable GitLab Installation",
-              "entry": "./v2.1/en/installation/install-gitlab.md"
+              "title": "Enable built-in Grafana Installation",
+              "entry": "./v2.1/en/installation/install-grafana.md"
             },
             {
               "title": "Load Balancer plugin in Bare Metal - Porter",
               "entry": "./v2.1/en/installation/install-porter.md"
+            }
+          ]
+        },
+        {
+          "title": "Related Tools",
+          "entries": [
+            {
+              "title": "Configure LDAP/AD",
+              "entry": "./v2.1/en/installation/ldap-ad.md"
             }
           ]
         },
