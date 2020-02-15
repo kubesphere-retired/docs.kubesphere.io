@@ -1,7 +1,7 @@
 ---
 title: "Multi-node Installation"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: 'Install KubeSphere and Kubernetes on multiple Linux machines'
 ---
 
 `Multi-Node` installation enables installing KubeSphere on multiple instances. Typically, select any one host in the cluster to serve as a role of "taskbox" to execute the installation task for other hosts before multi-node installation, `SSH Communication` is required to be established between "taskbox" and other hosts.

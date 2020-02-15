@@ -1,26 +1,24 @@
 ---
-title: "集群参数配置"
+title: "Kubernetes 集群参数配置"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-
 用户在获取 Installer 并解压至目标安装机器后，如果需要修改网络、组件版本等集群配置相关参数，可参考以下说明进行修改，本文档对 Installer 中的安装配置文件 `conf/common.yaml` 进行说明，简单介绍每一个字段的意义。
-
-
-**参数说明：**
-
-<details><summary> common.yaml 配置文件参数释义（点击展开）</summary>
 
 ```yaml
 ######################### Kubernetes #########################
-kube_version: v1.15.5 # Kubernetes 版本号
-etcd_version: v3.2.18  # etcd 版本号
+kube_version: v1.16.7  # 默认安装的 Kubernetes 版本，
+etcd_version: v3.2.18  # 默认安装的 etcd 版本
 
-#Etcd periodic backup time (Specify a period in minutes)
-etcd_backup_period: 30 # etcd 备份的周期，默认为 30 分钟
-keep_backup_number: 5  # 默认保留最近 5 次备份的数据
-etcd_backup_dir: "/var/backups/kube_etcd" # 默认备份的目录为 "/var/backups/kube_etcd"
+ # etcd 备份的周期，默认为 30 分钟
+etcd_backup_period: 30
+
+# 默认保留最近 5 次备份的数据
+keep_backup_number: 5  
+
+# 默认备份的目录为 "/var/backups/kube_etcd"
+etcd_backup_dir: "/var/backups/kube_etcd"
 
 # 镜像仓库的 mirror 仓库，可以加快镜像下载 (国外地区下载可将此参数注释)
 docker_registry_mirrors:
@@ -28,28 +26,23 @@ docker_registry_mirrors:
   - https://registry.docker-cn.com
   - https://mirror.aliyuncs.com
 
-ks_image_pull_policy: IfNotPresent # 平台的镜像拉取策略，默认 IfNotPresent，表示优先使用本地镜像，还支持 Always (尝试重新下载镜像) 和 Never (仅使用本地镜像)
-kube_network_plugin: calico # 默认的网络插件（支持 Calico、Flannel）
+# Kubernetes 网络插件，支持 Calico 与 Flannel，默认 Calico
+kube_network_plugin: calico
 
-# Kubernetes internal network for services, unused block of space.
-kube_service_addresses: 10.233.0.0/18 # Service 网络 IP 地址段（需要是未被使用的地址段）
+# Kubernetes Service 的 IP 地址段（需要是有效的未被使用的地址段），不与节点所在的子网重复，不与 Kubernetes Pod 子网重复
+kube_service_addresses: 10.233.0.0/18
 
-# internal network. When used, it will assign IP
-# addresses from this range to individual pods.
-# This network must be unused in your network infrastructure!
-kube_pods_subnet: 10.233.64.0/18 # Pod 网络 IP 地址段（需要是未被使用的地址段）
+# Kubernetes Pod 子网的 IP 地址段（需要是未被使用的地址段），不与节点所在的子网重复，不与 Kubernetes Pod 子网重复，系统将从这个地址段中分配 IP 给每一个 Pod
+kube_pods_subnet: 10.233.64.0/18
 
-# Kube-proxy proxyMode configuration.
-# Can be ipvs, iptables
-kube_proxy_mode: ipvs # kube-proxy 模式默认 ipvs (支持 ipvs, iptables)
+# kube-proxy 模式默认 ipvs (支持 ipvs, iptables)
+kube_proxy_mode: ipvs
 
-# Configure the amount of pods able to run on single node
-# default is equal to application default
-kubelet_max_pods: 110 # 单个节点默认的 Pod 数量上限
+# 单个节点默认的 Pod 数量上限
+kubelet_max_pods: 110
 
-# Enable nodelocal dns cache
-enable_nodelocaldns: true # 见下方表格
-
+# 是否允许通过在集群节点上以 Deamonset 的方式运行 DNS 缓存代理来提高集群的 DNS 性能，参考 https://github.com/kubernetes-sigs/kubespray/blob/master/docs/dns-stack.md#nodelocal-dns-cache
+enable_nodelocaldns: true
 
 ## HA(Highly Available) loadbalancer example config
 ## apiserver_loadbalancer_domain_name: "lb.kubesphere.local"
@@ -57,8 +50,6 @@ enable_nodelocaldns: true # 见下方表格
 #  address: 192.168.0.10 # 外部负载均衡器地址，例如阿里云 SLB、AWS NLB、青云 QingCloud 负载均衡器
 #  port: 6443 # 外部负载均衡器端口
 
-#Docker periodic cleaning time (Can be reboot/yearly/annually/monthly/weekly/daily/hourly)
-periodic_cleaning_time: weekly # Docker 自动清理镜像的周期，默认每周
 
 ######################### KubeSphere #########################
 
@@ -90,40 +81,6 @@ grafana_enabled: true # 是否额外安装 grafana，若需要自定义监控则
 # nvidia_gpu_nodes: # hosts.ini 中要开启 GPU 加速的节点名称，目前仅支持 Ubuntu 16.04
 #   - kube-gpu-001  # 例如这里设置节点名为 kube-gpu-001 的机器为 GPU 节点，若有多个 GPU 节点则在其下方继续添加
 ```
-</details>
-
------------
-
-<br>
-
-**参数对照表**
-
-| 参数 | 含义 |
-|---|---|
-| ks_version | KubeSphere 版本号 |
-| kube_version | Kubernetes 版本号 |
-| etcd_version | etcd 版本号 |
-| openpitrix_version | OpenPitrix 版本号 |
-| ks\_image\_pull\_policy| 默认 IfNotPresent，表示优先使用本地镜像，还支持 Always (尝试重新下载镜像) 和 Never (仅使用本地镜像) |
-| kube\_network\_plugin | 默认的网络插件（支持 Calico、Flannel） |
-| kube\_service\_addresses | Service 网络 IP 地址段（未被使用的地址段） |
-| kube\_pods\_subnet | Pod 网络 IP 地址段（未被使用的地址段） |
-| kube\_proxy\_mode | kube-proxy 模式默认 ipvs (支持 ipvs, iptables) |
-| kubelet\_max\_pods | 单台机器默认 Pod 数量 |
-| dns_mode | DNS 模式，建议 coredns |
-| console_port | KubeSphere 控制台访问端口（默认 30880） |
-|disableMultiLogin | 禁止同一用户多点登录，默认 true 即禁用 |
-| loadbalancer_apiserver.address | 外部负载均衡器地址 |
-| loadbalancer_apiserver.port | 外部负载均衡器端口 |
-| apiserver\_loadbalancer\_domain\_name | 负载均衡器域名，默认 lb.kubesphere.local |
-|periodic\_cleaning\_time| weekly，Docker 自动清理镜像的周期 |
-|docker\_registry\_mirrors| 默认 Docker 镜像仓库的 mirror 仓库，可以加快镜像下载 (国外地区下载可将此参数注释) |
-| enable_nodelocaldns | 通过在集群节点上以 Deamonset 的方式运行 DNS 缓存代理来提高集群的 DNS 性能，参考 [Nodelocal DNS cache](https://github.com/kubesphere/kubespray/blob/ks-2.1.0/docs/dns-stack.md#nodelocal-dns-cache) |
-|etcd\_backup\_period | 默认备份的周期为 30 分钟|
-|keep\_backup\_number | 默认保留最近 5 次备份的数据 |
-|etcd\_backup\_dir | 默认备份的目录为 "/var/backups/kube_etcd" |
-| nvidia\_accelerator\_enabled | 是否开启 Nvidia GPU 加速 |
-| nvidia\_gpu\_nodes | hosts.ini 中要开启 GPU 加速的节点名称（列表），参考以下配置示例 |
 
 **GPU 节点配置示例**
 
