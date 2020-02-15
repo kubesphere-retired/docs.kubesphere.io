@@ -6,9 +6,9 @@ description: 'KubeSphere 安装说明'
 
 [KubeSphere](https://kubesphere.com.cn) 是在 [Kubernetes](https://kubernetes.io) 之上构建的**以应用为中心**的**企业级分布式容器平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
-KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，KubeSphere 可以部署在公有云托管的 Kubernetes 之上（如 GKE、EKS、ACK），也支持部署在私有化的 Kubernetes 之上（如 kubeadm、k3s、RKE 部署的集群）。目前已在 **阿里云、腾讯云、华为云、青云 QingCloud、AWS、Google Cloud、Kubernetes、GKE、RKE** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。同时，KubeSphere 支持**在线安装与离线安装**。
+KubeSphere 支持部署和运行在包括**公有云、私有云、虚机、裸机 和 Kubernetes 等任何基础设施之上**，KubeSphere 可以部署在公有云托管的 Kubernetes 之上 (如 GKE、EKS、ACK)，也支持部署在私有化的 Kubernetes 之上 (如 kubeadm、k3s、RKE 部署的集群)。目前已在 **阿里云、腾讯云、华为云、青云 QingCloud、AWS、Google Cloud、Kubernetes、GKE、RKE** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。同时，KubeSphere 支持**在线安装与离线安装**。
 
-KubeSphere **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
+[KubeSphere](https://github.com/kubesphere) **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191207004917.png)
 
@@ -20,9 +20,7 @@ KubeSphere **所有版本 100% 开源免费**，已大规模服务于社区用�
 > - 当进行 all-in-one 模式进行单节点安装时，这个节点既是管理节点，也是工作节点。
 > - 当进行 multi-node 模式安装多节点集群时，可在配置文件中设置集群各节点的角色。
 > - 如果是新安装的系统，在 Software Selection 界面需要把 OpenSSH Server 选上。
-> - KubeSphere 的部署架构中，由于各模块的服务和角色不同，分为管理节点和工作节点两个角色，即 Master 和 Node。
-> - Master 节点由三个紧密协作的组件组合而成，即负责 API 服务的 kube-apiserver、负责调度的 kube-scheduler、负责容器编排的 kube-controller-manager。
-> - 集群的持久化数据，由 kube-apiserver 处理后保存至 etcd 中。
+> - 安装之前参考[端口防火墙](../port-firewall)要求。
 
 
 ## 快速安装（适用于快速体验测试）
@@ -47,7 +45,7 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了**解耦**，*
 
 ### 安装在 Linux
 
-正式环境建议使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
+正式环境需要使用多节点（Multi-node）部署，并且同时配置 **持久化存储** 与 **集群的高可用**。
 
 > - [持久化存储配置说明](../storage-configuration)： KubeSphere 默认开启了 Local Volume 方便初次安装但没有准备存储服务端的场景下进行**部署测试**。若在 **正式环境安装使用需配置 KubeSphere 支持的持久化存储服务**，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置持久化存储服务端。
 > - [高可用集群配置与安装](../master-ha)：Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由于在实际的生产环境我们还需要考虑 master 节点的高可用问题，本文档以配置负载均衡器 (Load Banlancer) 为例，引导您在安装过程中如何配置高可用的 Master 和 etcd 节点。
