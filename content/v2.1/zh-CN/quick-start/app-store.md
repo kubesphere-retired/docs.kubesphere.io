@@ -30,7 +30,7 @@ KubeSphere 应用商店 **对内可作为团队间共享企业内部的中间件
 
 ## 创建自定义角色与账号
 
-1. 参考 [管理员快速入门](../../quick-start/admin-quick-start)，分别创建一个 workspace-admin (作为 ISV) 和一个 app-review (作为技术审核，自定义的角色) 的账号，这两个账号在集群层级授予 `cluster-regular` 权限。
+1. 参考 [管理员快速入门](../../quick-start/admin-quick-start)，分别创建一个 workspace-admin (作为 ISV) 和一个 reviewer (作为技术审核，自定义的角色) 的账号，这两个账号在集群层级授予 `cluster-regular` 权限。
 
 > 提示：自定义的技术审核角色，需要在 `平台角色` 下新建一个 `app-review` 的角色，权限仅勾选 `应用管理`，然后基于该角色创建一个 reviewer 的账号。
 
@@ -42,7 +42,7 @@ KubeSphere 应用商店 **对内可作为团队间共享企业内部的中间件
 
 ## 上传应用提交审核
 
-1. 切换至 **ISV 账号** 登录，进入企业空间下，准备上传一个示例应用并提交审核。[点击下载](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-beta.1.tgz) EMQ X 应用打包好的第一个版本，用于 **初次提交审核**。
+1. 切换至 **ISV 账号** workspace-admin 登录，进入企业空间下，准备上传一个示例应用并提交审核。[点击下载](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-beta.1.tgz) EMQ X 应用打包好的第一个版本，用于 **初次提交审核**。
 
 > 提示：目前版本由于上传应用的权限仅开放给了 workspace-admin 角色，因此项目下的应用开发者需线下将打包好的 Helm 应用包传递给 ISV，由 ISV 上传应用至企业空间下的应用模板。v3.0 计划将应用上传与发布的权限开放给开发者，对权限进行更精细化的控制，将开发者从应用提交审核到应用上架设计成一个闭环。
 
