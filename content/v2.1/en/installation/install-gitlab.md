@@ -4,9 +4,9 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-[GitLab](https://gitlab.com/) is a complete CI/CD platform, the community version of GitLab has been integrated into KubeSphere installer as an optional component that you can install it as your **source code management tool**. KubeSphere DevOps system supports to use GitLab as SCM in CI/CD pipeline.
+[GitLab](https://gitlab.com/) is a complete CI/CD platform, the community version of GitLab has been integrated into KubeSphere installer, you can enable it as your private **source code management tool**. KubeSphere DevOps system supports to use GitLab as SCM in CI/CD pipeline.
 
-<font color="red">Attention: The built-in GitLab is only recommended that you use it in test and development environment, see [GitLab Documentaion](https://docs.gitlab.com/) for HA installation in production environment.</font>
+<font color="red">Attention: We only recommend you to use built-in GitLab in test and development environment, please reference [GitLab Documentaion](https://docs.gitlab.com/) for production.</font>
 
 ## Enable GitLab Before Installation
 
