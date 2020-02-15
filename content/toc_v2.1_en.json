@@ -164,11 +164,11 @@
           "entries": [
             {
               "title": "Enable Harbor Installation",
-              "entry": "./v2.1/en/installation/harbor-installation.md"
+              "entry": "./v2.1/en/installation/install-harbor.md"
             },
             {
               "title": "Enable GitLab Installation",
-              "entry": "./v2.1/en/installation/gitlab-installation.md"
+              "entry": "./v2.1/en/installation/install-gitlab.md"
             },
             {
               "title": "Access Built-in SonarQube and Jenkins",

@@ -148,7 +148,7 @@ Click **Create** when you're done.
 ![Created successfully](https://pek3b.qingstor.com/kubesphere-docs/png/20190322205528.png)
 
 
-### Use Images From Harbor Registry
+### Use Image From Harbor Registry
 
 In this section, you'll be able to use images from Harbor registry when creating workload in KubeSphere
 
