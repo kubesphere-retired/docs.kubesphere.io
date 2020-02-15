@@ -30,7 +30,7 @@ The following describes the hardware requirements and operating system requireme
 - If you are using Ubuntu 18.04, you need to use the root user to install.
 - If the Debian system does not have the sudo command installed, you need to execute the `apt update && apt install sudo` command using root before installation.
 
-**Hardware Recommendations**
+**Hardware Recommendation**
 
 | System  | Minimum Requirements |
 | ------- | ----------- |
@@ -58,7 +58,7 @@ You should not do anything except executing one command as follows. The installe
 > - KubeSphere installs `calico` by default. If you would like to use a different network plugin, you are allowed to change the configuration in `conf/common.yaml`. You are also allowed to modify other configurations such as storage class, pluggable components, etc.
 > - The default storage class is [OpenEBS](https://openebs.io/) which is a kind of [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) to provision persistence storage service. OpenEBS supports [dynamic provisioning PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath). It will be installed automatically for your testing environment. 
 > - Supported Storage including: [GlusterFS](https://www.gluster.org/), [Ceph RBD](https://ceph.com/), [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs), [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local), [QingCloud block storage services](https://docs.qingcloud.com/product/storage/volume/), [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/). Please refer [storage configurations](../storage-configuration) for details.
-> - Since the default subnet for Cluster IPs is 10.233.0.0/18, and the default subnet for Pod IPs is 10.233.64.0/18, the node IPs must not use the two IP range. You can modify the default subnets `kube_service_addresses` or `kube_pods_subnet` in the file `conf/vars.yaml` to avoid conflicts.
+> - Since the default subnet for Cluster IPs is 10.233.0.0/18, and the default subnet for Pod IPs is 10.233.64.0/18, the node IPs must not use the two IP range. You can modify the default subnets `kube_service_addresses` or `kube_pods_subnet` in the file `conf/common.yaml` to avoid conflicts.
 
 
 **1.** Execute the following command:
@@ -121,4 +121,4 @@ $ kubectl edit cm -n kubesphere-system ks-installer
 
 The installer has been tested on Aliyun, Tencent cloud, Huawei Cloud, QingCloud, AWS. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read [the FAQ of installation](../../faq/faq-install).
 
-If you have further questions please do no hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues). 
+If you have further questions please do no hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).
