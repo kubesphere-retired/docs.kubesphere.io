@@ -68,6 +68,10 @@
             {
               "title": "Port Requirements",
               "entry": "./v2.1/en/installation/port-firewall.md"
+            },
+            {
+              "title": "Kubernetes Cluster Configuration",
+              "entry": "./v2.1/en/installation/vars.md"
             }
           ]
         },
@@ -81,6 +85,10 @@
             {
               "title": "Multi-Node Installation",
               "entry": "./v2.1/en/installation/multi-node.md"
+            },
+            {
+              "title": "Enable All Components",
+              "entry": "./v2.1/en/installation/complete-installation.md"
             }
           ]
         },
@@ -155,6 +163,14 @@
           "title": "Related Tools",
           "entries": [
             {
+              "title": "Enable Harbor Installation",
+              "entry": "./v2.1/en/installation/install-harbor.md"
+            },
+            {
+              "title": "Enable GitLab Installation",
+              "entry": "./v2.1/en/installation/install-gitlab.md"
+            },
+            {
               "title": "Access Built-in SonarQube and Jenkins",
               "entry": "./v2.1/en/installation/sonarqube-jenkins.md"
             },
@@ -169,7 +185,7 @@
           ]
         },
         {
-          "title": "Related Tools",
+          "title": "Authentication Configuration",
           "entries": [
             {
               "title": "Configure LDAP/AD",

@@ -23,8 +23,6 @@ grafana_enabled: true # Whether to enable Grafana installation
 
 ## Enable Grafana after installing KubeSphere
 
-## 安装后如何开启 Grafana 安装
-
 Edit the ConfigMap of ks-installer using following command:
 
 ```bash

@@ -6,7 +6,7 @@ description: ''
 
 [KubeSphere](https://kubesphere.io/) is an enterprise-grade multi-tenant container platform built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI for users to manage application workloads and computing resources with a few clicks, which greatly reduces the learning curve and the complexity of daily work such as development, testing, operation and maintenance. KubeSphere aims to alleviate the pain points of Kubernetes including storage, network, security and ease of use, etc.
 
-KubeSphere supports installing on cloud-hosted and on-premises Kubernetes cluster, e.g. native K8s, GKE, EKS, RKE, etc., and on Linux host including virtual machine and bare metal with provisioning Kubernetes cluster. Both of the two methods are easy and friendly to install KubeSphere. Meanwhile, KubeSphere offers not only online installer, but offline installer for disconnected environment.
+KubeSphere supports installing on cloud-hosted and on-premises Kubernetes cluster, e.g. native K8s, GKE, EKS, RKE, etc., and on Linux host including virtual machine and bare metal with provisioning Kubernetes cluster. Both of the two methods are easy and friendly to install KubeSphere. Meanwhile, KubeSphere offers not only online installer, but air gapped installer for air gapped environment.
 
 KubeSphere is open source project on [GitHub](https://github.com/kubesphere). There are thousands of users are using KunbeSphere, and many of them are running KubeSphere for their production workloads.
 
@@ -15,7 +15,7 @@ KubeSphere is open source project on [GitHub](https://github.com/kubesphere). Th
 
 ## Before Installation
 
-> - As the installation will pull images and update operating system from internet, your environment must have the internet access. If not, then you need to use the disconnected installer instead.
+> - As the installation will pull images and update operating system from internet, your environment must have the internet access. If not, then you need to use the air gapped installer instead.
 > - For all-in-one installation, the only one node is both the master and the worker.
 > - For multi-node installation, you are asked to specify the node roles in the configuration file before installation.
 > - You linux host must have OpenSSH Server installed.
@@ -32,7 +32,7 @@ The quick install of KubeSphere is only for development or testing since it uses
 > - [All-in-One](../all-in-one): It means a single-node hassle-free configuration installation with one-click.
 > - [Multi-Node](../multi-node): It allows you to install KubeSphere on multiple instances using local volume, which means it is not required to install storage server such as Ceph, GlusterFS.
 >
-> Note：disconnected installation please refer to [Disconnected Installation on Multi-Node](https://kubesphere.com.cn/forum/d/437-centos7-7-multinode-kubesphere2-1-offline).
+> Note：air gapped installation please refer to [Disconnected Installation on Multi-Node](https://kubesphere.com.cn/forum/d/437-centos7-7-multinode-kubesphere2-1-offline).
 
 ### Install KubeSphere on Existing Kubernetes
 
