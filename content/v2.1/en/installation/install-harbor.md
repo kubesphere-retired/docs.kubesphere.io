@@ -8,7 +8,7 @@ description: ''
 
 KubeSphere Installer integrates Harbor's Helm Chart, built-in Harbor as an optional installation item, you can enable its installation according to test in air gap environment, follow with the steps below to install Harbor registry.
 
-<font color="red">Attention: The built-in Harbor is only recommended that you use it in test and development environment, see [Harbor Documentaion](https://github.com/goharbor/harbor/blob/master/docs/installation_guide.md) for HA installation in production environment.</font>
+<font color="red">Attention: We only recommend you to use built-in Harbor in test and development environment, please reference [Harbor Documentaion](https://github.com/goharbor/harbor/blob/master/docs/installation_guide.md) for production.</font>
 
 ## Enable Harbor Before Installation
 

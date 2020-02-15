@@ -6,7 +6,7 @@ description: ''
 
 [KubeSphere](https://kubesphere.io/) is an enterprise-grade multi-tenant container platform built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI for users to manage application workloads and computing resources with a few clicks, which greatly reduces the learning curve and the complexity of daily work such as development, testing, operation and maintenance. KubeSphere aims to alleviate the pain points of Kubernetes including storage, network, security and ease of use, etc.
 
-KubeSphere supports installing on cloud-hosted and on-premises Kubernetes cluster, e.g. native K8s, GKE, EKS, RKE, etc., and on Linux host including virtual machine and bare metal with provisioning Kubernetes cluster. Both of the two methods are easy and friendly to install KubeSphere. Meanwhile, KubeSphere offers not only online installer, but offline installer for air gapped environment.
+KubeSphere supports installing on cloud-hosted and on-premises Kubernetes cluster, e.g. native K8s, GKE, EKS, RKE, etc., and on Linux host including virtual machine and bare metal with provisioning Kubernetes cluster. Both of the two methods are easy and friendly to install KubeSphere. Meanwhile, KubeSphere offers not only online installer, but air gapped installer for air gapped environment.
 
 KubeSphere is open source project on [GitHub](https://github.com/kubesphere). There are thousands of users are using KunbeSphere, and many of them are running KubeSphere for their production workloads.
 
