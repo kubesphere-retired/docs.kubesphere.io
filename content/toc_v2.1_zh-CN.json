@@ -189,7 +189,7 @@
           ]
         },
         {
-          "title": "认证与安全",
+          "title": "认证配置",
           "entries": [
             {
               "title": "接入 LDAP / AD 域账号（Beta）",
