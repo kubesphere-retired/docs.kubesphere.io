@@ -85,7 +85,7 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 可在如下示例的 [kube-master] 和 [etcd] 部分填入主机名 master1、master2、master3 作为高可用的 Master 和 etcd 集群。注意，etcd 节点个数需要设置为 `奇数个`，由于 etcd 内存本身消耗比较大，部署到工作节点 (node) 上很容易出现资源不足，因此不建议在工作节点上部署 etcd 集群。为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户安装。
 
-以下示例在 **CentOS 7.5** 上使用 `root` 用户安装，若以非 root 用户 (如 ubuntu ) 进行安装，可参考主机配置文件的注释 `non-root` 示例部分编辑。
+以下示例在 **CentOS 7.5** 上使用 `root` 用户安装。
 
 > 说明：
 > - 若以非 root 用户 (如 ubuntu 用户) 进行安装，可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
@@ -124,9 +124,9 @@ kube-master
 
 ### 配置负载均衡器参数
 
-在 QingCloud 云平台准备好负载均衡器后，需在 `common.yaml` 配置文件中修改相关参数。假设内网负载均衡器的内网 IP 地址是 `192.168.0.10` (这里需替换为您的负载均衡器实际 IP 地址)，负载均衡器设置的 TCP 协议的监听端口 (port) 为 `6443`，那么在 `conf/common.yaml` 中参数配置参考如下示例 (`loadbalancer_apiserver` 作为可选配置项，在配置文件中应取消注释)。
+在 QingCloud 云平台准备好负载均衡器后，需在 `common.yaml` 配置文件中修改相关参数。假设内网负载均衡器的内网 **VIP** 地址是 `192.168.0.253` (这里需替换为您的负载均衡器实际 IP 地址)，负载均衡器设置的 TCP 协议的监听端口 (port) 为 `6443`，那么在 `conf/common.yaml` 中参数配置参考如下示例 (`loadbalancer_apiserver` 作为可选配置项，在配置文件中应取消注释)。
 
-> - 注意，address 和 port 在配置文件中应缩进两个空格。address 地址应填写 VIP（虚拟地址）。
+> - 注意，address 和 port 在配置文件中应缩进两个空格。并且 address 地址应填写 VIP（虚拟地址）。
 > - 负载均衡器的域名默认为 "lb.kubesphere.local"，供集群内部访问。如果需要修改域名则先取消注释再自行修改。
 
 **common.yaml 配置示例**

@@ -22,11 +22,11 @@ This example prepares six machines of CentOS 7.5, we will create two load balanc
 
 ![Master and etcd node high availability architecture](/master-ha-design.svg)
 
-### Preparing a Load Balancer
+### Create Load Balancer
 
 This page shows an example of creating a load balancer on QingCloud platform, and briefly explain the creation steps. Please refer to [QingCloud Document](https://docs.qingcloud.com/product/network/loadbalancer) for details.
 
-### Step 1: Create a Internal Load Balancer
+#### Create an Internal Load Balancer
 
 **Note:** You need to create a VxNet in advance, then you can create Load Balancers in this VxNet.
 
@@ -59,7 +59,7 @@ Click **Submit** when you've done.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200215230107.png)
 
-#### Step 2: Create External Load Balancer
+#### Create an External Load Balancer
 
 You need to create an EIP in advance.
 
@@ -82,11 +82,20 @@ Click **Submit** when you've done.
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200215232445.png)
 
 
-## Modify the host.ini
+### Modify the host.ini
 
-Fill in the machine names (master1, master2 and master3) into [kube-master] and [etcd] as follows, which means these three machines will be set as the role of master and etcd. Please note that number of etcd needs to be set as odd. Meanwhile, we don't recommend you to install etcd on worker nodes since the memory consumption of etcd is very high.
+- **[all]**: Fill in the **[all]** field with all node names.
+- **[kube-master]** and **[etcd]**: Fill in the **[kube-master]** and **[etcd]** fields with masters name (master1, master2 and master3) as follows, which means these three machines will be set to both master and etcd roles. Please note that the number of etcd needs to be set as odd number. Meanwhile, we don't recommend you to install etcd on worker nodes since the memory consumption of etcd is very high.
+- **[kube-node]**: Fill in the **[kube-node]** field with all worker node names.
+- **[k8s-cluster:children]**: leave the default values.
 
-**host.ini configuration example**
+
+We use **CentOS 7.5** with `root` user to install a HA cluster, see the following configuration as an example:
+
+> - If you run installation using `non-root` user (e.g. ubuntu), please refer to sample configuration which is commented out in `conf/hosts.ini`. You need to replace **[all]** blocks with non-root configuration.
+> - If the _taskbox_ can't establish `ssh` connection with the rest nodes, please also refer to the note of `non-root` user as above.
+
+**host.ini example**
 
 ```ini
 [all]
@@ -117,12 +126,12 @@ kube-node
 kube-master
 ```
 
-### Configure the LB Parameters
+### Configure the Load Balancer Parameters
 
-Finally, you need to modify the relevant parameters in the `vars.yaml` after prepare the Load Balancer. Assume the internal IP address of the Load Balancer is `192.168.0.10` (replaced it with your actual Load Balancer IP address), and the listening port of the TCP protocol is `6443`, then the parameter configuration in `conf/common.yml` can be modified like the following example (`loadbalancer_apiserver` as an optional configuration which should be uncommented in the configuration file).
+At this point, you need to modify the related parameters in the `common.yaml` after preparing the Load Balancer. Assume the **VIP** address and listening port of the internal Load Balancer are `192.168.0.253` and `6443`, then you can refer to following example (`loadbalancer_apiserver` blocks as optional configuration which should be uncommented when you configure a load balancer).
 
-> - Note that address and port should be indented by two spaces in the configuration file.
-> - The domain name of the Load Balancer is "lb.kubesphere.local" by default for internal access. If you need to modify the domain name, please uncomment and modify it.
+> - Note that address and port should be indented by two spaces in `common.yaml`. And the address should be VIP.
+> - The domain name of the Load Balancer is "lb.kubesphere.local" by default for internal access. If you need to change the domain name, please uncomment and modify it.
 
 **vars.yml configuration sample**
 
@@ -130,8 +139,8 @@ Finally, you need to modify the relevant parameters in the `vars.yaml` after pre
 ## External LB example config
 ## apiserver_loadbalancer_domain_name: "lb.kubesphere.local"
 loadbalancer_apiserver:
-  address: 192.168.0.10
+  address: 192.168.0.253
   port: 6443
 ```
 
-See [Multi-Node](../multi-node) to configure the related parameters of the persistent storage in `common.yml` and complete the rest multi-node steps after completing highly available configuration.
+Finally, please refer to [Multi-Node](../multi-node) to configure the persistent storage in `common.yml` and complete the rest steps.
