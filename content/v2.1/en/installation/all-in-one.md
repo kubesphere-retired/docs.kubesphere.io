@@ -8,7 +8,7 @@ For those who are new to KubeSphere and looking for a quick way to discover the 
 
 - <font color=red>The following instructions are for the default installation without enabling all optional components as we have made some components pluggable since v2.1.0. If you want to enable any of them, please see the section `Enable Pluggable Components` below.</font>
 - <font color=red>If your machine has more than 8 cores and 16 G memory, we recommend you to install the full package of KubeSphere by [enabling optional components](../complete-installation)</font>.
-- <font color=red> The installation time depends on your network bandwidth, your computer configuration, etc. And it is a best practice to accelerate pulling image [by configuring you image repository](https://kubesphere.com.cn/forum/d/149-kubesphere-v2-1-0). </font>
+
 
 ## Video Demo
 
@@ -121,4 +121,4 @@ $ kubectl edit cm -n kubesphere-system ks-installer
 
 The installer has been tested on Aliyun, Tencent cloud, Huawei Cloud, QingCloud, AWS. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read [the FAQ of installation](../../faq/faq-install).
 
-If you have further questions please do no hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).
+If you have further questions please do not hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).

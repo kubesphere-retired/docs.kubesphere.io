@@ -8,7 +8,7 @@ description: 'The guide for installing KubeSphere on Multi-Node in Development o
 
 - <font color=red>The following instructions are for the default installation without enabling all optional components as we have made some components pluggable since v2.1.0. If you want to enable any of them, please read [Enable Pluggable Components](../pluggable-components).</font>
 - <font color=red>If your machines in total have more than 8 cores and 16 G memory, we recommend you to install the full package of KubeSphere by [enabling optional components](../complete-installation)</font>.
-- <font color=red> The installation time depends on your network bandwidth, your computer configuration, the number of nodes, etc. And it is a best practice to accelerate pulling image [by configuring you image repository](https://kubesphere.com.cn/forum/d/149-kubesphere-v2-1-0). </font>
+- <font color=red> The installation time depends on your network bandwidth, your computer configuration, the number of nodes, etc. </font>
 
 ## Video Demo
 
@@ -47,17 +47,17 @@ The following describes the hardware requirements and operating system requireme
 
 The following section describes an example to introduce multi-node installation. This example shows three hosts installation by taking the `master` serving as the taskbox to execute the installation. The following cluster consists of one Master and two Nodes.
 
-> Note: KubeSphere supports the high-availability configuration of the Masters and Etcd nodes. Please refer to[Creating High Availability KubeSphere Cluster](../master-etcd-ha) for guide.
+> Note: KubeSphere supports the high-availability configuration of the Masters and etcd nodes. Please refer to[Creating High Availability KubeSphere Cluster](../master-etcd-ha) for guide.
 
 | Host IP | Host Name | Role |
 | --- | --- | --- |
-|192.168.0.1|master|master, Etcd|
+|192.168.0.1|master|master, etcd|
 |192.168.0.2|node1|node|
 |192.168.0.3|node2|node|
 
 ### Cluster Architecture
 
-#### Single master, Single Etcd, Two nodes
+#### Single master, Single etcd, Two nodes
 
 ![Architecture](/cluster-architecture.svg)
 
@@ -104,7 +104,7 @@ kube-master
 > Note:
 >
 > - You need to replace each node information such as IP, password with real values in the group `[all]`. The master node is the taskbox so you do not need to add password field here.
-> - The "master" node also takes the role of master and Etcd, so "master" is filled under the group`[kube-master]` and the group `[Etcd]` respectively.
+> - The "master" node also takes the role of master and etcd, so "master" is filled under the group`[kube-master]` and the group `[etcd]` respectively.
 > - "node1" and "node2" both serve the role of `Node`, so they are filled under the group `[kube-node]`.
 >
 > Parameters Specification:
@@ -180,4 +180,4 @@ NOTE：Please modify the default password after login.
 
 The installer has been tested on Aliyun, Tencent cloud, Huawei Cloud, QingCloud, AWS. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read [the FAQ of installation](../../faq/faq-install).
 
-If you have further questions please do no hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).
+If you have further questions please do not hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).
