@@ -37,40 +37,52 @@ The following describes the storage configuration in `common.yml`.
 
 > Note: Local Volume is configured as the default storage class in `common.yml` by default. If you are going to set other storage class as the default, disable the Local Volume then modify the configuration for other storage class.
 
+### Local Volume (All-in-One installation test only)
+
+A [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume. we recommend you to use Local volume in testing and development only, it can help you to quickly and easily set up KubeSphere without persistent storage server. Refer to following table for the definition in `conf/common.yml`.
+
+| **Local volume** | **Description** |
+| --- | --- |
+| local\_volume\_provisioner\_enabled | Whether to use Local as the persistent storage, defaults to true |
+| local\_volume\_provisioner\_storage\_class | Storage class name, default value：local |
+| local\_volume\_is\_default\_class | Whether to set Local as the default storage class, defaults to true.|
+
 ### NFS
 
-An NFS volume allows an existing NFS (Network File System) share to be mounted into your Pod. NFS can be configured in `conf/common.yml`, assume you have prepared Ceph storage servers in advance.
+An NFS volume allows an existing NFS (Network File System) share to be mounted into your Pod. NFS can be configured in `conf/common.yml`, you need to prepare NFS server in advance.
 
 | **NFS** | **Description** |
 | --- | --- |
-| nfs\_client\_enable | Determines whether to use NFS as the persistent storage, can be set to true or false. Defaults to false |
-| nfs\_client\_is\_default\_class | Determines whether to set NFS as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default  |
+| nfs\_client\_enable | Whether to use NFS as the persistent storage, defaults to false |
+| nfs\_client\_is\_default\_class | Whether to set NFS as default storage class, defaults to false. |
 | nfs\_server | The NFS server address, either IP or Hostname |
 | nfs\_path | NFS shared directory, which is the file directory shared on the server, see [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
+|nfs\_vers3\_enabled | Specifies which version of the NFS protocol to use, defaults to false which means v4. True means v4 |
+|nfs_archiveOnDelete | Archive PVC when deleting. It will automatically remove data from `oldPath` when it sets to false |
 
 
 ### Ceph RBD
 
 
-The open source [Ceph RBD](https://ceph.com/) distributed storage system, can be configured in `conf/common.yml`, assume you have prepared Ceph storage servers in advance, thus you can reference the following definition. See [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) for more details.
+The open source [Ceph RBD](https://ceph.com/) distributed storage system, can be configured in `conf/common.yml`. You need to prepare Ceph storage server in advance. Please refer to [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#ceph-rbd) for more details.
 
 | **Ceph\_RBD** | **Description** |
 | --- | --- |
-| ceph\_rbd\_enabled | Determines whether to use Ceph RBD as the persistent storage, can be set to true or false. Defaults to false |
+| ceph\_rbd\_enabled | Whether to use Ceph RBD as the persistent storage, defaults to false |
 | ceph\_rbd\_storage\_class | Storage class name |
-| ceph\_rbd\_is\_default\_class | Determines whether to set Ceph RBD as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default. |
+| ceph\_rbd\_is\_default\_class | Whether to set Ceph RBD as default storage class, defaults to false |
 | ceph\_rbd\_monitors | Ceph monitors, comma delimited. This parameter is required, which depends on Ceph RBD server parameters |
-| ceph\_rbd\_admin\_id | Ceph client ID that is capable of creating images in the pool. Default is “admin” |
-| ceph\_rbd\_admin\_secret | Admin_id's secret，Secret name for "adminId". This parameter is required. The provided secret must have type “kubernetes.io/rbd” |
+| ceph\_rbd\_admin\_id | Ceph client ID that is capable of creating images in the pool. Defaults to “admin” |
+| ceph\_rbd\_admin\_secret | Admin_id's secret, secret name for "adminId". This parameter is required. The provided secret must have type “kubernetes.io/rbd” |
 | ceph\_rbd\_pool | Ceph RBD pool. Default is “rbd” |
 | ceph\_rbd\_user\_id | Ceph client ID that is used to map the RBD image. Default is the same as adminId |
 | ceph\_rbd\_user\_secret | Secret for User_id, it is required to create this secret in namespace which used rbd image |
-| ceph\_rbd\_fsType | fsType that is supported by kubernetes. Default: "ext4"|
+| ceph\_rbd\_fsType | fsType that is supported by Kubernetes. Default: "ext4"|
 | ceph\_rbd\_imageFormat | Ceph RBD image format, “1” or “2”. Default is “1” |
 |ceph\_rbd\_imageFeatures| This parameter is optional and should only be used if you set imageFormat to “2”. Currently supported features are layering only. Default is “”, and no features are turned on|
 
 **Attention:**<br/>
-> The on-demand ceph secret which is created in storage class, like "ceph_rbd_admin_secret" and "ceph_rbd_user_secret", it can be returned with following command in Ceph storage server.
+> The ceph secret which is created in storage class, like "ceph_rbd_admin_secret" and "ceph_rbd_user_secret", it can be returned with following command in Ceph storage server.
 
 ```
 $ ceph auth get-key client.admin
@@ -78,25 +90,25 @@ $ ceph auth get-key client.admin
 
 ### GlusterFS
 
-[GlusterFS](https://docs.gluster.org/en/latest/) is a scalable network filesystem suitable for data-intensive tasks such as cloud storage and media streaming. Assume you have prepared GlusterFS storage servers in advance, thus you can reference the following definition，see [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) for more details.
+[GlusterFS](https://docs.gluster.org/en/latest/) is a scalable network filesystem suitable for data-intensive tasks such as cloud storage and media streaming. You need to prepare GlusterFS storage server in advance, please refer to [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/storage-classes/#glusterfs) for further information.
 
 | **GlusterFS（It requires glusterfs cluster which is managed by heketi）**|**Description** |
 | --- | --- |
-| glusterfs\_provisioner\_enabled | Determines whether to use GlusterFS as the persistent storage, can be set to true or false. Defaults to false |
+| glusterfs\_provisioner\_enabled | Whether to use GlusterFS as the persistent storage, defaults to false |
 | glusterfs\_provisioner\_storage\_class | Storage class name |
-| glusterfs\_is\_default\_class | Determines whether to set GlusterFS as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default |
+| glusterfs\_is\_default\_class | Whether to set GlusterFS as default storage class, defaults to false |
 | glusterfs\_provisioner\_restauthenabled | Gluster REST service authentication boolean that enables authentication to the REST server |
-| glusterfs\_provisioner\_resturl | Gluster REST service/Heketi service url which provision gluster volumes on demand. The general format should be IPaddress:Port and this is a mandatory parameter for GlusterFS dynamic provisioner|
+| glusterfs\_provisioner\_resturl | Gluster REST service/Heketi service url which provision gluster volumes on demand. The general format should be "IP address:Port" and this is a mandatory parameter for GlusterFS dynamic provisioner|
 | glusterfs\_provisioner\_clusterid | Optional, for example, 630372ccdc720a92c681fb928f27b53f is the ID of the cluster which will be used by Heketi when provisioning the volume. It can also be a list of clusterids |
 | glusterfs\_provisioner\_restuser | Gluster REST service/Heketi user who has access to create volumes in the Gluster Trusted Pool |
-| glusterfs\_provisioner\_secretName | Optional, identification of Secret instance that contains user password to use when talking to Gluster REST service,Installation package will automatically create this secret in Kube-system |
+| glusterfs\_provisioner\_secretName | Optional, identification of Secret instance that contains user password to use when talking to Gluster REST service, Installer will automatically create this secret in kube-system |
 | glusterfs\_provisioner\_gidMin | The minimum value of GID range for the storage class |
 | glusterfs\_provisioner\_gidMax |The maximum value of GID range for the storage class |
-| glusterfs\_provisioner\_volumetype | The volume type and its parameters can be configured with this optional value,For example: ‘Replica volume’: volumetype: replicate:3 |
-| jwt\_admin\_key | "jwt.admin.key" column from "/etc/heketi/heketi.json" in Heketi server |
+| glusterfs\_provisioner\_volumetype | The volume type and its parameters can be configured with this optional value, for example: ‘Replica volume’: volumetype: replicate:3 |
+| jwt\_admin\_key | "jwt.admin.key" field is from "/etc/heketi/heketi.json" in Heketi server |
 
 **Attention：**<br/>
- > In Glusterfs, `"glusterfs_provisioner_clusterid"` could be returned from glusterfs server. Execute the following command:
+ >Please note: `"glusterfs_provisioner_clusterid"` could be returned from glusterfs server by running the following command:
 
  ```bash
  $ export HEKETI_CLI_SERVER=http://localhost:8080
@@ -104,35 +116,40 @@ $ ceph auth get-key client.admin
  $ heketi-cli cluster list
  ```
 
-
-
 ### QingCloud Block Storage
 
-KubeSphere supports QingCloud Block Storage as the platform storage service. If you would like to experience dynamic provisioning to create volumes, it's recommended to use [QingCloud Block Storage](https://docs.qingcloud.com/product/Storage/volume/), KubeSphere integrated [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md), which supports you to use the different performance of block storage in QingCloud platform.
+[QingCloud Block Storage](https://docs.qingcloud.com/product/Storage/volume/) is supported in KubeSphere as the persistent storage service. If you would like to experience dynamic provisioning when creating volume, we recommend you to use it as your persistent storage solution. KubeSphere integrates [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md), allows you to use the different performance of block storage in QingCloud platform. With simple configuration, you can quickly expand, topology and clone PVCs, create/delete snapshot, as well as restore volume from snapshot.
 
-After plugin installation completes, user can create volumes based on several types of disk, such as super high performance disk, high performance disk and high capacity disk, with ReadWriteOnce access mode and mount volumes on workloads.
+QingCloud-CSI plugin has implemented the standard CSI. You can easily create and manage different types of volumes in KubeSphere, which are provided by QingCloud, the corresponding PVCs will created with ReadWriteOnce access mode and mounted to related Pods.
 
-The parameters for configuring the QingCloud-CSI plugin are described below.
+QingCloud-CSI supports create following five types of volume in QingCloud:
+
+- High capacity
+- Standard
+- SSD Enterprise
+- Super high performance
+- High performance
+
 
 |**QingCloud-CSI** | **Description**|
 | --- | ---|
-| qingcloud\_csi\_enabled|Determines whether to use QingCloud-CSI as the persistent storage volume, can be set to true or false. Defaults to false |
-| qingcloud\_csi\_is\_default\_class| Determines whether to set QingCloud-CSI as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default. |
-qingcloud\_access\_key\_id , <br> qingcloud\_secret\_access\_key| Get from [QingCloud Cloud Platform Console](https://console.qingcloud.com/login) |
-|qingcloud\_zone| zone should be the same as the zone where the Kubernetes cluster is installed, and the CSI plugin will operate on the storage volumes for this zone. For example: zone can be set to these values, such as sh1a (Shanghai 1-A), sh1b (Shanghai 1-B), pek2 (Beijing 2), pek3a (Beijing 3-A), pek3b (Beijing 3-B), pek3c (Beijing 3-C), gd1 (Guangdong 1), gd2a (Guangdong 2-A), ap1 (Asia Pacific 1), ap2a (Asia Pacific 2-A) |
-| type | The type of volume in QingCloud IaaS platform. In QingCloud public cloud platform, 0 represents high performance volume. 3 respresents super high performance volume. 1 or 2 represents high capacity volume depending on cluster‘s zone, see [QingCloud Documentation](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
+| qingcloud\_csi\_enabled|Whether to use QingCloud-CSI as the persistent storage volume, defaults to false |
+| qingcloud\_csi\_is\_default\_class| Whether to set QingCloud-CSI as default storage class, defaults to false |
+qingcloud\_access\_key\_id , <br> qingcloud\_secret\_access\_key| Please obtain it from [QingCloud Console](https://console.qingcloud.com/login) |
+|qingcloud\_zone| Zone should be the same as the zone where the Kubernetes cluster is installed, and the CSI plugin will operate on the storage volumes for this zone. For example: zone can be set to these values, such as sh1a (Shanghai 1-A), sh1b (Shanghai 1-B), pek2 (Beijing 2), pek3a (Beijing 3-A), pek3b (Beijing 3-B), pek3c (Beijing 3-C), gd1 (Guangdong 1), gd2a (Guangdong 2-A), ap1 (Asia Pacific 1), ap2a (Asia Pacific 2-A) |
+| type | The type of volume in QingCloud platform. In QingCloud platform, 0 represents high performance volume. 3 respresents super high performance volume. 1 or 2 represents high capacity volume depending on cluster‘s zone, see [QingCloud Documentation](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
 | maxSize, minSize | Limit the range of volume size in GiB|
 | stepSize | Set the increment of volumes size in GiB|
 | fsType | The file system of the storage volume, which supports ext3, ext4, xfs. The default is ext4|
 
 ### QingStor NeonSAN
 
-The NeonSAN-CSI plugin supports the enterprise-level distributed storage [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) as the platform storage service. If you have prepared the NeonSAN server, you will be able to configure the NeonSAN-CSI plugin to connect to its storage server in `conf/common.yml`, see [NeonSAN-CSI Reference](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
+The NeonSAN-CSI plugin supports the enterprise-level distributed storage [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) as the persistent storage solution. You need prepare the NeonSAN server, then configure the NeonSAN-CSI plugin to connect to its storage server in `conf/common.yml`, refer to [NeonSAN-CSI Reference](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0) for further information.
 
 | **NeonSAN** | **Description** |
 | --- | --- |
-| neonsan\_csi\_enabled | Determines whether to use NeonSAN as the persistent storage, can be set to true or false. Defaults to false |
-| neonsan\_csi\_is\_default\_class | Determines whether to set NeonSAN-CSI as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default.|
+| neonsan\_csi\_enabled | Whether to use NeonSAN as the persistent storage, defaults to false |
+| neonsan\_csi\_is\_default\_class | Whether to set NeonSAN-CSI as the default storage class, defaults to false|
 Neonsan\_csi\_protocol | tranportation protocol, user must set the option, such as TCP or RDMA|
 | neonsan\_server\_address | NeonSAN server address |
 | neonsan\_cluster\_name| NeonSAN server cluster name|
@@ -140,13 +157,3 @@ Neonsan\_csi\_protocol | tranportation protocol, user must set the option, such 
 | neonsan\_server\_replicas|NeonSAN image replica count. Default: 1|
 | neonsan\_server\_stepSize|set the increment of volumes size in GiB. Default: 1|
 | neonsan\_server\_fsType|The file system to use for the volume. Default: ext4|
-
-### Local Volume (All-in-One installation test only)
-
-A [Local](https://kubernetes.io/docs/concepts/storage/volumes/#local) volume represents a mounted local storage device such as a disk, partition or directory. Local volumes can only be used as a statically created PersistentVolume. It's only recommended to use Local volume in test environment only, it can help you to quickly and easily install KubeSphere if you don't prepare storage server. The definition of the `conf/common.yml` is as following table.
-
-| **Local volume** | **Description** |
-| --- | --- |
-| local\_volume\_provisioner\_enabled | Determines whether to use Local as the persistent storage, can be set to true or false. Defaults to true |
-| local\_volume\_provisioner\_storage\_class | Storage class name, default value：local |
-| local\_volume\_is\_default\_class | Determines whether to set Local as the default storage class, can be set to true or false. Defaults to true. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default |

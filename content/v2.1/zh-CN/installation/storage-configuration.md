@@ -59,7 +59,7 @@ local_volume_storage_class: local
 | --- | --- |
 | local\_volume\_provisioner\_enabled | 是否使用 local volume 作为持久化存储，  是：true；否：false |
 | local\_volume\_provisioner\_storage\_class | 存储类型的名称，   默认：local |
-| local\_volume\_is\_default\_class | 是否设定为默认存储类型， 是：true；否：false <br/> 注：系统中存在多种存储类型时，只能设定一种为默认的存储类型 |
+| local\_volume\_is\_default\_class | 是否设定为默认存储类型， 是：true；否：false  |
 
 ### NFS
 
