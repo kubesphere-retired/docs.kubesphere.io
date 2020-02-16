@@ -4,7 +4,7 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-In addition to supporting deploy on VM and BM, KubeSphere also supports installing on cloud-hosted and on-premises Kubernetes clusters, make sure your Kubernetes cluster meets the prerequisites below.
+Not only support installing on virtual machine and bare metal, KubeSphere also supports installing on cloud-hosted and on-premises Kubernetes cluster. make sure your Kubernetes cluster meets the prerequisites below.
 
 
 > - Kubernetes Version: 1.13.x, 1.14.x, 1.15.x;
