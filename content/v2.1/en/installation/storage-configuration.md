@@ -4,7 +4,7 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-Currently, Installer supports the following types of storage as storage servers, providing persistent storage service for KubeSphere (more storage classes are continuously updated).
+Currently, Installer supports the following [Storage Class](https://kubernetes.io/docs/concepts/storage/storage-classes/), providing persistent storage service for KubeSphere (more storage classes will be supported soon).
 
 
 - NFS
@@ -12,31 +12,30 @@ Currently, Installer supports the following types of storage as storage servers,
 - GlusterFS
 - QingCloud Block Storage
 - QingStor NeonSAN
-- Local Volume (All-in-One installation test only)
+- Local Volume (Default storage class, for development and test)
 
 
-The versions of open source storage servers and clients that have been tested using Installer, as well as the CSI plugins, are listed as following:
+The versions of open source storage server and client that have been tested, as well as the CSI plugins, are listed as follows:
 
 | **Name** | **Version** | **Reference** |
 | ----------- | --- |---|
-Ceph RBD Server | v0.94.10 | For testing installation, please refer to [Deploy Ceph Storage Server](/express/zh-CN/ceph-ks-install/). If it is in a formal environment, please refer to [Ceph Documentation](http://docs.ceph.com/docs/master/)|
-Ceph RBD Client | v12.2.5 | Before installing KubeSphere, you just need to configure the corresponding parameters in `vars.yml` to connect to its storage server, see [Ceph RBD](../storage-configuration/#ceph-rbd) |
-GlusterFS Server | v3.7.6 | For testing installation, please refer to [Deploying GlusterFS Storage Server](/express/zh-CN/glusterfs-ks-install/). If it is a formal environment, please refer to [Gluster Documentation](https://www.gluster.org/install/) or [Gluster Documentaion](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) and need to install [Heketi Manager (V3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin) as well|
-|GlusterFS Client |v3.12.10|Before installing KubeSphere, you just need to configure the corresponding parameters in `vars.yml` to connect to the storage server, see [GlusterFS](../storage-configuration/#glusterfs)|
-|NFS Server in Kubernetes| v1.0.9 | For configuration details, see [NFS Server Configuration](../storage-configuration/#nfs) |
-|NFS Client | v3.1.0 | Before installing KubeSphere, you just need to configure the corresponding parameters in `vars.yml` to connect to its storage server, see [NFS Client](../storage-configuration/#nfs) |
-QingCloud-CSI|v0.2.0.1|Please configure the corresponding parameters in `vars.yml` before installing KubeSphere. For details, see [QingCloud CSI](../storage-configuration/#qingcloud-csi)|
-NeonSAN-CSI|v0.3.0| Before installing KubeSphere, you just need to configure the corresponding parameters in `vars.yml`, see [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
+Ceph RBD Server | v0.94.10 | For development and testing, refer to [Install Ceph Storage Server](https://kubesphere.com.cn/docs/v2.1/zh-CN/appendix/ceph-ks-install/).  please refer to [Ceph Documentation](http://docs.ceph.com/docs/master/) for production. |
+Ceph RBD Client | v12.2.5 | Before installing KubeSphere, you need to configure the corresponding parameters in `vars.yml`, refer to [Ceph RBD](../storage-configuration/#ceph-rbd) |
+GlusterFS Server | v3.7.6 | For development and testing, refer to [Deploying GlusterFS Storage Server](https://kubesphere.com.cn/docs/v2.1/zh-CN/appendix/glusterfs-ks-install/). Please refer to [Gluster Documentation](https://www.gluster.org/install/)  or [Gluster Documentaion](http://gluster.readthedocs.io/en/latest/Install-Guide/Install/) for production, note that you need install [Heketi Manager (V3.0.0)](https://github.com/heketi/heketi/tree/master/docs/admin). |
+|GlusterFS Client |v3.12.10|Before installing KubeSphere, you need to configure the corresponding parameters in `vars.yml`, refer to [GlusterFS](../storage-configuration/#glusterfs)|
+|NFS Client | v3.1.0 | Before installing KubeSphere, you need to configure the corresponding parameters in `vars.yml`, make sure you have prepared NFS storage server, see [NFS Client](../storage-configuration/#nfs) |
+QingCloud-CSI|v0.2.0.1|Please configure the corresponding parameters in `vars.yml` before installing KubeSphere. Please refer to [QingCloud CSI](../storage-configuration/#qingcloud-csi) for details|
+NeonSAN-CSI|v0.3.0| Before installing KubeSphere, you need to configure the corresponding parameters in `vars.yml`, make sure you have prepared QingStor NeonSAN storage server, see [Neonsan-CSI](../storage-configuration/#neonsan-csi) |
 
-> Note: It's not allowed to set two default storage class in the cluster. To specify a default storage class, make sure there is no default storage class already exited in the current cluster.
+> Note: It's not allowed to set two default storage classes in the cluster. To specify a default storage class, make sure there is no default storage class already exited in the cluster.
 
-## Storage Configuration Definition
+## Storage Configuration
 
-After preparing the storage server, then you need to reference the parameter description in the following table. Then modify the corresponding storage class part in the configuration file (`conf/common.yml` ) according to your storage server.
+After preparing the storage server, you need to refer to the parameters description in the following table. Then modify the corresponding configurations in `conf/common.yml` accordingly.
 
-The following is a brief description of the parameter configuration related to `vars.yml` storage, also see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/)) for the details.
+The following describes the storage configuration in `common.yml`.
 
-> Note: By default, Local Volume is configured as the default storage class of the cluster in `vars.yml`. If you are going to configure other storage class as the default class, firstly you have to modify the related configuration of Local to **false**, and then modify the configuration of the corresponding storage according to your storage server before start installation.
+> Note: Local Volume is configured as the default storage class in `common.yml` by default. If you are going to set other storage class as the default, disable the Local Volume then modify the configuration for other storage class.
 
 ### NFS
 
