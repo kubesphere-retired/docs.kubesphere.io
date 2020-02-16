@@ -1,10 +1,10 @@
 ---
-title: "Kubernetes Cluster Configuration"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'Configure Kubernetes related fields'
+title: "Common Configurations"
+keywords: 'KubeSphere, kubernetes, docker, helm, jenkins, istio, prometheus'
+description: 'Configure cluster parameters before installing'
 ---
 
-This tutorial explains each field related to Kubernetes cluster configuration in `conf/common.yaml`, you can reference following section to understand each parameters.
+This tutorial explains how to customize KubeSphere configurations in `conf/common.yaml`. You can reference the following section to understand each parameter.
 
 ```yaml
 ######################### Kubernetes #########################
@@ -59,4 +59,46 @@ enable_nodelocaldns: true
 # loadbalancer_apiserver:  # Loadbalancer apiserver configuration, please uncomment this line when you prepare HA install
 #   address: 192.168.0.10  # Loadbalancer apiserver IP address
 #   port: 6443             # apiserver port
+
+######################### KubeSphere #########################
+
+# Version of KubeSphere
+ks_version: v2.1.0  
+
+# KubeSphere console port, range 30000-32767,
+# but 30180/30280/30380 are reserved for internal service
+console_port: 30880 # KubeSphere console nodeport
+
+#CommonComponent
+mysql_volume_size: 20Gi # MySQL PVC size
+minio_volume_size: 20Gi # Minio PVC size
+etcd_volume_size: 20Gi  # etcd PVC size
+openldap_volume_size: 2Gi # openldap PVC size
+redis_volume_size: 2Gi # Redis PVC size
+
+
+# Monitoring
+prometheus_replica: 2 #	Prometheus replicas with 2 by default which are responsible for monitoring different segments of data source and provide high availability as well.
+prometheus_memory_request: 400Mi # Prometheus request memory
+prometheus_volume_size: 20Gi # 	Prometheus PVC size
+grafana_enabled: true # enable grafana or not
+
+
+## Container Engine Acceleration
+## Use nvidia gpu acceleration in containers
+# nvidia_accelerator_enabled: true # enable Nvidia GPU accelerator or not. It supports hybrid node with GPU and CPU installed.
+# nvidia_gpu_nodes: # The GPU nodes specified in hosts.ini. FOr now we only support Ubuntu 16.04
+#   - kube-gpu-001  # The host name of the GPU node specified in hosts.ini
 ```
+
+## How to Configure a GPU Node
+
+You may want to use GPU nodes for special purpose such as machine learning. Let's say you have a GPU node called `node2` in `hosts.ini`, then in the file `common.yaml` specify the following configuration. Please be aware the `- node2` has two spaces indent.
+
+```yaml
+ nvidia_accelerator_enabled: true
+ nvidia_gpu_nodes:
+   - node2
+```
+
+> Note: The GPU node now only supports Ubuntu 16.04.

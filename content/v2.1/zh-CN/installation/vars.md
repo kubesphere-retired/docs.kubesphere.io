@@ -65,7 +65,7 @@ mysql_volume_size: 20Gi # MySQL 存储卷大小
 minio_volume_size: 20Gi # Minio 存储卷大小
 etcd_volume_size: 20Gi  # etcd 存储卷大小
 openldap_volume_size: 2Gi # openldap 存储卷大小
-redis_volume_size: 2Gi # MySQL 存储卷大小
+redis_volume_size: 2Gi # Redis 存储卷大小
 
 
 # Monitoring
@@ -82,7 +82,7 @@ grafana_enabled: true # 是否额外安装 grafana，若需要自定义监控则
 #   - kube-gpu-001  # 例如这里设置节点名为 kube-gpu-001 的机器为 GPU 节点，若有多个 GPU 节点则在其下方继续添加
 ```
 
-**GPU 节点配置示例**
+## GPU 节点配置示例
 
 注意，在安装前可对 GPU 节点在 `common.yaml` 文件中进行设置，例如在 `hosts.ini` 文件配置的两台工作节点 `node1` 是 CPU 节点， `node2` 是 GPU 节点，那么在 `common.yaml` 仅需要在该处填写 node2，注意 "-" 前面需缩进两格。注意，目前 GPU 节点仅支持 Ubuntu 16.04。
 
