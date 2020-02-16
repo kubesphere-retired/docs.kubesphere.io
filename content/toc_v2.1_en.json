@@ -134,7 +134,7 @@
           "entries": [
             {
               "title": "Installing HA Master and Etcd Cluster",
-              "entry": "./v2.1/en/installation/master-etcd-ha.md"
+              "entry": "./v2.1/en/installation/master-ha.md"
             },
             {
               "title": "Storage Configuration Instruction",
