@@ -4,11 +4,11 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节点集群用于开发和测试，在实际的生产环境我们还需要考虑 master 节点的高可用问题，因为如果 master 节点上的几个服务 kube-apiserver、kube-scheduler 和 kube-controller-manager 都是单点的而且都位于同一个节点上，一旦 master 节点宕机，可能不应答当前正在运行的应用，将导致 KubeSphere 集群无法变更，对线上业务存在很大的风险。
+Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节点集群用于开发和测试，在实际的生产环境我们还需要考虑 master 节点的高可用问题，因为如果 master 节点上的几个服务 kube-apiserver、kube-scheduler 和 kube-controller-manager 都是单点的而且都位于同一个节点上，一旦 master 节点宕机，可能导致 Kubernetes 集群出故障和 KubeSphere 无法访问，对线上业务存在很大的风险。
 
-负载均衡器 (Load Balancer) 可以将来自多个公网地址的访问流量分发到多台主机上，并支持自动检测并隔离不可用的主机，从而提高业务的服务能力和可用性。**用户可以使用任何云厂商提供的负载均衡器或相关的 LB 硬件设备，还可以通过 Keepalived 和 Haproxy 的方式实现多个 master 节点的高可用部署。** 而 etcd 作为一个高可用键值存储系统，整个集群的持久化数据，则由 kube-apiserver 处理后保存到 etcd 中。etcd 节点至少需要 1 个，但部署多个 etcd (奇数个) 能够使集群更可靠。
+负载均衡器 (Load Balancer) 可以将来自多个公网地址的访问流量分发到多台主机上，并支持自动检测并隔离不可用的主机，从而提高业务的服务能力和可用性。**用户可以使用任何云厂商提供的负载均衡器或相关的 LB 硬件设备，还可以通过 Keepalived 和 Haproxy 的方式实现多个 master 节点的高可用部署。**
 
-本文档将在 [QingCloud 云平台](https://www.qingcloud.com) 创建 `2` 个 [负载均衡器 (Load Balancer)](https://docs.qingcloud.com/product/network/loadbalancer)，分别作为外网和内网的负载均衡，引导您如何配置高可用的 master 节点，并说明如何配置和部署高可用的 etcd 集群。
+本文档将在 [QingCloud 云平台](https://www.qingcloud.com) 创建 `2` 个 [负载均衡器 (Load Balancer)](https://docs.qingcloud.com/product/network/loadbalancer)，分别作为外网和内网的负载均衡，引导您如何配置生产级别的集群，实现 master 与 etcd 节点的高可用。
 
 ## 示例视频
 
@@ -19,12 +19,12 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 ## 前提条件
 
-- 请确保已参阅 [Multi-Node 模式](../multi-node)，本文档仅说明安装过程中如何修改配置文件来配置 master 节点高可用，该配置作为一个可选配置项，完整的安装流程和配置文件中的参数解释说明以 [Multi-Node 模式](../multi-node) 为准。
+- 请确保已参阅 [Multi-Node 模式](../multi-node)，本文档仅说明安装过程中如何修改配置文件来配置 master 节点高可用，完整的安装流程和配置文件中的参数解释说明以 [Multi-Node 模式](../multi-node) 为准。
 - 本示例以 [QingCloud 云平台](https://console.qingcloud.com/login) 的负载均衡器作为高可用部署的演示，请预先申请 [QingCloud 云平台](https://console.qingcloud.com/login) 账号（**您也可以使用其它任何云厂商提供的负载均衡器**）。
 
 ## Master 和 etcd 节点高可用架构
 
-本示例准备了 6 台主机，将创建 `2` 个负载均衡器，主机规格参考 [Multi-Node 模式 - 节点规格](../multi-node)，将在其中 3 台部署 Master 和 etcd 集群，可编辑主机配置文件 `conf/hosts.ini` 来配置 Master 和 etcd 的高可用。
+本示例准备了 6 台主机，将创建 `2` 个负载均衡器，主机规格参考 [Multi-Node 模式 - 节点规格](../multi-node)，将在其中 3 台部署 Master 和 etcd 集群，可编辑主机配置文件 `conf/hosts.ini`。
 
 ![Master 和 etcd 节点高可用架构](/master-ha-design.svg)
 
@@ -59,6 +59,8 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191110171834.png)
 
 #### 第二步：创建外网负载均衡器
+
+您需要预先创建一个 EIP。
 
 > 说明：外网负载均衡器监听的 30880 端口，是 KubeSphere 控制台在集群每个节点上开启的访问入口。
 
