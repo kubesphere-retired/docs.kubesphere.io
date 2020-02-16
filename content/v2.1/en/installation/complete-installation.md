@@ -1,43 +1,43 @@
 ---
 title: "Complete Installation (Enable Installing All Components)"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'Install KubeSphere with enable all components to Linux machine'
+description: 'Install KubeSphere with enabling all optional components to Linux machine'
 ---
 
-The installer only installs required components (i.e. minimal installation) by default since v2.1.0. Other components are designed to be pluggable, which means you can enable any of them before or after installation. If your machine meets the following minimum requirements, we recommend you to **enable all components before installation**. Complete installation enables you to experience the comprehensive product features and solutions for container management and operation.
+The installer only installs required components (i.e. minimal installation) by default since v2.1.0. Other components are designed to be pluggable, which means you can enable any of them before or after installation. If your machine meets the following minimum requirements, we recommend you to **enable all components before installation**. A complete installation gives you an opportunity to comprehensively discover the container platform. 
 
 <font color="red">  
 Minimum Requirements
 
 - All-in-one:
-  - CPU: at least 8 cores
-  - RAM: 16 GB
+  - CPU: 8 cores
+  - Memory: 16 GB
 - Multi-node:
-  - CPU: at least 8 cores totally (For all machines)
-  - RAM: 16 GB totally (For all machines)
+  - CPU: 8 cores in total of all machines
+  - Memory: 16 GB in total of all machines
 </font>
 
+> Note:
+>
+> - If your machines don't meet the minimum requirements of a complete installation, you can enable any of components at your will. Please refer to [Enable Pluggable Components Installation](../pluggable-components).
+> - It works for [All-in-One](../all-in-one) and [multi-node](../multi-node).
 
-> Please note: If your machines don't meet the minimum  requirements of complete installation, you can enable any of components at your will, reference [Enable Pluggable Components Installation](../pluggable-components).
+This tutorial will walk you through how to enable all components of KubeSphere.
 
-This tutorial will walk you through how to enable all components of KubeSphere in Linux installer, you need to configure them before all-in-one or multi-node installation.
+## Download Installer Package
 
-## Prepare Installer
-
-Download `KubeSphere 2.1.0` to your server, run the following commands to download Installer 2.1.0 and unpack it, enter `conf` folder.
+If you do not have the package yet, please run the following commands to download Installer 2.1.0 and unpack it, then enter `conf` folder.
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
-$ tar -zxf installer.tar.gz
-$ cd kubesphere-all-v2.1.0/conf
+curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/conf
 ```
 
 ## Enable All Components
 
-Edit `conf/common.yaml`, reference the following annotations to enable all components (Set the value from false to true).
+Edit `conf/common.yaml`, reference the following changes with values being `true` which are `false` by default.
 
-
-```
+```yaml
 # LOGGING CONFIGURATION
 # logging is an optional component when installing KubeSphere, and
 # Kubernetes builtin logging APIs will be used if logging_enabled is set to false.
@@ -67,7 +67,7 @@ sonarqube_enabled: true # Whether to install built-in SonarQube
 # Following components are all optional for KubeSphere,
 # Which could be turned on to install it before installation or later by updating its value to true
 openpitrix_enabled: true       # KubeSphere application store
-metrics_server_enabled: true   # KubeSphere HPA
+metrics_server_enabled: true   # For KubeSphere HPA to use
 servicemesh_enabled: true      # KubeSphere service mesh system(Istio-based)
 notification_enabled: true     # KubeSphere notification system
 alerting_enabled: true         # KubeSphere alerting system
@@ -82,4 +82,4 @@ gitlab_enabled: true           # Whether to install GitLab
 gitlab_hosts_domain: devops.kubesphere.local
 ```
 
-Save it, then you can return to [All-in-One](../all-in-one) or [multi-node](../multi-node) to continue installation.
+Save it, then you can continue the installation process.
