@@ -6,11 +6,11 @@ description: ''
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123144507.png)
 
-In addition to supporting deploy on VM and BM, KubeSphere also supports installing on cloud-hosted and on-premises Kubernetes clusters,
+Not only support installing on virtual machine and bare metal, KubeSphere also supports installing on cloud-hosted and on-premises Kubernetes cluster.
 
 > Attention: Following section is only used for minimal installation by default, KubeSphere has decoupled some core components in v2.1.0, for more pluggable components installation, see `Enable Pluggable Components` below.
 
-## Deploy On Kubernetes
+## Install On Kubernetes
 
 ### Prerequisites
 
