@@ -214,11 +214,7 @@ class MarkdownTemplate extends React.Component {
     }
 
     const { t } = this.props
-    const {
-      isExpand,
-      prev,
-      next,
-    } = this.state
+    const { isExpand, prev, next } = this.state
 
     const metas = []
 
@@ -291,19 +287,17 @@ class MarkdownTemplate extends React.Component {
                       this.markdownRef = ref
                     }}
                   >
-                    <MarkdownTitle>
-                      {post.title}
-                      <a
-                        href={`https://github.com/kubesphere/docs.kubesphere.io/edit/master/content/${slug.slice(
-                          1,
-                          slug.length - 1
-                        )}.md`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {t('Edit')}
-                      </a>
-                    </MarkdownTitle>
+                    <MarkdownTitle>{post.title}</MarkdownTitle>
+                    <MarkdownEditTip
+                      href={`https://github.com/kubesphere/docs.kubesphere.io/edit/master/content/${slug.slice(
+                        1,
+                        slug.length - 1
+                      )}.md`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t('Edit')}
+                    </MarkdownEditTip>
                     <div
                       ref={ref => {
                         this.markdownRef = ref
@@ -399,6 +393,7 @@ const MarkdownWrapper = styled.div`
 `
 
 const MarkdownBody = styled.div`
+  position: relative;
   margin: 0 auto;
   padding: 120px 30px 30px;
 
@@ -447,7 +442,6 @@ const HeadingsWrapper = styled.div`
       overflow: hidden;
       text-overflow: ellipsis;
 
-
       @media only screen and (max-width: 1440px) {
         width: 250px;
       }
@@ -470,19 +464,17 @@ const HeadingsWrapper = styled.div`
   }
 `
 
-const MarkdownTitle = styled.h1`
-  position: relative;
+const MarkdownTitle = styled.h1``
 
-  & > a {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    font-size: 14px !important;
+const MarkdownEditTip = styled.a`
+  position: absolute;
+  top: 136px;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 14px !important;
 
-    @media only screen and (max-width: 768px) {
-      display: none;
-    }
+  @media only screen and (max-width: 768px) {
+    display: none;
   }
 `
 
