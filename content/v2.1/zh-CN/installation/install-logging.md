@@ -7,7 +7,7 @@ description: '应用商店'
 KubeSphere 提供了 **强大且易用的日志查询、接收与管理功能**，比如多租户日志管理、多级别日志查询 (包括项目、工作负载、容器组、容器以及关键字)、灵活方便的日志收集配置选项等。相较于 Kibana，KubeSphere 日志系统提供了 **基于多租户的日志查询**，不同的租户只能看到属于自己的日志信息。KubeSphere 内置的日志系统作为可插拔的功能组件，主要的功能如下：
 
 > - [支持多租户与多维度查询平台日志](../../toolbox/log-search)
-> - [支持添加多个日志接收者，包括 Elasticsearch、Kafka 和 Fluentd](../.../)
+> - 支持添加多个日志接收者，包括 Elasticsearch、Kafka 和 Fluentd
 > - [落盘日志收集](../../workload/logs-on-disk)
 
 ## 安装前如何开启安装日志系统
