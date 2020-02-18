@@ -1,5 +1,5 @@
 ---
-title: "应用开发入门"
+title: "Helm 应用开发入门"
 ---
 
 KubeSphere 支持将应用以 Helm Chart 的形式上传部署到平台中，而 Nginx 是大家熟知的代理和负载均衡软件，比起 Traefik 来说功能更加强大，本篇文档就以 Nginx 的 Helm Chart 文件为例，介绍 Chart 的基本规则，演示如何通过 Helm Chart 应用开发规范准备一个应用并上传部署到 KubeSphere 平台。

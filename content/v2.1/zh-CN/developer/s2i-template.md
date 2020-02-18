@@ -1,28 +1,21 @@
 ---
-title: "自定义 S2i 模板" 
+title: "开发自定义 S2I 模版" 
 keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
-description: ''
 ---
 
-S2i （Source-to-image）使用源代码和构建器镜像生成新的 Docker 镜像，在我们的项目当中提供了部分常用的构建器镜像，例如[Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/)，您也可以定义自己的构建器镜像 (即 S2i 模板) 扩展 S2i。
+对 **Source-to-image (S2I)** 工作原理有了一定了之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2i 模板) 来扩展 S2i，在我们的项目当中提供了部分常用的构建器镜像模版，例如[Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。
 
-在详细介绍构建器影响之前，我们会先说明一下自定义 S2i 模板的步骤，以及工作原理和构建器镜像的作用。
+在详细介绍构建器影响之前，先介绍下完成构建器镜像模版所需要提供的元素。
 
 
-> 1. 下载 S2i 构建器镜像（镜像提供构建脚本）。
-> 2. 下载源代码。
-> 3. 将源代码传入构建器镜像当中。
-> 4. 运行构建器镜像所提供的 `assemble` 脚本进行应用构建。
-> 5. 保存制品镜像。
+> 1. assemble - 负责构建应用程序的脚本
+> 2. run - 负责运行应用程序的脚本
+> 3. save-artifacts - 在增量构建时负责依赖管理的脚本 （可选）
+> 4. usage - 使用说明脚本 （可选）
+> 5. test - 一些测试脚本 （可选）
+> 6. S2itemplate - 描述构建程序所使用的基础环境
 
-构建器镜像需要有一些必要的内容才能完成所有工作。  
-
-首先由于构建器镜像负责构建应用程序，因此它必须包含构建和运行应用程序所有需要的库和工具。例如 Java 构建器镜像将安装 JDK、Maven等，而 Python 构建器镜像则可能需要 pip 等工具。  
-
-其次构建器镜像需要提供脚本来执行构建和运行操作。这部分脚本在 S2I 当中为：
-
-* assemble - 负责构建应用程序
-* run - 负责运行应用程序
+S2i 构建器镜像的更多的信息可参考[S2IRun](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-builder-image-requirements)
 
 在以下的步骤中，我们将向您展示如何创建一个[Nginx](https://www.nginx.com/) 服务的构建器镜像。
 
@@ -242,6 +235,8 @@ $ docker run -p 8080:8080  sample-app
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190830115544.png)
 
 ## 第五步 推送镜像并在 KubeSphere 添加 S2i 模版
+
+S2I 模版用于模版定义了应用程序构建的基础环境，包括构建器镜像 (Builder Image) 和 运行时镜像 (Runtime Image)，以及环境参数、描述信息等。
 
 当我们在本地完成 S2I 构建器镜像的测试之后，就可以推送镜像到自定义的镜像仓库当中，并创建构建器模版 `yaml` 文件：
 
