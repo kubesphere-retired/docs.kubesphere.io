@@ -1,32 +1,32 @@
 ---
-title: "Enable KubeSphere DevOps System Installation"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'Enable KubeSphere DevOps System Installation'
+title: "Enable KubeSphere DevOps System"
+keywords: 'kubesphere, kubernetes, docker, jenkins, sonarqube, devops, CI/CD'
+description: 'How to Enable DevOps System on KubeSphere'
 ---
 
 ## What is KubeSphere DevOps System
 
-KubeSphere DevOps System is designed for CI/CD workflow in Kubernetes, based on [Jenkins](https://jenkins.io/), provides one-stop DevOps system which helps developers and maintainers to build, test and publish their application to Kubernetes in an easy way.
+KubeSphere DevOps System is designed for CI/CD workflow in Kubernetes. It is based on [Jenkins](https://jenkins.io/) and provides one-stop DevOps console helping developers and maintainers build, test and publish their applications to Kubernetes in a straight-forward way. It also supports plugins management, Binary-to-Image（B2I）、Source-to-Image（S2I), code dependency caching, code quality analysis and pipeline logging, etc.
 
-The DevOps system combines application development and automatic publishing in the same platform, also supports to connect with third-party private image registry (e.g. Harbor) and code repositories (e.g. GitLab/GitHub/SVN/BitBucket) to construct a complete CI/CD pipeline in private scenarios, providing end-to-end users experience and visualize your CI/CD pipeline.
+The DevOps system combines application development and automatic publishing on the same platform, also supports to connect with third-party private image registry (e.g. Harbor) and code repositories (e.g. GitLab/GitHub/SVN/BitBucket) to visually construct a complete CI/CD pipeline which is usually useful for disconnected environment.
 
-In KubeSphere v2.1, there are abundant features within DevOps system:
+In KubeSphere v2.1, there are rich features within DevOps system:
 
-- CI/CD pipeline (Based on Jenkinsfile)
-- CI/CD pipeline graphical editing panel (No need to write Jenkinsfile)
-- Binary to image - upload and publish your binary to Kubernetes in one click
-- Source to image - publish your application from source code repository to Kubernetes
-
+- [Binary to image](../../quick-start/b2i-war): Automatically pack your artifact such as WAR、JAR、Binary executables into Docker without writing Dockerfile and push to image repository, and finally deploy the image into Kubernetes cluster；
+- [Source to image](../../quick-start/source-to-image): Automatically compilie and build your source code from code repository and pack the result into Docker without writing Dockerfile, push to image repository and finally deploy the image into Kubernetes cluster.
+- [Jenkinsfile-free CI/CD pipeline with graphical editing panel](../../quick-start/jenkinsfile-out-of-scm): Without writing Jenkinsfile, you can compose pipeline visually using drag-and-drop panel which makes the user experience much better that other solutions.
+- [Jenkinsfile-based CI/CD pipeline](../../quick-start/devops-online): If your code repository already has Jenkinsfile, you'd better to use this way to create pipeline.
+- [GitLab and Harbor based CI/CD pipeline](../../harbor-gitlab-devops-offline)：Using self-built GitLab and Harbor to create pipeline, which is useful for disconnected environment.
 
 ## Enable DevOps System Before Installation
 
-<font color=red>KubeSphere DevOps system requires at least 34 m (CPU request) and 2.69 G (Memory request) for all-in-one installation, or at least 0.47 core (CPU request) and 8.6 G (Memory request) for multi-node installation, make sure your cluster has enough resource.</font>
+<font color=red>KubeSphere DevOps system requires at least 34 m (CPU request) and 2.69 G (memory request) for all-in-one installation, or at least 0.47 core (CPU request) and 8.6 G (memory request) for multi-node installation Please make sure your cluster has enough resource.</font>
 
-> Note: This guide is only used for Linux installer, if you are going to install KubeSphere and DevOps system on your existing Kubernetes, see [ks-installer](https://github.com/kubesphere/ks-installer).
+> Note: This section is for installing KubeSphere on Linux machines. If you are going to install KubeSphere and DevOps system on your existing Kubernetes cluster, please see [ks-installer](https://github.com/kubesphere/ks-installer).
 
-Before execute installation, you can enable `devops_enabled` and `sonarqube_enabled` in `conf/common.yaml` to allow DevOps system and SonarQube installation according to the following configuration, then you can back to All-in-one or Multi-node guide to continue installation.
+Before start the installation, you can change the values of `devops_enabled` and `sonarqube_enabled` in `conf/common.yaml` from `false` to `true` to enable DevOps system and SonarQube, then you can continue your installation by following the instructions of [All-in-One](../all-in-one) or [Multi-Node](../multi-node).
 
-```bash
+```yaml
 #DevOps Configuration
 devops_enabled: true
 jenkins_memory_lim: 8Gi
@@ -42,15 +42,15 @@ sonarqube_enabled: true
 
 ## Enable Application Store After Installation
 
-Edit the ConfigMap of ks-installer using following command:
+If you already have a minimal KubeSphere setup, you still can edit the ConfigMap of ks-installer using the following command:
 
 ```bash
-$ kubectl edit cm -n kubesphere-system ks-installer
+kubectl edit cm -n kubesphere-system ks-installer
 ```
 
-Then set OpenPitrix from False to True:
+Then set devops from `False` to `True`:
 
-```bash
+```yaml
 devops:
       enabled: True
       jenkinsMemoryLim: 2Gi
@@ -63,4 +63,4 @@ devops:
         enabled: True
 ```
 
-Save it and exit, it will be installed automatically. You can inspect the logs of ks-installer Pod to [verify the installation status](../verify-components), and wait for the successful result logs output.
+Save it and exit. DevOps component will be installed automatically. You can inspect the logs of ks-installer Pod to [verify the installation status](../verify-components), and wait for the successful result logs output.
