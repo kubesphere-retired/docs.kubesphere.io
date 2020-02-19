@@ -26,18 +26,25 @@ harbor_domain: harbor.devops.kubesphere.local
 
 ## 安装后如何开启 Harbor 的安装
 
-同安装前的方法，修改 `conf/common.yaml` 文件，将 false 设置为 true
+通过修改 ks-installer 的 configmap 可以选装组件，执行以下命令。
 
-```yaml
-harbor_enabled: true
-harbor_domain: harbor.devops.kubesphere.local
+```bash
+$ kubectl edit cm -n kubesphere-system ks-installer
 ```
 
-保存退出，然后进入 `scripts/`，执行一遍 `install.sh` 脚本，并选择初始安装的模式。
+**参考如下修改 ConfigMap**
+
+```yaml
+    harbor:
+        enabled: False
+        domain: harbor.devops.kubesphere.local  ## 是否开启安装 Harbor
+```
 
 Harbor 安装将在后台开启，参考 [验证可插拔功能组件的安装](../verify-components) ，通过查询 ks-installer 日志或 Pod 状态验证功能组件是否安装成功。
 
 ## 访问 Harbor
+
+注意，访问前需要给 docker 配置 insecure registry，参考 [添加 Harbor 镜像仓库 (http)](../../configuration/image-registry/#http) 进行配置。
 
 ### Docker 登录 Harbor  
 
