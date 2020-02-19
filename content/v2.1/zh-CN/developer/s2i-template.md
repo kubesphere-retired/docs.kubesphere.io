@@ -3,7 +3,7 @@ title: "开发自定义 S2I 模版"
 keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
 ---
 
-对 **Source-to-image (S2I)** 工作原理有了一定了解之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2i 模板) 来扩展 S2i，在我们的项目当中提供了部分常用的构建器镜像模版，例如[Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。
+对 **Source-to-image (S2I)** 工作原理有了一定了解之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2I 模板) 来扩展 S2I，在我们的项目当中提供了部分常用的构建器镜像模版，例如[Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。
 
 在详细介绍构建器影响之前，先介绍下完成构建器镜像模版所需要提供的元素。
 
@@ -15,13 +15,13 @@ keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
 > 5. test - 一些测试脚本 （可选）
 > 6. S2itemplate - 描述构建程序所使用的基础环境
 
-S2i 构建器镜像的更多的信息可参考[S2IRun](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-builder-image-requirements)
+S2I 构建器镜像的更多的信息可参考[S2IRun](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-builder-image-requirements)
 
 **在以下的步骤中，我们将向您展示如何创建一个[Nginx](https://www.nginx.com/) 服务的构建器镜像。若项目中希望使用运行时镜像(Runtime Image)，可以参考文档[如何构建运行时镜像](https://github.com/kubesphere/s2irun/blob/master/docs/runtime_image.md)**
 
 ## 第一步：S2i CLI 构建项目目录
 
-[S2i 命令行工具](https://github.com/openshift/source-to-image/releases) 带有一个方便的命令，可以引导构建器所需的目录结构。如下安装 S2i CLI：
+[S2I 命令行工具](https://github.com/openshift/source-to-image/releases) 带有一个方便的命令，可以引导构建器所需的目录结构。如下安装 S2I CLI：
 
 ```bash
 $ wget https://github.com/openshift/source-to-image/releases/download/v1.1.14/source-to-image-v1.1.14-874754de-linux-386.tar.gz
@@ -88,7 +88,7 @@ RUN yum install -y epel-release && \
 RUN sed -i 's/80/8080/' /etc/nginx/nginx.conf
 RUN sed -i 's/user nginx;//' /etc/nginx/nginx.conf
 
-# 将s2i的脚本复制到构建器镜像当中
+# 将S2I的脚本复制到构建器镜像当中
 COPY ./s2i/bin/ /usr/libexec/s2i
 
 RUN chown -R 1001:1001 /usr/share/nginx
@@ -107,9 +107,9 @@ EXPOSE 8080
 CMD ["/usr/libexec/s2i/usage"]
 ```
 
-**S2I 脚本中会根据Dockerfile 中定义的Label信息作为使用参数，如果使用非KubeSphere提供的基础镜像，请参考 [S2i Script](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-scripts)**
+**S2I 脚本中会根据Dockerfile 中定义的Label信息作为使用参数，如果使用非KubeSphere提供的基础镜像，请参考 [S2I Script](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-scripts)**
 
-## 第三步 处理s2i构建器脚本
+## 第三步 处理S2I构建器脚本
 
 当我们完成了 `Dockerfile` 的定义，我们现在可以完成构建器镜像的其他部分。我们现在添加S2I脚本，我们将从 `assemble`（负责构建应用程序）开始。如下编辑 `assemble` 文件，在我们的例子中，它只是把 `nginx`的配置文件以及静态内容复制到目标容器中：
 
@@ -168,7 +168,7 @@ EOF
 
 ## 第四步 构建与运行
 
-当我们完成了 `Dockerfile` 和 S2i 的脚本，我们现在修改一下 `Makefile` 当中的镜像名称:
+当我们完成了 `Dockerfile` 和 S2I 的脚本，我们现在修改一下 `Makefile` 当中的镜像名称:
 
 **Makefile**
 
@@ -236,7 +236,7 @@ $ docker run -p 8080:8080  sample-app
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190830115544.png)
 
-## 第五步 推送镜像并在 KubeSphere 添加 S2i 模版
+## 第五步 推送镜像并在 KubeSphere 添加 S2I 模版
 
 S2I 模版定义了应用程序构建的基础环境，包括构建器镜像 (Builder Image) 和 运行时镜像 (Runtime Image)，以及环境参数、描述信息等。
 
@@ -298,4 +298,4 @@ s2ibuildertemplate.devops.kubesphere.io/nginx created
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190830115920.png)
 
-至此我们就完成了 S2i 构建器镜像与构建器模版的创建。类似地，可以参考上述步骤，您可以基于 S2i CLI 自定义任何所需的 S2i 模板，然后在 KubeSphere 构建所需的镜像并一键部署至 Kubernetes 环境中，方便快速与多次构建环境。
+至此我们就完成了 S2I 构建器镜像与构建器模版的创建。类似地，可以参考上述步骤，您可以基于 S2I CLI 自定义任何所需的 S2I 模板，然后在 KubeSphere 构建所需的镜像并一键部署至 Kubernetes 环境中，方便快速与多次构建环境。
