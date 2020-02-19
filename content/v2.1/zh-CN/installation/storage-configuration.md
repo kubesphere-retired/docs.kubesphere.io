@@ -11,6 +11,8 @@ description: ''
 - GlusterFS
 - QingCloud 云平台块存储
 - QingStor NeonSAN
+- 阿里云块存储
+- 腾讯云块存储
 - Local Volume (默认，仅部署测试使用)
 
 
@@ -25,8 +27,8 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 |NFS Client | v3.1.0 | 在安装 KubeSphere 前仅需在 `common.yaml` 配置相应参数即可对接其存储服务端，详见 [NFS Client](../storage-configuration/#nfs)  |
 | QingCloud-CSI |v0.2.0.1|在安装 KubeSphere 前仅需在 `common.yaml` 配置相应参数，详见 [QingCloud CSI](../storage-configuration/#qingcloud-云平台块存储)|
 | NeonSAN-CSI|v0.3.0|在安装 KubeSphere 前仅需在 `common.yaml` 配置相应参数，详见 [Neonsan-CSI](../storage-configuration/#qingstor-neonsan) |
-| 阿里云 CSI |v0.2.0.1|在安装 KubeSphere 前仅需在 `plugin-aliyun.yaml` 配置相应参数，详见 [Aliyun CSI](../storage-configuration/#aliyun-csi)|
-| 腾讯云 CSI|v0.3.0|在安装 KubeSphere 前仅需在 `plugin-tencentcloud.yaml` 配置相应参数，详见 [TencentCloud-CSI](../storage-configuration/#tencentcloud-csi) |
+| 阿里云 CSI |v1.14.5|在安装 KubeSphere 前仅需在 `plugin-aliyun.yaml` 配置相应参数，详见 [Aliyun CSI](../storage-configuration/#aliyun-csi)|
+| 腾讯云 CSI|v1.0.0|在安装 KubeSphere 前仅需在 `plugin-tencentcloud.yaml` 配置相应参数，详见 [TencentCloud-CSI](../storage-configuration/#tencentcloud-csi) |
 
 > 说明：
 > 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。

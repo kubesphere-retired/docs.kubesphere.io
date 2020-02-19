@@ -1,7 +1,7 @@
 ---
 title: "安装使用内置 Harbor"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: '如何安装使用内置 Harbor 至 Kubernetes'
 ---
 
 KubeSphere Installer 集成了 Harbor 版本为 1.7.5，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，方便用户对项目的镜像管理，仅需 `安装前` 在配置文件 `conf/common.yaml` 中简单配置即可。以下步骤演示在 KubeSphere 安装前和安装后如何开启 Harbor 的安装，并访问 Harbor 控制台。

@@ -37,7 +37,7 @@ Then you can continue your installation by following the instructions of [All-in
 
 ## Enable Logging System After Installation
 
-If you already have a minimal KubeSphere setup, you still can edit the ConfigMap of ks-installer using the following command:
+If you already have set up KubeSphere without enabling logging system, you still can edit the ConfigMap of ks-installer using the following command:
 
 ```bash
 kubectl edit cm -n kubesphere-system ks-installer

@@ -1,7 +1,7 @@
 ---
 title: "Enable Harbor Installation"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: 'How to Enable Built-in Harbor Registry'
 ---
 
 [Harbor](https://goharbor.io/) is an an open source trusted cloud native registry project that stores, signs, and scans content. Harbor extends the open source Docker Distribution by adding the functionalities usually required by users such as security, identity and management.
@@ -24,16 +24,25 @@ Harbor_domain: harbor.devops.kubesphere.local
 
 ## Enable Harbor After Installation
 
-1. As above, you can set `Harbor_enable: true` in `conf/common.yml` to enable Harbor installation.
+If you already have set up KubeSphere without enabling Harbor, you still can edit the ConfigMap of ks-installer using the following command:
 
-```
-# harbor deployment
-Harbor_enable: true
-Harbor_domain: harbor.devops.kubesphere.local
+```bash
+kubectl edit cm -n kubesphere-system ks-installer
 ```
 
-2. Save it, then you can execute install.sh and choose the matched installation option to trigger it, it will only install Harbor to current Kubernetes cluster.
+Then set logging from `False` to `True`:
 
+```yaml
+    harbor:
+        enabled: True
+        domain: harbor.devops.kubesphere.local  ## Whether to install Harbor
+```
+
+Save it and exit. The Harbor registry will be installed automatically. You can inspect the logs of ks-installer Pod to [verify the installation status](../verify-components), and wait for the successful result logs output.
+
+## Configure Domain Name
+
+Note that you need to configure `insecure registry` for docker daemon, refer to [Add Harbor Registry with http protocol](../../configuration/image-registry/#http).
 
 ## How to use Harbor
 
@@ -41,7 +50,7 @@ To add Harbor as a image registry in KubeSphere, please refer to the following s
 
 ### Login with Docker
 
-1. Before login, ensure if the domain name has been configured into docker, execute `docker info` to verify it.
+1. Before you log in Harbor, ensure if the domain name has been configured into docker, execute `docker info` to verify it.
 
 ```
 $ docker info
