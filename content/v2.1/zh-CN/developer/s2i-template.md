@@ -3,7 +3,7 @@ title: "开发自定义 S2I 模版"
 keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
 ---
 
-对 **Source-to-image (S2I)** 工作原理有了一定了之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2i 模板) 来扩展 S2i，在我们的项目当中提供了部分常用的构建器镜像模版，例如[Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。
+对 **Source-to-image (S2I)** 工作原理有了一定了解之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2i 模板) 来扩展 S2i，在我们的项目当中提供了部分常用的构建器镜像模版，例如[Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。
 
 在详细介绍构建器影响之前，先介绍下完成构建器镜像模版所需要提供的元素。
 
@@ -17,7 +17,7 @@ keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
 
 S2i 构建器镜像的更多的信息可参考[S2IRun](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-builder-image-requirements)
 
-在以下的步骤中，我们将向您展示如何创建一个[Nginx](https://www.nginx.com/) 服务的构建器镜像。
+**在以下的步骤中，我们将向您展示如何创建一个[Nginx](https://www.nginx.com/) 服务的构建器镜像。若项目中希望使用运行时镜像(Runtime Image)，可以参考文档[如何构建运行时镜像](https://github.com/kubesphere/s2irun/blob/master/docs/runtime_image.md)**
 
 ## 第一步：S2i CLI 构建项目目录
 
@@ -106,6 +106,8 @@ EXPOSE 8080
 # 修改构建器的默认启动命令，以展示构建器镜像的用法
 CMD ["/usr/libexec/s2i/usage"]
 ```
+
+**S2I 脚本中会根据Dockerfile 中定义的Label信息作为使用参数，如果使用非KubeSphere提供的基础镜像，请参考 [S2i Script](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-scripts)**
 
 ## 第三步 处理s2i构建器脚本
 
@@ -236,7 +238,7 @@ $ docker run -p 8080:8080  sample-app
 
 ## 第五步 推送镜像并在 KubeSphere 添加 S2i 模版
 
-S2I 模版用于模版定义了应用程序构建的基础环境，包括构建器镜像 (Builder Image) 和 运行时镜像 (Runtime Image)，以及环境参数、描述信息等。
+S2I 模版定义了应用程序构建的基础环境，包括构建器镜像 (Builder Image) 和 运行时镜像 (Runtime Image)，以及环境参数、描述信息等。
 
 当我们在本地完成 S2I 构建器镜像的测试之后，就可以推送镜像到自定义的镜像仓库当中，并创建构建器模版 `yaml` 文件：
 
@@ -250,14 +252,40 @@ metadata:
     controller-tools.k8s.io: "1.0"
   name: nginx-demo
 spec:
-  baseImages: # 构建器镜像名称，同一代码框架的多个不同版本。
-    - kubespheredev/nginx-centos7-s2ibuilder-sample
+  containerInfo:
+    - builderImage: kubespheredev/nginx-centos7-s2ibuilder-sample
   codeFramework: nginx # 代码框架类型
   defaultBaseImage: kubespheredev/nginx-centos7-s2ibuilder-sample # 默认使用的构建器镜像 (可替换为自定义的镜像)
   version: 0.0.1 # 构建器模版的版本
   description: "This is a S2I builder template for Nginx builds whose result can be run directly without any further application server.." # 构建器模版的描述信息
 
 ```
+
+S2I 模版详细参数信息如下表所示，其中带有 * 的参数表示必填项：
+
+| 修改项                   | 类型                   | 含义                                                         |
+| :----------------------- | :--------------------- | :----------------------------------------------------------- |
+| *containerInfo | []struct | 描述构建镜像的相关信息 |
+| *containerInfo.builderImage | string | S2I 构建器镜像，比如：kubesphere/java-8-centos7:v2.1.0 |
+| containerInfo.runtimeImage                 | string   | S2I 运行时镜像镜像，比如：kubesphere/java-8-runtime:v2.1.0   |
+| containerInfo.buildVolumes                 | []string | 挂载卷信息，格式"volume_name:mount_path"，比如：["s2i_java_cache:/tmp/artifacts"] |
+| containerInfo.runtimeArtifacts             | []struct | 描述输出制品的原路径和目标路径，仅用于分阶段构建时使用       |
+| containerInfo.runtimeArtifacts.source      | string   | 制品在构建器镜像中的原路径                                   |
+| containerInfo.runtimeArtifacts.destination | string   | 移动到运行时镜像中的目标路径                                 |
+| containerInfo.runtimeArtifacts.keep        | bool     | 是否将数据保留在最终镜像中                                   |
+| *defaultBaseImage                          | string   | 默认使用的构建器镜像                                         |
+| *codeFramework   | string      | 代码框架类型，比如Java、Ruby等 |
+| environment                                | []struct | 设置用于构建过程中的环境变量                                 |
+| environment.key                            | string   | 环境变量名称                                                 |
+| environment.type                           | string   | 环境变量值类型                                               |
+| environment.description                    | string   | 环境变量描述信息                                             |
+| environment.optValues                      | []string | 环境变量参数选项                                             |
+| environment.required                       | bool     | 是否必须设置该环境变量                                       |
+| environment.defaultValue                   | string   | 环境变量默认值                                               |
+| environment.value                          | string   | 环境变量值                                                   |
+| iconPath        | string | 应用名称                                                     |
+| version | string      | S2I 模版版本 |
+| description | string | 用于描述此模版的功能、用途等 |
 
 在创建好构建器模版后我们可以使用 `kubectl` 将构建器模版提交到 KubeSphere 环境当中：
 
