@@ -1,31 +1,26 @@
 ---
-title: "Enable KubeSphere Logging System Installation"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'Install Helm Application Store'
+title: "Enable KubeSphere Logging System"
+keywords: 'kubesphere, kubernetes, docker, prometheus, elasticsearch, logging, elk'
+description: 'How to enable KubeSphere logging system'
 ---
 
 ## What is KubeSphere Logging System
 
-KubeSphere logging system provides powerful and easy-to-use logs search, collect and management features, based on [Elasticsearch](https://jenkins.io/). For example, it includes multi-tenant logging management, multi-level logs search (including namespace, workload, Pod, container and keywords), as well as flexible and convenient logs collection configuration, which supports forward logs to Elasticsearch, Kafka and Fluentd. In addition, we added collect logs on disk in KubeSphere v2.1.
+KubeSphere provides powerful and easy-to-use logging system which offers users the capabilities of log collection, query and management in terms of tenants. Meanwhile, the system provides not only infrastructure logging capabilities but application logging capabilities. And provides various search scopes such as project, workload, Pod, docker and keyword. Tenant-based logging system is much more useful than Kibana since different tenant can only view her/his own logs, leading much better security. KubeSphere logging system is a pluggable component that you can enable to use. It has the following features.
 
-When it compares with Kibana, KubeSphere logging system based on multitenancy, which makes different roles of tenants can only see the logs belong to their own account.
-
-**Log search**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191228210920.png)
-
-**Log collection**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191228210953.png)
-
+> - [Support multi-tenant and multi-dimensional log search](../../toolbox/log-search)
+> - Support various log receivers including Elasticsearch、Kafka and Fluentd
+> - [Support file-based logging](../../workload/logs-on-disk)
 
 ## Enable Logging System Before Installation
 
-<font color=red>KubeSphere logging system requires 56 m (CPU request) and 2.76 G (Memory request) at least, make sure your cluster has enough resource.</font>
+<font color=red>KubeSphere logging system requires 56 m (CPU request) and 2.76 G (memory request) at least. Please make sure your cluster has enough resource.</font>
 
-Before execute installation, you can enable logging system in `conf/common.yaml` according to the following configuration:
+Before start the installation, you can change the value of `logging_enabled` in `conf/common.yaml` from `false` to `true` to enable logging system as shown below, then you can continue your installation by following the instructions of [All-in-One](../all-in-one) or [Multi-Node](../multi-node).
 
-> Note: KubeSphere will install Elasticsearch for testing purpose in your cluster by default, it also supports using external Elasticsearch (v7.x), it can reduce memory consumption as well, we recommend you to use external Elasticsearch in production environment, following `external_es_url` and `external_es_port` allows you to configure external ES.
+> Note: By default, KubeSphere will install Elasticsearch within the cluster for testing purpose. It also supports using external Elasticsearch (v7.x) which reduces memory consumption of your cluster resource. Generally, we recommend you to use external Elasticsearch in production environment by configuring the parameters `external_es_url` and `external_es_port` to use external one.
 
-```bash
+```yaml
 # Logging
 logging_enabled: true # Whether to install KubeSphere logging system
 elasticsearch_master_replica: 1  
@@ -38,19 +33,19 @@ kibana_enabled: false # Whether to install Kibana
 #external_es_port: SHOULD_BE_REPLACED # Elasticsearch service port
 ```
 
-Then you can back to All-in-one or Multi-node guide to continue installation.
+Then you can continue your installation by following the instructions of [All-in-One](../all-in-one) or [Multi-Node](../multi-node).
 
 ## Enable Logging System After Installation
 
-Edit the ConfigMap of ks-installer using following command:
+If you already have a minimal KubeSphere setup, you still can edit the ConfigMap of ks-installer using the following command:
 
 ```bash
-$ kubectl edit cm -n kubesphere-system ks-installer
+kubectl edit cm -n kubesphere-system ks-installer
 ```
 
-Then set OpenPitrix from False to True:
+Then set logging from `False` to `True`:
 
-```bash
+```yaml
 logging:
      enabled: True
      elasticsearchMasterReplica: 1
@@ -63,4 +58,4 @@ logging:
        enabled: False
 ```
 
-Save it and exit, it will be installed automatically. You can inspect the logs of ks-installer Pod to [verify the installation status](../verify-components), and wait for the successful result logs output.
+Save it and exit. The logging system will be installed automatically. You can inspect the logs of ks-installer Pod to [verify the installation status](../verify-components), and wait for the successful result logs output.

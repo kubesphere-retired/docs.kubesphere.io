@@ -1,26 +1,31 @@
 ---
-title: "Enable Application Store Installation"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'Install Helm Application Store'
+title: "Enable Application Store"
+keywords: 'kubesphere, kubernetes, docker, helm, openpitrix'
+description: 'How to enable Helm-based Application Store sponsored by OpenPitrix'
 ---
 
 ## What is Application Store
 
-KubeSphere is an open source and application-centric container platform, provides users with the Helm application store and application lifecycle management, which is based on OpenPitrix, the self-developed and open source framework (platform). Application store allows ISV, developers and users to upload / test / review / deploy / publish / upgrade and remove App with several clicks.
+KubeSphere is an open source and application-centric container platform, providing users with the Helm-based application store and application lifecycle management sponsored by open source [OpenPitrix](https://github.com/openpitrix/openpitrix). Application store allows ISV, developers and users to upload / test / review / deploy / publish / upgrade / deploy and remove Apps with several clicks.
 
-Meanwhile, the application store can be used to share applications between different teams within workspace, including big data, middleware, AI, etc. Users can share and deploy the helm chart to Kubernetes in an easy way. It can also meet different demands in diverse scenarios.
+Meanwhile, the application store can be used to share applications such as big data, middleware, AI, etc. among different teams within workspace. Users can deploy the helm chart from the store to Kubernetes cluster with one click.
 
-KubeSphere application store also provides 10 helm chart application for quick testing.
+KubeSphere application store also provides 10 built-in helm charts for testing.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191225205635.png)
+![App Store](https://pek3b.qingstor.com/kubesphere-docs/png/20191225205635.png)
+
+There are three ways to deploy application in the store since KubeSphere v2.1.0.
+
+> - [Templates of app repository under workspace](../../quick-start/one-click-deploy): You can easily upload Helm-based templates or import third-party templates to app repository, from where users can deploy application to their Kubernetes clusters.
+> - [The global application store](../../quick-start/app-store): It is a global application store for all users. ISVs use it to submit and publish their applications once the applications get approved by app approvers. Then any user can deploy the applications to their Kubernetes clusters. Please note KubeSphere provides 10 built-in applications in the global store for testing only.
 
 ## Enable Application Store Before Installation
 
-> Note: This guide is only used for Linux installer, if you are going to install KubeSphere and app store on your own Kubernetes, see [ks-installer](https://github.com/kubesphere/ks-installer).
+> Note: This guide is only used for installing KubeSphere on Linux machines. If you are going to install KubeSphere and app store on your own Kubernetes cluster, please see [ks-installer](https://github.com/kubesphere/ks-installer).
 
-Before execute installation, you can enable `openpitrix_enabled` in `conf/common.yaml` to allow app store installation according to the following configuration, then you can back to All-in-one or Multi-node guide to continue installation.
+Before starting the installation, you need to change the value of `openpitrix_enabled` to `true` in `conf/common.yaml` as follows to enable app store, then you can go back to [All-in-One](../all-in-one) or [Multi-Node](../multi-node) guide to continue your installation.
 
-```bash
+```yaml
 # Following components are all optional for KubeSphere,
 # Which could be turned on to install it before installation or later by updating its value to true
 openpitrix_enabled: true
@@ -28,17 +33,17 @@ openpitrix_enabled: true
 
 ## Enable Application Store After Installation
 
-Edit the ConfigMap of ks-installer using following command:
+If you already have a minimal KubeSphere setup, you still can enable app store by editing the ConfigMap of ks-installer using the following command:
 
 ```bash
-$ kubectl edit cm -n kubesphere-system ks-installer
+kubectl edit cm -n kubesphere-system ks-installer
 ```
 
-Then set OpenPitrix from False to True:
+Then set OpenPitrix from `False` to `True`:
 
-```bash
+```yaml
 openpitrix:
       enabled: True
 ```
 
-Save it and exit, it will be installed automatically. You can inspect the logs of ks-installer Pod to [verify the installation status](../verify-components), and wait for the successful result logs output.
+Save it and exit. App Store will be installed automatically for you. You can inspect the logs of ks-installer Pod to [verify the installation status](../verify-components), and wait for the successful result logs output.
