@@ -11,7 +11,7 @@ description: ''
 1. 查看 ks-installer 安装过程中产生的动态日志，等待安装成功：
 
 ```bash
-$ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
 当动态日志出现如下提示，说明开启的组件已安装成功。
@@ -52,9 +52,9 @@ NOTES：
 KubeSphere Installer 默认仅开启最小化安装，依次查看以下 3 个 namespace 下的 Pod 与 Job 状态：
 
 ```bash
-$ kubectl get pod -n kubesphere-system
-$ kubectl get pod -n kubesphere-monitoring-system
-$ kubectl get pod -n kube-system
+kubectl get pod -n kubesphere-system
+kubectl get pod -n kubesphere-monitoring-system
+kubectl get pod -n kube-system
 ```
 
 ### 验证应用商店的安装
@@ -63,7 +63,7 @@ $ kubectl get pod -n kube-system
 
 
 ```bash
-$ kubectl get pod -n openpitrix-system
+kubectl get pod -n openpitrix-system
 ```
 
 ### 验证 DevOps 系统的安装
@@ -72,7 +72,7 @@ $ kubectl get pod -n openpitrix-system
 
 
 ```bash
-$ kubectl get pod -n kubesphere-devops-system
+kubectl get pod -n kubesphere-devops-system
 ```
 
 ### 验证日志系统的安装
@@ -81,7 +81,7 @@ $ kubectl get pod -n kubesphere-devops-system
 
 
 ```bash
-$ kubectl get pod -n kubesphere-logging-system
+kubectl get pod -n kubesphere-logging-system
 ```
 
 ### 验证 ServiceMesh（Istio）的安装
@@ -90,7 +90,7 @@ $ kubectl get pod -n kubesphere-logging-system
 
 
 ```bash
-$ kubectl get pod -n istio-system
+kubectl get pod -n istio-system
 ```
 
 ### 验证 Metrics-server 的安装
@@ -99,7 +99,23 @@ $ kubectl get pod -n istio-system
 
 
 ```bash
-$ kubectl get pod -n kube-system | grep metrics-server
+kubectl get pod -n kube-system | grep metrics-server
+```
+
+### 验证 Harbor 安装
+
+若开启安装了 [内置 Harbor](../install-harbor)，可通过以下命令来验证 Pod 与 Job 状态：
+
+```bash
+kubectl get pod -n kubesphere-devops-system | grep harbor
+```
+
+### 验证 GitLab 安装
+
+若开启安装了 [内置 GitLab](../install-gitlab)，可通过以下命令来验证 Pod 与 Job 状态：
+
+```bash
+kubectl get pod -n kubesphere-devops-system | grep gitlab
 ```
 
 ## 如何重启 ks-installer

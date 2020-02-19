@@ -164,11 +164,11 @@
           "entries": [
             {
               "title": "安装内置 Harbor",
-              "entry": "./v2.1/zh-CN/installation/harbor-installation.md"
+              "entry": "./v2.1/zh-CN/installation/install-harbor.md"
             },
             {
               "title": "安装内置 GitLab",
-              "entry": "./v2.1/zh-CN/installation/gitlab-installation.md"
+              "entry": "./v2.1/zh-CN/installation/install-gitlab.md"
             },
             {
               "title": "安装内置 Grafana",
