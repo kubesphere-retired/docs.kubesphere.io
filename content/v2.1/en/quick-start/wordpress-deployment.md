@@ -69,7 +69,7 @@ In this step, we will choose the way of composing app to create a complete micro
 
 ![Compose Application](https://pek3b.qingstor.com/kubesphere-docs/png/20200106001425.png)
 
-3.3. Click **Add Container Image**, input `mysql:5.6` in the Image edit box, press the return key and click `Use Default Ports`.
+3.3. Click **Add Container Image**, enter `mysql:5.6` into the Image edit box, press the return key and click `Use Default Ports`.
 
 ![Fill Application Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106002012.png)
 
@@ -93,7 +93,7 @@ Click `√` to save it when you've finished.
 
 ![Add Front End](https://pek3b.qingstor.com/kubesphere-docs/png/20200106004302.png)
 
-3.8. Click **Add Container Image**, input `wordpress:4.8-apache` in the Image edit box, press the return key and click `Use Default Ports`.
+3.8. Click **Add Container Image**, enter `wordpress:4.8-apache` into the Image edit box, press the return key and click `Use Default Ports`.
 
 ![Choose Container Image](https://pek3b.qingstor.com/kubesphere-docs/png/20200106004543.png)
 
@@ -106,7 +106,7 @@ Click `√` to save it when you've finished.
 
 3.10. Click `√` to save it.
 
-3.11. Continue scrolling down and click `Add Volume` to attach the existed volume to wordpress.
+3.11. Continue scrolling down and click `Add Volume` to attach the existed volume to WordPress.
 
 ![Add Volume](https://pek3b.qingstor.com/kubesphere-docs/png/20200106005242.png)
 
