@@ -11,18 +11,20 @@ Currently, it can store the following 4 types of credentials in DevOps project:
 - Account credentials: Username and password - which could be handled as separate components or as a colon separated string in the format username:password, such as GitHub, GitLab, Docker Hub, etc.
 - SSH: Username with private key - an SSH public/private key pair.
 - Secret text: Secret content in a file.
-- kubeconfig: It's used to configure cross-cluster authentication, the page will automatically generate the contents of the kubeconfig file of the current Kubernetes cluster. 
+- kubeconfig: It's used to configure cross-cluster authentication, the page will automatically generate the contents of the kubeconfig file of the current Kubernetes cluster.
 
-## Create a Credential
+## Create Credential
 
-1. Sign in with `project-regular`, choose **Credentials** and click **Create Credential**.
+Sign in with `project-regular`, choose **Credentials** and click **Create Credential**.
 
 ![Create a Credential](https://pek3b.qingstor.com/kubesphere-docs/png/20190321160338.png)
 
-2. Fill in the basic information in the pop-up window.
+### Create Credential for DockerHub
 
-- Credential ID: it will be used in pipeline, e.g. **gitlab-id**
-- Type: See above introduction.
+1. Click **Create**, fill in the basic information in the pop-up window.
+
+- Credential ID: it will be used in pipeline, name it **dockerhub-id**
+- Type: Choose ``
 - Username: Your personal username for 3rd party application.
 - Token/password: Your personal password for 3rd party application.
 - Description: A brief introduction to this credential.

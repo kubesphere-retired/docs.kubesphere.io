@@ -42,7 +42,7 @@ KubeSphere 应用商店 **对内可作为团队间共享企业内部的中间件
 
 ## 上传应用提交审核
 
-1. 切换至 **ISV 账号** workspace-admin 登录，进入企业空间下，准备上传一个示例应用并提交审核。[点击下载](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-beta.1.tgz) EMQ X 应用打包好的第一个版本，用于 **初次提交审核**。
+1. 切换至 **ISV 账号** workspace-admin 登录，进入企业空间下，准备上传一个示例应用并提交审核。请下载 [EMQ X chart v1.0.0](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-rc.1.tgz) 打包好的第一个版本 Chart，用于 **初次提交审核**。
 
 > 提示：目前版本由于上传应用的权限仅开放给了 workspace-admin 角色，因此项目下的应用开发者需线下将打包好的 Helm 应用包传递给 ISV，由 ISV 上传应用至企业空间下的应用模板。v3.0 计划将应用上传与发布的权限开放给开发者，对权限进行更精细化的控制，将开发者从应用提交审核到应用上架设计成一个闭环。
 
@@ -50,7 +50,7 @@ KubeSphere 应用商店 **对内可作为团队间共享企业内部的中间件
 
 2. 在示例企业空间 `demo-workspace` 下，选择 `应用模板 → 上传模板`。
 
-3. 点击 `开始上传`，然后将 `emqx-v1.0.0-beta.1.tgz` 上传至平台。
+3. 点击 `开始上传`，然后将 `emqx-v1.0.0.tgz` 上传至平台。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191101145237.png)
 
@@ -120,7 +120,7 @@ KubeSphere 应用商店 **对内可作为团队间共享企业内部的中间件
 
 ## 添加新版本
 
-KubeSphere 支持对已上架的应用发布新的版本，方便用户进行升级。继续使用 `ISV` 账号，在应用模板中进入 EMQ X 应用详情页，在右侧点击 `添加版本`，然后上传示例应用 EMQ X 的新版本，点击下载 [emqx-v1.0.0-beta.2.tgz](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-beta.2.tgz)。
+KubeSphere 支持对已上架的应用发布新的版本，方便用户进行升级。继续使用 `ISV` 账号，在应用模板中进入 EMQ X 应用详情页，在右侧点击 `添加版本`，然后上传示例应用 EMQ X 的新版本，点击下载 [EMQ X v4.0.2](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v4.0.2.tgz)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191101181321.png)
 

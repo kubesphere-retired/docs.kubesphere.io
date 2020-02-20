@@ -36,8 +36,7 @@ KubeSphere provides pluggable DevOps component based on popular CI/CD tools such
 ### CI/CD Pipeline
 
 - CI/CD pipelines and build strategies are based on Jenkins, which streamlines the creation and automation of development, test and production process, and supports dependency cache to accelerate build and deployment.
-- Ship out-of-box Jenkins build strategy and client
-plugin to create a Jenkins pipeline based on Git repository/SVN. You can define any step and stage in your built-in jenkinsfile.
+- Ship out-of-box Jenkins build strategy and client plugin to create a Jenkins pipeline based on Git repository/SVN. You can define any step and stage in your built-in jenkinsfile.
 - Design a visualized control panel to create CI/CD pipelines, and deliver complete visibility to simplify user interaction.
 - Integrate source code quality analysis, also support output and collect logs of each step.
 
