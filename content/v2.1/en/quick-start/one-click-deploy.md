@@ -1,7 +1,7 @@
 ---
 title: "Deploy Grafana App to Kubernetes using Application Template"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+keywords: 'kubernetes, docker, helm, grafana, prometheus'
+description: 'How to deploy Grafana to Kubernetes using Application Template'
 ---
 
 ## Objective
@@ -10,8 +10,8 @@ This tutorial shows you how to quickly deploy a [Grafana](https://grafana.com/) 
 
 ## Prerequisites
 
-- You've enabled [KubeSphere Application Store](../../installation/install-openpitrix)
-- You've completed all steps in [Getting Started with Multi-tenant Management](../admin-quick-start.md)
+- You need to enable installing [KubeSphere Application Store](../../installation/install-openpitrix)
+- You need to complete all steps in [Getting Started with Multi-tenant Management](../admin-quick-start.md)
 
 ## Hands-on Lab
 
