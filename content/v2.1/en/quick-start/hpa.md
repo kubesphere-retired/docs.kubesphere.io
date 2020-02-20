@@ -1,17 +1,15 @@
 ---
 title: "Creating Horizontal Pod Autoscaler for Deployment"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+keywords: 'kubesphere, kubernetes, docker, HPA, Horizontal Pod Autoscaler'
+description: 'How to scale deployment replicas using horizontal Pod autoscaler'
 ---
 
 
-The Horizontal Pod Autoscaler (HPA) automatically scales the number of pods in a deployment based on observed CPU utilization or Memory usage. The controller periodically adjusts the number of replicas in a deployment to match the observed average CPU utilization or Memory usage to the target value specified by user.
+The Horizontal Pod Autoscaler (HPA) automatically scales the number of pods in a deployment based on observed CPU utilization or memory usage. The controller periodically adjusts the number of replicas in a deployment to match the observed average CPU utilization or memory usage to the target value specified by user.
 
 ## How does the HPA work
 
-The Horizontal Pod Autoscaler is implemented as a control loop, with a period controlled by the controller manager’s HPA sync-period flag (with a default value of 30 seconds). For per-pod resource metrics (like CPU), the controller fetches the metrics from the resource metrics API for each pod targeted by the Horizontal Pod Autoscaler. See [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for more details.
-
-After creating HPA in the deployment, Controller Manager can access to Metrics-server. And it can obtain the utilization ratio or the original value's (which is determined by the target type) average value of each container cluster in the customized resources. Then, the Controller Manager will compare the average value with the HPA's setting index. At the same time, the Controller Manager can calculate the specific value of Pod's elastic expansion in the deployment. For the Pod's CPU and its storage resources, it should be considered the limits and requests. When scheduling, Kube-scheduler will calculate according to the requests. Thus, if Pod has not been set the request, the flexible expansion will not work.
+The Horizontal Pod Autoscaler is implemented as a control loop with a period of 30 seconds by default controlled by the controller manager HPA sync-period flag. For per-pod resource metrics like CPU, the controller fetches the metrics from the resource metrics API for each pod targeted by the Horizontal Pod Autoscaler. See [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for more details.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716214909.png#alt=)
 
@@ -19,34 +17,33 @@ After creating HPA in the deployment, Controller Manager can access to Metrics-s
 
 This document walks you through an example of configuring Horizontal Pod Autoscaler for the hpa-example deployment.
 
-We will create a deployment to send an infinite loop of queries to the hpa example application, demonstrating its autoscaling function and the HPA principle.
+We will create a deployment to send an infinite loop of queries to the hpa-example application, demonstrating its autoscaling function and the HPA principle.
 
 ## Estimate Time
 
-About 25 minutes.
+About 25 minutes
 
 ## Prerequisites
 
-- You need to create a workspace and a project, see the [Getting Started with Multi-tenant Management](../admin-quick-start.md) if not yet.
-- You need to log in with `project-regular` account and enter the corresponding project.
+You need to create a workspace and a project, see the [Getting Started with Multi-tenant Management](../admin-quick-start) if not yet.
 
 ## Hands-on Lab
 
 ### Step 1: Create a Deployment
 
-1.1. Enter `demo-project`, then select **Workload → Deployments** and click **Create Deployment** button.
+1.1. Log in with `project-regular` account. Enter `demo-project`, then select **Application Workloads → Workloads → Deployments** and click **Create Deployment** button.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716215848.png#alt=)
+![Deployment List](https://pek3b.qingstor.com/kubesphere-docs/png/20190716215848.png#alt=)
 
-1.2. Fill in the basic information in the pop-up window. e.g. `Name: hpa-example`, then click **Next** when you've done.
+1.2. Fill in the basic information in the pop-up window. e.g. name it `hpa-example`, then click **Next**.
 
 ### Step 2: Configure the HPA
 
 2.1. Choose **Horizontal Pod Autoscaling**, and fill in the table as follows:
 
-- Min Replicas Number: 2
-- Max Replicas Number: 10
-- CPU Request Target(%): 50 (represents the percent of target CPU utilization)
+- Min Replicas Number: `2`
+- Max Replicas Number: `10`
+- CPU Request Target(%): `50` (represents the percent of target CPU utilization)
 
 Then click on the **Add Container** button.
 
@@ -123,7 +120,7 @@ So far, we've created two deployments (i.e. hpa-example and load-generator) and 
 
 ### Step 5: Verify the HPA
 
-5.1. Click into `hpa-example` and inspect the changes. Please pay attention to the HPA status and the CPU utilization, as well as the Pods monitoring graphs.
+Click into `hpa-example` and inspect the changes. Please pay attention to the HPA status and the CPU utilization, as well as the Pods monitoring graphs.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190322010021.png#alt=)
 
@@ -134,7 +131,6 @@ So far, we've created two deployments (i.e. hpa-example and load-generator) and 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716223104.png#alt=)
 
 > Note: Since the Horizontal Pod Autoscaler is working right now, the load-generator looply requests the hpa-example service to make the CPU utilization rised rapidly. After the HPA starts working, it makes the backend of the service increase fast to handle a large number of requests together. Also the replicas of hpa-example continue to increase following with the CPU utilization increase, which demonstrates the working principle of HPA.
-
 
 6.2. In the monitoring graph, we can see the CPU usage of the first created Pod shows a significant upward trend. When HPA starts working, the CPU usage has a significant decreased trend. Finally it tends to be smooth. Accordingly, the CPU usage is increasing on the newly created Pods.
 

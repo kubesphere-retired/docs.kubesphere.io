@@ -14,16 +14,17 @@ cache:
 
 install:
   - yarn
-  - bash ./princexml/install.sh
 
 script:
   - yarn test
-  - yarn build
+  - yarn build:ci
 
 before_deploy:
+  - bash ./princexml/install.sh
+  - yarn build
   - yarn serve
   - sleep 5
-  - prince --javascript --structured-log=quiet --page-margin 0 http://localhost:9000/docs/v2.1/zh-CN/all/ -o public/KubeSphere-v2.1.pdf
+  - prince --javascript --page-margin 0 http://localhost:9000/docs/v2.1/zh-CN/all/ -o public/KubeSphere-v2.1.pdf
   - docker build -t kubesphere/docs.kubesphere.io .
 
 deploy:
