@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import cheerio from 'cheerio'
 
-import Layout from '../layouts'
+import Layout from '../layouts/index'
 
 import './markdown.css'
 import './prince.css'
@@ -146,7 +146,6 @@ export const pageQuery = graphql`
           version
           lang
           chapters {
-            title
             entry {
               childMarkdownRemark {
                 ...ChildMarkdownRemark2
@@ -160,7 +159,6 @@ export const pageQuery = graphql`
               }
             }
             chapters {
-              title
               entry {
                 childMarkdownRemark {
                   ...ChildMarkdownRemark2

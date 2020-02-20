@@ -1,12 +1,12 @@
 ---
-title: "Create a CI/CD Pipeline based on Spring Boot Project"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "Create a Jenkinsfile-based Pipeline for Spring Boot Project"
+keywords: 'kubernetes, docker, spring boot, jenkins'
+description: 'Create a Jenkinsfile-based Pipeline to deploy Spring Boot Project to Kubernetes'
 ---
 
 ## Objective
 
-In this tutorial we will show you how to create a pipeline based on the built-in Jenkinsfile of the GitHub repository. There are 8 stages in the pipeline. There is a demo application that will be deployed to Development and Production namespace. At the same time , there is a branch that is used to test dependency cache, you can compare the build time with the master branch.
+In this tutorial, we will show you how to create a pipeline based on the built-in Jenkinsfile of the GitHub repository. There are 8 stages in the pipeline. There is a demo application that will be deployed to Development and Production namespace. At the same time , there is a branch that is used to test dependency cache, you can compare the build time with the master branch.
 
 > Note:
 > KubeSphere supports two kinds of pipeline, i.e. jenkinsfile in SCM and jenkinsfile out of SCM. Jenkinsfile in SCM requires a internal Jenkinsfile in SCM, it serves as a part of the Source Control Management. KubeSphere DevOps system will automatically build a CI/CD pipeline depends on existing Jenkinsfile of the code repository, you can define workflow lke Stage, Step and Job.
@@ -119,7 +119,7 @@ In this section, we'll create 2 projects, i.e. `kubesphere-sample-dev` and `ku
 3. Then, use the `project-admin` to invite  `project-regular` user into `kubesphere-sample-dev`. Choose **Project Setting→Project Member**. Click **Invite Members** to invite `project-regular` and grant this account the role of `operator`.
 
 
-### Step 3: Create the Second Project
+### Create the Second Project
 
 Similarly, create a project named `kubesphere-sample-prod` following the two steps above. This project is the production environment. Then invite `project-regular` to the project of `kubesphere-sample-prod`, and grant it the role of `operator` as well.
 
@@ -154,7 +154,7 @@ Similarly, create a project named `kubesphere-sample-prod` following the two st
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200107143818.png)
 
-### Step 3: Advanced Settings
+### Advanced Settings
 
 After completing the repositories' configurations, enter into the advanced setting page.
 

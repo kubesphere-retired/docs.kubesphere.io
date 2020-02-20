@@ -11,6 +11,8 @@ description: ''
 - GlusterFS
 - QingCloud 云平台块存储
 - QingStor NeonSAN
+- 阿里云块存储
+- 腾讯云块存储
 - Local Volume (默认，仅部署测试使用)
 
 
@@ -25,6 +27,8 @@ Installer 对接的开源存储服务端和客户端，以及 CSI 插件，已�
 |NFS Client | v3.1.0 | 在安装 KubeSphere 前仅需在 `common.yaml` 配置相应参数即可对接其存储服务端，详见 [NFS Client](../storage-configuration/#nfs)  |
 | QingCloud-CSI |v0.2.0.1|在安装 KubeSphere 前仅需在 `common.yaml` 配置相应参数，详见 [QingCloud CSI](../storage-configuration/#qingcloud-云平台块存储)|
 | NeonSAN-CSI|v0.3.0|在安装 KubeSphere 前仅需在 `common.yaml` 配置相应参数，详见 [Neonsan-CSI](../storage-configuration/#qingstor-neonsan) |
+| 阿里云 CSI |v1.14.5|在安装 KubeSphere 前仅需在 `plugin-aliyun.yaml` 配置相应参数，详见 [Aliyun CSI](../storage-configuration/#aliyun-csi)|
+| 腾讯云 CSI|v1.0.0|在安装 KubeSphere 前仅需在 `plugin-tencentcloud.yaml` 配置相应参数，详见 [TencentCloud-CSI](../storage-configuration/#tencentcloud-csi) |
 
 > 说明：
 > 集群中不可同时存在两个默认存储类型，若要指定默认存储类型前请先确保当前集群中无默认存储类型。
@@ -302,7 +306,6 @@ KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务�
 |块数 (块) / 容量 (GB)| 14 / 230    | 14 / 1400   | 14 / 230   | 14 / 1400   | 14 / 230   | 14 / 230 |
 
 
-
 ### QingStor NeonSAN
 
 NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为存储服务，若您准备好 NeonSAN 物理服务端后，即可在 `conf/plugin-qingcloud.yaml` 配置 NeonSAN-CSI 插件对接其存储服务端。详见 [NeonSAN-CSI 参数释义](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
@@ -318,3 +321,66 @@ NeonSAN-CSI 插件支持对接青云自研的企业级分布式存储 [QingStor 
 | neonsan\_server\_replicas|NeonSAN image 的副本个数，默认为 1|
 | neonsan\_server\_stepSize|用户所创建存储卷容量的增量，单位为 GiB，默认为 1|
 | neonsan\_server\_fsType|存储卷的文件系统格式，默认为 ext4|
+
+### 阿里云平台块存储
+
+
+KubeSphere 支持使用阿里云平台块存储作为平台的存储服务，KubeSphere Installer 已集成 [Alibaba Cloud-CSI](https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver/blob/master/README-zh_CN.md) 块存储插件支持对接阿里云块存储，若您准备在阿里云上搭建具备存储持久化的集群，建议配置此插件使用阿里云块存储进行安装。
+
+
+|**Alibaba Cloud-CSI** | **Description**|
+| --- | ---|
+| alicloud\_disk\_csi\_enabled | 是否使用 Alibaba Cloud-CSI 作为持久化存储，是：true； 否：false |
+| alicloud\_disk\_csi\_is\_default\_class | |是否设定为默认的存储类型， 是：true；否：false |
+| ali\_access\_key\_id ， <br> ali\_access\_key\_secret | 通过[阿里云平台控制台](https://account.aliyun.com/login) 的右上角账户图标选择 **AccessKey管理** 创建密钥获得|
+| ali\_disk\_zoneId | zone id 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。|
+| ali\_disk\_regionId | region id 同上与Kubernetes 集群所在区相同 |
+| ali\_disk\_fsType | 存储卷的文件系统格式，默认为ext4|
+|ali\_disk\_type| 云盘类型 |
+
+
+> 安装前请注意：<br>
+> 1. `openldap_volume_size` 和 `redis_volume_size` 的默认值为 2Gi， 若使用阿里云平台块存储作为默认存储类型，安装前需要在 `conf/common.yaml` 更改至最低 10 Gi，否则 PVC 会创建失败。
+> 2. KubeSphere 2.1.1 在 `conf/common.yaml` 新增的 `elasticsearch_master_volume_size` 字段来指定 ES master 节点的挂盘大小，默认值为 `4` Gi，同理需要在 `conf/common.yaml` 更改至最低 `10` Gi，否则 PVC 会创建失败。
+> 3. 如果还开启了其他插件比如 DevOps，配置方法类似，把相应的 Volume 大小（这里对应就是 `jenkins_volume_size`）在 `conf/common.yaml` 设置为最低 10 Gi。
+
+
+安装完成后，通过执行以下命令来检查存储卷的挂载状态，若 `STATUS` 均为 `Bound`，则说明安装正常。
+
+```bash
+kubectl get pvc -A
+```
+
+
+### 腾讯云平台块存储
+
+KubeSphere 支持使用腾讯云平台块存储作为平台的存储服务，平台已集成[Tencent Cloud-CSI](https://github.com/TencentCloud/kubernetes-csi-tencentcloud/blob/master/README.md)块存储插件支持对接块存储。
+
+|**Tencent Cloud-CSI** | **Description**|
+| --- | ---|
+| tencentcloud\_cbs\_csi\_enabled | 是否使用 Tencent Cloud-CSI 作为持久化存储，是：true； 否：false |
+| tencentcloud\_cbs\_csi\_is\_default\_class | 是否设定为默认的存储类型， 是：true；否：false |
+| tecentcloud\_cbs\_api\_secret\_id ， <br> tecentcloud\_cbs\_api\_secret\_key | 通过[腾讯云平台控制台](https://console.cloud.tencent.com/cam/capi) 的个人账户页面选择 **访问密钥** 创建密钥获得，需要base64编码|
+| ali\_disk\_zoneId | zone id 应与 Kubernetes 集群所在区相同，CSI 插件将会操作此区的存储卷资源。|
+|tencentcloud\_disk\_type| 云盘类型 |
+
+其中，`tecentcloud_cbs_api_secret_id` ,` tecentcloud_cbs_api_secret_key`为平台密钥的 base64 编码:
+
+```shell
+# get tecentcloud_cbs_api_secret_id
+echo -n <SecretId> | base64
+
+# get tecentcloud_cbs_api_secret_key
+echo -n <SecretKey> | base64
+```
+
+> 说明：<br>
+> 1. `openldap_volume_size` 和 `redis_volume_size` 的默认值为2Gi， 若使用腾讯云平台块存储作为默认存储类型，安装前需要在 `conf/common.yaml` 更改至最低 10 Gi，否则 PVC 会创建失败。
+> 2. KubeSphere 2.1.1 在 `conf/common.yaml` 新增的 `elasticsearch_master_volume_size` 字段来指定 ES master 节点的挂盘大小，默认值为 4Gi，同理需要在 `conf/common.yaml` 更改至最低 `10` Gi，否则 PVC 会创建失败。
+> 3. 如果还开启了其他插件比如 DevOps，配置方法类似，把相应的 volume 大小（这里对应就是`jenkins_volume_size`）在 `conf/common.yaml` 设置为最低 10 Gi。
+
+安装完成后，通过执行`kubectl get pvc -A`来检查CSI插件运行状态，若 `STATUS` 均为 `Bound`，则说明安装正常。
+
+```bash
+kubectl get pvc -A
+```

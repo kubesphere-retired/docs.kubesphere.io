@@ -1,10 +1,10 @@
 ---
-title: "Create a CI/CD Pipeline in a Graphical Panel" 
+title: "Jenkinsfile-free CI/CD pipeline with graphical editing panel"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-From last CI/CD tutorial, the pipeline was built from existing Jenkinsfile of its source code repository, requiring some experiences of the declarative Jenkinsfile. For beginners, who prefer graphical panel to help them quickly create a CI/CD pipeline without Jenkinsfile. Luckily, KubeSphere enables users to build a pipeline in a graphical panel, as well as generate a pipeline to Jenkinsfile which allows users to edit, friendly UI manipulation which makes a team’s delivery in high efficiency.
+We've demonstrated how to create a Jenkinsfile-based Pipeline for Spring Boot Project, it requires users are familiar with Jenkinsfile. Unlike creating Jenkinsfile-based pipeline, the pipeline was built from existing Jenkinsfile of its source code repository, requiring some experiences of the declarative Jenkinsfile. For beginners, who prefer graphical panel to help them quickly create a CI/CD pipeline without Jenkinsfile. Luckily, KubeSphere enables users to build a pipeline in a graphical panel, as well as generate a pipeline to Jenkinsfile which allows users to edit, friendly UI manipulation which makes a team’s delivery in high efficiency.
 
 
 ## Objective
@@ -297,7 +297,7 @@ If every step of the pipeline can be successfully executed, the Docker image of 
 1. Login KubeSphere as `project-regular` , enter `kubesphere-sample-dev`, click **Workload → Deployment** on the menu bar on the left to see that ks-sample-dev has been created successfully.
 | Environment | URL | Namespace | Deployment | Service |
 | --- | --- | --- | --- | --- |
-| Dev | `http://{$Virtual IP}:{$8080}` 
+| Dev | `http://{$Virtual IP}:{$8080}`
 or `http://{$Intranet/Public IP}:{$30861}` | kubesphere-sample-dev | ks-sample-dev | ks-sample-dev |
 
 
@@ -330,4 +330,3 @@ Hello,World!
 ```
 
 At this point, the example of the graphical build pipeline has been completed. If you encounter problems during the creation process, you can refer to [FAQ](../../devops/devops-faq).
-

@@ -10,7 +10,7 @@ A Docker image is a read-only template that can be used to deploy container serv
 
 Sign in with project-regular, enter into one project (e.g. demo-namespace), then select **Configuration Center → Secrets**.
 
-Click **Create Secret** button, then fill in the basic information in the pop-up window. 
+Click **Create Secret** button, then fill in the basic information in the pop-up window.
 
 ![Edit Mode](https://pek3b.qingstor.com/kubesphere-docs/png/20190319163230.png)
 
@@ -53,7 +53,7 @@ If you need to add Dokcer Hub as the image registry, first make sure you have al
 
 **Intro**
 
-[Harbor](https://goharbor.io/) is an an open source trusted cloud native registry project that stores, signs, and scans content. Harbor extends the open source Docker Distribution by adding the functionalities usually required by users such as security, identity and management. 
+[Harbor](https://goharbor.io/) is an an open source trusted cloud native registry project that stores, signs, and scans content. Harbor extends the open source Docker Distribution by adding the functionalities usually required by users such as security, identity and management.
 
 #### Add the Internal Harbor
 
@@ -65,17 +65,17 @@ According to the address type of the Harbor, you need to divide into http and ht
 
 ##### http
 
-1. You need to modify the Docker configuration in all nodes of the cluster. For example, if there is an external harbor registry and its IP is `http://139.198.16.232`, then you need to add a field as `--insecure-registry=139.198.16.232` into `/etc/systemd/system/docker.service.d/docker-options.conf`.
+1. You need to modify the Docker configuration in all nodes of the cluster. For example, if there is an external harbor registry and its IP is `http://192.168.0.99`, then you need to add a field as `--insecure-registry=192.168.0.99` into `/etc/systemd/system/docker.service.d/docker-options.conf`.
 
 **Sample**
 
 ```bash
 [Service]
 Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --graph=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
---insecure-registry=139.198.16.232"
+--insecure-registry=192.168.0.99"
 ```
 
-2. Next, you need to reload the configuration file and restart Docker.
+2. Next, you need to reload the configuration file and restart Docker:
 
 ```
 $ sudo systemctl daemon-reload
@@ -85,15 +85,23 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
-3. Then, fill in the authentication information needed for the Harbor in Secret Settings, such as the IP address and user credentials, and click **Create** to create Harbor image registry.
+3. Configure `/etc/hosts` for IP and domain name:
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190320143722.png)
+```
+192.168.0.99 harbor.devops.kubesphere.local
+```
+
+4. Log in KubeSphere, enter a project, navigate to **Configuration → Secret**, create a secret with `Image Repositry Secret`, fill in the information as following
+
+![Add Harbor Registry Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200219141059.png)
+
+
 
 ##### https
 
 1. For an image registry of the https protocol, firstly you need to get the image registry certificate, notes as `ca.crt`. Take the URL ` https://harbor.openpitrix.io` as an example, you need to execute following command to all the nodes in the cluster:
 
-```bash 
+```bash
 $ sudo cp ca.crt /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
 ```
 
@@ -132,12 +140,5 @@ $ sudo systemctl restart docker
 ## Using a Image Registry
 
 Take the creation of a deployment as an example to demonstrate how to use the image registry and pull images from the registry. For example, there is a image `mysql:5.6` in QingCloud image registry. When creating a Deployment, enter `dockerhub.qingcloud.com/mysql:5.6` in the Pod template, the format is `image registry address:tag`, this image could be pulled from the pointed registry after the workload has been created.
-   
+
 ![Using a Image Registry](https://pek3b.qingstor.com/kubesphere-docs/png/20190320150305.png)
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 ---
 title: "升级"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: '从 2.0.x 升级到 KubeSphere 2.1.0'
 ---
 
 KubeSphere v2.1.0 已发布，该版本修复了已知的 Bug，关于 v2.1.0 版本的更新详情可参考 [Release Note - v2.1.0](../../release/release-v210)。
@@ -24,11 +24,20 @@ $ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
 
 ### 第二步：修改配置文件
 
-升级将默认读取 2.1.0 的 conf 目录下的配置文件，因此在升级前需要将原有安装包中 conf 目录下的配置文件中的参数都同步到 2.1.0 版本安装包的对应文件中，修改配置文件分以下两种情况。
+升级将默认读取 2.1.0 的 `conf` 目录下的配置文件，因此在升级前需要将原有安装包中 `conf` 目录下的配置文件中的参数都同步到 2.1.0 版本安装包的对应文件中，修改配置文件分以下两种情况。
 
-> 提示：若您的 2.0.x 集群是部署在 QingCloud 云平台，`vars.yaml` 文件中的与 QingCloud 云平台相关配置需在 2.1.0 的 `plugin-qingcloud.yaml` 中进行同步。
+> 提示：
+> - 在 2.0.x 中，conf 目录下的集群参数配置文件名称是 `vars.yaml`，在 2.1.0 该文件名修改成了 `common.yaml`，并将云厂商相关的配置参数从中分开，作为单独的配置文件。
+> - 若您的 2.0.x 集群是部署在 QingCloud 云平台，`vars.yaml` 文件中的与 QingCloud 云平台相关配置需在 2.1.0 的 `plugin-qingcloud.yaml` 中进行同步。
 
-<font color=red>注意，在升级前请确保主机规格满足主机最低规格配置。</font> 请根据您的安装模式参考 [All-in-One 模式 - 准备主机](../all-in-one/#第一步-准备主机) 或 [Multi-Node 模式](../multi-node/#第一步-准备主机) 主机规格表。
+#### 注意事项
+
+<font color=red>
+
+- 注意，在 KubeSphere 2.1.0 对各个功能组件进行了解耦和可插拔的设计，支持 KubeSphere 各功能组件的可选安装，`common.yaml` 仅开启了最小化安装，升级前需要在 `common.yaml` 中将所有功能组件设置为 true，再执行升级。
+
+- 在升级前请确保主机规格满足主机最低规格配置。请根据您的安装模式参考 [All-in-One 模式 - 准备主机](../all-in-one/#第一步-准备主机) 或 [Multi-Node 模式](../multi-node/#第一步-准备主机) 主机规格表。
+</font>
 
 #### All-in-One
 
