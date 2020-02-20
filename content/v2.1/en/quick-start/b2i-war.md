@@ -66,7 +66,7 @@ We need to create a Secret since B2I Job will push the image to DockerHub.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108170544.png)
 
-2. Scroll down to `Build a new service through the artifact`, then choose `war`. We will use the [Spring-MVC-Showcase](https://github.com/spring-projects/spring-mvc-showcase) project as a sample. Upload its WAR artifact ([b2i-war-java8](https://github.com/kubesphere/tutorial/raw/master/tutorial%204%20-%20s2i-b2i/b2i-war-java11.war)) to KubeSphere.
+2. Scroll down to `Build a new service through the artifact`, then choose `war`. We will use the [Spring-MVC-Showcase](https://github.com/spring-projects/spring-mvc-showcase) project as a sample. Upload its WAR artifact ([b2i-war-java8](https://github.com/kubesphere/tutorial/raw/master/tutorial%204%20-%20s2i-b2i/b2i-war-java8.war)) to KubeSphere.
 
 3. Enter service name, e.g. **b2i-war-java8**, click **Next**.
 
