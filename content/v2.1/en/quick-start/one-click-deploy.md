@@ -51,7 +51,7 @@ This tutorial shows you how to quickly deploy a [Grafana](https://grafana.com/) 
 
 ![View Grafana](https://pek3b.qingstor.com/kubesphere-docs/png/20200106171747.png)
 
-3.2. Wait for two minutes, then you will see the application `grafana` showing `Ready` on the application list.
+3.2. Wait for two minutes, then you will see the application `grafana` showing `active` on the application list.
 
 ![Deploy Grafana](https://pek3b.qingstor.com/kubesphere-docs/png/20200106172151.png)
 
