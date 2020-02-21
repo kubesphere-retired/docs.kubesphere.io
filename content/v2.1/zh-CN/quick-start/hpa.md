@@ -60,7 +60,7 @@ HPA 在 Kubernetes 中被设计为一个 Controller，可以在 KubeSphere 中�
    - 最小副本数：弹性伸缩的容器组数量下限，此处设置 `1`
    - 最大副本数：弹性伸缩的容器组数量上限，此处设置 `10`
 
- > 注：容器组模板中可以设置 HPA 相关参数，以设置 CPU 目标值作为弹性伸缩的计算参考，实际上会为部署创建一个 `Horizontal Pod Autoscaler` 来调度其弹性伸缩。
+ > 注：当为部署添加 HPA 后，实际上会为部署创建一个 `Horizontal Pod Autoscaler` 来调度其弹性伸缩。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191102235331.png)
 
