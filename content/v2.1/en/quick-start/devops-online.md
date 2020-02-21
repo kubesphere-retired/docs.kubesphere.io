@@ -6,7 +6,7 @@ description: 'Create a Jenkinsfile-based Pipeline to deploy Spring Boot Project 
 
 ## Objective
 
-In this tutorial, we will show you how to create a pipeline based on the Jenkinsfile of GitHub repository. Using the pipeline, we will deploy a demo application to `Development` project and `Production` project respectively. Meanwhile, we demo a branch that is used to test dependency cache. You will take a relatively long time to finish the pipleline for the first time. However, it will run very quickly after the first time. It proves the cache works well since this branch pulls lots of dependecy from internet initially.
+In this tutorial, we will show you how to create a pipeline based on the Jenkinsfile of GitHub repository. Using the pipeline, we will deploy a demo application to `Development` project and `Production` project respectively. Meanwhile, we demo a branch that is used to test dependency cache. You will take a relatively long time to finish the pipleline for the first time. However, it will run very quickly after the first time. It proves the cache works well since this branch pulls lots of dependency from internet initially.
 
 > Note:
 > KubeSphere supports two kinds of pipeline, i.e., Jenkinsfile in SCM and Jenkinsfile out of SCM. Jenkinsfile in SCM requires an internal Jenkinsfile in Source Control Management (SCM). In another word, Jenkfinsfile serves as a part of SCM. KubeSphere DevOps system will automatically build a CI/CD pipeline depending on existing Jenkinsfile of the code repository. You can define workflow like Stage, Step and Job in the pipeline.
