@@ -1,41 +1,44 @@
 ---
 title: "Jenkinsfile-free CI/CD pipeline with graphical editing panel"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: 'Create a Jenkinsfile-free CI/CD pipeline with graphical editing panel'
 ---
 
-We've demonstrated how to create a Jenkinsfile-based Pipeline for Spring Boot Project, it requires users are familiar with Jenkinsfile. Unlike creating Jenkinsfile-based pipeline, the pipeline was built from existing Jenkinsfile of its source code repository, requiring some experiences of the declarative Jenkinsfile. For beginners, who prefer graphical panel to help them quickly create a CI/CD pipeline without Jenkinsfile. Luckily, KubeSphere enables users to build a pipeline in a graphical panel, as well as generate a pipeline to Jenkinsfile which allows users to edit, friendly UI manipulation which makes a team’s delivery in high efficiency.
+We've demonstrated how to create a Jenkinsfile-based pipeline for Spring Boot Project in the last tutorial, it requires users are familiar with Jenkinsfile. Unlike the last tutorial, Jenkinsfile-free CI/CD pipeline allows users to create a CI/CD workflow with graphical editing panel, which means you don't need to write Jenkinsfile in this tutorial. KubeSphere delivers complete visibility to simplify user interaction for creating pipelines.
 
 
 ## Objective
 
-This guide is based on guide 10-Jenkinsfile in SCM. By building the pipeline in a visual way, deploy a HelloWorld sample service to a development environment in a KubeSphere cluster. Besides, that is accessible to users. The so-called development environment is resource isolated in Namespace in the underlying Kubernetes. For presentation purpose, this example still uses the GitHub repository devops-java-sample.
+This guide is similar to the [Sample project](https://github.com/kubesphere/devops-java-sample) that we used in the last tutorial, we will use the graphical editing panel to create a pipeline, automating some processes and release the sample project to Kubernetes development environment, namely, Namespace. If you've tried the Jenkinsfile-based pipeline, the build steps for this tutorial are well understood.
 
+## Prerequisites
+
+- You need to [enable KubeSphere DevOps System](../../installation/install-devops)
+- You need to create [DockerHub](http://www.dockerhub.com/) account
+- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into a DevOps project, please refer to [Get started with multi-tenant management](../admin-quick-start).
+- Set CI dedicated node for building pipeline.
 
 ## Hands-on Lab
 
 ### Pipeline Overview
 
-The construction of visual pipeline consists of the following six stages. Firstly, the flowchart below briefly describes the workflow of the entire pipeline:
+The sample pipeline includes the following six stages.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190516091714.png#align=left&display=inline&height=1278&originHeight=1278&originWidth=2190&search=&status=done&width=2190)
 
-> The explanation of every stage：
-> - **Stage 1. Checkout SCM: **Pull the GitHub repository code；
-> - **Stage 2. Unit test**: Unit tests; proceed to the next task only if the tests are passed；
-> - **Stage 3. Code Analysis**: Configure SonarQube for static code quality checking and analysis；
-> - **Stage 4. Build and Push**: Build the image and push the tag as snapshot-$BUILD_NUMBER to DockerHub (where $BUILD_NUMBER is the run number of the pipeline active list)；
-> - **Stage 5. Artifacts**: Make the artifact (jar package) and save it；
-> - **Stage 6. Deploy to DEV**: Deploy the project to the Dev environment, which requires a pre-audit and an email if the deployment is successful.
-
-
+> To elaborate every stage：
+> - **Stage 1. Checkout SCM:** Pull the GitHub repository code；
+> - **Stage 2. Unit test**: Unit test; The pipeline will continue running the next stage only if the unit test is passed；
+> - **Stage 3. Code Analysis**: Configure SonarQube for static code quality check and analysis；
+> - **Stage 4. Build and Push**: Build the image and push the it to DockerHub with tag `snapshot-$BUILD_NUMBER` (where `$BUILD_NUMBER` is the serial number of the pipeline active list)；
+> - **Stage 5. Artifacts**: Generate the artifact (jar package) and save it；
+> - **Stage 6. Deploy to DEV**: Deploy the project to the Dev environment, it requires an audit in this stage, an email will be sent until the deployment is successful.
 
 ### Create Project
 
-CI/CD pipeline will eventually deploy the sample Web to the development environment `kubesphere-sample-dev` based on the [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev) of the documentation website. It corresponds to a project in KubeSphere that needs to be created in advance. If not please refer to [示例十 - 创建第一个项目](../devops-online/#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE); use a project-admin account to create a `kubesphere-sample-dev` project. Then invite project regular user `project-regular` to enter the project and give it an `operator` character.
+The sample pipeline will deploy the [Sample project](https://github.com/kubesphere/devops-java-sample) to Kubernetes Namespace, thus we need to create a project in KubeSphere. Please refer to the [last tutorial](../devops-online/#create) to create a project named `kubesphere-sample-dev` by using `project-admin`, then invite the account `project-regular` into this project and assign the role of `operator` to this account.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514112245.png#align=left&display=inline&height=1174&originHeight=1174&originWidth=3462&search=&status=done&width=3462)
-
 
 ### Create Credentials
 
@@ -51,6 +54,21 @@ At this point, the three credentials have been created and will be used in the p
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514023424.png#align=left&display=inline&height=890&originHeight=890&originWidth=2794&search=&status=done&width=2794)
 
+### Create Credentials
+
+本示例创建流水线时需要访问 DockerHub、Kubernetes (创建 KubeConfig 用于接入正在运行的 Kubernetes 集群) 和 SonarQube 共 3 个凭证 (Credentials)。
+
+1、使用项目普通用户登录 KubeSphere，参考 [创建凭证](../../devops/credential/#创建凭证) 创建 DockerHub 和 Kubernetes 的凭证，凭证 ID 分别为 `dockerhub-id` 和 `demo-kubeconfig`。
+
+2、然后参考 [访问 SonarQube](../../devops/sonarqube/) 创建 Token，创建一个 Java 的 Token 并复制。
+
+3、最后在 KubeSphere 中进入 devops-demo 的 DevOps 工程中，与上面步骤类似，在 凭证 下点击 创建，创建一个类型为 秘密文本 的凭证，凭证 ID 命名为 `sonar-token`，密钥为上一步复制的 token 信息，完成后点击 「确定」。
+
+至此，3 个凭证已经创建完毕，将在流水线中使用它们。
+
+We need to create three credentials for DockerHub、Kubernetes (i.e. KubeConfig for the current cluster) and SonarQube respectively.
+
+1. Log in KubeSphere with `project-regular`, create
 
 ### Create Pipeline
 

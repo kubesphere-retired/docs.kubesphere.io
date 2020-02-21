@@ -41,7 +41,7 @@ In this step, we will create two accounts, i.e. `workspace-admin` for ISV and `a
 
 ### Step 2: Upload and Submit Application
 
-2.1. Log in KubeSphere with `isv`, enter the workspace and upload the EMQ X App to this workspace. First please download [EMQ X chart](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-beta.1.tgz) and click **Upload Template** by choosing **App Templates**.
+2.1. Log in KubeSphere with `isv`, enter the workspace and upload the EMQ X App to this workspace. First please download [EMQ X chart v1.0.0](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-rc.1.tgz) and click **Upload Template** by choosing **App Templates**.
 
 ![App Templates](https://pek3b.qingstor.com/kubesphere-docs/png/20200212183110.png)
 
@@ -135,7 +135,7 @@ Then click **Uncategorized** and find EMQ X, change its category to `IOT` and sa
 
 ![Create New Version](https://pek3b.qingstor.com/kubesphere-docs/png/20200213173325.png)
 
-6.2. Download [EMQ X v2](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-beta.2.tgz), then click on the **New version** on the right, upload the package (emqx-v1.0.0-beta.2.tgz) that you just downloaded.
+2. Download [EMQ X v4.0.2](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v4.0.2.tgz), then click on the **New version** on the right, upload the package (emqx-v4.0.2) that you just downloaded.
 
 ![Upload New Version](https://pek3b.qingstor.com/kubesphere-docs/png/20200213173744.png)
 
