@@ -250,6 +250,7 @@ kind: S2iBuilderTemplate
 metadata:
   labels:
     controller-tools.k8s.io: "1.0"
+    builder-type.kubesphere.io/s2i: "s2i"
   name: nginx-demo
 spec:
   containerInfo:
@@ -260,6 +261,12 @@ spec:
   description: "This is a S2I builder template for Nginx builds whose result can be run directly without any further application server.." # 构建器模版的描述信息
 
 ```
+S2I 模版中 label 作为前端分类的参数信息，其详细描述如下表所示。
+| label名称             | 选项             | 含义                                                         |
+| :----------------------- | :--------------------- | :----------------------------------------------------------- |
+| builder-type.kubesphere.io/s2i: "s2i" | "s2i" | 描述该模版类型属于 S2I，即基于应用源代码进行构建 |
+| builder-type.kubesphere.io/b2i | "b2i" | 描述该模版类型属于 B2I, 即基于二进制或其他制品进行构建 |
+| binary-type.kubesphere.io | "jar","war","binary" | 描述该模版类型属于B2I 下的细分类型，当选择 "b2i" 类型是需要加上此 label。比如提供的 jar 包则可以选择 "jar" 类型，其他类似。 |
 
 S2I 模版详细参数信息如下表所示，其中带有 * 的参数表示必填项：
 
