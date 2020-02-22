@@ -214,7 +214,7 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 1、在 `Build and Push` 阶段右侧点击 **“+”** 继续增加一个阶段用于保存制品，本示例用于保存项目的 jar 包，命名为 `Artifacts`。
 
-2、点击 `添加步骤`，选择 `保存制品`，在弹窗中输入 `target/*.jar`，用于捕获构建包含模式匹配的文件 (target/*.jar) 并保存到 Jenkins，点击「确定」。
+2、点击 `添加步骤`，选择 `保存制品`，在弹窗中输入 `target/*.jar`，用于设置 .jar 文件最终的保存路径 `(target/*.jar)` 并保存到 Jenkins，点击「确定」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232447.png)
 

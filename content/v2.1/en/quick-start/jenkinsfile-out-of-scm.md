@@ -168,76 +168,119 @@ Click **OK** to save it.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222001847.png)
 
-
 #### Stage 4: Build and Push the Image
 
-1. Click "+" on the right of the stage of `Code Analysis` to add another stage to build and push images to  DockerHub. Name it as `Build and Push`。
+1. Similarly, click **+** on the right of the stage of `Code Analysis` to add another stage to build and push images to DockerHub, name it `Build and Push`.
 
-2. Click `Add steps` and select `The Pod`，name it as `maven`，then click `Confirm`.
+2. Click **Add Step** and select **container**，name it `maven`，then click **OK**.
 
-3. Click `Add nesting steps` and select `Shell` on the right, enter the following command in the popup window:
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222112517.png)
+
+3. Click **Add nesting steps** in the contain `maven`, and select **Shell** on the right, enter the following command in the pop-up window:
 
 ```shell
 mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package
 ```
 
-4. Then continue to click `Add nesting steps` on the right, select `Shell`. In the popup window, enter the following command to build a Docker image based on the [Dockerfile](https://github.com/kubesphere/devops-java-sample/blob/master/Dockerfile-online) in the repository. Click Finish to save when done:
+4. Then continue to click **Add nesting steps** on the right, select `Shell` in the pop-up window, enter the following command to build a Docker image based on the [Dockerfile](https://github.com/kubesphere/devops-java-sample/blob/master/Dockerfile-online):
 
 ```shell
 docker build -f Dockerfile-online -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .
 ```
 
-5. Click `Add nesting steps` and select `Add credentials` on the right. Fill  the following information in the popup window, and click "confirm" to save the information:
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222113131.png)
 
-> Note: For users' information security, the account type information does not appear in the script in clear text, but in the form of variables.
+Click **OK** to save it.
 
+5. Similarly, click `Add nesting steps` again and select `withCredentials` on the right. Fill in the pop-up window as follows:
 
-- Credential ID：Select the DockerHub credentials you created earlier such as `dockerhub-id`
-- Password variable：`DOCKER_PASSWORD`
-- Username variable：`DOCKER_USERNAME`
+> Note: Considering the security, the account information are not allowed to be exposed in plaintext in the script.
 
-6. Click `Add nesting steps` in the `Add credentials` stage, select `Shell` on the right, enter the following command in the popup window to log in to Docker Hub:
+- Credential ID：Select the DockerHub credentials you created, e.g. `dockerhub-id`
+- Password variable：Enter `DOCKER_PASSWORD`
+- Username variable：Enter `DOCKER_USERNAME`
+
+Click **OK** to save the it.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222113442.png)
+
+6. Click `Add nesting steps` (the first one) in the `withCredentials` stage, select `Shell` on the right, enter the following command in the pop-up window, which is used to log in Docker Hub:
 
 ```shell
 echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin
 ```
 
-7、Then click `Add nesting steps` to add `Shell` input a command to push the SNAPSHOT image to Docker Hub:
+Click **OK** to save the it.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222114937.png)
+
+7. As above, click **Add nesting steps** in the `withCredentials`, choose `Shell` and enter the following command to push the SNAPSHOT image to DockerHub:
 
 ```shell
 docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 ```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232407.png#align=left&display=inline&height=1358&originHeight=1358&originWidth=2630&search=&status=done&width=2630)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222120214.png)
 
+#### 阶段六：部署至 Dev 环境 (Deploy to DEV)
+
+1、在 `Artifacts` 阶段右侧点击 **“+”** 增加最后一个阶段，命名为 `Deploy to DEV`，用于将容器镜像部署到开发环境即 `kubesphere-sample-dev` 项目中。
+
+2、点击 `添加步骤`，选择 `审核`，在弹窗中输入 `@project-admin` 指定项目管理员 project-admin 用户来进行流水线审核，点击「确定」。
+
+3、点击 `添加步骤`，选择 `KubernetesDeploy`，在弹窗中参考以下填写，完成后点击「确定」保存信息：
+
+- Kubeconfig：选择 `demo-kubeconfig`
+- 配置文件路径：输入 `deploy/no-branch-dev/**`，这里是本示例的 Kubernetes 资源部署 [yaml 文件](https://github.com/kubesphere/devops-java-sample/tree/master/deploy/no-branch-dev) 在代码仓库中的相对路径
+
+4、同上再添加一个步骤，用于在这一步部署和流水线执行成功后给用户发送通知邮件。点击 `添加步骤`，选择 `邮件`，自定义收件人、抄送、主题和内容。
+
+> 注意，配置邮件服务请参考 [配置 Jenkins 邮件发送](../../devops/jenkins-setting#修改-jenkins-邮件服务器设置)，若还未配置可跳过第 4 步 (下一版本将支持流水线共用 KubeSphere 平台统一配置的通知服务)。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232706.png)
+
+至此，图形化构建流水线的六个阶段都已经添加成功，点击 `确认 → 保存`，可视化构建的流水线创建完成，同时也会生成 Jenkinsfile 文件。
 
 #### Stage 5: Save Artifacts
 
-1. Click "+" at right of the `Build and Push` stage to add another stage to protect artifacts. This example uses the jar package as `Artifacts`.
+1. Click **+** on the right of the `Build and Push` stage, here we add another stage to save artifacts. This example uses the jar package and name it `Artifacts`.
 
-2. Click `Add steps` and select `Save Artifacts`. Input `target/*.jar` in the popup window to capture the build file containing the pattern match (target/*.jar) and save it to Jenkins，then click Confim.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222120540.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232447.png#align=left&display=inline&height=1366&originHeight=1366&originWidth=2548&search=&status=done&width=2548)
+2. Click `Add Step` in `Artifacts` stage, select `archiveArtifacts`. Enter `target/*.jar` in the pop-up window, which is used to set the archive path of artifact in Jenkins.
+
+Click **OK** to save the it.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222121035.png)
 
 
 #### Stage 6: Deploy to DEV
 
-1. Click "+" at right of the `Artifacts` stage to add the last stage and name it as `Deploy to DEV`. This stage will be used to deploy pod image to development environment namely, the project of `kubesphere-sample-dev`.
+1. Click **+** on the right of the stage `Artifacts` to add the last stage, name it `Deploy to DEV`. This stage is used to deploy resources to development environment, namely, the project of `kubesphere-sample-dev`.
 
-2. Click `Add steps` and select `Review`. Input `@project-admin` in the pop-up window and demand the project-admin account to review the pipeline. Click Confirm.
+2. Click **Add Step** in `Deploy to DEV`, select `input` and enter `@project-admin` in the pop-up window, assigning account `project-admin` to review this pipeline.
 
-3. Click `Add steps`，select `KubernetesDeploy`. Fill in the pop-up window as below and click "Confirm" to save the information:
+Click **OK** to save the it.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222123026.png)
+
+3. Click **Add Step**，select `kubernetesDeploy`. Fill in the pop-up window as below and click "Confirm" to save the information:
+
+
 - Kubeconfig: select `demo-kubeconfig`
-- Configuration file path: Input `deploy/no-branch-dev/**` which is the according path of the Kubernetes source deployment's [yaml 文件](https://github.com/kubesphere/devops-java-sample/tree/master/deploy/no-branch-dev). 
+- Configuration file path: Enter `deploy/no-branch-dev/**` which is the related path of the Kubernetes [yaml](https://github.com/kubesphere/devops-java-sample/tree/master/deploy/no-branch-dev). 
 
-4. Add a step to the same as above to send a notification email to the user after this step of deployment and pipeline execution is successful. Click `Add steps`, select `Email`, and custom edit recipients, CCs, topics, and content.
+Click **OK** to save the it.
 
-> Note: sending mail in the pipeline requires pre-installing the mail server in the Installer. Please refer to [集群组件配置释义](../../installation/vars) for configuration. If not already configured, skip step 4 (the next version will support the unified configuration of mail in the UI after installation server).
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222124016.png)
 
+4. Similarly, Click `Add Step` to send an email notification to the user after the pipeline runs successfully, select `Email` and fill in the information.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232706.png#align=left&display=inline&height=1446&originHeight=1446&originWidth=3198&search=&status=done&width=3198)
+> Note: Make sure you've configured email server in `ks-jenkins`, please refer to Jenkins email configuration. If not yet, skip this step and run this pipeline are well.
 
-At this point, the six stages of the graphical  pipeline building have been added successfully, click `Confirm → Save`，the pipeline of the visual build is created and the Jenkinsfile is also generated.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222125008.png)
+
+At this point, the total six stages of the pipeline have been edited completely, click `Confirm → Save`，the pipeline of the visual build is created and the Jenkinsfile is also generated.
 
 
 ### Run Pipeline
