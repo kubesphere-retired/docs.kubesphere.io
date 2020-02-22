@@ -296,7 +296,7 @@ const Footer = props => {
         <LanguageWrapper>
           <Language {...props} pathPrefix={props.data.site.pathPrefix} />
         </LanguageWrapper>
-        <p className="icp">KubeSphere®️ 2019 All Rights Reserved.</p>
+        <p className="icp">KubeSphere®️ 2020 All Rights Reserved.</p>
       </Wrapper>
     </FooterWrapper>
   )
