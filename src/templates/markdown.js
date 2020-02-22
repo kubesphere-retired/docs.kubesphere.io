@@ -267,7 +267,7 @@ class MarkdownTemplate extends React.Component {
                       this.props.data.tableOfContents.edges[0].node.chapters
                     }
                   />
-                  <ICP>KubeSphere®️ 2019 All Rights Reserved.</ICP>
+                  <ICP>KubeSphere®️ 2020 All Rights Reserved.</ICP>
                 </ToCContainer>
               </NavContainer>
               <MainContainer isExpand={isExpand}>

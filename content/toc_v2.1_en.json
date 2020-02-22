@@ -258,7 +258,11 @@
           "entry": "./v2.1/en/quick-start/devops-online.md"
         },
         {
-          "title": "11. Application Store",
+          "title": "11. Jenkinsfile-free pipeline with graphical editing panel",
+          "entry": "./v2.1/en/quick-start/jenkinsfile-out-of-scm"
+        },
+        {
+          "title": "12. Application Store",
           "entry": "./v2.1/en/quick-start/app-store.md"
         }
       ]
