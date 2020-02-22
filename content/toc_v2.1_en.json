@@ -264,6 +264,29 @@
       ]
     },
     {
+      "title": "DevOps",
+      "icon": "/problem.svg",
+      "desc": "Introduction to KubeSphere API",
+      "chapters": [
+        {
+          "title": "Pipeline",
+          "entry": "./v2.1/en/devops/pipeline.md"
+        },
+        {
+          "title": "Create SonarQube Token",
+          "entry": "./v2.1/en/devops/sonarqube.md"
+        },
+        {
+          "title": "Credentials",
+          "entry": "./v2.1/en/devops/credential.md"
+        },
+        {
+          "title": "Set CI Node for Dependency Cache",
+          "entry": "./v2.1/en/devops/devops-ci-node.md"
+        }
+      ]
+    },
+    {
       "title": "API Documentation",
       "icon": "/problem.svg",
       "desc": "Introduction to KubeSphere API",
