@@ -259,7 +259,7 @@
         },
         {
           "title": "11. Jenkinsfile-free pipeline with graphical editing panel",
-          "entry": "./v2.1/en/quick-start/jenkinsfile-out-of-scm"
+          "entry": "./v2.1/en/quick-start/jenkinsfile-out-of-scm.md"
         },
         {
           "title": "12. Application Store",
