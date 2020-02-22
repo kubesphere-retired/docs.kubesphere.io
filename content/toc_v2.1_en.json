@@ -258,7 +258,7 @@
           "entry": "./v2.1/en/quick-start/devops-online.md"
         },
         {
-          "title": "11. Jenkinsfile-free CI/CD pipeline with graphical editing panel"
+          "title": "11. Jenkinsfile-free pipeline with graphical editing panel"
           "entry": "./v2.1/en/quick-start/jenkinsfile-out-of-scm"
         },
         {
