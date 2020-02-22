@@ -4,7 +4,7 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: 'Create SonarQube Token'
 ---
 
-## Inspect SonarQube NodePort
+## Fetch SonarQube NodePort
 
 Execute following command to ensure SonarQube NodePort, as you can see `31359` is returned:
 

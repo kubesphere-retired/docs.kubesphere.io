@@ -17,7 +17,7 @@ This guide is similar to the [Sample project](https://github.com/kubesphere/devo
 - You need to create [DockerHub](http://www.dockerhub.com/) account.
 - You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into a DevOps project, please refer to [Get started with multi-tenant management](../admin-quick-start).
 - Configure email server for notification in pipeline, please refer to Jenkins email configuration.
-- Set CI dedicated node for building pipeline.
+- Set CI dedicated node for building pipeline, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node)
 
 ## Hands-on Lab
 

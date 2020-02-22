@@ -10,15 +10,15 @@ Generally, applications often need to pull a lot of dependencies during the buil
 
 1. Log in KubeSphere with `admin` account, navigate to **Platform → Infrastructure**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222130938.png)
+![Node Management](https://pek3b.qingstor.com/kubesphere-docs/png/20200222130938.png)
 
 2. Choose any of nodes as the CI running nodes, here we choose `node2` and enter its detailed page. Click **Mode → Edit Labels**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222131202.png)
+![Set CI Node](https://pek3b.qingstor.com/kubesphere-docs/png/20200222131202.png)
 
 3. Click **Add Labels**, add a new label `node-role.kubernetes.io/worker=ci`, click **Save**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222131640.png)
+![Add CI Label](https://pek3b.qingstor.com/kubesphere-docs/png/20200222131640.png)
 
 
 ## Set CI Nodes as Dedicated
@@ -27,10 +27,12 @@ Pipelines and S2I/B2I workflows will be scheduled to this node first based on th
 
 1. Click **Mode → Taint Management**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222132456.png)
+![Taint Management](https://pek3b.qingstor.com/kubesphere-docs/png/20200222132456.png)
 
 2. Click **Add Taint**, enter a key `node.kubernetes.io/ci`, there is no need to set its value. You can choose `NoSchedule` or `PreferNoSchedule` at your will.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222132535.png)
+![Add Taint](https://pek3b.qingstor.com/kubesphere-docs/png/20200222132535.png)
 
 3. Click **Save**. At this point, you've complete the CI node settings, you can continue to refer to the DevOps quick guides.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222134621.png)
