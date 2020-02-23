@@ -100,6 +100,10 @@
           "title": "安装可插拔的功能组件",
           "entries": [
             {
+              "title": "可插拔功能组件概览",
+              "entry": "./v2.1/zh-CN/installation/pluggable-components.md"
+            },
+            {
               "title": "安装应用商店",
               "entry": "./v2.1/zh-CN/installation/install-openpitrix.md"
             },
@@ -163,14 +167,6 @@
           "title": "相关工具与插件",
           "entries": [
             {
-              "title": "安装内置 Harbor",
-              "entry": "./v2.1/zh-CN/installation/install-harbor.md"
-            },
-            {
-              "title": "安装内置 GitLab",
-              "entry": "./v2.1/zh-CN/installation/install-gitlab.md"
-            },
-            {
               "title": "安装内置 Grafana",
               "entry": "./v2.1/zh-CN/installation/install-grafana.md"
             },
@@ -179,7 +175,7 @@
               "entry": "./v2.1/zh-CN/installation/sonarqube-jenkins.md"
             },
             {
-              "title": "安装 Porter",
+              "title": "安装 Porter 负载均衡器插件",
               "entry": "./v2.1/zh-CN/installation/install-porter.md"
             },
             {
@@ -198,7 +194,7 @@
           ]
         },
         {
-          "title": "运维指南",
+          "title": "集群运维",
           "entries": [
             {
               "title": "安装后添加新的存储类型",
@@ -209,14 +205,29 @@
               "entry": "./v2.1/zh-CN/installation/add-nodes.md"
             },
             {
-              "title": "升级",
-              "entry": "./v2.1/zh-CN/installation/upgrade.md"
-            },
-            {
               "title": "卸载",
               "entry": "./v2.1/zh-CN/installation/uninstall.md"
             }
           ]
+        }
+      ]
+    },
+    {
+      "title": "升级指南",
+      "icon": "/access.svg",
+      "desc": "如何升级 KubeSphere 与 Kubernetes 版本",
+      "chapters": [
+        {
+          "title": "升级必读",
+          "entry": "./v2.1/zh-CN/installation/upgrade.md"
+        },
+        {
+          "title": "All-in-One 升级",
+          "entry": "./v2.1/zh-CN/installation/upgrade-allinone.md"
+        },
+        {
+          "title": "Multi-node 升级",
+          "entry": "./v2.1/zh-CN/installation/upgrade-multi-node.md"
         }
       ]
     },

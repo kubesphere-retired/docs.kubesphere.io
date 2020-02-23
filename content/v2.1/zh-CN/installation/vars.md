@@ -8,7 +8,7 @@ description: ''
 
 ```yaml
 ######################### Kubernetes #########################
-kube_version: v1.16.7  # 默认安装的 Kubernetes 版本，
+kube_version: v1.16.7  # 默认安装的 Kubernetes 版本，支持指定 v1.15.5,v1.16.7,v1.17.3 的安装
 etcd_version: v3.2.18  # 默认安装的 etcd 版本
 
  # etcd 备份的周期，默认为 30 分钟
