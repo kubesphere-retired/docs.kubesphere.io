@@ -102,22 +102,6 @@ kubectl get pod -n istio-system
 kubectl get pod -n kube-system | grep metrics-server
 ```
 
-### 验证 Harbor 安装
-
-若开启安装了 [内置 Harbor](../install-harbor)，可通过以下命令来验证 Pod 与 Job 状态：
-
-```bash
-kubectl get pod -n kubesphere-devops-system | grep harbor
-```
-
-### 验证 GitLab 安装
-
-若开启安装了 [内置 GitLab](../install-gitlab)，可通过以下命令来验证 Pod 与 Job 状态：
-
-```bash
-kubectl get pod -n kubesphere-devops-system | grep gitlab
-```
-
 ## 如何重启 ks-installer
 
 若需要重新执行安装任务，可以将 ks-installer 的 Pod 删除，手动重启 ks-installer：

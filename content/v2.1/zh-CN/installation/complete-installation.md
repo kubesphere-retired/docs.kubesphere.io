@@ -1,12 +1,22 @@
 ---
 title: "完整安装（开启所有功能组件）"
 keywords: 'Kubernetes, docker, jenkins, devops, istio'
-description: 'install KubeSphere on Linux'
+description: '在 Linux 完整安装 KubeSphere 容器平台'
 ---
 
-KubeSphere 2.1 默认 **仅开启最小化安装**，Installer 已支持在安装前后自定义安装各个可插拔的功能组件，用户可根据业务需求和机器配置选择安装所需的组件。若您的机器资源配置充足，非常建议您在 **安装前将 KubeSphere 所有功能组件都开启** 后再执行安装，完整安装能够体验 KubeSphere 容器平台端到端的容器管理与运维能力。
+KubeSphere 2.1 默认 **仅开启最小化安装**，Installer 已支持在安装前后自定义安装各个可插拔的功能组件，用户可根据业务需求和机器配置选择安装所需的组件。若您的机器资源配置满足以下要求，非常建议您在 **安装前将 KubeSphere 所有功能组件都开启** 后再执行安装，完整安装能够体验 KubeSphere 容器平台端到端的容器管理与运维能力。
 
-<font color="red">若您准备执行 All-in-one 并开启所有功能组件的安装，请确保该机器有至少 8 C 16 G，系统盘 100 G 的资源；若您选择 Multi-node 并开启所有组件，则需要所有机器的 总 CPU 不小于 8 核，总内存不小于 16 G，且每台机器的系统盘不小于 40 G。</font>
+## 机器配置（最低要求）
+
+<font color="red">  
+
+- All-in-one:
+  - CPU: 8 Cores
+  - Memory: 16 GB
+- Multi-node:
+  - CPU: 8 cores in total of all machines
+  - Memory: 16 GB in total of all machines
+</font>
 
 > 提示：若您的机器配置不满足完整安装的最低要求，可参考 [安装可插拔功能组件](../install-openpitrix) 下的文档根据机器资源大小安装所需的功能组件。
 
@@ -14,7 +24,7 @@ KubeSphere 2.1 默认 **仅开启最小化安装**，Installer 已支持在安�
 
 ## 准备安装包
 
-下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入组件配置目录。
+若您还没有下载 KubeSphere Installer，请先下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入组件配置目录。
 
 ```bash
 $ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
@@ -60,14 +70,6 @@ servicemesh_enabled: true      # KubeSphere Service Mesh
 notification_enabled: true     # KubeSphere 通知系统
 alerting_enabled: true         # KubeSphere 告警系统
 
-# Harbor is an optional component for KubeSphere.
-# Which could be turned on to install it before installation or later by updating its value to true
-harbor_enabled: true           # Harbor 私有镜像仓库（内置 Harbor 仅建议测试环境使用，生产环境建议单独部署 Harbor）
-harbor_domain: harbor.devops.kubesphere.local
-# GitLab is an optional component for KubeSphere.
-# Which could be turned on to install it before installation or later by updating its value to true
-gitlab_enabled: true           # GitLab （内置 GitLab 仅建议测试环境使用，生产环境建议单独部署 GitLab）
-gitlab_hosts_domain: devops.kubesphere.local
 ```
 
 完成后保存退出，可返回 All-in-One 或 Multi-node 继续执行安装。

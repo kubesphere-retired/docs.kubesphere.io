@@ -1,10 +1,10 @@
 ---
 title: "Multi-Node 模式"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: '在 Linux 安装多节点 KubeSphere 与 Kubernetes'
 ---
 
-`Multi-Node` 即多节点部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
+`Multi-Node` 即多节点部署 KubeSphere 与 Kubernetes 集群，安装前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
 - <font color=red>KubeSphere 2.1 默认仅开启最小化安装，Installer 已支持自定义安装各个可插拔的功能组件，用户可根据业务需求和机器配置选择安装所需的组件，**请确保开启可插拔组件之前机器资源满足最低要求**，参考 [安装说明](../intro/#自定义安装可插拔的功能组件) 开启可选组件的安装。</font>
 - <font color=red>若您的机器资源配置充足（所有机器总 CPU 不小于 8 核，总内存不小于 16 G），非常建议您在安装前 [将 KubeSphere 所有功能组件都开启](../complete-installation) 后再执行安装，体验 KubeSphere 容器平台端到端完整的容器管理与运维能力。</font>
@@ -17,7 +17,7 @@ description: ''
 
 ## 视频教程
 
-**视频教程以 QingCloud 云平台创建 VM 用作安装示例，其它平台安装步骤类似，具体以其官方文档为准。**
+**视频教程以 QingCloud 云平台创建机器用作安装示例，其它平台安装步骤类似，具体以其官方文档为准。注意，视频中的演示的是下载 v2.1.0，请参考以下文档替换使用 v2.1.1 的下载命令。**
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P002C202001_MultiNode.mp4">
@@ -33,10 +33,10 @@ description: ''
 
 您可以参考以下节点规格准备 <font color=red>至少 3 台</font> 符合要求的主机开始 `multi-node` 模式的部署。为防止软件版本冲突，**建议您选择多台干净的机器进行安装**。
 
-<font color=red>Installer 默认执行最小化安装，下表为最小化安装时的最低配置要求，若希望安装体验 KubeSphere 完整的功能组件，请参考 [可插拔功能组件列表](../intro/#自定义安装可插拔的功能组件)，查看各组件资源占用统计，准备资源更充足的机器开启安装其它功能组件。</font>
+<font color=red>Installer 默认执行最小化安装，下表为最小化安装时的最低配置要求，若希望安装使用 KubeSphere 完整的功能组件，请参考 [可插拔功能组件列表](../intro/#自定义安装可插拔的功能组件)，查看各组件资源占用统计，准备资源更充足的机器开启安装其它功能组件。</font>
 
 > 说明：
-> - 所有节点需要时间同步，否则可能会安装不成功；
+> - 注意！所有节点需要时间同步，否则安装可能会不成功；
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
 > - 若使用 ubuntu 18.04，则需使用 root 用户；
 > - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装；
@@ -69,15 +69,15 @@ description: ''
 
 ## 第二步: 准备安装配置文件
 
-**1.** 下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入 `conf` 目录。
+2.1. 下载 `KubeSphere 2.1.1` 安装包至待安装机器，进入 `conf` 目录。
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/conf
+curl -L https://kubesphere.io/download/stable/v2.1.1 > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/conf
 ```
 
 
-**2.** 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
+2.2. 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
 
 > 说明：
 > - 若以非 root 用户 (如 ubuntu 用户) 进行安装，[all] 部分可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
@@ -127,27 +127,27 @@ kube-master
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 **Kubernetes 版本**是 `v1.15.5`。
+KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 **Kubernetes 版本** 是 `v1.16.7`。
 
 > 说明：
 > - 通常情况您不需要修改任何配置，直接安装即可。
 > - 网络插件默认是 `calico`，存储默认用 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，若您需要自定义安装参数，如网络、存储、负载均衡器插件、可选功能组件等相关配置需在 **`conf/common.yaml`** 文件中指定或修改，参考 [集群组件配置说明](../vars)。
-> - 支持存储类型：[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local)、[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/) (QingCloud 公有云单节点挂盘限制为 10 块)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
+> - 支持存储类型以及存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此安装 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/common.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
 参考以下步骤开始 multi-node 部署。
 
 > 说明：由于 multi-node 的安装时间跟网络情况和带宽、机器配置、安装节点个数等因素都有关，此处暂不提供时间标准。
 
-**1.** 进入安装目录，建议使用 root 用户执行 `install.sh` 安装脚本：
+3.1. 进入安装目录，建议使用 root 用户执行 `install.sh` 安装脚本：
 
 ```bash
-$ cd ..
-$ cd scripts
-$ ./install.sh
+cd ..
+cd scripts
+./install.sh
 ```
 
-**2.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您的环境是否前提条件，若满足请输入 "yes" 开始安装。
+3.2. 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您的环境是否前提条件，若满足请输入 "yes" 开始安装。
 
 ```bash
 ################################################
@@ -157,15 +157,15 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-10-14
+https://kubesphere.io/               2020-02-23
 ################################################
 Please input an option: 2
 
 ```
 
-**3.** 验证 KubeSphere 集群部署是否成功：
+3.3. 验证 KubeSphere 集群部署是否成功：
 
-**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。
+**(1)** 待安装脚本执行完后，请耐心等待，当看到如下 `"Successful"` 的日志，则说明 KubeSphere 安装成功。
 
 ```bash
 #####################################################
@@ -197,6 +197,6 @@ NOTE：Please modify the default password after login.
 
 ## FAQ
 
-KubeSphere 已在阿里云、腾讯云、华为云、青云、AWS 上进行过部署测试，测试结果与相关的解决方法，请参考 [AE 2.0.2 云平台安装测试结果](https://github.com/kubesphere/ks-installer/issues/23)。另外，常见的安装问题我们也已整理相关的解决方法在 [安装常见问题](../../faq/faq-install)。
+KubeSphere 已在阿里云、腾讯云、华为云、青云、AWS 上进行过部署测试，测试结果与相关的解决方法，请参考 [KubeSphere 云平台安装测试结果](https://github.com/kubesphere/ks-installer/issues/23)。另外，常见的安装问题我们也已整理相关的解决方法在 [安装常见问题](../../faq/faq-install)。
 
-若遇到其它的安装问题需要协助支持，请在 [GitHub](https://github.com/kubesphere/kubesphere/issues) 提交 Issue，我们会第一时间跟踪解决。
+若遇到其它的安装问题需要协助支持，请在 [社区论坛](https://kubesphere.com.cn/forum/) 搜索解决方法或发布帖子，我们会尽快跟踪解决。
