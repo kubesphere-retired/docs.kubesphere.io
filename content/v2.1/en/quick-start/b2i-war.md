@@ -1,33 +1,31 @@
 ---
-title: "Binary to Image - Publish Artifact to Kubernete"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "Binary to Image - Publish Artifacts to Kubernetes"
+keywords: "kubesphere, kubernetes, docker, B2I, binary to image, jenkins"
+description: "Deploy Artifacts to Kubernetes Using Binary to Image"
 ---
 
 ## What is Binary to Image
 
-As similar as Source to Image (S2I), Binary to Image (B2I) is a toolkit and workflow for building reproducible container images from binary (e.g. Jar, War, Binary package). You just need to upload your artifact or binary package, and specify the image repository (e.g. DockerHub or Harbor) which you want to push. Then all configurations are stored as different resources in Kubernetes, images will be pushed to target repository and your application will be automatically published to Kubernetes as well.
+As similar as [Source to Image (S2I)](../source-to-image), Binary to Image (B2I) is a toolkit and workflow for building reproducible container images from binary executables like Jar, War, binary package, etc. All you need to do is to upload your artifact, and specify the image repository such as DockerHub or Harbor to where you want to push. After you run a B2I process, your image will be pushed to the target repository and your application will be automatically deployed to Kubernetes as well.
 
-## How B2I improves CD efficiency
+## How does B2I Improve CD Efficiency
 
-Binary-to-image (B2I) can greatly empower developers and maintainer in continuous delivery and publish, microservice transformation and migration.  With B2I tool, you don't need to write Dockerfile, which reduces learning costs and improves publishing efficiency, enabling developers to better focus on the business itself.
+From the introduction above we can see B2I bridges your binary executables to cloud native services with no complicated configurations or coding which is extremely useful for legacy applications and the users who are not familiar with Docker and Kubernetes. Moreover, with B2I tool, as said, you do not need to write Dockerfile. it is not only reduces learning costs but improves publishing efficiency, which enables developers to focus on business itself. In a word, B2I can greatly empower enterprises for continuous delivery that is one of the keys to digital transformation.
 
-The following figure outlines the business implementation process of B2I. B2I has instrumented and streamlined the following steps, so it only needs to be completed with several clicks in KubeSphere UI.
+The following figure describes the step-by-step process of B2I. B2I has instrumented and streamlined the steps, so it takes few clicks to complete in KubeSphere console.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108144952.png)
+![B2I Process](https://pek3b.qingstor.com/kubesphere-docs/png/20200108144952.png)
 
-> - ① Create B2I in KubeSphere UI, upload artifact or binary package.
-> - ② B2I will create K8s Job、Deployment and Service based on the uploaded binary
-> - ③ Automatically package artifacts into Docker images
+> - ① Create B2I in KubeSphere console and upload artifact or binary package
+> - ② B2I will create K8s Job, Deployment and Service based on the uploaded binary
+> - ③ Automatically package the artifact into Docker image
 > - ④ Push image to DockerHub or Harbor
 > - ⑤ B2I Job will pull the image from registry for Deployment created in the second step
-> - ⑥ Automatically publish to Kubernetes
+> - ⑥ Automatically publish the service to Kubernetes
 >
-> Note: In the above process, the B2I Job also performs reporting status in the backend.
+> Note: In the process, the B2I Job also reports status in the backend.
 
-In this document, we'll walk you through how to use B2I in KubeSphere using two sample tutorials.
-
-> Note: For quick testing, we provide five artifact packages that you can download from the sites in the following tables.
+In this document, we will walk you through how to use B2I in KubeSphere. For more testing purpose on your own, we provide five artifact packages that you can download from the sites in the following tables.
 
 |Artifact Package (Click to download) | GitHub Repository|
 | ---  |  ---- |
@@ -40,98 +38,96 @@ In this document, we'll walk you through how to use B2I in KubeSphere using two 
 ## Prerequisites
 
 - You have installed [KubeSphere DevOps System](../../installation/install-devops).
-- You have created a workspace, a project and a `project-regular` account, see [Get Started with Multi-tenant Management](../admin-quick-start).
+- You have created a workspace, a project and a `project-regular` account. Please see [Get Started with Multi-tenant Management](../admin-quick-start).
 
-## Using B2I by Creating Service
+## Hands-on Lab
 
-In this tutorial, we will demonstrate how to use B2I by creating service in KubeSphere, and how to automatically complete six steps described in the workflow graph above.
+In this lab, we will learn how to use B2I by creating service in KubeSphere, and how to automatically complete six steps described in the workflow graph above.
 
-### Create a Secret
+### Step 1: Create a Secret
 
-We need to create a Secret since B2I Job will push the image to DockerHub.
+We need to create a secret since B2I Job will push the image to DockerHub.
 
-1. Sign in with `project-regular` account, enter the sample project you created, then choose **Configuration Center → Secrets**, click **Create** to create a new Secret.
+1.1. Sign in with `project-regular` account, enter the sample project you created, then choose **Configuration Center → Secrets**, click **Create**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108164932.png)
+![Create Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200108164932.png)
 
-2. Enter your account information refer to the following sample, click `Create` when you've completed.
+1.2. Name it `dockerhub-secret`. Click **Next** to **Secret Settings** and enter your account information refer to the following sample. Click **Create** when you have completed.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108165555.png)
+![Secret Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200108165555.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108170256.png)
+![Secret List](https://pek3b.qingstor.com/kubesphere-docs/png/20200108170256.png)
 
-### Create a Service
+### Step 2: Create a Service
 
-1. Select **Application Workloads** → **Service**, then create a new service through the artifact.
+2.1. Select **Application Workloads → Services**, then click **Create** to create a new service through the artifact.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108170544.png)
+![Create Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200108170544.png)
 
-2. Scroll down to `Build a new service through the artifact`, then choose `war`. We will use the [Spring-MVC-Showcase](https://github.com/spring-projects/spring-mvc-showcase) project as a sample. Upload its WAR artifact ([b2i-war-java8](https://github.com/kubesphere/tutorial/raw/master/tutorial%204%20-%20s2i-b2i/b2i-war-java8.war)) to KubeSphere.
+2.2. Scroll down to **Build a new service through the artifact** and choose **war**. We will use the [Spring-MVC-Showcase](https://github.com/spring-projects/spring-mvc-showcase) project as a sample. Upload the WAR artifact ([b2i-war-java8](https://github.com/kubesphere/tutorial/raw/master/tutorial%204%20-%20s2i-b2i/b2i-war-java8.war)) to KubeSphere.
 
-3. Enter service name, e.g. **b2i-war-java8**, click **Next**.
+2.3. Enter service name `b2i-war-java8`, click **Next**.
 
-4. In this step, refer to the following instructions
-
+2.4. Refer to the following instructions to fill in **Build Settings**.
 
 - Upload `b2i-war-java8.war` to KubeSphere.
-- Build Environment: Choose `tomcat85-java8-centos7:latest` as the build environment.
-- Image: Enter `<DOCKERHUB_USERNAME>/<IMAGE NAME>` or `<HARBOR-PROJECT_NAME>/<IMAGE NAME>` as image name
-- Tag: the image tag you may specify, e.g. `latest`
-- Target image repository: Select `dockerhub-secret` that we created in previous step.
+- Choose `tomcat85-java8-centos7:latest` as the build environment.
+- Enter `<DOCKERHUB_USERNAME>/<IMAGE NAME>` or `<HARBOR-PROJECT_NAME>/<IMAGE NAME>` as image name.
+- Tag the image, for instance, `latest`.
+- Select `dockerhub-secret` that we created in previous step as target image repository: .
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108175747.png)
+![Build Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200108175747.png)
 
+2.5. Click **Next** to the **Container Settings** and configure the basic info as the figure shown below.
 
-5. Click **Next** to the Container Settings step and configure the basic info as the figure shown below
+![Container Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200108175907.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108175907.png)
+2.6. Click **Next** and continue to click **Next** to skip **Mount Volumes**.
 
-6. Skip Mount Volumes
+2.7. Check **Internet Access** and choose **NodePort**, then click **Create**.
 
-7. Check `Internet Access` and choose **NodePort**, then click **Create**.
+![Internet Access](https://pek3b.qingstor.com/kubesphere-docs/png/20200108180015.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108180015.png)
+### Step 3: Verify B2I Build Status
 
-### Verify B2I Build Status
+3.1. Choose **Image Builder** and click into **b2i-war-java8-xxx** to inspect B2I building status.
 
-1. Choose **Image Builder** and click into `b2i-war-java8-xxx` to inspect B2I building status.
+![Image Builder](https://pek3b.qingstor.com/kubesphere-docs/png/20200108181100.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108181100.png)
+3.2. Now it is ready to verify the status. You can expand the Job records to inspect the rolling logs. Normally, it will execute successfully in 2~4 minutes.
 
-2. Now it is ready to verify the status. You can expand the Job record to inspect the rolling logs. Normally, it will execute successfully in 2~4 minutes.
+![Job Records](https://pek3b.qingstor.com/kubesphere-docs/png/20200108181133.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108181133.png)
+### Step 4: Verify the resources created by B2I
 
-### Verify the resources created by B2I
+#### Service
 
-**Service**
+![Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200108182649.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108182649.png)
+#### Deployment
 
-**Deployment**
+![Deployment](https://pek3b.qingstor.com/kubesphere-docs/png/20200108182707.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108182707.png)
+#### Job
 
-**Job**
+![Job](https://pek3b.qingstor.com/kubesphere-docs/png/20200108183640.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108183640.png)
+Alternatively, if you want to use command line to inspect those resources, you can use web kubectl from the Toolbox at the bottom right of console. Note it requires cluster admin account to open the tool.
 
-If you would like to use kubectl, it allows you to inspect those resources in web kubectl from Toolbox. Note it requires cluster admin account to run the commands.
+![Web Kubectl](https://pek3b.qingstor.com/kubesphere-docs/png/20200108184829.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108184829.png)
+### Step 5: Access the Service
 
-### Access the Service
+Click into service **b2i-war-java8**. We can get the NodePort and Endpoints. Thereby we can access the **Spring-MVC-Showcase** service via Endpoints within cluster, or browse the web service externally using `http://{$Node IP}:{$NodePort}/{$Binary-Package-Name}/`.
 
-Click into service `b2i-war-java8`, we can easily get the NodePort and Endpoints. Thereby we can access the `Spring-MVC-Showcase` service via Endpoints within cluster, or browse the web service externally using `http://{$Node IP}:{$NodePort}/{$Binary-Package-Name}/`.
+![Resource Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200108185210.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108185210.png)
+For the example above, enter **http://139.198.111.111:30182/b2i-war-java8/** to access **Spring-MVC-Showcase**. Make sure the traffic can pass through the NodePort.
 
-For example, enter `http://139.198.111.111:30182/b2i-war-java8/` to access `Spring-MVC-Showcase`. Make sure the traffic can pass through the NodePort.
+![Access the Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200108190256.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108190256.png)
+### Step 6: Verify Image in DockerHub
 
-### Verify Image in DockerHub
+Sign in DockerHub with your account, you can find the image was successfully pushed to DockerHub with tag `latest`.
 
-Sign in DockerHub with your account, we can find that the image was successfully pushed to DockerHub with tag `latest`.
-
- ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200108191311.png)
+ ![Image in DockerHub](https://pek3b.qingstor.com/kubesphere-docs/png/20200108191311.png)
