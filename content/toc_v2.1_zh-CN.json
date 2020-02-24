@@ -162,8 +162,12 @@
               "entry": "./v2.1/zh-CN/installation/prerequisites.md"
             },
             {
-              "title": "在 Kubernetes 在线安装 KubeSphere",
+              "title": "在 Kubernetes 最小化安装 KubeSphere",
               "entry": "./v2.1/zh-CN/installation/install-on-k8s.md"
+            },
+            {
+              "title": "在 Kubernetes 完整安装 KubeSphere",
+              "entry": "./v2.1/zh-CN/installation/install-complete-ks-on-k8s.md"
             }
           ]
         },
@@ -245,60 +249,56 @@
           "entry": "./v2.1/zh-CN/quick-start/quick-start-guide.md"
         },
         {
-          "title": "示例一 - 多租户管理快速入门",
+          "title": "1. 多租户管理快速入门",
           "entry": "./v2.1/zh-CN/quick-start/admin-quick-start.md"
         },
         {
-          "title": "示例二 - 应用路由与服务示例",
+          "title": "2. 应用路由与服务示例",
           "entry": "./v2.1/zh-CN/quick-start/ingress-demo.md"
         },
         {
-          "title": "示例三 - 创建 Wordpress 应用并发布至 K8s",
+          "title": "3. 创建 Wordpress 应用并发布至 K8s",
           "entry": "./v2.1/zh-CN/quick-start/wordpress-deployment.md"
         },
         {
-          "title": "示例四 - 创建简单任务",
+          "title": "4. 创建简单任务",
           "entry": "./v2.1/zh-CN/quick-start/job-quick-start.md"
         },
         {
-          "title": "示例五 - 一键部署应用",
+          "title": "5. 应用商店",
+          "entry": "./v2.1/zh-CN/quick-start/app-store.md"
+        },
+        {
+          "title": "6. 一键部署应用",
           "entry": "./v2.1/zh-CN/quick-start/one-click-deploy.md"
         },
         {
-          "title": "示例六 - 设置弹性伸缩 (HPA)",
+          "title": "7. 设置弹性伸缩 (HPA)",
           "entry": "./v2.1/zh-CN/quick-start/hpa.md"
         },
         {
-          "title": "示例七 - Source-to-Image",
+          "title": "8. Source-to-Image",
           "entry": "./v2.1/zh-CN/quick-start/source-to-image.md"
         },
         {
-          "title": "示例八 - Bookinfo 微服务的灰度发布",
-          "entry": "./v2.1/zh-CN/quick-start/bookinfo-canary.md"
-        },
-        {
-          "title": "示例九 - 基于Spring Boot项目构建流水线",
-          "entry": "./v2.1/zh-CN/quick-start/devops-online.md"
-        },
-        {
-          "title": "示例十 - 图形化构建流水线",
-          "entry": "./v2.1/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
-        },
-        {
-          "title": "示例十一 - CI/CD 流水线(离线版)",
-          "entry": "./v2.1/zh-CN/quick-start/harbor-gitlab-devops-offline.md"
-        },
-        {
-          "title": "示例十二 - 使用 Ingress-Nginx 进行灰度发布",
-          "entry": "./v2.1/zh-CN/quick-start/ingress-canary.md"
-        },
-        {
-          "title": "示例十三 - Binary-to-Image",
+          "title": "9. Binary-to-Image",
           "entry": "./v2.1/zh-CN/quick-start/b2i-war.md"
         },
         {
-          "title": "示例十四 - 应用商店",
-          "entry": "./v2.1/zh-CN/quick-start/app-store.md"
+          "title": "10. Bookinfo 微服务的灰度发布",
+          "entry": "./v2.1/zh-CN/quick-start/bookinfo-canary.md"
+        },
+        {
+          "title": "11. 基于Spring Boot项目构建流水线",
+          "entry": "./v2.1/zh-CN/quick-start/devops-online.md"
+        },
+        {
+          "title": "12. 图形化构建流水线",
+          "entry": "./v2.1/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
+        },
+        {
+          "title": "13. 使用 Ingress-Nginx 进行灰度发布",
+          "entry": "./v2.1/zh-CN/quick-start/ingress-canary.md"
         }
       ]
     },

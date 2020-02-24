@@ -34,6 +34,12 @@ reviews 微服务有 3 个版本：
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190414172945.png)
 <center>(Bookinfo 架构图与示例说明参考自 https://istio.io/docs/examples/bookinfo/)</center>
 
+## 视频教程
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_8-bookinfo-grayscale-release-on-istio.mp4">
+</video>
+
 ## 预估时间
 
 约 20 ~ 30 分钟。

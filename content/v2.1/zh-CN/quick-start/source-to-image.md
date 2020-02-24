@@ -40,6 +40,12 @@ description: ''
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 - 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为 S2I 任务选择执行构建的节点。
 
+## 视频教程
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/Source-to-Image.mp4">
+</video>
+
 ## 预估时间
 
 20-30 分钟（时间由于网速等因素而有所不同）。
