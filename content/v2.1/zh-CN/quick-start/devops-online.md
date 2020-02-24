@@ -19,6 +19,11 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
 - 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为流水线选择执行构建的节点。
 
+## 视频教程
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_9-create-jenkinsfile-free-pipeline.mp4">
+</video>
 
 ## 预估时间
 
@@ -36,16 +41,18 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 >
 > - **阶段一. Checkout SCM**: 拉取 GitHub 仓库代码
 > - **阶段二. Unit test**: 单元测试，如果测试通过了才继续下面的任务
-> - **阶段三. sonarQube analysis**：sonarQube 代码质量检测
+> - **阶段三. SonarQube analysis**：sonarQube 代码质量检测
 > - **阶段四. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 Harbor (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
 > - **阶段五. Push latest image**: 将 master 分支打上 tag 为 latest，并推送至 DockerHub。
 > - **阶段六. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
 > - **阶段七. Push with tag**: 生成 tag 并 release 到 GitHub，并推送到 DockerHub。
 > - **阶段八. Deploy to production**: 将发布的 tag 部署到 Production 环境。
 
-## 创建凭证(注意，不是密钥/Secret)
+## 创建凭证
 
-> 注意：GitHub 账号或密码带有 "@" 这类特殊字符，需要创建凭证前对其进行 urlencode 编码，可通过一些 [第三方网站](http://tool.chinaz.com/tools/urlencode.aspx)进行转换，然后再将转换后的结果粘贴到对应的凭证信息中。
+> 注意：
+> - GitHub 账号或密码带有 "@" 这类特殊字符，需要创建凭证前对其进行 urlencode 编码，可通过一些 [第三方网站](http://tool.chinaz.com/tools/urlencode.aspx)进行转换，然后再将转换后的结果粘贴到对应的凭证信息中。
+> - 这里需要创建的是凭证（Credential），不是密钥（Secret）。
 
 在 [多租户管理快速入门](/v2.0/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
 

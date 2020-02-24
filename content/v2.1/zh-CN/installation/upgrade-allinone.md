@@ -22,6 +22,9 @@ description: '单节点升级 KubeSphere 2.1.1'
 
 2. 在 KubeSphere 2.1.x 对各个功能组件进行了解耦和可插拔的设计，支持 KubeSphere 各功能组件的可选安装，`common.yaml` 仅开启了最小化安装，升级前需要在 2.0.x 的 `common.yaml` 中将所有功能组件设置为 true，再执行升级。
 
+<font color="red">请注意，若您在 2.1.0 通过编辑 ConfigMap 开启过部分功能组件，那么在升级前，需要在 `common.yaml` 中将 2.1.0 开启的功能组件进行同步，即：将对应的 Enable 项设置为 true。升级脚本将读取 `common.yaml` 进行升级。</font>
+
+
 ### 从 2.1.0 升级
 
 1. 同上，请将 2.1.0 中的 `conf` 目录下修改的参数配置同步到 2.1.1 中，并且存储类型应与老版本集群的存储类型保持一致。

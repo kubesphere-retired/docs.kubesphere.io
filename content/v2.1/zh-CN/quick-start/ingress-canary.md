@@ -36,6 +36,13 @@ KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingre
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826204915.png)
 
+## 视频教程
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_12-ingress-nginx-grayscale-release.mp4">
+</video>
+
+
 ## 前提条件
 
 - 使用 project-admin 登陆创建 ingress-demo 项目

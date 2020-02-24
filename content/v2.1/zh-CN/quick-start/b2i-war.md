@@ -46,11 +46,12 @@ description: ''
 - B2I 属于 DevOps 功能组件，因此使用前需开启安装 DevOps 功能组件
 - 已创建了企业空间、项目和普通用户 `project-regular` 账号 (该已账号已被邀请至示例项目)，请参考 [多租户管理快速入门](../admin-quick-start)
 
-## 示例视频
+## 视频教程
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/Binary-to-image.mp4">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_13-Binary%20to%20Image.mp4">
 </video>
+
 
 ### 创建密钥
 

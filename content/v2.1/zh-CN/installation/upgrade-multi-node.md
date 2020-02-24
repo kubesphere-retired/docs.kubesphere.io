@@ -32,6 +32,8 @@ description: '多节点节点升级 KubeSphere 2.1.1'
 
 2. 将 2.1.0 的 `common.yaml` 开启了的可插拔功能组件，同步到 2.1.1 中。
 
+<font color="red">请注意，若您在 2.1.0 通过编辑 ConfigMap 开启过部分功能组件，那么在升级前，需要在 `common.yaml` 中将 2.1.0 开启的功能组件进行同步，即：将对应的 Enable 项设置为 true。升级脚本将读取 `common.yaml` 进行升级。</font>
+
 ## 第三步：开始升级
 
 完成上述配置后，参考如下步骤进行升级：
