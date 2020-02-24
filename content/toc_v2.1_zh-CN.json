@@ -8,9 +8,13 @@
       "desc": "为您介绍 KubeSphere 已发布的版本功能与更新",
       "chapters": [
         {
-          "title": "Release Notes - 2.1.0",
-          "entry": "./v2.1/zh-CN/release/release-v210.md",
+          "title": "Release Notes - 2.1.1",
+          "entry": "./v2.1/zh-CN/release/release-v211.md",
           "tag": "最新"
+        },
+        {
+          "title": "Release Notes - 2.1.0",
+          "entry": "./v2.1/zh-CN/release/release-v210.md"
         },
         {
           "title": "Release Notes - 2.0.2",
