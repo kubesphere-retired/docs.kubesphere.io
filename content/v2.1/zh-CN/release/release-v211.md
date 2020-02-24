@@ -1,15 +1,15 @@
 ---
 title: "Release Notes For 2.1.1"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'KubeSphere Release Notes'
+keywords: 'kubernetes, docker, kubesphere, jenkins, istio'
+description: 'KubeSphere Release Notes - 2.1.1'
 ---
 
-## Installer 
+## Installer
 
 ### UPGRADE & ENHANCEMENT
 
 - 支持 Kubernetes v1.14.x、v1.15.x、v1.16.x、v1.17.3，同时解决 K8s API 兼容性问题 #[1829](https://github.com/kubesphere/kubesphere/issues/1829)
-- 简化在已有 K8s 上安装的步骤，无需配置集群 CA 证书路径，如不需 etcd 监控数据也无需配置 etcd 证书路径
+- 简化在已有 Kubernetes 上安装的步骤，无需配置集群 CA 证书路径，如不需 etcd 监控数据也无需配置 etcd 证书路径
 - 升级前备份 CoreDNS 配置以便恢复
 
 ### BUG FIXES
@@ -24,7 +24,7 @@ description: 'KubeSphere Release Notes'
 
 ### BUG FIXES
 
-- 修复发布的最新版应用版本号显示问题 #[1130](https://github.com/kubesphere/kubesphere/issues/1130) 
+- 修复发布的最新版应用版本号显示问题 #[1130](https://github.com/kubesphere/kubesphere/issues/1130)
 - 修复应用审核列表页面列名错误的问题 #[1498](https://github.com/kubesphere/kubesphere/issues/1498)
 - 修复无法按名称和企业空间搜索审核中应用的问题 #[1497](https://github.com/kubesphere/kubesphere/issues/1497)
 - 修复应用删除后无法创建同名应用的问题 #[1821](https://github.com/kubesphere/kubesphere/pull/1821) #[1564](https://github.com/kubesphere/kubesphere/issues/1564)
@@ -101,7 +101,7 @@ description: 'KubeSphere Release Notes'
 - 创建工作负载时，可配置安全上下文（SecurityContext）#[1530](https://github.com/kubesphere/kubesphere/issues/1530)
 - 创建工作负载时，可配置 init container #[1488](https://github.com/kubesphere/kubesphere/issues/1488)
 - 配置探针时，增加支持 startupProbe 类型探针，同时参数增加支持 periodSeconds、successThreshold、failureThreshold 参数 #[1487](https://github.com/kubesphere/kubesphere/issues/1487)
-- 优化 pod 状态显示 #[1187](https://github.com/kubesphere/kubesphere/issues/1187)
+- 优化 Pod 状态显示 #[1187](https://github.com/kubesphere/kubesphere/issues/1187)
 - 前端报错提示优化 #[43](https://github.com/kubesphere/console/issues/43)
 
 ### BUG FIXES

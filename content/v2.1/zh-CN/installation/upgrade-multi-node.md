@@ -42,6 +42,6 @@ description: '多节点节点升级 KubeSphere 2.1.1'
 $ ./upgrade.sh
 ```
 
-2. 确认提示信息无误后，输入 `yes` 开始升级。请耐心等待，升级完成后，可以看到 "Successful" 日志与登录信息输出。使用 KubeSphere 之前的访问地址和账户登陆 Console，点击右上角的「关于」查看版本是否更新成功。
+2. 确认提示信息无误后，输入 `yes` 开始升级。请耐心等待，升级完成后，可以看到 查看 ks-installer 日志命令输出，可通过输出的命令确认升级结果。使用 KubeSphere 之前的访问地址和账户登陆 Console，点击右上角的「关于」查看版本是否更新成功。
 
 若升级遇到问题需要支持，请在 [社区论坛](https://kubesphere.com.cn/forum/) 发布帖子，社区会尽快跟踪解决。
