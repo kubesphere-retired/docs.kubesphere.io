@@ -1,7 +1,7 @@
 ---
 title: "图形化构建流水线 (Jenkinsfile out of SCM)"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: '图形化构建 CI/CD 流水线'
 ---
 
 在之前的示例中，我们演示了通过代码仓库中的 Jenkinsfile 构建流水线，此模式需要您对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../devops-online)，其代码仓库中可以没有 Jenkinsfile，您可以在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，操作界面更友好。
@@ -14,8 +14,8 @@ description: ''
 
 - 开启安装了 DevOps 功能组件，参考 [安装 DevOps 系统](../../installation/install-devops)；
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号；
-- 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
-- 邮件通知需要单独配置 Jenkins 邮件设置，具体请参考文档 [配置 Jenkins 邮件发送](../../devops/jenkins-setting#修改-jenkins-邮件服务器设置)
+- 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)；
+- 邮件通知需要单独配置 Jenkins 邮件设置，具体请参考文档 [配置 Jenkins 邮件发送](../../devops/jenkins-email)；
 - 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为流水线选择执行构建的节点。
 
 ## 预估时间
@@ -231,7 +231,7 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 4、同上再添加一个步骤，用于在这一步部署和流水线执行成功后给用户发送通知邮件。点击 `添加步骤`，选择 `邮件`，自定义收件人、抄送、主题和内容。
 
-> 注意，配置邮件服务请参考 [配置 Jenkins 邮件发送](../../devops/jenkins-setting#修改-jenkins-邮件服务器设置)，若还未配置可跳过第 4 步 (下一版本将支持流水线共用 KubeSphere 平台统一配置的通知服务)。
+> 注意，配置邮件服务请参考 [配置 Jenkins 邮件发送](../../devops/jenkins-email)，若还未配置可跳过第 4 步 (下一版本将支持流水线共用 KubeSphere 平台统一配置的通知服务)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232706.png)
 
