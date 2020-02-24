@@ -3,7 +3,7 @@ title: "开发自定义 S2I 模版"
 keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
 ---
 
-对 **Source-to-image (S2I)** 工作原理有了一定了解之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2I 模板) 来扩展 S2I，在我们的项目当中提供了部分常用的构建器镜像模版，例如[Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。
+对 **Source-to-image (S2I)** 工作原理有了一定了解之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2I 模板) 来扩展 S2I，在我们的项目当中提供了部分常用的构建器镜像模版，例如 [Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。
 
 在详细介绍构建器影响之前，先介绍下完成构建器镜像模版所需要提供的元素。
 
@@ -15,9 +15,9 @@ keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
 > 5. test - 一些测试脚本 （可选）
 > 6. S2itemplate - 描述构建程序所使用的基础环境
 
-S2I 构建器镜像的更多的信息可参考[S2IRun](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-builder-image-requirements)
+S2I 构建器镜像的更多的信息可参考 [S2IRun](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-builder-image-requirements)
 
-**在以下的步骤中，我们将向您展示如何创建一个[Nginx](https://www.nginx.com/) 服务的构建器镜像。若项目中希望使用运行时镜像(Runtime Image)，可以参考文档[如何构建运行时镜像](https://github.com/kubesphere/s2irun/blob/master/docs/runtime_image.md)**
+**在以下的步骤中，我们将向您展示如何创建一个 [Nginx](https://www.nginx.com/) 服务的构建器镜像。若项目中希望使用运行时镜像(Runtime Image)，可以参考文档[如何构建运行时镜像](https://github.com/kubesphere/s2irun/blob/master/docs/runtime_image.md)**
 
 ## 第一步：S2i CLI 构建项目目录
 
@@ -107,11 +107,11 @@ EXPOSE 8080
 CMD ["/usr/libexec/s2i/usage"]
 ```
 
-**S2I 脚本中会根据Dockerfile 中定义的Label信息作为使用参数，如果使用非KubeSphere提供的基础镜像，请参考 [S2I Script](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-scripts)**
+**S2I 脚本中会根据 Dockerfile 中定义的 Label 信息作为使用参数，如果使用非 KubeSphere 提供的基础镜像，请参考 [S2I Script](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-scripts)**
 
 ## 第三步 处理S2I构建器脚本
 
-当我们完成了 `Dockerfile` 的定义，我们现在可以完成构建器镜像的其他部分。我们现在添加S2I脚本，我们将从 `assemble`（负责构建应用程序）开始。如下编辑 `assemble` 文件，在我们的例子中，它只是把 `nginx`的配置文件以及静态内容复制到目标容器中：
+当我们完成了 `Dockerfile` 的定义，我们现在可以完成构建器镜像的其他部分。我们现在添加S2I脚本，我们将从 `assemble`（负责构建应用程序）开始。如下编辑 `assemble` 文件，在我们的例子中，它只是把 `nginx` 的配置文件以及静态内容复制到目标容器中：
 
 **assemble**
 
@@ -132,10 +132,10 @@ if [ "$(ls -A /tmp/src)" ]; then
 fi
 ```
 
-默认情况下，`s2i build`将应用程序源代码放在`/tmp/src`目录中，在上面的命令当中，我们将应用源代码复制到了了`kubespheredev/s2i-base-centos7:1`定义的工作目录`/opt/app-root/src`当中。 
+默认情况下，`s2i build` 将应用程序源代码放在 `/tmp/src` 目录中，在上面的命令当中，我们将应用源代码复制到了了 `kubespheredev/s2i-base-centos7:1` 定义的工作目录 `/opt/app-root/src` 当中。 
 
 
-现在我们可以来处理第二个脚本 `run`(用于启动应用程序)，在我们的例子当中，它只是启动`nginx`服务器：
+现在我们可以来处理第二个脚本 `run` (用于启动应用程序)，在我们的例子当中，它只是启动 `nginx` 服务器：
 
 **run**
 
@@ -145,7 +145,7 @@ fi
 exec /usr/sbin/nginx -g "daemon off;"
 ```
 
-我们使用 `exec` 命令将执行 `run` 脚本替换为执行 `nginx` 服务器的主进程。我们这样做是为了让所有`docker`发出的信号都可以被 `nginx` 收到，并且可以让 `nginx` 使用容器的标准输入和标准输出流。
+我们使用 `exec` 命令将执行 `run` 脚本替换为执行 `nginx` 服务器的主进程。我们这样做是为了让所有 `docker` 发出的信号都可以被 `nginx` 收到，并且可以让 `nginx` 使用容器的标准输入和标准输出流。
 
 我们在例子当中被没有实现增量构建，因此我们可以**直接删除** `save-artifacts` 脚本。
 
@@ -272,21 +272,21 @@ S2I 模版详细参数信息如下表所示，其中带有 * 的参数表示必�
 
 | 修改项                   | 类型                   | 含义                                                         |
 | :----------------------- | :--------------------- | :----------------------------------------------------------- |
-| *containerInfo | []struct | 描述构建镜像的相关信息 |
+| *containerInfo | []struct | 构建镜像的相关信息列表 |
 | *containerInfo.builderImage | string | S2I 构建器镜像，比如：kubesphere/java-8-centos7:v2.1.0 |
 | containerInfo.runtimeImage                 | string   | S2I 运行时镜像镜像，比如：kubesphere/java-8-runtime:v2.1.0   |
-| containerInfo.buildVolumes                 | []string | 挂载卷信息，格式"volume_name:mount_path"，比如：["s2i_java_cache:/tmp/artifacts"] |
-| containerInfo.runtimeArtifacts             | []struct | 描述输出制品的原路径和目标路径，仅用于分阶段构建时使用       |
+| containerInfo.buildVolumes                 | []string | 挂载卷信息列表，格式"volume_name:mount_path"，比如：["s2i_java_cache:/tmp/artifacts","test_cache:test_path"] |
+| containerInfo.runtimeArtifacts             | []struct | 输出制品的原路径和目标路径列表，仅用于分阶段构建时使用 |
 | containerInfo.runtimeArtifacts.source      | string   | 制品在构建器镜像中的原路径                                   |
 | containerInfo.runtimeArtifacts.destination | string   | 移动到运行时镜像中的目标路径                                 |
 | containerInfo.runtimeArtifacts.keep        | bool     | 是否将数据保留在最终镜像中                                   |
 | *defaultBaseImage                          | string   | 默认使用的构建器镜像                                         |
-| *codeFramework   | string      | 代码框架类型，比如Java、Ruby等 |
-| environment                                | []struct | 设置用于构建过程中的环境变量                                 |
+| *codeFramework   | string      | 代码框架类型，比如 Java、Ruby 等 |
+| environment                                | []struct | 列表，用于设置一系列构建过程中的环境变量                         |
 | environment.key                            | string   | 环境变量名称                                                 |
 | environment.type                           | string   | 环境变量值类型                                               |
 | environment.description                    | string   | 环境变量描述信息                                             |
-| environment.optValues                      | []string | 环境变量参数选项                                             |
+| environment.optValues                      | []string | 环境变量参数列表                                           |
 | environment.required                       | bool     | 是否必须设置该环境变量                                       |
 | environment.defaultValue                   | string   | 环境变量默认值                                               |
 | environment.value                          | string   | 环境变量值                                                   |
