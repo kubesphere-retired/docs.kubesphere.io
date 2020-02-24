@@ -434,7 +434,7 @@
           ]
         },
         {
-          "title": "通用配置",
+          "title": "DevOps 配置",
           "entries": [
             {
               "title": "系统配置修改",
@@ -443,6 +443,10 @@
             {
               "title": "上传镜像至 Harbor",
               "entry": "./v2.1/zh-CN/system-settings/push-img-harbor.md"
+            },
+            {
+              "title": "流水线配置邮件服务器",
+              "entry": "./v2.1/zh-CN/devops/jenkins-email.md"
             },
             {
               "title": "Jenkins 系统设置",
