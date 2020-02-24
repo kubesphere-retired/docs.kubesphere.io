@@ -17,12 +17,13 @@ description: '在 KubeSphere 流水线中配置邮件服务器发送邮件通知
 
 3. 点击 **更多操作** -> **编辑配置模版** -> **容器组模版** -> 修改 `ks-jenkins`。
 
-4. 找到环境变量设置，修改下列环境变变量进行设置 Jenkins 的邮件发送。（此环境变量在安装之后会有默认值，用户可以参考修改为自己邮件服务器的配置）
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200224211529.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222232208.png)
+4. 下拉窗口滑块，找到环境变量设置，修改下列环境变变量进行设置 Jenkins 的邮件发送。（此环境变量在安装之后会有默认值，用户可以参考修改为自己邮件服务器的配置）
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200224211647.png)
 
-> 注: 修改 Jenkins 环境变量将导致 Jenkins 重启， 请合理安排配置调整时间。
+> 注: 修改 Jenkins 环境变量将导致 Jenkins 的 Deployment 重启，请合理安排配置调整时间。
 
 | 环境变量名称 | 含义 |
 |---|---|
