@@ -38,6 +38,12 @@ description: '单节点升级 KubeSphere 2.1.1'
 $ ./upgrade.sh
 ```
 
-2. 确认提示信息无误后，输入 `yes` 开始升级。请耐心等待，升级完成后，可以看到查看 ks-installer 日志命令的输出，可通过输出的命令确认升级结果。使用 KubeSphere 之前的访问地址和账户登陆 Console，点击右上角的「关于」查看版本是否更新成功。
+2. 确认提示信息无误后，输入 `yes` 开始升级。请耐心等待，升级完成后，可以在界面上看到 "successful" 字样；同时可以通过界面给出的命令查看 ks-installer 日志，以确认升级结果：
+
+```bash
+# kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath={.items[0].metadata.name}) -f
+```
+
+最后，使用原有访问地址和账户登陆 KubeSphere，点击右上角的「关于」查看版本是否更新成功。
 
 若升级遇到问题需要支持，请在 [社区论坛](https://kubesphere.com.cn/forum/) 搜索或发布帖子，社区会尽快跟踪解决。
