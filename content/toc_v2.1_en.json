@@ -8,9 +8,13 @@
       "desc": "Introduce the new features, capabilities and updates for the releases",
       "chapters": [
         {
-          "title": "Release Notes - 2.1.0",
-          "entry": "./v2.1/en/release/release-v210.md",
+          "title": "Release Notes - 2.1.1",
+          "entry": "./v2.1/en/release/release-v211.md",
           "tag": "Latest"
+        },
+        {
+          "title": "Release Notes - 2.1.0",
+          "entry": "./v2.1/en/release/release-v210.md"
         },
         {
           "title": "Release Notes - 2.0.2",
