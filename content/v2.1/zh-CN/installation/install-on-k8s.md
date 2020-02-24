@@ -1,5 +1,5 @@
 ---
-title: "在 Kubernetes 在线部署 KubeSphere"
+title: "在 Kubernetes 最小化安装 KubeSphere"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: '将 KubeSphere 部署在 Kubernetes 之上'
 ---
@@ -9,7 +9,7 @@ KubeSphere 支持在已有 Kubernetes 集群之上在线安装 [KubeSphere](http
 
 > - `Kubernetes` 版本： `1.15.x ≤ K8s version ≤ 1.17.x`；
 > - `Helm`版本： `2.10.0 ≤ Helm Version ＜ 3.0.0`（不支持 helm 2.16.0 [#6894](https://github.com/helm/helm/issues/6894)），且已安装了 Tiller，参考 [如何安装与配置 Helm](https://devopscube.com/install-configure-helm-kubernetes/) （预计 3.0 支持 Helm v3）；
-> - 集群的可用 CPU > 1 C，可用内存 > 2 G（仅最小安装时）；
+> - 集群的可用 CPU > 1 Core，可用内存 > 2 G（仅最小安装），若您的集群资源充足，建议参考 [在 Kubernetes 完整安装 KubeSphere](../install-complete-ks-on-k8s)；
 > - 集群已有默认的存储类型（StorageClass），若还没有准备存储请参考 [安装 OpenEBS 创建 LocalPV 存储类型](../../appendix/install-openebs) 用作开发测试环境。
 > - 集群能够访问外网。
 
