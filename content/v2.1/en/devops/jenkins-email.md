@@ -1,27 +1,19 @@
 ---
-title: "Set Email Server for KubeSphere pipeline"
+title: "Set Email Server for KubeSphere Pipeline"
 keywords: 'kubesphere, kubernetes, notification, jenkins, devops, ci/cd, pipeline'
 description: 'Set Email Server for KubeSphere CI/CD pipeline'
 ---
 
-## Set Email Server for KubeSphere Pipeline
 
-<font color="red">
-Please note that mofify the email server in `ks-jenkins` deployment will restart the deployment itself, the DevOps project will be unavailber in a few minutes. Please update at the appropriate time.
-</font>
+In current version (v2.1.x), the built-in Jenkins and platform notification system cannot share the same email configuration. Thus we need to set email server for KubeSphere DevOps pipeline separately.
 
-In current version (v2.1.x), the built-in Jenkins and platform notification system cannot share the same email configuration. Thus we need to set email server for KubeSphere DevOps pipeline individually.
+> Note: Please be aware that the modification of the email server in `ks-jenkins` deployment below will restart the deployment itself. Consequently, the DevOps system will be unavailable for a few minutes. Please make such modification at an appropriate time.
 
 1. Log in KubeSphere by using `admin` account, navigate to **System-workspace → Projects → kubesphere-devops-system**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222231148.png)
+![System Projects](https://pek3b.qingstor.com/kubesphere-docs/png/20200222231148.png)
 
-2. Click **···** → **Edit YAML**, scroll down to email configuration section. Modify the highlighted blocks with your actual email server parameters.
-
-Click **Update** to save the changes.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222232208.png)
-
+2. Then go to **Application Workloads → Workloads**, choose **Deployments** and drill into **ks-jenkins**. Then choose **Edit Config Template** from **More** drop-down list. Then choose **Pod Template** in the pop-up window and click the edit icon of the container image **ks-jenkins**. Scroll down the panel you will see the following environments that you need to configure. Finally click **Confirm** to save the changes.
 
 | Environment variable name | Description |
 |---|---|
