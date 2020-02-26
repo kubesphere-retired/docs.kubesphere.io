@@ -4,7 +4,7 @@ keywords: 'kubesphere, kubernetes, docker, istio, canary release, jaeger'
 description: 'How to manage canary release of microservices using Istio platform'
 ---
 
-[Istio](https://istio.io/)，as a open source service mesh, provides powerful traffic management which makes canary release of a microservice possible. **Canary release** provides canary rollouts, and staged rollouts with percentage-based traffic splits.
+[Istio](https://istio.io/)，as an open source service mesh, provides powerful traffic management which makes canary release of a microservice possible. **Canary release** provides canary rollouts, and staged rollouts with percentage-based traffic splits.
 
 > The following paragragh is from [Istio](https://istio.io/docs/concepts/traffic-management/) official website.
 
