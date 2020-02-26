@@ -4,35 +4,36 @@ keywords: 'kubernetes, docker, kubesphere, jenkins, cicd, pipeline'
 description: 'Set CI Node for dependency cache of KubeSphere pipeline '
 ---
 
-## How to Set CI Node for Dependency Cache
+## Introduction
 
-Generally, applications often need to pull a lot of dependencies during the build process, it might cause some issues like the pulling time is very long, or unstable network cause to the abnormal build. For more stable build and run, as well as making better use of the cache to speed up the build, we recommend you to set one or a set of CI nodes, so that the CI/CD Pipelines and S2I/B2I builds are more likely to run on the CI nodes.
+Generally, applications often need to pull a lot of dependencies during the build process. It might cause some issues like long pulling time, or unstable network causing failure. In order to make build robust, and to speed up the build by using cache, we recommend you to configure one or a set of CI nodes to schedule the task of CI/CD Pipelines or S2I/B2I builds running on the specific nodes.
+
+## Label CI Nodes
 
 1. Log in KubeSphere with `admin` account, navigate to **Platform → Infrastructure**.
 
 ![Node Management](https://pek3b.qingstor.com/kubesphere-docs/png/20200222130938.png)
 
-2. Choose any of nodes as the CI running nodes, here we choose `node2` and enter its detailed page. Click **Mode → Edit Labels**.
+2. Choose any of nodes as the CI running nodes, here we choose `node2` and enter its detailed page. Click **More → Edit Labels**.
 
-![Set CI Node](https://pek3b.qingstor.com/kubesphere-docs/png/20200222131202.png)
+![Select CI Node](https://pek3b.qingstor.com/kubesphere-docs/png/20200222131202.png)
 
-3. Click **Add Labels**, add a new label `node-role.kubernetes.io/worker=ci`, click **Save**.
+3. Click **Add Labels**, add a new label with key `node-role.kubernetes.io/worker` and value `ci`, click **Save**.
 
 ![Add CI Label](https://pek3b.qingstor.com/kubesphere-docs/png/20200222131640.png)
 
+## Set CI Nodes Dedicated
 
-## Set CI Nodes as Dedicated
-
-Pipelines and S2I/B2I workflows will be scheduled to this node first based on the [Node affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity). If you want to set a set of CI nodes as the dedicated nodes, which means these nodes are not allowed other workloads to be scheduled to them, you can follow with the steps below to set [Taint](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/).
+Basically, pipelines and S2I/B2I workflows will be scheduled to this node according to the [Node affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity). If you want to make CI nodes as the dedicated ones, which means these nodes are not allowed other workloads to be scheduled to them, you can follow with the steps below to set [Taint](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/).
 
 1. Click **Mode → Taint Management**.
 
 ![Taint Management](https://pek3b.qingstor.com/kubesphere-docs/png/20200222132456.png)
 
-2. Click **Add Taint**, enter a key `node.kubernetes.io/ci`, there is no need to set its value. You can choose `NoSchedule` or `PreferNoSchedule` at your will.
+2. Click **Add Taint**, enter a key `node.kubernetes.io/ci` without specifying value. You can choose `NoSchedule` or `PreferNoSchedule` at your will.
 
 ![Add Taint](https://pek3b.qingstor.com/kubesphere-docs/png/20200222132535.png)
 
-3. Click **Save**. At this point, you've complete the CI node settings, you can continue to refer to the DevOps quick guides.
+3. Click **Save**. At this point, you have completed the CI node settings. You can go back to work on your DevOps pipeline.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200222134621.png)
+![Taint Result](https://pek3b.qingstor.com/kubesphere-docs/png/20200222134621.png)
