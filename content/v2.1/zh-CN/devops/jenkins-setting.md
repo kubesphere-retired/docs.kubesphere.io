@@ -1,5 +1,5 @@
 ---
-title: "Jenkins 系统设置" 
+title: "Jenkins 系统设置"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -26,8 +26,6 @@ KubeSphere 的 DevOps 工程底层基于 Jenkins 实现了容器化的 CI / CD �
 
 ### 登陆 Jenkins 重新加载
 
-
-
 1、Installer 安装将会同时部署 Jenkins Dashboard，Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard，访问公网 IP (EIP) + Nodeport (30180) 并登陆 Jenkins Dashboard。登陆后，在左侧导航栏点击 `系统管理`。
 
 > 说明：访问 Jenkins Dashboard 可能需要将端口转发和防火墙放行该端口才可以在公网访问。
@@ -46,27 +44,3 @@ KubeSphere 的 DevOps 工程底层基于 Jenkins 实现了容器化的 CI / CD �
 有关如何通过 CasC 进行系统设置，详见 [官方文档](https://github.com/jenkinsci/configuration-as-code-plugin)。
 
 > 注: 在现在版本当中，并不是所有插件都支持 CasC 的设置。CasC 只会覆盖使用 CasC 进行设置的插件配置。
-
-
-## 修改 Jenkins 邮件服务器设置
-
-在目前版本当中，Jenkins 的邮件配置还没有与系统默认的邮件设置打通，此文档将介绍如何对 Jenkins 发送邮件进行设置。
-
-1、 使用具有 `cluster-admin` 权限的账号登陆 KubeSphere 控制台，进入企业空间 `system-workspace`-> 项目 `kubesphere-devops-system`，在这个项目下工作负载列表，点击进入 `ks-jenkins` 这个工作负载的详情页。
-
-2、 点击 `更多操作` -> `编辑配置模版` -> `容器组模版` -> 修改 `ks-jenkins`。
-
-3、 找到环境变量设置，修改下列环境变变量进行设置 Jenkins 的邮件发送。（此环境变量在安装之后会有默认值，用户可以参考修改）
-
-> 注: 修改 Jenkins 环境变量将导致 Jenkins 重启， 请合理安排配置调整时间。
-
-| 环境变量名称 | 含义 | 
-|---|---|
-|EMAIL\_SMTP\_HOST | SMTP 邮件服务器地址 |
-|EMAIL\_SMTP\_PORT | SMTP 邮件服务器端口  |
-|EMAIL\_FROM\_ADDR | 发件人邮箱地址 |
-|EMAIL\_FROM\_NAME | 通知人名称 |
-|EMAIL\_FROM\_PASS | 密码|
-|EMAIL\_USE\_SSL | 是否开启 SSL 配置 |
-
-

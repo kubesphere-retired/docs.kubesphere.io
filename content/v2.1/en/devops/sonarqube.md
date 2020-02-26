@@ -35,6 +35,6 @@ Using `http://{$Node IP}:{$NodePort}` to access SonarQube console in your browse
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200213231314.png)
 
-4. Choose `Java` and select `Maven` by default, copy the highlighted serial number and click on the `Finish this tutorial`.
+4. Choose `Java` and select `Maven` by default, please be aware that you just need to copy the highlighted serial number, and click on the `Finish this tutorial`.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200213231633.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200226171248.png)

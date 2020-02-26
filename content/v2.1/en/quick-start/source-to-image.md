@@ -28,7 +28,7 @@ This tutorial will use S2I to import source code of Java sample project into Kub
 
 ### Step 1: Create Secrets
 
-Log in KubeSphere with the account `project-regular`. Go to your project and create the secrets for DockerHub and GitHub. Please reference [Creating Common-used Secrets](../../configuration/secrets#Create common-used Secrets). 
+Log in KubeSphere with the account `project-regular`. Go to your project and create the secrets for DockerHub and GitHub. Please reference [Creating Common-used Secrets](../../configuration/secrets#Create common-used Secrets).
 
 > Note you may not need to create GitHub Secret if your forked project below is open to public.
 
@@ -62,7 +62,7 @@ Log in GitHub and fork the GitHub repository [devops-java-sample](https://github
 
 3.5. Click **Next** to **Container Setting** tab. In the **Service Settings** part, name the service `http-port` for example. **Container Port** and **Service Port** are both `8080`.
 
-![Service Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20190718095825.png#alt=)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200226173052.png)
 
 3.6. Scroll down to **Health Checker**, check it and click `Add Container ready check`, fill in the contents as follows:
 
