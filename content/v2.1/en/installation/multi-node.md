@@ -63,11 +63,11 @@ The following section describes an example to introduce multi-node installation.
 
 ## Step 2: Download Installer Package
 
-**1.** Download `KubeSphere 2.1.0` to your taskbox machine, then go to the folder `conf`.
+**1.** Download `KubeSphere 2.1.1` to your taskbox machine, then go to the folder `conf`.
 
 ```bash
-curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/conf
+curl -L https://kubesphere.io/download/stable/latest > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/scripts
 ```
 
 **2.** Please refer to the following sample to configure all hosts in `hosts.ini`. It's recommended to install KubeSphere using root user. The following is an example configuration for `CentOS 7.5` using root user. Note do not manually wrap any line in the file.
@@ -142,7 +142,7 @@ cd scripts
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2019-11-15
+https://kubesphere.io/               2020-02-24
 ################################################
 Please input an option: 2
 

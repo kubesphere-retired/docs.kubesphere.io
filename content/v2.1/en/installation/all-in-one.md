@@ -44,7 +44,7 @@ The following describes the hardware requirements and operating system requireme
 Execute the following commands to download Installer 2.1.1 and unpack it.
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/latest > installer.tar.gz \
+curl -L https://kubesphere.io/download/stable/latest > installer.tar.gz \
 && tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/scripts
 ```
 
