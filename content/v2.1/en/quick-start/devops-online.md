@@ -51,7 +51,7 @@ There are eight stages as shown below in the pipeline that is going to demonstra
 
 1.2. We need to create an additional credential `sonar-token` for SonarQube token, which is used in stage 3 (SonarQube analysis) mentioned above. Refer to [Access SonarQube Console and Create Token](../../installation/install-sonarqube) to copy the token and paste here. Then press `OK` button.
 
-![Create SQ Credential](https://pek3b.qingstor.com/kubesphere-docs/png/20200107105041.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200226171101.png)
 
 In total, we've created four credentials in this step.
 
@@ -88,9 +88,7 @@ Log in GitHub. Fork the [devops-java-sample](https://github.com/kubesphere/devo
 
 **Note: The command parameter `-o` of Jenkinsfile's `mvn` indicates that the offline mode is on. This tutorial has downloaded relevant dependencies to save time and to adapt to network interference in certain environments. The offline mode is on by default.**
 
-2.3. After editing the environmental variables, click **Commit changes** and submit the updates to the master branch.
-
-![Commit Changes](https://kubesphere-docs.pek3b.qingstor.com/png/commit-jenkinsfile.png#align=left&display=inline&height=722&originHeight=722&originWidth=1396&search=&status=done&width=1396)
+2.3. After editing the environmental variables, click **Commit changes** at the top of GitHub page, then submit the updates to the master branch.
 
 ### Step 3: Create Projects
 

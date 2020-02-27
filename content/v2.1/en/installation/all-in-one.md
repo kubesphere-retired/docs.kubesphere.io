@@ -41,23 +41,23 @@ The following describes the hardware requirements and operating system requireme
 
 ## Step 2: Download Installer Package
 
-Execute the following commands to download Installer 2.1.0 and unpack it.
+Execute the following commands to download Installer 2.1.1 and unpack it.
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/scripts
+curl -L https://kubesphere.io/download/stable/latest > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/scripts
 ```
 
 ## Step 3: Get Started With Installation
 
-You should not do anything except executing one command as follows. The installer will complete all things for you automatically including install/update dependency packages, install Kubernetes, storage service and so on.
+You should not do anything except executing one command as follows. The installer will complete all things for you automatically including install/update dependency packages, install Kubernetes (Defaults to 1.16.7), storage service and so on.
 
 **Note:**
 
 > - Generally speaking, do not modify any configuration.
 > - KubeSphere installs `calico` by default. If you would like to use a different network plugin, you are allowed to change the configuration in `conf/common.yaml`. You are also allowed to modify other configurations such as storage class, pluggable components, etc.
-> - The default storage class is [OpenEBS](https://openebs.io/) which is a kind of [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) to provision persistence storage service. OpenEBS supports [dynamic provisioning PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath). It will be installed automatically for your testing environment. 
-> - Supported Storage including: [GlusterFS](https://www.gluster.org/), [Ceph RBD](https://ceph.com/), [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs), [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local), [QingCloud block storage services](https://docs.qingcloud.com/product/storage/volume/), [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/). Please refer [storage configurations](../storage-configuration) for details.
+> - The default storage class is [OpenEBS](https://openebs.io/) which is a kind of [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) to provision persistence storage service. OpenEBS supports [dynamic provisioning PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath). It will be installed automatically for your testing environment.
+> - Please refer [storage configurations](../storage-configuration) for supported storage class.
 > - Since the default subnet for Cluster IPs is 10.233.0.0/18, and the default subnet for Pod IPs is 10.233.64.0/18, the node IPs must not use the two IP range. You can modify the default subnets `kube_service_addresses` or `kube_pods_subnet` in the file `conf/common.yaml` to avoid conflicts.
 
 
@@ -77,7 +77,7 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-11-08
+https://kubesphere.io/               2020-02-24
 ################################################
 Please input an option: 1
 ```
@@ -111,7 +111,7 @@ NOTE：Please modify the default password after login.
 
 ## Enable Pluggable Components
 
-The above installation is only used for minimal installation by default. You can execute the following command to open the configure map and enable pluggable components. Make sure your cluster has enough CPU and memory in advance.
+The above installation is only used for minimal installation by default. You can execute the following command to open the configure map and enable pluggable components. Make sure your cluster has enough CPU and memory in advance, see [Enable Pluggable Components](../pluggable-components).
 
 ```
 $ kubectl edit cm -n kubesphere-system ks-installer

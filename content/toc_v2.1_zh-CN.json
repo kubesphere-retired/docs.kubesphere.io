@@ -434,7 +434,7 @@
           ]
         },
         {
-          "title": "通用配置",
+          "title": "DevOps 配置",
           "entries": [
             {
               "title": "系统配置修改",
@@ -443,6 +443,10 @@
             {
               "title": "上传镜像至 Harbor",
               "entry": "./v2.1/zh-CN/system-settings/push-img-harbor.md"
+            },
+            {
+              "title": "流水线配置邮件服务器",
+              "entry": "./v2.1/zh-CN/devops/jenkins-email.md"
             },
             {
               "title": "Jenkins 系统设置",
@@ -525,10 +529,6 @@
             {
               "title": "落盘日志收集",
               "entry": "./v2.1/zh-CN/workload/logs-on-disk.md"
-            },
-            {
-              "title": "自定义 S2i 模板",
-              "entry": "./v2.1/zh-CN/workload/s2i-template.md"
             }
           ]
         },
@@ -675,6 +675,19 @@
             {
               "title": "Helm 应用开发入门",
               "entry": "./v2.1/zh-CN/developer/helm-developer-guide.md"
+            }
+          ]
+        },
+        {
+          "title": "Source to Image(S2I) 自定义模版开发",
+          "entries": [
+            {
+              "title": "S2I 原理及流程介绍",
+              "entry": "./v2.1/zh-CN/developer/s2i-introduce.md"
+            },
+            {
+              "title": "自定义 S2I 模版",
+              "entry": "./v2.1/zh-CN/developer/s2i-template.md"
             }
           ]
         }
