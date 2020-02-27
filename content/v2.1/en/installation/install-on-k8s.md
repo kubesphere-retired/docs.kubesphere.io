@@ -15,7 +15,8 @@ description: 'How to deploy KubeSphere on an existing Kubernetes cluster'
 > - `Kubernetes version`： `1.15.x, 1.16.x, 1.17.x`
 > - `Helm version` >= `2.10.0`，see [Install and Configure Helm in Kubernetes](https://devopscube.com/install-configure-helm-kubernetes/);
 > - An existing Storage Class in your Kubernetes clusters, use `kubectl get sc` to verify it.
-> - Your cluster can connect to an external network.
+> - Your cluster can connect to an external network;
+> - Make sure the CSR signing feature be activated in kube-apiserver, see [RKE installation issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309).
 
 ### Installation
 
