@@ -219,51 +219,51 @@
     {
       "title": "Quick Start",
       "icon": "/access.svg",
-      "desc": "Get a quick overview of the basic features of KubeSphere with 13 quick-start examples to walk you through the process, help you to get familiar with it.",
+      "desc": "Get a quick overview of the basic features of KubeSphere with several quick-start examples.",
       "chapters": [
         {
-          "title": "1. Getting Started with Multitenancy",
+          "title": "1. Getting Started with Multi-tenancy",
           "entry": "./v2.1/en/quick-start/admin-quick-start.md"
         },
         {
-          "title": "2. Exposing your APP using Ingress",
+          "title": "2. Expose your App Using Ingress",
           "entry": "./v2.1/en/quick-start/ingress-demo.md"
         },
         {
-          "title": "3. Compose and Deploy a Wordpress App to K8s",
+          "title": "3. Compose and Deploy Wordpress to K8s",
           "entry": "./v2.1/en/quick-start/wordpress-deployment.md"
         },
         {
-          "title": "4. Deploy Grafana App using APP Template",
+          "title": "4. Deploy Grafana Using App Template",
           "entry": "./v2.1/en/quick-start/one-click-deploy.md"
         },
         {
-          "title": "5. Job to compute π to 2000 places",
+          "title": "5. Job to Compute π to 2000 Places",
           "entry": "./v2.1/en/quick-start/job-quick-start.md"
         },
         {
-          "title": "6. Creating Horizontal Pod Autoscaler",
+          "title": "6. Create Horizontal Pod Autoscaler",
           "entry": "./v2.1/en/quick-start/hpa.md"
         },
         {
-          "title": "7. B2i: Publish Artifact to Kubernete",
-          "entry": "./v2.1/en/quick-start/b2i-war.md"
-        },
-        {
-          "title": "8. S2i: Publish your app without Dockerfile",
+          "title": "7. S2I: Publish your App without Dockerfile",
           "entry": "./v2.1/en/quick-start/source-to-image.md"
         },
         {
-          "title": "9. Canary Release of Microservice APP",
-          "entry": "./v2.1/en/quick-start/bookinfo-canary.md"
+          "title": "8. B2I: Publish Artifacts to Kubernete",
+          "entry": "./v2.1/en/quick-start/b2i-war.md"
         },
         {
-          "title": "10. CI/CD based on Spring Boot Project",
+          "title": "9. CI/CD based on Spring Boot Project",
           "entry": "./v2.1/en/quick-start/devops-online.md"
         },
         {
-          "title": "11. Jenkinsfile-free pipeline with graphical editing panel",
+          "title": "10. Jenkinsfile-free Pipeline with Graphical Editing Panel",
           "entry": "./v2.1/en/quick-start/jenkinsfile-out-of-scm.md"
+        },
+        {
+          "title": "11. Canary Release of Bookinfo App",
+          "entry": "./v2.1/en/quick-start/bookinfo-canary.md"
         },
         {
           "title": "12. Application Store",
