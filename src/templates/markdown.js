@@ -434,16 +434,16 @@ const HeadingsWrapper = styled.div`
       width: 260px;
       height: 24px;
       padding-left: 20px;
-      font-size: 14px;
+      font-size: 12px;
       line-height: 1.71;
-      color: #141f29;
-      margin-bottom: 8px;
+      color: rgb(48, 62, 90);
+      margin-bottom: 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
       @media only screen and (max-width: 1440px) {
-        width: 250px;
+        width: 240px;
       }
 
       &:hover {
