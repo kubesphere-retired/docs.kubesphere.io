@@ -6,10 +6,12 @@ description: ''
 
 KubeSphere not only supports installing on virtual machine and bare metal with provisioning Kubernetes, but also supports installing on cloud-hosted and on-premises existing Kubernetes cluster as long as your Kubernetes cluster meets the prerequisites below.
 
-> - Kubernetes Version: 1.13.x, 1.14.x, 1.15.x for KubeSPhere 2.1.0; 1.13.x, 1.14.x, 1.15.x, 1.16.x for KubeSPhere 2.1.1
-> - Helm Version: `>= 2.10.0` (excluding 2.16.0), see [Install and Configure Helm in Kubernetes](https://devopscube.com/install-configure-helm-kubernetes/);
+> - `Kubernetes version`： `1.15.x, 1.16.x, 1.17.x`
+> - `Helm version` >= `2.10.0`，see [Install and Configure Helm in Kubernetes](https://devopscube.com/install-configure-helm-kubernetes/);
+> - An existing Storage Class in your Kubernetes clusters, use `kubectl get sc` to verify it.
 > - CPU > 1 Core, Memory > 2 G;
-> - An existing Storage Class in your Kubernetes clusters.
+> - Your cluster can connect to an external network;
+> - Make sure the CSR signing feature be activated in kube-apiserver, see [RKE installation issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309).
 
 1. Make sure your Kubernetes version is greater than 1.13.0 by run `kubectl version` in your cluster node to check. The output looks as the following:
 
