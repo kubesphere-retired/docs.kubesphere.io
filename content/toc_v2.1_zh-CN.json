@@ -261,44 +261,44 @@
           "entry": "./v2.1/zh-CN/quick-start/wordpress-deployment.md"
         },
         {
-          "title": "4. 创建简单任务",
-          "entry": "./v2.1/zh-CN/quick-start/job-quick-start.md"
-        },
-        {
-          "title": "5. 应用商店",
-          "entry": "./v2.1/zh-CN/quick-start/app-store.md"
-        },
-        {
-          "title": "6. 一键部署应用",
+          "title": "4. 一键部署应用",
           "entry": "./v2.1/zh-CN/quick-start/one-click-deploy.md"
         },
         {
-          "title": "7. 设置弹性伸缩 (HPA)",
+          "title": "5. 创建简单任务",
+          "entry": "./v2.1/zh-CN/quick-start/job-quick-start.md"
+        },
+        {
+          "title": "6. 设置弹性伸缩 (HPA)",
           "entry": "./v2.1/zh-CN/quick-start/hpa.md"
         },
         {
-          "title": "8. Source-to-Image",
+          "title": "7. Source-to-Image",
           "entry": "./v2.1/zh-CN/quick-start/source-to-image.md"
         },
         {
-          "title": "9. Binary-to-Image",
+          "title": "8. Binary-to-Image",
           "entry": "./v2.1/zh-CN/quick-start/b2i-war.md"
         },
         {
-          "title": "10. Bookinfo 微服务的灰度发布",
-          "entry": "./v2.1/zh-CN/quick-start/bookinfo-canary.md"
-        },
-        {
-          "title": "11. 基于Spring Boot项目构建流水线",
+          "title": "9. 基于Spring Boot项目构建流水线",
           "entry": "./v2.1/zh-CN/quick-start/devops-online.md"
         },
         {
-          "title": "12. 图形化构建流水线",
+          "title": "10. 图形化构建流水线",
           "entry": "./v2.1/zh-CN/quick-start/jenkinsfile-out-of-scm.md"
         },
         {
-          "title": "13. 使用 Ingress-Nginx 进行灰度发布",
+          "title": "11. Bookinfo 微服务的灰度发布",
+          "entry": "./v2.1/zh-CN/quick-start/bookinfo-canary.md"
+        },
+        {
+          "title": "12. 使用 Ingress-Nginx 进行灰度发布",
           "entry": "./v2.1/zh-CN/quick-start/ingress-canary.md"
+        },
+        {
+          "title": "13. 应用商店",
+          "entry": "./v2.1/zh-CN/quick-start/app-store.md"
         }
       ]
     },

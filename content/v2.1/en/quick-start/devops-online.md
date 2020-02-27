@@ -13,11 +13,10 @@ In this tutorial, we will show you how to create a pipeline based on the Jenkins
 
 ## Prerequisites
 
-- You need to [enable KubeSphere DevOps System](../../installation/install-devops)
-- You need to create an account for DokcerHub and GitHub respectively
-- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into a DevOps project, see [Get started with multi-tenant management](../admin-quick-start)
-- Set CI dedicated node for building pipeline, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node)
-
+- You need to [enable KubeSphere DevOps System](../../installation/install-devops).
+- You need to create an account for DokcerHub and GitHub respectively.
+- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into a DevOps project, see [Get started with multi-tenant management](../admin-quick-start).
+- Set CI dedicated node for building pipeline, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node).
 
 ## Pipeline Overview
 
