@@ -19,7 +19,7 @@ Before creating a new role, understand what permissions the built-in cluster rol
 |Built-in Roles|Description|
 |---|---|
 |cluster-admin |cluster-admin can manage all the resources in the cluster. |
-|workspaces-manager| Manage all the workspaces in the cluster and the projects and engineering resources below. |
+|workspaces-manager| Manage workspaces in the cluster including creating, deleting and managing the users of a workspace. |
 |cluster-regular| Regular users, they do not have any resource operation rights before they are invited to join the workspace. |
 
 The cluster-admin can view all the roles in the platform. If the above built-in roles do not meet the actual needs, the cluster-admin can customize the platform roles and permission rules. 

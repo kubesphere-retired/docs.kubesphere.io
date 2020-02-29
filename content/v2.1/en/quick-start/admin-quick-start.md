@@ -7,7 +7,7 @@ description: 'The guide to get familiar with KubeSphere multi-tenant management'
 
 ## Objective
 
-This is the first lab exercise of KubeSphere. We strongly suggest you to learn it with your hands. This guide shows how to create workspace, role and user account which are required for next lab exercises. Moreover, you will learn how to create project and DevOps project within your workspace where is the place your workloads are running. After this lab, you will get familiar with the multi-tenant management system.
+This is the first lab exercise of KubeSphere. We strongly suggest you to learn it with your hands. This guide shows how to create workspace, role and user account which are required for next lab exercises. Moreover, you will learn how to create project and DevOps project within your workspace where is the place your workloads are running. After this lab, you will get familiar with KubeSphere multi-tenant management system.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ KubeSphere system is organized into **three** hierarchical structures of tenants
 
 As shown below, you can create multiple workspaces within a Kubernetes cluster. Under each workspace you can also create multiple projects.
 
-For each level, there are multiple built-in roles. and it allows you to create role with customized authorization as well. This hierarchy list is appropriate for enterprise users who have different teams or groups, as well as different roles within each team.
+For each level, there are multiple built-in roles. and it allows you to create role with customized authorization as well. This hierarchy list is appropriate for enterprise users who have different teams or groups, and different roles within each team.
 
 ![Architecture](https://pek3b.qingstor.com/kubesphere-docs/png/20200105121616.png)
 
@@ -38,8 +38,8 @@ There are three built-in roles in the cluster level as shown below.
 | Built-in Roles | Description |
 | --- | --- |
 | cluster-admin | It has the privilege to manage any resources in the cluster. |
-| workspaces-manager | It is able to manage all workspaces and the resources of any workspace including projects and DevOps projects. |
-| cluster-regular | Regular users have no authorization to manage resources before being invited to a workspaces. The access right is decided by the role invited to a specific workspace or project.|
+| workspaces-manager | It is able to manage workspaces including creating, deleting and managing the users of a workspace. |
+| cluster-regular | Regular users have no authorization to manage resources before being invited to a workspaces. The access right is decided by the assigned role to the specific workspace or project.|
 
 Here is an example showing you how to create a new role named `users-manager`, grant **account management** and **role management** capabilities to the role, then create a new account named `user-manager` and grant it the users-manager role.
 
