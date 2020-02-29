@@ -56,7 +56,7 @@ KubeSphere 基于 [Nginx Ingress Controller](https://github.com/kubernetes/ingre
 
 1.2. 本文为了快速创建应用，使用集群的 **admin** 账号登录，在项目中创建工作负载和服务时可通过 `编辑 yaml` 的方式，或使用 KubeSphere 右下角的**工具箱**打开 `web kubectl` 并使用以下命令和 yaml 文件创建一个 Production 版本的应用并暴露给集群外访问。如下创建 Production 版本的 `deployment` 和 `service`。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190827111540.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200229121159.png)
 
 ```bash
 $ kubectl apply -f production.yaml -n ingress-demo
@@ -69,7 +69,7 @@ service/production created
 **production.yaml**
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: production
@@ -157,13 +157,13 @@ spec:
 2.1. 此时，在 KubeSphere UI 的企业空间 demo-workspace 下，可以看到 ingress-demo 项目下的所有资源。
 
 **Deployment**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826161618.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200229122819.png)
 
 **Service**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190827143704.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200229122918.png)
 
-**Ingress**
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190826161919.png)
+**Route (Ingress)**
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200229122939.png)
 
 2.2. 访问 Production 版本的应用需确保当前项目已开启了网关，在**外网访问**下打开网关，类型为 `NodePort`。
 
