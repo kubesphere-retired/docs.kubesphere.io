@@ -88,6 +88,7 @@ description: 'KubeSphere Release Notes - 2.1.1'
 ### UPGRADE & ENHANCEMENT
 
 - 通过CSR生成客户端证书 #[1449](https://github.com/kubesphere/kubesphere/issues/1449)
+- 收敛企业空间管理权限，具有企业空间管理权限的用户不能参与企业空间下的项目协同#[1844](https://github.com/kubesphere/kubesphere/issues/1844)
 
 ### BUG FIXES
 
