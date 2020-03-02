@@ -16,6 +16,10 @@ If you are going to install KubeSphere in an air gapped Kubernetes cluster, plea
 > - An existing Storage Class in your Kubernetes clusters, use `kubectl get sc` to verify it.
 > - The CSR signing feature is activated in kube-apiserver, see [RKE installation issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309).
 
+## Configure Image Registry
+
+Make sure you have configured a image registry, e.g. Harbor into Docker configuration, see [Integrate Harbor Registry](../integrate-harbor).
+
 ## Download Image Package
 
 Execute following image package, go to the image packages folder.
@@ -42,13 +46,70 @@ $ tree
 └── openpitrix_images.tar
 ```
 
+Load the image package into docker.
 
 
-## Configure Image Registry
+```
+docker load < ks_minimal_images.tar
+docker load < openpitrix_images.tar
+docker load < ks_logger_images.tar
+docker load < ks_devops_images.tar
+docker load < istio_images.tar
+docker load < ks_notification_images.tar
+docker load < example_images.tar
+```
 
-Make sure you have configured a image registry, e.g. Harbor into Docker configuration, see [Integrate Harbor Registry](../integrate-harbor).
+## Push Images to Harbor
+
+Clone ks-installer to your local, enter the `scripts` folder.
+
+```
+git clone https://github.com/kubesphere/ks-installer.git
+
+cd ks-installer/scripts
+```
+
+Since we have to push a batch of images to Harbor within the different projects, we can use the following script to create the corresponding projects.
+
+```
+vi create_project_harbor.sh
+```
+
+Please replace the image registry address with yours in the following script.
+
+```
+···
+url="http://192.168.0.31"
+user="admin"
+passwd="Harbor12345"
+```
+
+Execute the following script to create the corresponding projects in Harbor.
+
+```
+./create_project_harbor.sh
+```
+
+Execute the following script to push the images that we have loaded above to the Harbor registry in batch, you need to attach the Harbor address and execute the script as follows.
+
+```
+./download-docker-images.sh 192.168.0.31:80
+```
 
 ### Installation
+
+Back to root folder of this repository, and add a new field of Harbor address. Please edit the `kubesphere-minimal.yaml` or `kubesphere-complete-setup.yaml` according to your needs.
+
+```
+···
+    alerting:
+      enabled: true
+
+    local_registry: 192.168.0.31:80   # Add a new field of Harbor address to this line.
+
+kind: ConfigMap
+···
+```
 
 Install KubeSphere using kubectl.
 
@@ -57,6 +118,8 @@ Install KubeSphere using kubectl.
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-minimal.yaml
 ```
+
+You can refer to [enable other pluggable components](../install-on-k8s-airgapped/#enable-pluggable-components) to install other components at your will.
 
 - If there are 8 Cores and 16 GB RAM available in your cluster, use the command below to install a complete KubeSphere, i.e. with all components enabled:
 
