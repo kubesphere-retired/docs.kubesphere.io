@@ -1,22 +1,52 @@
 ---
-title: "Deploy KubeSphere on existing Kubernetes cluster (Online)"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'How to deploy KubeSphere on an existing Kubernetes cluster'
+title: "Install KubeSphere in Air Gapped Kubernetes Cluster"
+keywords: 'kubernetes, kubesphere, air gapped, installation'
+description: 'How to install KubeSphere in an Air Gapped Kubernetes Cluster'
 ---
 
 ![KubeSphere+K8s](https://pek3b.qingstor.com/kubesphere-docs/png/20191123144507.png)
 
-[All-in-One](../all-in-one) and [Multi-Node](../multi-node) describe how to install KubeSphere on virtual machine or bare metal with provisioning Kubernetes underneath. You are also allowed to deploy KubeSphere on an existing Kubernetes cluster that is cloud-hosted or on-premises.
+If you are going to install KubeSphere in an air gapped Kubernetes cluster, please refer to the following steps.
 
-## Install On Kubernetes
-
-### Prerequisites
+## Prerequisites
 
 > - `Kubernetes version`： `1.15.x, 1.16.x, 1.17.x`
 > - `Helm version` >= `2.10.0`，see [Install and Configure Helm in Kubernetes](https://devopscube.com/install-configure-helm-kubernetes/);
+> - You need to have a image registry (e.g. Harbor)
 > - An existing Storage Class in your Kubernetes clusters, use `kubectl get sc` to verify it.
-> - Your cluster can connect to an external network;
-> - The CSR signing feature is activated in kube-apiserver when it is started with the `--cluster-signing-cert-file` and `--cluster-signing-key-file` parameters, see [RKE installation issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309).
+> - The CSR signing feature is activated in kube-apiserver, see [RKE installation issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309).
+
+## Download Image Package
+
+Execute following image package, go to the image packages folder.
+
+```
+curl -L https://kubesphere.io/download/offline/latest > kubesphere-all-offline-v2.1.1.tar.gz \
+&& tar -zxf kubesphere-all-offline-v2.1.1.tar.gz && cd kubesphere-all-offline-v2.1.1/Repos/images-v2.1.1
+```
+
+List all images in this folder.
+
+```
+$ tree
+.
+├── csi_qingcloud_images.tar
+├── example_images.tar
+├── istio_images.tar
+├── k8s_images.tar
+├── ks_devops_images.tar
+├── ks_logger_images.tar
+├── ks_minimal_images.tar
+├── ks_notification_images.tar
+├── local_volume_images.tar
+└── openpitrix_images.tar
+```
+
+
+
+## Configure Image Registry
+
+Make sure you have configured a image registry, e.g. Harbor into Docker configuration, see [Integrate Harbor Registry](../integrate-harbor).
 
 ### Installation
 

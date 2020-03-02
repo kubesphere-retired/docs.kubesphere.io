@@ -25,7 +25,7 @@ KubeSphere 应用商店 **对内可作为团队间共享企业内部的中间件
 ## 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97Demo.mp4">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_14-app-store.mp4">
 </video>
 
 ## 创建自定义角色与账号
