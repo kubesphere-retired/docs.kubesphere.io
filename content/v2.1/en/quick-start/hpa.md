@@ -1,5 +1,5 @@
 ---
-title: "Creating Horizontal Pod Autoscaler for Deployment"
+title: "Create Horizontal Pod Autoscaler for Deployment"
 keywords: 'kubesphere, kubernetes, docker, HPA, Horizontal Pod Autoscaler'
 description: 'How to scale deployment replicas using horizontal Pod autoscaler'
 ---
@@ -8,15 +8,13 @@ The Horizontal Pod Autoscaler (HPA) automatically scales the number of pods in a
 
 ## How does the HPA work
 
-The Horizontal Pod Autoscaler is implemented as a control loop with a period of 30 seconds by default controlled by the controller manager HPA sync-period flag. For per-pod resource metrics like CPU, the controller fetches the metrics from the resource metrics API for each pod targeted by the Horizontal Pod Autoscaler. See [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for more details.
+The Horizontal Pod Autoscaler is implemented as a control loop with a period of default 30 seconds controlled by the controller manager HPA sync-period flag. For per-pod resource metrics like CPU, the controller fetches the metrics from the resource metrics API for each pod targeted by the Horizontal Pod Autoscaler. See [Horizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for more details.
 
 ![HPA Arch](https://pek3b.qingstor.com/kubesphere-docs/png/20190716214909.png#alt=)
 
 ## Objective
 
-This document walks you through an example of configuring Horizontal Pod Autoscaler for the hpa-example deployment.
-
-We will create a deployment to send an infinite loop of queries to the hpa-example application, demonstrating its autoscaling function and the HPA principle.
+This document walks you through an example of configuring Horizontal Pod Autoscaler for the hpa-example deployment. In addition, we will create a deployment to send an infinite loop of queries to the hpa-example application, demonstrating its autoscaling function and the HPA principle.
 
 ## Estimate Time
 
@@ -25,7 +23,7 @@ About 25 minutes
 ## Prerequisites
 
 - You need to [enable HPA](../../installation/install-metrics-server).
-- You need to create a workspace, a project, and a **project-regular** user account, and this account needs to be invited into the project with the role `operator`. Please refer to [Get started with multi-tenant management](../admin-quick-start).
+- You need to create a workspace, a project, and a `project-regular` user account, and this account needs to be invited into the project with the role `operator`. Please refer to [Get started with multi-tenant management](../admin-quick-start).
 
 ## Hands-on Lab
 
@@ -43,9 +41,9 @@ About 25 minutes
 
 ![Add Container](https://pek3b.qingstor.com/kubesphere-docs/png/20200221075857.png)
 
-1.4. Click **√** to save it, and click **Next**. Then skip **Mount Volumes** and **Advanced Settings**, and click **Create**. At this point, the stateless service `hpa` has been created successfully.
+1.4. Click `√` to save it, and click **Next**. Then skip **Mount Volumes** and **Advanced Settings**, and click **Create**. At this point, the stateless service `hpa` has been created successfully.
 
-> Note: At the same time, the corresponding Deployment and Service have been created in Kubernetes.
+> Note: At the same time, the corresponding Deployment and Service have been created in KubeSphere.
 
 ![HPA Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200221080648.png)
 
@@ -93,7 +91,7 @@ while true; do wget -q -O- http://hpa.demo-project.svc.cluster.local; done
 
 ![Load Generator configuration](https://pek3b.qingstor.com/kubesphere-docs/png/20200221090034.png)
 
-3.4. Click on the **√** button when you have done, then click **Next**. We do not use volume in this demo, please click **Next → Create** to complete the creation.
+3.4. Click on the `√` button when you are done, then click **Next**. We do not use volume in this demo, therefore click **Next → Create** to complete the creation.
 
 So far, we have created two deployments, i.e. `hpa` and `load-generator`, and one service, i.e. `hpa`.
 
@@ -109,7 +107,7 @@ Choose **Workloads → Deployments**,  enter the deployment `hpa` to view detail
 
 #### View HPA Status
 
-When the `load-generator` Pod works, it will continuously request `hpa` service. As the following screenshot shown, the CPU utilization is significantly increased after refreshing the page. Currently it is rising to `1012%`, and the desired replicas and current replicas is rising to `10/10`.
+When the `load-generator` Pod works, it will continuously request `hpa` service. As shown from the following screenshot, the CPU utilization is significantly increased after refreshing the page. Currently it is rising to `1012%`, and the desired replicas and current replicas is rising to `10/10`.
 
 ![HPA Status](https://pek3b.qingstor.com/kubesphere-docs/png/20200221091504.png)
 
@@ -119,7 +117,7 @@ After around two minutes, the CPU decreased to `509%`, which proves the principl
 
 ### Step 5: Verify Monitoring
 
-5.1. Scroll down to the Pods list, and pay attention to the Pod that we first created. Generally, we can see the CPU usage of the first created Pod shows a significant upward trend in the monitoring graph. When HPA starts working, the CPU usage has an obvious decreased trend. Finally it tends to be smooth.
+5.1. Scroll down to the Pods list, and pay attention to the first Pod that we created. Generally, we can see the CPU usage of the Pod shows a significant upward trend in the monitoring graph. When HPA starts working, the CPU usage has an obvious decreased trend. Finally it tends to be smooth.
 
 ![HPA Monitoring](https://pek3b.qingstor.com/kubesphere-docs/png/20200221093302.png)
 
@@ -139,11 +137,11 @@ After around two minutes, the CPU decreased to `509%`, which proves the principl
 
 6.1. Go back to **Workloads → Deployments** and delete `load-generator` to cease the load increasing.
 
-6.2. Inspect the status of the `hpa` again, you will find that its current CPU utilization has slowly dropped to 10% **in a few minutes**. Eventually the HPA reduces its deployment replicas to one which is the initial value. The trend in the monitoring curve can also help us to understand the working principle of HPA.
+6.2. Inspect the status of the `hpa` again. You will find that its current CPU utilization has slowly dropped to 10% **in a few minutes**. Eventually the HPA reduces its deployment replicas to one which is the initial value. The trend in the monitoring curve can also help us to understand the working principle of HPA.
 
 ![Stop Load Generator](https://pek3b.qingstor.com/kubesphere-docs/png/20200221095630.png)
 
-6.3. Now, drill into the **Pod** detailed page from Pod list, inspect the monitoring graph and review the CPU utilization and Network inbound/outbound trends. We can find the trends are matched with this HPA example.
+6.3. Now, drill into the **Pod** detailed page from Pod list, inspect the monitoring graph and review the CPU utilization and Network inbound/outbound trends. We can find the trends match this HPA example.
 
 ![HPA Result](https://pek3b.qingstor.com/kubesphere-docs/png/20200221094853.png)
 
@@ -161,4 +159,4 @@ If you do not need HPA for deployment, you can click **··· → Cancel**.
 
 ![Cancel HPA](https://pek3b.qingstor.com/kubesphere-docs/png/20200221095420.png)
 
-Congratulation! You have been familiar with how to set HPA for deployment through this tutorial.
+Congratulation! You have been familiar with how to set HPA for deployment through KubeSphere console.
