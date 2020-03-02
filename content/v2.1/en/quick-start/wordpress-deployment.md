@@ -1,18 +1,18 @@
 ---
 title: "Publish WordPress App to Kubernetes"
 keywords: 'kubesphere, kubernetes, docker, wordpress'
-description: ''
+description: 'How to deploy WordPress into Kubernetes on KubeSphere'
 ---
 
 ## WordPress Introduction
 
-WordPress is an online, open source website creation tool written in PHP, with a back-end database MySQL and a front-end component. We can deploy WordPress to Kubernetes using some Kubernetes object resources.
+WordPress is an online, open source website creation tool written in PHP, with a back-end MySQL database and a front-end component. We can deploy WordPress to Kubernetes using Kubernetes object resources.
 
 ![WordPress](https://pek3b.qingstor.com/kubesphere-docs/png/20200105181908.png)
 
 ## Objective
 
-In this tutorial we will create a WordPress application as an example, demonstrating how to deploy application with multiple components to Kubernetes through KubeSphere UI.
+In this tutorial we will create a WordPress application as an example, demonstrating how to deploy application with multiple components to Kubernetes through KubeSphere console.
 
 ## Estimated Time
 
@@ -30,7 +30,7 @@ The environment variable `WORDPRESS_DB_PASSWORD` is the password to connect the 
 
 ![Secrets List](https://pek3b.qingstor.com/kubesphere-docs/png/20200105182525.png)
 
-1.2. Fill in the basic information, e.g. name it `mysql-secret`, then click **Next**. Click **Add data** and fill in the secret settings as the following screenshot shown, save it and click **Create**.
+1.2. Fill in the basic information, e.g. name it `mysql-secret`, then click **Next**. Click **Add data** and fill in the secret settings as shown in the following screenshot, save it and click **Create**.
 
 - Key: `MYSQL_ROOT_PASSWORD`
 - Value: `123456`
@@ -39,13 +39,13 @@ The environment variable `WORDPRESS_DB_PASSWORD` is the password to connect the 
 
 #### Create a WordPress Secret
 
-Same steps as above, create a WordPress secret `wordpress-secret` with `Key: WORDPRESS_DB_PASSWORD` and `Data: 123456`.
+Same steps as above, create a WordPress secret `wordpress-secret` with Key `WORDPRESS_DB_PASSWORD` and Data `123456`.
 
 ![Create WordPress Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200105183314.png)
 
 ### Step 2: Create a Volume
 
-Choose **Volumes** and click **Create**, name it `wordpress-pvc`, click **Next** to Volume Settings where you need to choose an available `Storage Class`, `ReadWriteOnce` of access mode and 10 G of storage size. Click `Next` to Advanced Settings. No configuration is for this page, so click **Create** to finish volume creation.
+Choose **Volumes** and click **Create**, name it `wordpress-pvc`, click **Next** to Volume Settings where you need to choose an available `Storage Class`, `ReadWriteOnce` of access mode and 10G of storage size. Click **Next** to Advanced Settings. No configuration is for this page, so click **Create** to finish volume creation.
 
 ![Create Volume](https://pek3b.qingstor.com/kubesphere-docs/png/20200106000543.png)
 
@@ -69,21 +69,21 @@ In this step, we will choose the way of composing app to create a complete micro
 
 ![Compose Application](https://pek3b.qingstor.com/kubesphere-docs/png/20200106001425.png)
 
-3.3. Click **Add Container Image**, enter `mysql:5.6` into the Image edit box, press the return key and click `Use Default Ports`.
+3.3. Scroll down and click **Add Container Image**, enter `mysql:5.6` into the Image edit box, press the return key and click `Use Default Ports`.
 
 ![Fill Application Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106002012.png)
 
-3.4. Scroll down to the Environment Variables, check **Environment Variable** and click **Use ConfigMap or Secret**, then input `MYSQL_ROOT_PASSWORD` and choose `mysql-secret` that we created in previous step as shown below.
+3.4. Scroll down to the Environment Variables, check **Environment Variable** and click **Use ConfigMap or Secret**, then input the name `MYSQL_ROOT_PASSWORD` and choose the resource `mysql-secret` and the key `MYSQL_ROOT_PASSWORD` we created in previous step.
 
-Click `√` to save it when you've finished.
+Click `√` to save it when you have finished.
 
 ![Fill More Application Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106002450.png)
 
-3.5. Continue scrolling down and click `Add Volume Template` to create a PVC for MySQL according to the following screenshot.
+3.5. Continue scrolling down and click **Add Volume Template** to create a PVC for MySQL according to the following screenshot.
 
 ![Add Volume to Application](https://pek3b.qingstor.com/kubesphere-docs/png/20200106003738.png)
 
-3.6. Click `√` to save it. At this point you've added MySQL component.
+3.6. Click `√` to save it. At this point you have added the MySQL component.
 
 ![Save Application info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106004012.png)
 
@@ -106,11 +106,11 @@ Click `√` to save it when you've finished.
 
 3.10. Click `√` to save it.
 
-3.11. Continue scrolling down and click `Add Volume` to attach the existed volume to WordPress.
+3.11. Continue scrolling down and click **Add Volume** to attach the existed volume to WordPress.
 
 ![Add Volume](https://pek3b.qingstor.com/kubesphere-docs/png/20200106005242.png)
 
-3.12. Select `wordpress-pvc` that we've created in the previous step, and select `ReadAndWrite`, then input `/var/www/html` as its mount path. Click `√` to save it.
+3.12. Select `wordpress-pvc` that we created in the previous step, and select `ReadAndWrite`, then input `/var/www/html` as its mount path. Click `√` to save it.
 
 ![Fill Volume Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106005431.png)
 
@@ -136,7 +136,7 @@ Click `√` to save it when you've finished.
 
 ### Step 5: Access the WordPress Application
 
-5.1. Enter `wordpress` service, then **edit internet access**.
+5.1. Enter `wordpress` service, and click **Edit Internet Access**.
 
 ![WordPress Internet Access](https://pek3b.qingstor.com/kubesphere-docs/png/20200106010404.png)
 
