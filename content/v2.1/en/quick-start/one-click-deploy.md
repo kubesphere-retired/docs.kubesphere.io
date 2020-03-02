@@ -6,7 +6,7 @@ description: "How to deploy applications using templates based on OpenPitrix"
 
 ## Objective
 
-This tutorial shows you how to quickly deploy a [Grafana](https://grafana.com/) application using templates from KubeSphere application store sponsored by [OpenPitrix](https://github.com/openpitrix/openpitirx). The demonstration includes importing application repository, sharing and deploying apps under a workspace.
+This tutorial shows you how to quickly deploy a [Grafana](https://grafana.com/) application using templates from KubeSphere application store sponsored by [OpenPitrix](https://github.com/openpitrix/openpitirx). The demonstration includes importing application repository, sharing and deploying apps within a workspace.
 
 ## Prerequisites
 
@@ -19,11 +19,11 @@ This tutorial shows you how to quickly deploy a [Grafana](https://grafana.com/) 
 
 > Note: The application repository can be hosted by either object storage, e.g. [QingStor Object Storage](https://www.qingcloud.com/products/qingstor/), [AWS S3](https://aws.amazon.com/what-is-cloud-object-storage/), or by [GitHub Repository](https://github.com/). The packages are composed of Helm Chart template files of the applications. Therefore, before adding an application repository to KubeSphere, you need to create an object storage bucket and upload Helm packages in advance. This tutorial prepares a demo repository based on QingStor Object Storage.
 
-1.1. Sign in with `ws-admin` account, click **View Workspace** and navigate to **Workspace Settings → App Repos**, then click **Add App Repository**.
+1.1. Sign in with `ws-admin` account, click **View Workspace** and navigate to **Workspace Settings → App Repos**, then click **Create App Repository**.
 
 ![App Repo List](https://pek3b.qingstor.com/kubesphere-docs/png/20200106143904.png)
 
-1.2. Fill in the basic information, name it `demo-repo` and input the URL `https://helm-chart-repo.pek3a.qingstor.com/kubernetes-charts/`. You can validate if this URL is available, and choose **OK** when you've done.
+1.2. Fill in the basic information, name it `demo-repo` and input the URL `https://helm-chart-repo.pek3a.qingstor.com/kubernetes-charts/`. You can validate if this URL is available, and choose **OK** when you have done.
 
 > Note: It will automatically import all of the applications from the Helm repository into KubeSphere. You can browse those app templates in each project.
 
@@ -73,7 +73,7 @@ This tutorial shows you how to quickly deploy a [Grafana](https://grafana.com/) 
 
 In this step, we can access Grafana service using `${Node IP}:${NODEPORT}`, e.g. `http://192.168.0.54:31407`, or click the button **Click to visit** to access the Grafana dashboard.
 
-5.1. Note that you have to obtain the account and password from the grafana secret in advance. Navigate to **Configuration Center → Secrets**, click into **grafana-l47bmc** with Type Default.
+5.1. Note you have to obtain the account and password from the grafana secret in advance. Navigate to **Configuration Center → Secrets**, click into **grafana-l47bmc** with Type Default.
 
 ![Grafana Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200106173434.png)
 
