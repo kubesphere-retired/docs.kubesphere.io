@@ -24,11 +24,11 @@ description: '图形化构建 CI/CD 流水线'
 
 ## 操作示例
 
-<!-- ### 演示视频
+### 演示视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo7-jenkinsfile-out-of-scm.mp4">
-</video> -->
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_10-graphical-pipeline.mp4">
+</video>
 
 ### 流水线概览
 

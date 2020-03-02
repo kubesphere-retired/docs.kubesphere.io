@@ -119,7 +119,7 @@ Application management and orchestration
 
 ## Infrastructure Management
 
-Support storage management, host management and monitoring, resource quota management, image registry management, authorization management and image security scanning.
+Support storage management, host management and monitoring, resource quota management, image registry management, authorization management.
 
 
 
