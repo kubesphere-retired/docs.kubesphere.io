@@ -18,15 +18,15 @@ If you are going to install KubeSphere in an air gapped Kubernetes cluster, plea
 
 ## Configure Image Registry
 
-Make sure you have configured a image registry, e.g. Harbor into Docker configuration, see [Integrate Harbor Registry](../integrate-harbor).
+You need to configure a image registry (e.g. Harbor) into Docker configuration, see [Configure Harbor](../integrate-harbor) for further information.
 
 ## Download Image Package
 
-Execute following image package, go to the image packages folder.
+Execute the following image package, go to the image packages folder.
 
 ```
-curl -L https://kubesphere.io/download/offline/latest > kubesphere-all-offline-v2.1.1.tar.gz \
-&& tar -zxf kubesphere-all-offline-v2.1.1.tar.gz && cd kubesphere-all-offline-v2.1.1/Repos/images-v2.1.1
+curl -L https://kubesphere.io/download/images/latest > kubesphere-all-images-v2.1.1.tar.gz \
+&& tar -zxf kubesphere-all-images-v2.1.1.tar.gz && cd kubesphere-all-images-v2.1.1
 ```
 
 List all images in this folder.
@@ -34,19 +34,18 @@ List all images in this folder.
 ```
 $ tree
 .
-├── csi_qingcloud_images.tar
+tree
+.
 ├── example_images.tar
 ├── istio_images.tar
-├── k8s_images.tar
 ├── ks_devops_images.tar
-├── ks_logger_images.tar
+├── ks_logging_images.tar
 ├── ks_minimal_images.tar
 ├── ks_notification_images.tar
-├── local_volume_images.tar
 └── openpitrix_images.tar
 ```
 
-Load the image package into docker.
+Load the image packages into docker.
 
 
 ```
@@ -113,7 +112,7 @@ kind: ConfigMap
 
 Install KubeSphere using kubectl.
 
-- If there are 1 Core and 2 GB RAM available in your cluster, use the command below to trigger a default minimal installation only:
+- If there are 1 Core and 2 GB RAM available in your cluster, use the command below to start a default minimal installation only:
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-minimal.yaml
@@ -127,7 +126,7 @@ You can refer to [enable other pluggable components](../install-on-k8s-airgapped
 kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-complete-setup.yaml
 ```
 
-Verify the real-time logs. When you see the following outputs, congratulation! You can access KubeSphere console in your browser now.
+Verify the real-time logs use the command as follows.
 
 ```bash
 $ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
@@ -142,6 +141,8 @@ Password: P@88w0rd
 NOTE：Please modify the default password after login.
 #####################################################
 ```
+
+When you see the following outputs above, congratulation! You can access KubeSphere console in your browser now.
 
 ## Enable Pluggable Components
 

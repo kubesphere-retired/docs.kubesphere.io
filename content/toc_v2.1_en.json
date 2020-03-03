@@ -158,6 +158,10 @@
               "entry": "./v2.1/en/installation/install-on-k8s.md"
             },
             {
+              "title": "Air Gapped Installation",
+              "entry": "./v2.1/en/installation/install-on-k8s-airgapped.md"
+            },
+            {
               "title": "Install on GKE",
               "entry": "./v2.1/en/installation/install-on-gke.md"
             }
@@ -167,12 +171,8 @@
           "title": "Related Tools",
           "entries": [
             {
-              "title": "Enable Harbor Installation",
-              "entry": "./v2.1/en/installation/install-harbor.md"
-            },
-            {
-              "title": "Enable GitLab Installation",
-              "entry": "./v2.1/en/installation/install-gitlab.md"
+              "title": "Configure Harbor",
+              "entry": "./v2.1/en/installation/integrate-harbor.md"
             },
             {
               "title": "Access Built-in SonarQube and Jenkins",
