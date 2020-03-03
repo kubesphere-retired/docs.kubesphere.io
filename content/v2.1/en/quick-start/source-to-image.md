@@ -10,7 +10,7 @@ As [Features and Benefits](../../introduction/features) elaborates, Source-to-Im
 
 ## Objective
 
-This tutorial will use S2I to import source code of Java sample project into KubeSphere, build a docker image and push to a target registry, finally publish to Kubernetes and expose the service to outside.
+This tutorial will use S2I to import source code of a Java sample project into KubeSphere, build a docker image and push to a target registry, finally publish to Kubernetes and expose the service to outside.
 
 ![S2I Process](https://pek3b.qingstor.com/kubesphere-docs/png/20200207162613.png)
 
@@ -18,7 +18,8 @@ This tutorial will use S2I to import source code of Java sample project into Kub
 
 - You need to enable [KubeSphere DevOps system](../../installation/install-devops).
 - You need to create [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) accounts. GitLab and Harbor are also supported. We will use GitHub and DockerHub in this tutorial.
-- You need to create a workspace, a project and `project-regular` account with the role of "operator", see [Quick Start Guide of Multi-tenant Management](/../../quick-start/admin-quick-start/).
+- You need to create a workspace, a project and `project-regular` account with the role of operator, see [Getting Started with Multi-tenant Management](/../../quick-start/admin-quick-start).
+- Set CI dedicated node for building images, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node). This is not mandatory but recommended for development and production environment since it caches code dependency.
 
 ## Estimated Time
 
@@ -28,7 +29,7 @@ This tutorial will use S2I to import source code of Java sample project into Kub
 
 ### Step 1: Create Secrets
 
-Log in KubeSphere with the account `project-regular`. Go to your project and create the secrets for DockerHub and GitHub. Please reference [Creating Common-used Secrets](../../configuration/secrets#Create common-used Secrets).
+Log in KubeSphere with the account `project-regular`. Go to your project and create the secrets for DockerHub and GitHub. Please reference [Creating Common-used Secrets](../../configuration/secrets#create-common-used-secrets).
 
 > Note you may not need to create GitHub Secret if your forked project below is open to public.
 
@@ -72,7 +73,7 @@ Log in GitHub and fork the GitHub repository [devops-java-sample](https://github
 
 ![Health Checker](https://pek3b.qingstor.com/kubesphere-docs/png/20200210223047.png)
 
-Then click **√** to save it when you've done, and click **Next**.
+Then click `√` to save it when you are done, and click **Next**.
 
 #### Create S2I Deployment
 
@@ -115,7 +116,7 @@ $ curl 10.233.90.126:8080
 Really appreciate your star, that is the power of our life.
 ```
 
-> Tip: If you need to access to this service externally, make sure the traffic can pass through the NodePort, You may configure firewall and port forward according to your environment.
+> Tip: If you need to access to this service externally, make sure the traffic can pass through the NodePort. You may configure firewall and port forward according to your environment.
 
 ### Step 6: Verify Image Registry
 
@@ -123,4 +124,4 @@ Since you set DockerHub as the target registry, you can log in to your personal 
 
 ![Image in DockerHub](https://pek3b.qingstor.com/kubesphere-docs/png/20200210231552.png)
 
-Congratulation! You've been familiar with S2I tool.
+Congratulation! You have been familiar with S2I tool.
