@@ -14,7 +14,7 @@ KubeSphere provides three kinds of grayscale strategies based on Istio, includin
 
 ## Objective
 
-In this tutorial, we're going to deploy a Bookinfo sample application composed of four separate microservices used to demonstrate the canary release, tracing and traffic monitoring using Istio on KubeSphere.
+In this tutorial, we are going to deploy a Bookinfo sample application composed of four separate microservices to demonstrate the canary release, tracing and traffic monitoring using Istio on KubeSphere.
 
 ## Prerequisites
 
