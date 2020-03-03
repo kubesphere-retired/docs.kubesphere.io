@@ -22,12 +22,14 @@ You need to configure a image registry (e.g. Harbor) into Docker configuration, 
 
 ## Download Image Package
 
-Execute the following image package, go to the image packages folder.
+Execute the following command to download the image packages:
 
 ```
 curl -L https://kubesphere.io/download/images/latest > kubesphere-all-images-v2.1.1.tar.gz \
 && tar -zxf kubesphere-all-images-v2.1.1.tar.gz && cd kubesphere-all-images-v2.1.1
 ```
+
+> Note: It will take several tens of minutes since the package includes all components and samples images. 
 
 List all images in this folder.
 
