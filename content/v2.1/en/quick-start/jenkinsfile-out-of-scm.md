@@ -4,7 +4,7 @@ keywords: 'KubeSphere, kubernetes, docker, jenkins, cicd, graphical pipeline'
 description: 'Create a none-Jenkinsfile CI/CD pipeline with graphical editing panel'
 ---
 
-We have demonstrated how to create a Jenkinsfile-based pipeline for Spring Boot Project in the last tutorial. It requires users are familiar with Jenkinsfile. However, Jenkinsfile is a non-trival thing to learn and some people even do not know about it. Therefore, unlike the last tutorial, we are going to show how to create a CI/CD pipeline without Jenkinsfile by drag-and-drop editing the workflow through KubeSphere console.
+We have demonstrated how to create a Jenkinsfile-based pipeline for Spring Boot Project in the last tutorial. It requires users are familiar with Jenkinsfile. However, Jenkinsfile is a non-trivial thing to learn and some people even do not know about it. Therefore, unlike the last tutorial, we are going to show how to create a CI/CD pipeline without Jenkinsfile by visually editing the workflow through KubeSphere console.
 
 ## Objective
 
@@ -14,7 +14,7 @@ We will use the graphical editing panel in KubeSphere console to create a pipeli
 
 - You need to [enable KubeSphere DevOps System](../../installation/install-devops).
 - You need to create [DockerHub](http://www.dockerhub.com/) account.
-- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into the DevOps project as the role of maintainer, please refer to [Get started with multi-tenant management](../admin-quick-start).
+- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into the DevOps project as the role of maintainer, please refer to [Getting Started with Multi-tenant Management](../admin-quick-start).
 - Configure email server for notification in pipeline, please refer to [Set Email Server for KubeSphere Pipeline](../../devops/jenkins-email).
 - Set CI dedicated node for building pipeline, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node).
 
@@ -37,13 +37,13 @@ The sample pipeline includes the following six stages.
 
 ### Step 1: Create Credentials
 
-We need to create **three** credentials for DockerHub, Kubernetes and SonarQube respectively. Please refer to [create credentials](../devops-online#step-1-create-credentials) to create them that are used in the pipeline.
+We need to create **three** credentials for DockerHub, Kubernetes and SonarQube respectively. If you have finished the last lab [Create a Jenkinsfile-based Pipeline for Spring Boot Project](../devops-online#step-1-create-credentials), you already have the credentials created. Otherwise, please refer to [create credentials](../devops-online#step-1-create-credentials) to create them that are used in the pipeline.
 
 ![Create Credentials](https://pek3b.qingstor.com/kubesphere-docs/png/20200221223754.png)
 
 ### Step 2: Create Project
 
-The sample pipeline will deploy the [sample project](https://github.com/kubesphere/devops-java-sample) to Kubernetes namespace, thus we need to create a project in KubeSphere. Please refer to the [last tutorial](../devops-online#create-the-first-project) to create a project named `kubesphere-sample-dev` by using `project-admin`, then invite the account `project-regular` into this project and assign the role of `operator` to this account.
+The sample pipeline will deploy the [sample](https://github.com/kubesphere/devops-java-sample) to Kubernetes namespace, thus we need to create a project in KubeSphere. If you do not finish the last lab, please refer to the [step](../devops-online#create-the-first-project) to create a project named `kubesphere-sample-dev` by using `project-admin`, then invite the account `project-regular` into this project and assign the role of `operator` to this account.
 
 ### Step 3: Create Pipeline
 
@@ -59,7 +59,7 @@ Follow the steps below to create a pipeline using graphical editing panel.
 
 #### Advanced Settings
 
-3.3. Keep clicking **Add Parameter** to add **three** string parameters as follows. These parameters will be used in the Docker command of the pipeline. Click **Create** when you have done.
+3.3. Keep clicking **Add Parameter** to add **three** string parameters as follows. These parameters will be used in the Docker command of the pipeline. Click **Create** when you are done.
 
 | Parameter Type | Name | Default Value | Description |
 | --- | --- | --- | --- |
@@ -71,7 +71,7 @@ Follow the steps below to create a pipeline using graphical editing panel.
 
 ### Step 4: Editing pipeline
 
-This pipeline consists of six stages. We will demonstrate steps and tasks in each stage.
+This pipeline consists of six stages. We will demonstrate the steps and tasks in each stage.
 
 #### Stage I: Pull Source Code (Checkout SCM)
 
@@ -81,7 +81,7 @@ The graphical editing panel includes two areas, i.e., **canvas** on the left and
 
 4.1.1. As follows, select **node** from the drop-down list of **agent type** in the content area, input `maven` in the label.
 
-> Note: The agent is used to define execution environment. The agent directive tells Jenkins where and how to execute the pipeline, or a specific stage. Please refer to [Jenkins Agent](https://jenkins.io/doc/pipeline/tour/agents/) for further information.
+> Note: The agent is used to define execution environment. The agent directive tells Jenkins where and how to execute the pipeline or a specific stage. Please refer to [Jenkins Agent](https://jenkins.io/doc/pipeline/tour/agents/) for further information.
 
 ![Select Agent](https://pek3b.qingstor.com/kubesphere-docs/png/20200221234417.png)
 
@@ -95,7 +95,7 @@ The graphical editing panel includes two areas, i.e., **canvas** on the left and
 - Credential ID: Leave it blank as it is for using a private repository.
 - Branch: Leave it as blank. Blank means default to master.
 
-When you have done, click **OK** to save it and you will see the first stage created.
+When you are done, click **OK** to save it and you will see the first stage created.
 
 ![GitHub repository](https://pek3b.qingstor.com/kubesphere-docs/png/20200221234935.png)
 
@@ -139,7 +139,7 @@ Click **OK** to save it.
 
 ![withSonarQubeEnv](https://pek3b.qingstor.com/kubesphere-docs/png/20200222000936.png)
 
-4.3.5. Click **Add nesting steps** (the first one) in the **withSonarQubeEnv**. Then select **Shell** on the right, enter the following commands in the pop-up window for SonarQube branch and authentication, and click **OK** to save the information.
+4.3.5. Click **Add nesting steps** (the first one) in the **withSonarQubeEnv**. Then select **shell** on the right, enter the following commands in the pop-up window for SonarQube branch and authentication, and click **OK** to save the information.
 
 ```shell
 mvn sonar:sonar -o -gs `pwd`/configuration/settings.xml -Dsonar.branch=$BRANCH_NAME -Dsonar.login=$SONAR_TOKEN
@@ -167,13 +167,13 @@ Click **OK** to save it.
 
 ![maven container](https://pek3b.qingstor.com/kubesphere-docs/png/20200222112517.png)
 
-4.16. Click **Add nesting steps** in the contain `maven`, and select **Shell** on the right, enter the following command in the pop-up window:
+4.16. Click **Add nesting steps** in the contain `maven`, and select **shell** on the right, enter the following command in the pop-up window:
 
 ```shell
 mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package
 ```
 
-4.4.3. Then continue to click **Add nesting steps** on the right, select **Shell** in the pop-up window, enter the following command to build a Docker image based on the [Dockerfile](https://github.com/kubesphere/devops-java-sample/blob/master/Dockerfile-online):
+4.4.3. Then continue to click **Add nesting steps** on the right, select **shell** in the pop-up window, enter the following command to build a Docker image based on the [Dockerfile](https://github.com/kubesphere/devops-java-sample/blob/master/Dockerfile-online):
 
 > Please DO NOT miss the dot `.` at the end of the command.
 
@@ -197,7 +197,7 @@ Click **OK** to save the it.
 
 ![DockerHub credentials](https://pek3b.qingstor.com/kubesphere-docs/png/20200222113442.png)
 
-4.4.5. Click **Add nesting steps** (the first one) in the **withCredentials** step created above, select **Shell** and enter the following command in the pop-up window, which is used to log in Docker Hub:
+4.4.5. Click **Add nesting steps** (the first one) in the **withCredentials** step created above, select **shell** and enter the following command in the pop-up window, which is used to log in Docker Hub:
 
 ```shell
 echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin
@@ -207,7 +207,7 @@ Click **OK** to save the it.
 
 ![docker login](https://pek3b.qingstor.com/kubesphere-docs/png/20200222114937.png)
 
-4.4.6. As above, click **Add nesting steps** in the **withCredentials** step again, choose **Shell** and enter the following command to push the SNAPSHOT image to DockerHub:
+4.4.6. As above, click **Add nesting steps** in the **withCredentials** step again, choose **shell** and enter the following command to push the SNAPSHOT image to DockerHub:
 
 ```shell
 docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
@@ -238,7 +238,7 @@ Click **OK** to save the it.
 4.6.3. Click **Add Step** on the right，select **kubernetesDeploy**. Fill in the pop-up window as below and click **Confirm** to save the information:
 
 - Kubeconfig: select `demo-kubeconfig`
-- Configuration file path: Enter `deploy/no-branch-dev/**` which is the related path of the Kubernetes [yaml](https://github.com/kubesphere/devops-java-sample/tree/master/deploy/no-branch-dev). 
+- Configuration file path: Enter `deploy/no-branch-dev/**` which is the related path of the Kubernetes [yaml](https://github.com/kubesphere/devops-java-sample/tree/master/deploy/no-branch-dev).
 
 Click **OK** to save the it.
 
@@ -246,7 +246,7 @@ Click **OK** to save the it.
 
 4.6.4. Similarly, click **Add Step** to send an email notification to the user after the pipeline runs successfully, select **mail** and fill in the information.
 
-> Note: Make sure you have configured email server in `ks-jenkins`. Please refer to Jenkins email configuration. If not yet, skip this step and you still can run this pipeline.
+> Note: Make sure you have [configured email server](../../devops/jenkins-email) in `ks-jenkins`. Please refer to Jenkins email configuration. If not yet, skip this step and you still can run this pipeline.
 
 At this point, the total six stages of the pipeline have been edited completely, click **Confirm → Save**, it will generate Jenkinsfile as well.
 
@@ -254,7 +254,7 @@ At this point, the total six stages of the pipeline have been edited completely,
 
 ### Step 5: Run Pipeline
 
-5.1. The pipeline created by the graphical editing panel needs to be manually run. Click **Run**, you can see the three string parameters defined in the previous steps. Click **OK** to start this pipeline.
+5.1. The pipeline created by the graphical editing panel needs to be manually run. Click **Run**, you can see the three string parameters defined in the third step. Click **OK** to start this pipeline.
 
 ![Run Pipeline](https://pek3b.qingstor.com/kubesphere-docs/png/20200222160330.png)
 
@@ -276,7 +276,7 @@ At this point, the total six stages of the pipeline have been edited completely,
 
 ![View Pipeline](https://pek3b.qingstor.com/kubesphere-docs/png/20200222182230.png)
 
-6.2. Click **Show Logs** on the top right of the current page to inspect the logs. The pop-up window shows the specific logs, running status and time of each stage. Click on a specific stage and expand its specific log on the right. If an error occurs, the problems can be analyzed according to the logs output. The logs can be downloaded to a local file.
+6.2. Click **Show Logs** on the top right of the current page to inspect the logs. The pop-up window shows the specific logs, running status and time of each stage. Click on a specific stage and expand its specific log on the right. You can debug any problems based on the logs which also can be downloaded to your local file for further analysis.
 
 ![Show Logs](https://pek3b.qingstor.com/kubesphere-docs/png/20200222171027.png)
 

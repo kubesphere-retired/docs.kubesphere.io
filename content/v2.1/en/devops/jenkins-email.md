@@ -5,7 +5,7 @@ description: 'Set Email Server for KubeSphere CI/CD pipeline'
 ---
 
 
-In current version (v2.1.x), the built-in Jenkins and platform notification system cannot share the same email configuration. Thus we need to set email server for KubeSphere DevOps pipeline separately.
+In current version (v2.1.x), the built-in Jenkins cannot share the same email configuration with platform notification system. Thus we need to set email server for KubeSphere DevOps pipeline separately.
 
 > Note: Please be aware that the modification of the email server in `ks-jenkins` deployment below will restart the deployment itself. Consequently, the DevOps system will be unavailable for a few minutes. Please make such modification at an appropriate time.
 
