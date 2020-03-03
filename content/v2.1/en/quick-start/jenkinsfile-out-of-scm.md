@@ -83,7 +83,7 @@ The graphical editing panel includes two areas, i.e., **canvas** on the left and
 
 > Note: The agent is used to define execution environment. The agent directive tells Jenkins where and how to execute the pipeline, or a specific stage. Please refer to [Jenkins Agent](https://jenkins.io/doc/pipeline/tour/agents/) for further information.
 
-![Select Agent](https://pek3b.qingstor.com/kubesphere-docs/png/20200221234417.png)
+![Select Agent](https://pek3b.qingstor.com/kubesphere-docs/png/20200303174821.png)
 
 4.1.2. In the canvas area, click the **+** button to add a stage. Click the box with title `No Name` that encloses the box **Add Step**, name it `Checkout SCM` in the content area on the right of the panel.
 

@@ -4,9 +4,7 @@ keywords: 'kubernetes, kubesphere, harbor, registry'
 description: 'How to configure Harbor registry in Docker'
 ---
 
-This tutorial walks you through how to configure a image registry in Docker configuration, enabling you to use private image registry with KubeSphere.
-
-This procedure configures Docker to entirely disregard security for your registry. This is insecure and is not recommended. It exposes your registry to trivial man-in-the-middle (MITM) attacks. Only use this solution for isolated testing or in a tightly controlled, air-gapped environment.
+This tutorial walks you through how to configure a image registry in Docker configuration. We will configure a registry with HTTP protocol, i.e. insecure registry, enables you to use the image registry in KubeSphere. This procedure configures Docker to entirely disregard security for your registry. Only use this solution for isolated testing or in a tightly controlled, air-gapped environment. For production environment, we recommended you to use image registry with HTTPS protocol.
 
 We take Harbor image registry as an example. Assuming you have a [Harbor](https://goharbor.io/) image registry with its address `http://192.168.0.31:80`.
 

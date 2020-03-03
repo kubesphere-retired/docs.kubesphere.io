@@ -1,7 +1,7 @@
 ---
 title: "安装 OpenEBS 创建 LocalPV 存储类型"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+keywords: 'kubernetes, docker, helm, openebs, localpv'
+description: '在 Kubernetes 安装 OpenEBS 创建 LocalPV 存储类型'
 ---
 
 由于 [在已有 Kubernetes 集群之上安装 KubeSphere](../../installation/install-on-k8s) 需要依赖集群已有的存储类型（StorageClass），若集群还没有准备存储类型（StorageClass），可参考本文档，在 K8s 集群中安装 OpenEBS 并创建 LocalPV 的存储类型，从而可以在集群快速安装测试 KubeSphere。
@@ -54,7 +54,9 @@ $ kubectl create ns openebs
 A. 若集群已安装了 Helm，可通过 Helm 命令来安装 OpenEBS：
 
 ```
-$ helm install --namespace openebs --name openebs stable/openebs --version 1.5.0
+helm init
+
+helm install --namespace openebs --name openebs stable/openebs --version 1.5.0
 ```
 
 B. **除此之外** 还可以通过 kubectl 命令安装：
@@ -85,7 +87,7 @@ storageclass.storage.k8s.io/openebs-hostpath patched
 
 
 ```
-$ kubectl taint nodes master node-role.kubernetes.io=master:NoSchedule
+$ kubectl taint nodes master node-role.kubernetes.io/master=:NoSchedule
 ```
 
 ## 创建工作负载测试 StorageClass
