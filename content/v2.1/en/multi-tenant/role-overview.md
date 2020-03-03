@@ -1,7 +1,7 @@
 ---
 title: "Overview of Role Management"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+keywords: 'kubesphere, kubernetes, multi-tenancy, role management'
+description: 'Overview of Role Management of KubeSphere'
 ---
 
 
@@ -11,7 +11,7 @@ In enterprise bussiness scenarios, the resource hierarchy of KubeSphere is divid
 - Workspace
 - Project / DevOps Project
  
-Multi-level division is also the basis to realize multi-tenant and resource isolation. For the user to create an account, the first by the cluster admin or workspace by invite new members to join the workspace, and then can be under the same corporate space project or enterprise project admin, invited to join the project and enterprise engineering, invited the admin can give the corresponding role for new members, and different roles with different operating rights, the role of the platform built in several commonly used for use. At the same time, the platform supports the admin to customize the role and permission list. The following describes the authority management and built-in roles at different levels.
+Multi-level design is also the basis to achieve multi-tenancy and resource isolation. For the user to create an account, the first by the cluster admin or workspace by invite new members to join the workspace, and then can be under the same corporate space project or enterprise project admin, invited to join the project and enterprise engineering, invited the admin can give the corresponding role for new members, and different roles with different operating rights, the role of the platform built in several commonly used for use. At the same time, the platform supports the admin to customize the role and permission list. The following describes the authority management and built-in roles at different levels.
 
 
 ## Role Permission Management
@@ -47,7 +47,7 @@ Cluster includes user management, workspace management and resource management a
 |Built-in Roles|Description|
 |---|---|
 |cluster-admin |Cluster admin can manage all the resources in the cluster. |
-|workspaces-manager| Manage all the workspaces in the cluster and the projects and engineering resources below. |
+|workspaces-manager| Manage workspaces including creating, deleting and managing the users of a workspace. |
 |cluster-regular| Regular users, they do not have any resource operation rights before they are invited to join the workspace. |
 
 **Workspace roles:**

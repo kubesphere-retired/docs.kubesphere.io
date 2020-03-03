@@ -1,24 +1,22 @@
 ---
 title: "Verify Components Installation"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'Install metrics-server to enable HPA'
+keywords: 'kubeSphere, kubernetes, pluggable components'
+description: 'How to verify the components status after installing KubeSphere'
 ---
 
 ## Inspect the Installation Logs
 
-After enabled the installation of KubeSphere pluggable components, you will be able to inspect the installation logs of ks-installer pod, verify that if the installation was successful.
+When you enable the KubeSphere pluggable components for an installation, you may want to inspect the logs and verify if the installation is successful or not. If failed you need to know how to resolve it. You can follow the instuctions below for reference.
 
-
-1. Inspect the dynamic real-time logs outputed from pod "ks-installer".
+1. Inspect the dynamic real-time logs output from the Pod **ks-installer**.
 
 ```bash
-$ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-2. When the logs output as following result, means the installation was successful.
+2. When the logs show the following result, it means the installation is successful.
 
-
-```
+```yaml
 #####################################################
 ###              Welcome to KubeSphere!           ###
 #####################################################
@@ -38,72 +36,70 @@ NOTES：
 #####################################################
 ```
 
-3. Then you'll be able to log in to KubeSphere, enter into `Platform` → `Service Components` and check if the components status. Generally, each component should be healthy.
+3. Then you will be able to log in to KubeSphere console, enter into `Platform` → `Service Components` and check the components status. Generally, each component should be healthy.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200103174444.png)
-
+![Component Services](https://pek3b.qingstor.com/kubesphere-docs/png/20200103174444.png)
 
 ## Verify the Result of Pluggable Components
 
-In addition to viewing the component status on the console, you can also use the web kubectl to confirm whether the pluggable component was successfully installed.
+In addition to viewing the component status on the console, you can also use the web kubectl to confirm whether the pluggable component is successfully installed or not.
 
-> Important: Generally, when all pods of a namespace display **Running**, and all jobs show **Completed**, that demonstrates the component was successfully installed.
+General speaking, when all pods of a namespace display **Running**, and all jobs show **Completed**, it means the component is successfully installed.
 
 ### Verify KubeSphere Minimal Installation
 
-By default, KubeSphere Installer will be started with minimal installation, you can check the status of Pods and Jobs in following 3 namespaces, all workloads of KubeSphere minimal are running under these 3 namespaces as well.
+By default, KubeSphere Installer will be started with minimal installation. You can check the status of Pods and Jobs in the following three namespaces where all system workloads of KubeSphere are running.
 
 ```bash
-$ kubectl get pod -n kubesphere-system
-$ kubectl get pod -n kubesphere-monitoring-system
-$ kubectl get pod -n kube-system
+kubectl get pod -n kubesphere-system
+kubectl get pod -n kubesphere-monitoring-system
+kubectl get pod -n kube-system
 ```
 
 ### Verify KubeSphere Application Store Installation
 
-If you've enabled [KubeSphere Application Store](../install-openpitrix), you can verify the status of Pod and Job using following command.
+If you have enabled [KubeSphere Application Store](../install-openpitrix), you can verify the status of Pods and Jobs using the following command.
 
 ```bash
-$ kubectl get pod -n openpitrix-system
+kubectl get pods -n openpitrix-system
 ```
 
 ### Verify KubeSphere DevOps System Installation
 
-If you've enabled [KubeSphere DevOps System](../install-devops), you can verify the status of Pod and Job using following command.
+If you have enabled [KubeSphere DevOps System](../install-devops), you can verify the status of Pods and Jobs using the following command.
 
 ```bash
-$ kubectl get pod -n kubesphere-devops-system
+kubectl get pods -n kubesphere-devops-system
 ```
 
 ### Verify KubeSphere Logging System Installation
 
-If you've enabled [KubeSphere Logging System](../install-logging), you can verify the status of Pod and Job using following command.
+If you have enabled [KubeSphere Logging System](../install-logging), you can verify the status of Pods and Jobs using the following command.
 
 ```bash
-$ kubectl get pod -n kubesphere-logging-system
+kubectl get pods -n kubesphere-logging-system
 ```
 
 ### Verify KubeSphere Service Mesh Installation
 
-If you've enabled [KubeSphere Service Mesh (Istio-based)](../install-servicemesh), you can verify the status of Pod and Job using following command.
+If you have enabled [KubeSphere Service Mesh (Istio-based)](../install-servicemesh), you can verify the status of Pods and Jobs using following command.
 
 ```bash
-$ kubectl get pod -n istio-system
+kubectl get pods -n istio-system
 ```
 
 ### Verify Metrics-server Installation
 
-If you've enabled [Metrics-server](../install-metrics-server), you can verify the status of Pod  using following command.
-
+If you have enabled [Metrics-server](../install-metrics-server), you can verify the status of Pods  using the following command.
 
 ```bash
-$ kubectl get pod -n kube-system | grep metrics-server
+kubectl get pods -n kube-system | grep metrics-server
 ```
 
-### How to Restart ks-installer
+## How to Restart ks-installer
 
-when you see installation process get stucked, you may need to restart the installation, you can delete the Pod **ks-installer** or scale it to reinstall.
+when you see installation process get stucked, you may need to restart the installation. You can delete the Pod **ks-installer** or scale it to reinstall.
 
-```
-$ kubectl delete pod ks-installer-xxxxxx-xxxxx -n kubesphere-system
+```bash
+kubectl delete pod ks-installer-xxxxxx-xxxxx -n kubesphere-system
 ```

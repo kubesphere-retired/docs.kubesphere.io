@@ -1,10 +1,10 @@
 ---
-title: "Creating a Job to compute π to 2000 places"
+title: "Create a Job to Compute π to 2000 Places"
 keywords: 'kubesphere, kubernetes, docker, job'
 description: 'How to create a Kubernetes Job in KubeSphere'
 ---
 
- A Job creates one or more Pods and ensures a specified number of them successfully terminate. You can also use a Job to run multiple Pods in parallel. For example, we often process and analyze data in batch, thus we can create a job in this scenario.
+ A Job creates one or more Pods and ensures a specified number of them successfully terminate. You can also use a Job to run multiple Pods in parallel. For example, we can use Kubernetes Job to process and analyze data in batch.
 
 ## Objective
 
@@ -13,7 +13,7 @@ This tutorial describes the basic features of a Job by creating a parallel job t
 ## Prerequisites
 
 - You need to create a workspace, project and `project-regular` account. Please refer to the [Getting Started with Multi-tenant Management](../admin-quick-start) if not yet.
-- You need to sign in with `project-admin` account and invite `project-regular` to enter the corresponding project. Please refer to [Quick Start Guide of Multi-tenant Management](../admin-quick-start).
+- You need to sign in with `project-admin` account and invite `project-regular` to enter the corresponding project if not yet. Please refer to [Invite Member](../admin-quick-start#task-3-create-a-project).
 
 ## Estimated Time
 
@@ -38,7 +38,7 @@ Set the four configuration parameters of the Job Spec as the following shown.
 - Parallelism：expected maximum number of parallel build jobs; Change the value from default 1 to `2`.
 - Active Deadline Seconds：the timeout of the running build jobs. Once a Job reaches its value, all of its running Pods are terminated and the Job status will become "Failed". Set to `300`.
 
-then click **Next** when you've done.
+then click **Next** when you are done.
 
 ![Job Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200205211021.png)
 
@@ -61,7 +61,7 @@ perl,-Mbignum=bpi,-wle,print bpi(2000)
 
 ![Job Start Command](https://pek3b.qingstor.com/kubesphere-docs/png/20200205225435.png)
 
-Click **Next** to skip `Mount Volumes`. Click **Create** to complete job creation.
+Click **Next** to skip **Mount Volumes**. Click **Create** to complete job creation.
 
 ![Job Demo](https://pek3b.qingstor.com/kubesphere-docs/png/20200205225718.png)
 

@@ -6,25 +6,25 @@ description: 'How to Enable DevOps System on KubeSphere'
 
 ## What is KubeSphere DevOps System
 
-KubeSphere DevOps System is designed for CI/CD workflow in Kubernetes. It is based on [Jenkins](https://jenkins.io/) and provides one-stop DevOps console helping developers and maintainers build, test and publish their applications to Kubernetes in a straight-forward way. It also supports plugins management, Binary-to-Image（B2I）、Source-to-Image（S2I), code dependency caching, code quality analysis and pipeline logging, etc.
+KubeSphere DevOps System is designed for CI/CD workflow in Kubernetes. It is based on [Jenkins](https://jenkins.io/) and provides one-stop DevOps console helping developers and maintainers build, test and publish their applications to Kubernetes in a straight-forward way. It also supports plugins management, Binary-to-Image (B2I), Source-to-Image (S2I), code dependency caching, code quality analysis and pipeline logging, etc.
 
 The DevOps system combines application development and automatic publishing on the same platform, also supports to connect with third-party private image registry (e.g. Harbor) and code repositories (e.g. GitLab/GitHub/SVN/BitBucket) to visually construct a complete CI/CD pipeline which is usually useful for disconnected environment.
 
 In KubeSphere v2.1, there are rich features within DevOps system:
 
-- [Binary to image](../../quick-start/b2i-war): Automatically pack your artifact such as WAR、JAR、Binary executables into Docker without writing Dockerfile and push to image repository, and finally deploy the image into Kubernetes cluster；
-- [Source to image](../../quick-start/source-to-image): Automatically compilie and build your source code from code repository and pack the result into Docker without writing Dockerfile, push to image repository and finally deploy the image into Kubernetes cluster.
-- [Jenkinsfile-free CI/CD pipeline with graphical editing panel](../../quick-start/jenkinsfile-out-of-scm): Without writing Jenkinsfile, you can compose pipeline visually using drag-and-drop panel which makes the user experience much better that other solutions.
+- [Binary to Image](../../quick-start/b2i-war): Automatically pack your artifact such as WAR, JAR, Binary executables into Docker without writing Dockerfile and push to image repository, and finally deploy the image into Kubernetes cluster.
+- [Source to Image](../../quick-start/source-to-image): Automatically compile and build your source code from code repository and pack the result into Docker without writing Dockerfile, push to image repository and finally deploy the image into Kubernetes cluster.
+- [Jenkinsfile-free CI/CD pipeline with graphical editing panel](../../quick-start/jenkinsfile-out-of-scm): Without writing Jenkinsfile, you can compose pipeline using graphical editing panel which makes the user experience much better that other solutions.
 - [Jenkinsfile-based CI/CD pipeline](../../quick-start/devops-online): If your code repository already has Jenkinsfile, you'd better to use this way to create pipeline.
-- [GitLab and Harbor based CI/CD pipeline](../../harbor-gitlab-devops-offline)：Using self-built GitLab and Harbor to create pipeline, which is useful for disconnected environment.
+- [GitLab and Harbor based CI/CD pipeline](../../harbor-gitlab-devops-offline)：Using on-premise GitLab and Harbor to create pipeline, which is useful for disconnected environment.
 
-## Enable DevOps System Before Installation
+## Enable DevOps System before Installation
 
-<font color=red>KubeSphere DevOps system requires at least 34 m (CPU request) and 2.69 G (memory request) for all-in-one installation, or at least 0.47 core (CPU request) and 8.6 G (memory request) for multi-node installation Please make sure your cluster has enough resource.</font>
+<font color=red>KubeSphere DevOps system requires at least 34m of CPU request and 2.69G of memory request for all-in-one installation, or at least 0.47 core of CPU request and 8.6G of memory request for multi-node installation. Please make sure your cluster has enough resource.</font>
 
-> Note: This section is for installing KubeSphere on Linux machines. If you are going to install KubeSphere and DevOps system on your existing Kubernetes cluster, please see [ks-installer](https://github.com/kubesphere/ks-installer).
+> Note: This document is for installing KubeSphere on Linux machines. If you want to install KubeSphere and DevOps system on your existing Kubernetes cluster, please see [ks-installer](https://github.com/kubesphere/ks-installer).
 
-Before start the installation, you can change the values of `devops_enabled` and `sonarqube_enabled` in `conf/common.yaml` from `false` to `true` to enable DevOps system and SonarQube, then you can continue your installation by following the instructions of [All-in-One](../all-in-one) or [Multi-Node](../multi-node).
+Before starting the installation, you can change the values of `devops_enabled` and `sonarqube_enabled` in `conf/common.yaml` from `false` to `true` to enable DevOps system and SonarQube, then you can continue your installation by following the instructions of [All-in-One](../all-in-one) or [Multi-Node](../multi-node).
 
 ```yaml
 #DevOps Configuration
@@ -40,7 +40,7 @@ sonarqube_enabled: true
 #sonar_server_token: SHOULD_BE_REPLACED
 ```
 
-## Enable Application Store After Installation
+## Enable DevOps System after Installation
 
 If you already have a minimal KubeSphere setup, you still can edit the ConfigMap of ks-installer using the following command:
 

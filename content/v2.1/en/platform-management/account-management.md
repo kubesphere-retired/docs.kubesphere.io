@@ -28,7 +28,7 @@ You need an account of cluster-admin role and sign in KubeSphere, see the [Admin
 |Built-in Roles|Description|
 |---|---|
 |cluster-admin |Cluster admin can manage all the resources in the cluster. |
-|workspaces-manager| Manage all the workspaces in the cluster and the projects and engineering resources below. |
+|workspaces-manager| Manage workspaces including creating, deleting and managing the users of a workspace. |
 |cluster-regular| Regular users, they do not have any resource operation rights before they are invited to join the workspace. |
 
 ![create account](/create-account.png)
