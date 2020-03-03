@@ -5,15 +5,21 @@ keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
 
 对 **Source-to-image (S2I)** 工作原理有了一定了解之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2I/B2I 模板) 来扩展 S2I，在我们的项目当中提供了部分常用的构建器镜像模版，例如 [Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。在 Kubesphere 2.1.1 版本中已经支持自定义 B2I 模版。
 
-在详细介绍构建器影响之前，先介绍下完成构建器镜像模版所需要提供的元素。
+在详细介绍构建器镜像之前，先介绍下完成构建器镜像模版所需要提供的元素。
+
+在自定 S2I 模版时，主要分为两个部分：
+第一部分为 S2I 的构建器镜像。
+第二部分为 S2Itemplate 的定义。
+
+> 其中构建器镜像与 Openshift 的构建器镜像兼容，在 KubeSphere 中可以复用此部分。 
 
 
-> 1. assemble - 负责构建应用程序的脚本
-> 2. run - 负责运行应用程序的脚本
-> 3. save-artifacts - 在增量构建时负责依赖管理的脚本 （可选）
-> 4. usage - 使用说明脚本 （可选）
-> 5. test - 一些测试脚本 （可选）
-> 6. S2itemplate - 描述构建程序所使用的基础环境
+> 1.1.assemble - 负责构建应用程序的脚本    
+> 1.2.run - 负责运行应用程序的脚本    
+> 1.3.save-artifacts - 在增量构建时负责依赖管理的脚本 （可选)    
+> 1.4.usage - 使用说明脚本 （可选）    
+> 1.5.test - 一些测试脚本 （可选)     
+> 2.1.S2Itemplate - 描述构建程序所使用的基础环境      
 
 S2I 构建器镜像的更多的信息可参考 [S2IRun](https://github.com/kubesphere/s2irun/blob/master/docs/builder_image.md#s2i-builder-image-requirements)
 

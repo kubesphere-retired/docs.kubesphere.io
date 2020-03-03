@@ -7,7 +7,7 @@ description: 'The guide to get familiar with KubeSphere multi-tenant management'
 
 ## Objective
 
-This is the first lab exercise of KubeSphere. We strongly suggest you to learn it with your hands. This guide shows how to create workspace, role and user account which are required for next lab exercises. Moreover, you will learn how to create project and DevOps project within your workspace where is the place your workloads are running. After this lab, you will get familiar with the multi-tenant management system.
+This is the first lab exercise of KubeSphere. We strongly suggest you to learn it with your hands. This guide shows how to create workspace, role and user account which are required for next lab exercises. Moreover, you will learn how to create project and DevOps project within your workspace where is the place your workloads are running. After this lab, you will get familiar with KubeSphere multi-tenant management system.
 
 ## Prerequisites
 
@@ -23,13 +23,13 @@ KubeSphere system is organized into **three** hierarchical structures of tenants
 
 As shown below, you can create multiple workspaces within a Kubernetes cluster. Under each workspace you can also create multiple projects.
 
-For each level, there are multiple built-in roles. and it allows you to create role with customized authorization as well. This hierarchy list is appropriate for enterprise users who have different teams or groups, as well as different roles within each team.
+For each level, there are multiple built-in roles. and it allows you to create role with customized authorization as well. This hierarchy list is appropriate for enterprise users who have different teams or groups, and different roles within each team.
 
 ![Architecture](https://pek3b.qingstor.com/kubesphere-docs/png/20200105121616.png)
 
 ## Hands-on Lab
 
-### Task 1: Create roles and accounts
+### Task 1: Create Roles and Accounts
 
 The first task is going to create an account and a role, and assign the role to the user. This task must be done using the built-in user `admin` with the role `cluster-admin`.
 
@@ -38,8 +38,8 @@ There are three built-in roles in the cluster level as shown below.
 | Built-in Roles | Description |
 | --- | --- |
 | cluster-admin | It has the privilege to manage any resources in the cluster. |
-| workspaces-manager | It is able to manage all workspaces and the resources of any workspace including projects and DevOps projects. |
-| cluster-regular | Regular users have no authorization to manage resources before being invited to a workspaces. The access right is decided by the role invited to a specific workspace or project.|
+| workspaces-manager | It is able to manage workspaces including creating, deleting and managing the users of a workspace. |
+| cluster-regular | Regular users have no authorization to manage resources before being invited to a workspaces. The access right is decided by the assigned role to the specific workspace or project.|
 
 Here is an example showing you how to create a new role named `users-manager`, grant **account management** and **role management** capabilities to the role, then create a new account named `user-manager` and grant it the users-manager role.
 
@@ -65,7 +65,7 @@ Here is an example showing you how to create a new role named `users-manager`, g
 
 ![Account List](https://pek3b.qingstor.com/kubesphere-docs/png/20190716112945.png#align=left&display=inline&height=822&originHeight=822&originWidth=2834&search=&status=done&width=2834)
 
-1.5. Fill in the new user's basic information. Set the username as `user-manager`; select the role `users-manager`. Other items can be customized. Then click **OK** to create this account.
+1.5. Fill in the new user's basic information. Set the username as `user-manager`; select the role `users-manager` and fill other items as required. Then click **OK** to create this account.
 
 ![Create Account](https://pek3b.qingstor.com/kubesphere-docs/png/20200105152641.png)
 
@@ -86,7 +86,7 @@ Here is an example showing you how to create a new role named `users-manager`, g
 
 The second task is going to create a workspace using the user `ws-manager` created in the previous task. As we know, it is a workspace admin.
 
-Workspace is the base for KubeSphere multi-tenant management. It's also the basic logic unit for projects, DevOps projects and organization members.
+Workspace is the base for KubeSphere multi-tenant management. It is also the basic logic unit for projects, DevOps projects and organization members.
 
 2.1. Log in KubeSphere with `ws-manager` which has the authorization to manage all workspaces on the platform.
 
@@ -96,7 +96,7 @@ Click **Create** in the workspace list page, name the new workspace `demo-worksp
 
 ![Workspace List](https://pek3b.qingstor.com/kubesphere-docs/png/20190716130007.png#align=left&display=inline&height=736&originHeight=736&originWidth=1804&search=&status=done&width=1804)
 
-2.2. Logout and sign in with `ws-admin` after `demo-workspace` has been created. Then click **View Workspace**, select **Workspace Settings → Workspace Members** and click **Invite Member**.
+2.2. Logout and sign in with `ws-admin` after `demo-workspace` is created. Then click **View Workspace**, select **Workspace Settings → Workspace Members** and click **Invite Member**.
 
 ![Invite Members](https://pek3b.qingstor.com/kubesphere-docs/png/20200105155226.png)
 
@@ -104,9 +104,9 @@ Click **Create** in the workspace list page, name the new workspace `demo-worksp
 
 | User Name | Role in the Workspace | Responsibility |
 | --- | --- | --- |
-| ws-admin | workspace-admin | Manage all resources under the workspace (We use this account to invite new members into the workspace) |
-| project-admin | workspace-regular | Create and manage projects, DevOps projects, and invite new members to join |
-| project-regular | workspace-viewer | Will be invited by project-admin to join the project and DevOps project. We use this account to create workloads, pipelines, etc |
+| ws-admin | workspace-admin | Manage all resources under the workspace (We use this account to invite new members into the workspace). |
+| project-admin | workspace-regular | Create and manage projects, DevOps projects, and invite new members to join. |
+| project-regular | workspace-viewer | Will be invited by project-admin to join the project and DevOps project. We use this account to create workloads, pipelines, etc. |
 
 ![Workspace Members](https://pek3b.qingstor.com/kubesphere-docs/png/20190716130517.png#align=left&display=inline&height=1146&originHeight=1146&originWidth=1318&search=&status=done&width=1318)
 
@@ -132,7 +132,7 @@ This task is going to show how to create a project and some related operations i
 
 #### Set Gateway
 
-Before creating a route which is the Kubernetes Ingress, you need to enable a gateway for this project. The gateway is a [Nginx ingress controller](https://github.com/kubernetes/ingress-nginx) running in the project.
+Before creating a route which is the Kubernetes Ingress, you need to enable a gateway for this project. The gateway is an [Nginx ingress controller](https://github.com/kubernetes/ingress-nginx) running in the project.
 
 3.5. We continue to use `project-admin`. Choose **Project Settings → Advanced Settings** and click **Set Gateway**.
 
@@ -142,7 +142,7 @@ Before creating a route which is the Kubernetes Ingress, you need to enable a ga
 
 ![Set Gateway](https://pek3b.qingstor.com/kubesphere-docs/png/20190716134742.png#align=left&display=inline&height=946&originHeight=946&originWidth=2030&search=&status=done&width=2030)
 
-3.7. Now we are able to see the Gateway Address (192.168.0.53), the NodePort of http and https appeared in the page.
+3.7. Now we are able to see the Gateway Address, the NodePort of http and https appeared in the page.
 
 > Note: If you want to expose services using LoadBalancer type, you need to use the [LoadBalancer plugin of cloud provider](https://kubernetes.io/docs/concepts/cluster-administration/cloud-providers/). If your Kubernetes cluster is running on bare metal environment, we recommend you to use [Porter](https://github.com/kubesphere/porter) as the LoadBalancer plugin.
 
