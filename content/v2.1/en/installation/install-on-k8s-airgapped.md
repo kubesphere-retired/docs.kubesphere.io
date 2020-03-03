@@ -53,7 +53,7 @@ Load the image packages into docker.
 ```
 docker load < ks_minimal_images.tar
 docker load < openpitrix_images.tar
-docker load < ks_logger_images.tar
+docker load < ks_logging_images.tar
 docker load < ks_devops_images.tar
 docker load < istio_images.tar
 docker load < ks_notification_images.tar
