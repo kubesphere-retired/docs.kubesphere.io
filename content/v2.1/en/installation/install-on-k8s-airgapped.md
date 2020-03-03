@@ -29,7 +29,7 @@ curl -L https://kubesphere.io/download/images/latest > kubesphere-all-images-v2.
 && tar -zxf kubesphere-all-images-v2.1.1.tar.gz && cd kubesphere-all-images-v2.1.1
 ```
 
-> Note: It will take several tens of minutes since the package includes all components and samples images. 
+> Note: It will take several tens of minutes since the package includes all components and samples images.
 
 List all images in this folder.
 
@@ -53,7 +53,7 @@ Load the image packages into docker.
 ```
 docker load < ks_minimal_images.tar
 docker load < openpitrix_images.tar
-docker load < ks_logger_images.tar
+docker load < ks_logging_images.tar
 docker load < ks_devops_images.tar
 docker load < istio_images.tar
 docker load < ks_notification_images.tar
@@ -62,7 +62,7 @@ docker load < example_images.tar
 
 ## Push Images to Harbor
 
-Clone ks-installer to your local, enter the `scripts` folder.
+Clone the project `ks-installer` to your local, then enter the `scripts` folder.
 
 ```
 git clone https://github.com/kubesphere/ks-installer.git

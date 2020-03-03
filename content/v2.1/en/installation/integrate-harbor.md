@@ -41,3 +41,32 @@ Insecure Registries:
 ```
 
 5. Repeat these steps on every Kubernetes host to enable the insecure registry.
+
+
+6. Make sure you can log in to Harbor successfully.
+
+```
+$ docker login -u admin -p Harbor12345 http://192.168.0.31:80
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
+
+7. We can test the Harbor registry by pushing an image. Assuming we have image `nginx:1.14-alpine` in local. Tag this image as follows:
+
+```bash
+docker tag nginx:1.14-alpine 192.168.0.31:80/library/nginx:1.14-alpine
+```
+
+8. Push the image to the Harbor registry.
+
+```bash
+docker push 192.168.0.31:80/library/nginx:1.14-alpine
+```
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200303204511.png)
+
+9. It means the Harbor registry has been added in Docker configuration, you are able to use Harbor in KubeSphere. Please back to [Install KubeSphere in Air Gapped Kubernetes Cluster](../install-on-k8s-airgapped/#download-image-package) to continue the installation.
