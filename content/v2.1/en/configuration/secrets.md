@@ -78,7 +78,7 @@ Secrets can be mounted as data volumes or exposed as environment variables to be
 
 For more information on how to use the Secret, see [Quick-Start - Deploy a MySQL Application](../../quick-start/mysql-deployment).
 
-## Create common-used Secrets
+## Create Common Used Secrets
 
 ### Create Secret of DockerHub
 
@@ -90,7 +90,7 @@ Enter its name, e.g. `dockerhub-id`, then choose **Next**.
 
 ![Secret Basic Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200207165617.png)
 
-Select **Image Repository Secret** from the dropdown list, enter `docker.io` into **Registry Address**, then input your DockerHub user name and password. Click **Create** when you have done.
+Select **Image Repository Secret** from the dropdown list, enter `docker.io` into **Registry Address**, then input your DockerHub user name and password. Click **Create** when you are done.
 
 ![Secret Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200207171625.png)
 
