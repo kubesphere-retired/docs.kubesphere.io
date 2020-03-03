@@ -31,10 +31,10 @@ Now access SonarQube console `http://{$Node IP}:{$NodePort}` in your browser usi
 
 ![Provide Token Name](https://pek3b.qingstor.com/kubesphere-docs/png/20200107003729.png)
 
-3. At this point, we've got token as follows. Click **Continue**.
+3. At this point, we have got token as follows. Click **Continue**.
 
 ![Generate Token](https://pek3b.qingstor.com/kubesphere-docs/png/20200107003848.png)
 
-4. Select language **Java** and build technology **Maven**, then click **Copy** in the black box and click **Finish this tutorial**. Then you can go back to the DevOps pipeline tutorial.
+4. Select language **Java** and build technology **Maven**, then copy the string in the red rectangle of the black box and click **Finish this tutorial**. Then you can go back to the DevOps pipeline tutorial.
 
 ![Copy Token](https://pek3b.qingstor.com/kubesphere-docs/png/20200107004047.png)
