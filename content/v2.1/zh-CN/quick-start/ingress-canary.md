@@ -73,6 +73,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: production
+  labels:
+    app: production
 spec:
   replicas: 1
   selector:
