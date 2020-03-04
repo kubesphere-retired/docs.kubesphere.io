@@ -24,7 +24,7 @@ You need to configure a image registry (e.g. Harbor) into Docker configuration, 
 
 We provide two methods to download images of KubeSphere, including the image lists and encapsulated image package.
 
-<font color="red">Docker uses `/var/lib/docker` as the default directory where all Docker related files, including the images, are stored. Before loading the images into Docker, we recommend you to add additional storage to a disk mounted at `/var/lib/docker`, this part is necessary to prepare additional disk with 100G at least.</font>
+<font color="red">Docker uses `/var/lib/docker` as the default directory where all Docker related files, including the images, are stored. Before loading the images into Docker, we recommend you to add additional storage to a disk mounted at `/var/lib/docker`, this part is necessary to prepare additional disk with 100G at least, you can use the [fdisk](https://www.computerhope.com/unix/fdisk.htm) command to prepare it.</font>
 
 ### Image List
 

@@ -8,6 +8,10 @@ description: '单节点升级 KubeSphere 2.1.1'
 
 请确保已参考 [升级](../upgrade) 成功下载并解压了 2.1.1 的 Installer。
 
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KSInstall_200P005C202003_Upgrade%20AllinOne.mp4">
+</video>
+
 ## 第一步：修改配置文件
 
 升级将默认读取 2.1.1 的 `conf` 目录下的配置文件。因此，在升级前您需要将原有安装包中 `conf` 目录下的配置文件中修改过的参数，都同步到 2.1.1 版本安装包的对应文件中，修改配置文件分以下两种情况。
