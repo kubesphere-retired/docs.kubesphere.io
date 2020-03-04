@@ -10,7 +10,7 @@ As similar as [Source to Image (S2I)](../source-to-image), Binary to Image (B2I)
 
 ## How does B2I Improve CD Efficiency
 
-From the introduction above we can see B2I bridges your binary executables to cloud native services with no complicated configurations or coding which is extremely useful for legacy applications and the users who are not familiar with Docker and Kubernetes. Moreover, with B2I tool, as said, you do not need to write Dockerfile. it is not only reduces learning costs but improves publishing efficiency, which enables developers to focus on business itself. In a word, B2I can greatly empower enterprises for continuous delivery that is one of the keys to digital transformation.
+From the introduction above we can see B2I bridges your binary executables to cloud native services with no complicated configurations or coding which is extremely useful for legacy applications and the users who are not familiar with Docker and Kubernetes. Moreover, with B2I tool, as said, you do not need to write Dockerfile, it not only reduces learning costs but improves publishing efficiency, which enables developers to focus on business itself. In a word, B2I can greatly empower enterprises for continuous delivery that is one of the keys to digital transformation.
 
 The following figure describes the step-by-step process of B2I. B2I has instrumented and streamlined the steps, so it takes few clicks to complete in KubeSphere console.
 
@@ -25,7 +25,7 @@ The following figure describes the step-by-step process of B2I. B2I has instrume
 >
 > Note: In the process, the B2I Job also reports status in the backend.
 
-In this document, we will walk you through how to use B2I in KubeSphere. For more testing purpose on your own, we provide five artifact packages that you can download from the sites in the following tables.
+In this document, we will walk you through how to use B2I in KubeSphere. For more testing purposes on your own, we provide five artifact packages that you can download from the sites in the following tables.
 
 |Artifact Package (Click to download) | GitHub Repository|
 | ---  |  ---- |
@@ -39,6 +39,7 @@ In this document, we will walk you through how to use B2I in KubeSphere. For mor
 
 - You have installed [KubeSphere DevOps System](../../installation/install-devops).
 - You have created a workspace, a project and a `project-regular` account. Please see [Get Started with Multi-tenant Management](../admin-quick-start).
+- Set CI dedicated node for building images, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node). This is not mandatory but recommended for development and production environment since it caches artifacts dependency.
 
 ## Hands-on Lab
 
@@ -46,17 +47,7 @@ In this lab, we will learn how to use B2I by creating service in KubeSphere, and
 
 ### Step 1: Create a Secret
 
-We need to create a secret since B2I Job will push the image to DockerHub.
-
-1.1. Sign in with `project-regular` account, enter the sample project you created, then choose **Configuration Center → Secrets**, click **Create**.
-
-![Create Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200108164932.png)
-
-1.2. Name it `dockerhub-secret`. Click **Next** to **Secret Settings** and enter your account information refer to the following sample. Click **Create** when you have completed.
-
-![Secret Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200108165555.png)
-
-![Secret List](https://pek3b.qingstor.com/kubesphere-docs/png/20200108170256.png)
+We need to create a secret since B2I Job will push the image to DockerHub. If you have finished [S2I lab](../source-to-image), you already have the secret created. Otherwise, log in KubeSphere with the account `project-regular`. Go to your project and create the secret for DockerHub. Please reference [Creating Common-used Secrets](../../configuration/secrets#create-common-used-secrets).
 
 ### Step 2: Create a Service
 
@@ -64,7 +55,7 @@ We need to create a secret since B2I Job will push the image to DockerHub.
 
 ![Create Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200108170544.png)
 
-2.2. Scroll down to **Build a new service through the artifact** and choose **war**. We will use the [Spring-MVC-Showcase](https://github.com/spring-projects/spring-mvc-showcase) project as a sample. Upload the WAR artifact ([b2i-war-java8](https://github.com/kubesphere/tutorial/raw/master/tutorial%204%20-%20s2i-b2i/b2i-war-java8.war)) to KubeSphere.
+2.2. Scroll down to **Build a new service through the artifact** and choose **war**. We will use the [Spring-MVC-Showcase](https://github.com/spring-projects/spring-mvc-showcase) project as a sample by uploading the WAR artifact ([b2i-war-java8](https://github.com/kubesphere/tutorial/raw/master/tutorial%204%20-%20s2i-b2i/b2i-war-java8.war)) to KubeSphere.
 
 2.3. Enter service name `b2i-war-java8`, click **Next**.
 
@@ -78,7 +69,7 @@ We need to create a secret since B2I Job will push the image to DockerHub.
 
 ![Build Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200108175747.png)
 
-2.5. Click **Next** to the **Container Settings** and configure the basic info as the figure shown below.
+2.5. Click **Next** to the **Container Settings** and configure the basic info as shown in the figure below.
 
 ![Container Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200108175907.png)
 
@@ -131,3 +122,5 @@ For the example above, enter **http://139.198.111.111:30182/b2i-war-java8/** to 
 Sign in DockerHub with your account, you can find the image was successfully pushed to DockerHub with tag `latest`.
 
  ![Image in DockerHub](https://pek3b.qingstor.com/kubesphere-docs/png/20200108191311.png)
+
+Congratulation! Now you know how to use B2I to package your artifacts into Docker image, however, without learning Docker.

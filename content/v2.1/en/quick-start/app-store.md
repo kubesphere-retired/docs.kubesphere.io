@@ -1,7 +1,7 @@
 ---
 title: "Application Store"
 keywords: 'kubepshere, kubernetes, docker, helm, openpitrix, application store'
-description: 'Application lifecycle management in Helm-based application store'
+description: 'Application lifecycle management in Helm-based application store sponsored by OpenPitrix'
 ---
 
 KubeSphere integrates open source [OpenPitrix](https://github.com/openpitrix/openpitrix) to set up app store and app repository services which provide full lifecycle of application management. Application Store supports three kinds of application deployment as follows:
@@ -14,20 +14,20 @@ KubeSphere integrates open source [OpenPitrix](https://github.com/openpitrix/ope
 
 ## Objective
 
-In this tutorial, we will walk you through how to use [EMQ X](https://www.emqx.io/) as a demo application to demonstrate the **global application store** and **application lifecycle management** including upload / submit / review / test / release / upgrade / remove applications.
+In this tutorial, we will walk you through how to use [EMQ X](https://www.emqx.io/) as a demo application to demonstrate the **global application store** and **application lifecycle management** including upload / submit / review / test / release / upgrade / delete application templates.
 
 ## Prerequisites
 
-- You need to install [application store (OpenPitrix)](../../installation/install-openpitrix)
-- You need to create a workspace and a project, see [Get started with multi-tenant management](../admin-quick-start).
+- You need to install [Application Store (OpenPitrix)](../../installation/install-openpitrix).
+- You need to create a workspace and a project, see [Get Started with Multi-tenant Management](../admin-quick-start).
 
 ## Hands-on Lab
 
 ### Step 1: Create Customized Role and Account
 
-In this step, we will create two accounts, i.e. `workspace-admin` for ISV and `app-review` for app technical reviewer.
+In this step, we will create two accounts, i.e., `isv` for ISVs and `reviewer` for app technical reviewers.
 
-1.1. Log in KubeSphere console with the account `admin`, go to **Platform → Platform Roles**, then click **Create** and name it `app-review`, choose **App Template** in the authorization settings list, then click **Create**.
+1.1. First of all, we need to create a role for app reviewers. Log in KubeSphere console with the account `admin`, go to **Platform → Platform Roles**, then click **Create** and name it `app-review`, choose **App Template** in the authorization settings list, then click **Create**.
 
 ![Authorization Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200212174022.png)
 
@@ -43,17 +43,19 @@ In this step, we will create two accounts, i.e. `workspace-admin` for ISV and `a
 
 2.1. Log in KubeSphere with `isv`, enter the workspace. We are going to upload the EMQ X app to this workspace. First please download [EMQ X chart v1.0.0](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-v1.0.0-rc.1.tgz) and click **Upload Template** by choosing **App Templates**.
 
+> Note we are going to upload a newer version of EMQ X to demo the upgrade feature later on.
+
 ![App Templates](https://pek3b.qingstor.com/kubesphere-docs/png/20200212183110.png)
 
-2.2. Click **Upload**, then click **Upload Helm Chart Package** to upload helm chart.
+2.2. Click **Upload**, then click **Upload Helm Chart Package** to upload the chart.
 
 ![Upload Template](https://pek3b.qingstor.com/kubesphere-docs/png/20200212183634.png)
 
-2.3. Click **OK**, then download [EMQ Icon](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-logo.png) and click **Upload icon** to upload App logo. Click **OK** when you've done.
+2.3. Click **OK**. Now download [EMQ Icon](https://github.com/kubesphere/tutorial/raw/master/tutorial%205%20-%20app-store/emqx-logo.png) and click **Upload icon** to upload App logo. Click **OK** when you are done.
 
 ![EMQ Template](https://pek3b.qingstor.com/kubesphere-docs/png/20200212232222.png)
 
-2.4. At this point, you'll be able to see the status displays `draft`, which means this app is under developing. The uploaded app is visible for all members in the same workspace.
+2.4. At this point, you will be able to see the status displays `draft`, which means this app is under developing. The uploaded app is visible for all members in the same workspace.
 
 ![Template List](https://pek3b.qingstor.com/kubesphere-docs/png/20200212232332.png)
 
@@ -81,7 +83,7 @@ In this step, we will create two accounts, i.e. `workspace-admin` for ISV and `a
 
 ![Submit Template](https://pek3b.qingstor.com/kubesphere-docs/png/20200213162159.png)
 
-2.11. As the following graph shown, the app status has been changed to `Submitted`. Now app reviewer can review it.
+2.11. As shown in the following graph, the app status has been changed to `Submitted`. Now app reviewer can review it.
 
 ![Template Status](https://pek3b.qingstor.com/kubesphere-docs/png/20200213162811.png)
 
@@ -91,11 +93,11 @@ In this step, we will create two accounts, i.e. `workspace-admin` for ISV and `a
 
 ![Review List](https://pek3b.qingstor.com/kubesphere-docs/png/20200213163535.png)
 
-3.2. Click **Review** from the list, then `Reviewer` can review the app's basic information, introduction, chart file and update logs from the pop-up windows.
+3.2. Click **Review** by clicking the vertical three dots at the end of app item in the list, then you start to review the app's basic information, introduction, chart file and updated logs from the pop-up windows.
 
 ![EMQ Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200213163802.png)
 
-3.3. It is `Reviewer` responsibility to judge if the app satisfies the criteria of the Global App Store or not, if yes, then click `Pass`; otherwise, `Reject` it.
+3.3. It is the reviewer's responsibility to judge if the app satisfies the criteria of the Global App Store or not, if yes, then click `Pass`; otherwise, `Reject` it.
 
 ### Step 4: Release Application to Store
 
@@ -109,7 +111,7 @@ In this step, we will create two accounts, i.e. `workspace-admin` for ISV and `a
 
 ![Audit Records](https://pek3b.qingstor.com/kubesphere-docs/png/20200213171705.png)
 
-4.4. Go to `App Store` in the top mean, you will see the app in the list.
+4.4. Go to **App Store** in the top menu, you will see the app in the list.
 
 ![EMQ on Store](https://pek3b.qingstor.com/kubesphere-docs/png/20200213172436.png)
 
@@ -119,13 +121,15 @@ In this step, we will create two accounts, i.e. `workspace-admin` for ISV and `a
 
 ### Step 5: Create Application Category
 
-Depending on the business needs, `Reviewer` can create multiple categories for different types of applications. It is similar to tag and can be used in application store to filter applications, e.g. Big data, Middleware, IOT, etc.
+Depending on the business needs, `Reviewer` can create multiple categories for different types of applications. It is similar as tag and can be used in application store to filter applications, e.g. Big data, Middleware, IoT, etc.
 
 As for EMQ X application, we can create a category and name it `IOT`. First switch back to the user `Reviewer`, go to **Platform → App Management → App Categories**
 
 ![Create Category](https://pek3b.qingstor.com/kubesphere-docs/png/20200213172046.png)
 
 Then click **Uncategorized** and find EMQ X, change its category to `IOT` and save it.
+
+> Note usually reviewer should create necessary categories in advance according to the requirements of the store. Then ISVs categorize their applications as appropriate before submitting for review.
 
 ![Categorize EMQ](https://pek3b.qingstor.com/kubesphere-docs/png/20200213172311.png)
 

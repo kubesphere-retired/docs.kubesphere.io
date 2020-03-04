@@ -6,7 +6,7 @@ description: 'Set CI Node for dependency cache of KubeSphere pipeline '
 
 ## Introduction
 
-Generally, applications often need to pull a lot of dependencies during the build process. It might cause some issues like long pulling time, or unstable network causing failure. In order to make build robust, and to speed up the build by using cache, we recommend you to configure one or a set of CI nodes to schedule the task of CI/CD Pipelines or S2I/B2I builds running on the specific nodes.
+Generally, applications often need to pull a lot of dependencies during the build process. It might cause some issues like long pulling time, or unstable network causing failure. In order to make build robust, and to speed up the build by using cache, we recommend you configure one or a set of CI nodes which the system schedules the task of CI/CD pipelines or S2I/B2I builds running on.
 
 ## Label CI Nodes
 
@@ -20,13 +20,15 @@ Generally, applications often need to pull a lot of dependencies during the buil
 
 3. Click **Add Labels**, add a new label with key `node-role.kubernetes.io/worker` and value `ci`, click **Save**.
 
+> Note the node may already have the key with empty value. You can just change the value to `ci`.
+
 ![Add CI Label](https://pek3b.qingstor.com/kubesphere-docs/png/20200222131640.png)
 
 ## Set CI Nodes Dedicated
 
 Basically, pipelines and S2I/B2I workflows will be scheduled to this node according to the [Node affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#node-affinity). If you want to make CI nodes as the dedicated ones, which means these nodes are not allowed other workloads to be scheduled to them, you can follow with the steps below to set [Taint](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/).
 
-1. Click **Mode → Taint Management**.
+1. Click **More → Taint Management**.
 
 ![Taint Management](https://pek3b.qingstor.com/kubesphere-docs/png/20200222132456.png)
 

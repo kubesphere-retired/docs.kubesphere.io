@@ -6,16 +6,16 @@ description: 'Create a Jenkinsfile-based Pipeline to deploy Spring Boot Project 
 
 ## Objective
 
-In this tutorial, we will show you how to create a pipeline based on the Jenkinsfile of GitHub repository. Using the pipeline, we will deploy a demo application to `Development` project and `Production` project respectively. Meanwhile, we demo a branch that is used to test dependency cache. You will take a relatively long time to finish the pipleline for the first time. However, it will run very quickly after the first time. It proves the cache works well since this branch pulls lots of dependency from internet initially.
+In this tutorial, we will show you how to create a pipeline based on the Jenkinsfile from a GitHub repository. Using the pipeline, we will deploy a demo application to a development environment and a production environment respectively. Meanwhile, we will demo a branch that is used to test dependency caching capability. In this demo, it takes a relatively long time to finish the pipleline for the first time. However, it runs very faster since then. It proves the cache works well since this branch pulls lots of dependency from internet initially.
 
 > Note:
-> KubeSphere supports two kinds of pipeline, i.e., Jenkinsfile in SCM and Jenkinsfile out of SCM. Jenkinsfile in SCM requires an internal Jenkinsfile in Source Control Management (SCM). In another word, Jenkfinsfile serves as a part of SCM. KubeSphere DevOps system will automatically build a CI/CD pipeline depending on existing Jenkinsfile of the code repository. You can define workflow like Stage, Step and Job in the pipeline.
+> KubeSphere supports two kinds of pipeline, i.e., Jenkinsfile in SCM which is introduced in this document and [Jenkinsfile out of SCM](../jenkinsfile-out-of-scm). Jenkinsfile in SCM requires an internal Jenkinsfile in Source Control Management (SCM). In another word, Jenkfinsfile serves as a part of SCM. KubeSphere DevOps system will automatically build a CI/CD pipeline depending on existing Jenkinsfile of the code repository. You can define workflow like Stage, Step and Job in the pipeline.
 
 ## Prerequisites
 
 - You need to [enable KubeSphere DevOps System](../../installation/install-devops).
-- You need to create an account for DokcerHub and GitHub respectively.
-- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into a DevOps project, see [Get started with multi-tenant management](../admin-quick-start).
+- You need to have a DokcerHub account and a GitHub account.
+- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into a DevOps project, see [Get Started with Multi-tenant Management](../admin-quick-start).
 - Set CI dedicated node for building pipeline, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node).
 
 ## Pipeline Overview
@@ -49,11 +49,11 @@ There are eight stages as shown below in the pipeline that is going to demonstra
 | github-id | Account Credentials | GitHub |
 | demo-kubeconfig | kubeconfig | Kubernetes |
 
-1.2. We need to create an additional credential `sonar-token` for SonarQube token, which is used in stage 3 (SonarQube analysis) mentioned above. Refer to [Access SonarQube Console and Create Token](../../installation/install-sonarqube) to copy the token and paste here. Then press `OK` button.
+1.2. We need to create an additional credential `sonar-token` for SonarQube token, which is used in stage 3 (SonarQube analysis) mentioned above. Refer to [Access SonarQube Console and Create Token](../../installation/install-sonarqube) to copy the token and paste here. Then press **OK** button.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200226171101.png)
+![sonar-token](https://pek3b.qingstor.com/kubesphere-docs/png/20200226171101.png)
 
-In total, we've created four credentials in this step.
+In total, we have created four credentials in this step.
 
 ![Credentials](https://pek3b.qingstor.com/kubesphere-docs/png/20200107105153.png)
 
@@ -136,7 +136,7 @@ Similarly, create a project named `kubesphere-sample-prod` following the steps 
 
 ![GitHub Token](https://pek3b.qingstor.com/kubesphere-docs/png/20200107143648.png)
 
-4.4. Click **Confirm**, choose your account. All the code repositories related to this token will be listed on the right. Select [devops-java-sample](https://github.com/kubesphere/devops-java-sample) and click **Select this repo**, then click **Next**.
+4.4. Click **Confirm**, choose your account. All the code repositories related to this token will be listed on the right. Select **devops-java-sample** and click **Select this repo**, then click **Next**.
 
 ![Select Repo](https://pek3b.qingstor.com/kubesphere-docs/png/20200107143818.png)
 
@@ -169,7 +169,7 @@ Now we are on the advanced setting page.
 > - PR's source code edition: Once discovery operation is based on the pipeline build by PR's source codes.
 > - There will be two pipelines when the PR is found. One pipeline applies PR's source code and the other one uses the source code from  merging the PR with the target branch: This is twice discovery operation.  -->
 
-4.6. The path is **Jenkinsfile** by default. Please change it to [Jenkinsfile-online](https://github.com/kubesphere/devops-java-sample/blob/master/Jenkinsfile-online), which is is the file name of Jenkinsfile in the repository located in root directory.
+4.6. The path is **Jenkinsfile** by default. Please change it to `Jenkinsfile-online`, which is the file name of Jenkinsfile in the repository located in root directory.
 
 > Note: Script path is the Jenkinsfile path in the code repository. It indicates the repository's root directory. If the file location changes, the script path should also be changed.
 
@@ -187,7 +187,7 @@ Now we are on the advanced setting page.
 
 #### Run the Pipeline
 
-Refresh browser manually or you may need to click `Scan Repository`, then you can find two activities triggered.
+Refresh browser manually or you may need to click `Scan Repository`, then you can find two activities triggered. Or you may want to trigger them manually as the following instructions.
 
 4.8. Click **Run** on the right. According to the **Behavioral Strategy**, it will load the branches that have Jenkinsfile. Just keep the default branch `master`. Since there is no default value in the Jenkinsfile file, put in a tag number in the  **TAG_NAME** such as `v0.0.1`. Click **OK** to trigger a new activity.
 
@@ -283,4 +283,4 @@ $ curl 10.233.90.17:8080
 Really appreciate your star, that's the power of our life.
 ```
 
-Configurations! You've been familiar with KubeSphere DevOps pipeline, and you can continue to learn how to build CI/CD pipeline with a graphical panel and visualize your workflow in the next tutorial.
+Configurations! You are familiar with KubeSphere DevOps pipeline, and you can continue to learn how to build CI/CD pipeline with a graphical panel and visualize your workflow in the next tutorial.
