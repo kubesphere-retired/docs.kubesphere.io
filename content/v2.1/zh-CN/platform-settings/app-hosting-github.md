@@ -10,7 +10,7 @@ GitHub 是流行的代码仓库，可以直接托管静态文件，利用这个�
 
 根据 [Helm 官方指南](https://helm.sh/docs/developing_charts/) 编写应用，同时可浏览 Kubesphere 应用仓库已有的应用作为参考：官方应用位于 [src/qingcloud](https://github.com/kubesphere/helm-charts/tree/master/src/qingcloud) 目录下，测试应用位于 [src/experimental](https://github.com/kubesphere/helm-charts/tree/master/src/experimental) 目录下。
 
-## 前提条件 
+## 前提条件
 
 创建一个 GitHub 仓库，比如创建一个示例仓库 `https://github.com/FeynmanZhou/helm-repo-example`，所有的应用包都可以存放在此处。
 
@@ -28,14 +28,14 @@ GitHub 是流行的代码仓库，可以直接托管静态文件，利用这个�
 3、根据 [Helm 官方文档](https://helm.sh/docs/chart_template_guide/#a-starter-chart) 创建应用。下面我们创建一个名为 mychart 的示例应用。
 
   在命令行窗口初始化一个应用：
-  
+
   ```
   cd helm-repo-example
   helm create mychart
   ```
 
   此时会看到 Helm 工具帮我们生成了一个基于 Nginx 的应用（以模板文件组织）：
-  
+
   ```
   │ helm-repo-example/
   │ └── mychart/
@@ -70,7 +70,7 @@ helm package mychart
 │     └── ...
 ```
 
-### 第三步：打包应用
+### 第三步：上传应用
 
 1、在目录 helm-repo-example 下利用 helm 命令生成索引文件 index.yaml：
 
@@ -93,34 +93,32 @@ helm repo index .
 
 ### 第四步：上传应用
 
-把上面产生的所有文件都提交到 GitHub 仓库里，此处默认上传到 master 分支。
+上传应用到 KubeSphere 支持两种方式，第一种方法是直接将上述生成的 tgz 文件上传到企业空间下的应用模板，请参考 [应用商店](../../quick-start/app-store)。
+
+第二种方法将上述的 Github 仓库作为应用仓库导入到 KubeSphere 中。以下介绍第二种方法。
 
 ### 第五步：添加应用仓库
 
-如果是第一次部署，把 GitHub 示例仓库 https 地址添加到 KubeSphere 就可以使用了。
-
 以下简单说明如何将该 GitHub 仓库作为应用仓库添加至 KubeSphere，详见 [添加应用仓库](../app-repo)。
 
-1、在 「平台管理」→ 「平台设置」 的应用仓库下，点击添加应用仓库，输入示例仓库 `https://raw.githubusercontent.com/FeynmanZhou/helm-repo-example/master` 点击验证通过后再点击确定。
+1、使用企业空间管理员的账号，进入企业空间，进入 `企业空间管理 → 应用仓库`，点击 `创建应用仓库`。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190530160609.png)
+然后输入示例仓库 `https://raw.githubusercontent.com/FeynmanZhou/helm-repo-example/master` 点击验证通过后再点击确定。
+
 
 > 提示：获取 GitHub 仓库中文件的 Raw 地址可参考如下截图。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190910004851.png)
 
-2、点击 「应用模板」，即可看到该仓库中的应用已成功导入至 KubeSphere，点击进入应用即可一键部署至指定项目中。
+2、使用普通用户的账号，进入企业空间下的任意一个项目中，进入 「应用负载」 → 「应用」，点击 **部署新应用 → 来自应用模板**，然后选择上一步添加的 GitHub repo，即可看到该仓库中的应用。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190530160753.png)
 
 3、以下已成功将 mychart 应用部署至项目中，关于如何部署应用可参考 [一键部署应用](../../quick-start/one-click-deploy)。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190530160926.png)
 
 
 ## 自动化上传
 
-上述第二〜四步可以自动化，解放手工操作并减少人工错误。可以利用现有的 CICD 工具（如 Jenkins）或开源平台（如 Travis CI）实现。大体流程如下：
+上述第二〜三步可以自动化，解放手工操作并减少人工错误。大体流程如下：
 
 ```bash
 # 下载代码
