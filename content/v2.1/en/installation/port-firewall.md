@@ -18,8 +18,8 @@ KubeSphere requires certain ports to communicate among services, so you need to 
 | master | TCP | allow | 10250 | 10258 | |
 | dns | TCP | allow | 53 | | |
 | dns | UDP | allow | 53 | | |
-| local-registry | TCP | allow | 5000 | | Required for disconnected environment |
-| local-apt | TCP | allow | 5080 | | Required for disconnected environment|
+| local-registry | TCP | allow | 5000 | | Required for air gapped |
+| local-apt | TCP | allow | 5080 | | Required for air gapped|
 | rpcbind | TCP | allow | 111 | | When using NFS as storage server |
 | ipip | IPIP | allow | | | Calico network requires ipip protocol |
 

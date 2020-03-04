@@ -8,7 +8,7 @@ description: 'How to Enable DevOps System on KubeSphere'
 
 KubeSphere DevOps System is designed for CI/CD workflow in Kubernetes. It is based on [Jenkins](https://jenkins.io/) and provides one-stop DevOps console helping developers and maintainers build, test and publish their applications to Kubernetes in a straight-forward way. It also supports plugins management, Binary-to-Image (B2I), Source-to-Image (S2I), code dependency caching, code quality analysis and pipeline logging, etc.
 
-The DevOps system combines application development and automatic publishing on the same platform, also supports to connect with third-party private image registry (e.g. Harbor) and code repositories (e.g. GitLab/GitHub/SVN/BitBucket) to visually construct a complete CI/CD pipeline which is usually useful for disconnected environment.
+The DevOps system combines application development and automatic publishing on the same platform, also supports to connect with third-party private image registry (e.g. Harbor) and code repositories (e.g. GitLab/GitHub/SVN/BitBucket) to visually construct a complete CI/CD pipeline which is usually useful for air gapped.
 
 In KubeSphere v2.1, there are rich features within DevOps system:
 
@@ -16,7 +16,7 @@ In KubeSphere v2.1, there are rich features within DevOps system:
 - [Source to Image](../../quick-start/source-to-image): Automatically compile and build your source code from code repository and pack the result into Docker without writing Dockerfile, push to image repository and finally deploy the image into Kubernetes cluster.
 - [Jenkinsfile-free CI/CD pipeline with graphical editing panel](../../quick-start/jenkinsfile-out-of-scm): Without writing Jenkinsfile, you can compose pipeline using graphical editing panel which makes the user experience much better that other solutions.
 - [Jenkinsfile-based CI/CD pipeline](../../quick-start/devops-online): If your code repository already has Jenkinsfile, you'd better to use this way to create pipeline.
-- [GitLab and Harbor based CI/CD pipeline](../../harbor-gitlab-devops-offline)：Using on-premise GitLab and Harbor to create pipeline, which is useful for disconnected environment.
+- [GitLab and Harbor based CI/CD pipeline](../../harbor-gitlab-devops-offline)：Using on-premise GitLab and Harbor to create pipeline, which is useful for air gapped.
 
 ## Enable DevOps System before Installation
 

@@ -4,7 +4,7 @@ keywords: 'kubesphere, kubernetes, ingress, route'
 description: 'How to expose your application through KubeSphere'
 ---
 
-In each project, namely, Kubernetes namespace, KubeSphere has pre-installed a load balancer which is Nginx Ingress Controller. You need to activate it before using it. As we know, ingress and ingress controller are used to expose serices outside. The website [Kubernetes-ingress](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) provides an example showing how to use ingress. Let's take a demo website `https://cafe.example.com` as an example. If users access the URL `https://cafe.example.com/coffee`, it will return "Coffee Ordering System". Similarly, when access the URL `https://cafe.example.com/tea`, it will return "Tea Ordering System".
+In each project, namely, Kubernetes namespace, KubeSphere has pre-installed a load balancer which is Nginx Ingress Controller. You need to activate it before using it. As we know, ingress and ingress controller are used to expose services outside. The website [Kubernetes-ingress](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) provides an example showing how to use ingress. Let's take a demo website `https://cafe.example.com` as an example. If users access the URL `https://cafe.example.com/coffee`, it will return "Coffee Ordering System". Similarly, when access the URL `https://cafe.example.com/tea`, it will return "Tea Ordering System".
 
 To elaborate this demo, we will create two stateless applications which include Deployments, Services and Ingress in this tutorial.
 
