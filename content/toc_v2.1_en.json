@@ -63,7 +63,7 @@
       "desc": "Reference the installation guide to download and install KubeSphere",
       "chapters": [
         {
-          "title": "Instruction",
+          "title": "Introduction",
           "entries": [
             {
               "title": "Intro",
