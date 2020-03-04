@@ -125,7 +125,7 @@ Log in KubeSphere console using the default account `admin / P@88w0rd`. You'll s
 
 ## Enable Pluggable Components
 
-he installation above is only used for a default minimal installation. Execute the following command to open the configmap in order to enable more pluggable components. Make sure your cluster has enough CPU and memory. Please see [Configuration Table](https://github.com/kubesphere/ks-installer/blob/master/README.md#configuration-table) for more information.
+The installation above is only used for a default minimal installation. Execute the following command to open the configmap in order to enable more pluggable components. Make sure your cluster has enough CPU and memory. Please see [Configuration Table](https://github.com/kubesphere/ks-installer/blob/master/README.md#configuration-table) for more information.
 
 <font color=red>If you want to enable DevOps or etcd monitoring, please create CA and etcd certificates first. See [ks-installer](https://github.com/kubesphere/ks-installer/blob/master/README.md) for complete guide.</font>
 
