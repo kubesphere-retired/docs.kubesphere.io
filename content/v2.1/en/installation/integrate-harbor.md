@@ -8,6 +8,7 @@ This tutorial walks you through how to configure a image registry in Docker conf
 
 We take Harbor image registry as an example. Assuming you have a [Harbor](https://goharbor.io/) image registry with its address `http://192.168.0.31:80`.
 
+## Configure Insecure Registry
 
 1. Log in SSH client, modify the systemd configuration in `/etc/systemd/system/docker.service.d/docker-options.conf` in the cluster. <font color="red">Please notice that this example method below is only used for docker configuration in systemd, you can refer to [Docker Documentation - Test an insecure registry](https://docs.docker.com/registry/insecure/) for further information.</font>
 
@@ -42,8 +43,9 @@ Insecure Registries:
 
 5. Repeat these steps on every Kubernetes host to enable the insecure registry.
 
+## Test Registry Configuration
 
-6. Make sure you can log in to Harbor successfully.
+1. Make sure you can log in to Harbor successfully.
 
 ```
 $ docker login -u admin -p Harbor12345 http://192.168.0.31:80
@@ -55,13 +57,13 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 ```
 
-7. We can test the Harbor registry by pushing an image. Assuming we have image `nginx:1.14-alpine` in local. Tag this image as follows:
+2. We can test the Harbor registry by pushing an image. Assuming we have image `nginx:1.14-alpine` in local. Tag this image as follows:
 
 ```bash
 docker tag nginx:1.14-alpine 192.168.0.31:80/library/nginx:1.14-alpine
 ```
 
-8. Push the image to the Harbor registry.
+3. Push the image to the Harbor registry.
 
 ```bash
 docker push 192.168.0.31:80/library/nginx:1.14-alpine
@@ -69,4 +71,4 @@ docker push 192.168.0.31:80/library/nginx:1.14-alpine
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200303204511.png)
 
-9. It means the Harbor registry has been added in Docker configuration, you are able to use Harbor in KubeSphere. Please back to [Install KubeSphere in Air Gapped Kubernetes Cluster](../install-on-k8s-airgapped/#download-image-package) to continue the installation.
+4. It means the Harbor registry has been added in Docker configuration, you are able to use Harbor in KubeSphere. Please back to [Install KubeSphere in Air Gapped Kubernetes Cluster](../install-on-k8s-airgapped/#download-image-package) to continue the installation.
