@@ -271,7 +271,7 @@
         },
         {
           "title": "13. Canary Release based on Ingress-Nginx",
-          "entry": "./v2.1/en/quick-start/app-store.md"
+          "entry": "./v2.1/en/quick-start/ingress-canary.md"
         }
       ]
     },

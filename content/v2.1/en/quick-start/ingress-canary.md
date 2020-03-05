@@ -263,7 +263,7 @@ $ for i in $(seq 1 10); do curl -s --resolve kubesphere.io:30205:192.168.0.88 ku
 > Note: Canary rules are evaluated in order of precedence. Precedence is as follows:
 > `canary-by-header - > canary-by-cookie - > canary-weight`. Thus the the old annotation `canary-weight` will be ignored.
 
-![annotation](https://pek3b.qingstor.com/kubesphere-docs/png/20190826174117.png)
+![Edit annotation](https://pek3b.qingstor.com/kubesphere-docs/png/20200304220417.png)
 
 4.4. Add different Header value in the request, and access the application domain name.
 
@@ -291,7 +291,7 @@ $ for i in $(seq 1 10); do curl -s -H "canary: other-value" --resolve kubesphere
 
 4.5. At this point, we can add a row of annotation (i.e. canary-by-header) `nginx.ingress.kubernetes.io/canary-by-header-value: user-value`, the header value to match for notifying the Ingress to route the request to the service specified in the Canary Ingress.
 
-![annotation](https://pek3b.qingstor.com/kubesphere-docs/png/20190826184040.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200305093713.png)
 
 4.6. Access the domain name as follows, when the request header is set to this value, it will be routed to the Canary version. For any other header value, the header will be ignored and the request compared against the other canary rules by precedence.
 
