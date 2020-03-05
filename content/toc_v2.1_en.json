@@ -91,8 +91,37 @@
               "entry": "./v2.1/en/installation/multi-node.md"
             },
             {
+              "title": "High Availability Configuration",
+              "entry": "./v2.1/en/installation/master-ha.md"
+            },
+            {
+              "title": "StorageClass Configuration",
+              "entry": "./v2.1/en/installation/storage-configuration.md"
+            },
+            {
               "title": "Enable All Components",
               "entry": "./v2.1/en/installation/complete-installation.md"
+            }
+          ]
+        },
+        {
+          "title": "Install on Kubernetes",
+          "entries": [
+            {
+              "title": "Prerequisites",
+              "entry": "./v2.1/en/installation/prerequisites.md"
+            },
+            {
+              "title": "Online Installation",
+              "entry": "./v2.1/en/installation/install-on-k8s.md"
+            },
+            {
+              "title": "Air Gapped Installation",
+              "entry": "./v2.1/en/installation/install-on-k8s-airgapped.md"
+            },
+            {
+              "title": "Install on GKE",
+              "entry": "./v2.1/en/installation/install-on-gke.md"
             }
           ]
         },
@@ -134,41 +163,7 @@
           ]
         },
         {
-          "title": "HA Configuration",
-          "entries": [
-            {
-              "title": "Installing HA Master and Etcd Cluster",
-              "entry": "./v2.1/en/installation/master-ha.md"
-            },
-            {
-              "title": "Storage Configuration Instruction",
-              "entry": "./v2.1/en/installation/storage-configuration.md"
-            }
-          ]
-        },
-        {
-          "title": "Install on Kubernetes",
-          "entries": [
-            {
-              "title": "Prerequisites",
-              "entry": "./v2.1/en/installation/prerequisites.md"
-            },
-            {
-              "title": "Online Installation",
-              "entry": "./v2.1/en/installation/install-on-k8s.md"
-            },
-            {
-              "title": "Air Gapped Installation",
-              "entry": "./v2.1/en/installation/install-on-k8s-airgapped.md"
-            },
-            {
-              "title": "Install on GKE",
-              "entry": "./v2.1/en/installation/install-on-gke.md"
-            }
-          ]
-        },
-        {
-          "title": "Related Tools",
+          "title": "Third-Party Tools",
           "entries": [
             {
               "title": "Configure Harbor",
@@ -189,7 +184,7 @@
           ]
         },
         {
-          "title": "Authentication Configuration",
+          "title": "Authentication Integration",
           "entries": [
             {
               "title": "Configure LDAP/AD",

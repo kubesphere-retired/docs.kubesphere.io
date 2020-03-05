@@ -1,7 +1,7 @@
 ---
-title: "Storage Configuration Instructions"
+title: "StorageClass Configuration"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'Instructions for Setting up Storage Services for KubeSphere'
+description: 'Instructions for Setting up StorageClass for KubeSphere'
 ---
 
 Currently, Installer supports the following [Storage Class](https://kubernetes.io/docs/concepts/storage/storage-classes/), providing persistent storage service for KubeSphere (more storage classes will be supported soon).

@@ -1,8 +1,10 @@
 ---
-title: "Installing HA Master and Etcd Cluster"
+title: "High Availability Configuration"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: 'The guide for installing a high availability of KubeSphere cluster'
 ---
+
+## Install HA Master and Etcd Cluster
 
 [Multi-node installation](../multi-node) can help you to quickly set up a single-master cluster on multiple machines for development and testing. However, we need to consider the high availability of the cluster for production. Since the key components on the master node, i.e. kube-apiserver, kube-scheduler, and kube-controller-manager are running on a single master node, Kubernetes and KubeSphere will be unavailable during the master being down.
 
