@@ -20,8 +20,7 @@ In summary, there are several installation options you can choose. Please note n
 - Minimal Packages: Only install minimal required system components of KubeSphere. The minimum of resource requirement is down to 1 core and 2G memory.
 - [Full Packages](../complete-installation): Install all available system components of KubeSphere including DevOps, service mesh, application store, etc.
 
-
-![Installer Options](https://pek3b.qingstor.com/kubesphere-docs/png/20191219232535.png)
+![Installer Options](https://pek3b.qingstor.com/kubesphere-docs/png/20200305093158.png)
 
 ## Before Installation
 

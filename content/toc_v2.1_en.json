@@ -298,6 +298,17 @@
       ]
     },
     {
+      "title": "Developer Guide",
+      "icon": "/problem.svg",
+      "desc": "KubeSphere Developer Guide",
+      "chapters": [
+        {
+          "title": "Custom S2I Template",
+          "entry": "./v2.1/en/developer/s2i-template.md"
+        }
+      ]
+    },
+    {
       "title": "API Documentation",
       "icon": "/problem.svg",
       "desc": "Introduction to KubeSphere API",
