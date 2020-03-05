@@ -97,34 +97,34 @@
           ]
         },
         {
-          "title": "Enable Pluggable Components Installation",
+          "title": "Pluggable Components",
           "entries": [
             {
-              "title": "Enable Pluggable Components Installation",
+              "title": "Pluggable Components",
               "entry": "./v2.1/en/installation/pluggable-components.md"
             },
             {
-              "title": "Install KubeSphere Application Store",
+              "title": "Enable Application Store",
               "entry": "./v2.1/en/installation/install-openpitrix.md"
             },
             {
-              "title": "Install KubeSphere DevOps System",
+              "title": "Enable DevOps System",
               "entry": "./v2.1/en/installation/install-devops.md"
             },
             {
-              "title": "Install KubeSphere Logging System",
+              "title": "Enable Logging System",
               "entry": "./v2.1/en/installation/install-logging.md"
             },
             {
-              "title": "Install KubeSphere Service Mesh",
+              "title": "Enable Service Mesh",
               "entry": "./v2.1/en/installation/install-servicemesh.md"
             },
             {
-              "title": "Install Alerting and Notification",
+              "title": "Enable Alerting and Notification",
               "entry": "./v2.1/en/installation/install-alert-notification.md"
             },
             {
-              "title": "Install Metrics-server to enable HPA",
+              "title": "Enable Metrics-server for HPA",
               "entry": "./v2.1/en/installation/install-metrics-server.md"
             },
             {

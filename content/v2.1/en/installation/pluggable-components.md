@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Enabling Pluggable Components"
+title: "Introduction to Pluggable Components"
 keywords: 'kubesphere, kubernetes, docker, helm, jenkins, istio, prometheus'
 description: 'Introduction to how to enable pluggable components of kubeSphere'
 ---

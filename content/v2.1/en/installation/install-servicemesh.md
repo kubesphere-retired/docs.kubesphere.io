@@ -6,7 +6,7 @@ description: 'Enable KubeSphere Service Mesh Installation'
 
 ## What is KubeSphere Service Mesh
 
-KubeSphere service mesh, based on [Istio](https://istio.io/), visualizes the microservice governance and traffic management, provides **circuit break, blue-green Deployment, canary release, traffic mirror, tracing, observability and traffic control**. It enables developers get started with service mesh without modifying source code, reduce the learning curve of Istio. All features of KubeSphere service mesh are designed from bussiness perspective.
+KubeSphere service mesh, based on [Istio](https://istio.io/), visualizes the microservice governance and traffic management, provides **circuit break, blue-green Deployment, canary release, traffic mirror, tracing, observability and traffic control**. It enables developers get started with service mesh without modifying source code, reduce the learning curve of Istio. All features of KubeSphere service mesh are designed from business perspective.
 
 ![Traffic Management](https://pek3b.qingstor.com/kubesphere-docs/png/20191228214539.png)
 
