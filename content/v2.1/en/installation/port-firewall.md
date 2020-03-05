@@ -27,4 +27,4 @@ KubeSphere requires certain ports to communicate among services, so you need to 
 
 Please note when you use Calico network plugin and run your cluster in classic network in cloud environment, you need to open IPIP protocol for souce IP. For instance, the following is the sample on QingCloud showing how to open IPIP protocol.
 
-![ipip 协议](/ipip-protocol.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200304200605.png)

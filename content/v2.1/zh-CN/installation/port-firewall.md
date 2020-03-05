@@ -26,4 +26,4 @@ description: ''
 
 需要注意的是，如果在云平台上选择使用默认的 Calico 网络插件进行安装，并且主机是**直接运行在基础网络中**，则需要为源 IP (IP/端口集合) 添加防火墙的** IPIP 协议**，例如在 QingCloud 云平台添加防火墙的 IPIP 协议：
 
-![ipip 协议](/ipip-protocol.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200304200605.png)
