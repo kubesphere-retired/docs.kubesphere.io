@@ -1,7 +1,7 @@
 ---
-title: "Preparing the Development Environment"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "Custom S2I Template"
+keywords: 'kubernetes, source-to-image, kubesphere, ci/cd'
+description: 'How to customize the builder image template for application'
 ---
 
 When you are familiar with [Source-to-Image (S2I)](../../quick-start/source-to-image), you can customize the builder image template (i.e. S2I/B2I template) based on your project to extend the S2I. There are some commmon-used built-in image buider templates including [Python](https://github.com/kubesphere/s2i-python-container/), [Java](https://github.com/kubesphere/s2i-java-container/), etc. KubeSphere 2.1.1 allows you to custom B2I template.
@@ -258,7 +258,7 @@ $ docker run -p 8080:8080  sample-app
 
 The Nginx application should now be accessible at `http://localhost:8080`.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190830115544.png)
+![Preview Ngxin](https://pek3b.qingstor.com/kubesphere-docs/png/20190830115544.png)
 
 
 ## Step 6: Push Image

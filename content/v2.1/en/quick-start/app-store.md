@@ -29,7 +29,7 @@ In this step, we will create two accounts, i.e., `isv` for ISVs and `reviewer` f
 
 1.1. First of all, we need to create a role for app reviewers. Log in KubeSphere console with the account `admin`, go to **Platform → Platform Roles**, then click **Create** and name it `app-review`, choose **App Template** in the authorization settings list, then click **Create**.
 
-![Authorization Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200212174022.png)
+![Authorization Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200305172646.png)
 
 1.2. Create an account `reviewer`, and grant the role of **app-review** to it.
 

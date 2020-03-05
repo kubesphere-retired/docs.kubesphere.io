@@ -59,7 +59,7 @@ Here is an example showing you how to create a new role named `users-manager`, g
 
 1.3. Check all the access rights on the options of `Account Management` and `Role Management`; then click **Create**.
 
-![Role Authorization](https://pek3b.qingstor.com/kubesphere-docs/png/20200105151033.png)
+![Authorization Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200305172551.png)
 
 1.4. Click **Platform → Accounts**. You can see the account list in the current cluster. Then click **Create**.
 
