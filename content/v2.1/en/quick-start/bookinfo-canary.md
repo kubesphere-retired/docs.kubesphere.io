@@ -6,7 +6,7 @@ description: 'How to manage canary release of microservices using Istio platform
 
 [Istio](https://istio.io/)，as an open source service mesh, provides powerful traffic management which makes canary release of a microservice possible. **Canary release** provides canary rollouts, and staged rollouts with percentage-based traffic splits.
 
-> The following paragragh is from [Istio](https://istio.io/docs/concepts/traffic-management/) official website.
+> The following paragraph is from [Istio](https://istio.io/docs/concepts/traffic-management/) official website.
 
 Istio’s traffic routing rules let you easily control the flow of traffic and API calls between services. Istio simplifies configuration of service-level properties like circuit breakers, timeouts, and retries, and makes it easy to set up important tasks like A/B testing, canary rollouts, and staged rollouts with percentage-based traffic splits. It also provides out-of-box failure recovery features that help make your application more robust against failures of dependent services or the network.
 
