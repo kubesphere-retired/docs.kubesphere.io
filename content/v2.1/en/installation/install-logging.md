@@ -1,24 +1,24 @@
 ---
-title: "Enable KubeSphere Logging System"
+title: "Enable Logging System"
 keywords: 'kubesphere, kubernetes, docker, prometheus, elasticsearch, logging, elk'
 description: 'How to enable KubeSphere logging system'
 ---
 
 ## What is KubeSphere Logging System
 
-KubeSphere provides powerful and easy-to-use logging system which offers users the capabilities of log collection, query and management in terms of tenants. Meanwhile, the system provides not only infrastructure logging capabilities but application logging capabilities. And provides various search scopes such as project, workload, Pod, docker and keyword. Tenant-based logging system is much more useful than Kibana since different tenant can only view her/his own logs, leading much better security. KubeSphere logging system is a pluggable component that you can enable to use. It has the following features.
+KubeSphere provides powerful and easy-to-use logging system which offers users the capabilities of log collection, query and management in terms of tenants. Meanwhile, the system provides not only infrastructure logging capabilities but application logging capabilities. Moreover, it provides various search scopes such as project, workload, Pod, docker and keyword. Tenant-based logging system is much more useful than Kibana since different tenant can only view her/his own logs, leading much better security. KubeSphere logging system is a pluggable component that you can enable to use. It has the following features.
 
 > - [Support multi-tenant and multi-dimensional log search](../../toolbox/log-search)
-> - Support various log receivers including Elasticsearch、Kafka and Fluentd
 > - [Support file-based logging](../../workload/logs-on-disk)
+> - Support various log receivers including Elasticsearch, Kafka and Fluentd
 
-## Enable Logging System Before Installation
+## Enable Logging System before Installation
 
-<font color=red>KubeSphere logging system requires 56 m (CPU request) and 2.76 G (memory request) at least. Please make sure your cluster has enough resource.</font>
+<font color=red>KubeSphere logging system requires at least 56m of CPU request and 2.76G of memory request. Please make sure your cluster has enough resource.</font>
 
 Before start the installation, you can change the value of `logging_enabled` in `conf/common.yaml` from `false` to `true` to enable logging system as shown below, then you can continue your installation by following the instructions of [All-in-One](../all-in-one) or [Multi-Node](../multi-node).
 
-> Note: By default, KubeSphere will install Elasticsearch within the cluster for testing purpose. It also supports using external Elasticsearch (v7.x) which reduces memory consumption of your cluster resource. Generally, we recommend you to use external Elasticsearch in production environment by configuring the parameters `external_es_url` and `external_es_port` to use external one.
+> Note: By default, KubeSphere will install Elasticsearch within the cluster for testing purpose. It also supports using external Elasticsearch (v7.x) which reduces memory consumption of your cluster resource. Generally, we recommend you to use external Elasticsearch in production environment by configuring the parameters `external_es_url` and `external_es_port`.
 
 ```yaml
 # Logging
@@ -35,15 +35,15 @@ kibana_enabled: false # Whether to install Kibana
 
 Then you can continue your installation by following the instructions of [All-in-One](../all-in-one) or [Multi-Node](../multi-node).
 
-## Enable Logging System After Installation
+## Enable Logging System after Installation
 
-If you already have set up KubeSphere without enabling logging system, you still can edit the ConfigMap of ks-installer using the following command:
+If you already have set up KubeSphere without enabling logging system, you still can edit the ConfigMap of ks-installer using the following command.
 
 ```bash
 kubectl edit cm -n kubesphere-system ks-installer
 ```
 
-Then set logging from `False` to `True`:
+Then set logging from `False` to `True`.
 
 ```yaml
 logging:

@@ -1,38 +1,37 @@
 ---
-title: "Install metrics-server to Enable HPA"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
+title: "Enable Metrics-server for HPA"
+keywords: 'kubesphere, kubernetes, HPA, metrics-server'
 description: 'Install metrics-server to enable HPA'
 ---
 
-## Introduction of HPA
+## Introduction to HPA
 
-KubeSphere supports setting [Honrizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)  based on observed CPU utilization (or, with custom metrics support, on some other application-provided metrics). When the request and traffic surges, the Pod number can be autoscaled in Kubernetes cluster, which can improve the stability of the system. You're supposed to install metrics-server to Enable HPA.
+KubeSphere supports setting [Honrizontal Pod Autoscaler](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) for [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)  based on observed CPU utilization (or, with custom metrics support, on some other application-provided metrics). When the request and traffic surges, the Pod number can be autoscaled in Kubernetes cluster, which can improve the stability of the system. You are supposed to install metrics-server to Enable HPA.
 
+## Enable HPA before Installation
 
-## Enable HPA Before Installation
+<font color=red>Metrics-server requires at least 5m of CPU request and 44.35M of memory request. Please make sure your cluster has enough resource.</font>
 
-<font color=red>Metrics-server requires 5 m (CPU request) and 44.35 M (Memory request) at least, make sure your cluster has enough resource.</font>
+Before execute installation, you can set `metrics_server_enabled` to `true`, then you can back to [All-in-One](../all-in-one) or [Multi-Node](../multi-node) guide to continue installation.
 
-Before execute installation, you can set `metrics_server_enabled` to `true`, then you can back to All-in-one or Multi-node guide to continue installation.
-
-```bash
+```yaml
 # Following components are all optional for KubeSphere,
 # Which could be turned on to install it before installation or later by updating its value to true
 ···
 metrics_server_enabled: true
 ```
 
-## Enable Metrics-server After Installation
+## Enable Metrics-server after Installation
 
-Edit the ConfigMap of ks-installer using following command:
+If you already have set up KubeSphere without enabling metrics server, you still can edit the ConfigMap of ks-installer using the following command.
 
 ```bash
-$ kubectl edit cm -n kubesphere-system ks-installer
+kubectl edit cm -n kubesphere-system ks-installer
 ```
 
-Then set metrics-server from False to True:
+Then set metrics-server from `False` to `True`.
 
-```bash
+```yaml
 ···
 metrics-server:
      enabled: True

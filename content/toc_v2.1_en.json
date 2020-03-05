@@ -91,58 +91,16 @@
               "entry": "./v2.1/en/installation/multi-node.md"
             },
             {
-              "title": "Enable All Components",
-              "entry": "./v2.1/en/installation/complete-installation.md"
-            }
-          ]
-        },
-        {
-          "title": "Enable Pluggable Components Installation",
-          "entries": [
-            {
-              "title": "Enable Pluggable Components Installation",
-              "entry": "./v2.1/en/installation/pluggable-components.md"
-            },
-            {
-              "title": "Install KubeSphere Application Store",
-              "entry": "./v2.1/en/installation/install-openpitrix.md"
-            },
-            {
-              "title": "Install KubeSphere DevOps System",
-              "entry": "./v2.1/en/installation/install-devops.md"
-            },
-            {
-              "title": "Install KubeSphere Logging System",
-              "entry": "./v2.1/en/installation/install-logging.md"
-            },
-            {
-              "title": "Install KubeSphere Service Mesh",
-              "entry": "./v2.1/en/installation/install-servicemesh.md"
-            },
-            {
-              "title": "Install Alerting and Notification",
-              "entry": "./v2.1/en/installation/install-alert-notification.md"
-            },
-            {
-              "title": "Install Metrics-server to enable HPA",
-              "entry": "./v2.1/en/installation/install-metrics-server.md"
-            },
-            {
-              "title": "Verify Components Installation",
-              "entry": "./v2.1/en/installation/verify-components.md"
-            }
-          ]
-        },
-        {
-          "title": "HA Configuration",
-          "entries": [
-            {
-              "title": "Installing HA Master and Etcd Cluster",
+              "title": "High Availability Configuration",
               "entry": "./v2.1/en/installation/master-ha.md"
             },
             {
-              "title": "Storage Configuration Instruction",
+              "title": "StorageClass Configuration",
               "entry": "./v2.1/en/installation/storage-configuration.md"
+            },
+            {
+              "title": "Enable All Components",
+              "entry": "./v2.1/en/installation/complete-installation.md"
             }
           ]
         },
@@ -168,7 +126,44 @@
           ]
         },
         {
-          "title": "Related Tools",
+          "title": "Pluggable Components",
+          "entries": [
+            {
+              "title": "Pluggable Components",
+              "entry": "./v2.1/en/installation/pluggable-components.md"
+            },
+            {
+              "title": "Enable Application Store",
+              "entry": "./v2.1/en/installation/install-openpitrix.md"
+            },
+            {
+              "title": "Enable DevOps System",
+              "entry": "./v2.1/en/installation/install-devops.md"
+            },
+            {
+              "title": "Enable Logging System",
+              "entry": "./v2.1/en/installation/install-logging.md"
+            },
+            {
+              "title": "Enable Service Mesh",
+              "entry": "./v2.1/en/installation/install-servicemesh.md"
+            },
+            {
+              "title": "Enable Alerting and Notification",
+              "entry": "./v2.1/en/installation/install-alert-notification.md"
+            },
+            {
+              "title": "Enable Metrics-server for HPA",
+              "entry": "./v2.1/en/installation/install-metrics-server.md"
+            },
+            {
+              "title": "Verify Components Installation",
+              "entry": "./v2.1/en/installation/verify-components.md"
+            }
+          ]
+        },
+        {
+          "title": "Third-Party Tools",
           "entries": [
             {
               "title": "Configure Harbor",
@@ -189,7 +184,7 @@
           ]
         },
         {
-          "title": "Authentication Configuration",
+          "title": "Authentication Integration",
           "entries": [
             {
               "title": "Configure LDAP/AD",
@@ -198,18 +193,18 @@
           ]
         },
         {
-          "title": "Cluster Operation",
+          "title": "Cluster Operations",
           "entries": [
             {
-              "title": "Adding New Nodes",
+              "title": "Add or Cordon Nodes",
               "entry": "./v2.1/en/installation/add-nodes.md"
             },
             {
-              "title": "High Risk Operation",
+              "title": "High Risk Operations",
               "entry": "./v2.1/en/installation/high-risk.md"
             },
             {
-              "title": "Uninstalling KubeSphere",
+              "title": "Uninstall KubeSphere",
               "entry": "./v2.1/en/installation/uninstall.md"
             }
           ]
