@@ -1,49 +1,48 @@
 ---
-title: "Add New Nodes and Cordon Node"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "Add or Cordon Nodes"
+keywords: "kubesphere, kubernetes, docker"
+description: "How to add or cordon a node"
 ---
 
-After installing KubeSphere, you may encounter insufficient capacity in the formal environment. In this case, it's required to add new nodes and then scale the system horizontally to complete the expansion. It allows cluster operator to expand the cluster according to actual business needs, and it's quite easy to add new nodes in the cluster. Adding new nodes are based on Kubelet's automatic registration mechanism, and the new nodes will automatically join the existing Kubernetes cluster.
+## Add a New Node
 
-**Attention**
+When you use KubeSphere for a certain time, most likely you need to scale out your cluster with workloads increasing. In this scenario, KubeSphere provides script to add new nodes to the cluster. Fundamentally the operation is based on Kubelet's registration mechanism, i.e., the new nodes will automatically join the existing Kubernetes cluster.
 
-Noted that if the environment is installed with the all-in-one mode, it's not recommended to add new nodes while the storage class is set to Local volume by default. Installer only supports to add new nodes if you launched with multi-node mode installation. 
+> Please note if the environment is installed with the all-in-one mode, it is not allowed to add new nodes to the single-node cluster.
 
-## Step 1: Modify the Host Configuration
+### Step 1: Modify the Host Configuration
 
-KubeSphere supports mixed expansion, that is, the newly added host OS can be CentOS or Ubuntu. After applying for a new host, add a line of parameters in the [all] and [kube-node] sections of `conf/hosts.ini` according to the new host information. If you are going to expand multiple hosts, add more lines of parameter. It's not allowed to modify the host name of the original nodes (e.g. master, node1, and node2) when adding a new node.
+KubeSphere supports hybrid environment, that is, the newly added host OS can be CentOS or Ubuntu. When a new machine is ready, add a line of parameters about the new machine information in the groups `all` and `kube-node` of the file `conf/hosts.ini`. If you are going to add multiple hosts, add corresponding lines of parameters to the file. It is not allowed to modify the host name of the original nodes (e.g. master, node1, and node2) when adding a new node.
 
-The following section shows adding a new node (i.e. node3) using `root` user as an example configuration.
+The following section shows adding a new node (i.e. node3) using `root` user as an example.
 
-```
+```yaml
 [all]
 master ansible_connection=local  ip=192.168.0.1
 node1  ansible_host=192.168.0.2  ip=192.168.0.2  ansible_ssh_pass=PASSWORD
-node2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD    
+node2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD
 node3  ansible_host=192.168.0.4  ip=192.168.0.4  ansible_ssh_pass=PASSWORD  
 ···
 [kube-node]
 master
 node1
-node2 
+node2
 node3
 ···
 ```
 
-## Step 2: Execute the script
+### Step 2: Execute the script
 
-Execute the `add-nodes.sh` script in the "/script" directory. 
+Execute the `add-nodes.sh` script in the **scripts** directory.
 
 ```bash
-$ ./add-nodes.sh
+./add-nodes.sh
 ```
 
-Finally, you will be able to see the new node information on the KubeSphere console after successful return. Select **Infrastructure → Nodes** from the left menu, or using `kubectl get node` command can also see the changes.
+Finally, you will be able to see the new node information on the KubeSphere console after a successful return. Select **Infrastructure → Nodes** from the left menu, or using `kubectl get node` command can also see the changes.
 
+## Cordon a Node
 
-## Cordon Node
-
-Similarly, if you need to cordon or isolate nodes in the cluster, such as hardware upgrades, hardware maintenance, etc., in this scenario the cluster administrator can choose **Infrustructure → Nodes** from the menu, then click the **Cordon** button, see [Node Management](../../infrastructure/nodes).
+Similarly, if you need to cordon or suspend nodes in the cluster for some reasons, such as hardware upgrades, hardware maintenance, etc., you can choose **Infrastructure → Nodes** from the menu, then click the **Cordon** button. Please see [Node Management](../../infrastructure/node) for further information.
 
 ![Cordon Node](https://pek3b.qingstor.com/kubesphere-docs/png/20190327111005.png)
