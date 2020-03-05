@@ -10,8 +10,7 @@ KubeSphere supports installing on cloud-hosted and on-premises Kubernetes cluste
 
 KubeSphere is open source project on [GitHub](https://github.com/kubesphere). There are thousands of users are using KunbeSphere, and many of them are running KubeSphere for their production workloads.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191219232535.png)
-
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200305093158.png)
 
 ## Before Installation
 
