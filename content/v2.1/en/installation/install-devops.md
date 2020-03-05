@@ -1,5 +1,5 @@
 ---
-title: "Enable KubeSphere DevOps System"
+title: "Enable DevOps System"
 keywords: 'kubesphere, kubernetes, docker, jenkins, sonarqube, devops, CI/CD'
 description: 'How to Enable DevOps System on KubeSphere'
 ---
@@ -42,13 +42,13 @@ sonarqube_enabled: true
 
 ## Enable DevOps System after Installation
 
-If you already have a minimal KubeSphere setup, you still can edit the ConfigMap of ks-installer using the following command:
+If you already have a minimal KubeSphere setup, you still can edit the ConfigMap of ks-installer using the following command.
 
 ```bash
 kubectl edit cm -n kubesphere-system ks-installer
 ```
 
-Then set devops from `False` to `True`:
+Then set devops from `False` to `True`.
 
 ```yaml
 devops:
