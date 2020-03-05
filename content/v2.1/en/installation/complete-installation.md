@@ -1,26 +1,23 @@
 ---
-title: "Complete Installation (Enable Installing All Components)"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'Install KubeSphere with enabling all optional components to Linux machine'
+title: "Install All Optional Components"
+keywords: 'kubesphere, kubernetes, docker, devops, service mesh, openpitrix'
+description: 'Install KubeSphere with all optional components enabled on Linux machine'
 ---
 
-The installer only installs required components (i.e. minimal installation) by default since v2.1.0. Other components are designed to be pluggable, which means you can enable any of them before or after installation. If your machine meets the following minimum requirements, we recommend you to **enable all components before installation**. A complete installation gives you an opportunity to comprehensively discover the container platform. 
+The installer only installs required components (i.e. minimal installation) by default since v2.1.0. Other components are designed to be pluggable, which means you can enable any of them before or after installation. If your machine meets the following minimum requirements, we recommend you to **enable all components before installation**. A complete installation gives you an opportunity to comprehensively discover the container platform.
 
 <font color="red">  
 Minimum Requirements
 
-- All-in-one:
-  - CPU: 8 cores
-  - Memory: 16 GB
-- Multi-node:
-  - CPU: 8 cores in total of all machines
-  - Memory: 16 GB in total of all machines
+- CPU: 8 cores in total of all machines
+- Memory: 16 GB in total of all machines
+
 </font>
 
 > Note:
 >
-> - If your machines don't meet the minimum requirements of a complete installation, you can enable any of components at your will. Please refer to [Enable Pluggable Components Installation](../pluggable-components).
-> - It works for [All-in-One](../all-in-one) and [multi-node](../multi-node).
+> - If your machines do not meet the minimum requirements of a complete installation, you can enable any of components at your will. Please refer to [Enable Pluggable Components Installation](../pluggable-components).
+> - It works for [All-in-One](../all-in-one) and [Multi-Node](../multi-node).
 
 This tutorial will walk you through how to enable all components of KubeSphere.
 
