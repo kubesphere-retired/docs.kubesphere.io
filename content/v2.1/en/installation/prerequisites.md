@@ -1,7 +1,7 @@
 ---
 title: "Prerequisites"
 keywords: "kubesphere, kubernetes, docker, installation"
-description: ""
+description: "The prerequisites of installing KubeSphere on existing Kubernetes"
 ---
 
 KubeSphere not only supports installing on virtual machine and bare metal with provisioning Kubernetes, but also supports installing on cloud-hosted and on-premises existing Kubernetes cluster as long as your Kubernetes cluster meets the prerequisites below.

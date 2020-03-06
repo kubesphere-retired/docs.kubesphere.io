@@ -1,7 +1,7 @@
 ---
-title: "Install KubeSphere on GKE"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'How to deploy KubeSphere on GKE'
+title: "Deploy KubeSphere on GKE"
+keywords: "kubesphere, kubernetes, docker, GKE"
+description: "How to deploy KubeSphere on GKE"
 ---
 
 ![KubeSphere+GKE](https://pek3b.qingstor.com/kubesphere-docs/png/20191123145223.png)
