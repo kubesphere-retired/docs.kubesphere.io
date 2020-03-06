@@ -10,7 +10,7 @@ KubeSphere 支持部署和运行在包括 **公有云、私有云、虚机、物
 
 [KubeSphere](https://github.com/kubesphere) **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191207004917.png)
+![KubeSphere Installer 概览](https://pek3b.qingstor.com/kubesphere-docs/png/20200305093158.png)
 
 ## 安装须知
 

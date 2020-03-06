@@ -12,7 +12,7 @@ KubeSphere supports setting [Honrizontal Pod Autoscaler](https://kubernetes.io/d
 
 <font color=red>Metrics-server requires at least 5m of CPU request and 44.35M of memory request. Please make sure your cluster has enough resource.</font>
 
-Before execute installation, you can set `metrics_server_enabled` to `true`, then you can back to [All-in-One](../all-in-one) or [Multi-Node](../multi-node) guide to continue installation.
+Before executing installation, you can set `metrics_server_enabled` to `true`, then you can back to [All-in-One](../all-in-one) or [Multi-Node](../multi-node) guide to continue installation.
 
 ```yaml
 # Following components are all optional for KubeSphere,
