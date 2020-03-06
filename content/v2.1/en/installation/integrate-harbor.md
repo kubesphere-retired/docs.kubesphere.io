@@ -1,39 +1,41 @@
 ---
 title: "Configure Harbor"
-keywords: 'kubernetes, kubesphere, harbor, registry'
-description: 'How to configure Harbor registry in Docker'
+keywords: 'kubernetes, kubesphere, harbor, docker, registry'
+description: 'How to configure Harbor registry for KubeSphere to use'
 ---
 
-This tutorial walks you through how to configure a image registry in Docker configuration. We will configure a registry with HTTP protocol, i.e. insecure registry, enables you to use the image registry in KubeSphere. This procedure configures Docker to entirely disregard security for your registry. Only use this solution for isolated testing or in a tightly controlled, air-gapped environment. For production environment, we recommended you to use image registry with HTTPS protocol.
+In private cloud or air-gapped environment, we usually set up our own image registry. This tutorial walks you through how to configure an image registry for KubeSphere to use. For simplicity, we will configure a registry with HTTP protocol, i.e., insecure registry. It is only for testing or development. For production environment, we recommended you to use image registry with HTTPS protocol.
 
-We take Harbor image registry as an example. Assuming you have a [Harbor](https://goharbor.io/) image registry with its address `http://192.168.0.31:80`.
+We take [Harbor](https://goharbor.io/) image registry as an example.
 
 ## Configure Insecure Registry
 
-1. Log in SSH client, modify the systemd configuration in `/etc/systemd/system/docker.service.d/docker-options.conf` in the cluster. <font color="red">Please notice that this example method below is only used for docker configuration in systemd, you can refer to [Docker Documentation - Test an insecure registry](https://docs.docker.com/registry/insecure/) for further information.</font>
+1. Log in KubeSphere node via SSH, modify the systemd configuration in `/etc/systemd/system/docker.service.d/docker-options.conf`. 
 
-Substitute the address of your insecure registry, e.g. Harbor address for the one in the example:
+> Note: This example is only for Docker configuration in systemd. You can refer to [Docker Documentation - Test an insecure registry](https://docs.docker.com/registry/insecure/) for more information.
+
+Please remember replace the address with your own insecure registry, e.g., Harbor address for the configuration below:
 
 ```yaml
 [Service]
-Environment="DOCKER_OPTS= --insecure-registry=http://192.168.0.21:80 --registry-mirror=https://dockerhub.azk8s.cn --data-root=/var/lib/docker --log-opt max-size=10m --log-opt max-file=3  "
+Environment="DOCKER_OPTS= --insecure-registry=http://192.168.0.21:80 --data-root=/var/lib/docker --log-opt max-size=10m --log-opt max-file=3  "
 ```
 
-2. Reload the Docker configuration as follows.
+2. Reload the Docker configuration.
 
-```
+```bash
 systemctl daemon-reload
 ```
 
 3. Restart Docker for the changes to take effect.
 
-```
+```bash
 systemctl restart docker
 ```
 
-4. Make sure the Harbor address has been added into docker info:
+4. Make sure the Harbor address has been added into Docker info:
 
-```
+```bash
 $ docker info
 ···
 Insecure Registries:
@@ -41,13 +43,13 @@ Insecure Registries:
 ···
 ```
 
-5. Repeat these steps on every Kubernetes host to enable the insecure registry.
+5. Repeat these steps on every KubeSphere host to enable the insecure registry.
 
 ## Test Registry Configuration
 
 1. Make sure you can log in to Harbor successfully.
 
-```
+```bash
 $ docker login -u admin -p Harbor12345 http://192.168.0.31:80
 WARNING! Using --password via the CLI is insecure. Use --password-stdin.
 WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
@@ -69,6 +71,6 @@ docker tag nginx:1.14-alpine 192.168.0.31:80/library/nginx:1.14-alpine
 docker push 192.168.0.31:80/library/nginx:1.14-alpine
 ```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200303204511.png)
+![Harbor Dashboard](https://pek3b.qingstor.com/kubesphere-docs/png/20200303204511.png)
 
-4. It means the Harbor registry has been added in Docker configuration, you are able to use Harbor in KubeSphere. Please back to [Install KubeSphere in Air Gapped Kubernetes Cluster](../install-on-k8s-airgapped/#download-image-package) to continue the installation.
+4. The screenshot above shows the image is pushed to the registry, which means the Harbor registry has been added in the node's Docker configuration.
