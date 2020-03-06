@@ -68,9 +68,11 @@ Source to Image (S2I) 是一个允许程序员直接输入源代码然后打包�
 - 密钥：选择之前创建的 `github-id`；
 - 映像模板：选择 `kubespheredev/java-8-centos7` 作为此示例的 Builder image；
 - 代码相对路径：使用默认的 `/` 即可；
-- 映像名称：可根据自己情况定义，此示例使用 `<dockerhub_username>/hello`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限；
+- 映像名称：可根据自己情况定义，此示例使用 DockerHub, 镜像名称为`<dockerhub_username>/s2i-sample`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限；
 - tag：镜像标签使用默认 `latest` 即可；
 - 目标镜像仓库：选择之前创建的 `dockerhub-id`。
+
+> 提示：若希望将镜像推送到其他镜像仓库（如阿里云、Harbor镜像仓库等），需要在映像名称前面加上 Registry 地址。
 
 ![s2i](https://kubesphere-docs.pek3b.qingstor.com/png/s2i.png)
 

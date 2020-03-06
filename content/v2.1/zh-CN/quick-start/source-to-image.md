@@ -102,13 +102,13 @@ description: ''
 - 分支：执行构建的分支，此示例默认使用 `master`，若希望测试缓存，可输入分支 `dependency`。
 - 密钥：若为公共仓库则无需填写，私有仓库选择创建的 Github 账户密钥；
 - 映像模板：选择 `kubespheredev/java-8-centos7` 作为此示例的 Builder image；
-- 映像名称：可根据自己情况定义，此示例使用 `<dockerhub_username>/s2i-sample`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限；
+- 映像名称：可根据自己情况定义，此示例使用 DockerHub, 镜像名称为`<dockerhub_username>/s2i-sample`，`dockerhub_username` 为自己的账户名称，确保具有推拉权限；
 - tag：镜像标签使用默认 `latest` 即可；
 - 目标镜像仓库：选择之前创建的 `dockerhub-id`。
 - **高级设置**-代码相对路径：使用默认的 `/` 即可；
 
 
-> 提示：若希望将镜像推送到公共镜像仓库（如阿里云镜像仓库）或私有镜像仓库（如 Harbor），可以在映像名称前面填写仓库的命名空间或项目名，例如 `libraby/s2i-sample`。
+> 提示：若希望将镜像推送到其他镜像仓库（如阿里云、Harbor镜像仓库等），2.1.0版本需要在映像名称中输入完整镜像名称，包括 Registry 地址，2.1.1 版本中已实现根据密钥自动加入 Registry 地址，无需手动添加。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat3aa969a5c0c6f5d42ecfae9fdae2e68e.png)
 
