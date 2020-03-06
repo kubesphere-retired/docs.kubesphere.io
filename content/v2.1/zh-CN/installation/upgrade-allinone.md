@@ -8,8 +8,10 @@ description: '单节点升级 KubeSphere 2.1.1'
 
 请确保已参考 [升级](../upgrade) 成功下载并解压了 2.1.1 的 Installer。
 
+## 视频解说
+
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KSInstall_200P005C202003_Upgrade%20AllinOne.mp4">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KSInstall_200P005C202003_upgrade-all-in-one.mp4">
 </video>
 
 ## 第一步：修改配置文件

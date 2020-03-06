@@ -8,6 +8,13 @@ description: '多节点节点升级 KubeSphere 2.1.1'
 
 请确保已参考 [升级](../upgrade) 成功下载并解压了 2.1.1 的 Installer。
 
+## 视频解说
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KSInstall_200P006C202003_Upgrade%20multinode.mp4">
+</video>
+
+
 ## 第一步：同步主机配置模板文件
 
 将老版本 Installer 中的 `conf/hosts.ini` 的主机参数配置同步至 2.1.1 Installer 的 `conf/hosts.ini`，参数释义详见 [Multi-Node 模式 - 准备安装配置文件](../multi-node)。

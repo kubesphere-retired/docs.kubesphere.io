@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: 'KubeSphere Installation Overview'
 ---
 
 [KubeSphere](https://kubesphere.io/) is an enterprise-grade multi-tenant container platform built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI for users to manage application workloads and computing resources with a few clicks, which greatly reduces the learning curve and the complexity of daily work such as development, testing, operation and maintenance. KubeSphere aims to alleviate the pain points of Kubernetes including storage, network, security and ease of use, etc.
@@ -14,6 +14,7 @@ In summary, there are several installation options you can choose. Please note n
 
 - [All-in-One](../all-in-one): Intall KubeSphere on a singe node. It is only for users to quickly get familar with KubeSphere.
 - [Multi-Node](../multi-node): Install KubeSphere on multiple nodes. It is for testing or development.
+- [Install KubeSphere on Air Gapped Linux](../install-ks-on-linux-airgapped): All images of KubeSphere have been encapsulated into a package, it is convenient for air gapped installation on Linux machines.
 - [High Availability Multi-Node](../master-ha): Install high availability KubeSphere on multiple nodes which is used for production environment.
 - [KubeSphere on Existing K8s](../install-on-k8s): Deploy KubeSphere on your Kubernetes cluster including cloud-hosted services such as GKE, EKS, etc.
 - [KubeSphere on Air-Gapped K8s](../install-ks-on-k8s-airgapped): Install KubeSphere on a disconnected Kubernetes cluster.
@@ -41,7 +42,7 @@ The quick install of KubeSphere is only for development or testing since it uses
 - [All-in-One](../all-in-one): It means a single-node hassle-free configuration installation with one-click.
 - [Multi-Node](../multi-node): It allows you to install KubeSphere on multiple instances using local volume, which means it is not required to install storage server such as Ceph, GlusterFS.
 
-> Note：With regard to air-gapped installation please refer to [Disconnected Installation on Multi-Node](https://kubesphere.com.cn/forum/d/437-centos7-7-multinode-kubesphere2-1-offline).
+> Note：With regard to air-gapped installation please refer to [Install KubeSphere on Air Gapped Linux Machines](../install-ks-on-linux-airgapped).
 
 ### 2. Install KubeSphere on Existing Kubernetes
 

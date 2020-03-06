@@ -32,7 +32,7 @@ KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了 **解耦**，
 > - [all-in-one](../all-in-one)：单节点安装，支持一键安装。
 > - [multi-node](../multi-node)：多节点安装，支持一键安装。
 >
-> 提示：2.1.1 的离线安装包将在 2 月底发布。发布前可参考 [离线安装多节点 KubeSphere 2.1.0](https://kubesphere.com.cn/forum/d/437-centos7-7-multinode-kubesphere2-1-offline)。
+>  离线环境可参考 [离线安装 KubeSphere 2.1.1](https://kubesphere.com.cn/forum/d/852-kubesphere-2-1-1-kubernetes)。
 
 
 ### 安装在 Kubernetes
