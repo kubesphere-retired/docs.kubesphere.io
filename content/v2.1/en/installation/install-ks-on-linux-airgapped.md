@@ -1,12 +1,12 @@
 ---
-title: "Install KubeSphere in Air Gapped Linux Machines"
+title: "Install KubeSphere on Air Gapped Linux Machines"
 keywords: 'kubernetes, kubesphere, air gapped, installation'
-description: 'How to install KubeSphere in air gapped Linux machines'
+description: 'How to install KubeSphere on air gapped Linux machines'
 ---
 
-The air gapped installation steps are almost the same as the online installation. The air gapped installer will create a Docker local registry as the local image registry. We will demonstrate how to install KubeSphere 2.1.1 and Kubernetes in air gapped environment.
+The air gapped installation steps are almost the same as the online installation. The air gapped installer will create a Docker local registry as the local image registry. We will demonstrate how to install KubeSphere 2.1.1 and Kubernetes on air gapped environment.
 
-Note: The dependencies in different operating systems may caused upexpected installation problems. If you encounter any installation problems in air gapped environment, please describe your OS information and error logs.
+Note: The dependencies in different operating systems may caused upexpected installation problems. If you encounter any installation problems on air gapped environment, please describe your OS information and error logs.
 
 > Important
 > - Please make sure there are 100G at least in your disk of the target machine
