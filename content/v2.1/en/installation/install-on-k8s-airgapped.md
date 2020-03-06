@@ -280,7 +280,7 @@ When you see the outputs above, congratulation! You can access KubeSphere consol
 
 ## Step 5: Enable Pluggable Components (Optional)
 
-If you start with a default minimal installation, execute the following command to open the configmap in order to enable pluggable components. Make sure your cluster has enough CPU and memory, and the corresponding images need to be loaded, see [Enable Pluggable Components](../pluggable-components).
+If you start with a default minimal installation, execute the following command to open the configmap in order to enable pluggable components. Make sure your cluster has enough CPU and memory, and the corresponding images need to be loaded. Please see [Configuration Table](https://github.com/kubesphere/ks-installer/blob/master/README.md#configuration-table) for the requirements and [Enable Pluggable Components](../pluggable-components) for the instructions.
 
 ```bash
 kubectl edit cm -n kubesphere-system ks-installer
