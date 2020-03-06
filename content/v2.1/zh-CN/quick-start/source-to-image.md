@@ -108,7 +108,7 @@ description: ''
 - **高级设置**-代码相对路径：使用默认的 `/` 即可；
 
 
-> 提示：若希望将镜像推送到其他镜像仓库（如阿里云、Harbor镜像仓库等），需要在映像名称前面加上 Registry 地址，在 2.1.1 版本中已实现根据密钥自动加入 Registry 地址。
+> 提示：若希望将镜像推送到其他镜像仓库（如阿里云、Harbor镜像仓库等），2.1.0版本需要在映像名称中输入完整镜像名称，包括 Registry 地址，2.1.1 版本中已实现根据密钥自动加入 Registry 地址，无需手动添加。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat3aa969a5c0c6f5d42ecfae9fdae2e68e.png)
 
