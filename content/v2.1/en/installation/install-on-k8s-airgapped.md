@@ -14,7 +14,7 @@ This document explains how to install KubeSphere on an air-gapped Kubernetes clu
 
 You need an image registry set up for the cluster to use. If not yet, please see [Configure Harbor](../integrate-harbor) for the instructions.
 
-## Download Images
+## Step 1: Download Images
 
 We provide two ways to download KubeSphere images, the image list and the zipped image package.
 
@@ -191,7 +191,7 @@ docker load < ks_notification_images.tar
 docker load < example_images.tar
 ```
 
-## Push Images to Harbor
+## Step 2: Push Images to Harbor
 
 Clone the project `ks-installer` to your local, then enter the `scripts` folder.
 
@@ -227,7 +227,7 @@ Execute the following script to push the images that we have loaded above to the
 ./download-docker-images.sh 192.168.0.31:80
 ```
 
-## Installation
+## Step 3: Installation
 
 Back to root folder of this repository, and add a new field of Harbor address. Please edit the `kubesphere-minimal.yaml` or `kubesphere-complete-setup.yaml` according to your needs.
 
@@ -258,7 +258,7 @@ You can refer to [enable pluggable components](../install-on-k8s-airgapped/#enab
 kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-complete-setup.yaml
 ```
 
-## Verify Installation
+## Step 4: Verify Installation
 
 Verify the real-time logs use the command as follows.
 
@@ -278,7 +278,7 @@ NOTE：Please modify the default password after login.
 
 When you see the outputs above, congratulation! You can access KubeSphere console in your browser now.
 
-## Enable Pluggable Components
+## Step 5: Enable Pluggable Components (Optional)
 
 If you start with a default minimal installation, execute the following command to open the configmap in order to enable pluggable components. Make sure your cluster has enough CPU and memory, and the corresponding images need to be loaded, see [Enable Pluggable Components](../pluggable-components).
 
