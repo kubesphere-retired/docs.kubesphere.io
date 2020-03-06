@@ -1,24 +1,16 @@
 ---
-title: "Deploy KubeSphere on existing Kubernetes cluster (Online)"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: 'How to deploy KubeSphere on an existing Kubernetes cluster'
+title: "Deploy KubeSphere on Existing Kubernetes Cluster"
+keywords: "kubesphere, kubernetes, docker, installation"
+description: "How to deploy KubeSphere on an existing Kubernetes cluster"
 ---
 
 ![KubeSphere+K8s](https://pek3b.qingstor.com/kubesphere-docs/png/20191123144507.png)
 
-[All-in-One](../all-in-one) and [Multi-Node](../multi-node) describe how to install KubeSphere on virtual machine or bare metal with provisioning Kubernetes underneath. You are also allowed to deploy KubeSphere on an existing Kubernetes cluster that is cloud-hosted or on-premises.
+[All-in-One](../all-in-one) and [Multi-Node](../multi-node) describe how to install KubeSphere on virtual machine or bare metal with provisioning Kubernetes underneath. You are also allowed to deploy KubeSphere on an existing Kubernetes cluster that is cloud-hosted or on-premises. This document will show you how to deploy KubeSphere on a Kubernetes with internet access. With regard to disconnected Kubernetes cluster, please refer to [Deploy KubeSphere on Air Gapped Kubernetes Cluster](../install-on-k8s-airgapped).
 
-## Install On Kubernetes
+> Note: first of all, please read the [prerequisites](../prerequisites).
 
-### Prerequisites
-
-> - `Kubernetes version`： `1.15.x, 1.16.x, 1.17.x`
-> - `Helm version` >= `2.10.0`，see [Install and Configure Helm in Kubernetes](https://devopscube.com/install-configure-helm-kubernetes/);
-> - An existing Storage Class in your Kubernetes clusters, use `kubectl get sc` to verify it.
-> - Your cluster can connect to an external network;
-> - The CSR signing feature is activated in kube-apiserver when it is started with the `--cluster-signing-cert-file` and `--cluster-signing-key-file` parameters, see [RKE installation issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309).
-
-### Installation
+## Deploy KubeSphere
 
 Install KubeSphere using kubectl.
 
@@ -52,7 +44,7 @@ NOTE：Please modify the default password after login.
 
 ## Enable Pluggable Components
 
-If you start with a default minimal installation, execute the following command to open the configmap in order to enable more pluggable components at your will. Make sure your cluster has enough CPU and memory, see [Enable Pluggable Components](../pluggable-components).
+If you start with a default minimal installation, execute the following command to open the configmap in order to enable more pluggable components at your will. Make sure your cluster has enough CPU and memory. Please see [Enable Pluggable Components](../pluggable-components) for more information.
 
 ```bash
 kubectl edit cm -n kubesphere-system ks-installer

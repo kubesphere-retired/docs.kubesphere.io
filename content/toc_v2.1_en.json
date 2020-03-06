@@ -116,7 +116,7 @@
               "entry": "./v2.1/en/installation/prerequisites.md"
             },
             {
-              "title": "Online Installation",
+              "title": "Install on K8s",
               "entry": "./v2.1/en/installation/install-on-k8s.md"
             },
             {

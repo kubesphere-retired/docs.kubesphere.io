@@ -1,38 +1,33 @@
 ---
-title: "Install KubeSphere in Air Gapped Kubernetes Cluster"
-keywords: 'kubernetes, kubesphere, air gapped, installation'
-description: 'How to install KubeSphere in an Air Gapped Kubernetes Cluster'
+title: "Deploy KubeSphere on Air-Gapped Kubernetes Cluster"
+keywords: "kubernetes, kubesphere, air-gapped, installation"
+description: "How to install KubeSphere on an air-gapped Kubernetes cluster"
 ---
 
 ![KubeSphere+K8s](https://pek3b.qingstor.com/kubesphere-docs/png/20191123144507.png)
 
-If you want to install KubeSphere in an air gapped Kubernetes cluster, or download the encapsulated image package of KubeSphere, please refer to the following steps.
+This document explains how to install KubeSphere on an air-gapped Kubernetes cluster.
 
-## Prerequisites
+> Note: first of all, please read the [prerequisites](../prerequisites).
 
-> - `Kubernetes version`： `1.15.x, 1.16.x, 1.17.x`
-> - `Helm version` >= `2.10.0`，see [Install and Configure Helm in Kubernetes](https://devopscube.com/install-configure-helm-kubernetes/);
-> - You need to have a image registry (e.g. Harbor)
-> - An existing Storage Class in your Kubernetes clusters, use `kubectl get sc` to verify it.
-> - The CSR signing feature is activated in kube-apiserver, see [RKE installation issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309).
+## Image Registry
 
-## Configure Image Registry
+You need an image registry set up for the cluster to use. If not yet, please see [Configure Harbor](../integrate-harbor) for the instructions.
 
-You need to configure a image registry (e.g. Harbor) into Docker configuration, see [Configure Harbor](../integrate-harbor) for further information.
+## Step 1: Download Images
 
-## Download Images
+We provide two ways to download KubeSphere images, the image list and the zipped image package.
 
-We provide two methods to download images of KubeSphere, including the image lists and encapsulated image package.
+<font color="red">Docker uses `/var/lib/docker` as the default directory where all Docker related files including the images are stored. Before loading the images into Docker, please check if the disk is big enough. Usually we recommend you to add additional storage to the disk mounted at `/var/lib/docker` since it requires at least 100G more storage. You can use the [fdisk](https://www.computerhope.com/unix/fdisk.htm) command to expand the disk.</font>
 
-<font color="red">Docker uses `/var/lib/docker` as the default directory where all Docker related files, including the images, are stored. Before loading the images into Docker, we recommend you to add additional storage to a disk mounted at `/var/lib/docker`, this part is necessary to prepare additional disk with 100G at least, you can use the [fdisk](https://www.computerhope.com/unix/fdisk.htm) command to prepare it.</font>
+### Option 1: Image List
 
-### Image List
-
-As for the first method, you can pull them to your target machine.
+KubeSphere provides the list of images for you to download one by one to your target machine.
 
 > Note:
-> - These image files are around 30G, please make sure there are enough space in your machine.
-> - Here is a shell sript to [pull the listed images below](https://github.com/kubesphere/ks-installer/blob/master/scripts/download-docker-images.sh).
+>
+> - These image files are about 30G, please make sure there are enough space in your machine.
+> - Here is a [shell script](https://github.com/kubesphere/ks-installer/blob/master/scripts/download-docker-images.sh) you can use to download the images with one command.
 
 <details><summary> Image lists (Click here to expand)</summary>
 
@@ -159,20 +154,18 @@ example_images:
 
 </details>
 
-### Encapsulated Image Package
+### Option 2: Zipped Image Package
 
-Execute the following command to download the image package:
+Execute the following command to download the 7.2G image package.
 
-```
+```bash
 curl -L https://kubesphere.io/download/images/latest > kubesphere-all-images-v2.1.1.tar.gz \
-&& tar -zxf kubesphere-all-images-v2.1.1.tar.gz && cd kubesphere-all-images-v2.1.1
+&& tar -zxf kubesphere-all-images-v2.1.1.tar.gz && cd kubesphere-images-v2.1.1
 ```
-
-> Note: The encapsulated image package is 7.2G, it will take several tens of minutes to download since the package includes all components and samples images.
 
 List all images in this folder.
 
-```
+```bash
 $ tree
 .
 tree
@@ -186,10 +179,9 @@ tree
 └── openpitrix_images.tar
 ```
 
-Load the image packages into docker. If you only want to set up the default minimal installation, just load the `ks_minimal_images` as follows.
+Load the image packages into docker. If you only want to set up the default minimal installation, just load the `ks_minimal_images`. An installation with all optional components and examples requires to load all images as follows.
 
-
-```
+```bash
 docker load < ks_minimal_images.tar
 docker load < openpitrix_images.tar
 docker load < ks_logging_images.tar
@@ -199,48 +191,47 @@ docker load < ks_notification_images.tar
 docker load < example_images.tar
 ```
 
-## Push Images to Harbor
+## Step 2: Push Images to Harbor
 
 Clone the project `ks-installer` to your local, then enter the `scripts` folder.
 
-```
+```bash
 git clone https://github.com/kubesphere/ks-installer.git
-
 cd ks-installer/scripts
 ```
 
-Since we have to push a batch of images to Harbor within the different projects, we can use the following script to create the corresponding projects.
+Since we have to push a batch of images to different projects of Harbor, we can use the following script to create the corresponding projects.
 
-```
+```bash
 vi create_project_harbor.sh
 ```
 
-Please replace the image registry address with yours in the following script.
+Please replace the image registry information with yours in the script.
 
-```
+```bash
 ···
 url="http://192.168.0.31"
 user="admin"
 passwd="Harbor12345"
 ```
 
-Execute the following script to create the corresponding projects in Harbor.
+Execute the script to create the corresponding projects in Harbor.
 
-```
+```bash
 ./create_project_harbor.sh
 ```
 
-Execute the following script to push the images that we have loaded above to the Harbor registry in batch, you need to attach the Harbor address and execute the script as follows.
+Execute the following script to push the images that we have loaded above to the Harbor registry in batch.
 
-```
+```bash
 ./download-docker-images.sh 192.168.0.31:80
 ```
 
-## Installation
+## Step 3: Installation
 
 Back to root folder of this repository, and add a new field of Harbor address. Please edit the `kubesphere-minimal.yaml` or `kubesphere-complete-setup.yaml` according to your needs.
 
-```
+```yaml
 ···
     alerting:
       enabled: true
@@ -259,7 +250,7 @@ Install KubeSphere using kubectl.
 kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-minimal.yaml
 ```
 
-You can refer to [enable other pluggable components](../install-on-k8s-airgapped/#enable-pluggable-components) to install other components at your will.
+You can refer to [enable pluggable components](../install-on-k8s-airgapped/#enable-pluggable-components) to install optional components at your will.
 
 - If there are 8 Cores and 16 GB RAM available in your cluster, use the command below to install a complete KubeSphere, i.e. with all components enabled:
 
@@ -267,7 +258,7 @@ You can refer to [enable other pluggable components](../install-on-k8s-airgapped
 kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-complete-setup.yaml
 ```
 
-## Verify Installation
+## Step 4: Verify Installation
 
 Verify the real-time logs use the command as follows.
 
@@ -285,11 +276,11 @@ NOTE：Please modify the default password after login.
 #####################################################
 ```
 
-When you see the following outputs above, congratulation! You can access KubeSphere console in your browser now.
+When you see the outputs above, congratulation! You can access KubeSphere console in your browser now.
 
-## Enable Pluggable Components
+## Step 5: Enable Pluggable Components (Optional)
 
-If you start with a default minimal installation, execute the following command to open the configmap in order to enable more pluggable components at your will. Make sure your cluster has enough CPU and memory, and the corresponding images need to be loaded, see [Enable Pluggable Components](../pluggable-components).
+If you start with a default minimal installation, execute the following command to open the configmap in order to enable pluggable components. Make sure your cluster has enough CPU and memory, and the corresponding images need to be loaded. Please see [Configuration Table](https://github.com/kubesphere/ks-installer/blob/master/README.md#configuration-table) for the requirements and [Enable Pluggable Components](../pluggable-components) for the instructions.
 
 ```bash
 kubectl edit cm -n kubesphere-system ks-installer
