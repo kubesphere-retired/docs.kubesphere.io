@@ -1,22 +1,20 @@
 ---
-title: "Multi-node Installation"
-keywords: 'kubesphere, kubernetes, docker, kubesphere installer'
-description: 'The guide for installing KubeSphere on Multi-Node in development or testing environment'
+title: "Install KubeSphere in Air Gapped Linux Machines"
+keywords: 'kubernetes, kubesphere, air gapped, installation'
+description: 'How to install KubeSphere in air gapped Linux machines'
 ---
 
-`Multi-Node` installation enables installing KubeSphere on multiple nodes. Typically, use any one node as _taskbox_ to run the installation task. Please note `ssh` communication is required to be established between taskbox and other nodes.
+The air gapped installation steps are almost the same as the online installation. The air gapped installer will create a Docker local registry as the local image registry. We will demonstrate how to install KubeSphere 2.1.1 and Kubernetes in air gapped environment.
 
-- <font color=red>The following instructions are for the default installation without enabling any optional components as we have made them pluggable since v2.1.0. If you want to enable any one, please read [Enable Pluggable Components](../pluggable-components).</font>
-- <font color=red>If your machines in total have >= 8 cores and >= 16G memory, we recommend you to install the full package of KubeSphere by [Enabling Optional Components](../complete-installation)</font>.
-- <font color=red> The installation time depends on your network bandwidth, your computer configuration, the number of nodes, etc. </font>
+Note: The dependencies in different operating systems may caused upexpected installation problems. If you encounter any installation problems in air gapped environment, please describe your OS information and error logs.
 
-## Video Demo
+> Important
+> - Please make sure there are 100G at least in your disk of the target machine
+> - Docker uses `/var/lib/docker` as the default directory where all Docker related files, including the images, are stored. Before loading the images into Docker. We recommend you to add additional storage to a disk mounted at `/var/lib/docker` and `/mnt/registry` respectively, it is necessary to prepare additional disk with 100G at least, you can use the [fdisk](https://www.computerhope.com/unix/fdisk.htm) command to prepare.
+> - Since the air gapped machines cannot connect to apt or yum source, please use fresh Linux machine to avoid this problem.
 
-The video shows how to install KubeSphere on multiple virtual machines on [QingCloud](https://www.qingcloud.com). It would be same to install on any other machines.
+Installer uses [Local volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) based on [OpenEBS](https://openebs.io/) to provide storage service with dynamic provisioning, it it convenient for testing and development environment. For production environment, please [configure supported persistent storage service](../storage-configuration) and prepare [high availability configuration](../master-ha) before installation.
 
-<video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P002C202001_MultiNode.mp4">
-</video>
 
 ## Prerequisites
 
@@ -29,20 +27,26 @@ The following describes the requirements of hardware and operating system. To ge
 - Time synchronization is required across all nodes, otherwise the installation may not succeed;
 - For `Ubuntu 16.04` OS, it is recommended to select `16.04.5`;
 - If you are using `Ubuntu 18.04`, you need to use the user `root`;
-- If the Debian system does not have the sudo command installed, you need to execute `apt update && apt install sudo` command using root before installation.
 
-### Hardware Recommendation
+### Operating System
 
-- KubeSphere can be installed on any cloud platform.
-- The installation speed can be accelerated by increasing network bandwidth.
-- If you choose air-gapped installation, ensure your disk of each node is at least 100G.
+- CentOS 7.4 ~ 7.7 (64-bit)
+- Ubuntu 16.04.5/16.04.6/18.04.1/18.04.2/18.04.3 LTS (64-bit)
 
-| System | Minimum Requirements (Each node) |
-| --- | --- |
-| CentOS 7.5 (64 bit) | CPU：2 Core， Memory：4 G， Disk Space：40 G  |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：2 Core， Memory：4 G， Disk Space：40 G  |
-| Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：2 Core， Memory：4 G， Disk Space：40 G  |
-| Debian Stretch 9.5 (64 bit)| CPU：2 Core， Memory：4 G， Disk Space：40 G  |
+### Minimum Requirements
+
+Ensure your disk of each node is at least 100G.
+
+**Minimal installation**
+
+- CPU:  2 cores in total of all machines
+- Memory: 4 GB in total of all machines
+
+**Complete installation**
+
+- CPU:  8 cores in total of all machines
+- Memory: 16 GB in total of all machines
+
 
 The following section describes an example to introduce multi-node installation. This example shows three hosts installation by taking the `master` serving as the taskbox to execute the installation. The following cluster consists of one Master and two Nodes.
 
@@ -62,14 +66,18 @@ The following section describes an example to introduce multi-node installation.
 
 ## Step 2: Download Installer Package
 
-**1.** Download `KubeSphere 2.1.1` to your taskbox machine, then unpack it and go to the folder `conf`.
+Download `KubeSphere 2.1.1` to your taskbox machine, then unpack it and go to the folder `conf`.
 
 ```bash
 curl -L https://kubesphere.io/download/stable/latest > installer.tar.gz \
 && tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/conf
 ```
 
-**2.** Please refer to the following sample to configure all hosts in `hosts.ini`. It is recommended to install KubeSphere using root user. The following is an example configuration for `CentOS 7.5` using root user. Note do not manually wrap any line in the file.
+## Step 3: Configure Host Template
+
+> This step is only for multi-node, you can skip this step if you choose all-in-one.
+
+Please refer to the following sample to configure all hosts in `hosts.ini`. It is recommended to install KubeSphere using root user. The following is an example configuration for `CentOS 7.5` using root user. Note do not manually wrap any line in the file.
 
 > Note:
 >
@@ -84,6 +92,9 @@ curl -L https://kubesphere.io/download/stable/latest > installer.tar.gz \
 master ansible_connection=local  ip=192.168.0.1
 node1  ansible_host=192.168.0.2  ip=192.168.0.2  ansible_ssh_pass=PASSWORD
 node2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD
+
+[local-registry]
+master
 
 [kube-master]
 master
@@ -103,6 +114,7 @@ kube-master
 > Note:
 >
 > - You need to replace each node information such as IP, password with real values in the group `[all]`. The master node is the taskbox so you do not need to add password field here.
+> - Installer will use a node as the local registry for docker image, defaults to "master" in the group `[local-registry]`.
 > - The "master" node also takes the role of master and etcd, so "master" is filled under the group`[kube-master]` and the group `[etcd]` respectively.
 > - "node1" and "node2" both serve the role of `Node`, so they are filled under the group `[kube-node]`.
 >
@@ -115,7 +127,58 @@ kube-master
 > - `ansible_become_pass`: Allows you to set the privilege escalation password.
 > - `ansible_ssh_pass`: The password of the host to be connected using root.
 
-## Step 3: Install KubeSphere to Linux Machines
+## Step 4: Enable All Components
+
+> This is step is complete installation. You can skip this step if you choose a minimal installation.
+
+Edit `conf/common.yaml`, reference the following changes with values being `true` which are `false` by default.
+
+```yaml
+# LOGGING CONFIGURATION
+# logging is an optional component when installing KubeSphere, and
+# Kubernetes builtin logging APIs will be used if logging_enabled is set to false.
+# Builtin logging only provides limited functions, so recommend to enable logging.
+logging_enabled: true # Whether to install logging system
+elasticsearch_master_replica: 1  # total number of master nodes, it's not allowed to use even number
+elasticsearch_data_replica: 2  # total number of data nodes
+elasticsearch_volume_size: 20Gi # Elasticsearch volume size
+log_max_age: 7 # Log retention time in built-in Elasticsearch, it is 7 days by default.
+elk_prefix: logstash # the string making up index names. The index name will be formatted as ks-<elk_prefix>-log
+kibana_enabled: false # Kibana Whether to install built-in Grafana
+#external_es_url: SHOULD_BE_REPLACED # External Elasticsearch address, KubeSphere supports integrate with Elasticsearch outside the cluster, which can reduce the resource consumption.
+#external_es_port: SHOULD_BE_REPLACED # External Elasticsearch service port
+
+#DevOps Configuration
+devops_enabled: true # Whether to install built-in DevOps system (Supports CI/CD pipeline, Source/Binary to image)
+jenkins_memory_lim: 8Gi # Jenkins memory limit, it is 8 Gi by default
+jenkins_memory_req: 4Gi # Jenkins memory request, it is 4 Gi by default
+jenkins_volume_size: 8Gi # Jenkins volume size, it is 8 Gi by default
+jenkinsJavaOpts_Xms: 3g # Following three are JVM parameters
+jenkinsJavaOpts_Xmx: 6g
+jenkinsJavaOpts_MaxRAM: 8g
+sonarqube_enabled: true # Whether to install built-in SonarQube
+#sonar_server_url: SHOULD_BE_REPLACED # External SonarQube address, KubeSphere supports integrate with SonarQube outside the cluster, which can reduce the resource consumption.
+#sonar_server_token: SHOULD_BE_REPLACED  # SonarQube token
+
+# Following components are all optional for KubeSphere,
+# Which could be turned on to install it before installation or later by updating its value to true
+openpitrix_enabled: true       # KubeSphere application store
+metrics_server_enabled: true   # For KubeSphere HPA to use
+servicemesh_enabled: true      # KubeSphere service mesh system(Istio-based)
+notification_enabled: true     # KubeSphere notification system
+alerting_enabled: true         # KubeSphere alerting system
+
+# Harbor is a 3rd-party component.
+# Which could be turned on to install it before installation or later by updating its value to true
+harbor_enabled: true           # Whether to install Harbor registry
+harbor_domain: harbor.devops.kubesphere.local
+# GitLab is a 3rd-party component.
+# Which could be turned on to install it before installation or later by updating its value to true
+gitlab_enabled: true           # Whether to install GitLab
+gitlab_hosts_domain: devops.kubesphere.local
+```
+
+## Step 5: Install KubeSphere to Linux Machines
 
 > Note:
 >
@@ -175,8 +238,14 @@ NOTE：Please modify the default password after login.
 
 ![Landing Page](https://pek3b.qingstor.com/kubesphere-docs/png/20191125003158.png)
 
-## FAQ
+## Enable Pluggable Components
 
-The installer has been tested on Aliyun, Tencent cloud, Huawei Cloud, QingCloud, AWS. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read the [FAQ of installation](../../faq/faq-install).
+If you already have set up minimal installation, you still can edit the ConfigMap of ks-installer using the following command. Please make sure there is enough resource in your machines, see [Pluggable Components Overview](https://kubesphere.io/docs/v2.1/en/installation/pluggable-components/).
+
+```bash
+kubectl edit cm -n kubesphere-system ks-installer
+```
+
+## FAQ
 
 If you have further questions please do not hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).
