@@ -47,8 +47,8 @@ The following section describes an example to introduce multi-node installation.
 Download `KubeSphere 2.1.1` to your taskbox machine, then unpack it and go to the folder `conf`.
 
 ```bash
-curl -L https://kubesphere.io/download/images/latest > kubesphere-all-images-v2.1.1.tar.gz \
-&& tar -zxf kubesphere-all-images-v2.1.1.tar.gz && cd kubesphere-images-v2.1.1/conf
+curl -L https://kubesphere.io/download/offline/latest > kubesphere-all-offline-v2.1.1.tar.gz \
+&& tar -zxf kubesphere-all-offline-v2.1.1.tar.gz && cd kubesphere-all-offline-v2.1.1/conf
 ```
 
 ## Step 3: Configure Host Template
