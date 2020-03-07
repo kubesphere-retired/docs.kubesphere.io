@@ -10,7 +10,6 @@ KubeSphere not only supports installing on virtual machine and bare metal with p
 - `Helm version` >= `2.10.0` and < `3.0`，see [Install and Configure Helm in Kubernetes](https://devopscube.com/install-configure-helm-kubernetes/); KubeSphere 3.0 will support Helm 3.0.
 - A default Storage Class in your Kubernetes cluster is configured; use `kubectl get sc` to verify it.
 - Available resource CPU >= 1 Core and memory >= 2G
-- The cluster has internet access.
 - The CSR signing feature is activated in kube-apiserver when it is started with the `--cluster-signing-cert-file` and `--cluster-signing-key-file` parameters, see [RKE installation issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309).
 
 ## Pre Checks

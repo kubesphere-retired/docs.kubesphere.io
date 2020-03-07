@@ -27,7 +27,7 @@ KubeSphere provides the list of images for you to download one by one to your ta
 > Note:
 >
 > - These image files are about 30G, please make sure there are enough space in your machine.
-> - Here is a [shell script](https://github.com/kubesphere/ks-installer/blob/master/scripts/download-docker-images.sh) you can use to download the images with one command.
+> - You can use the script [download-image-list.sh](https://github.com/kubesphere/ks-installer/blob/master/scripts/download-image-list.sh) to pull them in batch.
 
 <details><summary> Image lists (Click here to expand)</summary>
 
@@ -224,7 +224,7 @@ Execute the script to create the corresponding projects in Harbor.
 Execute the following script to push the images that we have loaded above to the Harbor registry in batch.
 
 ```bash
-./download-docker-images.sh 192.168.0.31:80
+./push-image-list.sh 192.168.0.31:80
 ```
 
 ## Step 3: Installation

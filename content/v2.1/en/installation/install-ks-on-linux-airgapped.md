@@ -11,6 +11,7 @@ The air-gapped installation is almost the same as the online installation except
 ## Prerequisites
 
 - If your machine is behind a firewall, you need to open the ports by following the document [Ports Requirements](../port-firewall) for more information.
+> - Installer will use `/var/lib/docker` as the default directory where all Docker related files, including the images, are stored. We recommend you to add additional storage to a disk with at least 100G mounted at `/var/lib/docker` and `/mnt/registry` respectively, use the [fdisk](https://www.computerhope.com/unix/fdisk.htm) command for reference.
 - Installer uses [Local volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) based on [OpenEBS](https://openebs.io/) to provide storage service with dynamic provisioning. It is convenient for testing and development. For production, please [configure supported persistent storage service](../storage-configuration) and prepare [high availability configuration](../master-ha) before installation.
 - Since the air-gapped machines cannot connect to apt or yum source, please use clean Linux machine to avoid this problem.
 
