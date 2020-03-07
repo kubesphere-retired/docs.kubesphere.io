@@ -1,51 +1,29 @@
 ---
-title: "Install KubeSphere on Air Gapped Linux Machines"
+title: "Air-Gapped Installation"
 keywords: 'kubernetes, kubesphere, air gapped, installation'
-description: 'How to install KubeSphere on air gapped Linux machines'
+description: 'How to install KubeSphere on air-gapped Linux machines'
 ---
 
-The air gapped installation steps are almost the same as the online installation. The air gapped installer will create a Docker local registry as the local image registry. We will demonstrate how to install KubeSphere 2.1.1 and Kubernetes on air gapped environment.
+The air-gapped installation is almost the same as the online installation except it creates a local registry to host the Docker images. We will demonstrate how to install KubeSphere and Kubernetes on air-gapped environment.
 
-Note: The dependencies in different operating systems may caused upexpected installation problems. If you encounter any installation problems on air gapped environment, please describe your OS information and error logs.
-
-> Important
-> - Please make sure there are 100G at least in your disk of the target machine
-> - Docker uses `/var/lib/docker` as the default directory where all Docker related files, including the images, are stored. Before loading the images into Docker. We recommend you to add additional storage to a disk mounted at `/var/lib/docker` and `/mnt/registry` respectively, it is necessary to prepare additional disk with 100G at least, you can use the [fdisk](https://www.computerhope.com/unix/fdisk.htm) command to prepare.
-> - Since the air gapped machines cannot connect to apt or yum source, please use fresh Linux machine to avoid this problem.
-
-Installer uses [Local volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) based on [OpenEBS](https://openebs.io/) to provide storage service with dynamic provisioning, it it convenient for testing and development environment. For production environment, please [configure supported persistent storage service](../storage-configuration) and prepare [high availability configuration](../master-ha) before installation.
-
+> Note: The dependencies in different operating systems may cause upexpected problems. If you encounter any installation problems on air-gapped environment, please describe your OS information and error logs on [GitHub](https://github.com/kubesphere/kubesphere/issues).
 
 ## Prerequisites
 
-If your machine is behind a firewall, you need to open the ports by following the document [Ports Requirements](../port-firewall) for more information.
+- If your machine is behind a firewall, you need to open the ports by following the document [Ports Requirements](../port-firewall) for more information.
+- Installer uses [Local volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) based on [OpenEBS](https://openebs.io/) to provide storage service with dynamic provisioning. It is convenient for testing and development. For production, please [configure supported persistent storage service](../storage-configuration) and prepare [high availability configuration](../master-ha) before installation.
+- Since the air-gapped machines cannot connect to apt or yum source, please use clean Linux machine to avoid this problem.
 
 ## Step 1: Prepare Linux Hosts
 
 The following describes the requirements of hardware and operating system. To get started with multi-node installation, you need to prepare at least `three` hosts according to the following requirements.
 
+- Supported OSes: CentOS 7.4 ~ 7.7 (64-bit), Ubuntu 16.04.5/16.04.6/18.04.1/18.04.2/18.04.3 LTS (64-bit)
 - Time synchronization is required across all nodes, otherwise the installation may not succeed;
 - For `Ubuntu 16.04` OS, it is recommended to select `16.04.5`;
-- If you are using `Ubuntu 18.04`, you need to use the user `root`;
-
-### Operating System
-
-- CentOS 7.4 ~ 7.7 (64-bit)
-- Ubuntu 16.04.5/16.04.6/18.04.1/18.04.2/18.04.3 LTS (64-bit)
-
-### Minimum Requirements
-
-Ensure your disk of each node is at least 100G.
-
-**Minimal installation**
-
-- CPU:  2 cores in total of all machines
-- Memory: 4 GB in total of all machines
-
-**Complete installation**
-
-- CPU:  8 cores in total of all machines
-- Memory: 16 GB in total of all machines
+- If you are using `Ubuntu 18.04`, you need to use the user `root`.
+- Ensure your disk of each node is at least 100G.
+- CPU and memory in total of all machines: 2 cores and 4 GB for minimal installation; 8 cores and 16 GB for complete installation.
 
 
 The following section describes an example to introduce multi-node installation. This example shows three hosts installation by taking the `master` serving as the taskbox to execute the installation. The following cluster consists of one Master and two Nodes.
@@ -69,13 +47,13 @@ The following section describes an example to introduce multi-node installation.
 Download `KubeSphere 2.1.1` to your taskbox machine, then unpack it and go to the folder `conf`.
 
 ```bash
-curl -L https://kubesphere.io/download/stable/latest > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/conf
+curl -L https://kubesphere.io/download/offline/latest > kubesphere-all-offline-v2.1.1.tar.gz \
+&& tar -zxf kubesphere-all-offline-v2.1.1.tar.gz && cd kubesphere-all-offline-v2.1.1/conf
 ```
 
 ## Step 3: Configure Host Template
 
-> This step is only for multi-node, you can skip this step if you choose all-in-one.
+> This step is only for multi-node installation, you can skip this step if you choose all-in-one installation.
 
 Please refer to the following sample to configure all hosts in `hosts.ini`. It is recommended to install KubeSphere using root user. The following is an example configuration for `CentOS 7.5` using root user. Note do not manually wrap any line in the file.
 
@@ -114,7 +92,7 @@ kube-master
 > Note:
 >
 > - You need to replace each node information such as IP, password with real values in the group `[all]`. The master node is the taskbox so you do not need to add password field here.
-> - Installer will use a node as the local registry for docker image, defaults to "master" in the group `[local-registry]`.
+> - Installer will use a node as the local registry for docker images, defaults to "master" in the group `[local-registry]`.
 > - The "master" node also takes the role of master and etcd, so "master" is filled under the group`[kube-master]` and the group `[etcd]` respectively.
 > - "node1" and "node2" both serve the role of `Node`, so they are filled under the group `[kube-node]`.
 >
