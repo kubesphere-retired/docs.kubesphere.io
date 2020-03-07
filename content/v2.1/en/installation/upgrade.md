@@ -5,7 +5,7 @@ description: 'How to upgrade KubeSphere to 2.1.1'
 ---
 
 
-KubeSphere v2.1.1 is release, fixed the known Bug and improved the user experience, and Kubernetes is supported from v1.15 to v1.17. Please see [Release Note - v2.1.1](../../release/release-v211) for further information.
+KubeSphere v2.1.1 is released, we fixed the known Bugs and improved the user experience, and the Kubernetes support changes from v1.15 to v1.17. Please see [Release Note - v2.1.1](../../release/release-v211) for further information.
 
 If you have installed 2.0.x or 2.1.0 (both are called old version below), we strongly recommend you to download the latest Installer and upgrade to 2.1.1. Installer supports one-click upgrade, and supports upgrade the underneath Kubernetes and etcd to the target version. Note the Kubernetes will be upgraded to `1.16.7` by default.
 
