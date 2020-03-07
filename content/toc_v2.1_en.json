@@ -91,12 +91,12 @@
               "entry": "./v2.1/en/installation/multi-node.md"
             },
             {
-              "title": "Air Gapped Installation",
-              "entry": "./v2.1/en/installation/install-ks-on-linux-airgapped.md"
-            },
-            {
               "title": "High Availability Configuration",
               "entry": "./v2.1/en/installation/master-ha.md"
+            },
+            {
+              "title": "Air Gapped Installation",
+              "entry": "./v2.1/en/installation/install-ks-on-linux-airgapped.md"
             },
             {
               "title": "StorageClass Configuration",
