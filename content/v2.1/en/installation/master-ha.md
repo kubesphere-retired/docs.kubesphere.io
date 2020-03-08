@@ -19,7 +19,7 @@ This document walks you through an example how to create two [QingCloud Load Bal
 
 This example prepares six machines of CentOS 7.5. We will create two load balancers, and deploy three masters and Etcd nodes on three of the machines. You can configure these masters and Etcd nodes in `conf/hosts.ini`.
 
-![Master and etcd node high availability architecture](/master-ha-design.svg)
+![Master and etcd node high availability architecture](https://pek3b.qingstor.com/kubesphere-docs/png/20200307215924.png)
 
 ## Install HA Cluster
 

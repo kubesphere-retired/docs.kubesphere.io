@@ -216,6 +216,25 @@
       ]
     },
     {
+      "title": "Upgrade",
+      "icon": "/admin_reffer.svg",
+      "desc": "Guides for upgrading KubeSphere to 2.1.1",
+      "chapters": [
+        {
+          "title": "Upgrade Overview",
+          "entry": "./v2.1/en/installation/upgrade.md"
+        },
+        {
+          "title": "Upgrade All-in-One",
+          "entry": "./v2.1/en/installation/upgrade-allinone.md"
+        },
+        {
+          "title": "Upgrade Multi-node",
+          "entry": "./v2.1/en/installation/upgrade-multi-node.md"
+        }
+      ]
+    },
+    {
       "title": "Quick Start",
       "icon": "/access.svg",
       "desc": "Get a quick overview of the basic features of KubeSphere with several quick-start examples.",

@@ -26,7 +26,8 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署一个多节
 
 本示例准备了 6 台主机，将创建 `2` 个负载均衡器，主机规格参考 [Multi-Node 模式 - 节点规格](../multi-node)，将在其中 3 台部署 Master 和 etcd 集群，可编辑主机配置文件 `conf/hosts.ini`。
 
-![Master 和 etcd 节点高可用架构](/master-ha-design.svg)
+![Master 和 etcd 节点高可用架构](https://pek3b.qingstor.com/kubesphere-docs/png/20200307215924.png)
+
 
 ### 准备负载均衡器
 
