@@ -683,7 +683,7 @@
           "entries": [
             {
               "title": "S2I 原理及流程介绍",
-              "entry": "./v2.1/zh-CN/developer/s2i-introduce.md"
+              "entry": "./v2.1/zh-CN/developer/s2i-introduction.md"
             },
             {
               "title": "自定义 S2I 模版",
