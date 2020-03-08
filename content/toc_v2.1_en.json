@@ -296,7 +296,7 @@
     {
       "title": "DevOps",
       "icon": "/problem.svg",
-      "desc": "Introduction to KubeSphere API",
+      "desc": "Introduction to KubeSphere DevOps System",
       "chapters": [
         {
           "title": "Pipeline",
@@ -317,6 +317,17 @@
         {
           "title": "Set Email Server for KubeSphere Pipeline",
           "entry": "./v2.1/en/devops/jenkins-email.md"
+        }
+      ]
+    },
+    {
+      "title": "Logging",
+      "icon": "/access.svg",
+      "desc": "Introduction to KubeSphere Logging System",
+      "chapters": [
+        {
+          "title": "Log Query",
+          "entry": "./v2.1/en/logging/log-query.md"
         }
       ]
     },
