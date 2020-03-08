@@ -1,6 +1,7 @@
 ---
 title: "开发自定义 S2I 模版"
-keywords: 'kubernetes, ci/cd, docker, helm, jenkins, istio, prometheus'
+keywords: 'kubesphere, kubernetes, source-to-image, ci/cd, s2i'
+description: '如何开发自定义的 S2I 模版'
 ---
 
 对 **Source-to-image (S2I)** 工作原理有了一定了解之后，您也可以为自己的项目定义自己的构建器镜像模版 (即 S2I/B2I 模板) 来扩展 S2I，在我们的项目当中提供了部分常用的构建器镜像模版，例如 [Python](https://github.com/kubesphere/s2i-python-container/)、[Java](https://github.com/kubesphere/s2i-java-container/) 等。在 Kubesphere 2.1.1 版本中已经支持自定义 B2I 模版。
