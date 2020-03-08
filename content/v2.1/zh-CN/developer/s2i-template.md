@@ -267,9 +267,7 @@ spec:
   description: "This is a S2I builder template for Nginx builds whose result can be run directly without any further application server.." # 构建器模版的描述信息
 
 ```
-
 S2I 模版中 label 作为前端分类的参数信息，其详细描述如下表所示。
-
 | label名称             | 选项             | 含义                                                         |
 | :----------------------- | :--------------------- | :----------------------------------------------------------- |
 | builder-type.kubesphere.io/s2i: "s2i" | "s2i" | 描述该模版类型属于 S2I，即基于应用源代码进行构建 |
