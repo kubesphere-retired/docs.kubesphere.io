@@ -8,7 +8,7 @@ description: 'How to enable KubeSphere logging system'
 
 KubeSphere provides powerful and easy-to-use logging system which offers users the capabilities of log collection, query and management in terms of tenants. Meanwhile, the system provides not only infrastructure logging capabilities but application logging capabilities. Moreover, it provides various search scopes such as project, workload, Pod, docker and keyword. Tenant-based logging system is much more useful than Kibana since different tenant can only view her/his own logs, leading much better security. KubeSphere logging system is a pluggable component that you can enable to use. It has the following features.
 
-> - [Support multi-tenant and multi-dimensional log search](../../toolbox/log-search)
+> - [Support multi-tenant and multi-dimensional log search](../../logging/log-query)
 > - [Support file-based logging](../../workload/logs-on-disk)
 > - Support various log receivers including Elasticsearch, Kafka and Fluentd
 
