@@ -16,7 +16,7 @@ For dynamic languages like Python or Ruby, the build-time and run-time environme
 
 The following diagram illustrates the build workflow:
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-builder.svg)
+![Builder Image](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-builder.svg)
 
 ### How Source-to-Image works
 
@@ -25,7 +25,7 @@ The following diagram illustrates the build workflow:
 2. Execute the `assemble` script of the builder image, it transforms that source code into the appropriate runnable program, such as installing dependencies with Bundler and moving the source code into a working directory.
 3. Set the image entrypoint to be a `run` script (provided by the builder image) that will start the container, and commit the new image, e.g. the final application image needed for the KubeSphere users.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-flow.svg)
+![How Source-to-Image works](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-flow.svg)
 
 ### Runtime Image
 
@@ -33,4 +33,4 @@ For compiled languages like Go, C, C++ or Java, the dependencies necessary for c
 
 The following diagram illustrates the build principle:
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-runtime-build.svg)
+![Runtime Image](https://pek3b.qingstor.com/kubesphere-docs/png/s2i-runtime-build.svg)
