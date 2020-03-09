@@ -356,7 +356,7 @@
           "entry": "./v2.1/en/api-reference/api-docs.md"
         },
         {
-          "title": "How to invoke KubeSphere API",
+          "title": "How to Access KubeSphere API",
           "entry": "./v2.1/en/api-reference/api-guide.md"
         }
       ]
