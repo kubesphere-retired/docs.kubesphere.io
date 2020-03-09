@@ -14,7 +14,7 @@ KubeSphere logging system is deployed through the FluentBit Operator, it deploys
 
 > - FluentBit-operator is deployed as a DaemonSet on each node, the director `/var/log/containers` in the host will be mapped to the FluentBit-operator container. The _Input_ plugin of FluentBit-operator tail the mapped log files, then the _Output_ plugin will transfer the collected logs to ES, Kafka, Fluentd etc according to the configuration.
 > - ElasticSearch is deployed as a StatefulSet in the cluster, the _Output_ plugin will create the corresponding Index in ElasticSearch (defaults to create one Index per day), it creates the mapping of specified format for Kubernetes logs.
-> - ElasticSearch Curator is deployed as a CronJob to periodically run and delete the outdated logs, i.e. delete the Index. The  preservation period defaults to `seven` days, you can modify it according to your needs.
+> - ElasticSearch Curator is the component that performs scheduled maintenance operations and trims logs by time. It is deployed as a CronJob to periodically run and delete the outdated logs, i.e. delete the Index. The preservation time defaults to last `seven` days, you can modify it according to your needs.
 > - KubeSphere logging console provides the capabilities of log query, analysis and statistics for users.
 
 ## Log Query
