@@ -1,17 +1,15 @@
 ---
-title: "How to Invoke KubeSphere API"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "How to Access KubeSphere API"
+keywords: "kubernetes, docker, helm, jenkins, istio, prometheus"
+description: "The guide how to access KubeSphere APIs"
 ---
 
 
-`ks-apigateway` is KubeSphere's API gateway. After the deployment of KubeSphere, you can refer to the API developer guide as following. 
+`ks-apigateway` is KubeSphere's API gateway. After deploying KubeSphere or its backend, you can refer to the follow instruction to access the APIs.
 
+## Step 1: Expose ks-apigatway Service
 
-## Step 1: Exposing ks-apigatway service
- 
-
-ks-apigatway's service port can be set as NodePort. In this way, ks-apigatway service can be exposed. You can choose to use UI or commands to realize the exposure:
+ks-apigatway's service port can be exposed via NodePort. You can do it either through console or through command line:
 
 <div class="md-tabs">
 <input type="radio" name="tabs" id="ui" checked="checked">
@@ -20,30 +18,29 @@ ks-apigatway's service port can be set as NodePort. In this way, ks-apigatway 
 
 ### Using KubeSphere UI
 
-1. Log in KubeSphere console and enter into `system-workspace`-> project `kubesphere-system`. In the service list, click and enter into the service's page of `ks-apigateway`. 
+1. Log in KubeSphere console and enter into **system-workspace → kubesphere-system → Projects**, click into the project **kubesphere-system**, then go to **Application Workloads → Services**. In the service list, enter into the service's page of `ks-apigateway`.
 
-2. Click「More Operation」 -> 「Edit External Network Access」. Set the access mode as `NodePor` and click confirm.
+2. Click **More → Edit Internet Access**. Set the access mode as `NodePort` and click **Confirm**.
 
-3. You can find the generated NodePort as NodePort in the service page. 
+3. You can find the generated NodePort in the service page.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190704143243.png)
-
+![NodePort](https://pek3b.qingstor.com/kubesphere-docs/png/20190704143243.png)
 
 </span>
 <input type="radio" name="tabs" id="cmd">
-<label for="cmd">Using Command</label>
+<label for="cmd">Using Command Line</label>
 <span class="md-tab">
 
-### Using Command
+### Using Command Line
 
-1. Log in to KubeSphere using the admin account, open Web Kubectl in the 「Toolbox」 in the lower right corner, and execute the following command
+1. Log in to KubeSphere using the `admin` account, open Web Kubectl in the「Toolbox」in the bottom right corner, and execute the following command.
 
 ```bash
 $ kubectl -n kubesphere-system patch svc ks-apigateway -p '{"spec":{"type":"NodePort"}}'
 service/ks-apigateway patched
 ```
 
-2. Use the following command to view the generated port number. The port number returned  is 31078.
+2. Use the following command to view the generated port number. Here is `31078`.
 
 ```bash
 $ kubectl -n kubesphere-system get svc ks-apigateway -o jsonpath='{.spec.ports[0].nodePort}'
@@ -55,23 +52,115 @@ $ kubectl -n kubesphere-system get svc ks-apigateway -o jsonpath='{.spec.ports[0
 
 ## Step 2: Get Token
 
-All the KubeSphere's APIs should pass the JWT Bearer token authentication. Before invoking API, you need to get `access_token` from `/kapis/iam.kubesphere.io/v1alpha2/login` port. Then add the `Authorization: Bearer <access_token>` into the following requests.
+All the KubeSphere's APIs should pass the JWT Bearer token authentication. Before invoking API, you need to get `access_token` from `/kapis/iam.kubesphere.io/v1alpha2/login` port. Then add the `Authorization: Bearer <access_token>` into the immediate next requests.
 
-Open Web Kubectl at the lower right corner of KubeSphere. Execute the following commands where `192.168.0.20` is the sample's node IP and 31078 is the ks-apigatway service exposed in the previous step.
+Open Web Kubectl at the bottom right corner of KubeSphere console. Execute the following commands where `192.168.0.20` is the cluster node IP and `31078` is the ks-apigatway service NodePort exposed in the previous step.
 
 ```bash
 $ curl -X POST "http://192.168.0.20:31078/kapis/iam.kubesphere.io/v1alpha2/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"password\": \"P@88w0rd\", \"username\": \"admin\"}"
 {
- "access_token": "eyJhbGxxxxxxS44"
+ "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGt1YmVzcGhlcmUuaW8iLCJpYXQiOjE1NzM3Mjg4MDMsInVzZXJuYW1lIjoiYWRtaW4ifQ.uK1KoK1c8MFkm8KnyORFTju31OsZ1ajtGNZQnUS1qk8"
 }
 ```
 
-## Step 3: Invoke KubeSphere API
+## Step 3: Access KubeSphere API
 
-After getting the Access Token, the KubeSphere API can be invoked in a user-defined request function. For further details, please refer to [API Guide](../api-docs).
+After the access token retrieved, the KubeSphere API can be invoked in a user-defined request function. For further details, please refer to [API Guide](../api-docs).
 
-## How to Access to Swagger UI
+For instance, the following request is to get all components status.
 
-KubeSphere's API can be previewed in  [Swagger UI](https://swagger.io/). Access the URL `http://IP:NodePort/swagger-ui` to visit Swagger UI such as  `http://192.168.0.20:31078/swagger-ui/`.
+```bash
+curl -X GET \
+  http://192.168.0.20:31078/api/v1/componentstatuses \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGt1YmVzcGhlcmUuaW8iLCJpYXQiOjE1NzM3Mjg4MDMsInVzZXJuYW1lIjoiYWRtaW4ifQ.uK1KoK1c8MFkm8KnyORFTju31OsZ1ajtGNZQnUS1qk8'
+```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190704190556.png)
+返回结果:
+
+```yaml
+{
+  "kind": "ComponentStatusList",
+  "apiVersion": "v1",
+  "metadata": {
+    "selfLink": "/api/v1/componentstatuses"
+  },
+  "items": [
+    {
+      "metadata": {
+        "name": "scheduler",
+        "selfLink": "/api/v1/componentstatuses/scheduler",
+        "creationTimestamp": null
+      },
+      "conditions": [
+        {
+          "type": "Healthy",
+          "status": "True",
+          "message": "ok"
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "controller-manager",
+        "selfLink": "/api/v1/componentstatuses/controller-manager",
+        "creationTimestamp": null
+      },
+      "conditions": [
+        {
+          "type": "Healthy",
+          "status": "True",
+          "message": "ok"
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "etcd-1",
+        "selfLink": "/api/v1/componentstatuses/etcd-1",
+        "creationTimestamp": null
+      },
+      "conditions": [
+        {
+          "type": "Healthy",
+          "status": "True",
+          "message": "{\"health\": \"true\"}"
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "etcd-0",
+        "selfLink": "/api/v1/componentstatuses/etcd-0",
+        "creationTimestamp": null
+      },
+      "conditions": [
+        {
+          "type": "Healthy",
+          "status": "True",
+          "message": "{\"health\": \"true\"}"
+        }
+      ]
+    },
+    {
+      "metadata": {
+        "name": "etcd-2",
+        "selfLink": "/api/v1/componentstatuses/etcd-2",
+        "creationTimestamp": null
+      },
+      "conditions": [
+        {
+          "type": "Healthy",
+          "status": "True",
+          "message": "{\"health\": \"true\"}"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## How to Access Swagger UI
+
+KubeSphere's API can be previewed by accessing the URL `http://IP:NodePort/swagger-ui` to visit [Swagger UI](https://swagger.io/), for instance, this example is `http://192.168.0.20:31078/swagger-ui/`.
+
+![Swagger](https://pek3b.qingstor.com/kubesphere-docs/png/20190704190556.png)
