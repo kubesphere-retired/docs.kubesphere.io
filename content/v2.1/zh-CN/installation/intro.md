@@ -20,27 +20,35 @@ KubeSphere 支持部署和运行在包括 **公有云、私有云、虚机、物
 > - 如果是新安装的系统，在 Software Selection 界面需要把 OpenSSH Server 选上。
 > - 安装之前建议关闭防火墙，或参考 [端口防火墙](../port-firewall) 开放指定端口。
 
-
-## 快速安装（适用于快速体验测试）
-
 KubeSphere 在 2.1 版本的 Installer 对各功能组件进行了 **解耦**，**快速安装将默认仅开启最小化安装（Minimal Installation）**，支持在安装前或安装后 [自定义可插拔的功能组件的安装](../intro#自定义安装可插拔的功能组件)，使最小化安装 **更快速轻量且资源占用更少**，方便不同用户 **按需选择安装不同的功能组件**。
+
+## 快速安装（适用于开发测试环境）
 
 快速安装的方式 **无需配置持久化存储**，仅建议您用来快速安装测试和体验 2.1 的功能特性。正式环境建议配置持久化存储与集群的高可用部署。
 
 ### 安装在 Linux
 
-> - [all-in-one](../all-in-one)：单节点安装，支持一键安装。
-> - [multi-node](../multi-node)：多节点安装，支持一键安装。
->
->  离线环境可参考 [离线安装 KubeSphere 2.1.1](https://kubesphere.com.cn/forum/d/852-kubesphere-2-1-1-kubernetes)。
+#### 在线安装
 
+- [all-in-one](../all-in-one)：单节点安装，支持一键安装。
+- [multi-node](../multi-node)：多节点安装，支持一键安装。
+
+#### 离线安装
+
+离线环境可参考 [离线安装 KubeSphere 2.1.1](https://kubesphere.com.cn/forum/d/852-kubesphere-2-1-1-kubernetes)。
 
 ### 安装在 Kubernetes
 
+#### 在线安装
+
 确保您的 Kubernetes 集群满足前提条件，然后再开启安装。
 
-> - [前提条件](../prerequisites)
-> - [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
+- [前提条件](../prerequisites)
+- [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
+
+#### 离线安装
+
+请参考 [在 Kubernetes 离线安装 KubeSphere](https://kubesphere.com.cn/docs/v2.1/en/installation/install-on-k8s-airgapped/)。
 
 ## 正式环境安装
 
