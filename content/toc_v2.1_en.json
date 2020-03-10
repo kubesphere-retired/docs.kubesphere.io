@@ -284,12 +284,12 @@
           "entry": "./v2.1/en/quick-start/bookinfo-canary.md"
         },
         {
-          "title": "12. Application Store",
-          "entry": "./v2.1/en/quick-start/app-store.md"
+          "title": "12. Canary Release based on Ingress-Nginx",
+          "entry": "./v2.1/en/quick-start/ingress-canary.md"
         },
         {
-          "title": "13. Canary Release based on Ingress-Nginx",
-          "entry": "./v2.1/en/quick-start/ingress-canary.md"
+          "title": "13. Application Store",
+          "entry": "./v2.1/en/quick-start/app-store.md"
         }
       ]
     },
