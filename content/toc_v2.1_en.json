@@ -167,6 +167,25 @@
           ]
         },
         {
+          "title": "Upgrade",
+          "icon": "/admin_reffer.svg",
+          "desc": "Guides for upgrading KubeSphere to 2.1.1",
+          "entries": [
+            {
+              "title": "Overview",
+              "entry": "./v2.1/en/installation/upgrade.md"
+            },
+            {
+              "title": "All-in-One",
+              "entry": "./v2.1/en/installation/upgrade-allinone.md"
+            },
+            {
+              "title": "Multi-node",
+              "entry": "./v2.1/en/installation/upgrade-multi-node.md"
+            }
+          ]
+        },
+        {
           "title": "Third-Party Tools",
           "entries": [
             {
@@ -212,25 +231,6 @@
               "entry": "./v2.1/en/installation/uninstall.md"
             }
           ]
-        }
-      ]
-    },
-    {
-      "title": "Upgrade",
-      "icon": "/admin_reffer.svg",
-      "desc": "Guides for upgrading KubeSphere to 2.1.1",
-      "chapters": [
-        {
-          "title": "Upgrade Overview",
-          "entry": "./v2.1/en/installation/upgrade.md"
-        },
-        {
-          "title": "Upgrade All-in-One",
-          "entry": "./v2.1/en/installation/upgrade-allinone.md"
-        },
-        {
-          "title": "Upgrade Multi-node",
-          "entry": "./v2.1/en/installation/upgrade-multi-node.md"
         }
       ]
     },
