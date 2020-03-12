@@ -1,51 +1,52 @@
 ---
-title: "13. Canary Release based on Ingress-Nginx"
-keywords: 'nginx, kubernetes, kubesphere, istio'
-description: 'Canary Release on Kubernetes based on Ingress-Nginx'
+title: "Canary Release based on Ingress-Nginx"
+keywords: "nginx, kubernetes, kubesphere, istio, canary release"
+description: "Canary release on Kubernetes based on Ingress-Nginx"
 ---
 
-As we demonstrated in [Managing Canary Release of Microservice App based on Istio](../bookinfo-canary), you can use KubeSphere to implement grayscale release in your project based on Istio. However, users indicate that their project is not using Istio, how to implement grayscale release?
+As we demonstrated in [Managing Canary Release of Microservice App based on Istio](../bookinfo-canary), you can use KubeSphere to implement grayscale release in your project based on Istio. However, many users are not using Istio. Most projects from these users are pretty simple so that we need to provide a light-weight solution for this case.
 
-In [Ingress-Nginx (v0.21.0)](https://github.com/kubernetes/ingress-nginx/releases/tag/nginx-0.21.0), it brings a new feature with "Canary", which could be used as a load balancer for gateway, the canary annotation enables the Ingress spec to act as an alternative service for requests to route to depending on the rules applied, and control the traffic splits. KubeSphere built-in gateway of each project supports the "Canary" feature of [Ingress-Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary).
+[Ingress-Nginx](https://github.com/kubernetes/ingress-nginx/releases/tag/nginx-0.21.0) brings a new feature with "Canary", which could be used as a load balancer for gateway. The canary annotation enables the Ingress spec to act as an alternative service for requests to route to depending on the applied rules, and control the traffic splits. KubeSphere built-in gateway of each project supports the "Canary" feature of [Ingress-Nginx](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary).
 
-
-We have elaborated on the scenarios of grayscale in the Istio bookinfo guide, thus we are going to demonstrate how to use KubeSphere route and gateway, namely, Ingress and Ingress-Controller respectively, to implement grayscale release.
-
+We have elaborated on the scenarios of grayscale in the Istio bookinfo guide. In this document we are going to demonstrate how to use KubeSphere route and gateway, namely, Ingress and Ingress-Controller, to implement grayscale release.
 
 > Note: The demo YAML files has been uploaded to [GitHub](https://github.com/kubesphere/tutorial).
 
-## Introduction to Ingress-Nginx Annotation
+## Ingress-Nginx Annotation
 
-Based on [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx/#nginx-ingress-controller), KubeSphere implemented the gateway in each project, namely, Kubernetes namespace, serving as the traffic entry and a reverse proxy of each project.
+Based on [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx/#nginx-ingress-controller), KubeSphere implements the gateway in each project, namely, Kubernetes namespace, serving as the traffic entry and a reverse proxy of each project. Nginx annotations support the following rules after `nginx.ingress.kubernetes.io/canary: "true"` is set. Please refer to [Nginx Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary) for further explanation.
 
-> [Nginx Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary) supports following rules after `nginx.ingress.kubernetes.io/canary: "true"` is set, please refer to [Nginx Annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#canary) for further explanation:
-> - `nginx.ingress.kubernetes.io/canary-by-header`
-> - `nginx.ingress.kubernetes.io/canary-by-header-value`
-> - `nginx.ingress.kubernetes.io/canary-weight`
-> - `nginx.ingress.kubernetes.io/canary-by-cookie`
->
+- `nginx.ingress.kubernetes.io/canary-by-header`
+- `nginx.ingress.kubernetes.io/canary-by-header-value`
+- `nginx.ingress.kubernetes.io/canary-weight`
+- `nginx.ingress.kubernetes.io/canary-by-cookie`
+
 > Note: Canary rules are evaluated in order of precedence. Precedence is as follows:
 > `canary-by-header - > canary-by-cookie - > canary-weight`.
 
-The above four annotation rules can be generally divided into the following two categories:
+The four annotation rules above can be generally divided into the following two categories:
 
-- The Canary rules based on the weight
+- The canary rules based on the weight
 
 ![Weight-Based Canary](https://pek3b.qingstor.com/kubesphere-docs/png/20200229182539.png)
 
-- The Canary rules based on the user request
+- The canary rules based on the user request
 
 ![User-Based Canary](https://pek3b.qingstor.com/kubesphere-docs/png/20200229182554.png)
 
-# Prerequites
+## Prerequisites
 
-Use `project-admin` account to log in KubeSphere, create a project `ingress-demo`
+- You need to complete all steps in [Getting Started with Multi-tenant Management](../admin-quick-start.md).
 
-## Step 1: Create Project and Application
+## Hands-on Lab
 
-1.1. Use `project-admin` account to log in KubeSphere, create a project `ingress-demo`, please refer to [Getting Started with Multi-tenant Management](../admin-quick-start).
+### Step 1: Create Project and Application
 
-1.2. For quick demonstration, log in KubeSphere with `admin` account, open **Web kubectl** from **Toolbox**, then use the following command and YAML to create an application with `Production` version, exposing its service to outside. We create a `deployment` and `service` respectively:
+1.1. Use `project-admin` account to log in KubeSphere, create a project `ingress-demo` under the workspace `demo-workspace`. Go to **Project Settings → Advanced Settings**, click **Set Gateway**, and click **Save** to open the gateway in this project. Note it defaults to **NodePort**.
+
+![Set Gateway](https://pek3b.qingstor.com/kubesphere-docs/png/20200229123307.png)
+
+1.2. We are going to use command line to create the resources provided by the following yaml files. Log in KubeSphere with `admin` account, open **Web kubectl** from the **Toolbox** at the bottom-right corner of console, then use the following command to create production resources `Deployment` and `Service`:
 
 ```bash
 $ kubectl apply -f production.yaml -n ingress-demo
@@ -53,11 +54,9 @@ deployment.extensions/production created
 service/production created
 ```
 
-![web kubectl](https://pek3b.qingstor.com/kubesphere-docs/png/20200229121159.png)
+The file is as follows:
 
-We use the YAML as follows:
-
-**production.yaml**
+#### production.yaml
 
 ```yaml
 apiVersion: apps/v1
@@ -117,16 +116,16 @@ spec:
     app: production
 ```
 
-1.3. You can create a Ingress of `Production` version.
+1.3. Now create a `production` Ingress.
 
 ```bash
 $ kubectl apply -f production.ingress -n ingress-demo
 ingress.extensions/production created
 ```
 
-We use the YAML as follows:
+The file is as follows:
 
-**production.ingress**
+#### production.ingress
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -145,9 +144,9 @@ spec:
           servicePort: 80
 ```
 
-## Step 2: Access Application of Production
+### Step 2: Access the Production Application
 
-You can verify each resource by navigating to their list, we created in the steps above.
+You can verify each resource by navigating to the corresponding lists from the console.
 
 **Deployment**
 ![Deployment](https://pek3b.qingstor.com/kubesphere-docs/png/20200229122819.png)
@@ -158,23 +157,17 @@ You can verify each resource by navigating to their list, we created in the step
 **Route (Ingress)**
 ![Ingress](https://pek3b.qingstor.com/kubesphere-docs/png/20200229122939.png)
 
+Use the command to access the application of production.
 
-2.2. Go to **Project Settings → Advanced Settings**, click **Set Gateway**, and click **Save** to open the gateway in this project, it defaults to **NodePort**.
-
-![Set Gateway](https://pek3b.qingstor.com/kubesphere-docs/png/20200229123307.png)
-
-2.3. Use the command to access the application of production, please note that it should be executed in SSH client.
-
-> Note: `192.168.0.88` is the gateway address of each project, and `30205` is the NodePort, you need yo replace with the actual values.
+> Note: `192.168.0.88` is the gateway address of each project and `30205` is the NodePort. You need yo replace with the actual values from the Route details page.
 
 ```bash
 $ curl --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205
 
-
 Hostname: production-6b4bb8d58d-7r889
 
 Pod Information:
-	node name:	ks-allinone
+  node name:	ks-allinone
 	pod name:	production-6b4bb8d58d-7r889
 	pod namespace:	ingress-demo
 	pod IP:	10.233.87.165
@@ -209,21 +202,24 @@ Request Body:
 	-no body in request-
 ```
 
-## Step 3: create Application of Canary
+### Step 3: Create Canary Version of the Application
 
-Same as above, refer to the YAML files that we used in `Production` to create an application of `Canary` version, including `deployment` 和 `service`, you just need to replace the keyword `production` with `canary` in those YAML files.
+Same as above, refer to the yaml files that we used in **production** to create an application of **canary** version, including `Deployment` and `Service`, you just need to replace the occurrences of `production` with `canary` in those yaml files.
 
+### Step 4: Ingress-Nginx Annotation Rules
 
-## Step 4: Ingress-Nginx Annotation Rules
+#### Set Canary Release based on Weight
 
-### Based on Weight
+A typical scenario of the rule is based on weight, that is, `blue-green` deployment. You can set the weight from `0` to `100` to implement that kind of application release. At any time, only one of the environments is production. For this example, currently green is production and blue is canary. Initially, the weight of canary is set to `0` which means no traffic is forwarded to this release. You can introduce a small portion of traffic to blue version step by step, test and verify it. If everything is OK then you can shift all requests from green to blue by set the weight of blue to `100` which makes blue the production release. In a word, with such canary releasing process, the application is upgraded smoothly.
 
-A typical scenario of the rule based on weight, that is, `blue-green deployment`, you can set the weight to `0` or `100` to implement it. At any time, only one of the environments is Production. For this example, green is currently Production and blue is Canary. Initially, the weight of Canary is set to `0`, no traffic will be requested to Canary. You can introduce a small portion of traffic to blue version, test and verify it, then you can shift all request from green to blue by set the weight of blue to `100`.
+4.1. Now create a `canary` Ingress. The following file uses `canary-weight` annotation to introduce `30%` of all traffic to the canary version.
 
-4.1. Use the following YAML to create a Ingress of Canary version based on weight.
+```bash
+$ kubectl apply -f weighted-canary.ingress -n ingress-demo
+ingress.extensions/canary created
+```
 
-> Note: The canary release feature will be started after `nginx.ingress.kubernetes.io/canary: "true"` is set, the following YAML use `canary-weight` annotation to split the traffic, will introduce `30%` of the whole traffic to the Ingress of Canary version.
-
+The yaml file is as follows.
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -244,72 +240,67 @@ spec:
           servicePort: 80
 ```
 
+4.2. Verify the Weighted Canary Release
 
-4.2. Access the application domain name in SSH client.
+> Note: Although we set `30%` of traffic to the canary, the traffic ratio may fluctuate to a small extent.
 
-> Note: About `30%` traffic will be introduced to Canary after we set annotation rule `canary-weight` to `30%`, the traffic ratio may fluctuate to a small extent.
-
+```bash
+for i in $(seq 1 10); do curl -s --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
 ```
-$ for i in $(seq 1 10); do curl -s --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
-```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200205162603.png)
+![Canary Release based on Weight](https://pek3b.qingstor.com/kubesphere-docs/png/20200205162603.png)
 
+#### Set Canary Release based on Request Header
 
-### Based on Request Header
-
-4.3. Follow the screenshot below, add a row of annotation with `nginx.ingress.kubernetes.io/canary-by-header: canary` (the value here can be customized) to the Ingress of Canary version. The header to use for notifying the Ingress to route the request to the service specified in the Canary Ingress.
+4.3. Go to **Application Workloads → Routes**, click into the detailed page of route `canary`, then go to **More → Edit Annotations**. Follow the screenshot below, add a row of annotation with `nginx.ingress.kubernetes.io/canary-by-header: canary` to the Ingress of canary release created above. The header to use for notifying the Ingress to route the request to the service specified in the canary Ingress.
 
 > Note: Canary rules are evaluated in order of precedence. Precedence is as follows:
 > `canary-by-header - > canary-by-cookie - > canary-weight`. Thus the the old annotation `canary-weight` will be ignored.
 
 ![Edit annotation](https://pek3b.qingstor.com/kubesphere-docs/png/20200304220417.png)
 
-4.4. Add different Header value in the request, and access the application domain name.
+4.4. Add different header in the request, and access the application domain name. More specifically,
 
-> Give two examples of what this means:
-> - When the request header is set to always, it will be routed to the canary.
-> - When the header is set to never, it will never be routed to the canary.
->
+- When the request header is set to `always`, it will be routed to the canary.
+- When the header is set to `never`, it will never be routed to the canary.
+
 > Note: For any other value, the header will be ignored and the request compared against the other canary rules by precedence.
 
-
-```
-$ for i in $(seq 1 10); do curl -s -H "canary: never" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
+```bash
+for i in $(seq 1 10); do curl -s -H "canary: never" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
 ```
 
 ![Request Header](https://pek3b.qingstor.com/kubesphere-docs/png/20200205231401.png)
 
-We set the `canary: other-value` with value `30%` to take precedence over others.
+We set the `canary: other-value` in the header, the Ingress with canary value `30%` to take precedence over others.
 
-```
-$ for i in $(seq 1 10); do curl -s -H "canary: other-value" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
+```bash
+for i in $(seq 1 10); do curl -s -H "canary: other-value" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
 ```
 
 ![Request Header](https://pek3b.qingstor.com/kubesphere-docs/png/20200205231455.png)
 
+4.5. Now we can add a new row of annotation `nginx.ingress.kubernetes.io/canary-by-header-value: user-value` which is for notifying the Ingress to route the request to the service specified in the canary Ingress.
 
-4.5. At this point, we can add a row of annotation (i.e. canary-by-header) `nginx.ingress.kubernetes.io/canary-by-header-value: user-value`, the header value to match for notifying the Ingress to route the request to the service specified in the Canary Ingress.
+![Canary by Header Value](https://pek3b.qingstor.com/kubesphere-docs/png/20200305093713.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200305093713.png)
-
-4.6. Access the domain name as follows, when the request header is set to this value, it will be routed to the Canary version. For any other header value, the header will be ignored and the request compared against the other canary rules by precedence.
+4.6. Access the domain name as follows, when the request header is set to this value, it will be routed to the canary version. For any other header value, the header will be ignored and the request is compared against the other canary rules by precedence.
 
 > Note: It allows users to customize the value of Request Header.
 
-```
-$ for i in $(seq 1 10); do curl -s -H "canary: user-value" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
+```bash
+for i in $(seq 1 10); do curl -s -H "canary: user-value" --resolve kubesphere.io:30205:192.168.0.88 kubesphere.io:30205 | grep "Hostname"; done
 ```
 
 ![Request Header](https://pek3b.qingstor.com/kubesphere-docs/png/20200205231634.png)
 
-### Based on Cookie
+#### Based on Cookie
 
-4.7. Similar to Request Header, the cookie to use for notifying the Ingress to route the request to the service specified in the Canary Ingress. When the cookie value is set to always, it will be routed to the Canary version, otherwise, it will never be routed to the Canary version. For any other value, the cookie will be ignored and the request compared against the other canary rules by precedence. For example, if we only allow the users from London to access the Canary version, we can set the annotation with `nginx.ingress.kubernetes.io/canary-by-cookie: "users_from_London"`. At this point, the system will check the user request, if the requests are from London, then set the value of cookie `users_from_London` to `always`. Ensure the users from London only access the Canary version.
+4.7. Similar to Request Header, the cookie to use for notifying the Ingress to route the request to the service specified in the canary Ingress. When the cookie value is set to always, it will be routed to the canary version, otherwise, it will never be routed to the canary version. For any other value, the cookie will be ignored and the request is compared against the other canary rules by precedence. For example, if we only allow the users from London to access the canary version, we can set the annotation with `nginx.ingress.kubernetes.io/canary-by-cookie: "users_from_London"`. At this point, the system will check the user request, if the requests are from London, then set the value of cookie `users_from_London` to `always`, in order to ensure only the users from London access the canary version.
 
 ## Conclusion
 
-Grayscale release can ensure overall system stability. You can find problems and make adjustments at the initial gray scale to minimize the degree of impact. We have demonstrated four annotation rules of Ingress-Nginx, it is convenient for users who want to implement grayscale release without Istio.
+Grayscale release can ensure overall system stability. You can find problems and make adjustments at the initial gray scale to minimize the degree of impact. We have demonstrated four annotation rules of Ingress-Nginx. It is convenient and light-weight for users who want to implement grayscale release without Istio.
 
 ## Reference
 
