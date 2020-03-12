@@ -17,7 +17,7 @@ In summary, there are several installation options you can choose. Please note n
 - [Install KubeSphere on Air Gapped Linux](../install-ks-on-linux-airgapped): All images of KubeSphere have been encapsulated into a package, it is convenient for air gapped installation on Linux machines.
 - [High Availability Multi-Node](../master-ha): Install high availability KubeSphere on multiple nodes which is used for production environment.
 - [KubeSphere on Existing K8s](../install-on-k8s): Deploy KubeSphere on your Kubernetes cluster including cloud-hosted services such as GKE, EKS, etc.
-- [KubeSphere on Air-Gapped K8s](../install-ks-on-k8s-airgapped): Install KubeSphere on a disconnected Kubernetes cluster.
+- [KubeSphere on Air-Gapped K8s](../install-on-k8s-airgapped): Install KubeSphere on a disconnected Kubernetes cluster.
 - Minimal Packages: Only install minimal required system components of KubeSphere. The minimum of resource requirement is down to 1 core and 2G memory.
 - [Full Packages](../complete-installation): Install all available system components of KubeSphere including DevOps, service mesh, application store, etc.
 
