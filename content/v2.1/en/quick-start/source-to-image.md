@@ -57,13 +57,13 @@ Log in GitHub and fork the GitHub repository [devops-java-sample](https://github
 
 3.4. Paste the URL in **Code URL**, enter `<dockerhub_username>/<image_name>` into **imageName**, e.g. `pengfeizhou/s2i-sample` in this demo. As for **secret** and **Target image repository**, you need to choose the secrets created in step 1, let's say `dockerhub-id` and `github-id` respectively.
 
-> Note: KubeSphere has built in common S2I templates for Java, Node.js and Python. It allows you to customize S2I template for other languages.
+> Note: KubeSphere has built in common S2I templates for Java, Node.js and Python. It allows you to [customize S2I template](../../developer/s2i-template) for other languages.
 
 ![Build Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200210220057.png)
 
 3.5. Click **Next** to **Container Setting** tab. In the **Service Settings** part, name the service `http-port` for example. **Container Port** and **Service Port** are both `8080`.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20200226173052.png)
+![Container Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200226173052.png)
 
 3.6. Scroll down to **Health Checker**, check it and click `Add Container ready check`, fill in the contents as follows:
 
