@@ -101,6 +101,19 @@
           ]
         },
         {
+          "title": "在 Kubernetes 安装 KubeSphere",
+          "entries": [
+            {
+              "title": "准备工作",
+              "entry": "./v2.1/zh-CN/installation/prerequisites.md"
+            },
+            {
+              "title": "在 Kubernetes 安装 KubeSphere",
+              "entry": "./v2.1/zh-CN/installation/install-on-k8s.md"
+            }
+          ]
+        },
+        {
           "title": "安装可插拔的功能组件",
           "entries": [
             {
@@ -151,23 +164,6 @@
             {
               "title": "持久化存储配置说明",
               "entry": "./v2.1/zh-CN/installation/storage-configuration.md"
-            }
-          ]
-        },
-        {
-          "title": "在 Kubernetes 安装 KubeSphere",
-          "entries": [
-            {
-              "title": "准备工作",
-              "entry": "./v2.1/zh-CN/installation/prerequisites.md"
-            },
-            {
-              "title": "在 Kubernetes 最小化安装 KubeSphere",
-              "entry": "./v2.1/zh-CN/installation/install-on-k8s.md"
-            },
-            {
-              "title": "在 Kubernetes 完整安装 KubeSphere",
-              "entry": "./v2.1/zh-CN/installation/install-complete-ks-on-k8s.md"
             }
           ]
         },

@@ -12,14 +12,14 @@ The logs of applications and systems can help you understand what is happening i
 
 KubeSphere logging system is deployed through the FluentBit operator. It deploys and configures a Fluent Bit DaemonSet on every node to collect container and application logs from the node file system. Fluent Bit collects logs from all Pods, and transfers the logs to ElasticSearch by default. The cluster admin can also specify the logs collector like Kafka or Fluentd.
 
-> - FluentBit-operator is deployed as a DaemonSet on each node. The directory `/var/log/containers` in the host will be mapped to the FluentBit-operator container. The _Input_ plugin of FluentBit operator tails the mapped log files, then the _Output_ plugin will transfer the collected logs to ElasticSearch, Kafka, Fluentd etc. according to the configuration.
+> - FluentBit-operator is deployed as a DaemonSet on each node, the director `/var/log/containers` in the host will be mapped to the FluentBit-operator container. The _Input_ plugin of FluentBit-operator tails the mapped log files, then the _Output_ plugin will transfer the collected logs to ElasticSearch, Kafka, Fluentd etc. according to the configuration.
 > - ElasticSearch is deployed as a StatefulSet in the cluster. The _Output_ plugin will create the corresponding Index in ElasticSearch (defaults to create one Index per day). It creates the mapping of specified format for Kubernetes logs.
-> - ElasticSearch Curator is deployed as a CronJob to periodically run and delete the outdated logs, i.e. delete the Index. The  preservation period defaults to `seven` days, you can modify it according to your needs.
+> - ElasticSearch Curator is the component that performs scheduled maintenance operations and trims logs by time. It is deployed as a CronJob to periodically run and delete the outdated logs, i.e. delete the Index. The preservation time defaults to last `seven` days, you can modify it according to your needs.
 > - KubeSphere logging console provides the capabilities of log query, analysis and statistics for users.
 
 ## Log Query
 
-KubeSphere supports logs query for tenant isolation. Use the `admin` account to log in KubeSphere, choose *Toolbox** → **Log Query**.
+KubeSphere supports logs query for tenant isolation. Use the `admin` account to log in KubeSphere, choose **Toolbox → Log Query**.
 
 ![Log Query](https://pek3b.qingstor.com/kubesphere-docs/png/20200308203245.png)
 
