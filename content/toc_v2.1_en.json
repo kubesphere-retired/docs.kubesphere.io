@@ -337,7 +337,7 @@
       "desc": "KubeSphere Developer Guide",
       "chapters": [
         {
-          "title": "Principle and Workflow to S2I",
+          "title": "Introduction to S2I",
           "entry": "./v2.1/en/developer/s2i-introduction.md"
         },
         {
