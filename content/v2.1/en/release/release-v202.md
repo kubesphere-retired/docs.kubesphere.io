@@ -24,7 +24,7 @@ KubeSphere 2.0.2 was released on July 9, 2019, which fixes known bugs and enhanc
 - Fix the log checking problem when Pod status is abnormal.
 - Fix the issue that disk monitor cannot detect some types of volume mounting, such as LVM volume.
 - Fix the problem of detecting deployed applications.
-- Fix incorrect judgement of application component status.
+- Fix incorrect status of application component.
 - Fix host node's number calculation errors.
 - Fix input data loss caused by switching reference configuration buttons when adding environmental variables.
 - Fix the rerun job issue that the Operator role cannot execute.

@@ -11,16 +11,16 @@ KubeSphere 2.0.0 was released on **May 18th, 2019**.
 ### Component Upgrades
 
 - Support Kubernetes [Kubernetes 1.13.5](https://github.com/kubernetes/kubernetes/releases/tag/v1.13.5)
-- Integrate [QingCloud Cloud Controller](https://github.com/yunify/qingcloud-cloud-controller-manager)。 After installing load balancer, QingCloud load balancer can be created through KubeSphere console and the backend workload is bound automatically.  
+- Integrate [QingCloud Cloud Controller](https://github.com/yunify/qingcloud-cloud-controller-manager). After installing load balancer, QingCloud load balancer can be created through KubeSphere console and the backend workload is bound automatically.  
 - Integrate [QingStor CSI v0.3.0](https://github.com/yunify/qingstor-csi/tree/v0.3.0) storage plugin and support physical NeonSAN storage system. Support SAN storage service with high availability and high performance.
 - Integrate [QingCloud CSI v0.2.1](https://github.com/yunify/qingcloud-csi/tree/v0.2.1) storage plugin and support many types of volume to create QingCloud block services.
 - Harbor is upgraded to 1.7.5.
 - GitLab is upgraded to 11.8.1.
-- Prometheus is upgrade to 2.5.0.
+- Prometheus is upgraded to 2.5.0.
 
 ### Microservice Governance
 
-- Integrat Istio 1.1.1 and support visualization of service mesh management.
+- Integrate Istio 1.1.1 and support visualization of service mesh management.
 - Enable the access to the project's external websites and the application traffic governance.
 - Provide built-in sample microservice [Bookinfo Application](https://istio.io/docs/examples/bookinfo/).
 - Support traffic governance.
@@ -51,7 +51,7 @@ KubeSphere 2.0.0 was released on **May 18th, 2019**.
 - Support real-time and history logs.
 - Support combined log query based on namespace, workload, Pod, container, key words and time limit.  
 - Support detail page of single and direct logs. Pods and containers can be switched.
-- [FluentBit Operator](https://github.com/kubesphere/fluentbit-operator) supports logging gathering settings: Elasticsearch, Kafka and Fluentd can be added, activated or turned off as log collectors. Before sending to log collectors, you can configure filtering conditions for needed logs.
+- [FluentBit Operator](https://github.com/kubesphere/fluentbit-operator) supports logging gathering settings: ElasticSearch, Kafka and Fluentd can be added, activated or turned off as log collectors. Before sending to log collectors, you can configure filtering conditions for needed logs.
 
 ### Alerting and Notifications
 

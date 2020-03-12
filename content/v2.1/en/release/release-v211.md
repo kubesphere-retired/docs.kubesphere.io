@@ -13,7 +13,7 @@ KubeSphere 2.1.1 was released on Feb 23rd, 2020, which has fixed known bugs and 
 ### UPGRADE & ENHANCEMENT
 
 - Support Kubernetes v1.14.x、v1.15.x、v1.16.x、v1.17.x，also solve the issue of Kubernetes API Compatibility#[1829](https://github.com/kubesphere/kubesphere/issues/1829)
-- Simplify the steps of installation on existing Kubernetes, and remove the step of specifying cluster's CA certification, also specifying etcd certification is no longer mandatory step if users don't need etcd monitoring metrics
+- Simplify the steps of installation on existing Kubernetes, and remove the step of specifying cluster's CA certification, also specifying Etcd certification is no longer mandatory step if users don't need Etcd monitoring metrics
 - Backup the configuration of CoreDNS before upgrading
 
 ### BUG FIXES
@@ -64,7 +64,7 @@ KubeSphere 2.1.1 was released on Feb 23rd, 2020, which has fixed known bugs and 
 
 - Fix the lag issue of container logs #[1650](https://github.com/kubesphere/kubesphere/issues/1650)
 - Fix the display issue that some replicas of workload have no logs on container detail log page #[1505](https://github.com/kubesphere/kubesphere/issues/1505)
-- Fix the compatibility issue of Curator to support Elasticsearch 7.x #[517](https://github.com/kubesphere/ks-installer/issues/517)
+- Fix the compatibility issue of Curator to support ElasticSearch 7.x #[517](https://github.com/kubesphere/ks-installer/issues/517)
 - Fix the display issue of container log page during container initialization #[1518](https://github.com/kubesphere/kubesphere/issues/1518)
 - Fix the blank node issue when these nodes are resized #[1464](https://github.com/kubesphere/kubesphere/issues/1464)
 - Fix the display issue of components status in monitor center, to keep them up-to date #[1858](https://github.com/kubesphere/kubesphere/issues/1858)

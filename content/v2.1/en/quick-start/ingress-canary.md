@@ -212,7 +212,7 @@ Same as above, refer to the yaml files that we used in **production** to create 
 
 A typical scenario of the rule is based on weight, that is, `blue-green` deployment. You can set the weight from `0` to `100` to implement that kind of application release. At any time, only one of the environments is production. For this example, currently green is production and blue is canary. Initially, the weight of canary is set to `0` which means no traffic is forwarded to this release. You can introduce a small portion of traffic to blue version step by step, test and verify it. If everything is OK then you can shift all requests from green to blue by set the weight of blue to `100` which makes blue the production release. In a word, with such canary releasing process, the application is upgraded smoothly.
 
-4.1. Now create a `canary` Ingress. The following file uses `canary-weight` annotation to introduces `30%` of all traffic to the canary version.
+4.1. Now create a `canary` Ingress. The following file uses `canary-weight` annotation to introduce `30%` of all traffic to the canary version.
 
 ```bash
 $ kubectl apply -f weighted-canary.ingress -n ingress-demo
