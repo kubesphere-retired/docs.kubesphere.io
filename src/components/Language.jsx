@@ -7,16 +7,27 @@ import { ReactComponent as EarthIcon } from '../assets/earth.svg'
 import { getLanguage } from '../utils'
 
 const Language = ({
-  pageContext: { locale, defaultLocale, availableLocales },
+  pageContext: { locale, originalPath, slug, defaultLocale, availableLocales },
   pathPrefix,
   noIcon,
 }) => {
   const handleChange = e => {
-    e.stopPropagation();
-    e.preventDefault();
+    e.stopPropagation()
+    e.preventDefault()
     const newLang = e.target.dataset.lang
+
     if (typeof window !== 'undefined') {
-      window.location.href = newLang === defaultLocale ? `${pathPrefix}/`:`${pathPrefix}/${newLang}`
+      if (originalPath) {
+        window.location.href = `${pathPrefix}/${newLang}${originalPath}`.replace(
+          `/${defaultLocale}`,
+          ''
+        )
+      } else if (slug) {
+        window.location.href = `${pathPrefix}${slug.replace(
+          `/${locale}/`,
+          `/${newLang}/`
+        )}`.replace(`/${defaultLocale}`, '')
+      }
     }
   }
 
