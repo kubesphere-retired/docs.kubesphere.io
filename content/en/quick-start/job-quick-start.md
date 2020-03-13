@@ -15,7 +15,7 @@ This tutorial describes the basic features of a Job by creating a parallel job t
 ## Prerequisites
 
 - You need to create a workspace, project and `project-regular` account, see the [Getting Started with Multi-tenant Management](../admin-quick-start.md) if not yet.
-- You need to sign in with `project-admin` account invite `project-regular` to enter into the corresponding project. Please refer to [Quick Start Guide of Multi-tenant Management-Inviting members](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/#%E9%82%80%E8%AF%B7%E6%88%90%E5%91%98)
+- You need to sign in with `project-admin` account invite `project-regular` to enter into the corresponding project. Please refer to [Quick Start Guide of Multi-tenant Management-Inviting members](../quick-start/admin-quick-start/#%E9%82%80%E8%AF%B7%E6%88%90%E5%91%98)
 
 ## Estimated Time
 
@@ -99,4 +99,4 @@ Skip the Volume Settings, then click **Next** to the tag setting. Tag is `app: j
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716213657.png#alt=)
 
-For now, you have learned Job's basic functions. For further details, please refer to [Job](/docs/advanced-v2.0/zh-CN/workload/jobs/)
+For now, you have learned Job's basic functions. For further details, please refer to [Job](../workload/jobs/)
