@@ -1,6 +1,6 @@
 ---
 title: "存储卷"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -8,7 +8,7 @@ description: ''
 
 在 all-in-one 部署方式中，可以使用 Local 存储卷将数据持久化，无需存储服务端支持，但此类型存储卷不支持动态分配方式。如果希望体验 KubeSphere 推荐的动态分配 (Dynamic Provisioning) 方式创建存储卷，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储和 [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) 插件，支持使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 或 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为平台的存储服务，免去手动配置存储服务端的繁琐。
 
-另外，Installer 也已集成了 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/) 等存储的客户端，需在 `conf/vars.yml` 中配置，但需要自行准备和安装相应的存储服务端，若用于 KubeSphere 测试存储服务端部署可参考附录中的 [部署 Ceph RBD 存储服务端](../ceph-ks-install) 或 [部署 GlusterFS 存储服务端](../glusterfs-ks-install)。
+另外，Installer 也已集成了 [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/) 等存储的客户端，需在 `conf/vars.yml` 中配置，但需要自行准备和安装相应的存储服务端，若用于 KubeSphere 测试存储服务端部署可参考附录中的 [部署 Ceph RBD 存储服务端](../../appendix/ceph-ks-install/) 或 [部署 GlusterFS 存储服务端](../../appendix/glusterfs-ks-install/)。
 
 存储卷生命周期包括存储卷创建、挂载、卸载、删除等操作，如下演示一个存储卷完整生命周期的操作。
 
@@ -20,7 +20,7 @@ description: ''
 
 首先登录 KubeSphere 控制台，选择已有 **项目** 或新建项目，访问左侧菜单栏，点击 **存储卷** 进入列表页。作为集群管理员，可以查看当前集群下所有项目的存储卷以及挂载情况，而普通用户只能看到其所属项目的存储卷。
     
-![存储卷列表](/ae-pvc-list.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514093909.png)
 
 ### 第一步：填写基本信息
 
@@ -30,9 +30,7 @@ description: ''
 
 ### 第二步：存储卷设置
 
-存储设置中，选择存储卷的存储类型，按需填写存储卷的容量大小，存储卷大小和访问模式必须与存储类型和存储服务端能力相适应。各类型存储支持的访问模式参见 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)。
-
-> 提示：若需要选择集成多种 存储类型需要预先创建，详见 [创建存储类型](../../infrastructure/storageclass/#创建存储类型)。
+存储设置中，选择存储卷的存储类型，存储类型需要预先创建，详见 [创建存储类型](../../infrastructure/storageclass/#创建存储类型)。按需填写存储卷的容量大小，存储卷大小和访问模式必须与存储类型和存储服务端能力相适应。各类型存储支持的访问模式参见 [Kubernetes 官方文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)。
 
 访问模式包括以下三种，注意，块存储仅支持单节点读写，若选择 QingCloud CSI 则访问只能选择 RWO。
 

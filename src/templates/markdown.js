@@ -514,7 +514,6 @@ export const pageQuery = graphql`
           lang
           chapters {
             title
-            entry
             chapters {
               title
               tag

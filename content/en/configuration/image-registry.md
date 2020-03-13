@@ -1,6 +1,6 @@
 ---
 title: "Image Registry"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

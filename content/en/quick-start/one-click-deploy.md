@@ -1,101 +1,85 @@
 ---
-title: "One-click Deployment of Applications"
-keywords: ''
+title: "Deploying a Grafana to Kubernetes using Application Template"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
 ## Objective
 
-This document shows how to deploy an application in KubeSphere via App Template, demonstrating the basic functionality of the application repository, application templates, and application management.
+This tutorial shows you how to quickly deploy a [Grafana](https://grafana.com/) application in KubeSphere via App Template, demonstrating the basic functionality of the application repository, application templates, and application management.
 
 ## Prerequisites
 
-You need to create a workspace and project, see the [Admin Quick Start](../admin-quick-start) if not yet.
+You've completed all steps in [Getting Started with Multi-tenant Management](../admin-quick-start.md).
 
-## Estimated Time
-
-About 10 minutes.
-
-## Example
-
-The backend of the application repository can be either the [QingStor Object Storage](https://www.qingcloud.com/products/qingstor/) or the [AWS Object Storage](https://aws.amazon.com/cn/what-is-cloud-object-storage/), where the packages are composed of Helm template files of the applications. Therefore, before adding an application repository to KubeSphere, you need to create an object storage and upload application Helm packages in advance.
-
-This documentation prepares a testing application repository based on QingStor Object Storage.
+## Hands-on Lab
 
 ### Step 1: Add a Application Repository
 
-1.1. Sign in with `cluster-admin` and navigate to **Platform → App Repositories**, then Click **Add App Repository**.
+> Note: The application repository can be either the Object Storage, e.g. [QingStor Object Storage](https://www.qingcloud.com/products/qingstor/), [AWS S3](https://aws.amazon.com/cn/what-is-cloud-object-storage/), or [GitHub Repository](https://github.com/). The packages are composed of Helm Chart template files of the applications. Therefore, before adding an application repository to KubeSphere, you need to create an object storage and upload  Helm packages in advance. This tutorial prepares a demo repository based on QingStor Object Storage.
 
-![Add a Application Repository](/add-app-repo-en.png)
 
-1.2. Fill in the basic information, note that there is an example repository of http protocol `http://docs-repo.gd2.qingstor.com`, you can validate if this URL is available, choose **OK** when you're done.
+1.1. Sign in with `admin` account and navigate to **Platform → Platform Settings → App Repositories**, then Click **Add App Repository**.
 
-![Basic information](/app-repo-basic-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717133759.png#alt=)
 
-1.3. Select **App Templates** on the top of this page, it will import all of the applications from the object storage. There is only Nginx App template could be deployed since it's only one testing package been uploaded in that object storage.
+1.2. Fill in the basic information, name it as demo-repo and input the URL with `https://helm-chart-repo.pek3a.qingstor.com/kubernetes-charts/`, you can validate if this URL is available, choose **OK** when you've done.
 
-![App Templates](https://pek3b.qingstor.com/kubesphere-docs/png/20190326151737.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717134319.png#alt=)
 
-### Step 2: Deploy Nginx App
+1.3. Click **App Templates** on the top of this page, it will automatically import all of the applications from the demo repository.
 
-2.1. When you have added the application repository to the platform, you can log out and sign in with `project-regular`. Then select **App Templates** on the top of this page, and enter into the Nginx app.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717134714.png#alt=)
 
-![Inspect nginx template](/nginx-details-en.png)
+### Step 2: Deploy the Grafana Application
 
-Switch **Setting Files** to inspect the configuration files of the application package, e.g. `values.yaml`.
+2.1. When you've already added the repository, you can logout and sign in with `project-regular` account. Then select **App Templates** on the top of this page, input "grafana" in the search box to find the application.
 
-2.2. Click **Deploy App** and fill in the basic information.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717145209.png#alt=)
 
-2.3. **Name** can be customized by yourself, choose the corresponding Workspace and Project as the environment.  
+2.2. Click into grafana, **Deploy App** and fill in the basic information.
 
-**Params Configuration** is the default value in the `values.yaml` file and support for both yaml and table edit, just leave the default values in **Params Configuration**. 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717145338.png#alt=)
 
-2.4. Then choose **Deploy** to deploy Nginx app to KubeSphere.
+2.3. **Name** can be customized by yourself, choose the corresponding Workspace (e.g. `demo-workspace`) and Project (e.g. `demo-project`) as the environment. Then choose **Deploy** to deploy Grafana to KubeSphere.
 
-2.5. Navigate to **Applications**, then you can see the application `docs-demo` showing `active` from the application list. 
+2.4. Back to the `demo-project` and choose **Applications**, then you can see the application `grafana` showing `active` from the application list.
 
-![App demo](/nginx-app-demo-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717145741.png#alt=)
 
 ### Step 3: View App Details
 
-3.1. Enter into `docs-demo`, you will be able to see its service and workload in `Resource Status` page, as well as Environmental Variables and Operation Logs information.
+3.1. Click into `grafana` application, you will be able to see its Services and Workloads in `Resource Status` page, as well as Environmental Variables and App Template information.
 
-![Resource Status](/nginx-details-overview-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717150124.png#alt=)
 
-3.2. Next we are going to expose this service outside of the cluster via NodePort. 
+3.2. Next we are going to expose this service outside of the cluster via NodePort. Enter into its service e.g. `grafana-l47bmc`, then click **More → Edit Internet Access**.
 
-Enter into `docs-demo-nginx` service, then click **More** and choose **Edit Internet Access**.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717150338.png#alt=)
 
-![Edit Internet Access](/nginx-service-details-en.png)
+3.3. Select `NodePort` from the drop down list.
 
-3.3. Select NodePort from the drop down list.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717150427.png#alt=)
 
-> Internet Access supports for 3 access types:
-> - None: This is the default service type which is used to expose the service on a cluster-internal IP. Choosing this value makes the service only reachable from within the cluster.
-> - NodePort: Exposes the service on each Node’s IP at a static port (the NodePort). A ClusterIP service, to which the NodePort service will route, is automatically created. You’ll be able to contact the NodePort service, from outside the cluster, by requesting `<NodeIP>:<NodePort>`.
-> - LoadBalancer: Exposes the service externally using a cloud provider’s load balancer. (It requires to install the cloud provider LoadBalancer plugin, [qingcloud-cloud-controller-manager](https://github.com/yunify/qingcloud-cloud-controller-manager/) is in development and will provide LB service soon).
+3.4. Therefore it will generate a Node Port, for example, here is `31126` that we can access this service using `<$NodeIP>:<$NodePort>`.
 
-![Access types](/select-nodeport-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717150540.png#alt=)
 
-3.4. Therefore it will generate a Node Port, for example, here is `30518` that we can access this service using `<$NodeIP>:<$NodePort>`.
+### Step 4: Access the Grafana Service
 
-![View Node Port](/nodeport-details-en.png)
+At this point, you will be able to access the Nginx service via `${Node IP}:${NODEPORT}`, e.g. `http://192.168.0.88:31126`, or click the button **Click to visit** to access the Grafana dashboard.
 
-### Step 4: Access Nginx Service
+4.1. Note that you have to obtain the account and password from the grafana secret in advance. Navigate to **Configuration Center → Secrets**, click into **grafana-l47bmc (Type: Default)**.
 
-> Note: If you want to access the service, you might need to bind the EIP and configure port forwarding. Then add the corresponding port (e.g. 30518) to the firewall rules to ensure that the external network traffic can pass through the port. In that case, external access is available.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717152250.png#alt=)
 
-For example, if KubeSphere cluster is deployed on QingCloud platform within VPC, thus we need to add `30518` to the port forwarding rule on the VPC network and then release the port on the firewall.
+4.2. Click the button to display the secret information, then copy and paste the value of **admin-user** and **admin-password**.
 
-**Add `30518` to the port forwarding rule**
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717152352.png#alt=)
 
-![Port forwarding rule](/demo4-vpc-nodeport-forward-en.png)
+4.3. Open the Grafana log in page, sign in with the **admin** account.
 
-**Release the port on the firewall**
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717152831.png#alt=)
 
-![Firewall rule](/demo4-firewall-nodeport-en.png)
-
-At this point, you will be able to access the Nginx service via `${EIP}:${NODEPORT}`, e.g. `http://139.168.10.10:30518`.
-
-![Access the Nginx service](/access-nginx-app-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717152929.png#alt=)
 

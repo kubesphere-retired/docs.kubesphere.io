@@ -1,6 +1,6 @@
 ---
 title: "Jenkins 系统设置" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

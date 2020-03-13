@@ -1,16 +1,12 @@
 ---
 title: "Instruction"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
 [KubeSphere](https://kubesphere.io) is an enterprise-grade multi-tenant container management platform that built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI enables creation of computing resources with a few clicks and one-click deployment, which reduces the learning curve and empower the DevOps teams. It greatly reduces the complexity of the daily work of development, testing, operation and maintenance, aiming to solve the pain spots of Kubernetes' storage, network, security and ease of use, etc. 
 
-## Prerequisites
-
-Download the [KubeSphere Advanced Edition](https://kubesphere.io/download/?type=advanced) to the target machine.
-
-## Installing KubeSphere
+## Installing KubeSphere on Linux
 
 KubeSphere installation supports [all-in-one](../all-in-one) and [multi-node](../multi-node).
 
@@ -28,49 +24,54 @@ In addition, you can choose to integrate Harbor image registry into cluster (opt
 
 ### All-in-One
 
-`All-in-One` is single-node installation that supports one-click installation, it's only recommended to test and experienc the features of Advanced Edition, see [All-in-One](../all-in-one). By contrast, the multi-node installation is recommended in a formal environment.
+`All-in-One` is single-node installation that supports one-click installation, it's only recommended to test and experienc the features of 2.0.2, see [All-in-One](../all-in-one). By contrast, the multi-node installation is recommended in a formal environment.
 
 ### Multi-Node 
 
 `Multi-node` is used for installing KubeSphere on multiple instances, supports for installing a highly available master and etcd cluster which is able to use in a formal environment, see [Multi-Node](../multi-node).
 
-### Storage Configuration Instruction
+#### Components Version
 
-The multi-node installation supports configure the NFS in Kubernetes to provide cluster with persistent storage service, it's only for testing the installation without preparing the storage server for the first time. If you are going to install KubeSphere in a formal environment, it's required to prepare and configure the corresponding storage server which is supported by KubeSphere. 
+|Components | Version|
+|---|---|
+|KubeSphere| v2.0.2|
+|Kubernetes| v1.13.5|
+|Istio | v1.1.1 |
+|etcd| v3.2.18|
+|OpenPitrix| v0.3.5|
+|Elasticsearch| v6.7.0 |
+|Prometheus| v2.3.1|
+|Jenkins| v2.138 |
+|SonarQube| v7.4 |
+|GitLab | v11.8.1 |
+|Harbor | v1.7.5 |
+
+#### Storage Configuration Instruction
 
 *Storage Configuration Instruction* explains how to configure different types of persistent storage services as following, see [Storage Configuration Instruction](../storage-configuration).
 
-- [QingCloud Block Storage](https://docs.qingcloud.com/product/storage/volume/)
-- [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)
 - [NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)
 - [GlusterFS](https://www.gluster.org/)
-- [Ceph RBD](https://ceph.com/) 
+- [Ceph RBD](https://ceph.com/)
+- [QingCloud Block Storage](https://docs.qingcloud.com/product/storage/volume/)
+- [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)
+ 
 
-### Creating Highly Available Master and Etcd Cluster
+#### Creating HA Master and Etcd Cluster
 
 Multi-node installation can help uses to deploy KubeSphere to a cluster. However, we also need to consider the high availability of the master and etcd in a production environment. This page uses the Load balancer as an example, walk you through how to configure highly available Master and etcd nodes installation, see [Creating Highly Available Master and Etcd Cluster](../master-etcd-ha).
 
-### Adding new node
+#### Adding new node
 
 After you install KubeSphere, you may run out of server capacity in a formal environment and need to add a new node, then scale the cluster horizontally to complete the system expansion, see [Add new node](../add-nodes).
 
-### High-risk Operation
+## Installing KubeSphere on Kubernetes
 
-KubeSphere supports high availability of master and working nodes to ensure cluster stability, based on the underlying kubernetes scheduling mechanism to ensure the sustainability and stability. It is not recommended to shut down or restart nodes for no reason, because such operations are high-risk operations may cause the service is not available, please operate with caution. High-risk operations are supposed to inform users about the risks in advance, the engineer is only allowed to implement the backend operation after users and other engineers agree. For example, be aware of the following list describes high-risk and prohibited operations that may cause a node or cluster unavailable:
+In addition to supporting deploy on VM and BM, KubeSphere also supports installing on cloud-hosted and on-premises Kubernetes clusters.
 
-**High-risk Operations**  
+> - [Installing KubeSphere on Kubernetes (Online)](../install-on-k8s)
+> - [Installing KubeSphere on Kubernetes (Offline)](../install-ks-offline)
 
-| Sequence | High-risk Operation | 
-|---|---|
-| 1 | Restart the cluster node or reinstall the operating system. |
-| 2 | It is recommended that you do not install additional software on the cluster node, which could make the cluster node unavailable. |
-
-**Prohibitive Operations** 
-
-| Sequence | Prohibitive Operations | 
-|---|---|
-| 1 | Delete `/var/lib/etcd/`. Delete `/var/lib/docker`. Delete `/etc/kubernetes/`.  Delete `/etc/kubesphere/` |
-| 2 | Disk formatting, partitioning. |
 
 
 ## Uninstalling
@@ -78,12 +79,3 @@ KubeSphere supports high availability of master and working nodes to ensure clus
 Uninstall will remove KubeSphere from the machine, this operation is irreversible, see [Uninstall](../uninstall).
 
 
-## Components Version
-
-|Components | Version|
-|---|---|
-|KubeSphere| Advanced Edition v1.0.0|
-|Kubernetes| v1.12.3|
-|OpenPitrix| v0.3.5|
-|Prometheus| v2.3.1|
-|Jenkins| v2.138 |

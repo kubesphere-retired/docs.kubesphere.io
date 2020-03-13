@@ -1,32 +1,48 @@
 ---
 title: "Multi-Node 模式"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
 `Multi-Node` 即多节点集群部署，部署前建议您选择集群中任意一个节点作为一台任务执行机 (taskbox)，为准备部署的集群中其他节点执行部署的任务，且 Taskbox 应能够与待部署的其他节点进行 **ssh 通信**。
 
-## 前提条件
+> 提示：
+> - Multi-node 支持**将 KubeSphere 部署在任何云平台**，本文档仅使用 QingCloud 云平台作为部署演示。
+> - 若需要安装 Harbor 和 GitLab 请在**安装前**参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
+> - 若在云平台使用在线安装，可通过调高带宽的方式来加快安装速度。
+ 
+## 前提条件 
 
-- 目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced) 至待安装机器中。
-- 建议使用 KubeSphere 支持的存储服务，并准备相应的存储服务端，存储服务端的磁盘容量参考主机规格表中的推荐配置或选择更高的容量。为方便初次安装但没有准备存储服务端时进行部署测试，也可配置部署 NFS server in Kubernetes 到当前集群。
+- 如果您的服务器上游有安全组管控，请参考 [需开放的端口列表](../port-firewall) 并根据实际情况开放相关的端口，如果您没有开启防火墙则无需在主机配置该项内容。
+- 已准备 KubeSphere 支持的 [持久化存储服务端](../storage-configuration)，本篇文档以配置 QingCloud-CSI 插件对接 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/) 为例，需要有 [QingCloud 云平台](https://console.qingcloud.com/login) 的账号。
+- <font color=red>注意，若使用 QingCloud 云平台块存储作为存储服务，安装前需要确保用户账号在当前 Zone 资源配额满足最低要求。Multi-node 安装最少需要 14 块硬盘，本示例默认使用容量型硬盘，所需的容量型硬盘容量的最低配额为 1400 GB，若硬盘数量和容量配额不够请提工单申请配额。</font> 若使用其他类型的硬盘，参考 [QingCloud 各类型块存储配额表](../storage-configuration)。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190509171820.png)
 
 ## 第一步: 准备主机
 
-您可以参考以下节点规格 准备 **`至少 2 台`** 符合要求的主机节点开始 `multi-node` 模式的部署，若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5。
+您可以参考以下节点规格准备 <font color=red>至少 3 台</font> 符合要求的主机开始 `multi-node` 模式的部署。
 
-> 说明：若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
-
-| 操作系统 | 最小配置 | 推荐配置 |
-| --- | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-|Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-|Debian Stretch 9.5 (64 bit)| CPU：4 核 <br/> 内存：8 G <br/> 系统盘：40 G | CPU：8 核 <br/> 内存：16 G <br/> 系统盘：不小于 100 G |
-
+> 说明：
+> - 所有节点需要时间同步，否则可能会安装不成功；
+> - 若选择离线安装，则系统盘建议在 `100 G` 以上；
+> - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
+> - 若使用 ubuntu 18.04，则需使用 root 用户；
+> - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
+> - 若需要选装 Harbor 和 GitLab，则所有主机的总内存需要 24 GiB 以上。
 
 
-以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点，也称 Worker 节点，在底层的 Kubernetes 中 Worker 节点跟 Master 节点都运行着一个 **kubelet** 组件，但 Master 节点上还会运行 **kube-apiserver、kube-scheduler、kube-controller-manager** 这三个系统 Pod。
+| 操作系统 | 最小配置 (根据集群规模)| 
+| --- | --- | 
+| CentOS 7.5 (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G | 
+| Ubuntu 16.04/18.04 LTS (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G | 
+|Red Hat Enterprise Linux Server 7.4 (64 bit) | 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G | 
+|Debian Stretch 9.5 (64 bit)| 总 CPU 应不小于 8 核， 总内存不小于 16 G， 系统盘：40 G | 
+
+
+以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。
+
+在 [安装说明](../intro) 已经介绍了 KubeSphere 集群架构是由管理节点 (Master) 和工作节点 (Node) 构成的，这 3 台主机分别部署 1 个 Master 节点和 2 个 Node 节点。
 
 > 说明：高级版支持 Master 和 etcd 节点高可用配置，但本示例仅作为测试部署的演示，因此 3 台主机中仅部署单个 Master 和单个 etcd，正式环境建议配置 Master 和 etcd 节点的高可用，请参阅 [Master 和 etcd 节点高可用配置](../master-ha)。
 
@@ -44,30 +60,42 @@ description: ''
 
 ## 第二步: 准备安装配置文件
 
-**1.** 建议下载最新的 [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download)，获取下载链接后可使用 `curl -O url` or `wget url` 命令下载至待安装机器，并执行以下命令。
+<div class="md-tabs">
+<input type="radio" name="tabs" id="stable" checked="checked">
+<label for="stable">在线版 (2.0.2)</label>
+<span class="md-tab">
 
-> 注意：若您的机器已安装了 Advanced-v1.0.0，请直接参考 [升级指南](../upgrade) 将您原有的环境一键升级至最新版本，无需参考以下步骤重复安装。
-
-```bash
-$ tar -zxf kubesphere-all-advanced-1.0.1.tar.gz
-```
-
-**2.** 进入 “`kubesphere-all-advanced-1.0.1`” 目录。
+**1.** 下载 `KubeSphere Advanced Edition 2.0.2` 安装包至待安装机器，进入安装目录。
 
 ```bash
-$ cd kubesphere-all-advanced-1.0.1
+$ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/conf
 ```
 
-**3.** 编辑主机配置文件 `conf/hosts.ini`，为了对待部署目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
+</span>
+<input type="radio" name="tabs" id="offline">
+<label for="offline">离线版 (2.0.2)</label>
+<span class="md-tab">
+
+**1.** 下载 `离线安装包 (2.0.2)` 至待安装机器。
+
+```bash
+$ curl -L https://kubesphere.io/download/offline/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-offline-advanced-2.0.2/conf
+```
+
+</span>
+</div>
+
+  
+**2.** 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
 
 > 说明：
-> - 若以非 root 用户 (如 ubuntu 用户) 进行安装，可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
-> - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [常见问题 - 问题 2](../../faq)。
+> - 若以非 root 用户 (如 ubuntu 用户) 进行安装，[all] 部分可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
+> - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [安装常见问题 - 问题 2](../../faq/faq-install/#multi-node-安装配置相关问题)。
 > - master, node1, node2 作为集群各个节点的主机名，若需要自定义主机名则所有主机名需要都使用小写形式。
 
 以下示例在 CentOS 7.5 上使用 `root` 用户安装，每台机器信息占一行，不能分行。
 
-**root 配置示例：**
+**root 配置 hosts.ini 示例：**
 
 ```ini
 [all]
@@ -92,61 +120,76 @@ kube-master
 
 > 说明：
 >
-> - [all] 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码。主机名为 "master" 的节点作为已通过 SSH 连接的 Taskbox 所以无需填写密码，[all] 中其它节点的参数比如 node1 和 node2 的 `ansible_host` 和 `ip` 都替换为当前 node1 和 node2 的内网 IP，将 `ansible_ssh_pass` 替换为您准备的主机 `root` 用户登录密码。
-> -  应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分，因为 "master" 节点作为 taskbox，用来执行整个集群的安装任务，同时 "master" 节点在 KubeSphere 集群架构中也将作为管理节点 Master 和负责保存持久化数据的 etcd。
-> - 将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
+> - `[all]`： 中需要修改集群中各个节点的内网 IP 和主机 root 用户密码：<br>主机名为 "master" 的节点作为已通过 SSH 连接的 Taskbox 所以无需填写密码。<br> Node 节点的参数比如 node1 和 node2 的 `ansible_host` 和 `ip` 都替换为当前 node1 和 node2 的内网 IP，将 `ansible_ssh_pass` 相应替换为 node1 和 node2 的 `root` 用户密码。
 >
-> 参数解释：<br>
-> - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接。
-> - `ansible_host`: 集群中将要连接的主机地址或域名。
-> - `ip`: 集群中将要连接的主机 IP。
-> - `ansible_ssh_pass`: 待连接主机 root 用户的密码。
+>   参数解释：<br>
+>       - `ansible_connection`: 与主机的连接类型，此处设置为 `local` 即本地连接
+>       - `ansible_host`: 集群中将要连接的主机地址或域名
+>       - `ip`: 集群中将要连接的主机 IP
+>       - `ansible_user`: 默认的 SSH 用户名 (非 root)，例如 ubuntu
+>       - `ansible_become_pass`: 默认的 SSH 用户登录密码
+>       - `ansible_ssh_pass`: 待连接主机 root 用户的密码
+> - `[kube-master]` 和 `[etcd]`：应将主机名 "master" 填入 [kube-master] 和 [etcd] 部分，"master" 节点作为 taskbox，用来执行整个集群的安装任务，同时 "master" 节点在 KubeSphere 集群架构中也将作为 Master 节点管理集群和 etcd 节点负责保存集群的数据。
+> - `[kube-node]`：将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
+> - `[local-registry]`：离线安装包中该参数值表示设置哪个节点作为本地镜像仓库，默认值为 master 节点。建议给该节点的 `/mnt/registry` 单独挂盘 (参考 fdisk 命令)，使镜像可保存在持久化存储并节省机器空间。
 
 
-**5.** 为方便测试部署和演示，本文档以部署 NFS Server 至当前集群为例。注意，在正式环境使用需准备 KubeSphere 支持的存储服务端。以下存储配置示例需在 `vars.yml` 中修改，将安装 NFS server in Kubernetes 至当前集群作为默认存储类型，参数释义详见 [存储配置说明](../storage-configuration/#NFS)。
 
-> 说明：
-> - 网络、存储等相关内容需在 `conf/vars.yml` 配置文件中指定或修改，根据配置文件按需修改相关配置项，未做修改将以默认参数执行。
-> - 网络：默认插件 `Calico`。
-> - 支持存储类型：[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)、[Local Volume (仅支持 all-in-one)](https://kubernetes.io/docs/concepts/storage/volumes/#local)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
-> - Multi-Node 安装时需要配置持久化存储，因为它不支持 Local Volume，因此把 Local Volume 的配置修改为 false，然后配置持久化存储如 QingCloud-CSI (QingCloud 块存储插件)、NeonSAN CSI (NeonSAN 存储插件)、NFS、GlusterFS、CephRBD 等。如下所示配置 NFS server in Kubernetes，将 `nfs_server_enable` 和 `nfs_server_is_default_class` 设置为 true。
-> - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
-**存储配置示例：**
+**3.** 编辑 `conf/vars.yml` 配置文件，集群的存储以配置 QingCloud-CSI 插件对接 QingCloud 云平台块存储为例。
+
+- 其中值带有 * 号的值为必配项，参数释义详见 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)：
+    - `qingcloud_access_key_id` 和 `qingcloud_secret_access_key`： 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥并下载获得 (填写时仅粘贴单引号内的值)；
+    - `qingcloud_zone`：根据您的机器所在的 Zone 填写，例如：sh1a（上海一区-A）、sh1b（上海1区-B）、 pek2（北京2区）、pek3a（北京3区-A）、gd1（广东1区）、gd2a（广东2区-A）、ap1（亚太1区）、ap2a（亚太2区-A）；
+    - `qingcloud_csi_enabled`：是否使用 QingCloud-CSI 作为持久化存储，此处改为 true；
+    - `qingcloud_csi_is_default_class`：是否设定为默认的存储类型，此处改为 true；
+- 不带 * 号的最后六行为可配项所以在示例中无需修改，当前默认配置了容量型硬盘，type 为 2(可挂载至任意类型主机)。<br> <font color=red>注意，安装前需要确认您 QingCloud 账号在当前 Zone 的容量型硬盘的配额是否大于 14。</font> 若需要使用其他类型的硬盘，也需要满足最低配额，修改配置可参考 [存储配置说明 - QingCloud 云平台块存储](../storage-configuration/#qingcloud-云平台块存储)。
+
+
+**vars.yml 配置存储示例：**
 
 ```yaml
-# Local volume provisioner deployment(Only all-in-one)
-local_volume_provisioner_enabled: false
-local_volume_provisioner_storage_class: local
-local_volume_is_default_class: false
+# Access key pair can be created in QingCloud console
+qingcloud_access_key_id: * Input your QingCloud key id *
+qingcloud_secret_access_key: * Input your QingCloud access key *
+# Zone should be the same as Kubernetes cluster
+qingcloud_zone: * Input your Zone ID (e.g. pek3a, gd2) *
+···
 
-# NFS-Server provisioner deployment
-nfs_server_enable: true
-nfs_server_is_default_class: true
-
+# QingCloud CSI
+qingcloud_csi_enabled: * true *
+qingcloud_csi_is_default_class: * true *
+qingcloud_type: 2
+qingcloud_maxSize: 5000
+qingcloud_minSize: 100
+qingcloud_stepSize: 50
+qingcloud_fsType: ext4
+qingcloud_disk_replica: 2
 ```
+
+> 说明：
+> - 网络、存储、GitLab、Harbor、负载均衡器插件等相关内容可在 `conf/vars.yml` 配置文件中修改或开启安装，其中网络的默认插件是 `Calico`。可按需修改相关配置项，未做修改将以默认参数执行；
+> - 支持存储类型：[QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/)，存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)；
+> - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此部署 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/vars.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
+
+
 
 ## 第三步: 安装 KubeSphere
 
-KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.12.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。KubeSphere 安装包将会自动安装一些依赖软件，如 Ansible (v2.4+)，Python-netaddr (v0.7.18+)，Jinja (v2.9+)。
+KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 Kubernetes 版本是 v1.13.5，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
 
 参考以下步骤开始 multi-node 部署。
 
 > 说明：由于 multi-node 的安装时间跟网络情况和带宽、机器配置、安装节点个数等因素都有关，此处暂不提供时间标准。
 
-**1.** 进入 `scripts` 目录：
+**1.** 进入安装目录，建议使用 root 用户执行 `install.sh` 安装脚本：
 
 ```bash
 $ cd scripts
-```
-
-**2.** 建议使用 root 用户安装，执行 `install.sh` 脚本：
-
-```bash
 $ ./install.sh
 ```
 
-**3.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若未配置请输入 "no"，返回目录继续配置存储并参考 [存储配置说明](../storage-configuration)。
+**2.** 输入数字 `2` 选择第二种 Multi-node 模式开始部署，安装程序会提示您是否已经配置过存储，若您已参考上述步骤配置了存储请输入 "yes" 开始安装。
 
 ```bash
 ################################################
@@ -156,15 +199,15 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-01-25
+https://kubesphere.io/               2018-07-08
 ################################################
 Please input an option: 2
 
 ```
 
-**4.** 测试 KubeSphere 集群部署是否成功：
+**3.** 验证 KubeSphere 集群部署是否成功：
 
-**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发，若公网 EIP 有防火墙，请在防火墙添加规则放行对应的端口 (比如 30880)，保证外网流量可以通过该端口，外部才能够访问。
+**(1)** 待安装脚本执行完后，当看到如下 `"Successful"` 界面，则说明 KubeSphere 安装成功。
 
 ```bash
 successsful!
@@ -174,7 +217,7 @@ successsful!
 
 Console: http://192.168.0.1:30880
 Account: admin
-Password: passw0rd
+Password: P@88w0rd
 
 NOTE：Please modify the default password after login.
 #####################################################
@@ -182,6 +225,20 @@ NOTE：Please modify the default password after login.
 
 > 提示：如需要再次查看以上的界面信息，可在安装包目录下执行 `cat kubesphere/kubesphere_running` 命令查看。
 
-**(2)** 安装成功后，浏览器访问对应的 url，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
+**(2)** 若需要在外网访问，在云平台需要在端口转发规则中将**内网端口** 30880 转发到**源端口** 30880，然后在防火墙开放这个**源端口**，确保外网流量可以通过该端口。
+
+例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+
+**(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$公网IP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，**登录后请立即修改默认密码**。参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 
 ![KubeSphere 控制台](/kubesphere-console.png)
+
+<font color=red>注意：登陆 Console 后请在 "集群状态" 查看服务组件的监控状态，待所有组件启动完成后即可开始使用，通常所有服务组件都将在 15 分钟内启动完成。</font>
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190519012928.png)
+
+## FAQ
+
+KubeSphere 已在阿里云、腾讯云、华为云、青云、AWS 上进行过部署测试，测试结果与相关的解决方法，请参考 [AE 2.0.2 云平台安装测试结果](https://github.com/kubesphere/ks-installer/issues/23)。另外，常见的安装问题我们也已整理相关的解决方法在 [安装常见问题](../../faq/faq-install)。
+
+若遇到其它的安装问题需要协助支持，请在 [GitHub](https://github.com/kubesphere/kubesphere/issues) 提交 Issue，我们会第一时间跟踪解决。

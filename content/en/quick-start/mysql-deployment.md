@@ -1,134 +1,122 @@
 ---
-title: "Deploy a MySQL Application" 
-keywords: ''
+title: "Deploying a MySQL Stateful Application" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-## Objective 
+## Objective
 
-In this tutorial we will create a StatefulSet as an example, demonstrating how to deploy MySQL as a stateful application to KubeSphere, which used the `Mysql:5.6` image as a backend database of the [Wordpress](https://wordpress.org/) website. The MySQL initial password for this example will be created and saved as [Secret](../../configuration/secrets). This example only describes the process without too much fields explanation. For a detailed explanation of parameters and fields, see [Secrets](../../configuration/secrets) and [StatefulSets](../../workload/statefulsets).
+Take the setting up of a Statefulset for an example. Here is a presentation of how to use the mirroring deployment, `mysql:5.6`, to set up a stateful MySQL app as the [Wordpress](https://wordpress.org/) website's backend. It will show you how to use Statefulset. The MySQL initial password for this example will be created and saved as [Secret](/docs/advanced-v2.0/zh-CN/configuration/secrets/). For presenting, here will only demonstrate processes. For relevant parameters and fields' detailed explanation, please refer to the [Secret](/docs/advanced-v2.0/zh-CN/configuration/secrets/) and [StatefulSets](/docs/advanced-v2.0/zh-CN/workload/statefulsets/)
 
 ## Prerequisites
 
-- You need to create a workspace and project, see the [Admin Quick Start](../admin-quick-start) if not yet.
-- You need to sign in with `project-regular` and enter into the corresponding project.
+- The workspace, projects and the general user account `project-regular` should be created. If not, please refer to [Quick Start Guide of Multi-tenant Management](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/)
+- Use `project-admin` to invite `project regular` to the project and grant it with the role of `operator`. Please refer to [Quick Start Guide of Multi-tenant Management-Inviting Members](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/)
 
 ## Estimated Time
 
-About 10 minutes.
+- About 10 minutes
 
-## Example
+## Hands-on Lab
 
-### Deploy a MySQL as StatefulSet
+## Deploy MySQL
 
-#### Step 1: Create a Secret
+### Step 1: Create the Password
 
-1.1. Enter the project, navigate to **Configuration Center → Secrets**, then click **Create**.
+MySQL's Enviromental variable `MYSQL_ROOT_PASSWORD`, namely the root user's password, is private informsation. It's inappropriate to show the password in steps. Therefore, here we use the password creation to replace the environmental variable. The created password will be keyed in as the environmental variable when setting up the MySQL container group.
 
-![Create a Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20190325213114.png)
+1.1. Log in KubeSphere as the `project-regular`. Select **Secret** in the **Configuration Center → Secrets**, then click **Create**.
 
-1.2. Fill in the basic information, e.g. `Name : mysql-secret`. Then choose **Next** when you're done. 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716180335.png#alt=)
 
-![基本信息](/demo1-create-secrets-basic-en.png)
+1.2. Fill in the password's basic information,then click **Next**.
 
-1.3. Data is composed of a set of key-value pairs, fill in with the following values and select **Create**.
+- Name: The environmenal variables in the MySQL container can have customized names, such as `mysql-secret`.
+- Nickname: Nickname can be a mix of characters for you to differenciate resources, such as `MySQL Secret`.
+- Information Description: Simply introduce the password, such as `MySQL Initial password`.
 
-- Type: Choose `Default`
-- key/value: `MYSQL_ROOT_PASSWORD` and `123456`
+1.3. Fill in the following information into the secret setting page. Then click **Create**.
 
-![Secret Setting](/mysql-secret-setting-en.png)
+- Type: Select `default`(Opaque).
+- Data: Fill in `MYSQL_ROOT_PASSWORD` and `123456`for the data key-value pair.
 
-#### Step 2: Create a StatefulSet
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716180525.png#alt=)
+
+### Step 2: Create a StatefulSet
 
 Navigate to **Workload → StatefulSets**, then click **Create StatefulSet**.
 
-![Create StatefulSet](https://pek3b.qingstor.com/kubesphere-docs/png/20190325213612.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716180714.png#alt=)
 
-#### Step 3: Basic Information
+### Step 3: Fill in Basic Information
 
-Fill in the basic information, e.g. `Name : wordpress-mysql` and `Alias : Mysql database`. Then choose **Next** when you're done. 
+Fill in the following information and then click **Next**.
 
-![Fill in the basic information](/mysql-quick-start-1-en.png)
+- Name:(Necessary) A simple name can help with user brpwsing and researching, such as `wordpress-mysql`.
+- Nickname: (Optional) Chinese can help with better resource differentiation, such as `MySQL Database`.
+- Information description: Simply introduce the workload for users' understanding.
 
-#### Step 4: Pod Template
+### Step 4: Container Group Template
 
-4.1. Click **Add Container**, Container Name can be customized by the user, fill in the image with `mysql:5.6` and set the Limit of Memory to `1024` Mi (i.e. 1 Gi), other blanks could be remained default values.
+4.1. Click **Add Container** to fill in the container group seeing. The name is customizable. Fill in the mirror with `mysql:5.6` (specific mirror edition number is needed). There is no limitation for CPU and storage. They will be used as the default reqest value when creating the project.
 
-![Add Container](https://pek3b.qingstor.com/kubesphere-docs/png/20190325213855.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716193052.png#alt=)
 
-Then choose **Advanced Options**.
+4.2 Set up the **Service Setting** and the **Environmental Variable**. Leave others unchanged. Then click **Save**.
 
-![添加容器](/demo1-step2-en.png)
+- Port: It can be named as Port. Select `TCP` protocol. Fill in `3306` at MySQL's container port.
+- Environmental Variables: Check the box and click **Reference Configuration Center**. Key in `MYSQL_ROOT_PASSWORD`for name and select the secret set in the first step `mysql-secret` and `MYSQL_ROOT_PASSWORD`.
 
-4.2. We'll simply set the **Ports** and **Environmental Variables** according to the following hints. 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716193727.png#alt=)
 
-![Ports Setting](https://pek3b.qingstor.com/kubesphere-docs/png/20190325214513.png)
+4.3. Click **Save** and then click **Next**.
 
-- Ports:
-   - Name: Port
-   - Protocol: TCP
-   - Port: 3306
-- Environmental Variables
-   - choose **Reference Config Center**
-   - then fill in the name with `MYSQL_ROOT_PASSWORD` 
-   - select resource: select `mysql-secret (MySQL password)` 
-   - select Key: `MYSQL_ROOT_PASSWORD`
+### Step 5: Add Storage Volume Template
 
-![Environmental Variables](https://pek3b.qingstor.com/kubesphere-docs/png/20190325214338.png)
-
-Then choose **Save** when you're done.
-
-4.3. For **Update Strategy** you can keep `RollingUpdate` which is a recommended strategy, and Partition remains `0`. Then click **Next**.
-
-#### Step 5: Volume Template
-
-Click **Add Volume Template**, then fill in the Volume Template with the following values:
-
-![Add Volume Template](https://pek3b.qingstor.com/kubesphere-docs/png/20190325214739.png)
+Complete the container group template then click **Next**. Lick **Add Storage Volume Template** in the template. Stateful data should be saved in persistent storage volume. Thus, you need to add storage volume to realize the data persistency. Please refer to the storage volume information as follows.
 
 - Volume Name: `mysql-pvc`
-- Description: MySQL persistent volume
-- Storage Class: e.g. local (Depends on your storage configuration)
-- Capacity: 10 Gi by default
-- Access Mode: ReadWriteOnce (RWO)
-- Mount Path: `/var/lib/mysql`
+- Storage Type: Select existing storage type, such as `Local`.
+- Capacity: Set `10 Gi` by default and set access mode as `ReadWriteOnce` by default.
+- Mount Path: Find the storage volume's mount path in the container. Select `Read and Write` and set pasth as `/var/lib/mysql`.
 
-![Volume Template](/mysql-quick-start-3-en.png)
+Click **Save** when you're done. Then click **Next**.
 
-Then choose **Save** and click **Next** when you're done
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716194134.png#alt=)
 
-#### Step 6: Service Configuration
+### Step 6. Service Configuration
 
-A Kubernetes Service is an abstraction which defines a logical set of Pods and a policy by which to access them - sometimes called a micro-service. 
+If you need to reveal the MySQL application to other applications and servers, you need to create the service. Complete the parameter setting by refering the picture below. Then click **Next**.
 
-Fill in the Service Config table with the following information:
+- Service Name: `mysql-service` (Attention: The Service Name will be associated with Wordpress so use this name when you add environmental variables.)
+- Conversation affinity: None by default
+- Ports: The name is customizable. Select TCP protocol. Fill `3306` for both of the MySQL service port and the target port. The first port the service port that needs to be exposed. The second port (target port) is the container port.
 
-- Service Name: `mysql-service` (The Service Name defined here will be associated with Wordpress)
-- Ports:
-   - name: nodeport
-   - protocol: TCP
-   - port: 3306
-   - target port: 3306
-
-![Service Configuration](/mysql-quick-start-4-en.png)
-
-#### Step 7: Label Settings
-
-Labels are key/value pairs that are attached to objects, such as pods. Labels are intended to be used to specify identifying attributes of objects. We simply keep the default label settings as `app: wordpress-mysql`.
-
-There is no need to set Node Selector in this demo, you can choose **Create** directly.
+> Note: If there is a requirement for conversation affinity, you can select "ClientIP" in the drop-down box or set the value of service.spec.sessionAffinity as "ClientIP" ("None" by default) in the code mode. This configuration can forward access request from the same IP address to the same rear end Pod.
 
 
-### View the MySQL Application
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716194331.png#alt=)
 
-You will be able to see the MySQL stateful application displays "updating" since this process requires a series of operations, such as pulling a Docker image, creating a container, and initializing the database. Normally, it will change to "running" at around 1 min.
+### Step 7: Tag Setting
 
-![MySQL Stateful Application](https://pek3b.qingstor.com/kubesphere-docs/png/20190325223311.png)
+Keep the tag as default setting `app: wordpress-mysql`. You can use the specific container group adjust the next node selector to the expected node. Do not set it for now. Click **Create**.
 
-Enter into the MySQL Stateful Application, you could find that details page includes Resource Status, Revision Control, Monitoring, Environmental Variables and Events.
+### Inspect the MySQL Application
 
-![View the MySQL Application](/mysql-quick-start-5-en.png)
+You can see the MySQL StatefulSet displays "updating" since this process requires a series of operations, such as pulling a Docker image creating a container, and initializing the database. It will show `ContainerCreating`.  Normally, it will change to "running" at around 1 min. Click this you can access to the StateSet page including the Resource Status, Version Control, Monitoring, Environmental Variable and Events.
 
-So far, MySQL Stateful Application has been created successfully, it will be served as the backend database of the WordPress website.
+**Resource Status**
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716195604.png#alt=)
+
+**Monitoring Data**
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716195732.png#alt=)
+
+**Events List**
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716200230.png#alt=)
+
+So far, MySQL Stateful application has been created successfully, it will be served as the backend database of the WordPress application.
 
 It's recommended to follow with [Quick Start - Wordpress Deployment Guide](../wordpress-deployment) to deploy the blog website, then you will be able to access the web service.

@@ -1,85 +1,73 @@
 ---
 title: "All-in-One Installation"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-For those who are new to KubeSphere Advanced Edition and looking for the fastest way to install and experience the dashboard, the all-in-one installation must be your best choice since it supports one-click installation. Just follow the steps below to get started.
+For those who are new to KubeSphere and looking for the fastest way to install and experience the dashboard, the all-in-one installation must be your best choice since it supports one-click installation. Just follow the steps below to get started.
 
-### Prerequisites
+## Preview Installation Demo
 
-- Please download [KubeSphere Advanced Edition 1.0.1](https://kubesphere.io/download/?type=advanced) to the target machine.
-- It is recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage servers. If you are not prepare the storage servers yet, you can also use [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) as the default storage only for testing.
+<asciinema-player src="/all-in-one.json" cols="99" rows="41"></asciinema-player>
 
-### Installation Demo
+## Step 1: Prepare the Host
 
-![installation demo](/all-in-one.svg)
+Prepare a host that meets the following requirements for all-in-one installation
 
-#### Step 1: Provision Linux Host
+**Notes:**
 
-The following section identifies the hardware specifications and system-level requirements of one host for installation. To get started with all-in-one mode, you may need to prepare only one host refer to the following specification. For `ubuntu 16.04` OS, it's recommended to select `16.04.5`.
+> - Suggest you to disable and stop the firewall, or you have to explicitly allow traffic through some specific ports in your host firewall, see [Port Requirements](../port-firewall).
+> - If you are using ubuntu 16.04, the lastest 16.04.5 is recommended.
+> - If you are using ubuntu 18.04, the root user is needed.
+> - If there is no sudo command in the Debian system, you need to execute the command of `apt update && apt install sudo` using root user before installation.
 
-##### Hardware Recommendations
+### Hardware Recommendations
 
-| System | Minimum Requirements |  Recommendations |
-| --- | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：100 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：100 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G  |
-| Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：100 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G  |
-| Debian Stretch 9.5 (64 bit) | CPU：4 Core <br/> Memory：8 G <br/> Disk Space：100 G | CPU：8 Core <br/> Memory：16 G <br/> Disk Space：Not less than 100 G  |
+| System | Minimum Requirements |
+| --- | --- |
+| CentOS 7.5 (64 bit) | CPU：8 Core,  Memory：16 G, Disk Space：100 G |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：8 Core,  Memory：16 G, Disk Space：100 G |
+| Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：8 Core,  Memory：16 G, Disk Space：100 G |
+| Debian Stretch 9.5 (64 bit) | CPU：8 Core,  Memory：16 G, Disk Space：100 G |
 
-####  Step 2: Provision Installation Files
 
-**1.**  Download [KubeSphere Installer](https://kubesphere.io/download/?type=advanced), suggest you to download the installer use command like `curl -O url` or `wget url` after you get download link. When you get the installer, execute following command to unzip it. 
+## Step 2: Download Installer
 
-```
-  $ tar -zxf kubesphere-all-advanced-1.0.1.tar.gz
-```
+Download `KubeSphere 2.0.2` and enter into the installation folder.
 
-**2.** Go into “`kubesphere-all-advanced-1.0.1`” folder
-
-```
-  $ cd kubesphere-all-advanced-1.0.1
+```bash
+$ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.tar.gz \
+&& tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/scripts
 ```
 
-####  Step 3: Get Started With Installation
+## Step 3: Install KubeSphere
 
-The environment and file monitoring, dependencies, Kubernetes (v1.12.3) and etcd, as well as the automated storage deployment, all of these procedures will be automatically processed in this installation. The installer will automatically install the relevant dependent softwares like Ansible (v2.4+)，Python-netaddr (v0.7.18+) and Jinja (v2.9+) as well.
+The following procedures will be automatically processed during the installation, which includes the monitoring of the environment and the file, the installation of the software infrastructure, automatic installation of Kubernetes and etcd, and the automatic  storage configuration. Kubernetes `v1.13.5` will be installed by default. 
 
-**Note:**
+**Tips:**
 
 > - Generally, you can install it directly without any modification.
-> - If you would like to customize the configuration parameters, such as network, storage classes, etc. You can specify the parameters in  `vars.yml`. Otherwise it will be executed with the default parameters.
-> - Network： Calico by default.
-> - All-in-One uses local volume as the storage class by default. Since local volume does not support dynamic provisioning, users need to create a persistent volume (PV) in advance when creating volumes in the KubeSphere console if PVs is insufficient, installer also pre-creates 10 available 10G PVs for testing.
-> - Supported Storage Classes：[QingCloud Block Storage](https://www.qingcloud.com/products/volume/)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local), see [Storage Configuration Instructions](../storage-configuration/).
-> - Since the default subnet for Cluster IPs is 10.233.0.0/18, default subnet for Pod IPs is 10.233.64.0/18 in Kubernetes cluster. The node IPs must not overlap with those 2 default IPs. If any conflicts happened with the IP address, go to `conf/vars.yaml` and modify `kube_service_addresses` or `kube_pods_subnet` to avoid this conflict.
+> - KubeSphere supports `calico` by default. If you would like to customize the installation parameters, such as network, storage, GitLab, Harbor or load balancer plugin, you need to specify or edit the parameters in `conf/vars.yml`. Please refer to the [Cluster Component Configuration Definition](../vars).
+> - All-in-One uses Local volume by default. Since local storage does not support dynamic allocation, the setting up of the persistent volume (PV) by manual is needed. Installer will set up 26 avalaible 10G PVs in advance. Once the storage is insufficient, manul setting is needed. Please reder to [Local Volume Instruction](/docs/advanced-v2.0/zh-CN/storage/local-volume/).
+> - Supported Storage Types：[QingCloud Block Storage](https://www.qingcloud.com/products/volume/)(The Hanging limit of QingCloud's Public cloud single node is 8.)、[QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[GlusterFS](https://www.gluster.org/)、[CephRBD](https://ceph.com/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local). For details regarding storage configuration, please refer to [Storage Configuration Instructions](/docs/advanced-v2.0/zh-CN/installation/storage-configuration/).
+> - Since the default subnet for Kubenetes' Cluster IPs is 10.233.0.0/18, Pod default subnet IP is 10.233.64.0/18. The node IPs for KubeSphere installation must not overlap with those 2 default IPs. If any conflicts happened, go to `conf/vars.yaml` to modify the parameters of the `kube_service_addresses` or the `kube_pods_subnet`.
 
 
-**Attention**
 
-Notice that if you choose to use the default Calico network plugin for installation on the cloud platform, and the host is running directly on the Base network, you need to add an ipip protocol for the source IP (IP/port collection) in firewall rules, for example in QingCloud platform adds firewall ipip protocol:
+**Attention:**
 
-![ipip 协议](/ipip-protocol-en.png)
+If you use KubeSphere defult network plugin, Calico, for insllation and the host is running in the underlying network, you need to add firewall IPIP protocal for the source IP (IP/port collection). For example, here is to show you how to add firewall IPIP protocol on QingCloud platform.
+
+> Tip: The installation duration is related to the network conditions, bandwidth, machine configuration and the number of nodes. Almost 25 minutes are needed under good network conditions.
 
 
-Following steps describes how to get started with all-in-one:
-
-> The installation duration is related to network conditions and bandwidth, machine configuration and the number of nodes. All-in-one mode installation was about 25 minutes after testing when the network was good condition with the minimum hardware requirements.
-
-**1.** Go into `scripts`:
-
-```
-$ cd scripts
-```
-
-**2.** It's recommended to install using `root` user, then execute `install.sh`:
+**1.** `Root` user is recommended for installation. Execute `install.sh`:
 
 ```
 $ ./install.sh
 ```
 
-**3.** Enter `1` to select `all-in-one` to start:
+**2.** Enter `1` to select `all-in-one` mode to start:
 
 ```bash
 ################################################
@@ -89,15 +77,14 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2018-12-08
+https://kubesphere.io/               2018-10-08
 ################################################
 Please input an option: 1
-
 ```
 
-**4.** Verify KubeSphere all-in-one installation：
+**3.** Verify if installed successfully：
 
-**(1).** If you can see the following "Successful" result after `install.sh` completed, that means KubuSphere installation is ready. You may need to bind the EIP and configure port forwarding. Make sure you have added the corresponding nodeport to the firewall (like 31236) if the EIP has a firewall, then external network traffic can pass through this nodeport.
+**(1).** If you can see "Successful" after excuting `install.sh`, that means KubeSphere has been installed successfully.
 
 ```bash
 successsful!
@@ -105,16 +92,27 @@ successsful!
 ###              Welcome to KubeSphere!           ###
 #####################################################
 
-Console: http://192.168.0.8:31236
+Console: http://192.168.0.8:30880
 Account: admin
-Password: passw0rd
+Password: P@88w0rd 
 
 NOTE：Please modify the default password after login.
 #####################################################
 ```
- 
-> Note: If you need to view the above interface , just execute `cat kubesphere/kubesphere_running` in the installer directory.
 
-**(2).** You will be able to log in to the KubeSphere console using default account and password, it's highly recommended to reference [Quick Start Guide](../../quick-start/quick-start-guide/).
+> Tip: If you need to view the above interface, just execute `cat kubesphere/kubesphere_running` command in the installer directory.
 
-![login](/login-page-en.png)
+
+**(2).** If you need external network access, you need to forward the internal port 30880 to the source port 30880 in the port forwarding rule on the cloud platform. Then open the source port on the firewall to ensure that external network traffic can go through  this nodeport.
+
+**(3).** After installation, visit according URL such as `http://{$IP}:30880`, you can access to KubeSphere login page. You can use default account and password to log in to the KubeSphere console. Please change the default password after logging in. Please refer to the [KubeSphere Quick Start](../../quick-start/admin-quick-start) to master KubeSphere.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017172215.png)
+
+> Attention: After logging into the console, please verify the service components' monitoring status in the "Cluster Status". Once all the components‘ startups have completed, the console can be used. Generally, all the service components complete their startup in 15 minutes.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017170937.png)
+
+## FAQ
+
+KubeSphere has run the deployment test on aliyun, tencent cloud, huawei cloud, Qingcloud and AWS. For test results and relevant solutions, please refer to [Multiple Cloud Platform Installation Testing Result](https://github.com/kubesphere/ks-installer/issues/23). Besides, we have arranged related solutions to common installation issues in the [Common Installation Issues](/docs/advanced-v2.0/zh-CN/faq/faq-install/). If you have other installation problems, please submit on [GitHub](https://github.com/kubesphere/kubesphere/issues). 

@@ -1,6 +1,6 @@
 ---
 title: "Release Notes For 1.0.0"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -26,7 +26,7 @@ KubeSphere 共提供社区版、易捷版以及高级版三个版本，其中社
  - 支持部署（Deployments）、有状态副本集（StatefulSets）、守护进程集（DaemonSets）、任务（Jobs）、定时任务（CronJob）多种工作负载
  - 支持 Pod 水平自动弹性伸缩（HPA，Horizonal Pod Autoscaler）  
  - 支持配额管理  
- - 支持密钥 (Secrets)、配置 (ConfigMaps) 管理  
+ - 支持密码、配置管理  
  - 支持镜像仓库管理  
  - 支持服务和应用路由  
  - 支持 Calico、Flannel 开源网络插件  

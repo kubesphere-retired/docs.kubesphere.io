@@ -1,6 +1,6 @@
 ---
 title: "设置自动触发扫描"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: "镜像仓库"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜像有特定的唯一标识 (即镜像名称：镜像 Tag)。例如：一个镜像可以包含一个完整的 Ubuntu 操作系统环境，里面仅安装了 Apache 或用户需要的其它应用程序。而镜像仓库是集中存放镜像文件的场所，镜像仓库用于存放 Docker 镜像。
+Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜像有特定的唯一标识 (镜像的 Registry 地址 + 镜像名称+镜像 Tag)。例如：一个镜像可以包含一个完整的 Ubuntu 操作系统环境，里面仅安装了 Apache 或用户需要的其它应用程序。而镜像仓库是集中存放镜像文件的场所，镜像仓库用于存放 Docker 镜像。
 
 ## 前提条件
 
@@ -14,7 +14,7 @@ Docker 镜像是一个只读的模板，可用于部署容器服务，每个镜�
 
 登录 KubeSphere 管理控制台，在已创建的项目中，左侧菜单栏中选择 **配置中心 → 密钥**，点击 **创建**。
 
-![镜像仓库](/image-registry-list.png) 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514094405.png)
 
 
 ### 添加 QingCloud 镜像仓库

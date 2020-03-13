@@ -1,28 +1,56 @@
 ---
-title: "Introduction"
-keywords: ''
-description: ''
+title: "What is KubeSphere"
+keywords: 'Kubernetes, docker, jenkins, devops, istio'
+description: 'What is KubeSphere'
 ---
 
-[KubeSphere](https://kubesphere.io) is an enterprise-grade multi-tenant container management platform that built on [Kubernetes](https://kubernetes.io). It provides an easy-to-use UI that enables creation of computing resources with one-click deployment, which reduces the learning curve and empowers the DevOps teams. It greatly reduces the complexity of the daily work of development, testing, operation and maintenance, aiming to alleviate the pain points of Kubernetes' storage, network, security and complexity, etc.
+[KubeSphere](https://kubesphere.io/en/) ️is an enterprise-grade multi-tenant container platform, which is based on [Kubernetes](http://kubernetes.io) and provides easy-to-use dashboard to reduce learning cost and make it easier to develop, test and maintain your daily work. It aims to resolve the challenge problems Kubernetes users have such as storage, network, security, usability and so on. 
 
-In addition, KubeSphere has integrated and optimized multiple functional modules for container scenarios to help enterprises easily cope with the bussiness scenarios, such as application management, service and network management, DevOps delivery, multi-tenant management, workload and node management, as well as the image registries management and storage management. 
+In addition, the platform has integrated and optimized a range of functional modules which are suitable for containers. KubeSphere provides enterprises with a complete solution for development, automation operation and maintenance, microservice governance, multi-tanency management. Besides, the platform provides the visual abilility to manage workload, Kubernetes cluster, service and network, application lifecycle management as well as image registry and storage.
 
+<table>
+  <tr>
+      <td width="50%" align="center"><b>KubeSphere Dashboard</b></td>
+      <td width="50%" align="center"><b>Project Resources</b></td>
+  </tr>
+  <tr>
+     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925003707.png"/></td>
+     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925003504.png"/></td>
+  </tr>
+  <tr>
+      <td width="50%" align="center"><b>CI/CD Pipeline</b></td>
+      <td width="50%" align="center"><b>Application Template</b></td>
+  </tr>
+  <tr>
+     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925000712.png"/></td>
+     <td><img src="https://pek3b.qingstor.com/kubesphere-docs/png/20190925231623.png"/></td>
+  </tr>
+</table>
 
-Compared to the KubeSphere Express Edition, Advanced Edition provides enterprise-ready containerized application management services, supports more powerful features and flexible configurations to meet the complex business demands of the enterprise. For example, it supports master and etcd high availability (HA), CI/CD pipelines visualization, multi-dimensional monitoring, multi-tenant management, LDAP integration, Horizontal Pod Autoscaler, container health check, and configuration management. It will also support microservice governance, Big data, AI and more complex business scenarios in the upcoming releases.
+## What's New in 2.0
 
+In contrast to the express edition, [KubeSphere 2.0](../../release/release-v200) provides richer services for application management, supports multiple functions and flexible configuration to meet the complex business requirements. It supports **master and etcd node HA, visualized CI/CD pipeline, multi-dimensional monitoring and logging, multi-tenancy management, LDAP integration**. Additionally, It adds the supports for **HPA (Horizontal Pod Autoscaler), container health check and configurations for Secrets and ConfigMaps** etc. 
 
-KubeSphere started as an open source project and all of KubeSphere members hope to make the project develop well with the help of the community. See source code and documentation on GitHub [KubeSphere](https://github.com/kubesphere).
+The newly added functions include microservice governance, grayscale release, S2I and code quality analysis, etc. What also deserves expecting is **multi-cluster management, big data, AI** and other more complex business scenarios in future releases.
 
-## Functional Architecture
+## Open Source
 
-As a high-reliability and enterprise-ready container management platform, KubeSphere Advanced Edition provides various functions which support workload deployment on production environment cluster. Its core functions can be summarized in the following functional architecture diagrams. The Advanced Edition's features are listed at [Product Features](../features). 
+KubeSphere has been developing by applying the open source approach since the very beginning. All the relevant source codes and documents are available on [GitHub](https://github.com/kubesphere/kubesphere). KubeSphere supports installing on **public cloud, private cloud, VM, BM, Kubernetes and any other infrastructures**. Besides, it supports online and offline installation, which has been tested on **AWS, Google Cloud and Kubernetes, Aliyun, Tencent cloud, Huawei cloud, QingCloud**.
 
-![功能架构图](/kubesphere-landscape-en.svg)
 
 ## Roadmap
 
-**Community Edition** => **Express Edition** => **Advanced Edition** 
+**Express Edition => KubeSphere 1.0.x => KubeSphere 2.0.x => KubeSphere 2.1.0 (Coming soon!)**
 
-![Roadmap](/roadmap-en.svg)
+> Note: All versions of KubeSphere are **100% open source** and free which has been providing services for a great scale of user community, and it has been widely installed and used in development testing and productions environments centered around Docker and Kubernetes. A large number of services are running smoothly in KubeSphere.
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190926000413.png)
+
+
+## Landscapes                        
+
+KubeSphere is a member of CNCF and a [Kubernetes Conformance Certified platform
+](https://www.cncf.io/certification/software-conformance/#logos), which enriches the [CNCF CLOUD NATIVE Landscape.
+](https://landscape.cncf.io/landscape=observability-and-analysis&license=apache-license-2-0)
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191011233719.png)

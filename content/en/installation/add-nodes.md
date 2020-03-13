@@ -1,6 +1,6 @@
 ---
-title: "Add New Nodes"
-keywords: ''
+title: "Add New Nodes and Cordon Node"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

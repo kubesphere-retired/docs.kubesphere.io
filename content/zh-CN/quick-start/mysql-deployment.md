@@ -1,17 +1,17 @@
 ---
-title: "示例一 - 部署 MySQL 有状态应用" 
-keywords: ''
+title: "部署 MySQL 有状态应用" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
 ## 目的
 
-本文以创建一个有状态副本集 (Statefulset) 为例，使用 `Mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端，演示如何创建使用 Statefulset。本示例的 MySQL 初始密码将以 [密钥 (Secret)](../../configuration/secrets) 的方式进行创建和保存。为方便演示，本示例仅说明流程，关于参数和字段的详细释义参见 [密钥](../../configuration/secrets) 和 [有状态副本集](../../workload/statefulsets)。
+本文以创建一个有状态副本集 (Statefulset) 为例，使用 `mysql:5.6` 镜像部署一个有状态的 MySQL 应用，作为 [Wordpress](https://wordpress.org/) 网站的后端，演示如何创建使用 Statefulset。本示例的 MySQL 初始密码将以 [密钥 (Secret)](../../configuration/secrets) 的方式进行创建和保存。为方便演示，本示例仅说明流程，关于参数和字段的详细释义参见 [密钥](../../configuration/secrets) 和 [有状态副本集](../../workload/statefulsets)。
 
 ## 前提条件
 
-- 已创建了企业空间和项目，若还未创建请参考 [管理员快速入门](../admin-quick-start)
-- 以上一篇文档创建的 `project-regular` 用户登录 KubeSphere，进入已创建的企业空间下的项目
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
 
 ## 预估时间
 
@@ -19,21 +19,23 @@ description: ''
 
 ## 操作示例
 
-### 示例视频
+<!-- ### 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
   <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo1-mysql.mp4">
-</video>
+</video> -->
 
 ### 部署 MySQL
 
 #### 第一步：创建密钥
 
+
+
 MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感信息，不适合以明文的方式表现在步骤中，因此以创建密钥的方式来代替该环境变量。创建的密钥将在创建 MySQL 的容器组设置时作为环境变量写入。
 
-1.1. 在当前项目下左侧菜单栏的 **配置中心** 选择 **密钥**，点击 **创建**。
+1.1. 以项目普通用户 `project-regular` 登录 KubeSphere，在当前项目下左侧菜单栏的 **配置中心** 选择 **密钥**，点击 **创建**。
 
-![创建密钥](/demo1-create-secrets.png)
+![创建密钥](https://pek3b.qingstor.com/kubesphere-docs/png/20190428135821.png)
 
 1.2. 填写密钥的基本信息，完成后点击 **下一步**。
 
@@ -68,36 +70,36 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 
 #### 第四步：容器组模板
 
-4.1. 点击 **添加容器**，填写容器组设置，名称可由用户自定义，镜像填写 `mysql:5.6`（应指定镜像版本号)，CPU 此处暂不作限定，将使用在创建项目时指定的默认请求值，内存的 `最大使用` 设置为 1024 Mi (即 1 Gi)。
+4.1. 点击 **添加容器**，填写容器组设置，名称可由用户自定义，镜像填写 `mysql:5.6`（应指定镜像版本号)，CPU 和内存此处暂不作限定，将使用在创建项目时指定的默认请求值。
 
-展开 **高级选项**。
+![添加容器组模板](https://pek3b.qingstor.com/kubesphere-docs/png/20190428140257.png)
 
-![添加容器](/demo1-step2.png)
+4.2. 对 **服务设置** 和 **环境变量** 进行设置，其它项暂不作设置，完成后点击 **保存**。
 
-4.2. 对 **端口** 和 **环境变量** 进行设置，其它项暂不作设置，完成后点击 **保存**。
+- 端口：名称可自定义如 port，选择 `TCP` 协议，填写 MySQL 在容器内的端口 `3306`。
+- 环境变量：勾选环境变量，点击 **引用配置中心**，名称填写 `MYSQL_ROOT_PASSWORD`，选择在第一步创建的密钥 `mysql-secret (MySQL 密钥)` 和 `MYSQL_ROOT_PASSWORD`
 
-- 端口：名称可自定义，选择 `TCP` 协议，填写 MySQL 在容器内的端口 `3306`。
-- 环境变量：点击 **引用配置中心**，名称填写 `MYSQL_ROOT_PASSWORD`，选择在第一步创建的密钥 `mysql-secret (MySQL 密钥)` 和 `MYSQL_ROOT_PASSWORD`
+![设置容器组模板](https://pek3b.qingstor.com/kubesphere-docs/png/20190428140749.png)
 
-![容器组模板](/mysql-quick-start-2.png)
-
-4.3. 更新策略保持默认的 **滚动更新**，Partition 默认为 0，点击 **下一步**。
+4.3. 点击 **保存**，然后点击 **下一步**。
 
 #### 第五步：添加存储卷模板
 
-容器组模板完成后点击 **下一步**，在存储卷模板中点击 **添加存储卷模板**。有状态应用的数据需要存储在持久化存储卷 (PVC) 中，因此需要添加存储卷来实现数据持久化。参考下图填写存储卷信息，完成后点击 **保存**。添加存储卷模板完成后，点击 **下一步**。
+容器组模板完成后点击 **下一步**，在存储卷模板中点击 **添加存储卷模板**。有状态应用的数据需要存储在持久化存储卷 (PVC) 中，因此需要添加存储卷来实现数据持久化。参考下图填写存储卷信息。
 
 - 存储卷名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，此处填写 `mysql-pvc`
-- 描述信息：简单介绍该存储卷，方便用户进一步了解，如 `MySQL 存储卷`
 - 存储类型：选择集群已有的存储类型，如 `Local`
-- 容量和访问模式：容量默认 `10 Gi`，访问模式选择 `ReadWriteOnce (单个节点读写)`
+- 容量和访问模式：容量默认 `10 Gi`，访问模式默认 `ReadWriteOnce (单个节点读写)`
 - 挂载路径：存储卷在容器内的挂载路径，选择 `读写`，路径填写 `/var/lib/mysql`
 
-![添加存储卷模板](/mysql-quick-start-3.png)
+
+完成后点击 **保存**，然后点击 **下一步**。
+
+![存储卷模板](https://pek3b.qingstor.com/kubesphere-docs/png/20190428140943.png)
 
 #### 第六步：服务配置
 
-一个 Kubernetes 的服务 (Service) 是一种抽象，它定义了一类 Pod 的逻辑集合和一个用于访问它们的策略 - 有的时候被称之为微服务。因此要将 MySQL 应用暴露给外部访问，需要创建服务，参考以下截图完成参数设置，完成后点击 **下一步**。
+要将 MySQL 应用暴露给其他应用或服务访问，需要创建服务，参考以下截图完成参数设置，完成后点击 **下一步**。
 
 - 服务名称：此处填写 `mysql-service`，注意，这里定义的服务名称将关联 Wordpress，因此在创建 Wordpress 添加环境变量时应填此服务名
 - 会话亲和性：默认 None
@@ -105,14 +107,11 @@ MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感
 
 > 说明: 若有实现基于客户端 IP 的会话亲和性的需求，可以在会话亲和性下拉框选择 "ClientIP" 或在代码模式将 service.spec.sessionAffinity 的值设置为 "ClientIP"（默认值为 "None"），该设置可将来自同一个 IP 地址的访问请求都转发到同一个后端 Pod。
 
-
 ![服务配置](/mysql-quick-start-4.png)
 
 #### 第七步：标签设置
 
-为方便识别此应用，我们标签设置为 `app: wordpress-mysql`。下一步的节点选择器可以指定容器组调度到期望运行的节点上，此处暂不作设置，直接点击 **创建**。
-
-![标签设置](/demo1-mysql-label.png)
+标签保留默认设置 `app: wordpress-mysql`。下一步的节点选择器可以指定容器组调度到期望运行的节点上，此处暂不作设置，直接点击 **创建**。
 
 ### 查看 MySQL 有状态应用
 

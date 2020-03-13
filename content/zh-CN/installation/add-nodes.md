@@ -1,6 +1,6 @@
 ---
 title: "集群节点扩容"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
