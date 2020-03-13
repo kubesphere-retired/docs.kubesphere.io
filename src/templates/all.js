@@ -1,4 +1,5 @@
 import React from 'react'
+import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
@@ -85,10 +86,7 @@ export default class MarkdownTemplate extends React.Component {
   render() {
     const { tableOfContents, site } = this.props.data
 
-    const version =
-      site.siteMetadata.versions.find(
-        version => version.value === tableOfContents.edges[0].node.version
-      ) || {}
+    const version = get(this, 'props.data.site.siteMetadata.versions[0]', {})
 
     return (
       <Layout data={this.props.data}>
@@ -127,7 +125,7 @@ export const pageQuery = graphql`
       title
     }
   }
-  query MarkdownByVersion($lang: String!, $version: String!) {
+  query MarkdownByVersion($lang: String!) {
     site {
       pathPrefix
       siteMetadata {
@@ -139,11 +137,10 @@ export const pageQuery = graphql`
       }
     }
     tableOfContents: allContentJson(
-      filter: { version: { eq: $version }, lang: { eq: $lang } }
+      filter: { lang: { eq: $lang } }
     ) {
       edges {
         node {
-          version
           lang
           chapters {
             entry {

@@ -4,16 +4,16 @@ import { withTranslation } from 'react-i18next'
 
 import { ReactComponent as LogoIcon } from '../assets/logo.svg'
 
-const Logo = ({ t, pageContext: { locale }, pathPrefix }) => (
+const Logo = ({ t, pageContext: { locale, defaultLocale }, pathPrefix }) => (
   <Wrapper>
     <a
-      href={`/${locale}`}
+      href="/"
       target="_blank"
       rel="noopener noreferrer"
     >
       <LogoIcon className="logo" />
     </a>
-    <a href={`${pathPrefix}/${locale}`}>
+    <a href={defaultLocale === locale ? `${pathPrefix}/` : `${pathPrefix}/${locale}`}>
       <p>{t('Documentation')}</p>
     </a>
   </Wrapper>

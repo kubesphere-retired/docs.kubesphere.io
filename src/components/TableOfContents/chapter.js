@@ -49,7 +49,7 @@ class LinkWithHeadings extends React.Component {
   }
 
   render() {
-    const { entry, tag, level, title } = this.props
+    const { entry, tag, level, title, defaultLocale } = this.props
     const { headings, fields, frontmatter } = entry.childMarkdownRemark
     const { open } = this.state
 
@@ -59,9 +59,11 @@ class LinkWithHeadings extends React.Component {
       heads = headings.filter(head => head.depth === 2)
     }
 
+    const url = fields.slug.replace(`/${defaultLocale}`, '')
+
     return (
       <div>
-        <Link to={fields.slug}>
+        <Link to={url}>
           <Title level={level} onClick={this.handleClick}>
             {heads.length > 0 ? (
               <Arrow className={classnames({ 'arrow-open': open })} />
@@ -76,7 +78,7 @@ class LinkWithHeadings extends React.Component {
           className={classnames('heads-toggle', { 'heads-open': open })}
         >
           {heads.length > 0 && (
-            <Headings heads={heads} prefix={fields.slug} level={level + 1} />
+            <Headings heads={heads} prefix={url} level={level + 1} />
           )}
         </HeadingsWrapper>
       </div>
@@ -100,11 +102,15 @@ const Headings = ({ heads, prefix, level }) => (
   </StyledList>
 )
 
-const Links = ({ entries, level }) => (
+const Links = ({ entries, level, defaultLocale }) => (
   <StyledList>
     {entries.map(({ entry }, key) => (
       <ListItem key={key}>
-        <LinkWithHeadings entry={entry} level={level} />
+        <LinkWithHeadings
+          entry={entry}
+          level={level}
+          defaultLocale={defaultLocale}
+        />
       </ListItem>
     ))}
   </StyledList>
@@ -160,7 +166,15 @@ class ChapterList extends React.Component {
   }
 
   render() {
-    const { chapters, entry, tag, entries, title, level = 0 } = this.props
+    const {
+      chapters,
+      entry,
+      tag,
+      entries,
+      title,
+      level = 0,
+      defaultLocale,
+    } = this.props
     const { open } = this.state
 
     return (
@@ -173,6 +187,7 @@ class ChapterList extends React.Component {
                 tag={tag}
                 level={level}
                 title={title}
+                defaultLocale={defaultLocale}
               />
             ) : (
               <Title level={level} onClick={this.handleClick}>
@@ -183,12 +198,23 @@ class ChapterList extends React.Component {
           </ListItem>
         )}
         <ListItem className={classnames('list-toggle', { 'list-open': open })}>
-          {entries && <Links entries={entries} level={level + 1} />}
+          {entries && (
+            <Links
+              entries={entries}
+              level={level + 1}
+              defaultLocale={defaultLocale}
+            />
+          )}
         </ListItem>
         <ListItem className={classnames('list-toggle', { 'list-open': open })}>
           {chapters &&
             chapters.map((chapter, index) => (
-              <ChapterList {...chapter} level={level + 1} key={`${index}`} />
+              <ChapterList
+                {...chapter}
+                level={level + 1}
+                key={`${index}`}
+                defaultLocale={defaultLocale}
+              />
             ))}
         </ListItem>
       </StyledList>

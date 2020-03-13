@@ -1,0 +1,120 @@
+{
+  "version": "express",
+  "lang": "zh-CN",
+  "chapters": [
+    {
+      "title": "简介",
+      "icon": "/product.svg",
+      "desc": "通过直观的视频资料与简单的介绍帮助您了解 Kubesphere",
+      "entry": "./zh-CN/basic.md"
+    },
+    {
+      "title": "安装指南",
+      "icon": "/install.svg",
+      "desc": "KubeSphere Installer 采用 Ansible 对部署目标机器及部署流程进行集中化管理配置",
+      "entry": "./zh-CN/KubeSphere-Installer-Guide.md"
+    },
+    {
+      "title": "快速入门",
+      "icon": "/access.svg",
+      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器平台的基本使用流程，带您快速上手 KubeSphere",
+      "entry": "./zh-CN/user-case.md"
+    },
+    {
+      "title": "用户指南",
+      "icon": "/reffer.svg",
+      "desc": "指导用户如何使用平台提供的基本功能",
+      "chapters": [
+        {
+          "title": "首页",
+          "entry": "./zh-CN/homepage.md"
+        },
+        {
+          "title": "应用负载",
+          "entries": [
+            {
+              "title": "部署",
+              "entry": "./zh-CN/manage-deployments.md"
+            },
+            {
+              "title": "有状态副本集",
+              "entry": "./zh-CN/manage-statefulsets.md"
+            },
+            {
+              "title": "守护进程集",
+              "entry": "./zh-CN/manage-daemonsets.md"
+            }
+          ]
+        },
+        {
+          "title": "服务与网络",
+          "entries": [
+            {
+              "title": "服务管理",
+              "entry": "./zh-CN/manage-services.md"
+            },
+            {
+              "title": "应用路由管理",
+              "entry": "./zh-CN/manage-routers.md"
+            }
+          ]
+        },
+        {
+          "title": "应用管理",
+          "entries": [
+            {
+              "title": "应用模板",
+              "entry": "./zh-CN/manage-applications.md"
+            },
+            {
+              "title": "应用仓库管理",
+              "entry": "./zh-CN/manage-repo.md"
+            }
+          ]
+        },
+        {
+          "title": "资源管理",
+          "entries": [
+            {
+              "title": "镜像仓库",
+              "entry": "./zh-CN/manage-imageregistries.md"
+            },
+            {
+              "title": "存储卷",
+              "entry": "./zh-CN/manage-storages.md"
+            },
+            {
+              "title": "存储类型",
+              "entry": "./zh-CN/manage-storageclasses.md"
+            },
+            {
+              "title": "主机管理",
+              "entry": "./zh-CN/manage-nodes.md"
+            }
+          ]
+        },
+        {
+          "title": "平台管理",
+          "entries": [
+            {
+              "title": "项目管理",
+              "entry": "./zh-CN/manage-projects.md"
+            },
+            {
+              "title": "角色管理",
+              "entry": "./zh-CN/manage-roles.md"
+            },
+            {
+              "title": "用户管理",
+              "entry": "./zh-CN/manage-users.md"
+            },
+            {
+              "title": "服务组件",
+              "entry": "./zh-CN/service-components.md"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

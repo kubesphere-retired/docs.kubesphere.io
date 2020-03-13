@@ -4,22 +4,15 @@ module.exports = {
     title: 'KubeSphere Documents',
     versions: [
       {
-        label: 'v2.1',
-        value: 'v2.1',
-      },
-      {
-        label: 'v2.0',
-        value: 'v2.0',
-      },
-      {
-        label: 'v1.0',
-        value: 'v1.0',
-      },
-      {
         label: 'Express',
         value: 'express',
       },
     ],
+    availableLocales: [
+      { name: '简体中文', value: 'zh-CN' },
+      { name: 'English', value: 'en' },
+    ],
+    defaultLocale: 'zh-CN',
     apiDocuments: [
       {
         version: 'v2.0',

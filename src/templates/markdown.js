@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
 import { graphql } from 'gatsby'
+import get from 'lodash/get'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
@@ -35,7 +36,8 @@ class MarkdownTemplate extends React.Component {
   }
 
   componentDidMount() {
-    const { lang, version } = this.props.pageContext
+    const { lang } = this.props.pageContext
+    const version = get(this, 'props.data.site.siteMetadata.versions[0].value')
 
     document.addEventListener('click', this.handleClick)
 
@@ -114,9 +116,14 @@ class MarkdownTemplate extends React.Component {
   }
 
   setLinkTargetBlank() {
+    const { defaultLocale } = this.props.pageContext
     const $links = document.querySelectorAll('.md-body a')
     Array.prototype.forEach.call($links, el => {
       el.setAttribute('target', '_blank')
+      const url = el.getAttribute('href')
+      if (url) {
+        el.setAttribute('href', url.replace(`/${defaultLocale}`, ''))
+      }
     })
   }
 
@@ -203,7 +210,7 @@ class MarkdownTemplate extends React.Component {
   }
 
   render() {
-    const { slug, lang } = this.props.pageContext
+    const { slug, lang, defaultLocale } = this.props.pageContext
     const postNode = this.props.data.postBySlug
     const pathPrefix = this.props.data.site.pathPrefix
 
@@ -266,6 +273,7 @@ class MarkdownTemplate extends React.Component {
                     chapters={
                       this.props.data.tableOfContents.edges[0].node.chapters
                     }
+                    defaultLocale={defaultLocale}
                   />
                   <ICP>KubeSphere®️ 2020 All Rights Reserved.</ICP>
                 </ToCContainer>
@@ -288,16 +296,6 @@ class MarkdownTemplate extends React.Component {
                     }}
                   >
                     <MarkdownTitle>{post.title}</MarkdownTitle>
-                    <MarkdownEditTip
-                      href={`https://github.com/kubesphere/docs.kubesphere.io/edit/master/content/${slug.slice(
-                        1,
-                        slug.length - 1
-                      )}.md`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {t('Edit')}
-                    </MarkdownEditTip>
                     <div
                       ref={ref => {
                         this.markdownRef = ref
@@ -466,18 +464,6 @@ const HeadingsWrapper = styled.div`
 
 const MarkdownTitle = styled.h1``
 
-const MarkdownEditTip = styled.a`
-  position: absolute;
-  top: 136px;
-  right: 20px;
-  transform: translateY(-50%);
-  font-size: 14px !important;
-
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`
-
 const FooterWrapper = styled.div`
   max-width: 1217px;
   padding: 0 30px;
@@ -505,7 +491,7 @@ export const pageQuery = graphql`
       title
     }
   }
-  query MarkdownBySlug($slug: String!, $lang: String!, $version: String!) {
+  query MarkdownBySlug($slug: String!, $lang: String!) {
     site {
       pathPrefix
       siteMetadata {
@@ -525,23 +511,19 @@ export const pageQuery = graphql`
         description
       }
       fields {
-        version
         language
       }
     }
-    languages: allMarkdownRemark(
-      filter: { fields: { version: { eq: $version } } }
-    ) {
+    languages: allMarkdownRemark {
       group(field: fields___language) {
         fieldValue
       }
     }
     tableOfContents: allContentJson(
-      filter: { version: { eq: $version }, lang: { eq: $lang } }
+      filter: { lang: { eq: $lang } }
     ) {
       edges {
         node {
-          version
           lang
           chapters {
             title
@@ -561,7 +543,6 @@ export const pageQuery = graphql`
             }
             chapters {
               title
-              tag
               entry {
                 id
                 childMarkdownRemark {
