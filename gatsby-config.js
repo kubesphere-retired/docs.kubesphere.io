@@ -1,15 +1,11 @@
 module.exports = {
-  pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/docs',
+  pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/docs/v1.0',
   siteMetadata: {
     title: 'KubeSphere Documents',
     versions: [
       {
         label: 'v1.0',
         value: 'v1.0',
-      },
-      {
-        label: 'Express',
-        value: 'express',
       },
     ],
     availableLocales: [

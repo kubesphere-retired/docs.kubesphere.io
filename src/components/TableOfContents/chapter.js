@@ -67,7 +67,7 @@ class ChapterList extends React.Component {
 
   getOpenState = (props, context) => {
     let open = false
-
+    const locale = props.defaultLocale
     let pathname = context.location.pathname
     if (!/\/$/.test(pathname)) {
       context.location.pathname = context.location.pathname + '/'
@@ -77,7 +77,9 @@ class ChapterList extends React.Component {
     if (props.entries) {
       const slugs = props.entries.map(({ entry }) => entry)
 
-      open = slugs.some(slug => pathname.indexOf(slug) !== -1)
+      open = slugs.some(
+        slug => pathname.indexOf(slug.replace(`/${locale}`, '')) !== -1
+      )
     } else if (props.chapters) {
       const slugs = []
       props.chapters.forEach(chapter => {
@@ -87,7 +89,9 @@ class ChapterList extends React.Component {
           slugs.push(...chapter.entries.map(({ entry }) => entry))
         }
       })
-      open = slugs.some(slug => pathname.indexOf(slug) !== -1)
+      open = slugs.some(
+        slug => pathname.indexOf(slug.replace(`/${locale}`, '')) !== -1
+      )
     }
 
     return open
