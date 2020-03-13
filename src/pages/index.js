@@ -5,11 +5,13 @@ import styled from 'styled-components'
 import Link from 'gatsby-link'
 import get from 'lodash/get'
 import 'react-tippy/dist/tippy.css'
+import { Tooltip } from 'react-tippy'
 
 import { getLanguage } from '../utils'
 
 import Layout from '../layouts'
 import Logo from '../components/Logo'
+import Select from '../components/Select'
 import Search from '../components/Search'
 import Language from '../components/Language'
 import WithI18next from '../components/WithI18next'
@@ -17,8 +19,13 @@ import WithI18next from '../components/WithI18next'
 import { ReactComponent as RoadMapIcon } from '../assets/icon-roadmap.svg'
 import { ReactComponent as ChatIcon } from '../assets/icon-chat.svg'
 import { ReactComponent as BugIcon } from '../assets/icon-bug.svg'
+import { ReactComponent as DownloadIcon } from '../assets/download.svg'
 
 class IndexPage extends React.Component {
+  state = {
+    selectVersion: this.props.data.site.siteMetadata.versions[0],
+  }
+
   componentDidMount() {
     const lang = getLanguage(this.props.pageContext.locale)
     const version = get(this, 'props.data.site.siteMetadata.versions[0].value')
@@ -48,7 +55,12 @@ class IndexPage extends React.Component {
     }
   }
 
+  handleVersionChange = value => {
+    this.setState({ selectVersion: value })
+  }
+
   render() {
+    const { selectVersion } = this.state
     const pathPrefix = this.props.data.site.pathPrefix
     const { locale } = this.props.pageContext
     if (!locale) {
@@ -70,7 +82,11 @@ class IndexPage extends React.Component {
       <Layout data={this.props.data}>
         <div>
           <Header {...this.props} pathPrefix={pathPrefix} />
-          <Content {...this.props} />
+          <Content
+            {...this.props}
+            selectVersion={selectVersion}
+            onVersionChange={this.handleVersionChange}
+          />
           <Footer {...this.props} />
         </div>
       </Layout>
@@ -119,7 +135,7 @@ const Documents = ({ tableOfContent, pathPrefix, defaultLocale }) => (
             <li key={index}>
               <h3>
                 {chapter.icon && (
-                  <img src={`${pathPrefix}${chapter.icon}`} alt="" />
+                  <img src={`${pathPrefix}${chapter.icon}`.replace(/\/\//g, '/')} alt="" />
                 )}
                 <Link to={getTitleLink(chapter, defaultLocale)}>
                   {chapter.title}
@@ -147,6 +163,58 @@ const Documents = ({ tableOfContent, pathPrefix, defaultLocale }) => (
   </DocumentWrapper>
 )
 
+const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
+  const handleDownload = current => {
+    const a = document.createElement('a')
+    a.target = '_blank'
+    a.download = `KubeSphere-${current.value}.pdf`
+    a.href = `${window.location.origin}${pathPrefix}/KubeSphere-${
+      current.value
+    }.pdf`
+    a.click()
+  }
+
+  return (
+    <VersionsWrapper>
+      <Wrapper>
+        <div className="version-text">
+          <div>
+            {t('The current document is available for')} KubeSphere{' '}
+            {current.label}
+          </div>
+          <p>
+            {t(
+              'The following provides the current version of the documentation, if you need other versions of the document please switch on the right.'
+            )}
+          </p>
+        </div>
+        <div className="version-select">
+          <Select
+            defaultValue={current}
+            options={versions}
+            onChange={onChange}
+          />
+          {!current.isDev && (
+            <Tooltip
+              style={{ marginLeft: 12 }}
+              title={`${t('Download')} ${current.label} ${t(
+                'offline document'
+              )}`}
+              position="top"
+              distance={16}
+              arrow
+            >
+              <Button onClick={() => handleDownload(current)}>
+                <DownloadIcon />
+              </Button>
+            </Tooltip>
+          )}
+        </div>
+      </Wrapper>
+    </VersionsWrapper>
+  )
+}
+
 const Content = props => {
   const { locale, defaultLocale } = props.pageContext
   const lang = getLanguage(locale)
@@ -155,6 +223,13 @@ const Content = props => {
   )
   return (
     <ContentWrapper>
+      <Versions
+        current={props.selectVersion}
+        versions={props.data.site.siteMetadata.versions}
+        onChange={props.onVersionChange}
+        pathPrefix={props.data.site.pathPrefix}
+        t={props.t}
+      />
       {tableOfContent && (
         <Documents
           tableOfContent={tableOfContent}
@@ -383,6 +458,77 @@ const DocumentWrapper = styled.div`
           color: #00aa72;
         }
       }
+    }
+  }
+`
+
+const VersionsWrapper = styled.div`
+  padding: 16px 0;
+  box-shadow: 0 1px 0 0 #d5dee7, 0 -1px 0 0 #d5dee7;
+  background-color: #ffffff;
+
+  @media only screen and (max-width: 768px) {
+    padding: 12px 0;
+    height: 62px;
+  }
+
+  .version-text {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+
+    div {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.75;
+      color: #303e5a;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 2;
+      letter-spacing: 0.4px;
+      color: #657d95;
+      margin-bottom: 0;
+    }
+  }
+
+  .version-select {
+    float: right;
+    margin-top: -42px;
+
+    @media only screen and (max-width: 768px) {
+      float: none;
+      margin-top: 0;
+      margin-right: 24px;
+      text-align: right;
+    }
+  }
+`
+
+const Button = styled.a`
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #1d2b3a;
+  padding: 8px;
+  cursor: pointer;
+
+  & > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+  }
+
+  &:active {
+    & > svg {
+      opacity: 0.5;
     }
   }
 `
