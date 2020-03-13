@@ -1,6 +1,6 @@
 ---
 title: "多租户管理概述"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -12,9 +12,9 @@ KubeSphere 多租户体系中，将资源划分为以下三个层级：
 - 企业空间
 - 项目和 DevOps 工程
 
-针对不同的层级的资源都可以灵活的定制角色用以划分用户的权限范围，实现不同用户之间的资源隔离。
+针对不同层级的资源都可以灵活地定制角色用以划分用户的权限范围，实现不同用户之间的资源隔离。
 
-![资源层级](/resource-hierarchy-zh.svg)
+![资源层级](/resource-hierarchy.svg)
 
 ## 权限管理模型
 
@@ -49,9 +49,9 @@ KubeSphere 多租户体系中，将资源划分为以下三个层级：
 
 项目和工程的创建者，可以通过邀请成员的方式将自己的项目共享给其他用户，赋予不同的成员不同的角色，在权限上加以区分。
 
-## IAM架构
+## IAM 架构
 
-![IAM架构](/api-design.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190627223641.png)
 
 
 ## 详细说明

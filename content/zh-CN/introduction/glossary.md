@@ -1,6 +1,6 @@
 ---
 title: "名词解释"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -24,3 +24,7 @@ description: ''
 |流水线|Pipeline，简单来说就是一套运行在 Jenkins 上的 CI/CD 工作流框架，将原来独立运行于单个或者多个节点的任务连接起来，实现单个任务难以完成的复杂流程编排和可视化的工作。|
 |企业空间|Workspace，是 KubeSphere 实现多租户模式的基础，是您管理项目、 DevOps 工程和企业成员的基本单位。
 主机|Node，Kubernetes 集群中的计算能力由 Node 提供，Kubernetes 集群中的 Node 是所有 Pod 运行所在的工作主机，可以是物理机也可以是虚拟机。详见 [Nodes](https://kubernetes.io/docs/concepts/architecture/nodes/)。|
+|s2i| Source to Image，通过代码构建新的容器镜像，表示从已有的代码仓库中获取代码，并通过 Source to Image 的方式构建镜像的方式来完成部署，每次构建镜像的过程将以任务 (Job) 的方式去完成。|
+|蓝绿部署| 提供了一种零宕机的部署方式，在保留旧版本的同时部署新版本，将两个版本同时在线，如果有问题可以快速处理|
+|金丝雀发布|将一部分真实流量引入一个新版本进行测试，测试新版本的性能和表现，在保证系统整体稳定运行的前提下，尽早发现新版本在实际环境上的问题。|
+|流量镜像| 流量镜像功能通常用于在生产环境进行测试，是将生产流量镜像拷贝到测试集群或者新的版本中，在引导用户的真实流量之前对新版本进行测试，旨在有效地降低新版本上线的风险。|

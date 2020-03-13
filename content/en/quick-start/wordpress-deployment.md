@@ -1,206 +1,123 @@
 ---
-title: "Deploy a WordPress Web Application" 
-keywords: ''
+title: "Deploying a WordPress Web Application" 
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-## Objective 
+## Objective
 
-In this tutorial we will create a Deployment as an example, demonstrating how to deploy [Wordpress](https://wordpress.org/) web application to KubeSphere, which is based on the last guide [Deploy a MySQL Application](../mysql-deployment). The connection password between WordPress and MySQL will be created and saved as a [ConfigMap](../../configuration/configmaps).
+In this tutorial we will create a Deployment as an example, demonstrating how to deploy [Wordpress](https://wordpress.org/) web application to KubeSphere, which is based on the last tutorial [Deploy a MySQL StatefulSet](mysql-statefulset.md). The password between WordPress and MySQL will be created and saved as a ConfigMap.
 
 ## Prerequisites
 
-- You need to create a MySQL StatefulSet, see the [Deploy a MySQL Application](../mysql-deployment) if not yet.
+- You need to create a MySQL StatefulSet, see the [Tutorial 3](mysql-statefulset.md) if not yet.
 - You need to sign in with `project-regular` and enter into the corresponding project.
 
-## Estimated Time
+##Estimated Time
 
 About 15 minutes.
 
-## Example
+## Hands-on Lab
 
-### Create a WordPress Deployment
+### Step 1: Create a ConfigMap
 
-#### Step 1: Create a ConfigMap
+The environment variable `WORDPRESS_DB_PASSWORD` is the password to connect the database in Wordpress. In this presentation, create a ConfigMap to replace the environment variable. A ConfigMap will be written as an environment variable when create Wordpress container group setting.
 
-1.1. Enter the project, navigate to **Configuration Center → ConfigMaps**, then choose **Create ConfigMap**.
+1.1. Login KubeSphere as `project-regular`. Enter `demo-project`, navigate to **Configuration Center → ConfigMaps**, then click **Create ConfigMap**.
 
-![Create a ConfigMap](https://pek3b.qingstor.com/kubesphere-docs/png/20190326092909.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716201555.png#alt=)
 
-1.2. Fill in the basic information, e.g. `Name : wordpress-configmap`. Then choose **Next** when you're done. 
+1.2. Fill in the basic information, e.g. `Name : wordpress-configmap`, then click **Next**
 
-![basic information](/demo2-configmap-basic-en.png)
+1.3. ConfigMap parameter is composed of a set of key-value pairs, fill in the blanks with the following values and click **Create** button when you've done.
 
-1.3. ConfigMap parameter is composed of a set of key-value pairs, fill in the blanks with the following values and select **Create**.
-
-- key: WORDPRESS\_DB\_PASSWORD
+- key: WORDPRESS_DB_PASSWORD
 - value: 123456
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716201840.png#alt=)
 
 #### Step 2: Create a Volume
 
-2.1. Navigate to **Volumes**, and click **Create**. Then fill in the basic information, e.g. `Name : wordpress-pvc`, choose **Next** when you're done.
+2.1. Navigate to **Volumes**, and click **Create**. Then fill in the basic information, e.g. `Name : wordpress-pvc`, click **Next** when you've done.
 
-![Create a Volume](/demo2-wordpress-pvc-basic-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716201942.png#alt=)
 
-2.2. Volume settings depends on your storage class configuration, local volume is set to the default storage class if used all-in-one installation, its volume settings as below screenshot:
+2.2. Leave the default values in Volume Settings, click **Next** and choose **Create**. You will be able to see the volume `wordpress-pvc` has been created successfully.
 
-![Volume settings](/demo2-pvc-setting-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716202259.png#alt=)
 
-2.3. We simply keep the default label settings as `app: wordpress-pvc`, then choose **Create**.
-
-2.4. when you redirect to the Volumes list, you will be able to see the volume `wordpress-pvc` has been created successfully.
-
-![创建存储卷](/wordpress-pvc-list-en.png)
-
-> Reminder: The volume will display `Pending` if it is not yet mounted, actually it is normal since local doesn't suppor [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). This volume will change to `Bound` when it is mounted to the workload.
+> Reminder: The volume will display `Pending` if it is not yet mounted, actually it's normal since local volume doesn't suppor [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). It will change to `Bound` when it has been mounted to the workload.
 
 
 #### Step 3: Create a Deployment
 
-Navigate to **Workloads → Deployments**, then click **Create**.
+3.1. Navigate to **Workloads → Deployments**, then click **Create** button.
 
-![Create a Deployment](https://pek3b.qingstor.com/kubesphere-docs/png/20190326100738.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716202607.png#alt=)
 
-#### Step 4: Basic Information
+3.2. Fill in the basic information, e.g. `Name : wordpress`, then choose **Next**.
 
-Fill in the basic information, e.g. `Name : wordpress`. Then choose **Next** when you're done. 
+3.3. Click **Add Container**, then fill in the table according to the following hints.
 
-![填写基本信息](/wordpress-basic-en.png)
+- Image: `wordpress:4.8-apache`
+- Container Name: wordpress
+- Service Settings:
 
+  - Name: port
+  - Protocol: TCP
+  - Port: 80
 
-#### Step 5: Pod Template
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716203151.png#alt=)
 
-5.1. Click **Add Container**, Container Name can be customized by the user, fill in the image with `wordpress:4.8-apache`, leave the CPU and Memory at their default values. Click **Advanced Options**.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716203427.png#alt=)
 
-![Add Container](/demo2-container-setting-en.png)
+3.4. Check the box for **Environmental Variable**, and fill in the blanks with follow values:
 
-5.2. We'll simply set the **Ports** and **Environmental Variables** according to the following hints. 
-
-![Ports](https://pek3b.qingstor.com/kubesphere-docs/png/20190326101543.png)
-
-- Ports:
-   - Name: Port
-   - Protocol: TCP
-   - Port: 80
 - Environmental Variables (It requires to create 2 environmental variables in this section)
-   - Choose **Reference Config Center**
-   - Fill in the name with `WORDPRESS_DB_PASSWORD` 
-   - Select resource: select `wordpress-configmap` 
-   - Select Key: `WORDPRESS_DB_PASSWORD`
-   
-Then select **Add Environmental Variable**, and fill in the name/value:
 
-- Name: WORDPRESS_DB_HOST
-- Value: mysql-service
+  - Click **Reference Config Center**
+  - Fill in the name with `WORDPRESS_DB_PASSWORD`
+  - Select resource: select `wordpress-configmap`
+  - Select Key: `WORDPRESS_DB_PASSWORD`
+  - Click **Add Environmental Variable**
+  - Name: `WORDPRESS_DB_HOST`
+  - Value: `mysql-service`
 
-Choose **Save** when you're done.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716203500.png#alt=)
 
-![Add Environmental Variable](https://pek3b.qingstor.com/kubesphere-docs/png/20190326101810.png)
+3.5. Other blanks could be remained default values, choose **Save → Next** when you've done.
 
-5.3. No need to modify the Replicas and Horizontal Pod Autoscaling, For **Update Strategy** you can keep `RollingUpdate` which is a recommended strategy. Then click **Next**.
+3.6. Choose **Add Existing Volume**, select the `wordpress-pvc` which was created in Step 2.
 
-#### Step 6: Volume Settings
+3.7. Select `ReadAndWrite` and set the Mount Path to `/var/www/html`. Then click **Save → Next → Create** when you've done. Now we've created the Wordpress Deployment succeessfully.
 
-6.1. Choose **Add Existing Volume**, select the `wordpress-pvc` which was created in Step 2.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716232832.png#alt=)
 
-6.2. Set the Mount Path to `/var/www/html` and select `ReadAndWrite`. Then click **Save** and select **Next** when you're done.
+#### Step 4: Create a Service
 
-![Volume Settings](/wordpress-pvc-path-en.png)
+4.1. Navigate to **Network & Service** → **Service**, then click **Create** button.
 
-#### Step 7: View the Deployment
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716204610.png#alt=)
 
-7.1. We simply keep the default label settings as `app: wordpress`. There is no need to set Node Selector in this demo, you can choose **Create** directly.
+4.2. Fill in the basic information, e.g. `Name : wordpress-service`, click **Next** and reference the following list to complete the Service Settings:
 
-7.2. You will be able to see the WordPress Deployment displays "updating" since this process requires a series of operations such as pulling a Docker image of the specified tag, creating a container, and connecting the MySQL database. Normally, it will change to "running" at around 1 min.
-
-![create-successfully](/demo-wordpress-create-successfully-en.png)
-
-
-#### Step 8: Create a Service
-
-8.1. Navigate to **Network & Service** → **Service**, choose **Create**.
-
-![Create a Service](/demo2-create-svc-en.png)
-
-8.2. Fill in the basic information, e.g. `Name : wordpress-service`. Then choose **Next** when you're done.
-
-![Fill in the basic information](https://pek3b.qingstor.com/kubesphere-docs/png/20190326102221.png)
-
-8.3. Reference the following information to complete the Service Settings:
-
-- Service Type: choose the first item (**Virtual IP: Access the service through the internal IP of the cluster**)
+- Service Type: choose the first item `Virtual IP: Access the service through the internal IP of the cluster`
 - Selector: Click **Specify Workload**, then select `wordpress` and click **Save**.
 - Ports:
-   - Name: nodeport
-   - Protocol: TCP
-   - Port: 80  
-   - Target port: 80
-- Session Affinity: None.
 
-![service-setting](/service-setting-en.png)
+  - Name: port
+  - Protocol: TCP
+  - Port: 80
+  - Target port: 80
 
-8.4. We simply keep the default label settings as `app: wordpress-service`, then choose **Next**.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716204854.png#alt=)
 
-8.5. We are going to expose this service via Route (Ingress), so leave the Access Method at `None`. Then click **Create**, the `wordpress-service` has been created successfully.
+4.3. Click **Next → Next** to skip the Label Settings. We are going to expose this service via NodePort, so choose `NodePort` and click **Create**, the `wordpress-service` has been created successfully. We got the NodePort `30204` from the Service list.
 
-![created successfully](/demo2-wordpress-service-list-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716205229.png#alt=)
 
+### Step 5: Access the WordPress Application
 
-#### Step 9: Create a Route
+At this point, WordPress is exposed to the outside by the Service, thus we can access this application in your browser via `{$Node IP}:{$NodePort}`, for example `http://192.168.0.88:30204` since we selected http protocol previously.
 
-9.1. Navigate to **Network & Service** → **Routes** and choose **Create Route**.
-
-![Create a Route](/demo2-create-ingress-en.png)
-
-9.2. Fill in the basic information, e.g. `Name: wordpress-ingress`, click **Next** when you're done.
-
-![Basic information](https://pek3b.qingstor.com/kubesphere-docs/png/20190326112814.png)
-
-9.3. Choose **Add Route Rule**, set the Route Rule according to the following hints:
-
-- Hostname：it can be customized by user, e.g. `wordpress.demo.io`, wordpress service will be accessed via this hostname.
-- Protocol：select `http` (if select https please create the related certificates in secrets)
-- Paths：
-   - Path: enter `/`
-   - Service: choose `wordpress-service`
-   - Port: enter `80`
-
-![Add Route Rule](/wordpress-ingress-setting-en.png)
-
-9.4. Add a line of record (**{$EIP} {$hostname}**) to the your local `hosts` file. For example, if the EIP of your KubeSphere is `139.198.16.160` and the hostname has been set to `wordpress.demo.io`, then we need to add a line of record to `/etc/hosts` as following:
-
-```bash
-139.198.16.160 wordpress.demo.io
-```
-
-9.5. Skip the [Annotation](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/), then keep the default label settings as `app: wordpress-ingress`. 
-
-9.6. Click **Create**, the `wordpress-ingress` will be created successfully.
-
-![Created successfully](/ingress-create-result-en.png)
-
-
-#### Step 10: Configure the Gateway
-
-10.1. Navigate to **Project-Settings → Internet Access**, then click **Set Gateway**.
-
-![Configure the Gateway](/demo2-gateway-en.png)
-
-10.2. Make sure the Access Method is set to `NodePort`, then choose **Save**.
-
-> Reminder: LoadBalancer is required Cloud provider's LB plugin integration and support, [QingCloud LoadBalancer plugin](https://github.com/yunify/qingcloud-cloud-controller-manager) is in development and will coming soon.
-
-10.3. It will generate 2 node ports, represent http and https respectively, e.g. 31499 and 32646.
-
-![Node ports](/gateway-nodeport-list-en.png)
-
-> Note: If you want to expose the service externally, you might need to bind the EIP and configure port forwarding. Then add the corresponding port (e.g. 31499) to the firewall rules to ensure that the external network traffic can pass through the port. In that case, external access will be available.
-
-### Access the WordPress service
-
-At this point, WordPress is exposed to the outside by the Ingress, thus we can access it in your browser via `{$hostname}:{$NodePort}` i.e. `http://wordpress.demo.io:30517` since we selected http protocol previously.
-
-![Access the WordPress service](https://pek3b.qingstor.com/kubesphere-docs/png/20190326131935.png)
-
-Hope you could be familiar with the basic features of Deployments and StatefulSets right now, see the [Deployments](../../workload/deployments) and [StatefulSets](../../workload/statefulsets) for the details.
-
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716205640.png#alt=)

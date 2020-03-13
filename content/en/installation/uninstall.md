@@ -1,6 +1,6 @@
 ---
 title: "Uninstalling KubeSphere"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

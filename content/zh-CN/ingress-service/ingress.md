@@ -1,13 +1,11 @@
 ---
 title: "应用路由"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-应用路由 (Ingress) 是用来聚合集群内服务的方式，对应的是 Kubernetes 的 Ingress 资源，后端使用了 Nginx Controller 来处理具体规则。Ingress 可以给 service 提供集群外部访问的 URL、负载均衡、SSL termination、HTTP 路由等。
+应用路由 (Ingress) 是用来聚合集群内服务的方式，对应的是 Kubernetes 的 Ingress 资源，后端使用了 Nginx Controller 来处理具体规则。Ingress 可以给 service 提供集群外部访问的 URL、负载均衡、SSL termination、HTTP 路由等。本文档说明创建应用路由时需要设置的规则和参数，建议同时参考 [应用路由与服务示例](../../quick-start/ingress-demo) 进行实际操作。
 
-![Ingress 示意图](/ingress-flow.svg)
- 
 ## 前提条件
 
 - 请确保已预先创建了 [服务](../services)，定义应用路由规则时需要选择后端的服务，Ingress 的流量被转发到它所匹配后端的服务。
@@ -16,6 +14,8 @@ description: ''
 ## 创建应用路由
 
 登录 KubeSphere 控制台，在所属的企业空间中选择已有 **项目** 或新建项目，访问左侧菜单栏，点击 **网络与服务 → 应用路由** 进入应用路由列表页。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514094134.png)
 
 创建应用路由支持两种方式，**页面创建** 和 **编辑模式**创建。若选择以编辑模式，可点击右上角编辑模式进入代码界面，支持 yaml 和 json 格式，可以方便习惯命令行操作的用户直接在页面上编辑 yaml 文件创建服务，以下主要介绍页面创建的方式。
 
@@ -27,7 +27,7 @@ description: ''
 - 别名：帮助您更好的区分资源，并支持中文名称。
 - 描述信息：详细介绍应用路由的特性，当用户想进一步了解该应用路由时，描述内容将变得尤为重要。
 
-![填写基本信息](/ae-ingress-basic.png)
+![](/ae-ingress-basic.png)
 
 ### 第二步：填写应用路由规则
 

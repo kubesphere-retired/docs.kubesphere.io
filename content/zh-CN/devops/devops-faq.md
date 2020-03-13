@@ -1,6 +1,6 @@
 ---
 title: "流水线常见问题" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -63,15 +63,87 @@ KubeSphere 拥有很多母语为中文的用户，但是 Jenkins 目前对中文
 
 5、镜像仓库替换需要修改 Jenkinsfile 的中 docker build、docker tag、docker push 命令的镜像名称，以及示例仓库中 `/deploy` 的 yaml 文件中的镜像地址，用户可以按照自己的情况进行镜像仓库地址的修改。
 
-## 内置 Maven agent 构建缓慢
 
-在默认情况下，我们将 Maven agent 的 JVM 设置为 32 位以降低构建所造成的内存消耗。
+## Jenkins 流水线质量门
 
-在 32 位的 JVM 当中，最大堆大小不能超过 2G ，对于一些大型项目来说会造成构建无法完成、构建缓慢等情况。
+Jenkins 流水线质量门需要在流水线中先执行代码质量分析，在执行代码质量分析时应该使用加载 SonarQube 配置中执行质量分析。
 
-可以在 Jenkinsfile 当中主动运行以下命令，将 agent 的 JVM 切换至 64 位：
-
-```shell
-$ alternatives --set java /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64/jre/bin/java
-$ alternatives --set javac /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-0.el7_5.x86_64/bin/javac
+对应的 `Jenkinsfile` 为：
+```Groovy
+withSonarQubeEnv('sonar') {
+  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ks-devops -Dsonar.sources=.  -Dsonar.login=$SONAR_TOKEN"
+}
 ```
+
+当执行完代码分析之后，用户就可以使用代码质量检查步骤来检查代码质量是否符合标准。对应的 `Jenkinsfile` 为：
+```Groovy
+waitForQualityGate abortPipeline: true
+```
+
+部分用户在使用 SonarQube 质量门时遇到下图所示问题：
+
+![no-previous-sonar-error](/no-previous-sonar.jpg)
+
+这是因为在 `Jenkinsfile` 当中 `waitForQualityGate` 的代码位置有误，`waitForQualityGate` 应该在 `withSonarQubeEnv` 代码块之外，正确的 `Jenkinsfile` 为：
+```Groovy
+withSonarQubeEnv('sonar') {
+  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=ks-devops -Dsonar.sources=.  -Dsonar.login=$SONAR_TOKEN"
+}
+waitForQualityGate abortPipeline: true
+```
+
+## Jenkins Kubernetes Deploy 所支持的资源类型与资源版本
+
+受限于目前的 Kubernetes Deploy 的插件实现，目前仅能支持特定 API 版本的特定资源。
+
+支持的资源列表如下表格所示：
+
+
+| 资源类型 | API 版本 |
+| --- | --- | 
+| ConfigMap | v1 |
+| Daemon Set | extensions/v1beta1 |
+| Deployment | extensions/v1beta1 |
+| Ingress | extensions/v1beta1 | 
+| Job | batch/v1 | 
+| Namespace | v1 | 
+| Pod | v1 | 
+| Secret | v1 | 
+| Service | v1 | 
+
+
+## 为各种不同语言的项目执行代码分析
+
+在流水线示例当中，我们使用 `mvn sonar:sonar` 为 Maven 管理的 Java 项目执行代码分析。
+
+现在我们介绍一下如何为其他语言的项目执行代码分析，在为其他语言的项目做分析时候，我们大都会使用 [SonarQube Scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner)作为执行分析命令的工具。
+
+### 流水线中一键安装并使用 SonarQube Scanner
+
+下面我就来介绍一下如何在流水线中获取并使用 `SonarQube Scanner`:
+
+在 KubeSphere 所提供的 Jenkins 当中可以使用 Jenkins `tool` 命令在不同的 Pipeline agent 上安装 SonarQube Scanner，如下面的Jenkinsfile所示：
+
+```Groovy
+    stage('sonarqube analysis'){
+      steps{
+        script {
+          scannerHome = tool 'sonar';  // 安装sonar工具，并且获取sonar工具路径
+        }
+        withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+            withSonarQubeEnv('sonar') {
+               sh "${scannerHome}/bin/sonar-scanner -Dsonar.branch=$BRANCH_NAME -Dsonar.projectKey=%{xxxx} -Dsonar.sources=.  -Dsonar.login=$SONAR_TOKEN"  // 执行 SonarQube Scanner 分析语句
+            }
+        }
+        timeout(time: 1, unit: 'HOURS') {
+          waitForQualityGate abortPipeline: true
+        }
+      }
+```
+
+### 各种语言的分析方式
+
+对于各种不同的语言，SonarQube 执行分析的配置不太相同，具体可以参考 [SonarQube 官方文档](https://docs.sonarqube.org/display/PLUG)。
+
+ 
+

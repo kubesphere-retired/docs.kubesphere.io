@@ -1,58 +1,70 @@
 ---
-title: "Create a Job to compute π to 2000 places"
-keywords: ''
+title: "Creating a Job to compute π to 2000 places"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
+In actual work, we often need to process and analyze data in batch and execute jobs according to the time. The container technology in KubeSphere can help you. To be more specific, you can use Job and CronJob to execute, which is easier to maintain the clean execution environent and reduce the mutual interface of different job tools. At the same time, the dynamic scaling can be escuted on the cluster according to job requirement and resource status.
+
+Job is responsible for batch jobs, namely it only excute the job once. The job has concurrent features and it can be abstracted to multiple Pods to run in parrallel. Such feature can ensure the successful completion of one or multiple Pods.
+
 ## Objective
 
-This tutorial describes the basic features of a Job by creating a parallel task to perform a simple calculation and outputting PI to 2000 decimal as an example.
+This tutorial describes the basic features of a Job by creating a parallel job to perform a simple calculation and outputting PI to 2000 decimal. The job's basic functions will be explained.
 
 ## Prerequisites
 
-- You need to create a workspace and project, see the [Admin Quick Start](../admin-quick-start) if not yet.
-- You need to sign in with `project-regular` and enter into the corresponding project.
+- You need to create a workspace, project and `project-regular` account, see the [Getting Started with Multi-tenant Management](../admin-quick-start.md) if not yet.
+- You need to sign in with `project-admin` account invite `project-regular` to enter into the corresponding project. Please refer to [Quick Start Guide of Multi-tenant Management-Inviting members](/docs/advanced-v2.0/zh-CN/quick-start/admin-quick-start/#%E9%82%80%E8%AF%B7%E6%88%90%E5%91%98)
 
 ## Estimated Time
 
-About 10 minutes.
+About 15 minutes.
 
-## Example
+## Hands-on Lab
 
 ### Create a Job
 
-Enter into the project, navigate to **Wordloads → Jobs**, then click **Create Job**.
+Login the KubeSphere console with `project-regular`  `demo-project`, navigate to **Wordloads → Jobs**, then click **Create Job**.
 
-![Create a Job](/demo3-create-job-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716210828.png#alt=)
 
-#### Step 1: Basic information
+#### Step 1: Fill in the basic information
 
-Fill in the basic information, e.g. `Name : job-demo`. Then choose **Next** when you're done. 
+Click **Create** and fill in the job's basic information. Then choose **Next**.
 
-![basic information](/demo3-job-basic-en.png)
+Here is the job's name and description.
 
-#### Step 2: Job Settings
+- Name: Use a simple name for browsing and searching.
+- Nickname: It can be any characters. Help you to distinguish resources.
+- Description: Simply descript the repository-application job. Give users further knowledge about this job.
 
-Fill the job settings with the following values of the screenshot.
+#### Step 2: Job Setting
 
-- Back Off Limit：set to 5 (default to 6); Maximum retry count before mark the build task as failed; 
-- Completions：set to 4 (default to 1); Expected number of completed build tasks;
-- Parallelism：set to 2 (default to 1); Expected maximum number of parallel build tasks;
-- Active Deadline Seconds：set to 200; The timeout of the running build tasks.
+Set the four configuration parameters of the Job Spec for the Job job type. Then click **Next**.
 
-![job-setting](/demo-job-setting-en.png)
+- Back Off Limit：Set to 5; Maximum retry count before mark the build job as failed;
+- Completions：Set to 4 (default to 1); Expected number of completed build jobs;
+- Parallelism：Set to 2 (default to 1); Expected maximum number of parallel build jobs;
+- Active Deadline Seconds：Set to 200; The timeout of the running build jobs. Once a Job reaches its value, all of its running Pods are terminated and the Job status will become "Failed".
 
-#### Step 3: Pod Template
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716211839.png#alt=)
+
+#### Step 3: Setting the Job Template
 
 Leave the [RestartPolicy](https://kubernetes.io/docs/concepts/workloads/Pods/pod-lifecycle/#restart-policy) as **Never**, then click **Add Container**.
 
-![Add Container](https://pek3b.qingstor.com/kubesphere-docs/png/20190326142614.png)
+> Note: When RestartPolicy shows that the job is uncomplete:
 
-Fill in the Pod Template, Container Name can be customized by the user, fill in the image with `perl`, other blanks could be remained default values.
 
-Choose **Advanced Options**.
+- Never: The job will create a new container group when the errors occur and it will not disappear.
+- OneFailure: The job will restart the container when the errors occur, instead of creating a new container group.
 
-Then click **Add Command**, add the following four lines of commands in sequence, that is, perform a simple calculation and outputting the Pi to 2000 decimal.
+Next Click **Add Container**; put in the container's name `pi` and the according image name `perl`. Set the CPU and storage by default.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716212138.png#alt=)
+
+Check the box of **Start Command**, add the following 4 lines of commands in sequence, that is, perform a simple calculation and outputting the Pi to 2000 decimal. Then choose **Next**.
 
 ```bash
 # Command
@@ -62,35 +74,29 @@ perl
 print bpi(2000)
 ```
 
-Then choose **Save** and click **Next** when you're done.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716212547.png#alt=)
 
-![Advanced Options](/job-demo-container-en.png) 
+#### Step 4: Tag Setting
 
+Skip the Volume Settings, then click **Next** to the tag setting. Tag is `app: job-demo`by default. No need to set node selector. Click **Create** to coplete the job. It can checked in the job list.
 
-#### Step 4: Label Settings
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716212734.png#alt=)
 
-Skip the Volume Settings and click **Next** to the **Label Settings**. We simply keep the default label settings as `app: job-demo`.
+## Verifying the Job Result
 
-Then choose **Create** when you're done, you will be able to see the job-demo has been created successfully which displays running.
+1. Enter into the `job-demo` and inspect the execution records, you can see it display "completed". There are 4 Pods completed, since the Completions was set to `4` in the Step 2.
 
-![Created successfully](/demo3-job-list-en.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716213402.png#alt=)
 
-### Verifying the Job
+2. In the **Resource Status**, you can check the created container group. Since the Parallelism was set as 2, there are 2 container groups set before the job. Then it continued to create 2 other container groups. Finally 4 Pods will be created at the end of the Job.
 
-1. Enter into the `job-demo` and view the execution records, we can see it displays "completed (4/4)" and there are four Pods completed running, since the `completions` are set to four in the Step 2.
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716213505.png#alt=)
 
-![Job execution record](/demo3-job-execution-record-en.png)
+3. Click one of the container groups, e.g. `job-demo-bh5bc` to check the containers inside.
 
-2. Switch to the **Resource Status**, we can easily find that there are 4 Pods generated by the `job-demo`. Since the **Parallelism** is set to 2, the Job will create 2 Pods in advance, then continue to create 2 Pods in parallel, finally 4 Pods will be created at the end of the Job.
-
-![job creation details](/demo3-job-creation-details-en.png)
-
-3. View one of the Pod, e.g. `job-demo-7vkcz`, then click `Container Logs` to view its container logs. 
-
-![job-details](/demo3-job-container-en.png)
-
-4. Then you will be able to see the container logs outputting page which display PI to 2000 decimal.
-
-![container-log](/demo3-container-log-en.png)
+4. In the **Resource Status** page, click **Container Log** to check outputting page which display PI to 2000 decimal. Besides, you can click **Terminal** on the lef to excute the command inside of the container.
 
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716213657.png#alt=)
+
+For now, you have learned Job's basic functions. For further details, please refer to [Job](/docs/advanced-v2.0/zh-CN/workload/jobs/)

@@ -1,5 +1,5 @@
 {
-  "version": "v1.0",
+  "version": "v2.0",
   "lang": "en",
   "chapters": [
     {
@@ -8,18 +8,22 @@
       "desc": "Introduce the new features, capabilities and updates for the releases",
       "chapters": [
         {
-          "title": "Release Notes - 1.0.1",
-          "entry": "/en/release/release-v101",
+          "title": "Release Notes - 2.0.2",
+          "entry": "/en/release/release-v202",
           "tag": "Latest"
         },
         {
-          "title": "Release Notes - 1.0.0",
-          "entry": "/en/release/release-v100"
+          "title": "Release Notes - 2.0.1",
+          "entry": "/en/release/release-v201"
+        },
+        {
+          "title": "Release Notes - 2.0.0",
+          "entry": "/en/release/release-v200"
         }
       ]
     },
     {
-      "title": "Overview",
+      "title": "Introduction",
       "icon": "/product.svg",
       "desc": "Help you to better understand KubeSphere with detailed graphics and contents",
       "chapters": [
@@ -30,6 +34,10 @@
         {
           "title": "Features",
           "entry": "/en/introduction/features"
+        },
+        {
+          "title": "Architecture",
+          "entry": "/en/introduction/architecture"
         },
         {
           "title": "Advantages",
@@ -43,58 +51,107 @@
     },
     {
       "title": "Installation",
-      "icon": "/install.svg",
+      "icon": "/admin_reffer.svg",
       "desc": "Reference the installation guide to download and install KubeSphere",
       "chapters": [
         {
-          "title": "Instruction",
-          "entry": "/en/installation/intro"
+          "title": "Intruction",
+          "entries": [
+            {
+              "title": "Intro",
+              "entry": "/en/installation/intro"
+            },
+            {
+              "title": "Port Requirements",
+              "entry": "/en/installation/port-firewall"
+            }
+          ]
         },
         {
-          "title": "All-in-One Installation",
-          "entry": "/en/installation/all-in-one"
+          "title": "Install on Linux",
+          "entries": [
+            {
+              "title": "All-in-One Installation",
+              "entry": "/en/installation/all-in-one"
+            },
+            {
+              "title": "Multi-Node Installation",
+              "entry": "/en/installation/multi-node"
+            },
+            {
+              "title": "Installing HA Master and Etcd Cluster",
+              "entry": "/en/installation/master-etcd-ha"
+            },
+            {
+              "title": "Storage Configuration Instruction",
+              "entry": "/en/installation/storage-configuration"
+            }
+          ]
         },
         {
-          "title": "Multi-Node Installation",
-          "entry": "/en/installation/multi-node"
+          "title": "Install on Kubernetes",
+          "entries": [
+            {
+              "title": "Prerequisites",
+              "entry": "/en/installation/prerequisites"
+            },
+            {
+              "title": "Online Installation",
+              "entry": "/en/installation/install-on-k8s"
+            },
+            {
+              "title": "Offline Installation",
+              "entry": "/en/installation/install-ks-offline"
+            }
+          ]
         },
         {
-          "title": "Highly Available Master and Etcd",
-          "entry": "/en/installation/master-etcd-ha"
+          "title": "Related Tools",
+          "entries": [
+            {
+              "title": "Integrating Harbor Registry",
+              "entry": "/en/installation/harbor-installation"
+            }
+          ]
         },
         {
-          "title": "Storage Configuration Instruction",
-          "entry": "/en/installation/storage-configuration"
-        },
-        {
-          "title": "Integrating Harbor Registry",
-          "entry": "/en/installation/harbor-installation"
-        },
-        {
-          "title": "Adding New Nodes",
-          "entry": "/en/installation/add-nodes"
-        },
-        {
-          "title": "Uninstalling KubeSphere",
-          "entry": "/en/installation/uninstall"
+          "title": "Cluster Operation",
+          "entries": [
+            {
+              "title": "Adding New Nodes",
+              "entry": "/en/installation/add-nodes"
+            },
+            {
+              "title": "High Risk Operation",
+              "entry": "/en/installation/high-risk"
+            },
+            {
+              "title": "Uninstalling KubeSphere",
+              "entry": "/en/installation/uninstall"
+            }
+          ]
         }
       ]
     },
     {
       "title": "Quick Start",
       "icon": "/access.svg",
-      "desc": "Get a quick overview of the basic features of KubeSphere with 7 quick-start examples to walk you through the process, help you to get familiar with it.",
+      "desc": "Get a quick overview of the basic features of KubeSphere with 13 quick-start examples to walk you through the process, help you to get familiar with it.",
       "chapters": [
         {
-          "title": "Admin Quick Start",
+          "title": "Getting Started with Multitenancy",
           "entry": "/en/quick-start/admin-quick-start"
+        },
+        {
+          "title": "Exposing your APP using Ingress",
+          "entry": "/en/quick-start/ingress-demo"
         },
         {
           "title": "Deploying a MySQL Application",
           "entry": "/en/quick-start/mysql-deployment"
         },
         {
-          "title": "Deploying a Wordpress",
+          "title": "Deploying a Wordpress Website",
           "entry": "/en/quick-start/wordpress-deployment"
         },
         {
@@ -102,7 +159,7 @@
           "entry": "/en/quick-start/job-quick-start"
         },
         {
-          "title": "One-click deployment of Applications",
+          "title": "Deploying Grafana using APP Template",
           "entry": "/en/quick-start/one-click-deploy"
         },
         {
@@ -110,12 +167,28 @@
           "entry": "/en/quick-start/hpa"
         },
         {
-          "title": "CI/CD Pipeline Based on Jenkinsfile",
-          "entry": "/en/quick-start/jenkinsfile-in-scm"
+          "title": "S2i: Publish your app without Dockerfile",
+          "entry": "/en/quick-start/source-to-image"
         },
         {
-          "title": "CI/CD Pipeline In a Visual Way",
+          "title": "Canary Release of Microservice APP",
+          "entry": "/en/quick-start/canary-release"
+        },
+        {
+          "title": "CI/CD based on Spring Boot Project",
+          "entry": "/en/quick-start/devops-online"
+        },
+        {
+          "title": "Building a Pipeline in a Graphical Panel",
           "entry": "/en/quick-start/jenkinsfile-out-of-scm"
+        },
+        {
+          "title": "CI/CD based on GitLab and Harbor",
+          "entry": "/en/quick-start/pipeline-git-harbor"
+        },
+        {
+          "title": "Ingress-Nginx for Grayscale Release",
+          "entry": "/en/quick-start/ingress-canary"
         }
       ]
     },
@@ -308,6 +381,36 @@
               "entry": "/en/devops/jenkins-agent"
             }
           ]
+        }
+      ]
+    },
+    {
+      "title": "Development Guide",
+      "icon": "/problem.svg",
+      "desc": "Instruction of development workflow, including build, test and development",
+      "chapters": [
+        {
+          "title": "Preparing the Development Environment",
+          "entry": "/en/developer/development-guide"
+        },
+        {
+          "title": "Development Workflow",
+          "entry": "/en/developer/workflow"
+        }
+      ]
+    },
+    {
+      "title": "API Documentation",
+      "icon": "/problem.svg",
+      "desc": "Introduction to KubeSphere API",
+      "chapters": [
+        {
+          "title": "API Guide",
+          "entry": "/en/api-reference/api-docs"
+        },
+        {
+          "title": "How to invoke KubeSphere API",
+          "entry": "/en/api-reference/api-guide"
         }
       ]
     }

@@ -1,17 +1,16 @@
 ---
 title: "Storage Configuration Instruction"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
 Currently, Installer supports the following types of storage as storage servers, providing persistent storage service for KubeSphere (more storage classes are continuously updated).
 
-- QingCloud Block Storage
-- QingStor NeonSAN
 - Ceph RBD
 - GlusterFS
 - NFS
-- NFS in Kubernetes (Multi-node installation test only)
+- QingCloud Block Storage
+- QingStor NeonSAN
 - Local Volume (All-in-One installation test only)
 
 At the same time, Installer integrates the [QingCloud-CSI (Block Storage Plugin)](https://github.com/yunify/qingcloud-csi/blob/master/README.md) and the [QingStor NeonSAN CSI Plugin](https://github.com/wnxn/qingstor-csi/blob/master/docs/install_in_k8s_v1.12.md). It can be connected to the QingCloud block storage or QingStor NeonSAN as a storage, just need simple configuration before installation. 
@@ -42,40 +41,6 @@ The following is a brief description of the parameter configuration related to `
 
 > Note: By default, Local Volume is configured as the default storage class of the cluster in `vars.yml`. If you are going to configure other storage class as the default class, firstly you have to modify the related configuration of Local to **false**, and then modify the configuration of the corresponding storage according to your storage server before start installation. 
 
-### QingCloud Block Storage
-
-KubeSphere supports QingCloud Block Storage as the platform storage service. If you would like to experience dynamic provisioning to create volumes, it's recommended to use [QingCloud Block Storage](https://docs.qingcloud.com/product/Storage/volume/), KubeSphere integrated [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md), which supports you to use the different performance of block storage in QingCloud platform.
-
-After plugin installation completes, user can create volumes based on several types of disk, such as super high performance disk, high performance disk and high capacity disk, with ReadWriteOnce access mode and mount volumes on workloads.
-
-The parameters for configuring the QingCloud-CSI plugin are described below.
-
-|**QingCloud-CSI** | **Description**|
-| --- | ---|
-| qingcloud\_csi\_enabled|Determines whether to use QingCloud-CSI as the persistent storage volume, can be set to true or false. Defaults to false |
-| qingcloud\_csi\_is\_default\_class| Determines whether to set QingCloud-CSI as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default. |
-qingcloud\_access\_key\_id , <br> qingcloud\_secret\_access\_key| Get from [QingCloud Cloud Platform Console](https://console.qingcloud.com/login) |
-|qingcloud\_zone| zone should be the same as the zone where the Kubernetes cluster is installed, and the CSI plugin will operate on the storage volumes for this zone. For example: zone can be set to these values, such as sh1a (Shanghai 1-A), sh1b (Shanghai 1-B), pek2 (Beijing 2), pek3a (Beijing 3-A), pek3b (Beijing 3-B), pek3c (Beijing 3-C), gd1 (Guangdong 1), gd2a (Guangdong 2-A), ap1 (Asia Pacific 1), ap2a (Asia Pacific 2-A) |
-| type | The type of volume in QingCloud IaaS platform. In QingCloud public cloud platform, 0 represents high performance volume. 3 respresents super high performance volume. 1 or 2 represents high capacity volume depending on cluster‘s zone, see [QingCloud Documentation](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
-| maxSize, minSize | Limit the range of volume size in GiB|
-| stepSize | Set the increment of volumes size in GiB|
-| fsType | The file system of the storage volume, which supports ext3, ext4, xfs. The default is ext4|
-
-### QingStor NeonSAN
-
-The NeonSAN-CSI plugin supports the enterprise-level distributed storage [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) as the platform storage service. If you have prepared the NeonSAN server, you will be able to configure the NeonSAN-CSI plugin to connect to its storage server in `conf/vars.yml`, see [NeonSAN-CSI Reference](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
-
-| **NeonSAN** | **Description** |
-| --- | --- |
-| neonsan\_csi\_enabled | Determines whether to use NeonSAN as the persistent storage, can be set to true or false. Defaults to false |
-| neonsan\_csi\_is\_default\_class | Determines whether to set NeonSAN-CSI as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default.|
-Neonsan\_csi\_protocol | tranportation protocol, user must set the option, such as TCP or RDMA|
-| neonsan\_server\_address | NeonSAN server address |
-| neonsan\_cluster\_name| NeonSAN server cluster name|
-| neonsan\_server\_pool|A comma separated list of pools. Tell plugin to manager these pools. User must set the option, the default value is kube|
-| neonsan\_server\_replicas|NeonSAN image replica count. Default: 1|
-| neonsan\_server\_stepSize|set the increment of volumes size in GiB. Default: 1|
-| neonsan\_server\_fsType|The file system to use for the volume. Default: ext4|
 
 ### Ceph RBD
 
@@ -143,16 +108,41 @@ An NFS volume allows an existing NFS (Network File System) share to be mounted i
 | nfs\_server | The NFS server address, either IP or Hostname |
 | nfs\_path | NFS shared directory, which is the file directory shared on the server, see [Kubernetes Documentation](https://kubernetes.io/docs/concepts/storage/volumes/#nfs) |
 
-### NFS in Kubernetes（Multi-node installation test only）
 
-This kind of storage will install the [Containerized NFS server](https://github.com/helm/charts/tree/master/stable/nfs-server-provisioner) in the Kubernetes cluster, which is an out-of-tree dynamic provisioner for Kubernetes, requiring the Kubernetes node to have enough disk space. The definition of the `conf/vars.yml` is as following table. 
+### QingCloud Block Storage
 
-> Note: If you have a pre-existing NFS Server, please consider using the NFS as above instead.
+KubeSphere supports QingCloud Block Storage as the platform storage service. If you would like to experience dynamic provisioning to create volumes, it's recommended to use [QingCloud Block Storage](https://docs.qingcloud.com/product/Storage/volume/), KubeSphere integrated [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md), which supports you to use the different performance of block storage in QingCloud platform.
 
-| **NFS** | **Description** |
+After plugin installation completes, user can create volumes based on several types of disk, such as super high performance disk, high performance disk and high capacity disk, with ReadWriteOnce access mode and mount volumes on workloads.
+
+The parameters for configuring the QingCloud-CSI plugin are described below.
+
+|**QingCloud-CSI** | **Description**|
+| --- | ---|
+| qingcloud\_csi\_enabled|Determines whether to use QingCloud-CSI as the persistent storage volume, can be set to true or false. Defaults to false |
+| qingcloud\_csi\_is\_default\_class| Determines whether to set QingCloud-CSI as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default. |
+qingcloud\_access\_key\_id , <br> qingcloud\_secret\_access\_key| Get from [QingCloud Cloud Platform Console](https://console.qingcloud.com/login) |
+|qingcloud\_zone| zone should be the same as the zone where the Kubernetes cluster is installed, and the CSI plugin will operate on the storage volumes for this zone. For example: zone can be set to these values, such as sh1a (Shanghai 1-A), sh1b (Shanghai 1-B), pek2 (Beijing 2), pek3a (Beijing 3-A), pek3b (Beijing 3-B), pek3c (Beijing 3-C), gd1 (Guangdong 1), gd2a (Guangdong 2-A), ap1 (Asia Pacific 1), ap2a (Asia Pacific 2-A) |
+| type | The type of volume in QingCloud IaaS platform. In QingCloud public cloud platform, 0 represents high performance volume. 3 respresents super high performance volume. 1 or 2 represents high capacity volume depending on cluster‘s zone, see [QingCloud Documentation](https://docs.qingcloud.com/product/api/action/volume/create_volumes.html)|
+| maxSize, minSize | Limit the range of volume size in GiB|
+| stepSize | Set the increment of volumes size in GiB|
+| fsType | The file system of the storage volume, which supports ext3, ext4, xfs. The default is ext4|
+
+### QingStor NeonSAN
+
+The NeonSAN-CSI plugin supports the enterprise-level distributed storage [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) as the platform storage service. If you have prepared the NeonSAN server, you will be able to configure the NeonSAN-CSI plugin to connect to its storage server in `conf/vars.yml`, see [NeonSAN-CSI Reference](https://github.com/wnxn/qingstor-csi/blob/master/docs/reference_zh.md#storageclass-%E5%8F%82%E6%95%B0)。
+
+| **NeonSAN** | **Description** |
 | --- | --- |
-| nfs\_server\_enable | Determines whether to use NFS in Kubernetes as the persistent storage, can be set to true or false. Defaults to false | 
-|nfs\_server\_is\_default\_class | Determines whether to set NFS in Kubernetes as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default |
+| neonsan\_csi\_enabled | Determines whether to use NeonSAN as the persistent storage, can be set to true or false. Defaults to false |
+| neonsan\_csi\_is\_default\_class | Determines whether to set NeonSAN-CSI as default storage class, can be set to true or false. Defaults to false. <br/> Note: When there are multiple storage classes in the system, only one can be set as the default.|
+Neonsan\_csi\_protocol | tranportation protocol, user must set the option, such as TCP or RDMA|
+| neonsan\_server\_address | NeonSAN server address |
+| neonsan\_cluster\_name| NeonSAN server cluster name|
+| neonsan\_server\_pool|A comma separated list of pools. Tell plugin to manager these pools. User must set the option, the default value is kube|
+| neonsan\_server\_replicas|NeonSAN image replica count. Default: 1|
+| neonsan\_server\_stepSize|set the increment of volumes size in GiB. Default: 1|
+| neonsan\_server\_fsType|The file system to use for the volume. Default: ext4|
 
 ### Local Volume (All-in-One installation test only)
 

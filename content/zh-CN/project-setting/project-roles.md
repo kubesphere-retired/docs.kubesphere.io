@@ -1,6 +1,6 @@
 ---
 title: "成员角色"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -8,7 +8,9 @@ description: ''
 
 ## 创建角色  
 
-登录 KubeSphere 管理控制台，进入已创建的项目下，访问左侧菜单栏，选择 **项目设置 → 成员角色**。作为项目管理员，可以查看当前项目下所有角色信息。  
+使用项目管理员账号 `project-admin` 登录 KubeSphere 管理控制台，进入已创建的项目下，访问左侧菜单栏，选择 **项目设置 → 成员角色**。作为项目管理员，可以查看当前项目下所有角色信息。  
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514094713.png)
 
 点击 **创建** 按钮创建角色，填写基本信息和设置权限。
 
@@ -19,11 +21,9 @@ description: ''
 
 ![角色基本信息](/ae-role-basic.png)
 
-### 第二步：权限设置
+## 第二步：权限设置
 
 权限设置中支持管理员自定义一个角色拥有 KubeSphere 平台资源的何种操作权限，勾选角色所需权限规则，比如对部署的查看、创建、编辑、横向伸缩等这类操作。
-
-> 注意：对于资源的删除权限，应谨慎授予。
 
 ![](/ae-role-setting.png)
 

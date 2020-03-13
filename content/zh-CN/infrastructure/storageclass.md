@@ -1,6 +1,6 @@
 ---
 title: "存储类型"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -42,13 +42,6 @@ description: ''
 
 - fsType: 卷的文件系统，支持 ext3, ext4, xfs. 默认为 ext4。
 
-## 创建自定义存储类型
-
-在存储类型设置中，除了可以选择 KubeSphere 支持的几种存储类型以外，还支持创建自定义的存储类型，对接用户自有的存储服务端。
-
-创建自定义的存储类型，需要预先在 KubeSphere 后端环境预先安装某个存储服务端的客户端，然后在创建存储类型的设置中自定义其所需参数的 key-value，去对接它的存储服务端。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190314134518.png)
 
 ## 设置默认存储类型
 

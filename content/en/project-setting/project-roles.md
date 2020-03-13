@@ -1,6 +1,6 @@
 ---
 title: "Member Roles"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

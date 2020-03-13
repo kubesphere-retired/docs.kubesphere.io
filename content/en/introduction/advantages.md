@@ -1,77 +1,62 @@
 ---
 title: "Advantages"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
 ## Vision
 
-Kubernetes has now become the de facto standard for deploying containerized applications at scale in private, public and hybrid cloud environments. However, some of users who get started to use Kubernetes may feel slightly difficult since the Kubernetes has many complicated components that need to be installed and deployed, such as storage and network part. Typically, Kubernetes offers some open source solutions or projects as the storage and network service solutions. But it is not easy to install, maintain and operate multiple components in some way. For the users, the learning curve and the barriers are too high to get started quickly.
+Kubernetes has now become the de facto standard for deploying containerized applications at scale in private, public and hybrid cloud environments. However, many people tend to be confused when they use Kubernetes for Kubernetes has many components and some of them need to be installed and deployed by users, such as storage and network. At present, Kubernetes only provides open source solutions or projects, which may be difficult to install, maintain and operate to some extent. For users, learning costs and thresholds are both high , and it is not easy to get started quickly.
+ 
+If you have to deploy your application on the cloud, why not use KubeSphere to help you run Kubernetes for better management of running resources? This would make you continue running applications and workloads and concentrate on these more important businesses. Because Kubernetes cluster, application deployment, service discovery, CI/CD pipeline, Redis cluster capacity enlargement, microservice governance,  logging and monitoring can be quickly managed through KubeSphere. In other words, Kubernetes is a wonderful open-source platform (or considered as a framework), but KubeSphere is a very professional enterprise platform product that focuses on addressing users’ difficulties in complex business scenarios to provide a better user experience.
 
-KubeSphere runs Kubernetes as the platform kernel service but offers much more functionalities, such as CI/CD pipeline, cluster autoscale, operation & troubleshooting, microservice governance, logging and resource monitoring, etc in the GUI console. In other words, Kubernetes is a great open source project, while KubeSphere is a very specialized enterprise-grade product that comes in many value-added functionalities, aiming to alleviate users' pain points in complex business scenarios, and focuses on providing users with better and more professional user experience.
-
-Most importantly, KubeSphere provides the best solutions for both storage and networking. For example, not only supports open source storage such as Ceph RBD and GlusterFS, but also offers the high-performance cloud storage solutions that are powered by QingCloud such as [QingCloud Block Storage ](https://docs.qingcloud.com/product/storage/volume/) and [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) as the persistent storage. With the integration of the [QingCloud CSI](https://github.com/yunify/qingcloud-csi) and [NeonSan CSI](https://github.com/yunify/qingstor-csi) plugins, it can provide more stable and secure storage for enterprise applications and data. As for the networking, it supports Calico and Flannel such open source networking projects as the industry's cloud networking solution, and will support QingCloud SDN CNI with VPC and subnet enabled for end user soon.
+What matters most is that KubeSphere offers optimal solutions in terms of storage and networking. For example, not only supports open source storage such as [Ceph RBD](https://ceph.io/) and [GlusterFS](https://www.gluster.org/), but also offers the high-performance cloud storage solutions that are powered by QingCloud such as [QingCloud Block Storage ](https://docs.qingcloud.com/product/storage/volume/) and [QingStor NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/) as the persistent storage. With the integration of the [QingCloud CSI](https://github.com/yunify/qingcloud-csi) and [NeonSan CSI](https://github.com/yunify/qingstor-csi) plugins, it can provide more stable and secure storage for enterprise applications and data. As for the networking, it supports Calico and Flannel such open source networking projects as the industry's cloud networking solution, and will support QingCloud SDN with VPC and subnet enabled for end user soon.
 
 
 ## Why KubeSphere？
 
-
-KubeSphere provides large-scale container orchestration and various management abilities to the enterprise, helping application development teams and IT operations teams from developing to deploying cloud-native applications with speed and consistency that supports enterprise digital transformation.
-
-- Enterprise-ready Functionalities
-- High Availability
-- High Resource Utilization
-- Extensible Resource Isolation
+KubeSphere provides high-performance and scalable managing containerized services for enterprise users, aiming to help enterprises accomplish the digital transformation driven by the new generation of Internet technology, accelerate the speed of iteration and delivery of business to meet the ever-changing business needs of enterprises.
 
 
-## Advantages 
+## Awesome User Experience and Wizard UI
 
-### Flexible and Stable Storage
+- User interface based on development, testing and operations-friendly, Design concept of guided user experience to reduce the Learning Cost of Kubernetes
+- Users can deploy all services of a complete application in one click based on application templates, and UI provides product life-cycle management.
+ 
+## High reliability and High Availability
 
-- Support multiple storage classes as persistent storage service, inregrates CSI plugins and other storage clients.
-- Support open source storage such as Ceph RBD, Glusterfs, NFS, etc.
-- Ability to use QingCloud Block Storage and NeonSAN to provide high performance storage services.
+- Automatic Elastic Scaling Service: Deploying the flexible scaling of container that support dynamic lateral scaling and container resources based on visits to ensure high availability of cluster and container resources.
+- Security Service: Supporting the setting of health inspection probes for containers to check its health status and ensure the reliability of business.
+ 
+## Containerized DevOps Delivery
 
+- DevOps easy to use: DevOps does not need to configure Jenkins for it based on visual CI/CD pipeline editing, and it is equipped with abundant CI/CD pipeline templates
+- Source to Image (S2i)：It can get the code from the existing code warehouse and build the image automatically through S2i to complete the application deployment and push it to the image warehouse automatically without writing Docker files.
+- End-to-End Pipelining Setting: supporting end-to-end pipeline settings from warehouse (GitHub/SVN/Git), code compilation, mirror production, mirror security, push warehouse, version release, to scheduled build.
+- Security Management: Supporting static analysis scanning for code quality safety management in DevOps project
+- Logging: Log records the whole process of CI/CD pipeline operation.
+ 
+## Out-of-Box Microservice Governance
 
-### Scalability and Reliability
+- Flexible Micro-service Framework: Providing visual micro-service governance functions based on Istio micro-service framework , and dividing Kubernetes services into finer-grained services to support non-intrusive micro-service governance.
+- Excellent governance functions: support excellent micro-service governance functions such as gray level publishing, fusing, flow monitoring, flow control, current limiting, link tracking, intelligent routing, etc.
+ 
+## Multiple Persistent Storage Support
 
-- Ability to add new nodes to existing cluster, support on-demand cluster expansion.
-- Support for Horizontal Pod Autoscaler to ensure high availability and reliability of applications.
+- Support open-source storage schemes such as GlusterFS, CephRBD, NFS and  stateful storage
+- Neon SAN CSI plug-in docks with QingStor Neon SAN to meet core business needs with lower latency, more flexible and higher performance storage.
+- QingCloud CSI plug-in docking with various performance block storage services of QingCloud cloud platform
+ 
+## Flexible Network Solution Support
 
-### Multi-dimensional Monitoring 
+- Supporting open-source network solutions such as Calico and Flanne
+- QingCloud’s load equalizer plug-in and Porter that can be used in physical machine deployment of Kubernetes
+- SDN capability for commercial verification：QingCloud SDN can be docked through QingCloud CNI plug-in to achieve safer and higher performance network support.
+ 
+## Multidimensional Monitoring and Logging
 
-- Multi-dimensional monitoring with full coverage each layer, including cluster, node, workspace, namespace, workload, Pod, container.
-- Provide comprehensive, multi-dimensional, fine-grained and flexible monitoring API.
-- Rich monitoring metrics, visual and concise metrics on UI; provide real-time metrics, trends, ranking, and support to search for any selected time range, etc. 
-
-### Multi-tenant Management 
-
-- Provide a multi-level and fine-grained access control system, including clusters, workspaces, projects and DevOps levels.
-- Role-based access control, allowing admin to dynamically configure authorization and authentication policies.
-- Support AD/LDAP, support account synchronization through different systems (e.g. gitlab, jenkins), ability to connect with the enterprise's account system.
-
-### Security
-
-- API security, API Gateway and authentication system to ensure API security.
-- Network security, based on Kubernetes NetworkPolicy to implement internal network isolation.
-- Operating system security, based on Kubernetes namespace to implement resource isolation.
-
-### Empower DevOps Team
-
-- Out-of-the-box DevOps, without any complicated Jenkins plugin configuration.
-- Ability to deploy applications to Kubernetes, provide a flexible, clean and customizable build environment.
-- Role-based access control, secure isolated CI/CD operating spaces. 
-- Provide Jenkinsfile in & out of SCM (Source Code Management), reduce learning curve of Jenkinsfile and improve operation efficiency.
-
-
-### Easy-to-use UI 
-
-
-- User-friendly UI and wizard-style user experience, reduce the learning cost of Kubernetes.
-- One-click cluster installation and one-stop application deployment/O&M are supported.
-- Embrace Kubernetes, keep its native storage concepts and functions into UI, much easier and more friendly for Kubernetes users.
-
-### Extensible Design 
-
-- In addition to provide resource management based on Kubernetes, users can also use KubeSphere integrated modules such as image registry, application template, monitoring and logging, as well as integrating self-built services
-- Not only support Calico and Flannel such open source networking solutions, but also allow users to use high-performance commercial network, such as [QingCloud SDN](https://www.qingcloud.com/products/sdn_passthrough/) if users have higher performance requirements for network.
+- Comprehensive monitoring operation and maintenance can be worked through a visual interface. At the same time, the open standard interfaces are connected with enterprise operation and maintenance systems to achieve centralized operation and maintenance by unified operation and maintenance entry.
+- Visual subsecond  monitoring：Second-Frequency, dual dimension, Stereoscopic Monitoring of Sixteen Indicators, and component monitoring is provided to locate component faults quickly
+- Providing a rank of resource consumption by node, enterprise space, project, etc.
+- Supporting indicators alarm based on multi-tenant, multi-dimensional monitoring, and its alarm strategy supports two levels including cluster node and workload now.
+- Providing multi-tenant log management. Tenants can only see their own log information in kubesphere's query system.

@@ -56,7 +56,8 @@ class IndexPage extends React.Component {
   }
 
   handleVersionChange = value => {
-    this.setState({ selectVersion: value })
+    const pathPrefix = this.props.data.site.pathPrefix
+    window.location.href = pathPrefix.replace(this.state.selectVersion, value)
   }
 
   render() {
@@ -651,7 +652,6 @@ export const query = graphql`
             title
             icon
             desc
-            entry
             chapters {
               title
               tag

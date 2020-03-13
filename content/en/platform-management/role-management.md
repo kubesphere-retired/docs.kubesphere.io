@@ -1,6 +1,6 @@
 ---
 title: "Platform Roles Management"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

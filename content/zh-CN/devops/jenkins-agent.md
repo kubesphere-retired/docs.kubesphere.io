@@ -1,6 +1,6 @@
 ---
 title: "Jenkins Agent 说明" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "添加代码仓库" 
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -16,7 +16,7 @@ KubeSphere 的 DevOps 工程中，目前已支持了以下几种主流的源代�
 
 ## 添加 GitHub
 
-添加 GitHub 仓库已在示例六中以示例的方式给出，详见 [添加 GitHub](../../quick-start/jenkinsfile-in-scm/#创建凭证)。
+添加 GitHub 仓库已在 基于Spring Boot项目构建流水线示例文档中以添加示例的方式给出，详见 [基于Spring Boot项目构建流水线 - 添加 GitHub](../../quick-start/devops-online)。
 
 ## 添加 Git
 

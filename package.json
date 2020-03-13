@@ -1,7 +1,7 @@
 {
   "name": "docs.kubesphere.io",
   "description": "KubeSphere Documents",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "dependencies": {
     "@leoendless/redoc": "^2.0.0-rc.12",
     "@svgr/webpack": "^4.3.0",

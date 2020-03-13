@@ -1,6 +1,6 @@
 ---
 title: "主机管理"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
@@ -40,6 +40,27 @@ Kubernetes 集群中的计算能力由主机 (Node) 提供，Kubernetes 集群�
 >     - 如果是守护进程集 (DaemonSet) 被驱逐后也不会再被运行到其它 Node，直到 Node 上的 NoExecute 污点被删除或者为该 Pod 设置了容忍。
 
 ![主机 taint 管理](/ae-node_taints.png)
+
+### 如何将日志和监控的 Pod 调度到专用节点
+
+目前，在 KubeSphere 中已对日志和监控的 Pod 添加了如下的 toleration，若希望将监控和日志调度到专用节点可以给需要调度到的监控节点和日志节点分别打上与 tolerations 匹配的 taint。
+
+```yaml
+# 监控
+ tolerations:
+  - effect: NoSchedule
+    key: dedicated
+    operator: Equal
+    value: monitoring
+
+# 日志
+tolerations:
+  - key: CriticalAddonsOnly
+    operator: Exists
+  - effect: NoSchedule
+    key: dedicated
+    value: log
+```
 
 ## 查看主机详情  
 

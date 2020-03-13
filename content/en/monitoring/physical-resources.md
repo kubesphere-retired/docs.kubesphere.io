@@ -1,6 +1,6 @@
 ---
 title: "Physical Resources"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

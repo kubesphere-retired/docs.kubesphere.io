@@ -1,6 +1,6 @@
 ---
-title: "Highly Available Master and Etcd Cluster"
-keywords: ''
+title: "Installing HA Master and Etcd Cluster"
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 

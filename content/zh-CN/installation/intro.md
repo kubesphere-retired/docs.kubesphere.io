@@ -1,24 +1,39 @@
 ---
 title: "安装说明"
-keywords: ''
+keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-[KubeSphere](https://kubesphere.io) 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台，以及细粒度的资源监控和 CI/CD 流水线等。
+[KubeSphere](https://kubesphere.io) 是在目前主流容器调度平台 [Kubernetes](https://kubernetes.io) 之上构建的 **企业级分布式多租户容器平台**，为用户提供简单易用的操作界面以及向导式操作方式，KubeSphere 提供了在生产环境集群部署的全栈化容器部署与管理平台。
 
-## 前提条件
-
-目前高级版已发布了 v1.0.0 和 v1.0.1，建议下载最新的 [KubeSphere Advanced-v1.0.1](https://kubesphere.io/download) 至待安装机器中。
+KubeSphere 支持部署和运行在包括**公有云、私有云、VM、BM 和 Kubernetes 等任何基础设施之上**，并且支持**在线安装与离线安装**，目前已在 **阿里云、腾讯云、华为云、青云、AWS、Kubernetes** 上进行过[部署测试](https://github.com/kubesphere/ks-installer/issues/23)。 KubeSphere **所有版本 100% 开源免费**，已大规模服务于社区用户，广泛地应用在以容器为中心的开发测试及生产环境，大量服务平稳地运行在 KubeSphere 之上。
 
 ## 安装 KubeSphere
 
-KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 两种模式，即支持单节点和多节点安装两种安装方式。 KubeSphere Installer 采用 [Ansible](https://www.ansible.com/) 对安装目标机器及安装流程进行集中化管理配置。采用预配置模板，可以在安装前通过对相关配置文件进行自定义实现对安装过程的预配置，以适应不同的 IT 环境，帮助您快速安装 KubeSphere。
+KubeSphere 安装支持以下 4 种安装模式：
 
-另外，KubeSphere Installer 集成了 **Harbor** 的 Helm Chart，但默认情况下不会安装 Harbor 镜像仓库，因为内置的 **Harbor** 作为可选安装项，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考 [安装内置 Harbor](../harbor-installation)。
+**安装在 Linux**
+
+- [all-in-one](../all-in-one)：单节点安装（支持在线和离线安装）
+- [multi-node](../multi-node)：多节点安装（支持在线和离线安装）
+
+**安装在 Kubernetes**
+
+- [在 Kubernetes 在线部署 KubeSphere](../install-on-k8s)
+- [在 Kubernetes 离线部署 KubeSphere](../install-ks-offline)
+
+**支持 GPU**
+
+KubeSphere 安装支持 GPU 节点，也支持 CPU 与 GPU 的混合部署模式，需在安装配置文件 `conf/vars.yml` 中进行设置，配置示例和说明参考 [集群组件配置释义](../vars)。
+
+
+**可选安装项**
+
+另外，KubeSphere Installer 集成了 **Harbor** 和 **GitLab**，但默认情况下不会安装 Harbor 和 GitLab，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，参考 [安装内置 Harbor](../harbor-installation) 和 [安装内置 GitLab](../gitlab-installation)。
 
 **说明:**
 
-> - 由于安装过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。
+> - 由于安装过程中需要更新操作系统和从镜像仓库拉取镜像，因此必须能够访问外网。如果不能访问外网，则需要下载离线安装包。
 > - KubeSphere 集群的架构中，由于各自服务的不同，分为管理节点和工作节点两个角色，即 Master 和 Node。
 > - Master 节点由三个紧密协作的组件组合而成，即负责 API 服务的 kube-apiserver、负责调度的 kube-scheduler、负责容器编排的 kube-controller-manager。
 > - 集群的持久化数据，由 kube-apiserver 处理后保存至 etcd 中。
@@ -38,8 +53,8 @@ KubeSphere 安装支持 [all-in-one](../all-in-one) 和 [multi-node](../multi-no
 
 KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安装包进行安装。
 
-离线的安装步骤与在线安装一致，因此可参考以上两种安装模式的安装指南进行安装。目前离线安装支持的操作系统如下，系统盘需保证 100 G 以上，主机配置规格的其它参数可参考在线安装的主机配置。
- 
+离线的安装步骤与在线安装一致，因此可直接参考 [all-in-one](../all-in-one) 和 [multi-node](../multi-node) 的安装指南下载安装。目前离线安装支持的操作系统如下，系统盘需保证 `100 G` 以上，主机配置规格的其它参数可参考在线安装的主机配置。
+
 - CentOS 7.4/7.5   
 - Ubuntu 16.04.4/16.04.5
 
@@ -47,9 +62,25 @@ KubeSphere 支持离线安装，若机器无法访问外网，请下载离线安
 
 Multi-Node 模式安装 KubeSphere 可选择配置部署 NFS Server 来提供持久化存储服务，方便初次安装但没有准备存储服务端的场景下进行部署测试。若在正式环境使用需配置 KubeSphere 支持的持久化存储服务，并准备相应的存储服务端。本文档说明安装过程中如何在 Installer 中配置 [QingCloud 云平台块存储](https://docs.qingcloud.com/product/storage/volume/)、[企业级分布式存储 NeonSAN](https://docs.qingcloud.com/product/storage/volume/super_high_performance_shared_volume/)、[NFS](https://kubernetes.io/docs/concepts/storage/volumes/#nfs)、[GlusterFS](https://www.gluster.org/)、[Ceph RBD](https://ceph.com/) 这类持久化存储的安装参数，详见 [存储配置说明](../storage-configuration)。
 
+#### 集群组件配置释义
+
+> 注意，在 CI/CD 流水线中发送邮件通知需要安装前预先在 Installer 中配置邮件服务器，配置请参考 [集群组件配置释义](../vars) (下一版本将支持安装后在 UI 统一配置邮件服务器)。
+
+
+如果需要查看或修改网络、组件版本、可选安装项 (如 GitLab、Harbor)、外部负载均衡器、Jenkins、SonarQube、邮件服务器等配置参数时，可参考以下说明进行修改，集群组件配置释义文档对 installer 中的安装配置文件 `conf/vars.yml` 进行说明，简单介绍每一个字段的意义，参考 [集群组件配置释义](../vars)。
+
+
+#### 安装 QingCloud 负载均衡器插件 (可选)
+
+服务或应用路由如果通过 LoadBalancer 的方式暴露到外网访问，则需要安装对应的云平台负载均衡器插件来支持。如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/vars.yml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)，详见 [安装 QingCloud 负载均衡器插件](../qingcloud-lb)。
+
 #### 安装内置 Harbor (可选)
 
-KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，用户可以根据团队项目的需求来配置安装，详见 [安装内置 Harbor](../harbor-installation)。
+KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Harbor 作为可选安装项，需 `安装前` 在配置文件 `conf/vars.yml` 中进行配置。用户可以根据团队项目的需求来配置安装，详见 [安装内置 Harbor](../harbor-installation)。
+
+#### 安装内置 GitLab (可选)
+
+​KubeSphere Installer 集成了 Harbor 的 Helm Chart (版本为 harbor-18.11.1)，内置的 Gitlab (版本为 v11.3.4) 作为可选安装项，需 `安装前` 在配置文件 `conf/vars.yml` 中进行配置。用户可以根据团队项目的需求来配置安装，详见 [安装内置 GitLab](../gitlab-installation)。
 
 #### Master 和 etcd 节点高可用配置
 
@@ -57,7 +88,7 @@ Multi-Node 模式安装 KubeSphere 可以帮助用户顺利地部署环境，由
 
 ## 升级
 
-若您的机器已安装的环境为 v1.0.0 版本，我们强烈建议您升级至最新的版本 v1.0.1，最新的 Installer 支持将 KubeSphere 从 v1.0.0 环境一键升级至目前最新的 v1.0.1，详见 [升级](../upgrade)。
+若您的机器已安装的环境为高级版 1.0.x (或 2.0.0) 版本，我们强烈建议您升级至最新的高级版 2.0.1，最新的 Installer 支持将 KubeSphere 从 1.0.x (或 2.0.0) 环境一键升级至目前最新的 2.0.1，详见 [升级指南](../upgrade)。
 
 ## 集群节点扩容
 
@@ -88,13 +119,18 @@ KubeSphere 支持管理节点和 etcd 节点高可用，保证集群稳定性，
 
 ## 组件版本信息
 
-KubeSphere Advanced-v1.0.1 中的相关组件将默认安装以下版本：
+KubeSphere Advanced 2.0.2 中的相关组件将默认安装以下版本：
 
 |  组件 |  版本 |
 |---|---|
-|KubeSphere| Advanced Edition v1.0.1|
-|Kubernetes| v1.12.5|
+|KubeSphere| Advanced Edition 2.0.2|
+|Kubernetes| v1.13.5|
+|Istio | 1.1.1 |
 |etcd|3.2.18|
 |OpenPitrix| v0.3.5|
+|Elasticsearch| v6.7.0 |
 |Prometheus| v2.3.1|
 |Jenkins| v2.138 |
+|SonarQube| v7.4 |
+|GitLab | 11.8.1 |
+|Harbor | 1.7.5 |
