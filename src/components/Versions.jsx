@@ -32,16 +32,13 @@ class Versions extends React.Component {
   }
 
   changeVersion = version => {
-    const pathPrefix = this.props.pathPrefix
+    const { pathPrefix, version: oldVersion } = this.props
     const lang = getLanguage(this.props.lang)
 
-    if (version === 'express') {
-      window.location.href = `${pathPrefix}/express/${lang}/basic/`
-    } else if (['v1.0', 'v2.0', 'v2.1'].includes(version)) {
-      window.location.href = `${pathPrefix}/${version}/${lang}/introduction/intro/`
-    } else {
-      window.location.href = `${pathPrefix}/${version}/${lang}/`
-    }
+    window.location.href = `${pathPrefix.replace(
+      oldVersion,
+      version
+    )}/${lang}/introduction/intro/`
   }
 
   renderOptions() {
