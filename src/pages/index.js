@@ -107,8 +107,7 @@ const getTitleLink = (chapter, defaultLocale) => {
     get(chapter, 'chapters[0].entries[0].entry') ||
     {}
 
-  const url = get(entry, 'childMarkdownRemark.fields.slug', '')
-  return url.replace(`/${defaultLocale}`, '')
+  return entry.replace(`/${defaultLocale}`, '')
 }
 
 const Documents = ({ tableOfContent, pathPrefix, defaultLocale }) => (
@@ -487,15 +486,6 @@ const LanguageWrapper = styled.div`
 `
 
 export const query = graphql`
-  fragment ChildRemark on MarkdownRemark {
-    fields {
-      slug
-    }
-    frontmatter {
-      title
-    }
-  }
-
   query Index {
     site {
       pathPrefix
@@ -515,35 +505,14 @@ export const query = graphql`
             title
             icon
             desc
-            entry {
-              id
-              childMarkdownRemark {
-                ...ChildRemark
-              }
-            }
-            entries {
-              entry {
-                id
-                childMarkdownRemark {
-                  ...ChildRemark
-                }
-              }
-            }
+            entry
             chapters {
               title
-              entry {
-                id
-                childMarkdownRemark {
-                  ...ChildRemark
-                }
-              }
+              tag
+              entry
               entries {
-                entry {
-                  id
-                  childMarkdownRemark {
-                    ...ChildRemark
-                  }
-                }
+                title
+                entry
               }
             }
           }

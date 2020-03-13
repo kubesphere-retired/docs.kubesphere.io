@@ -12,10 +12,15 @@ import './prince.css'
 import './b16-tomorrow-dark.css'
 
 export default class MarkdownTemplate extends React.Component {
-  renderEntry(pathPrefix, entry) {
-    let content = entry.childMarkdownRemark.html
+  renderEntry(pathPrefix, entry, title) {
+    const { allMarkdowns } = this.props.data
+    let content = allMarkdowns.edges.find(
+      edge => edge.node.fields.slug === `${entry}/`
+    )
 
-    if (typeof window === 'undefined') {
+    content = get(content, 'node.html')
+
+    if (content && typeof window === 'undefined') {
       const $ = cheerio.load(content)
 
       $('a').each(function(i, ele) {
@@ -35,10 +40,8 @@ export default class MarkdownTemplate extends React.Component {
     }
 
     return (
-      <MarkdownBody className="md-body" key={entry.childMarkdownRemark.id}>
-        <h1 id={entry.childMarkdownRemark.frontmatter.title}>
-          {entry.childMarkdownRemark.frontmatter.title}
-        </h1>
+      <MarkdownBody className="md-body" key={title}>
+        <h1 id={entry}>{title}</h1>
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </MarkdownBody>
     )
@@ -65,7 +68,7 @@ export default class MarkdownTemplate extends React.Component {
             {chapter.title}
           </div>
           {chapter.entries.map(entry =>
-            this.renderEntry(pathPrefix, entry.entry)
+            this.renderEntry(pathPrefix, entry.entry, entry.title)
           )}
         </div>
       )
@@ -78,7 +81,8 @@ export default class MarkdownTemplate extends React.Component {
             {chapter.title}
           </div>
         )}
-        {chapter.entry && this.renderEntry(pathPrefix, chapter.entry)}
+        {chapter.entry &&
+          this.renderEntry(pathPrefix, chapter.entry, chapter.title)}
       </div>
     )
   }
@@ -118,13 +122,6 @@ const MarkdownBody = styled.div`
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  fragment ChildMarkdownRemark2 on MarkdownRemark {
-    id
-    html
-    frontmatter {
-      title
-    }
-  }
   query MarkdownByVersion($lang: String!) {
     site {
       pathPrefix
@@ -136,37 +133,32 @@ export const pageQuery = graphql`
         }
       }
     }
-    tableOfContents: allContentJson(
-      filter: { lang: { eq: $lang } }
+    allMarkdowns: allMarkdownRemark(
+      filter: { fields: { language: { eq: $lang } } }
     ) {
+      edges {
+        node {
+          html
+          fields {
+            slug
+            language
+          }
+        }
+      }
+    }
+    tableOfContents: allContentJson(filter: { lang: { eq: $lang } }) {
       edges {
         node {
           lang
           chapters {
-            entry {
-              childMarkdownRemark {
-                ...ChildMarkdownRemark2
-              }
-            }
-            entries {
-              entry {
-                childMarkdownRemark {
-                  ...ChildMarkdownRemark2
-                }
-              }
-            }
+            title
+            entry
             chapters {
-              entry {
-                childMarkdownRemark {
-                  ...ChildMarkdownRemark2
-                }
-              }
+              title
+              entry
               entries {
-                entry {
-                  childMarkdownRemark {
-                    ...ChildMarkdownRemark2
-                  }
-                }
+                title
+                entry
               }
             }
           }

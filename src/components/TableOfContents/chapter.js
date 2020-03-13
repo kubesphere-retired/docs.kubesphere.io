@@ -4,7 +4,6 @@ import GatsbyLink from 'gatsby-link'
 import styled from 'styled-components'
 import classnames from 'classnames'
 
-import { formatAnchor } from '../../utils/index'
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 
 const Link = ({ to, ...rest }, { location }) => {
@@ -24,89 +23,30 @@ Link.contextTypes = {
   location: PropTypes.object,
 }
 
-class LinkWithHeadings extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      open: false,
-    }
-  }
-
-  componentDidMount() {
-    const { location } = this.context
-    const { fields } = this.props.entry.childMarkdownRemark
-
-    this.setState({
-      open: location.pathname.indexOf(fields.slug) !== -1,
-    })
-  }
-
-  handleClick = () => {
-    this.setState(({ open }) => ({
-      open: !open,
-    }))
-  }
-
+class LinkWrapper extends React.Component {
   render() {
     const { entry, tag, level, title, defaultLocale } = this.props
-    const { headings, fields, frontmatter } = entry.childMarkdownRemark
-    const { open } = this.state
 
-    let heads = []
-
-    if (headings) {
-      heads = headings.filter(head => head.depth === 2)
-    }
-
-    const url = fields.slug.replace(`/${defaultLocale}`, '')
+    const url = entry.replace(`/${defaultLocale}`, '')
 
     return (
-      <div>
-        <Link to={url}>
-          <Title level={level} onClick={this.handleClick}>
-            {heads.length > 0 ? (
-              <Arrow className={classnames({ 'arrow-open': open })} />
-            ) : (
-              level === 0 && <Arrow />
-            )}
-            {title || frontmatter.title}
-            {tag && <Tag>{tag}</Tag>}
-          </Title>
-        </Link>
-        <HeadingsWrapper
-          className={classnames('heads-toggle', { 'heads-open': open })}
-        >
-          {heads.length > 0 && (
-            <Headings heads={heads} prefix={url} level={level + 1} />
-          )}
-        </HeadingsWrapper>
-      </div>
+      <Link to={url}>
+        <Title level={level} onClick={this.handleClick}>
+          {level === 0 && <Arrow />}
+          {title}
+          {tag && <Tag>{tag}</Tag>}
+        </Title>
+      </Link>
     )
   }
 }
 
-LinkWithHeadings.contextTypes = {
-  location: PropTypes.object,
-}
-
-const Headings = ({ heads, prefix, level }) => (
-  <StyledList>
-    {heads.map(({ value }, key) => (
-      <ListItem key={key}>
-        <Link to={`${prefix}#${formatAnchor(value)}`}>
-          <Title level={level}>{value}</Title>
-        </Link>
-      </ListItem>
-    ))}
-  </StyledList>
-)
-
 const Links = ({ entries, level, defaultLocale }) => (
   <StyledList>
-    {entries.map(({ entry }, key) => (
+    {entries.map(({ entry, title }, key) => (
       <ListItem key={key}>
-        <LinkWithHeadings
+        <LinkWrapper
+          title={title}
           entry={entry}
           level={level}
           defaultLocale={defaultLocale}
@@ -135,22 +75,16 @@ class ChapterList extends React.Component {
     }
 
     if (props.entries) {
-      const slugs = props.entries.map(
-        ({ entry }) => entry.childMarkdownRemark.fields.slug
-      )
+      const slugs = props.entries.map(({ entry }) => entry)
 
       open = slugs.some(slug => pathname.indexOf(slug) !== -1)
     } else if (props.chapters) {
       const slugs = []
       props.chapters.forEach(chapter => {
         if (chapter.entry) {
-          slugs.push(chapter.entry.childMarkdownRemark.fields.slug)
+          slugs.push(chapter.entry)
         } else if (chapter.entries) {
-          slugs.push(
-            ...chapter.entries.map(
-              ({ entry }) => entry.childMarkdownRemark.fields.slug
-            )
-          )
+          slugs.push(...chapter.entries.map(({ entry }) => entry))
         }
       })
       open = slugs.some(slug => pathname.indexOf(slug) !== -1)
@@ -182,7 +116,7 @@ class ChapterList extends React.Component {
         {title && (
           <ListItem key={`${title}${level}`}>
             {entry ? (
-              <LinkWithHeadings
+              <LinkWrapper
                 entry={entry}
                 tag={tag}
                 level={level}
@@ -292,17 +226,6 @@ const Title = styled.h5`
     &.arrow-open {
       transform: rotate(0);
     }
-  }
-`
-
-const HeadingsWrapper = styled.div`
-  &.heads-toggle > ol > li {
-    height: 0;
-    overflow: hidden;
-  }
-
-  &.heads-open > ol > li {
-    height: auto;
   }
 `
 

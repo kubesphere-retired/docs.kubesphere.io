@@ -112,13 +112,10 @@ exports.createPages = ({ graphql, actions }) =>
       })
 
       if (process.env.BUILD !== 'CI') {
-        availableLocales.forEach(locale => {
-          const lang = locale.value
-          createPage({
-            path: `/${lang}/all`,
-            component: path.resolve(`./src/templates/all.js`),
-            context: { lang },
-          })
+        createPage({
+          path: `/zh-CN/all`,
+          component: path.resolve(`./src/templates/all.js`),
+          context: { lang: 'zh-CN' },
         })
       }
 

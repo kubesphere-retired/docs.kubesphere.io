@@ -483,14 +483,6 @@ const ICP = styled.div`
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  fragment ChildMarkdownRemark on MarkdownRemark {
-    fields {
-      slug
-    }
-    frontmatter {
-      title
-    }
-  }
   query MarkdownBySlug($slug: String!, $lang: String!) {
     site {
       pathPrefix
@@ -514,11 +506,6 @@ export const pageQuery = graphql`
         language
       }
     }
-    languages: allMarkdownRemark {
-      group(field: fields___language) {
-        fieldValue
-      }
-    }
     tableOfContents: allContentJson(
       filter: { lang: { eq: $lang } }
     ) {
@@ -527,35 +514,14 @@ export const pageQuery = graphql`
           lang
           chapters {
             title
-            entry {
-              id
-              childMarkdownRemark {
-                ...ChildMarkdownRemark
-              }
-            }
-            entries {
-              entry {
-                id
-                childMarkdownRemark {
-                  ...ChildMarkdownRemark
-                }
-              }
-            }
+            entry
             chapters {
               title
-              entry {
-                id
-                childMarkdownRemark {
-                  ...ChildMarkdownRemark
-                }
-              }
+              tag
+              entry
               entries {
-                entry {
-                  id
-                  childMarkdownRemark {
-                    ...ChildMarkdownRemark
-                  }
-                }
+                title
+                entry
               }
             }
           }

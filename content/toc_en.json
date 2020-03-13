@@ -1,12 +1,313 @@
 {
-  "version": "express",
+  "version": "v1.0",
   "lang": "en",
   "chapters": [
     {
-      "title": "Installing, Patching, and Upgrading",
-      "entries": [
+      "title": "Release Notes",
+      "icon": "/product.svg",
+      "desc": "Introduce the new features, capabilities and updates for the releases",
+      "chapters": [
         {
-          "entry": "./en/KubeSphere-Installer-Guide.md"
+          "title": "Release Notes - 1.0.1",
+          "entry": "/en/release/release-v101",
+          "tag": "Latest"
+        },
+        {
+          "title": "Release Notes - 1.0.0",
+          "entry": "/en/release/release-v100"
+        }
+      ]
+    },
+    {
+      "title": "Overview",
+      "icon": "/product.svg",
+      "desc": "Help you to better understand KubeSphere with detailed graphics and contents",
+      "chapters": [
+        {
+          "title": "Introduction",
+          "entry": "/en/introduction/intro"
+        },
+        {
+          "title": "Features",
+          "entry": "/en/introduction/features"
+        },
+        {
+          "title": "Advantages",
+          "entry": "/en/introduction/advantages"
+        },
+        {
+          "title": "Glossary",
+          "entry": "/en/introduction/glossary"
+        }
+      ]
+    },
+    {
+      "title": "Installation",
+      "icon": "/install.svg",
+      "desc": "Reference the installation guide to download and install KubeSphere",
+      "chapters": [
+        {
+          "title": "Instruction",
+          "entry": "/en/installation/intro"
+        },
+        {
+          "title": "All-in-One Installation",
+          "entry": "/en/installation/all-in-one"
+        },
+        {
+          "title": "Multi-Node Installation",
+          "entry": "/en/installation/multi-node"
+        },
+        {
+          "title": "Highly Available Master and Etcd",
+          "entry": "/en/installation/master-etcd-ha"
+        },
+        {
+          "title": "Storage Configuration Instruction",
+          "entry": "/en/installation/storage-configuration"
+        },
+        {
+          "title": "Integrating Harbor Registry",
+          "entry": "/en/installation/harbor-installation"
+        },
+        {
+          "title": "Adding New Nodes",
+          "entry": "/en/installation/add-nodes"
+        },
+        {
+          "title": "Uninstalling KubeSphere",
+          "entry": "/en/installation/uninstall"
+        }
+      ]
+    },
+    {
+      "title": "Quick Start",
+      "icon": "/access.svg",
+      "desc": "Get a quick overview of the basic features of KubeSphere with 7 quick-start examples to walk you through the process, help you to get familiar with it.",
+      "chapters": [
+        {
+          "title": "Admin Quick Start",
+          "entry": "/en/quick-start/admin-quick-start"
+        },
+        {
+          "title": "Deploying a MySQL Application",
+          "entry": "/en/quick-start/mysql-deployment"
+        },
+        {
+          "title": "Deploying a Wordpress",
+          "entry": "/en/quick-start/wordpress-deployment"
+        },
+        {
+          "title": "Job to compute π to 2000 places",
+          "entry": "/en/quick-start/job-quick-start"
+        },
+        {
+          "title": "One-click deployment of Applications",
+          "entry": "/en/quick-start/one-click-deploy"
+        },
+        {
+          "title": "Creating Horizontal Pod Autoscaler",
+          "entry": "/en/quick-start/hpa"
+        },
+        {
+          "title": "CI/CD Pipeline Based on Jenkinsfile",
+          "entry": "/en/quick-start/jenkinsfile-in-scm"
+        },
+        {
+          "title": "CI/CD Pipeline In a Visual Way",
+          "entry": "/en/quick-start/jenkinsfile-out-of-scm"
+        }
+      ]
+    },
+    {
+      "title": "Cluster Admin Guide",
+      "icon": "/admin_reffer.svg",
+      "desc": "Instruction for cluster admin to manage platform and resources.",
+      "chapters": [
+        {
+          "title": "Multi-tenant Management",
+          "entries": [
+            {
+              "title": "Overview of Multi-tenant Management",
+              "entry": "/en/multi-tenant/intro"
+            },
+            {
+              "title": "Overview of Role Management",
+              "entry": "/en/multi-tenant/role-overview"
+            }
+          ]
+        },
+        {
+          "title": "Platform Management",
+          "entries": [
+            {
+              "title": "Account Management",
+              "entry": "/en/platform-management/account-management"
+            },
+            {
+              "title": "Platform Roles Management",
+              "entry": "/en/platform-management/role-management"
+            }
+          ]
+        },
+        {
+          "title": "Infrastructure",
+          "entries": [
+            {
+              "title": "Service Components",
+              "entry": "/en/infrastructure/components"
+            },
+            {
+              "title": "Nodes",
+              "entry": "/en/infrastructure/node"
+            },
+            {
+              "title": "Storage Classes",
+              "entry": "/en/infrastructure/storageclass"
+            }
+          ]
+        },
+        {
+          "title": "Monitoring Center",
+          "entries": [
+            {
+              "title": "Physical Resources",
+              "entry": "/en/monitoring/physical-resources"
+            },
+            {
+              "title": "Application Resources",
+              "entry": "/en/monitoring/application-resources"
+            }
+          ]
+        },
+        {
+          "title": "Application Repository",
+          "entry": "/en/platform-management/app-repo"
+        },
+        {
+          "title": "Jenkins System Settings",
+          "entry": "/en/devops/jenkins-setting"
+        }
+      ]
+    },
+    {
+      "title": "User Guide",
+      "icon": "/reffer.svg",
+      "desc": "Instruct users on how to use the basic features provided by the platform",
+      "chapters": [
+        {
+          "title": "Application Template",
+          "entry": "/en/app-template/app-template"
+        },
+        {
+          "title": "Workloads",
+          "entries": [
+            {
+              "title": "Deployments",
+              "entry": "/en/workload/deployments"
+            },
+            {
+              "title": "StatefulSets",
+              "entry": "/en/workload/statefulsets"
+            },
+            {
+              "title": "DaemonSets",
+              "entry": "/en/workload/daemonsets"
+            },
+            {
+              "title": "Jobs",
+              "entry": "/en/workload/jobs"
+            },
+            {
+              "title": "CronJobs",
+              "entry": "/en/workload/cronjobs"
+            }
+          ]
+        },
+        {
+          "title": "Storage",
+          "entries": [
+            {
+              "title": "Volumes",
+              "entry": "/en/storage/pvc"
+            }
+          ]
+        },
+        {
+          "title": "Network & Services",
+          "entries": [
+            {
+              "title": "Services",
+              "entry": "/en/ingress-service/service"
+            },
+            {
+              "title": "Routes",
+              "entry": "/en/ingress-service/ingress"
+            }
+          ]
+        },
+        {
+          "title": "Configuration Center",
+          "entries": [
+            {
+              "title": "Secret",
+              "entry": "/en/configuration/secrets"
+            },
+            {
+              "title": "ConfigMap",
+              "entry": "/en/configuration/configmaps"
+            },
+            {
+              "title": "Image Registry",
+              "entry": "/en/configuration/image-registry"
+            }
+          ]
+        },
+        {
+          "title": "Project Settings",
+          "entries": [
+            {
+              "title": "Basic Information",
+              "entry": "/en/project-setting/project-quota"
+            },
+            {
+              "title": "Member Roles",
+              "entry": "/en/project-setting/project-roles"
+            },
+            {
+              "title": "Project Members",
+              "entry": "/en/project-setting/project-members"
+            },
+            {
+              "title": "Internet Access",
+              "entry": "/en/project-setting/project-gateway"
+            }
+          ]
+        },
+        {
+          "title": "DevOps Project",
+          "entries": [
+            {
+              "title": "DevOps Project Management",
+              "entry": "/en/devops/devops-project"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "/en/devops/pipeline"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "/en/devops/credential"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "/en/devops/add-scm"
+            },
+            {
+              "title": "DevOps Project Management",
+              "entry": "/en/devops/jenkins-agent"
+            }
+          ]
         }
       ]
     }

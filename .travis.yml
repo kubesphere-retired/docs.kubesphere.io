@@ -24,7 +24,7 @@ before_deploy:
   - yarn build
   - yarn serve
   - sleep 5
-  - prince --javascript --page-margin 0 http://localhost:9000/docs/zh-CN/all/ -o public/KubeSphere-express.pdf
+  - prince --javascript --page-margin 0 http://localhost:9000/docs/zh-CN/all/ -o public/KubeSphere-v1.0.pdf
   - docker build -t kubesphere/docs.kubesphere.io .
 
 deploy:
