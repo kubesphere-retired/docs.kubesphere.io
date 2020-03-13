@@ -1,5 +1,5 @@
 ---
-title: "基于Spring Boot项目构建流水线" 
+title: "基于Spring Boot项目构建流水线"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -8,14 +8,22 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 目的
 
-本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将一个 Hello World 页面部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问。
+本示例演示如何通过 GitHub 仓库中的 Jenkinsfile 来创建流水线，流水线共包括 8 个阶段，最终将演示示例部署到 KubeSphere 集群中的开发环境和生产环境且能够通过公网访问。
+仓库中的 dependency 分支为缓存测试用例，测试方式与 master 分支类似，对 dependency 的多次构建可体现出利用缓存可以有效的提升构建速度。
 
 ## 前提条件
 
+- 开启安装了 DevOps 功能组件，参考 [安装 DevOps 系统](../../installation/install-devops)；
 - 本示例以 GitHub 和 DockerHub 为例，参考前确保已创建了 [GitHub](https://github.com/) 和 [DockerHub](http://www.dockerhub.com/) 账号；
 - 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 project-regular 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
+- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为流水线选择执行构建的节点。
 
+## 视频教程
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_9-create-jenkinsfile-free-pipeline.mp4">
+</video>
 
 ## 预估时间
 
@@ -33,7 +41,7 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 >
 > - **阶段一. Checkout SCM**: 拉取 GitHub 仓库代码
 > - **阶段二. Unit test**: 单元测试，如果测试通过了才继续下面的任务
-> - **阶段三. sonarQube analysis**：sonarQube 代码质量检测
+> - **阶段三. SonarQube analysis**：sonarQube 代码质量检测
 > - **阶段四. Build & push snapshot image**: 根据行为策略中所选择分支来构建镜像，并将 tag 为 `SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER` 推送至 Harbor (其中 `$BUILD_NUMBER` 为 pipeline 活动列表的运行序号)。
 > - **阶段五. Push latest image**: 将 master 分支打上 tag 为 latest，并推送至 DockerHub。
 > - **阶段六. Deploy to dev**: 将 master 分支部署到 Dev 环境，此阶段需要审核。
@@ -42,7 +50,11 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 
 ## 创建凭证
 
-在 [多租户管理快速入门](/zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
+> 注意：
+> - GitHub 账号或密码带有 "@" 这类特殊字符，需要创建凭证前对其进行 urlencode 编码，可通过一些 [第三方网站](http://tool.chinaz.com/tools/urlencode.aspx)进行转换，然后再将转换后的结果粘贴到对应的凭证信息中。
+> - 这里需要创建的是凭证（Credential），不是密钥（Secret）。
+
+在 [多租户管理快速入门](../zh-CN/quick-start/admin-quick-start) 中已给项目普通用户 project-regular 授予了 maintainer 的角色，因此使用 project-regular 登录 KubeSphere，进入已创建的 devops-demo 工程，开始创建凭证。
 
 1、本示例代码仓库中的 Jenkinsfile 需要用到 **DockerHub、GitHub** 和 **kubeconfig** (kubeconfig 用于访问接入正在运行的 Kubernetes 集群) 等一共 3 个凭证 (credentials) ，参考 [创建凭证](../../devops/credential/#创建凭证) 依次创建这三个凭证。
 
@@ -85,15 +97,17 @@ Jenkinsfile in SCM 意为将 Jenkinsfile 文件本身作为源代码管理 (Sour
 | APP_NAME                 | devops-java-sample     | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID | sonar-token            | 填写创建凭证步骤中的 SonarQube token凭证 ID，用于代码质量检测 |
 
-**注： Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。**
+**注：`master` 分支 Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。**
 
 3、修改以上的环境变量后，点击 **Commit changes**，将更新提交到当前的 master 分支。
 
 ![提交更新](https://kubesphere-docs.pek3b.qingstor.com/png/commit-jenkinsfile.png)
 
+4、若需要测试缓存，需要切换至 `dependency` 分支，对 `dependency` 分支下的 Jenkinsfile-online 做类似的修改，否则该分支的流水线将构建失败。
+
 ## 创建项目
 
-CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 Dev 和 Production 这两个项目 (Namespace) 环境中，即 `kubesphere-sample-dev` 和 `kubesphere-sample-prod`，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
+CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/kubesphere/devops-java-sample/tree/master/deploy>)，最终将示例分别部署到 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 这两个项目 (Namespace) 环境中，这两个项目需要预先在控制台依次创建，参考如下步骤创建该项目。
 
 ### 第一步：创建第一个项目
 
@@ -151,7 +165,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 4、复制生成的 token，在 KubeSphere Token 框中输入该 token 然后点击保存。
 
-5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample)，点击 **选择此仓库**，完成后点击 **下一步**。 
+5、验证通过后，右侧会列出此 Token 关联用户的所有代码库，选择其中一个带有 Jenkinsfile 的仓库。比如此处选择准备好的示例仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample)，点击 **选择此仓库**，完成后点击 **下一步**。
 
 ![image-20190409122653070](https://kubesphere-docs.pek3b.qingstor.com/png/image-20190409122653070.png)
 
@@ -159,9 +173,9 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 完成代码仓库相关设置后，进入高级设置页面，高级设置支持对流水线的构建记录、行为策略、定期扫描等设置的定制化，以下对用到的相关配置作简单释义。
 
-1、构建设置中，勾选 `丢弃旧的构建`，此处的 **保留分支的天数** 和 **保留分支的最大个数** 默认为 -1。
+1、分支设置中，勾选 `丢弃旧的分支`，此处的 **保留分支的天数** 和 **保留分支的最大个数** 默认为 -1。
 
-![丢弃旧的分支](https://pek3b.qingstor.com/kubesphere-docs/png/20190425224048.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChat6b0ca0cf57ea9c1eaf44dbac633bb459.png)
 
 > 说明：
 >
@@ -204,7 +218,7 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 >
 > Webhook 推送：
 >
-> Webhook 是一种高效的方式可以让流水线发现远程仓库的变化并自动触发新的运行，GitHub 和 Git (如 Gitlab) 触发 Jenkins 自动扫描应该以 Webhook 为主，以上一步在 KubeSphere 设置定期扫描为辅。在本示例中，可以通过手动运行流水线，如需设置自动扫描远端分支并触发运行，详见 [设置自动触发扫描 - GitHub SCM](/zh-CN/devops/auto-trigger)。
+> Webhook 是一种高效的方式可以让流水线发现远程仓库的变化并自动触发新的运行，GitHub 和 Git (如 Gitlab) 触发 Jenkins 自动扫描应该以 Webhook 为主，以上一步在 KubeSphere 设置定期扫描为辅。在本示例中，可以通过手动运行流水线，如需设置自动扫描远端分支并触发运行，详见 [设置自动触发扫描 - GitHub SCM](/v2.0/zh-CN/devops/auto-trigger)。
 
 完成高级设置后点击 **创建**。
 
@@ -212,7 +226,8 @@ CI/CD 流水线会根据示例项目的 [yaml 模板文件](<https://github.com/
 
 ### 第四步：运行流水线
 
-流水线创建后，点击浏览器的 **刷新** 按钮，可见一条自动触发远程分支后的运行记录。
+流水线创建后，点击浏览器的 **刷新** 按钮，可见两条自动触发远程分支后的运行记录，分别为 `master` 和 `dependency` 分支的构建记录。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatb68b13f091b9e9ec52ee3ff12dd5dd8e.png)
 
 1、点击右侧 **运行**，将根据上一步的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `master`分支，系统将根据输入的分支加载 Jenkinsfile-online (默认是根目录下的 Jenkinsfile)。
 
@@ -260,7 +275,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/sonar-result.png)
 
-2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。Hello World 示例页面最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
+2、流水线最终 build 的 Docker 镜像也将被成功地 push 到 DockerHub 中，我们在 Jenkinsfile-online 中已经配置过 DockerHub，登录 DockerHub 查看镜像的 push 结果，可以看到 tag 为 snapshot、TAG_NAME(master-1)、latest 的镜像已经被 push 到 DockerHub，并且在 GitHub 中也生成了一个新的 tag 和 release。演示示例页面最终将以 deployment 和 service 分别部署到 KubeSphere 的 `kubesphere-sample-dev` 和 `kubesphere-sample-prod` 项目环境中。
 
 | 环境       | 访问地址                               | 所在项目 (Namespace) | 部署 (Deployment) | 服务 (Service) |
 | :--------- | :------------------------------------- | :------------------- | :---------------- | :------------- |
@@ -275,7 +290,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务的 Virtual IP 为 `10.233.42.3`，对外暴露的节点端口 (NodePort) 是 `30961`。
 
-**查看服务** 
+**查看服务**
 
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
@@ -287,14 +302,14 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 ## 访问示例服务
 
-若在内网环境访问部署的 HelloWorld 示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问，其中 Virtual IP 和节点端口 (NodePort) 可通过对应项目下的服务中查看：
+若在内网环境访问部署的演示示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问，其中 Virtual IP 和节点端口 (NodePort) 可通过对应项目下的服务中查看：
 
 **验证 Dev 环境的示例服务**
 
 ```shell
 # curl {$Virtual IP}:{$Port} 或者 curl {$内网 IP}:{$NodePort}
 curl 10.233.40.5:8080
-Hello,World!
+Really appreaciate your star, that's the power of our life.
 ```
 
 Virtual IP 在
@@ -304,7 +319,7 @@ Virtual IP 在
 ```shell
 # curl {$Virtual IP}:{$Port} 或者 curl {$内网 IP}:{$NodePort}
 curl 10.233.42.3:8080
-Hello,World!
+Really appreaciate your star, that's the power of our life.
 ```
 
 若两个服务都能访问成功，则说明流水线运行结果也是符合预期的。
@@ -312,3 +327,15 @@ Hello,World!
 > 提示：若需要在外网访问该服务，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将**内网端口**比如 30861 转发到**源端口** 30861，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 至此，基于 GitHub 和 DockerHub 的一个 Jenkinsfile in SCM 类型的流水线已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../devops/devops-faq)。
+
+## devops缓存测试
+
+若希望测试该示例使用缓存后的提升效果，可在第一次自动触发的 `dependency` 分支构建完成后，再次手动触发 `dependency` 分支进行构建。
+
+1、点击右侧 **运行**，将根据之前设置的 **行为策略** 自动扫描代码仓库中的分支，在弹窗选择需要构建流水线的 `dependency` 分支，系统将根据输入的分支加载 Jenkinsfile-online (默认是根目录下的 Jenkinsfile)。并且输入 `TAG_NAME`，点击确定。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatbdd81b896658a6958a1b315592db2306.png)
+
+2、流水线开始运行，等待其构建完成。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/WeChatfcb5ea2d1f042a12f9120f234148ced6.png)
+
+可发现，第二次构建利用了第一次构建时缓存的依赖，无需再次进行依赖下载。

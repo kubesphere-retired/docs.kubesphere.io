@@ -1,153 +1,127 @@
 ---
-title: "Source to Image: Publish your app without Dockerfile"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "Source to Image: Publish Your App without Dockerfile"
+keywords: 'kubesphere, kubernetes, docker, jenkins, s2i, source to image'
+description: 'Publish your application using source to image'
 ---
 
-Source to Image (S2I) is a tool that allows a programmer to input source codes and transfer the codes into runnable program to Docker image. This tool enables programers to build images even when they don't know about Dockerfile. By inputing source codes into the source code compiler, Builder image, Source to Image can transfer the codes into Docker images.
+## What is Source to Image
+
+As [Features and Benefits](../../introduction/features) elaborates, Source-to-Image (S2I) is a toolkit and workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and letting the container prepare that source code for execution. KubeSphere integrates S2I to enable automatically building images and publishing to Kubernetes without writing Dockerfile.
 
 ## Objective
 
-The example below is an official Java demonstration for Hello World. It will show you how to use Source to Image on KubeSphere to build image, push the images to mirroring repositories and finally deploy them to clusters.
+This tutorial will use S2I to import source code of a Java sample project into KubeSphere, build a docker image and push to a target registry, finally publish to Kubernetes and expose the service to outside.
+
+![S2I Process](https://pek3b.qingstor.com/kubesphere-docs/png/20200207162613.png)
 
 ## Prerequisites
 
-- The example below takes the GitHub codes repository and DockerHub repositories for example. Make sure you have created [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) accounts.
-- Build workspace, projects and `project-regular` accounts for common users at first. If not, please refer to [Quick Start Guide of Multi-tenant Management](../quick-start/admin-quick-start/).
-- Use `project-admin` to invite `project-regular`, regular users, to join in the project. Refer to [Quick Start Guide of Multi-tenant Management-inviting members](../quick-start/admin-quick-start/) to grant the `operator`role.
+- You need to enable [KubeSphere DevOps system](../../installation/install-devops).
+- You need to create [GitHub](https://github.com/) and [DockerHub](http://www.dockerhub.com/) accounts. GitLab and Harbor are also supported. We will use GitHub and DockerHub in this tutorial.
+- You need to create a workspace, a project and `project-regular` account with the role of operator, see [Getting Started with Multi-tenant Management](/../../quick-start/admin-quick-start).
+- Set CI dedicated node for building images, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node). This is not mandatory but recommended for development and production environment since it caches code dependency.
 
 ## Estimated Time
 
-20-30 minutes (The time varies according to the Internet speed and other factors.)
+20-30 minutes
 
 ## Hands-on Lab
 
-### Create Secrets
+### Step 1: Create Secrets
 
-Create the secrets for DockerHub repository and GitHub codes repository as dockerhub-id and github-id. Please refer to [Creating Common Secrets](../configuration/secrets/#%E5%88%9B%E5%BB%BA%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%A0%E7%B1%BB%E5%AF%86%E9%92%A5)
+Log in KubeSphere with the account `project-regular`. Go to your project and create the secrets for DockerHub and GitHub. Please reference [Creating Common-used Secrets](../../configuration/secrets#create-common-used-secrets).
 
-#### Fork Project
+> Note you may not need to create GitHub Secret if your forked project below is open to public.
 
-Login GitHub. Fork the GitHub repository [devops-java-sample](https://github.com/kubesphere/devops-java-sample) to your personal GitHUb.
+### Step 2: Fork Project
 
-##Create a Deployment
+Log in GitHub and fork the GitHub repository [devops-java-sample](https://github.com/kubesphere/devops-java-sample) to your personal GitHub account.
 
-###Step 1: Fill in basic information
+![Fork Project](https://pek3b.qingstor.com/kubesphere-docs/png/20200210174640.png)
 
-1.1 Click Deployment and enter.
+### Step 3: Create Service
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190717180338.png#alt=)
+#### Fill in Basic Information
 
-1.2 Click Create.
+3.1 Navigate to **Application Workloads → Services**, click **Create Service**.
 
-- Name: (Necessary) Name the deployment as `s2i-test`;
-- Nickname: It can be customized.
-- Description: Simply decirbe the deployment information. This is customizable.
+![Create Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200210180908.png)
 
-###Step 2: Container Group Template Settings
+3.2 Choose **Java** under **Build a new service from source code repository**, then name it `s2i-demo` and click **Next**.
 
-2.1. Click **Next** and then click **Add Container**.
+#### Build Settings
 
-2.2. Then choose `Build a new container image from code`.
+3.3. Now we need go to GitHub and copy the URL of the forked repository first.
 
-2.3. Fork the [Repository Sample](https://github.com/kubesphere/devops-java-sample) to your personal GItHUb. Then copy your personal repository's git address.
+![GitHub](https://pek3b.qingstor.com/kubesphere-docs/png/20200210215006.png)
 
-2.4. Refer to the following information and fill in.
+3.4. Paste the URL in **Code URL**, enter `<dockerhub_username>/<image_name>` into **imageName**, e.g. `pengfeizhou/s2i-sample` in this demo. As for **secret** and **Target image repository**, you need to choose the secrets created in step 1, let's say `dockerhub-id` and `github-id` respectively.
 
-> Note: KubeSphere has built in common s2i templates for Java, Node.js and Python. If you need to customize other languages or use the s2i template, please refer to [Customized s2i template](../workload/s2i-template/).
+> Note: KubeSphere has built in common S2I templates for Java, Node.js and Python. It allows you to [customize S2I template](../../developer/s2i-template) for other languages.
 
+![Build Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200210220057.png)
 
-- Code URL: Paste the git address fromt he last step (Git, HTTP and HTTPS are fine. You can also specify the related path in the source code terminal);
-- Secret: Inject the secret `github-id`into the S2I Pod;
-- Mirroring Template: Choose `kubespheredev/java-8-centos7` as the Builder image.
-- Code relative path: Use `/` by default.
-- Image Name: It can be customized. The user names here are `dockerhub_username>/hello` and `dockerhub_username`.
-- Tag: The mirroring tag can be `latest` by default.
-- Target image repository: Choose `dockerhub-id` created in the previous step.
+3.5. Click **Next** to **Container Setting** tab. In the **Service Settings** part, name the service `http-port` for example. **Container Port** and **Service Port** are both `8080`.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718095825.png#alt=)
+![Container Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200226173052.png)
 
-2.4. Scroll down to `Container Specification`. It is suggested to set CPU and RAM's biggest storages as 500M and 1000Mi.
+3.6. Scroll down to **Health Checker**, check it and click `Add Container ready check`, fill in the contents as follows:
 
-2.5. Scroll down to `Service Settings`. The port number is **8080**:
+- Port: enter `8080`; it maps to the service port that we need to check.
+- Initial Delay(s): `30`; number of seconds after the container has started before liveness or readiness probes are initiated.
+- Timeout(s): `10`; number of seconds after the probe times out. Default is 1 second.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718112803.png#alt=)
+![Health Checker](https://pek3b.qingstor.com/kubesphere-docs/png/20200210223047.png)
 
-2.6. Then click **Save**.
+Then click `√` to save it when you are done, and click **Next**.
 
-The duplicate number is 1. The click **Next**.
+#### Create S2I Deployment
 
-###Step 3: Create s2i Deployment
+Click **Next** again to skip **Mount Volumes**. Check **Internet Access**, then choose **NodePort** to expose S2I service through `<NodeIP>:<NodePort>`. Now click **Create** to start the S2I process.
 
-No need to set storage volume. Click **Next**. Save the tag by default. Then choose **Create**. Complete the s2i deployment.
+![Internet Access](https://pek3b.qingstor.com/kubesphere-docs/png/20200210223251.png)
 
-####Complete the creation
+### Step 4: Verify Build Progress
 
-The green check below indicates that the mirroring had been created by s2i.
+Choose **Image Builder**, drill into the new generated S2I build.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718115255.png#alt=)
+![Build Progress](https://pek3b.qingstor.com/kubesphere-docs/png/20200210224618.png)
 
-Check the container group. Function well.
+You will be able to inspect the logs by expanding **Job Records**. Normally you can see it outputs "Build completed successfully" in the end.
 
-## Verify The Operation Results
+![Build Logs](https://pek3b.qingstor.com/kubesphere-docs/png/20200210225006.png)
 
-If the deployment was successful through s2i, you will see the setted image in Dockerhub. The name and tage have been setted in the **Container Group Template Setting**. If you want to check the deployment results, you can configerate as follows.
+So far this S2I build has created corresponding Job, Deployment and Service accordingly, We can verify each resource object as follows.
 
-### Step 1: Create a Service
+#### Job
 
-Choose **Network & Services → Services** on the left menu, then click on the **Create** button.
+![Job](https://pek3b.qingstor.com/kubesphere-docs/png/20200210230158.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718102443.png#alt=)
+#### Deployment
 
-### Step 2: Fill in the basic information
+![Deployment](https://pek3b.qingstor.com/kubesphere-docs/png/20200210230217.png)
 
-This step is similar to deployment creation, e.g. `Name : s2i-test-service`. The rest are customized as below.
+#### Service
 
-### Step 3: Service Settings
+![Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200210230239.png)
 
-3.1. Choose the first item `Virtual IP: Access the service through the internal IP of the cluster`.
+### Step 5: Access S2I Service
 
-3.2. Then click on the `Specify Workload` and choose `springboot-s2i` deployment as below.
+Go into S2I service detailed page, access this service through either `Endpoints`, or `<ClusterIP>:<Service Port>`, or `<NodeIP>:<NodePort>`.
 
-3.3. Click save. Refer to the port information as follows.
-
-- Port name: s2i-port
-- TCP defaulted, Port Number: `8080` and the target port is `8080`.
-- Finish the settings then click **Next**.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718112621.png#alt=)
-
-### Step 5: Tag setting
-
-Setting by default then click **Next**.
-
-### Step 6: Setting External Network Access
-
-Select the access method as `NodePort`.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718105444.png#alt=)
-
-For now, the service check has been created. As below, the Virtual IP is 10.233.40.2, the service port is 8080 and the Nodeport is 30454.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718112547.png#alt=)
-
-### Step 7: Verify Visits
-
-If you visit the HelloWorld service from the internal network, you can login cluster nodes through SSH or use Cluster admin to login KubeSphere. Then putin the following command in web kubectl:
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718113343.png#alt=)
+![Access Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200210230444.png)
 
 ```bash
-# curl {$Virtual IP}:{$Port} or curl {$Node IP}:{$NodePort}
-$ curl 10.233.60.196:8080
-Hello,World!
+$ curl 10.233.90.126:8080
+Really appreciate your star, that is the power of our life.
 ```
 
-> Tip: If you need to access to this service from external network, you may need to bind to the public network EIP and set port forwarding and firewall rules. Forward the Internal Network Port 30454 to the source port 30454 in the forwarding rule. Then open this port in the firewall to ensure the external network traffic can pass this port. For operations on the QingCloud platform, you can refer to [Cloud Platform Setting Port Forward and Firewall](../appendix/qingcloud-manipulation/).
+> Tip: If you need to access to this service externally, make sure the traffic can pass through the NodePort. You may configure firewall and port forward according to your environment.
 
+### Step 6: Verify Image Registry
 
-## Verify the Service and Image Push
+Since you set DockerHub as the target registry, you can log in to your personal DockerHub to check if the sample image has been pushed by the S2I job.
 
-Since we set the target mirroring repository as DockerHub, you can login your personal DockerHub to check the image pushed by Source to Image. If you find `hello:latest`, the image has been successfully pushed to DockerHub
+![Image in DockerHub](https://pek3b.qingstor.com/kubesphere-docs/png/20200210231552.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190718113818.png#alt=)
+Congratulation! You have been familiar with S2I tool.

@@ -22,7 +22,7 @@ KubeSphere 高级版 (Advanced Edition 2.0.0) 已于 2019 年 5 月 18 日 正�
 
  - 集成 Istio 1.1.1，支持图形化创建包含多个微服务组件的应用  
  - 支持为项目（外网访问）和应用开启/关闭应用治理  
- - 内置微服务治理示例 [Bookinfo](/zh-CN/quick-start/bookinfo-canary/)  
+ - 内置微服务治理示例 [Bookinfo](../zh-CN/quick-start/bookinfo-canary/)  
  - 支持流量治理
  - 支持流量镜像
  - 基于 Istio 提供微服务级别的负载均衡功能

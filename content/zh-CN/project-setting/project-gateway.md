@@ -4,9 +4,9 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-1. 在当前项目中，左侧菜单选择 **项目设置 → 外网访问**，点击 **设置网关**，即应用路由的网关入口，每个项目都有一个独立的网关入口。
+1. 在当前项目中，左侧菜单选择 **项目设置 → 高级设置**，点击 **设置网关**，即应用路由的网关入口，每个项目都有一个独立的网关入口。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514095021.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200211102112.png)
 
 2. 在弹出的窗口选择网关的类型，支持以下两种访问方式：
 
@@ -26,16 +26,15 @@ description: ''
 
 
 - 通过 EIP 访问：
-  - `http://139.198.0.20:30798`
-  - `https://139.198.0.20:31279`
+  - `http://139.198.0.20:31733`
+  - `https://139.198.0.20:30910`
 
 - 通过在应用路由规则中设置的 Hostname 访问：
-  - `http://demo.kubesphere.io:30798`
-  - `https://demo.kubesphere.io:31279`
+  - `http://demo.kubesphere.io:31733`
+  - `https://demo.kubesphere.io:30910`
 
- 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514095320.png)
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200211102426.png)
 
 ## 通过 LoadBalancer 暴露网关
 
@@ -68,9 +67,7 @@ service.beta.kubernetes.io/qingcloud-load-balancer-eip-source : auto
 
 2、等待 `2` 分钟左右负载均衡器将在云平台自动创建完毕并自动绑定公网 IP 至网关。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190606004135.png)
 
 3、在部署应用或创建应用路由、服务后，即可自动使用该公网 IP 或域名来暴露服务，方便用户快速访问。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190606004254.png)
-

@@ -24,7 +24,7 @@ description: ''
 |---|---|
 |cluster-admin |集群管理员，可以管理集群中所有的资源。|
 |cluster-regular|集群中的普通用户，在被邀请加入企业空间之前没有任何资源操作权限。|
-|workspaces-manager|集群中企业空间管理员，可以管理集群中所有的企业空间及其下面的项目和工程资源。|
+|workspaces-manager|集群中企业空间管理员，仅可创建、删除企业空间，维护企业空间中的成员列表。|
 
 ![创建账号](/create-account-zh.png)
 

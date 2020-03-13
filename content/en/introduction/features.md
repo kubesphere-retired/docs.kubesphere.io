@@ -1,108 +1,125 @@
 ---
-title: "Features"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "Features and Benefits"
+keywords: "kubesphere, kubernetes, docker, helm, jenkins, istio, prometheus"
+description: "The document describes the features and benefits of KubeSphere"
 ---
 
-As an enterprise container platform, KubeSphere provides an easy-to-use console with awesome user experience that allows you to quickly get started with various functions.
+## Overview
 
-KubeSphere provides rich features ranging from the **workload management, microservice governance (Service Mesh), DevOps projects (CI/CD), Source to Image (S2I), multi-tenancy management, multi-dimensional monitoring, log query and collection, alerting and notification, service and network, application management, infrastructure management, image registry management, application management and so on**. It also supports a various of open source storage and network solutions, as well as high-performance cloud storage services, business products regarding storage and network.
+As an open source container platform, KubeSphere provides enterprises with a robust, secure and feature-rich platform, including most common functionalities needed for enterprise adopting Kubernetes, such as workload management, Service Mesh (Istio-based), DevOps projects (CI/CD), Source to Image and Binary to Image, multi-tenancy management, multi-dimensional monitoring, log query and collection, alerting and notification, service and network management, application management, infrastructure management, image registry management, application management. It also supports various open source storage and network solutions, as well as cloud storage services. Meanwhile, KubeSphere provides an easy-to-use web console to ease the learning curve and drive the adoption of Kubernetes.
 
-We are also developing [Porter](https://github.com/kubesphere/porter), the open source load balancer plugin which is suitable for Kubernetes installed on bare metal. 
+![Overview](https://pek3b.qingstor.com/kubesphere-docs/png/20200202153355.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017145758.png)
+The following modules elaborate the key features and benefits provided by KubeSphere container platform.
 
-The following modules elaborate on the KubeSphere services from a professional point of view.
+## Provisioning and Maintaining Kubernetes
 
-## Kubernetes Resource Management
+### Provisioning Kubernetes Cluster
 
-KubeSphere provides easy-to-use visual wizard UI for various Kubernetes resources so as to manage workloads, image registry, service and application router as well as the key configuration. It also provides Horizontal Pod Autoscaler (HPA) and container check, and supports millions of container resource configuration to ensure businesses’ high availability under the peak concurrent.
+KubeSphere Installer allows you to deploy Kubernetes on your infrastructure out of box, provisioning Kubernetes cluster with high availability. It is recommended that at least three master nodes are configured behind a load balancer for production environment.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017150242.png)
+### Kubernetes Resource Management
 
-## Microservice Governance (Service Mesh)
+KubeSphere provides graphical interface for creating and managing Kubernetes resources, including Pods and Containers, Workloads, Secrets and ConfigMaps, Services and Ingress, Jobs and CronJobs, HPA, etc. As well as powerful observability including resources monitoring, events, logging, alerting and notification.
 
-- Flexible microservice framework: Based on the Istio microservice framework, KubeSphere provides a visualized microservice governance function to manage Kubernete’s services in fine-grained control.
-- Complete governance functions: Support microservice governance such as circuit breaker, gray release, traffic control, current limitation, link tracking and the intelligent routing. At the same time, the system supports microservice governance without modifying your source code.
+### Cluster Upgrade and Scaling
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190713002111.png)
+KubeSphere Installer provides ease of setup, installation, management and maintenance. Moreover, it supports rolling upgrades of Kubernetes clusters so that the cluster service is always available while being upgraded. Additionally, it provides the ability to roll back to previous stable version in case of failure. Also, you can add new nodes to a Kubernetes cluster in order to support more workloads by using KubeSphere Installer.
 
+## DevOps Support
+
+KubeSphere provides pluggable DevOps component based on popular CI/CD tools such as Jenkins, and offers automated workflow and tools including binary-to-image (B2I) and source-to-image (S2I) to get source code or binary artifacts into ready-to-run container images. The following are the detailed description of CI/CD pipeline, S2I and B2I.
+
+![DevOps](https://pek3b.qingstor.com/kubesphere-docs/png/20200202220455.png)
+
+### CI/CD Pipeline
+
+- CI/CD pipelines and build strategies are based on Jenkins, which streamlines the creation and automation of development, test and production process, and supports dependency cache to accelerate build and deployment.
+- Ship out-of-box Jenkins build strategy and client plugin to create a Jenkins pipeline based on Git repository/SVN. You can define any step and stage in your built-in Jenkinsfile.
+- Design a visualized control panel to create CI/CD pipelines, and deliver complete visibility to simplify user interaction.
+- Integrate source code quality analysis, also support output and collect logs of each step.
+
+### Source to Image
+
+Source-to-Image (S2I) is a toolkit and automated workflow for building reproducible container images from source code. S2I produces ready-to-run images by injecting source code into a container image and making the container ready to execute from source code.
+
+S2I allows you to publish your service to Kubernetes without writing Dockerfile. You just need to provide source code repository address, and specify the target image registry. All configurations will be stored as different resources in Kubernetes. Your service will be automatically published to Kubernetes, and the image will be pushed to target registry as well.
+
+![S2I](https://pek3b.qingstor.com/kubesphere-docs/png/20200204131749.png)
+
+### Binary to Image
+
+As similar as S2I, Binary to Image (B2I) is a toolkit and automated workflow for building reproducible container images from binary (e.g. Jar, War, Binary package).
+
+You just need to upload your application binary package, and specify the image registry to which you want to push. The rest is exactly same as S2I.
+
+## Istio-based Service Mesh
+
+KubeSphere service mesh is composed of a set of ecosystem projects, including Istio, Envoy and Jaeger, etc. We  design a unified user interface to use and manage these tools. Most features are out-of-box and have been designed from developer's perspective, which means KubeSphere can help you to reduce the learning curve since you do not need to deep dive into those tools individually.
+
+KubeSphere service mesh provides fine-grained traffic management, observability, tracing, and service identity and security for a distributed microservice application, so the developer can focus on core business. With a service mesh management on KubeSphere, users can better track, route and optimize communications within Kubernetes for cloud native apps.
+
+### Traffic Management
+
+- **Canary release** provides canary rollouts, and staged rollouts with percentage-based traffic splits.
+- **Blue-green deployment** allows the new version of the application to be deployed in the green environment and tested for functionality and performance. Once the testing results are successful, application traffic is routed from blue to green. Green then becomes the new production.
+- **Traffic mirroring** enables teams to bring changes to production with as little risk as possible. Mirroring sends a copy of live traffic to a mirrored service.
+- **Circuit breakers** allows users to set limits for calls to individual hosts within a service, such as the number of concurrent connections or how many times calls to this host have failed.
+
+### Visualization
+
+KubeSphere service mesh has the ability to visualize the connections between microservices and the topology of how they interconnect. As we know, observability is extremely useful in understanding cloud-native microservice interconnections.
+
+### Distributed Tracing
+
+Based on Jaeger, KubeSphere service mesh enables users to track how each service interacts with other services. It brings a deeper understanding about request latency, bottlenecks, serialization and parallelism via visualization.
 
 ## Multi-tenant Management
 
-- Multi-tenancy: Provides unified authentication based on fine-grained roles and three-tier authorization management.
-- Unified authentication: Supports integration with enterprise centralized authentication system that is based on LDAP/AD protocol. And support single sign-on (SSO) to realize the unified authentication of tenant identity.
-- Authorization management: The authorization hierarchy is divided into three levels, namely, cluster, workspace and project. From high to low, we ensure the resource sharing as well as the isolation among different roles at multiple levels with resource security fully guaranteed.
+- Multi-tenancy: provides unified authentication with fine-grained roles and three-tier authorization system.
+- Unified authentication: supports docking to a central enterprise authentication system that is LDAP/AD based protocol. And supports single sign-on (SSO) to achieve unified authentication of tenant identity.
+- Authorization system: It is organized into three levels, namely, cluster, workspace and project. We ensure the resource sharing as well as isolation among different roles at multiple levels to fully guarantee resource security.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017150642.png)
+## Multi-dimensional Monitoring
 
-## DevOps Project (CI/CD)
-
-- Out-of-the-box DevOps: Supports visual CI/CD Jenkins-based pipeline editing with no Jenkins configuration required, and provides rich CI/CD pipeline plug-ins.
-- CI/CD graphical pipelining provides mail notification and adds multiple execution conditions
-- End-to-end pipeline setup: Supports end-to-end pipeline setup from repository (GitHub/SVN/Git), code compiling, container image generating, image security scanning, pushing to repository, release, and scheduled pipeline trigger.
-- Security management: Support code static analysis scanning to manage the security of code quality in DevOps project.
-- Logging: The logs record the whole process of CI/CD pipeline running.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017153203.png)
-
-## Source to Image
-
- Source to Image (S2i) provides the ability to pull source code from code repository, compile the code, make container image and push the image to a target repository. The whole process of S2I will be completed in the form of task (Job).
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017152542.png)
-
-## Multidimensional Monitoring
-
-- fully monitoring dashboard can be operated through a visual interface, while at the same time, the open standard interface is easy to connect with the enterprise operation and maintenance system, so as to unify the operation and maintenance entry to realize centralized operation and maintenance.
-- Three-dimensional second-level monitoring: Instruct the three-dimensional monitoring with second-level frequency and dual-dimensions for 16 indicators.
-- In the cluster resource dimension, we provide multiple indicators such as CPU utilization, memory utilization, CPU load average, disk usage, inode utilization, disk throughput, IOPS, network card rate, Pod running state, ETCD monitoring, API Server monitoring.
-- In the dimension of application resources, we provide five monitoring indicators such as CPU consumption, memory consumption, number of container clusters, network outflow rate and network inflow rate for the application. Besides, we support the query by the amount of sorting and custom time range as well as fast location of exceptions.
-- Provide resource usage ranking by node, enterprise space, project, etc.
-- Provide service component monitoring to quickly locate component failures.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017150930.png)
+- Monitoring system is fully visualized, and provides open standard APIs for enterprises to integrate their existing operating platforms such as alerting, monitoring, logging etc. in order to have a unified system for their daily operating work.
+- Comprehensive and second-level precision monitoring metrics.
+	- In the aspect of infrastructure monitoring, the system provides many metrics including CPU utilization, memory utilization, CPU load average, disk usage, inode utilization, disk throughput, IOPS, network interface outbound/inbound rate, Pod status, ETCD service status, API Server status, etc.
+	- In the aspect of application resources, the system provides five monitoring metrics, i.e., CPU utilization, memory consumption, the number of Pods of applications, network outbound/inbound rate of an application. Besides, it supports sorting according to resource consumption, user-defined time range query and quickly locating the place where exception happens.
+- Provide resource usage ranking by node, workspace and project.
+- Provide service component monitoring for user to quickly locate component failures.
 
 ## Alerting and Notification System
 
-- Provides monitor metrics and alert polices based on multiple tenancy and multiple dimensions. Currently, the alerting policy supports two levels. One is node level for the cluster administrator and the other is workload level for a tenant.
+- Provide rich alerting rules based on multi-tenancy and multi-dimensional monitoring metrics. Currently, the system supports two types of alerting. One is infrastructure alerting for cluster administrator. The other one is workload alerting for tenants.
 - Flexible alerting policy: You can customize an alerting policy that contains multiple alerting rules, and you can specify notification rules and repeat alerting rules.
-- Rich alerting polices: Provide monitoring metrics and alerting polices at both node level and workload level. It includes many monitoring metrics such as Pod, CPU, memory, disk, network, etc.
-- Flexible alerting rules: You can customize time period and consecutive times of the probe, and configure how serious the alert is.
-- Flexible notification delivery rules: You can customize the notification delivery period and notification list. Mail notification is currently supported only.
-- Custom repeat alerting rules: Support to set the repeat alerting cycle, maximum repeat times, and the alerting level
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151933.png)
+- Rich monitoring metrics for alerting: Provide alerting for infrastructure and workloads.
+- Flexible alerting rules: You can customize the detection period, duration and alerting level of monitoring metrics.
+- Flexible notification rules: You can customize the notification delivery period and receiver list. Mail notification is currently supported.
+- Custom repeat alerting rules: Support to set the repeat alerting cycle, maximum repeat times, and the alerting level.
 
 ## Log Query and Collection
 
-- Provides multi-tenant log management. In KubeSphere's log search system, different tenants can only see their own log information.
-- Contains multi-level log queries (project/workload/Pod/container and keywords) as well as flexible and convenient log collection configuration options.
-- Supports a variety of log collection platforms such as Elasticsearch, Kafka, Fluentd.
+- Provide multi-tenant log management. In KubeSphere log search system, different tenants can only see their own log information.
+- Contain multi-level log queries (project/workload/container group/container and keywords) as well as flexible and convenient log collection configuration options.
+- Support multiple log collection platforms such as Elasticsearch, Kafka, Fluentd.
 
-Application management and orchestration
-- Use open source OpenPitrix to provide app store and app repository services to provide users with the management of the application lifecycle.
-- Users can quickly and easily deploy all the services of a complete application based on application templates.
+## Application Management and Orchestration
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151418.png)
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017152007.png)
+- Use open source [OpenPitrix](https://github.com/openpitrix/openpitrix) to set up app store and app repository services which provides full lifecycle of application management.
+- Users can easily deploy an application from templates with one click.
 
 ## Infrastructure Management
 
-KubeSphere provides the ability to operate infrastructure including storage management, host management and monitoring, resource quota management, image registry management, authorization management and image security scanning. KubeSphere also supports adding public Docker hub and private Harbor as external image registries in addition to shipping built-in Harbor image registry.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151554.png)
+Support storage management, host management and monitoring, resource quota management, image registry management, authorization management.
 
 ## Multiple Storage Solutions Support
 
-- Supports GlusterFS, CephRBD, NFS and other open source storage.
-- Provides NeonSAN CSI plug-in to leverage QingStor NeonSAN storage with lower latency, more resilient, higher performance to meet enterprise core business requirements.
-- Provides QingCloud CSI plug-in to use various block storage services in QingCloud.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017151706.png)
+- Support GlusterFS, CephRBD, NFS, etc., open source storage solutions.
+- Provide NeonSAN CSI plug-in to connect QingStor NeonSAN service to meet core business requirements, i.e., low latency, strong resilient, high performance.
+- Provide QingCloud CSI plug-in that accesses QingCloud block storage services.
 
 ## Multiple Network Solutions Support
 
-- Supports Calico, Flannel and other open source network solutions.
-- Load balancer Porter developed for Kubernetes deployed on bare metal environment.
+- Support Calico, Flannel, etc., open source network solutions.
+- A bare metal load balancer plug-in [Porter](https://github.com/kubesphere/porter) for Kubernetes installed on physical machines.

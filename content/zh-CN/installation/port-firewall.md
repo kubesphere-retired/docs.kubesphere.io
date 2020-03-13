@@ -1,5 +1,5 @@
 ---
-title: "需开放的端口"
+title: "网络防火墙配置"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -21,3 +21,9 @@ description: ''
 |local-apt|TCP|allow|5080||离线环境安装|
 |rpcbind|TCP|allow|111|| 使用 NFS 作为持久化存储
 |ipip|IPIP|allow| | |Calico 需要允许 IPIP 协议 |
+
+**注意事项**
+
+需要注意的是，如果在云平台上选择使用默认的 Calico 网络插件进行安装，并且主机是**直接运行在基础网络中**，则需要为源 IP (IP/端口集合) 添加防火墙的** IPIP 协议**，例如在 QingCloud 云平台添加防火墙的 IPIP 协议：
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200304200605.png)

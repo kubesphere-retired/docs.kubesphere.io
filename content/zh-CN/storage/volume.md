@@ -26,7 +26,7 @@ description: ''
 
 ### 持久化存储
 
-KubeSphere 支持的存储类型有 QingCloud 云平台块存储插件、QingStor NeonSAN 分布式存储、NFS、GlusterFS、Ceph RBD，这类存储类型都支持创建和使用持久化存储卷，并且支持动态存储卷分配 (Dynamic Volume Provisioning)[https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/]，必须预先准备好相应的服务端。安装前可在 Installer 的 `conf/vars.yml` 中配置这类存储服务，详见 [存储配置说明](../../installation/storage-configuration)。
+KubeSphere 支持的存储类型有 QingCloud 云平台块存储插件、QingStor NeonSAN 分布式存储、NFS、GlusterFS、Ceph RBD，这类存储类型都支持创建和使用持久化存储卷，并且支持动态存储卷分配 (Dynamic Volume Provisioning)[https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/]，必须预先准备好相应的服务端。安装前可在 Installer 的 `conf/common.yaml` 中配置这类存储服务，详见 [存储配置说明](../../installation/storage-configuration)。
 
 #### QingCloud 云平台块存储
 
@@ -34,7 +34,7 @@ KubeSphere 支持的存储类型有 QingCloud 云平台块存储插件、QingSto
 
 #### QingStor NeonSAN
 
-支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为存储服务，若您准备好 NeonSAN 服务端后，即可在 `conf/vars.yml` 配置 NeonSAN-CSI 插件对接其存储服务端，详见 [存储配置说明](../../installation/storage-configuration)
+支持对接青云自研的企业级分布式存储 [QingStor NeonSAN](https://www.qingcloud.com/products/qingstor-neonsan/) 作为存储服务，若您准备好 NeonSAN 服务端后，即可在 `conf/common.yaml` 配置 NeonSAN-CSI 插件对接其存储服务端，详见 [存储配置说明](../../installation/storage-configuration)
 
 #### Ceph RBD
 

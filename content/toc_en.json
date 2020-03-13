@@ -1,5 +1,5 @@
 {
-  "version": "v2.0",
+  "version": "v2.1",
   "lang": "en",
   "chapters": [
     {
@@ -8,9 +8,17 @@
       "desc": "Introduce the new features, capabilities and updates for the releases",
       "chapters": [
         {
-          "title": "Release Notes - 2.0.2",
-          "entry": "/en/release/release-v202",
+          "title": "Release Notes - 2.1.1",
+          "entry": "/en/release/release-v211",
           "tag": "Latest"
+        },
+        {
+          "title": "Release Notes - 2.1.0",
+          "entry": "/en/release/release-v210"
+        },
+        {
+          "title": "Release Notes - 2.0.2",
+          "entry": "/en/release/release-v202"
         },
         {
           "title": "Release Notes - 2.0.1",
@@ -29,7 +37,7 @@
       "chapters": [
         {
           "title": "Introduction",
-          "entry": "/en/introduction/intro"
+          "entry": "/en/introduction/what-is-kubesphere"
         },
         {
           "title": "Features",
@@ -55,7 +63,7 @@
       "desc": "Reference the installation guide to download and install KubeSphere",
       "chapters": [
         {
-          "title": "Intruction",
+          "title": "Introduction",
           "entries": [
             {
               "title": "Intro",
@@ -64,6 +72,10 @@
             {
               "title": "Port Requirements",
               "entry": "/en/installation/port-firewall"
+            },
+            {
+              "title": "Kubernetes Cluster Configuration",
+              "entry": "/en/installation/vars"
             }
           ]
         },
@@ -79,12 +91,20 @@
               "entry": "/en/installation/multi-node"
             },
             {
-              "title": "Installing HA Master and Etcd Cluster",
-              "entry": "/en/installation/master-etcd-ha"
+              "title": "High Availability Configuration",
+              "entry": "/en/installation/master-ha"
             },
             {
-              "title": "Storage Configuration Instruction",
+              "title": "Air Gapped Installation",
+              "entry": "/en/installation/install-ks-on-linux-airgapped"
+            },
+            {
+              "title": "StorageClass Configuration",
               "entry": "/en/installation/storage-configuration"
+            },
+            {
+              "title": "Enable All Components",
+              "entry": "/en/installation/complete-installation"
             }
           ]
         },
@@ -96,37 +116,118 @@
               "entry": "/en/installation/prerequisites"
             },
             {
-              "title": "Online Installation",
+              "title": "Install on K8s",
               "entry": "/en/installation/install-on-k8s"
             },
             {
-              "title": "Offline Installation",
-              "entry": "/en/installation/install-ks-offline"
+              "title": "Air Gapped Installation",
+              "entry": "/en/installation/install-on-k8s-airgapped"
+            },
+            {
+              "title": "Install on GKE",
+              "entry": "/en/installation/install-on-gke"
             }
           ]
         },
         {
-          "title": "Related Tools",
+          "title": "Pluggable Components",
           "entries": [
             {
-              "title": "Integrating Harbor Registry",
-              "entry": "/en/installation/harbor-installation"
+              "title": "Pluggable Components",
+              "entry": "/en/installation/pluggable-components"
+            },
+            {
+              "title": "Enable Application Store",
+              "entry": "/en/installation/install-openpitrix"
+            },
+            {
+              "title": "Enable DevOps System",
+              "entry": "/en/installation/install-devops"
+            },
+            {
+              "title": "Enable Logging System",
+              "entry": "/en/installation/install-logging"
+            },
+            {
+              "title": "Enable Service Mesh",
+              "entry": "/en/installation/install-servicemesh"
+            },
+            {
+              "title": "Enable Alerting and Notification",
+              "entry": "/en/installation/install-alert-notification"
+            },
+            {
+              "title": "Enable Metrics-server for HPA",
+              "entry": "/en/installation/install-metrics-server"
+            },
+            {
+              "title": "Verify Components Installation",
+              "entry": "/en/installation/verify-components"
             }
           ]
         },
         {
-          "title": "Cluster Operation",
+          "title": "Upgrade",
+          "icon": "/admin_reffer.svg",
+          "desc": "Guides for upgrading KubeSphere to 2.1.1",
           "entries": [
             {
-              "title": "Adding New Nodes",
+              "title": "Overview",
+              "entry": "/en/installation/upgrade"
+            },
+            {
+              "title": "All-in-One",
+              "entry": "/en/installation/upgrade-allinone"
+            },
+            {
+              "title": "Multi-node",
+              "entry": "/en/installation/upgrade-multi-node"
+            }
+          ]
+        },
+        {
+          "title": "Third-Party Tools",
+          "entries": [
+            {
+              "title": "Configure Harbor",
+              "entry": "/en/installation/integrate-harbor"
+            },
+            {
+              "title": "Access Built-in SonarQube and Jenkins",
+              "entry": "/en/installation/sonarqube-jenkins"
+            },
+            {
+              "title": "Enable built-in Grafana Installation",
+              "entry": "/en/installation/install-grafana"
+            },
+            {
+              "title": "Load Balancer plugin in Bare Metal - Porter",
+              "entry": "/en/installation/install-porter"
+            }
+          ]
+        },
+        {
+          "title": "Authentication Integration",
+          "entries": [
+            {
+              "title": "Configure LDAP/AD",
+              "entry": "/en/installation/ldap-ad"
+            }
+          ]
+        },
+        {
+          "title": "Cluster Operations",
+          "entries": [
+            {
+              "title": "Add or Cordon Nodes",
               "entry": "/en/installation/add-nodes"
             },
             {
-              "title": "High Risk Operation",
+              "title": "High Risk Operations",
               "entry": "/en/installation/high-risk"
             },
             {
-              "title": "Uninstalling KubeSphere",
+              "title": "Uninstall KubeSphere",
               "entry": "/en/installation/uninstall"
             }
           ]
@@ -136,266 +237,112 @@
     {
       "title": "Quick Start",
       "icon": "/access.svg",
-      "desc": "Get a quick overview of the basic features of KubeSphere with 13 quick-start examples to walk you through the process, help you to get familiar with it.",
+      "desc": "Get a quick overview of the basic features of KubeSphere with several quick-start examples.",
       "chapters": [
         {
-          "title": "Getting Started with Multitenancy",
+          "title": "1. Getting Started with Multi-tenancy",
           "entry": "/en/quick-start/admin-quick-start"
         },
         {
-          "title": "Exposing your APP using Ingress",
+          "title": "2. Expose your App Using Ingress",
           "entry": "/en/quick-start/ingress-demo"
         },
         {
-          "title": "Deploying a MySQL Application",
-          "entry": "/en/quick-start/mysql-deployment"
-        },
-        {
-          "title": "Deploying a Wordpress Website",
+          "title": "3. Compose and Deploy Wordpress to K8s",
           "entry": "/en/quick-start/wordpress-deployment"
         },
         {
-          "title": "Job to compute π to 2000 places",
-          "entry": "/en/quick-start/job-quick-start"
-        },
-        {
-          "title": "Deploying Grafana using APP Template",
+          "title": "4. Deploy Grafana Using App Template",
           "entry": "/en/quick-start/one-click-deploy"
         },
         {
-          "title": "Creating Horizontal Pod Autoscaler",
+          "title": "5. Job to Compute π to 2000 Places",
+          "entry": "/en/quick-start/job-quick-start"
+        },
+        {
+          "title": "6. Create Horizontal Pod Autoscaler",
           "entry": "/en/quick-start/hpa"
         },
         {
-          "title": "S2i: Publish your app without Dockerfile",
+          "title": "7. S2I: Publish your App without Dockerfile",
           "entry": "/en/quick-start/source-to-image"
         },
         {
-          "title": "Canary Release of Microservice APP",
-          "entry": "/en/quick-start/canary-release"
+          "title": "8. B2I: Publish Artifacts to Kubernete",
+          "entry": "/en/quick-start/b2i-war"
         },
         {
-          "title": "CI/CD based on Spring Boot Project",
+          "title": "9. CI/CD based on Spring Boot Project",
           "entry": "/en/quick-start/devops-online"
         },
         {
-          "title": "Building a Pipeline in a Graphical Panel",
+          "title": "10. Jenkinsfile-free Pipeline with Graphical Editing Panel",
           "entry": "/en/quick-start/jenkinsfile-out-of-scm"
         },
         {
-          "title": "CI/CD based on GitLab and Harbor",
-          "entry": "/en/quick-start/pipeline-git-harbor"
+          "title": "11. Canary Release of Bookinfo App",
+          "entry": "/en/quick-start/bookinfo-canary"
         },
         {
-          "title": "Ingress-Nginx for Grayscale Release",
+          "title": "12. Canary Release based on Ingress-Nginx",
           "entry": "/en/quick-start/ingress-canary"
+        },
+        {
+          "title": "13. Application Store",
+          "entry": "/en/quick-start/app-store"
         }
       ]
     },
     {
-      "title": "Cluster Admin Guide",
-      "icon": "/admin_reffer.svg",
-      "desc": "Instruction for cluster admin to manage platform and resources.",
-      "chapters": [
-        {
-          "title": "Multi-tenant Management",
-          "entries": [
-            {
-              "title": "Overview of Multi-tenant Management",
-              "entry": "/en/multi-tenant/intro"
-            },
-            {
-              "title": "Overview of Role Management",
-              "entry": "/en/multi-tenant/role-overview"
-            }
-          ]
-        },
-        {
-          "title": "Platform Management",
-          "entries": [
-            {
-              "title": "Account Management",
-              "entry": "/en/platform-management/account-management"
-            },
-            {
-              "title": "Platform Roles Management",
-              "entry": "/en/platform-management/role-management"
-            }
-          ]
-        },
-        {
-          "title": "Infrastructure",
-          "entries": [
-            {
-              "title": "Service Components",
-              "entry": "/en/infrastructure/components"
-            },
-            {
-              "title": "Nodes",
-              "entry": "/en/infrastructure/node"
-            },
-            {
-              "title": "Storage Classes",
-              "entry": "/en/infrastructure/storageclass"
-            }
-          ]
-        },
-        {
-          "title": "Monitoring Center",
-          "entries": [
-            {
-              "title": "Physical Resources",
-              "entry": "/en/monitoring/physical-resources"
-            },
-            {
-              "title": "Application Resources",
-              "entry": "/en/monitoring/application-resources"
-            }
-          ]
-        },
-        {
-          "title": "Application Repository",
-          "entry": "/en/platform-management/app-repo"
-        },
-        {
-          "title": "Jenkins System Settings",
-          "entry": "/en/devops/jenkins-setting"
-        }
-      ]
-    },
-    {
-      "title": "User Guide",
-      "icon": "/reffer.svg",
-      "desc": "Instruct users on how to use the basic features provided by the platform",
-      "chapters": [
-        {
-          "title": "Application Template",
-          "entry": "/en/app-template/app-template"
-        },
-        {
-          "title": "Workloads",
-          "entries": [
-            {
-              "title": "Deployments",
-              "entry": "/en/workload/deployments"
-            },
-            {
-              "title": "StatefulSets",
-              "entry": "/en/workload/statefulsets"
-            },
-            {
-              "title": "DaemonSets",
-              "entry": "/en/workload/daemonsets"
-            },
-            {
-              "title": "Jobs",
-              "entry": "/en/workload/jobs"
-            },
-            {
-              "title": "CronJobs",
-              "entry": "/en/workload/cronjobs"
-            }
-          ]
-        },
-        {
-          "title": "Storage",
-          "entries": [
-            {
-              "title": "Volumes",
-              "entry": "/en/storage/pvc"
-            }
-          ]
-        },
-        {
-          "title": "Network & Services",
-          "entries": [
-            {
-              "title": "Services",
-              "entry": "/en/ingress-service/service"
-            },
-            {
-              "title": "Routes",
-              "entry": "/en/ingress-service/ingress"
-            }
-          ]
-        },
-        {
-          "title": "Configuration Center",
-          "entries": [
-            {
-              "title": "Secret",
-              "entry": "/en/configuration/secrets"
-            },
-            {
-              "title": "ConfigMap",
-              "entry": "/en/configuration/configmaps"
-            },
-            {
-              "title": "Image Registry",
-              "entry": "/en/configuration/image-registry"
-            }
-          ]
-        },
-        {
-          "title": "Project Settings",
-          "entries": [
-            {
-              "title": "Basic Information",
-              "entry": "/en/project-setting/project-quota"
-            },
-            {
-              "title": "Member Roles",
-              "entry": "/en/project-setting/project-roles"
-            },
-            {
-              "title": "Project Members",
-              "entry": "/en/project-setting/project-members"
-            },
-            {
-              "title": "Internet Access",
-              "entry": "/en/project-setting/project-gateway"
-            }
-          ]
-        },
-        {
-          "title": "DevOps Project",
-          "entries": [
-            {
-              "title": "DevOps Project Management",
-              "entry": "/en/devops/devops-project"
-            },
-            {
-              "title": "DevOps Project Management",
-              "entry": "/en/devops/pipeline"
-            },
-            {
-              "title": "DevOps Project Management",
-              "entry": "/en/devops/credential"
-            },
-            {
-              "title": "DevOps Project Management",
-              "entry": "/en/devops/add-scm"
-            },
-            {
-              "title": "DevOps Project Management",
-              "entry": "/en/devops/jenkins-agent"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Development Guide",
+      "title": "DevOps",
       "icon": "/problem.svg",
-      "desc": "Instruction of development workflow, including build, test and development",
+      "desc": "Introduction to KubeSphere DevOps System",
       "chapters": [
         {
-          "title": "Preparing the Development Environment",
-          "entry": "/en/developer/development-guide"
+          "title": "Pipeline",
+          "entry": "/en/devops/pipeline"
         },
         {
-          "title": "Development Workflow",
-          "entry": "/en/developer/workflow"
+          "title": "Create SonarQube Token",
+          "entry": "/en/devops/sonarqube"
+        },
+        {
+          "title": "Credentials",
+          "entry": "/en/devops/credential"
+        },
+        {
+          "title": "Set CI Node for Dependency Cache",
+          "entry": "/en/devops/devops-ci-node"
+        },
+        {
+          "title": "Set Email Server for KubeSphere Pipeline",
+          "entry": "/en/devops/jenkins-email"
+        }
+      ]
+    },
+    {
+      "title": "Logging",
+      "icon": "/access.svg",
+      "desc": "Introduction to KubeSphere Logging System",
+      "chapters": [
+        {
+          "title": "Log Query",
+          "entry": "/en/logging/log-query"
+        }
+      ]
+    },
+    {
+      "title": "Developer Guide",
+      "icon": "/problem.svg",
+      "desc": "KubeSphere Developer Guide",
+      "chapters": [
+        {
+          "title": "Introduction to S2I",
+          "entry": "/en/developer/s2i-introduction"
+        },
+        {
+          "title": "Custom S2I Template",
+          "entry": "/en/developer/s2i-template"
         }
       ]
     },
@@ -409,7 +356,7 @@
           "entry": "/en/api-reference/api-docs"
         },
         {
-          "title": "How to invoke KubeSphere API",
+          "title": "How to Access KubeSphere API",
           "entry": "/en/api-reference/api-guide"
         }
       ]

@@ -10,7 +10,7 @@ KubeSphere 高级版 (Advanced Edition 2.0.2) 已于 2019 年 7 月 9 日 正式
 
 ### 功能增强
 
-- 官网提供 [API docs](/zh-CN/api-reference/api-docs/)
+- 官网提供 [API docs](../zh-CN/api-reference/api-docs/)
 - 防止暴力破解
 - 规范资源名称的最大长度
 - 升级项目网关 (Ingress Controller) 版本至 0.24.1，支持 Ingress 灰度发布

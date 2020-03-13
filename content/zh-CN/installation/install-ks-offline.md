@@ -4,18 +4,18 @@ keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: '将 KubeSphere 部署在 Kubernetes 之上'
 ---
 
-KubeSphere 支持在已有 Kubernetes 集群之上部署 [KubeSphere](https://kubesphere.io/)，以下方式适合无外网情况下的离线部署 KubeSphere 在 Kubernetes 之上。
+KubeSphere 支持在已有 Kubernetes 集群之上部署 [KubeSphere](/zh-CN/)，以下方式适合无外网情况下的离线安装 KubeSphere 在 Kubernetes 之上。在安装之前，请确认您的环境满足以下 [前提条件](../prerequisites)：
 
-## 前提条件
 
-在部署之前请确认您的 Kubernetes 是否满足以下条件，可参考 [在 Kubernetes 在线部署 KubeSphere - 前提条件](../install-on-k8s) 的步骤进行确认。
-
-> - `Kubernetes` 版本： `1.13.0 ≤ K8s Version < 1.16`
+> - `Kubernetes` 版本： `1.13.0 ≤ K8s version ≤ 1.16`
 > - `Helm`，版本 `>= 2.10.0`
 > - 集群可用`内存 >= 10G`
 > - 建议配合持久化存储使用（可选）
 
-## 准备部署
+可参考 [前提条件](../prerequisites) 验证，若待安装的环境满足以上条件则可以开始部署 KubeSphere。
+
+
+## 部署 KubeSphere
 
 1. 下载镜像包并解压。
 
@@ -52,8 +52,3 @@ $ sed -i 's|kubespheredev/ks-installer:advanced-2.0.2|192.168.1.2:5000/kubespher
 ```
 
 5. 参考 [部署 KubeSphere](../install-on-k8s/#部署-kubesphere) 中的步骤继续执行安装。
-
-## 未来计划
-
-- 支持多个公有云的网络插件与存储插件；
-- 组件解耦，做成可插拔式的设计，使安装更轻量，资源消耗率更低。

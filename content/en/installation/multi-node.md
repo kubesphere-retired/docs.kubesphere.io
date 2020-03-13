@@ -1,49 +1,52 @@
 ---
 title: "Multi-node Installation"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+keywords: 'kubesphere, kubernetes, docker, kubesphere installer'
+description: 'The guide for installing KubeSphere on Multi-Node in development or testing environment'
 ---
 
-`Multi-Node` installation enables install KubeSphere on multiple instances. Typically, select any one host in the cluster to serve as a role of "taskbox" to execute the installation task for other hosts before multi-node installation, `SSH Communication` is required to be established between "taskbox" and other hosts.
+`Multi-Node` installation enables installing KubeSphere on multiple nodes. Typically, use any one node as _taskbox_ to run the installation task. Please note `ssh` communication is required to be established between taskbox and other nodes.
 
-## Preview Installation Demo
+- <font color=red>The following instructions are for the default installation without enabling any optional components as we have made them pluggable since v2.1.0. If you want to enable any one, please read [Enable Pluggable Components](../pluggable-components).</font>
+- <font color=red>If your machines in total have >= 8 cores and >= 16G memory, we recommend you to install the full package of KubeSphere by [Enabling Optional Components](../complete-installation)</font>.
+- <font color=red> The installation time depends on your network bandwidth, your computer configuration, the number of nodes, etc. </font>
 
-<asciinema-player src="/multi-node.json" cols="99" rows="41"></asciinema-player>
+## Video Demo
 
+The video shows how to install KubeSphere on multiple virtual machines on [QingCloud](https://www.qingcloud.com). It would be same to install on any other machines.
 
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P002C202001_MultiNode.mp4">
+</video>
 
 ## Prerequisites
 
-- Suggest you to disable and stop the firewall, or you have to explicitly allow traffic through some specific ports in your host firewall, see [Port Requirements](../port-firewall)
-- It's recommended to use the storage services which are recommended by KubeSphere and prepare the corresponding storage server. 
+If your machine is behind a firewall, you need to open the ports by following the document [Ports Requirements](../port-firewall) for more information.
 
-## Step 1: Provision Linux Host
+## Step 1: Prepare Linux Hosts
 
-The following section identifies the hardware specifications and harware requirements of hosts for installation. To get started with multi-node installation, you need to prepare at least `3` hosts according to the following specification. 
+The following describes the requirements of hardware and operating system. To get started with multi-node installation, you need to prepare at least `three` hosts according to the following requirements.
 
-> - Time synchronization is required across all nodes, otherwise the installation may not succeed;
-> - For `ubuntu 16.04` OS, it's recommended to select  `16.04.5`;
-> - If you are using `ubuntu 18.04`, you need to use `root`;
-> - If the Debian system does not have the sudo command installed, you need to execute `apt update && apt install sudo` command using root before installation.
-> - If you select 3rd party software (GitLab and Harbor), the total memory of all nodes is required `at least 24 GiB`.
-> - If you choose offline installation, ensure your disk is at least 100 G.
+- Time synchronization is required across all nodes, otherwise the installation may not succeed;
+- For `Ubuntu 16.04` OS, it is recommended to select `16.04.5`;
+- If you are using `Ubuntu 18.04`, you need to use the user `root`;
+- If the Debian system does not have the sudo command installed, you need to execute `apt update && apt install sudo` command using root before installation.
 
-### Hardware Recommendations
+### Hardware Recommendation
 
-| System | Minimum Requirements (Total) |
+- KubeSphere can be installed on any cloud platform.
+- The installation speed can be accelerated by increasing network bandwidth.
+- If you choose air-gapped installation, ensure your disk of each node is at least 100G.
+
+| System | Minimum Requirements (Each node) |
 | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：8 Core +, Memory：16 G +, Disk Space：40 G + |
-| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：8 Core +, Memory：16 G +, Disk Space：40 G + |
-| Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：8 Core +, Memory：16 G +, Disk Space：40 G + |
-| Debian Stretch 9.5 (64 bit) | CPU：8 Core +, Memory：16 G +, Disk Space：40 G + |
+| CentOS 7.5 (64 bit) | CPU：2 Core， Memory：4 G， Disk Space：40 G  |
+| Ubuntu 16.04/18.04 LTS (64 bit) | CPU：2 Core， Memory：4 G， Disk Space：40 G  |
+| Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：2 Core， Memory：4 G， Disk Space：40 G  |
+| Debian Stretch 9.5 (64 bit)| CPU：2 Core， Memory：4 G， Disk Space：40 G  |
 
+The following section describes an example to introduce multi-node installation. This example shows three hosts installation by taking the `master` serving as the taskbox to execute the installation. The following cluster consists of one Master and two Nodes.
 
-> - KubeSphere can be installed on any cloud platform.
-> - The installation speed can be accelerated by adjusting the bandwidth.
-
-The following section describes an example to introduce multi-node installation. This example showing 3 hosts installation that "master" serves as the taskbox to execute the installation. The KubeSphere cluster architecture consists of management nodes (Master) and working nodes (Node), the following cluster consists of one Master and two Nodes. Assume that the host information as following table showing:
-
-> Note: KubeSphere supports the high-availability configuration of the Master and etcd nodes, see [Creating Highly Available Master and Etcd Cluster](../master-etcd-ha) for installing highly available cluster.
+> Note: KubeSphere supports the high-availability configuration of the Masters and Etcd nodes. Please refer to [Creating High Availability KubeSphere Cluster](../master-ha) for guide.
 
 | Host IP | Host Name | Role |
 | --- | --- | --- |
@@ -51,49 +54,30 @@ The following section describes an example to introduce multi-node installation.
 |192.168.0.2|node1|node|
 |192.168.0.3|node2|node|
 
-
 ### Cluster Architecture
 
-**Single master, Single etcd, Double nodes**
+#### Single Master, Single Etcd, Two Nodes
 
 ![Architecture](/cluster-architecture.svg)
 
-## Step 2: Provision Installation Files
+## Step 2: Download Installer Package
 
-
-<div class="md-tabs">
-<input type="radio" name="tabs" id="stable" checked="checked">
-<label for="stable">Online Installation (2.0.2)</label>
-<span class="md-tab">
-
-**1.** Download `KubeSphere 2.0.2` to the target machine, then enter into `conf`.
+**1.** Download `KubeSphere 2.1.1` to your taskbox machine, then unpack it and go to the folder `conf`.
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-advanced-2.0.2/conf
+curl -L https://kubesphere.io/download/stable/latest > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/conf
 ```
 
-</span>
-<input type="radio" name="tabs" id="offline">
-<label for="offline">Offline Installation (2.0.2)</label>
-<span class="md-tab">
-
-**1.** Download `KubeSphere 2.0.2 for Offline Installation` to the target machine, then enter into `conf`.
-
-```bash
-$ curl -L https://kubesphere.io/download/offline/advanced-2.0.2 > advanced-2.0.2.tar.gz && tar -zxf advanced-2.0.2.tar.gz && cd kubesphere-all-offline-advanced-2.0.2/conf
-```
-
-</span>
-</div>
-
-**2.** Please refer to the following scripts to configure all hosts in `hosts.ini`. It's recommneded to install using root user, here showing an example configuration in `CentOS 7.5` using root user. Note that each host information occupies one line and cannot be wrapped manually.
+**2.** Please refer to the following sample to configure all hosts in `hosts.ini`. It is recommended to install KubeSphere using root user. The following is an example configuration for `CentOS 7.5` using root user. Note do not manually wrap any line in the file.
 
 > Note:
-> - If installer is ran from non-root user account who has sudo privilege already, then you need to reference the example section that is commented out in `conf/hosts.ini`.
-> - If the `root` user can't establish SSH connection with other machines in taskbox, you need to refer to the `non-root` user example at the top of the `conf/hosts.ini`, but it's recommended to switch `root` user when executing `install.sh`.
-> - Master, node1 and node2 are the host names of each node and all host names should be in lowercase.
+>
+> - If you use non-root user with sudo access to install KubeSphere, you need to refer to the example block that is commented out in `conf/hosts.ini`.
+> - If the `root` user of that taskbox machine cannot establish SSH connection with the rest of machines, you need to refer to the `non-root` user example at the top of the `conf/hosts.ini`, but it is recommended to switch `root` user when executing `install.sh`.
+> - master, node1 and node2 are the host names of each node and all host names should be in lowercase.
 
-**hosts.ini**
+### hosts.ini
 
 ```ini
 [all]
@@ -116,62 +100,38 @@ kube-node
 kube-master
 ```
 
-**Note：** <br/>
-
-> - Each node's parameters like IP and its password needs to be modified with actual values in `[all]` section. In this example, since "master" served as `taskbox` which has been ssh connected from your local, no need to add password field.
-> - Other nodes like "node1" and "node2", both `ansible_host` and `ip` need to be replaced by actual Internal IP, and `"ansible_ssh_pass"` should be replaced with the SSH password.
-> - "master" is served as the taskbox to execute installation task for whole cluster, as well as the role of master and etcd, so "master" needs to be filled into `[kube-master]` and `[etcd]` section.
-> - At the same time, for "node1" and "node2", both serve the role of `Node` as well, so their hosts name need to be filled in `[kube-node]` section.
-> 
+> Note:
+>
+> - You need to replace each node information such as IP, password with real values in the group `[all]`. The master node is the taskbox so you do not need to add password field here.
+> - The "master" node also takes the role of master and etcd, so "master" is filled under the group`[kube-master]` and the group `[etcd]` respectively.
+> - "node1" and "node2" both serve the role of `Node`, so they are filled under the group `[kube-node]`.
+>
 > Parameters Specification:
-> 
-> - `ansible_connection`: Connection type to the host, set to local here means local connection.
+>
+> - `ansible_connection`: Connection type to the host, "local" in the example above means local connection.
 > - `ansible_host`: The name of the host to be connected.
 > - `ip`: The ip of the host to be connected.
 > - `ansible_user`: The default ssh user name to use.
 > - `ansible_become_pass`: Allows you to set the privilege escalation password.
 > - `ansible_ssh_pass`: The password of the host to be connected using root.
 
+## Step 3: Install KubeSphere to Linux Machines
 
-**3.** It's recommended to use the storage services recommended by KubeSphere and prepare the corresponding storage server. Accordingly, you need to modify the storage class parameters in `conf/vars.yml`. In this installation demo, we just use NFS as storage class which provides the persistent storage service. See [Storage Configuration Instructions](../storage-configuration) for more details regarding the supported storage class.
+> Note:
+>
+> - Generally, you can install KubeSphere without any modification, it will start with minimal installation by default.
+> - If you want to enable pluggable feature components installation, modify common.yaml and refer to [Enable Pluggable Components Installation](../pluggable-components) for instructions.
+> - Installer uses [Local volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) based on [openEBS](https://openebs.io/) to provide storage service with dynamic provisioning. For production environment, please [configure supported persistent storage service](../storage-configuration) before installation.
+> - Since the default subnet for Cluster IPs is 10.233.0.0/18, and the default subnet for Pod IPs is 10.233.64.0/18, the node IPs must not use the two IP range. You can modify the default subnets `kube_service_addresses` or `kube_pods_subnet` in the file `conf/common.yaml` to avoid conflicts.
 
-**vars.yml** 
-
-```yaml
-# LOCAL VOLUME
-local_volume_enabled: false
-local_volume_is_default_class: false
-local_volume_storage_class: local
-
-# NFS CONFIGURATION
-# KubeSphere can use existing nfs service as backend storage.
-# change to true to use nfs.
-nfs_client_enabled: true
-nfs_client_is_default_class: true
-
-# Hostname of the NFS server(ip or hostname)
-nfs_server: 192.168.0.5
-
-# Basepath of the mount point
-nfs_path: /mnt/shared_dir
-```
-
-> Note: Since the default subnet for Cluster IPs is 10.233.0.0/18, default subnet for Pod IPs is 10.233.64.0/18 in Kubernetes cluster. The node IPs must not overlap with those 2 default IPs. If any conflicts happened with the IP address, go to `conf/vars.yaml` and modify `kube_service_addresses` or `kube_pods_subnet` to avoid this senario.
-
-## Step 3: Get Started With Installation
-
-All of these procedures will be automatically processing in this installation, such as the environment and file monitoring, installation of Kubernetes and etcd, and storage and network configuration, Kubernetes `v1.13.5` will be installed by default.
-
-> Since Multi-node installation duration is related to network conditions and bandwidth, machine configuration and the number of nodes, it's hard to give a standard duration. 
-
-**1.** Enter into `scripts` folder, it's recommended to execute `install.sh` using `root` user::
+**1.** Enter `scripts` folder, and execute `install.sh` using `root` user:
 
 ```bash
-$ cd scripts
-$ ./install.sh
+cd ../cripts
+./install.sh
 ```
 
-**2.** Enter 2 to select multi-node mode to trigger, the installer will prompt if you have configured the storage or not. If already set please type yes to install. If not, please enter "no", then return to configure the storage, see [Storage Configuration Instruction](../storage-configuration).
+**2.** Type `2` to select multi-node mode to start the installation. The installer will ask you if you have set up persistent storage service or not. Just type `yes` since we are going to use local volume.
 
 ```bash
 ################################################
@@ -181,15 +141,15 @@ $ ./install.sh
 *   2) Multi-node
 *   3) Quit
 ################################################
-https://kubesphere.io/               2019-10-15
+https://kubesphere.io/               2020-02-24
 ################################################
 Please input an option: 2
 
 ```
 
-**4.** Verify the multi-node installation：
+**3.** Verify the multi-node installation：
 
-**(1).** If you can see the following "Successful" result after `install.sh` completed, that means KubuSphere installation is ready. 
+**(1).** If "Successful" it returned after `install.sh` process completed, then congratulation! you are ready to go.
 
 ```bash
 successsful!
@@ -197,26 +157,26 @@ successsful!
 ###              Welcome to KubeSphere!           ###
 #####################################################
 
-Console: http://192.168.0.1:32130
+Console: http://192.168.0.1:30880
 Account: admin
-Password: passw0rd
+Password: P@88w0rd
 
 NOTE：Please modify the default password after login.
 #####################################################
 ```
 
+> Note: The information above is saved in a log file that you can view by following the [guide](../verify-components).
 
-> Note: If you need to view the above interface, execute `cat kubesphere/kubesphere_running`.
+**(2).** You will be able to use default account and password `admin / P@88w0rd` to log in the console `http://{$IP}:30880` to take a tour of KubeSphere. Please change the default password after logging in.
 
-**(2).** After installation, visit according URL such as `http://{$IP}:30880`, you can access to KubeSphere login page. You can use default account and password to log in to the KubeSphere console. Please change the default password after logging in. Please refer to the [KubeSphere Quick Start](../../quick-start/admin-quick-start) to master KubeSphere.
+![Login](https://pek3b.qingstor.com/kubesphere-docs/png/20191017172215.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017172215.png)
+<font color=red>Note: After log in console, please verify the monitoring status of service components in the "Cluster Status". If any service is not ready, please wait patiently untill all components get running up.</font>
 
-> Attention: After logging into the console, please verify the service components' monitoring status in the "Cluster Status". Once all the components‘ startups have completed, the console can be used. Generally, all the service components complete their startup in 15 minutes.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017170937.png)
-
+![Landing Page](https://pek3b.qingstor.com/kubesphere-docs/png/20191125003158.png)
 
 ## FAQ
 
-KubeSphere has run the deployment test on Aliyun, Tencent cloud, Huawei cloud, Qingcloud and AWS. For test results and relevant solutions, please refer to [Multiple Cloud Platform Installation Testing Result](https://github.com/kubesphere/ks-installer/issues/23). Besides, we have arranged related solutions to common installation issues in the [Common Installation Issues](../faq/faq-install/). If you have other installation problems, please submit on [GitHub](https://github.com/kubesphere/kubesphere/issues). 
+The installer has been tested on Aliyun, Tencent cloud, Huawei Cloud, QingCloud, AWS. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read the [FAQ of installation](../../faq/faq-install).
+
+If you have further questions please do not hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).

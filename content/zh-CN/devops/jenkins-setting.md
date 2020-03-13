@@ -1,8 +1,10 @@
 ---
-title: "Jenkins 系统设置" 
+title: "Jenkins 系统设置"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
+
+## 修改 Jenkins 系统设置
 
 Jenkins 功能强大的同时其本身也非常灵活，如今已成为 CI / CD 的事实标准，拥有一个活跃的社区来维护几乎任何工具和用例组合的插件。但灵活性需要付出代价：因为除 Jenkins 核心外，许多插件还需要设置一些系统级的配置才能完成工作。
 
@@ -24,8 +26,6 @@ KubeSphere 的 DevOps 工程底层基于 Jenkins 实现了容器化的 CI / CD �
 
 ### 登陆 Jenkins 重新加载
 
-
-
 1、Installer 安装将会同时部署 Jenkins Dashboard，Jenkins 已对接了 KubeSphere 的 LDAP，因此可使用用户名 `admin` 和 KubeSphere 集群管理员的密码登录 Jenkins Dashboard，访问公网 IP (EIP) + Nodeport (30180) 并登陆 Jenkins Dashboard。登陆后，在左侧导航栏点击 `系统管理`。
 
 > 说明：访问 Jenkins Dashboard 可能需要将端口转发和防火墙放行该端口才可以在公网访问。
@@ -44,4 +44,3 @@ KubeSphere 的 DevOps 工程底层基于 Jenkins 实现了容器化的 CI / CD �
 有关如何通过 CasC 进行系统设置，详见 [官方文档](https://github.com/jenkinsci/configuration-as-code-plugin)。
 
 > 注: 在现在版本当中，并不是所有插件都支持 CasC 的设置。CasC 只会覆盖使用 CasC 进行设置的插件配置。
-

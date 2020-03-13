@@ -8,7 +8,7 @@ description: ''
 
 ## 安装 QingCloud 云平台负载均衡器插件
 
-如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/vars.yml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)。目前 QingCloud 负载均衡器插件只支持多节点集群的安装。
+如果在 QingCloud 云平台安装 KubeSphere，建议在 `conf/plugin-qingcloud.yaml` 中配置 QingCloud 负载均衡器插件相关参数，installer 将自动安装 [QingCloud 负载均衡器插件](https://github.com/yunify/qingcloud-cloud-controller-manager)。目前 QingCloud 负载均衡器插件只支持多节点集群的安装。
 
 ### 前提条件
 
@@ -16,7 +16,7 @@ description: ''
 
 ### 安装步骤
 
-在安装 KubeSphere 前参考如下提示在 `conf/vars.yml` 中进行配置：
+在安装 KubeSphere 前参考如下提示在 `conf/plugin-qingcloud.yaml` 中进行配置：
 
 1. 其中值带有 * 号的值为必配项：
     - `qingcloud_access_key_id` 和 `qingcloud_secret_access_key`： 通过 [QingCloud 云平台](https://console.qingcloud.com/login) 的右上角账户图标选择 **API 密钥** 创建密钥获得；
@@ -85,7 +85,7 @@ service.beta.kubernetes.io/qingcloud-load-balancer-eip-source : auto
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190606004254.png)
 
 
-## 安装负载均衡器插件 Porter 
+## 安装负载均衡器插件 Porter
 
 Porter 是一款适用于物理机部署 Kubernetes 的负载均衡器，该负载均衡器使用物理交换机实现，利用 BGP 和 ECMP 从而达到性能最优和高可用性，Porter 是一个提供用户在物理环境暴露服务和在云上暴露服务一致性体验的插件。
 

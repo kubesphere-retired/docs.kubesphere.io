@@ -1,246 +1,79 @@
 ---
-title: "在 Kubernetes 在线部署 KubeSphere"
+title: "在 Kubernetes 安装 KubeSphere"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: '将 KubeSphere 部署在 Kubernetes 之上'
 ---
 
-KubeSphere 支持在已有 Kubernetes 集群之上部署 [KubeSphere](https://kubesphere.io/)。
+KubeSphere 支持在已有 Kubernetes 集群之上在线安装 [KubeSphere](https://github.com/kubesphere/kubesphere)。在安装之前，请确认您的环境满足 [前提条件](../prerequisites)。若待安装的环境满足前提条件，则可以开始部署 KubeSphere。
 
-## 准备工作
+> 说明：本文档仅说明在线安装，若您的环境无外网，请参考 [在 Kubernetes 离线安装 KubeSphere](/en/installation/install-on-k8s-airgapped/)。
 
-1. `Kubernetes` 版本要求为 `1.13.0 ≤ K8s Version < 1.16`，KubeSphere 依赖 `Kubernetes 1.13.0` 版本之后的新特性，可以在执行 `kubectl version` 来确认 :
+
+## 视频教程
+
+**视频教程以 QingCloud 云平台为例，先安装 Kubernetes 集群和 StorageClass，来准备安装示例的前提条件（即 K8s 集群），然后再在 K8s 集群一键安装 KubeSphere，与其它云平台安装步骤类似，具体以其官方文档为准。**
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KSInstall_200P004C202002_install-kubesphere-on-k8s.mp4">
+</video>
+
+## 安装 KubeSphere
+
+根据集群资源情况，使用 kubectl 安装 KubeSphere。
+
+### 最小化安装 KubeSphere
+
+若集群可用 CPU > 1 Core 且可用内存 > 2 G，可以使用以下命令最小化安装 KubeSphere：
+
+```yaml
+kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-minimal.yaml
+```
+### 完整安装 KubeSphere
+
+若集群可用 CPU > 8 Core 且可用内存 > 16 G，可以使用以下命令完整安装 KubeSphere。
+
+> 注意，应确保集群中有一个节点的可用内存大于 8 G。
+
+```yaml
+kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-complete-setup.yaml
+```
+
+> 提示：若您的服务器提示无法访问 GitHub，可将 [kubesphere-minimal.yaml](https://github.com/kubesphere/ks-installer/blob/master/kubesphere-minimal.yaml) 或 [kubesphere-complete-setup.yaml](https://github.com/kubesphere/ks-installer/blob/master/kubesphere-complete-setup.yaml) 文件保存到本地作为本地的静态文件，再参考上述命令进行安装。
+
+## 验证与访问
+
+1. 查看滚动刷新的安装日志，请耐心等待安装成功。
 
 ```bash
-$ kubectl version | grep Server
-Server Version: version.Info{Major:"1", Minor:"13", GitVersion:"v1.13.5", GitCommit:"2166946f41b36dea2c4626f90a77706f426cdea2", GitTreeState:"clean", BuildDate:"2019-03-25T15:19:22Z", GoVersion:"go1.11.5", Compiler:"gc", Platform:"linux/amd64"}
+$ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
 ```
 
-> 说明：注意输出结果中的 `Server Version` 这行，如果显示 `GitVersion` 大于 `v1.13.0`，Kubernetes 的版本是可以安装的。如果低于 `v1.13.0` ，可以查看 [Upgrading kubeadm clusters from v1.12 to v1.13](https://v1-13.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade-1-13/) 先升级下 K8s 版本。
+> 说明：安装过程中若遇到问题，也可以通过以上日志命令来排查问题。
 
-2. 确认已安装 `Helm`，并且 `Helm` 的版本至少为 `2.10.0`。在终端执行 `helm version`，得到类似下面的输出
-```bash
-$ helm version
-Client: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
-Server: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
-```
+2. 通过 `kubectl get pod --all-namespaces` 查看 KubeSphere 相关 namespace 下所有 Pod 状态是否为 Running。确认 Pod 都正常运行后，可使用 `IP:30880` 访问 KubeSphere UI 界面，默认的集群管理员账号为 `admin/P@88w0rd`。
 
-> 说明：
-> - 如果提示 `helm: command not found`, 表示还未安装 `Helm`。参考这篇 [Install Helm](https://helm.sh/docs/using_helm/#from-the-binary-releases) 安装 `Helm`, 安装完成后执行  `helm init`；
-> - 如果 `helm` 的版本比较老 (<2.10.0), 需要首先升级，参考 [Upgrading Tiller](https://github.com/helm/helm/blob/master/docs/install.md#upgrading-tiller) 升级。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191020153911.png)
 
-3. 集群现有的可用内存至少在 `10G` 以上。 如果是执行的 `allinone` 安装，那么执行 `free -g` 可以看下可用资源
+## 开启可选功能组件的安装
 
-```bash
-root@kubernetes:~# free -g
-              total        used        free      shared  buff/cache   available
-Mem:              16          4          10           0           3           2
-Swap:             0           0           0
-```
+若您开启了最小化安装，可参考 [KubeSphere 可插拔功能组件概览](../pluggable-components)，确保您的机器可用资源满足其最低要求，然后再开启可选功能组件的安装。
 
-4. (非必须) KubeSphere 非常建议配合持久化存储使用，执行 `kubectl get sc` 看下当前是否设置了默认的 `storageclass`。
+## 如何重启安装
 
-```bash
-root@kubernetes:~$ kubectl get sc
-NAME                      PROVISIONER               AGE
-ceph                      kubernetes.io/rbd         3d4h
-csi-qingcloud (default)   disk.csi.qingcloud.com    54d
-glusterfs                 kubernetes.io/glusterfs   3d4h
-```
-
-> 提示：若未设置持久化存储，安装将默认使用 hostpath，该方式能顺利安装，但可能会由于 Pod 漂移带来其它问题，正式环境建议配置 StorageClass 使用持久化存储。
-
-如果你的 Kubernetes 环境满足以上的要求，那么可以接着执行下面的步骤了。
-
-## 部署 KubeSphere
-
-1. 在 Kubernetes 集群中创建名为 `kubesphere-system` 和 `kubesphere-monitoring-system` 的 `namespace`。
+若安装过程中遇到问题，当您解决问题后，可以通过重启 ks-installer 的 Pod 来重启安装任务，将 ks-installer 的 Pod 删除即可让其自动重启：
 
 ```
-$ cat <<EOF | kubectl create -f -
----
-apiVersion: v1
-kind: Namespace
-metadata:
-    name: kubesphere-system
----
-apiVersion: v1
-kind: Namespace
-metadata:
-    name: kubesphere-monitoring-system
-EOF
+$ kubectl delete pod ks-installer-xxxxxx-xxxxx -n kubesphere-system
 ```
 
-2. 创建 Kubernetes 集群 CA 证书的 Secret。
+## 开启 etcd 监控
 
-> 注：按照当前集群 ca.crt 和 ca.key 证书路径创建（Kubeadm 创建集群的证书路径一般为 `/etc/kubernetes/pki`）
+完整安装成功后，KubeSphere 还支持在控制台开启 etcd 的监控面板，请参考 [ks-installer GitHub](https://github.com/kubesphere/ks-installer/tree/master) 创建 etcd 所需要的。
 
-```bash
-$ kubectl -n kubesphere-system create secret generic kubesphere-ca  \
---from-file=ca.crt=/etc/kubernetes/pki/ca.crt  \
---from-file=ca.key=/etc/kubernetes/pki/ca.key
-```
+## Installer 代码
 
-3. 创建 etcd 的证书 Secret。
+Installer 代码开源地址请参考 [ks-installer GitHub](https://github.com/kubesphere/ks-installer/tree/master)。
 
-> 注：根据集群实际 etcd 证书位置创建；
+## 帮助与支持
 
-   - 若 etcd 已经配置过证书，则参考如下创建：
-
-```
-$ kubectl -n kubesphere-monitoring-system create secret generic kube-etcd-client-certs  \
---from-file=etcd-client-ca.crt=/etc/kubernetes/pki/etcd/ca.crt  \
---from-file=etcd-client.crt=/etc/kubernetes/pki/etcd/healthcheck-client.crt  \
---from-file=etcd-client.key=/etc/kubernetes/pki/etcd/healthcheck-client.key
-```
-
-- 若 etcd 没有配置证书，则创建空 Secret（以下命令适用于 Kubeadm 创建的 Kubernetes 集群环境）：
-
-```
-$ kubectl -n kubesphere-monitoring-system create secret generic kube-etcd-client-certs
-```
-
-4. 克隆 kubesphere-installer 仓库至本地。
-
-```
-$ git clone https://github.com/kubesphere/ks-installer.git
-```
-
-5. 进入 ks-installer，然后在 Kubernetes 集群部署 KubeSphere。
-
-
-```
-$ cd deploy
-
-$ vim kubesphere-installer.yaml   # 根据下方的参数说明列表，编辑 kubesphere-installer.yaml 中 kubesphere-config 为当前集群参数信息。（若etcd 无证书，设置 etcd_tls_enable: False）
-
-$ kubectl apply -f kubesphere-installer.yaml
-```
-
-6. 查看部署日志。
-
-```
-$ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l job-name=kubesphere-installer -o jsonpath='{.items[0].metadata.name}') -f
-```
-
-7. 查看控制台的服务端口，使用 `IP:30880` 访问 KubeSphere UI 界面，默认的集群管理员账号为 `admin/P@88w0rd`。
-
-```
-$ kubectl get svc -n kubesphere-system    
-# 查看 ks-console 服务的端口  默认为 NodePort: 30880
-```
-
-## 参数说明
-
-<table border=0 cellpadding=0 cellspacing=0 width=1364 style='border-collapse:
- collapse;table-layout:fixed;width:1023pt;font-variant-ligatures: normal;
- font-variant-caps: normal;orphans: 2;text-align:start;widows: 2;-webkit-text-stroke-width: 0px;
- text-decoration-style: initial;text-decoration-color: initial'>
- <col width=112 style='mso-width-source:userset;mso-width-alt:3982;width:84pt'>
- <col width=156 style='mso-width-source:userset;mso-width-alt:5546;width:117pt'>
- <col width=757 style='mso-width-source:userset;mso-width-alt:26908;width:568pt'>
- <col width=339 style='mso-width-source:userset;mso-width-alt:12060;width:254pt'>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 class=xl67 width=268 style='height:13.8pt;width:201pt'>参数</td>
-  <td class=xl65 width=757 style='width:568pt'><span style='font-variant-ligatures: normal;
-  font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;
-  text-decoration-style: initial;text-decoration-color: initial'>描述</span></td>
-  <td class=xl65 width=339 style='width:254pt'><span style='font-variant-ligatures: normal;
-  font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;
-  text-decoration-style: initial;text-decoration-color: initial'>默认值</span></td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>kube_apiserver_host</td>
-  <td>当前集群kube-apiserver地址（ip:port）</td>
-  <td class=xl69></td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>etcd_tls_enable</td>
-  <td>是否开启etcd TLS证书认证（True / False）</td>
-  <td class=xl69>True</td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 class=xl66 style='height:13.8pt'>etcd_endpoint_ips</td>
-  <td>etcd地址，如etcd为集群，地址以逗号分离（如：192.168.0.7,192.168.0.8,192.168.0.9）</td>
-  <td class=xl69></td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>etcd_port</td>
-  <td>etcd端口 (默认2379，如使用其它端口，请配置此参数)</td>
-  <td class=xl69>2379</td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>disableMultiLogin<span
-  style='mso-spacerun:yes'>&nbsp;</span></td>
-  <td>是否关闭多点登录<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>（True / False）</td>
-  <td class=xl69>True</td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>elk_prefix</td>
-  <td>日志索引<span style='mso-spacerun:yes'>&nbsp;</span></td>
-  <td class=xl69>logstash<span style='mso-spacerun:yes'>&nbsp;</span></td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>keep_log_days</td>
-  <td>日志留存时间（天）</td>
-  <td class=xl69>7</td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>metrics_server_enable</td>
-  <td>是否安装metrics_server<span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
-  </span>（True / False）</td>
-  <td class=xl69>True</td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>istio_enable</td>
-  <td>是否安装istio<span
-  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>（True / False）</td>
-  <td class=xl69>True</td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td rowspan=2 height=36 class=xl68 style='height:27.6pt'>persistence</td>
-  <td class=xl66>enable</td>
-  <td>是否启用持久化存储<span style='mso-spacerun:yes'>&nbsp;&nbsp; </span>（True /
-  False）（非测试环境建议开启数据持久化）</td>
-  <td class=xl69></td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td height=18 class=xl66 style='height:13.8pt'>storageClass</td>
-  <td>启用持久化存储要求环境中存在已经创建好的 StorageClass（默认为空，则使用 default StorageClass）</td>
-  <td class=xl69>“”</td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>containersLogMountedPath（可选）</td>
-  <td>容器日志挂载路径</td>
-  <td class=xl69>"/var/lib/docker/containers"</td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>external_es_url（可选）</td>
-  <td>外部es地址，支持对接外部es用</td>
-  <td class=xl69></td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>external_es_port（可选）</td>
-  <td>外部es端口，支持对接外部es用</td>
-  <td class=xl69></td>
- </tr>
- <tr height=18 style='height:13.8pt'>
-  <td colspan=2 height=18 style='height:13.8pt'>local_registry (离线部署使用)</td>
-  <td>离线部署时，对接本地仓库 （使用该参数需将安装镜像使用scripts/download-docker-images.sh导入本地仓库中）</td>
-  <td class=xl69></td>
- </tr>
- <![if supportMisalignedColumns]>
- <tr height=0 style='display:none'>
-  <td width=112 style='width:84pt'></td>
-  <td width=156 style='width:117pt'></td>
-  <td width=757 style='width:568pt'></td>
-  <td width=339 style='width:254pt'></td>
- </tr>
- <![endif]>
-</table>
-
-
-## 未来计划
-
-- 支持多个公有云的网络插件与存储插件；
-- 组件解耦，做成可插拔式的设计，使安装更轻量，资源消耗率更低。
+若遇到其它的安装问题需要协助支持，请在 [社区论坛](https://kubesphere.com.cn/forum/) 搜索解决方法或发布帖子，我们会尽快跟踪解决。

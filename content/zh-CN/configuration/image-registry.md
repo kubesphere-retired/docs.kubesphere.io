@@ -27,7 +27,7 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 - 别名：帮助您更好的区分资源，并支持中文名称。
 - 描述信息：简单介绍镜像仓库的主要特性，让用户进一步了解该镜像仓库。
 
-![创建 QingCloud 仓库](/ae-image-registry-basic.png) 
+![创建 QingCloud 仓库](/ae-image-registry-basic.png)
 
 2、密钥设置中，类型选择 `镜像仓库密钥`，填写镜像仓库的登录信息。
 
@@ -57,7 +57,7 @@ QingCloud Docker Hub 基于 Docker 官方开源的 Docker Distribution 为用户
 
 #### 添加内置 Harbor 镜像仓库
 
-KubeSphere Installer 集成了 **Harbor** 的 Helm Chart，内置的 **Harbor** 作为可选安装项，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/vars.yml` 中简单配置即可，关于如何安装和使用内置的 Harbor 镜像仓库详见 [安装内置 Harbor](../../installation/harbor-installation)。
+KubeSphere Installer 集成了 **Harbor** 的 Helm Chart，内置的 **Harbor** 作为可选安装项，用户可以根据团队项目的需求来配置安装，仅需安装前在配置文件 `conf/common.yaml` 中简单配置即可，关于如何安装和使用内置的 Harbor 镜像仓库详见 [安装内置 Harbor](../../installation/harbor-installation)。
 
 #### 对接外部 Harbor 镜像仓库
 
@@ -65,14 +65,14 @@ KubeSphere Installer 集成了 **Harbor** 的 Helm Chart，内置的 **Harbor** 
 
 #### http
 
-1. 首先，需要修改集群中所有节点的 docker 配置。以 `http://139.198.16.232` 为例 (用户操作时镜像仓库的地址应替换为您实际创建的仓库地址)，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=139.198.16.232`：
+1. 首先，需要修改集群中所有节点的 docker 配置。以 `http://192.168.0.99` 为例 (用户操作时镜像仓库的地址应替换为您实际创建的仓库地址)，在 `/etc/systemd/system/docker.service.d/docker-options.conf` 文件添加字段`--insecure-registry=192.168.0.99`：
 
  示例：
 
 ```bash
 [Service]
 Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --graph=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
---insecure-registry=139.198.16.232"
+--insecure-registry=192.168.0.99"
 ```
 
 2. 添加完成以后，需要重载修改过的配置文件并重启 docker:
@@ -85,15 +85,21 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
-3. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息如仓库地址和用户认证，创建 Harbor 镜像仓库。
+3. 配置 `/etc/hosts`，将 IP 与 Harbor 域名进行映射。
 
-![创建 Harbor 仓库-http](/ae-harbor-http.png)
+```
+192.168.0.99 harbor.devops.kubesphere.local
+```
+
+4. 然后通过 KubeSphere 控制台，填写镜像仓库所需要的信息如仓库地址和用户认证，创建 Harbor 镜像仓库。
+
+![Harbor 镜像仓库](https://pek3b.qingstor.com/kubesphere-docs/png/20200219141059.png)
 
 #### https
 
 1. 对于 https 协议的镜像仓库，首先需要获取镜像仓库的证书，记为 `ca.crt`，以 `https://harbor.openpitrix.io` 这个镜像仓库的地址为例，对集群中的所有节点都需要执行以下操作:
 
-```bash 
+```bash
 $ sudo cp ca.crt /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
 ```
 
@@ -131,6 +137,5 @@ $ sudo systemctl restart docker
 ## 使用镜像仓库
 
 以创建 Deployment 为例展示如何使用镜像仓库来拉取仓库中的镜像。比如 QingCloud 镜像仓库中有 `mysql:5.6` 的 docker 镜像。创建 Deployment 时，在容器组模板中需要选择镜像仓库，镜像地址填写为 `dockerhub.qingcloud.com/mysql:5.6`，镜像地址的格式为 `镜像仓库地址 / 镜像名称:tag`，填写后创建完成即可使用该镜像仓库中的镜像。
-   
-![创建部署](/ae-docker-hub-setting.png)
 
+![创建部署](/ae-docker-hub-setting.png)

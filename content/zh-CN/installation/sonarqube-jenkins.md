@@ -16,23 +16,10 @@ description: ''
 $ kubectl get svc -n kubesphere-devops-system | grep ks-sonarqube-sonarqube
 ks-sonarqube-sonarqube               NodePort    10.233.20.169   <none>        9000:31359/TCP   48m
 ```
-### 第二步： 查看 SonarQube 服务所在节点内部IP
-执行如下命令，查看 SonarQube 服务所在节点， 再对比部署配置得到节点内部ip:
 
-```bash
-$ kubectl get pod -n kubesphere-devops-system | grep "ks-sonarqube-sonarqube-*"
-ks-sonarqube-sonarqube-9c5876cd8-5btbx      1/1     Running     3          2d4
-$ kubectl describe pod ks-sonarqube-sonarqube-9c5876cd8-5btbx -n kubesphere-devops-system
-Name:           ks-sonarqube-sonarqube-9c5876cd8-5btbx
-Namespace:      kubesphere-devops-system
-Priority:       0
-Node:           i-mkb6leoc/172.16.0.3
-```
-在示例信息中，SonarQube 所在节点内部IP为`172.16.0.3`
+### 第二步：访问 SonarQube
 
-### 第三步：访问 SonarQube
-
-若 KubeSphere 部署在云平台，需要在外网访问 SonarQube，在端口转发规则中将**内网IP**`172.16.0.3`和**内网端口** 31359 转发到**源端口** 31359，然后在防火墙开放这个**源端口**，确保流量能够通过该端口，然后通过 `http://{$公网 I}:{$NodePort}` 进行访问。例如在 QingCloud 平台配置端口转发和防火墙规则，可参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+若 KubeSphere 部署在云平台，需要在外网访问 SonarQube，在端口转发规则中将**内网端口** 31359 转发到**源端口** 31359，然后在防火墙开放这个**源端口**，确保流量能够通过该端口，然后通过 `http://{$公网 I}:{$NodePort}` 进行访问。例如在 QingCloud 平台配置端口转发和防火墙规则，可参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 > 说明：若部署在私有环境，则可以在集群的任意节点通过 `http://{$节点 IP}:{$NodePort}` 进行访问。
 

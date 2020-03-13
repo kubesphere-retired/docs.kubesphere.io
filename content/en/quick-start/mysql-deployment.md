@@ -1,5 +1,5 @@
 ---
-title: "Deploying a MySQL Stateful Application" 
+title: 'Deploying a MySQL Stateful Application'
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -35,7 +35,7 @@ MySQL's Enviromental variable `MYSQL_ROOT_PASSWORD`, namely the root user's pass
 - Nickname: Nickname can be a mix of characters for you to differenciate resources, such as `MySQL Secret`.
 - Information Description: Simply introduce the password, such as `MySQL Initial password`.
 
-1.3. Fill in the following information into the secret setting page. Then click **Create**.
+  1.3. Fill in the following information into the secret setting page. Then click **Create**.
 
 - Type: Select `default`(Opaque).
 - Data: Fill in `MYSQL_ROOT_PASSWORD` and `123456`for the data key-value pair.
@@ -93,7 +93,6 @@ If you need to reveal the MySQL application to other applications and servers, y
 - Ports: The name is customizable. Select TCP protocol. Fill `3306` for both of the MySQL service port and the target port. The first port the service port that needs to be exposed. The second port (target port) is the container port.
 
 > Note: If there is a requirement for conversation affinity, you can select "ClientIP" in the drop-down box or set the value of service.spec.sessionAffinity as "ClientIP" ("None" by default) in the code mode. This configuration can forward access request from the same IP address to the same rear end Pod.
-
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716194331.png#alt=)
 

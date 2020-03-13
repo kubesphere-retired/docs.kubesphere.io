@@ -95,8 +95,8 @@ pipeline {
 |Jenkins Agent Label | nodejs |
 |Container Name | nodejs |
 | 操作系统| centos-7 |
-|Node  | 9.11.2 |
-|Yarn  | 1.3.2 |
+| Node | 10.16.3 |
+| Yarn | 1.16.0 |
 | Docker | 18.06.0 |
 | Helm | 2.11.0 |
 |Kubectl | stable release|
@@ -110,7 +110,7 @@ pipeline {
 | Jenkins Agent Label | maven |
 | Container Name | maven |
 | 操作系统| centos-7 |
-| Jdk | openjdk-1.8.0 |
+| Jdk | openjdk-1.8.0_222 |
 | Maven | 3.5.3|
 | Docker| 18.06.0 |
 | Helm | 2.11.0 |
@@ -125,7 +125,7 @@ pipeline {
 | Jenkins Agent Label | go |
 | Container Name | go |
 | 操作系统| centos-7 |
-| Go |  1.11 |
+| Go | 1.12.10 |
 | GOPATH | /home/jenkins/go |
 | GOROOT | /usr/local/go |
 | Docker | 18.06.0 |

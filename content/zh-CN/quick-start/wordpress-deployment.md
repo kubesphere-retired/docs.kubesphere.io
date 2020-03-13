@@ -1,183 +1,196 @@
 ---
-title: "部署 Wordpress" 
+title: "创建 Wordpress 应用并发布至 Kubernetes"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
 
-## 目的
+## WordPress 简介
 
-本文以创建一个部署 (Deployment) 为例，部署一个无状态的 Wordpress 应用，基于 [示例二](../mysql-deployment) 的 MySQL 应用最终部署一个外网可访问的 [Wordpress](https://wordpress.org/) 网站。Wordpress 连接 MySQL 数据库的密码将以 [配置 (ConfigMap)](../../configuration/configmaps) 的方式进行创建和保存。
+WordPress 是使用 PHP 开发的博客平台，用户可以在支持 PHP 和 MySQL 数据库的环境中架设属于自己的网站。本文以创建一个 [Wordpress 应用](www.wordpress.com/‎) 为例，以创建 KubeSphere 应用的形式将 Wordpress 的组件（MySQL 和 Wordpress）创建后发布至 Kubernetes 中，并在集群外访问 Wordpress 服务。
+
+一个完整的 Wordpress 应用会包括以下 Kubernetes 对象，其中 MySQL 作为后端数据库，Wordpress 本身作为前端提供浏览器访问。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027200444.png)
+
 
 ## 前提条件
 
-- 已创建了有状态副本集 MySQL，若还未创建请参考上一篇 [部署 MySQL](../mysql-deployment)；
-- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
+已创建了企业空间、项目和普通用户 `project-regular` 账号（该已账号已被邀请至示例项目），并开启了外网访问，请参考 [多租户管理快速入门](../admin-quick-start)。
+
 
 ## 预估时间
 
-约 15 分钟。
+约 10 分钟。
 
-## 操作示例
-
-<!-- ### 示例视频
+## 示例视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo2-wordpress.mp4">
-</video> -->
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_3-wordpress-k8s.mp4">
+</video>
 
-### 部署 Wordpress
+## 创建密钥
 
-#### 第一步：创建配置
+MySQL 的环境变量 `MYSQL_ROOT_PASSWORD` 即 root 用户的密码属于敏感信息，不适合以明文的方式表现在步骤中，因此以创建密钥的方式来代替该环境变量。创建的密钥将在创建 MySQL 的容器组设置时作为环境变量写入。
 
-Wordpress 的环境变量 `WORDPRESS_DB_PASSWORD` 即 Wordpress 连接数据库的密码，为演示方便，以创建配置 (ConfigMap) 的方式来代替该环境变量。创建的配置将在创建 Wordpress 的容器组设置时作为环境变量写入。
+### 创建 MySQL 密钥
 
-1.1. 以项目普通用户 `project-regular` 登录 KubeSphere，在当前项目下左侧菜单栏的 **配置中心** 选择 **配置**，点击 **创建配置**。
+1. 以项目普通用户 `project-regular` 登录 KubeSphere，在当前项目下左侧菜单栏的 **配置中心** 选择 **密钥**，点击 **创建**。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428141721.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027202848.png)
 
-1.2. 填写配置的基本信息，完成后点击 **下一步**。
+2. 填写密钥的基本信息，完成后点击 **下一步**。
 
-- 名称：作为 Wordpress 容器中环境变量的名称，填写 `wordpress-configmap`
-- 别名：支持中文，帮助您更好的区分资源，比如 `连接 MySQL 密码`
-- 描述信息：简单介绍该 ConfigMap，如 `MySQL password`
 
-![基本信息](/demo2-configmap-basic.png)
+- 名称：作为 MySQL 容器中环境变量的名称，可自定义，例如 `mysql-secret`
+- 别名：别名可以由任意字符组成，帮助您更好的区分资源，例如 `MySQL 密钥`
+- 描述信息：简单介绍该密钥，如 `MySQL 初始密码`
 
-1.3. ConfigMap 是以键值对的形式存在，此处键值对设置为 `WORDPRESS_DB_PASSWORD` 和 `123456`，完成后点击 **创建**。
 
-![ConfigMap 设置](/wordpress-configmap.png)
+3. 密钥设置页，填写如下信息，完成后点击 **创建**。
 
-#### 第二步：创建存储卷
 
-2.1. 在当前项目下左侧菜单栏的 **存储卷**，点击创建，基本信息如下。
+- 类型：选择 `默认` (Opaque)
+- Data：Data 键值对填写 `MYSQL_ROOT_PASSWORD` 和 `123456`
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027203044.png)
+
+### 创建 WordPress 密钥
+
+同上，创建一个 WordPress 密钥，Data 键值对填写 `WORDPRESS_DB_PASSWORD` 和 `123456`。此时两个密钥都创建完成。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027203325.png)
+
+## 创建存储卷
+
+1. 在当前项目下左侧菜单栏的 `存储卷`，点击 `创建`，基本信息如下。
+
 
 - 名称：wordpress-pvc
 - 别名：Wordpress 持久化存储卷
 - 描述信息：Wordpress PVC
 
-![创建存储卷](/demo2-wordpress-pvc-basic.png)
 
-2.2. 完成后点击 **下一步**，存储卷设置中，参考如下填写：
+2. 完成后点击 `下一步`，存储类型默认 local，访问模式和存储卷容量也可以使用默认值，点击 `下一步`，直接创建即可。
 
-- 存储类型：选择集群中已创建的存储类型，例如 **Local**
-- 访问模式：选择单节点读写 (RWO)
-- 存储卷容量：默认 10 Gi
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027212232.png)
 
-![存储卷设置](/demo2-pvc-setting.png)
+## 创建应用
 
-2.3. 标签默认为 `app: wordpress-pvc`，点击 「创建」。
+### 添加 MySQL 组件
 
-![设置标签](/demo-pvc-label.png)
+1. 在左侧菜单栏选择 **应用负载 → 应用**，然后点击 **部署新应用**。
 
-2.4. 点击左侧菜单中的 **存储卷**，查看存储卷列表，可以看到存储卷 wordpress-pvc 已经创建成功，状态是 “准备就绪”，可挂载至工作负载。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027203641.png)
 
-> 若存储类型为 Local，那么该存储卷在被挂载至工作负载之前都将显示创建中，这种情况是正常的，因为 Local 目前还不支持存储卷动态配置 [ (Dynamic Volume Provisioning) ](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/)，挂载后状态将显示 “准备就绪”。
+2. 基本信息中，参考如下填写，完成后在右侧点击 **添加组件**。
 
-![创建存储卷](/wordpress-pvc-list.png)
 
-#### 第三步：创建部署
-
-在左侧菜单栏选择 **工作负载 → 部署**，进入列表页，点击 **创建部署**。
-
-![创建部署](/wordpress-create-deployment.png)
-
-#### 第四步：填写基本信息
-
-基本信息中，参考如下填写，完成后点击 **下一步**。
-
-- 名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，比如 `wordpress`
-- 别名：可选，支持中文帮助更好的区分资源，如 `Wordpress 网站`
+- 应用名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，例如填写 `wordpress`
 - 描述信息：简单介绍该工作负载，方便用户进一步了解
 
-<!-- - 更新策略：选择 RollingUpdate
-   - MaxSurge：默认 25%， MaxSurge 指定的是除了 "期望副本 (DESIRED)" 数量之外，在一次滚动更新中，部署控制器还可以创建多少个新的容器组
-   - MaxUnavailable：默认 25%，表示最多可以一次删除 "25 % 的期望副本数量" 个容器组 -->
+**MySQL 组件信息**
 
-![填写基本信息](/wordpress-basic.png)
-
-#### 第五步：容器组模板
-
-5.1. 点击 **添加容器**。容器组模板中，名称可自定义，镜像填写 `wordpress:4.8-apache`，CPU 和内存此处暂不作限定，将使用在创建项目时指定的默认值。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190428142854.png)
-
-5.2. 下滑至服务设置，对 **端口** 和 **环境变量** 进行设置，其它项暂不作设置。参考如下填写。
-
-- 端口：名称可自定义如 port，选择 `TCP` 协议，填写 Wordpress 在容器内的端口 `80`。
-- 环境变量：这里需要添加两个环境变量
-   -  点击 **引用配置中心**，名称填写 `WORDPRESS_DB_PASSWORD`，选择在第一步创建的配置 (ConfigMap) `wordpress-configmap` 和 `WORDPRESS_DB_PASSWORD`。
-   -  点击 **添加环境变量**，名称填写 `WORDPRESS_DB_HOST`，值填写 `mysql-service`，对应的是 [示例一 - 部署 MySQL](../mysql-deployment/#第六步：服务配置) 创建 MySQL 服务的名称，否则无法连接 MySQL 数据库，可在服务列表中查看其服务名。
+3. 参考如下提示完成 MySQL 组件信息：
 
 
-![容器组模板](https://pek3b.qingstor.com/kubesphere-docs/png/20190428143233.png)
+- 名称： mysql
+- 组件版本：v1
+- 别名：MySQL 数据库
+- 负载类型：选择 `有状态服务`
 
-5.3. 完成后点击 **保存**，点击 **下一步**。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027173228.png)
 
-#### 第六步：存储卷设置
+4. 点击 **添加容器镜像**，镜像填写 `mysql:5.6`（应指定镜像版本号)，然后按回车键或点击 DockerHub，点击 `使用默认端口`。
 
-6.1. 此处选择 **添加已有存储卷**，选择第二步创建的存储卷 `wordpress-pvc`。
+> 提示: 注意，在高级设置中确保内存限制 ≥ 1000 Mi,否则可能 MySQL 会因内存 Limit 不够而无法启动。
 
-![存储卷设置](/demo2-wordpress-pvc.png)
-
-6.2. 设置存储卷的挂载路径，其中挂载选项选择 **读写**，挂载路径为 `/var/www/html`，保存后点击 **下一步**。
-
-![存储卷设置](/wordpress-pvc-path.png)
-
-#### 第七步：查看部署
-
-7.1. 标签保留默认值，节点选择器此处暂不作设置，点击 **创建**，部署创建完成。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027173158.png)
 
 
-7.2. 创建完成后，部署的状态为 "更新中" 是由于创建后需要拉取 wordpress 镜像并创建容器 (大概一分钟左右)，可以看到容器组的状态是 "ContainerCreating"，待部署创建完成后，状态会显示 “运行中”。
+5. 下滑至环境变量，在此勾选 `环境变量`，然后选择 `引用配置文件或密钥`，名称填写为 `MYSQL_ROOT_PASSWORD`，下拉框中选择密钥为 `mysql-secret` 和 `MYSQL_ROOT_PASSWORD`。
 
-![部署详情](/wordpress-deployment-list.png)
+完成后点击右下角 `√`。
 
-7.3. 查看创建的部署 Wordpress，可以看到其状态显示运行中，下一步则需要为 Wordpress 创建服务，最终暴露给外网访问。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027173718.png)
 
-![创建成功](/demo-wordpress-create-successfully.png)
+6. 点击 `添加存储卷模板`，为 MySQL 创建一个 PVC 实现数据持久化。
 
-#### 第八步：创建服务
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027205954.png)
 
-8.1. 在当前项目中，左侧菜单栏选择 **网路与服务 → 服务**，点击 **创建**。
-
-![创建服务](https://pek3b.qingstor.com/kubesphere-docs/png/20190428143635.png)
-
-8.2. 基本信息中，信息填写如下，完成后点击 **下一步**：
-
-- 名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，比如 `wordpress-service`
-- 别名和描述信息：如 `Wordpress 服务`
-
-![创建服务](/create-wordpress-service.png)
-
-8.3. 服务设置参考如下填写，完成后点击 **下一步**：
-
-- 服务类型：选择第一项 **通过集群内部IP来访问服务 Virtual IP**
-- 选择器：点击 **指定工作负载** 可以指定上一步创建的部署 Wordpress，指定后点击 **保存** 
-- 端口：端口名称可自定义如 port，服务的端口和目标端口都填写 `TCP` 协议的 `80` 端口
-- 会话亲和性：None，完成参数设置，选择下一步
-
-> 说明: 若有实现基于客户端 IP 的会话亲和性的需求，可以在会话亲和性下拉框选择 "ClientIP" 或在代码模式将 service.spec.sessionAffinity 的值设置为 "ClientIP"（默认值为 "None"），该设置可将来自同一个 IP 地址的访问请求都转发到同一个后端 Pod。
-
-![服务类型](/demo2-svc-setting.png)
-![服务设置](/service-setting.png)
-
-8.4. 本示例标签保留默认值，选择 **下一步**。
-
-8.5. 服务暴露给外网访问支持 NodePort 和 LoadBalancer，这里服务的访问方式选择 **NodePort**。
-
-![设置 NodePort](https://pek3b.qingstor.com/kubesphere-docs/png/20190428143904.png)
-
-8.6. 点击 **创建**，wordpress-service 服务可创建成功。注意，wordpress-service 服务生成了一个节点端口 `32689`。
-
-![查看服务](https://pek3b.qingstor.com/kubesphere-docs/png/20190509082526.png)
+参考下图填写存储卷信息。
 
 
-> 注意：若需要在外网访问，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将**内网端口** 32689 转发到**源端口** 32689，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+- 存储卷名称：必填，起一个简洁明了的名称，便于用户浏览和搜索，此处填写 `mysql-pvc`
+- 存储类型：选择集群已有的存储类型，如 `Local`
+- 容量和访问模式：容量默认 `10 Gi`，访问模式默认 `ReadWriteOnce (单个节点读写)`
+- 挂载路径：存储卷在容器内的挂载路径，选择 `读写`，路径填写 `/var/lib/mysql`
 
-### 访问 Wordpress
 
-设置完成后，WordPress 就以服务的方式通过 NodePort 暴露到集群外部，可以通过 `http://{$公网 IP}:{$节点端口 NodePort}` 访问 WordPress 博客网站。
+完成后点击 `√`。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190509082952.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027174010.png)
 
-至此，您已经熟悉了部署 (Deployments) 和有状态副本集 (Statefulsets) 、密钥 (Secret)、配置 (ConfigMap) 的基本功能使用，关于部署和有状态副本集的各项参数释义，详见 [部署](../../workload/deployments) 和 [有状态副本集](../../workload/statefulsets)。
+### 添加 WordPress 组件
+
+1. 参考如下提示完成 WordPress 组件信息：
+
+
+- 名称： wordpress
+- 组件版本：v1
+- 别名：Wordpress前端
+- 负载类型：默认 `无状态服务`
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027210730.png)
+
+2. 点击 **添加容器镜像**，镜像填写 `wordpress:4.8-apache`（应指定镜像版本号)，然后按回车键或点击 DockerHub，点击 `使用默认端口`。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027174215.png)
+
+3. 下滑至环境变量，在此勾选 `环境变量`，这里需要添加两个环境变量：
+
+
+-  点击 **引用配置文件或密钥**，名称填写 `WORDPRESS_DB_PASSWORD`，选择在第一步创建的配置 (Secret) `wordpress-secret` 和 `WORDPRESS_DB_PASSWORD`。
+-  点击 **添加环境变量**，名称填写 `WORDPRESS_DB_HOST`，值填写 `mysql`，对应的是上一步创建 MySQL 服务的名称，否则无法连接 MySQL 数据库。
+
+
+完成后点击 `√`。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027174555.png)
+
+4. 点击 `添加存储卷`，选择已有存储卷 `wordpress-pvc`，访问模式改为 `读写`，容器挂载路径 `/var/www/html`。完成后点击 `√`。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027174709.png)
+
+5. 检查 WordPress 组件信息无误后，再次点击 `√`，此时 MySQL 和 WordPress 组件信息都已添加完成，点击 `创建`。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027212851.png)
+
+## 查看应用资源
+
+1. 在 `工作负载` 下查看 **部署** 和 **有状态副本集** 的状态，当它们都显示为 `运行中`，说明 WordPress 应用创建成功。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027213213.png)
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027213150.png)
+
+2. 访问 Wordpress 服务前，查看 wordpress 服务，将外网访问设置为 `NodePort`。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027213426.png)
+
+3. 点击 `更多操作` → `编辑外网访问`，选择 `NodePort`，然后该服务将在每个节点打开一个节点端口，通过 `点击访问` 即可在浏览器访问 WordPress。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027213826.png)
+
+> 提示：此时也可以通过工具箱的 web kubctl 查看当前项目中 Wordpress 应用正在运行的所有资源。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027220246.png)
+
+## 访问 Wordpress
+
+以上访问将通过 `http://{$节点 IP}:{$节点端口 NodePort}` 访问 WordPress 博客网站。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027213826.png)
+
+至此，您已经熟悉了如何通过创建一个 KubeSphere 应用的方式，通过快速添加多个组件来完成一个应用的构建，最终发布至 Kubernetes。这种创建应用的形式非常适合微服务的构建，只需要将各个组件容器化以后，即可通过这种方式快速创建一个完整的微服务应用并发布 Kubernetes。
+
+同时，这种方式还支持用户以 **无代码侵入的形式开启应用治理**，针对 **微服务、流量治理、灰度发布与 Tracing** 等应用场景，开启应用治理后会在每个组件中以 SideCar 的方式注入 Istio-proxy 容器来接管流量，后续将以一个 Bookinfo 的示例来说明如何在创建应用中使用应用治理。

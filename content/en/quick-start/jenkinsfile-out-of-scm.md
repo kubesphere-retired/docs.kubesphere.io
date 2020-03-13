@@ -1,333 +1,339 @@
 ---
-title: "Create a CI/CD Pipeline in a Graphical Panel" 
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "Graphical CI/CD Pipeline without Jenkinsfile"
+keywords: 'KubeSphere, kubernetes, docker, jenkins, cicd, graphical pipeline'
+description: 'Create a none-Jenkinsfile CI/CD pipeline with graphical editing panel'
 ---
 
-From last CI/CD tutorial, the pipeline was built from existing Jenkinsfile of its source code repository, requiring some experiences of the declarative Jenkinsfile. For beginners, who prefer graphical panel to help them quickly create a CI/CD pipeline without Jenkinsfile. Luckily, KubeSphere enables users to build a pipeline in a graphical panel, as well as generate a pipeline to Jenkinsfile which allows users to edit, friendly UI manipulation which makes a team’s delivery in high efficiency.
-
+We have demonstrated how to create a Jenkinsfile-based pipeline for Spring Boot Project in the last tutorial. It requires users are familiar with Jenkinsfile. However, Jenkinsfile is a non-trivial thing to learn and some people even do not know about it. Therefore, unlike the last tutorial, we are going to show how to create a CI/CD pipeline without Jenkinsfile by visually editing the workflow through KubeSphere console.
 
 ## Objective
 
-This guide is based on guide 10-Jenkinsfile in SCM. By building the pipeline in a visual way, deploy a HelloWorld sample service to a development environment in a KubeSphere cluster. Besides, that is accessible to users. The so-called development environment is resource isolated in Namespace in the underlying Kubernetes. For presentation purpose, this example still uses the GitHub repository devops-java-sample.
+We will use the graphical editing panel in KubeSphere console to create a pipeline, which automates the processes and release the sample project to Kubernetes development environment. If you have tried the Jenkinsfile-based pipeline, the build steps for this tutorial are easy to understand. The sample project in this tutorial is same to the [one](https://github.com/kubesphere/devops-java-sample) that we used in the [last tutorial](../devops-online).
 
+## Prerequisites
+
+- You need to [enable KubeSphere DevOps System](../../installation/install-devops).
+- You need to create [DockerHub](http://www.dockerhub.com/) account.
+- You need to create a workspace, a DevOps project, and a **project-regular** user account, and this account needs to be invited into the DevOps project as the role of maintainer, please refer to [Getting Started with Multi-tenant Management](../admin-quick-start).
+- Configure email server for notification in pipeline, please refer to [Set Email Server for KubeSphere Pipeline](../../devops/jenkins-email).
+- Set CI dedicated node for building pipeline, please refer to [Set CI Node for Dependency Cache](../../devops/devops-ci-node).
+
+## Pipeline Overview
+
+The sample pipeline includes the following six stages.
+
+![Pipeline](https://pek3b.qingstor.com/kubesphere-docs/png/20190516091714.png#align=left&display=inline&height=1278&originHeight=1278&originWidth=2190&search=&status=done&width=2190)
+
+> To elaborate every stage：
+>
+> - **Stage 1. Checkout SCM:** Pull the GitHub repository code；
+> - **Stage 2. Unit test**: The pipeline will continue running the next stage only if the unit test is passed；
+> - **Stage 3. Code Analysis**: Configure SonarQube for static code quality check and analysis；
+> - **Stage 4. Build and Push**: Build the image and push the it to DockerHub with tag `snapshot-$BUILD_NUMBER` where `$BUILD_NUMBER` is the serial number of the pipeline active list；
+> - **Stage 5. Artifacts**: Generate the artifact (jar package) and save it；
+> - **Stage 6. Deploy to DEV**: Deploy the project to the development environment. It requires an approval in this stage. An email will be sent after the deployment is successful.
 
 ## Hands-on Lab
 
-### Pipeline Overview
+### Step 1: Create Credentials
 
-The construction of visual pipeline consists of the following six stages. Firstly, the flowchart below briefly describes the workflow of the entire pipeline:
+We need to create **three** credentials for DockerHub, Kubernetes and SonarQube respectively. If you have finished the last lab [Create a Jenkinsfile-based Pipeline for Spring Boot Project](../devops-online#step-1-create-credentials), you already have the credentials created. Otherwise, please refer to [create credentials](../devops-online#step-1-create-credentials) to create them that are used in the pipeline.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190516091714.png#align=left&display=inline&height=1278&originHeight=1278&originWidth=2190&search=&status=done&width=2190)
+![Create Credentials](https://pek3b.qingstor.com/kubesphere-docs/png/20200221223754.png)
 
-> The explanation of every stage：
-> - **Stage 1. Checkout SCM: **Pull the GitHub repository code；
-> - **Stage 2. Unit test**: Unit tests; proceed to the next task only if the tests are passed；
-> - **Stage 3. Code Analysis**: Configure SonarQube for static code quality checking and analysis；
-> - **Stage 4. Build and Push**: Build the image and push the tag as snapshot-$BUILD_NUMBER to DockerHub (where $BUILD_NUMBER is the run number of the pipeline active list)；
-> - **Stage 5. Artifacts**: Make the artifact (jar package) and save it；
-> - **Stage 6. Deploy to DEV**: Deploy the project to the Dev environment, which requires a pre-audit and an email if the deployment is successful.
+### Step 2: Create Project
 
+The sample pipeline will deploy the [sample](https://github.com/kubesphere/devops-java-sample) to Kubernetes namespace, thus we need to create a project in KubeSphere. If you do not finish the last lab, please refer to the [step](../devops-online#create-the-first-project) to create a project named `kubesphere-sample-dev` by using `project-admin`, then invite the account `project-regular` into this project and assign the role of `operator` to this account.
 
+### Step 3: Create Pipeline
 
-### Create Project
+Follow the steps below to create a pipeline using graphical editing panel.
 
-CI/CD pipeline will eventually deploy the sample Web to the development environment `kubesphere-sample-dev` based on the [yaml 模板文件](https://github.com/kubesphere/devops-docs-sample/tree/master/deploy/no-branch-dev) of the documentation website. It corresponds to a project in KubeSphere that needs to be created in advance. If not please refer to [示例十 - 创建第一个项目](../devops-online/#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE); use a project-admin account to create a `kubesphere-sample-dev` project. Then invite project regular user `project-regular` to enter the project and give it an `operator` character.
+#### Fill in the basic information
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514112245.png#align=left&display=inline&height=1174&originHeight=1174&originWidth=3462&search=&status=done&width=3462)
+3.1. In the DevOps project, select the **Pipeline** on the left and click **Create**.
 
+![Create Pipeline](https://pek3b.qingstor.com/kubesphere-docs/png/20200221225029.png)
 
-### Create Credentials
+3.2. In the pop-up window, name it `graphical-pipeline`, click **Next**.
 
-This example creates pipelines with DockerHub, Kubernetes (create KubeConfig to access the running Kubernetes cluster), and SonarQube (three Credentials).
+#### Advanced Settings
 
-1. Log in KubeSphere with the project regular user. Refer to [Create Credentials](../../devops/credential/#%E5%88%9B%E5%BB%BA%E5%87%AD%E8%AF%81) create the credential of DockerHub and Kubernetes. Name the credential ID as `dockerhub-id` and `demo-kubeconfig.`
+3.3. Keep clicking **Add Parameter** to add **three** string parameters as follows. These parameters will be used in the Docker command of the pipeline. Click **Create** when you are done.
 
-2. Create a Java Token refer to [访问 SonarQube](../../devops/sonarqube/) and copy the Token。
-
-3. Lastly, enter devops-demo's DevOps project in KubeSphere. Similarly, click Create in the Credential, to create a Secret Text type credential. Name the credential ID as `sonar-token`, the token is the one copied in the previous step, then click Confirm.
-
-At this point, the three credentials have been created and will be used in the pipeline.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514023424.png#align=left&display=inline&height=890&originHeight=890&originWidth=2794&search=&status=done&width=2794)
-
-
-### Create Pipeline
-
-Follow  steps below to create and run a complete pipeline.
-
-
-#### Step 1: Fill in the basic information
-
-1. In the DevOps project, select the **Pipeline** on the left and click **Create**.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514114907.png#align=left&display=inline&height=854&originHeight=854&originWidth=2820&search=&status=done&width=2820)
-
-2. In the pop-up window, enter the basic information of the pipeline. When finished, click **Next**.
-
-- Name: A concise name for the pipeline to understand and search, for example, graphical-pipeline.
-- Description: A brief introduction to the main features of the pipeline to help you understand the role of the pipeline.
-- Code Registry: No code registry is selected here.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514131501.png#align=left&display=inline&height=682&originHeight=682&originWidth=2024&search=&status=done&width=2024)
-
-
-#### Step 2: Advanced Settings
-
-1. Click **Add Parameter** to add **3** string parameters as follows. This parameter will be used in the docker command of the pipeline. Click OK when done.
 | Parameter Type | Name | Default Value | Description |
 | --- | --- | --- | --- |
-| string parameter | REGISTRY | The sample repository address is  docker.io. | Image Registry |
-| string parameter | DOCKERHUB_NAMESPACE | Fill in your  DockerHub account (which can also be the Organization name under the account). | DockerHub Namespace |
-| string parameter | APP_NAME | Fill the application name as devops-sample. | Application Name |
+| String  | REGISTRY | The sample repository address is `docker.io`. | Image Registry |
+| String  | DOCKERHUB_NAMESPACE | Fill in your  DockerHub account which can also be the Organization name under the account. | DockerHub Namespace |
+| String | APP_NAME | Fill the application name with `devops-sample`. | Application Name |
 
+![Advanced Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20200222155944.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514115433.png#align=left&display=inline&height=1184&originHeight=1184&originWidth=1726&search=&status=done&width=1726)
+### Step 4: Editing pipeline
 
+This pipeline consists of six stages. We will demonstrate the steps and tasks in each stage.
 
-### Visual editing pipeline
+#### Stage I: Pull Source Code (Checkout SCM)
 
-The visualization pipeline consists of six stages, which in turn describe which steps and tasks were performed in each stage.
+The graphical editing panel includes two areas, i.e., **canvas** on the left and **content** on the right. It will generate Jenkinsfile after creating a pipeline in the panel, which is much more user-friendly for developers.
 
+> Note: Pipeline includes `scripted pipeline` and `declarative pipeline`, and the panel supports `declarative pipeline`. For pipeline syntax, see [Jenkins Documentation](https://jenkins.io/doc/book/pipeline/syntax/).
 
-#### Stage 1: Pull Source Code (Checkout SCM)
+4.1.1. As follows, select **node** from the drop-down list of **agent type** in the content area, input `maven` in the label.
 
-The visual editing page is divided into a structure editing area and a content editing area. Jenkinsfile is automatically generated by building each stage and step of the pipeline, so users don't need to learn the syntax of Jenkinsfile, which is very convenient. Of course, the platform also supports the manual editing of Jenkinsfile. The pipeline is divided into "declarative pipeline" and "scripted pipeline". Visual editing supports declarative pipeline. For Pipeline syntax, see [Jenkins 官方文档](https://jenkins.io/doc/book/pipeline/syntax/).
+> Note: The agent is used to define execution environment. The agent directive tells Jenkins where and how to execute the pipeline or a specific stage. Please refer to [Jenkins Agent](https://jenkins.io/doc/pipeline/tour/agents/) for further information.
 
-1. As follows，select `node` in the agent type, input `maven` in the label.
+![Select Agent](https://pek3b.qingstor.com/kubesphere-docs/png/20200303174821.png)
 
-> Note: The Agent section specifies where the entire Pipeline or a particular stage will be executed in the Jenkins environment, depending on where the agent part is placed, see [Jenkins Agent 说明](../../devops/jenkins-agent)。
+4.1.2. In the canvas area, click the **+** button to add a stage. Click the box with title `No Name` that encloses the box **Add Step**, name it `Checkout SCM` in the content area on the right of the panel.
 
+![Checkout SCM](https://pek3b.qingstor.com/kubesphere-docs/png/20200221234417.png)
 
-2. In the graphical build pipeline interface, click the "+" button in the edit area on the left side. Add a stage. Click the **Add Step** in the interface, and name it **Checkout SCM** in the right input box.
+4.1.3. Click **Add Step**. Select **git** from the content area. For now, fill in the pop-up window as follows:
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514132128.png#align=left&display=inline&height=588&originHeight=588&originWidth=1400&search=&status=done&width=1400)
+- Url: Input GitHub repository URL `https://github.com/kubesphere/devops-java-sample.git`. Please replace the url with your own repository.
+- Credential ID: Leave it blank as it is for using a private repository.
+- Branch: Leave it as blank. Blank means default to master.
 
-3、Then click `Add steps` at this stage. Select `git` on the right. For now, pull the repository's codes through  Git, and the information filled in the pop-up window is as follows:
+When you are done, click **OK** to save it and you will see the first stage created.
 
-- Url: GitHub repository URL `https://github.com/kubesphere/devops-java-sample.git`
-- Credential ID: No need to fill in (if it is a private warehouse, such as Gitlab, you need to create and fill in the voucher ID in advance)
-- Branch: There is no need to fill in the branch name here. If not, the default is the master branch.
+![GitHub repository](https://pek3b.qingstor.com/kubesphere-docs/png/20200221234935.png)
 
-When you are done, click "OK" to save and you will see the first stage of the build pipeline.
+#### Stage II: Unit Test
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514132948.png#align=left&display=inline&height=658&originHeight=658&originWidth=2752&search=&status=done&width=2752)
+4.2.1. Click **+** on the right of the stage **Checkout SCM** to add another stage for performing a unit test in the container, name it `Unit Test`.
 
+![Unit Test](https://pek3b.qingstor.com/kubesphere-docs/png/20200221235115.png)
 
-#### Stage 2: Unit Test
+4.2.2. Click **Add Step** and select **container**, name it `maven`, then click **OK**.
 
-1. Click "+" on the right of the `Checkout SCM`   to add one stage for performing a unit test in the container, name it `Unit Test`。
+![maven](https://pek3b.qingstor.com/kubesphere-docs/png/20200221235323.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514133941.png#align=left&display=inline&height=634&originHeight=634&originWidth=2552&search=&status=done&width=2552)
+4.2.3. In the content area, click **Add nesting steps** in the `maven` container created above to add a nested step. Then select **shell** and enter the following command in the pop-up window:
 
-2. Click `Add` and select `the Pod`, name it `maven`, then click `Confirm`；
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514134044.png#align=left&display=inline&height=556&originHeight=556&originWidth=2060&search=&status=done&width=2060)
-
-3、Click `Add nesting steps` in the `maven` pod. Then select `shell` and enter the following command in the popup window, then click Save：
-
-```shell
+```bash
 mvn clean -o -gs `pwd`/configuration/settings.xml test
 ```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514134203.png#align=left&display=inline&height=612&originHeight=612&originWidth=1966&search=&status=done&width=1966)
+Click **OK** to save it.
 
+![maven container](https://pek3b.qingstor.com/kubesphere-docs/png/20200221235629.png)
 
-#### Stage 3: Code Analysis
+#### Stage III: Code Analysis
 
-1. Same as above, click “+” on the right side of the  `Unit Test`  stage to continue adding a stage for configuring SonarQube to perform static code quality analysis in the container, name it `Code Analysis`。
+4.3.1. Same as above, click **+** on the right of the stage **Unit Test** to continue adding a stage for configuring SonarQube, which is used to perform static code quality analysis in the container, name it `Code Analysis`.
 
-2. Click `Add`  and select `the Pod`，name it `maven`，then click `Confirm`。
+![Code Analysis](https://pek3b.qingstor.com/kubesphere-docs/png/20200222000007.png)
 
-3. Click `Add nesting steps` on the right and select `Add credentials`，Select the previously created credential ID `sonar-token` in the popup window input `SONAR_TOKEN` in the text variable, then click Confirm.
+4.3.2. Click **Add Step** in **Code Analysis**, and select **container**，name it `maven`，then click **OK**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514140415.png#align=left&display=inline&height=716&originHeight=716&originWidth=2228&search=&status=done&width=2228)
+![Code Analysis](https://pek3b.qingstor.com/kubesphere-docs/png/20200222000204.png)
 
-4. In the Add Credential on the right，click `Add nesting steps`，then select `SonarQube configuration`，keep the default  name sonar，click Confirm。
+4.3.3. Click **Add nesting steps** in the `maven` container created above to add a nested step and select **withCredentials**, Select the previously created credential ID `sonar-token` and input `SONAR_TOKEN` in the text variable, then click **OK**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514140846.png#align=left&display=inline&height=920&originHeight=920&originWidth=1968&search=&status=done&width=1968)
+![withCredentials](https://pek3b.qingstor.com/kubesphere-docs/png/20200222000531.png)
 
-5. Click `Add nesting steps` in the `SonarQube configuration` . Select `Shell` on the right, enter the SonarQube branch and authentication configuration commands in the pop-up window as follows, and click confirm to save the information.
+4.3.4. In the task **withCredential** on the right, click **Add nesting steps** (the first one)，then select **withSonarQubeEnv**, leave the default name `sonar`, click **OK** to save it.
+
+![Code Analysis](https://pek3b.qingstor.com/kubesphere-docs/png/20200222000743.png)
+
+![withSonarQubeEnv](https://pek3b.qingstor.com/kubesphere-docs/png/20200222000936.png)
+
+4.3.5. Click **Add nesting steps** (the first one) in the **withSonarQubeEnv**. Then select **shell** on the right, enter the following commands in the pop-up window for SonarQube branch and authentication, and click **OK** to save the information.
 
 ```shell
 mvn sonar:sonar -o -gs `pwd`/configuration/settings.xml -Dsonar.branch=$BRANCH_NAME -Dsonar.login=$SONAR_TOKEN
 ```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514141531.png#align=left&display=inline&height=1062&originHeight=1062&originWidth=2028&search=&status=done&width=2028)
+![SonarQube branch](https://pek3b.qingstor.com/kubesphere-docs/png/20200222161853.png)
 
-6. Click on the third `Add` on the right and select `Overtime`. Input 1 to time and the unit select `Hour`. Click Confirm.
+4.3.6. Click on the **Add nesting steps** (the third one) on the right, select **timeout**. Input `1` to time, and select `Hours` in unit.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514141926.png#align=left&display=inline&height=1238&originHeight=1238&originWidth=2026&search=&status=done&width=2026)
+Click **OK** to save it.
 
-7. In the overtime steps, click `Add nesting steps`. Select `Code quality Cehck (SonarQube)` and keep the default `Process the following job after pass the test` in the popup window then click Confirm.
+![SonarQube timeout](https://pek3b.qingstor.com/kubesphere-docs/png/20200222001544.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232241.png#align=left&display=inline&height=1314&originHeight=1314&originWidth=2540&search=&status=done&width=2540)
+4.3.7. In the `timeout`, click **Add nesting steps** (the first one). Then select **waitforSonarQubeGate** and keep the default `Start the follow-up task after inspection` in the popup window.
 
+Click **OK** to save it.
 
-#### Stage 4: Build and Push the Image
+![waitforSonarQubeGate](https://pek3b.qingstor.com/kubesphere-docs/png/20200222001847.png)
 
-1. Click "+" on the right of the stage of `Code Analysis` to add another stage to build and push images to  DockerHub. Name it as `Build and Push`。
+#### Stage IV: Build and Push the Image
 
-2. Click `Add steps` and select `The Pod`，name it as `maven`，then click `Confirm`.
+4.4.1. Similarly, click **+** on the right of the stage of **Code Analysis** to add another stage to build and push images to DockerHub, name it `Build and Push`.
 
-3. Click `Add nesting steps` and select `Shell` on the right, enter the following command in the popup window:
+4.4.2. Click **Add Step** and select **container**，name it `maven`，then click **OK**.
+
+![maven container](https://pek3b.qingstor.com/kubesphere-docs/png/20200222112517.png)
+
+4.16. Click **Add nesting steps** in the contain `maven`, and select **shell** on the right, enter the following command in the pop-up window:
 
 ```shell
 mvn -o -Dmaven.test.skip=true -gs `pwd`/configuration/settings.xml clean package
 ```
 
-4. Then continue to click `Add nesting steps` on the right, select `Shell`. In the popup window, enter the following command to build a Docker image based on the [Dockerfile](https://github.com/kubesphere/devops-java-sample/blob/master/Dockerfile-online) in the repository. Click Finish to save when done:
+4.4.3. Then continue to click **Add nesting steps** on the right, select **shell** in the pop-up window, enter the following command to build a Docker image based on the [Dockerfile](https://github.com/kubesphere/devops-java-sample/blob/master/Dockerfile-online):
+
+> Please DO NOT miss the dot `.` at the end of the command.
 
 ```shell
 docker build -f Dockerfile-online -t $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER .
 ```
 
-5. Click `Add nesting steps` and select `Add credentials` on the right. Fill  the following information in the popup window, and click "confirm" to save the information:
+![Build Docker image](https://pek3b.qingstor.com/kubesphere-docs/png/20200222113131.png)
 
-> Note: For users' information security, the account type information does not appear in the script in clear text, but in the form of variables.
+Click **OK** to save it.
 
+4.4.4. Similarly, click **Add nesting steps** again and select **withCredentials** on the right. Fill in the pop-up window as follows:
 
-- Credential ID：Select the DockerHub credentials you created earlier such as `dockerhub-id`
-- Password variable：`DOCKER_PASSWORD`
-- Username variable：`DOCKER_USERNAME`
+> Note: Considering the security, the account information are not allowed to be exposed in plaintext in the script.
 
-6. Click `Add nesting steps` in the `Add credentials` stage, select `Shell` on the right, enter the following command in the popup window to log in to Docker Hub:
+- Credential ID：Select the DockerHub credentials you created, e.g. `dockerhub-id`
+- Password variable：Enter `DOCKER_PASSWORD`
+- Username variable：Enter `DOCKER_USERNAME`
+
+Click **OK** to save the it.
+
+![DockerHub credentials](https://pek3b.qingstor.com/kubesphere-docs/png/20200222113442.png)
+
+4.4.5. Click **Add nesting steps** (the first one) in the **withCredentials** step created above, select **shell** and enter the following command in the pop-up window, which is used to log in Docker Hub:
 
 ```shell
 echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin
 ```
 
-7、Then click `Add nesting steps` to add `Shell` input a command to push the SNAPSHOT image to Docker Hub:
+Click **OK** to save the it.
+
+![docker login](https://pek3b.qingstor.com/kubesphere-docs/png/20200222114937.png)
+
+4.4.6. As above, click **Add nesting steps** in the **withCredentials** step again, choose **shell** and enter the following command to push the SNAPSHOT image to DockerHub:
 
 ```shell
 docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 ```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232407.png#align=left&display=inline&height=1358&originHeight=1358&originWidth=2630&search=&status=done&width=2630)
+![docker push](https://pek3b.qingstor.com/kubesphere-docs/png/20200222120214.png)
 
+#### Stage V: Generate Artifact
 
-#### Stage 5: Save Artifacts
+4.5.1. Click **+** on the right of the **Build and Push** stage, here we add another stage to save artifacts. This example uses the jar package and name it `Artifacts`.
 
-1. Click "+" at right of the `Build and Push` stage to add another stage to protect artifacts. This example uses the jar package as `Artifacts`.
+![Save Artifacts](https://pek3b.qingstor.com/kubesphere-docs/png/20200222120540.png)
 
-2. Click `Add steps` and select `Save Artifacts`. Input `target/*.jar` in the popup window to capture the build file containing the pattern match (target/*.jar) and save it to Jenkins，then click Confim.
+4.5.2. Click **Add Step** in **Artifacts** stage, select **archiveArtifacts**. Enter `target/*.jar` in the pop-up window, which is used to set the archive path of artifact in Jenkins.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232447.png#align=left&display=inline&height=1366&originHeight=1366&originWidth=2548&search=&status=done&width=2548)
+Click **OK** to save the it.
 
+![Artifacts](https://pek3b.qingstor.com/kubesphere-docs/png/20200222121035.png)
 
-#### Stage 6: Deploy to DEV
+#### Stage VI: Deploy to Dev
 
-1. Click "+" at right of the `Artifacts` stage to add the last stage and name it as `Deploy to DEV`. This stage will be used to deploy pod image to development environment namely, the project of `kubesphere-sample-dev`.
+4.6.1. Click **+** on the right of the stage **Artifacts** to add the last stage, name it `Deploy to Dev`. This stage is used to deploy resources to development environment, namely, the project of `kubesphere-sample-dev`.
 
-2. Click `Add steps` and select `Review`. Input `@project-admin` in the pop-up window and demand the project-admin account to review the pipeline. Click Confirm.
+4.6.2. Click **Add Step** in **Deploy to Dev**, select **input** and enter `@project-admin` in the pop-up window, assigning account `project-admin` to review this pipeline.
 
-3. Click `Add steps`，select `KubernetesDeploy`. Fill in the pop-up window as below and click "Confirm" to save the information:
+Click **OK** to save the it.
+
+4.6.3. Click **Add Step** on the right，select **kubernetesDeploy**. Fill in the pop-up window as below and click **Confirm** to save the information:
+
 - Kubeconfig: select `demo-kubeconfig`
-- Configuration file path: Input `deploy/no-branch-dev/**` which is the according path of the Kubernetes source deployment's [yaml 文件](https://github.com/kubesphere/devops-java-sample/tree/master/deploy/no-branch-dev). 
+- Configuration file path: Enter `deploy/no-branch-dev/**` which is the related path of the Kubernetes [yaml](https://github.com/kubesphere/devops-java-sample/tree/master/deploy/no-branch-dev).
 
-4. Add a step to the same as above to send a notification email to the user after this step of deployment and pipeline execution is successful. Click `Add steps`, select `Email`, and custom edit recipients, CCs, topics, and content.
+Click **OK** to save the it.
 
-> Note: sending mail in the pipeline requires pre-installing the mail server in the Installer. Please refer to [集群组件配置释义](../../installation/vars) for configuration. If not already configured, skip step 4 (the next version will support the unified configuration of mail in the UI after installation server).
+![Deploy to Kubernetes](https://pek3b.qingstor.com/kubesphere-docs/png/20200222153404.png)
 
+4.6.4. Similarly, click **Add Step** to send an email notification to the user after the pipeline runs successfully, select **mail** and fill in the information.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232706.png#align=left&display=inline&height=1446&originHeight=1446&originWidth=3198&search=&status=done&width=3198)
+> Note: Make sure you have [configured email server](../../devops/jenkins-email) in `ks-jenkins`. Please refer to Jenkins email configuration. If not yet, skip this step and you still can run this pipeline.
 
-At this point, the six stages of the graphical  pipeline building have been added successfully, click `Confirm → Save`，the pipeline of the visual build is created and the Jenkinsfile is also generated.
+At this point, the total six stages of the pipeline have been edited completely, click **Confirm → Save**, it will generate Jenkinsfile as well.
 
+![Complete Pipeline](https://pek3b.qingstor.com/kubesphere-docs/png/20200222154407.png)
 
-### Run Pipeline
+### Step 5: Run Pipeline
 
-1、Manually built pipelines need to be manually run in the platform. Click `Run`，In the input parameter pop-up window, you can see the three string parameters defined earlier. No modification is needed here. Click `Confirm` and the pipeline will start running.
+5.1. The pipeline created by the graphical editing panel needs to be manually run. Click **Run**, you can see the three string parameters defined in the third step. Click **OK** to start this pipeline.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514155513.png#align=left&display=inline&height=1060&originHeight=1060&originWidth=2782&search=&status=done&width=2782)
+![Run Pipeline](https://pek3b.qingstor.com/kubesphere-docs/png/20200222160330.png)
 
-2、You can see the status of the pipeline in the **Activity** list，click `Activity` to view the specific situation of the activity.
+5.2. You can see the status of the pipeline in the **Activity** list. Click **Activity** to view the detailed running status.
 
-> Note: The pipeline cannot be seen when it is started. This is because it has an initialization process. When the pipeline starts running, the Jenkins slave starts and starts parsing and executing the Jenkinsfile automatically generated by the pipeline. You can see the page where the graphical pipeline runs.
+5.3. Enter the first activity to view detailed page.
 
+![View detailed page](https://pek3b.qingstor.com/kubesphere-docs/png/20200222163341.png)
 
-3. Click Run Sequence `1` in the activity list to enter the activity details page of Sequence  `1`  to view the specific operation of the pipeline.
+> Note: If the previous steps are running correctly, you can see that the pipeline has successfully run to the last stage in a few minutes. Since we set the review step and specify the account `project-admin` as the reviewer. Therefore, we need to switch to use `project-admin` to manually review and approve it.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514160039.png#align=left&display=inline&height=722&originHeight=722&originWidth=2804&search=&status=done&width=2804)
+5.4. Log out, and log in with account `project-admin`. Enter into the pipeline `graphical-pipeline` of the DevOps project that we used above. Drill into **Activity** to view the running status. You can see the pipeline has run to the **Deploy to DEV** stage. Click **Proceed** to approve it.
 
-4. Log in the platform and shift the user to  `project-admin`. Enter into the `graphical-pipeline` under the DevOps project. Then click `Activity` to enter the No. `1` activity page. You can see the pipeline has run to the `deploy to dev` stage. Click `Continue` to change the pipeline status as **In Operation**.
+![Activity](https://pek3b.qingstor.com/kubesphere-docs/png/20200222170334.png)
 
-> Note: If the previous steps are configured correctly, you can see that the pipeline has successfully run to the last stage in a few minutes. Since we added the review step in the last phase and specified the user with the user name `project-admin`. Therefore, the pipeline will be suspended until now, waiting for the auditor `project-admin` to log into the pipeline running page to manually trigger. 此时审核者可以测试构建的镜像并进一步审核整个流程，若审核通过则点击 **继续**，最终将部署到开发环境中。
+### Step 6: View Pipeline
 
+6.1. Log back the account `project-regular`. After a few minutes, the pipeline runs successfully. Click **Activity** list in the pipeline to view the current running pipeline serial number. This page shows the running status of each stage in the pipeline.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514160931.png#align=left&display=inline&height=834&originHeight=834&originWidth=2178&search=&status=done&width=2178)
+![View Pipeline](https://pek3b.qingstor.com/kubesphere-docs/png/20200222182230.png)
 
+6.2. Click **Show Logs** on the top right of the current page to inspect the logs. The pop-up window shows the specific logs, running status and time of each stage. Click on a specific stage and expand its specific log on the right. You can debug any problems based on the logs which also can be downloaded to your local file for further analysis.
 
-### View Pipeline
+![Show Logs](https://pek3b.qingstor.com/kubesphere-docs/png/20200222171027.png)
 
-1. After a few minutes, the pipeline will run successfully. Click `Activity` list in the pipeline to view the current running pipeline serial number, the page shows the operational status of each step in the pipeline. The black box marks the name of the step in the pipeline. The six stages of the pipeline in the example are the six stages created above. At this point, the reviewer can test the built image and further review the entire process. If the review is approved, click Continue and the solution will eventually be deployed to the development environment.
+### Step 7: Check Code Quality
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514161723.png#align=left&display=inline&height=630&originHeight=630&originWidth=2146&search=&status=done&width=2146)
+Back to the **Activity** page, click **Code quality** to check the analysis of the code quality for the demo project, which is provided by the SonarQube. The sample code is simple and does not show bugs or vulnerabilities. Click on the SonarQube icon on the right to access SonarQube. Please refer to [Access SonarQube](../../installation/sonarqube-jenkins) to log in.
 
-2. Click  `Check Logs` on the top right of the current page to view the pipeline run log. The page shows the specific log, running status and time of each step. Click on a specific stage on the left to view its specific log. If an error occurs, the positioning problem can be analyzed according to the log information. The log can be downloaded to the local view. .
+![Check Code Quality](https://pek3b.qingstor.com/kubesphere-docs/png/20200222171426.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514161819.png#align=left&display=inline&height=1216&originHeight=1216&originWidth=2536&search=&status=done&width=2536)
+#### View the Quality Report at SonarQube
 
+![Quality report](https://pek3b.qingstor.com/kubesphere-docs/png/20200222171539.png)
 
-### View code quality
+### Step 8: Download Artifacts
 
-Click `Code quality` in the pipeline to check the detection results of the code quality, which is provided by the SonarQube built into the cluster. The sample code is simple and therefore does not show bugs or code vulnerabilities. Click on the SonarQube icon on the right to access SonarQube in your browser and visit SonarQube for reference [访问内置 SonarQube](../../installation/sonarqube-jenkins).
+Enter the first activity and select **Artifacts**. You can find the artifact of jar package generated by the pipeline, and you can download it by clicking the icon.
 
-> Tip: If you need to access SonarQube on the external network, you may need to bind the public network EIP and configure port forwarding and firewall rules. In the port forwarding rule, the **intranet port**, for example, 31359, is forwarded to the **source port** 31359, and then open the **source port** in the firewall to ensure that the external network traffic can pass through the port before the external can access. For example, if you are doing the above operations on the QingCloud cloud platform, you can refer to [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+![Download Artifacts](https://pek3b.qingstor.com/kubesphere-docs/png/20200222172157.png)
 
+### Step 9: Verify the Kubernetes Resource
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514162344.png#align=left&display=inline&height=716&originHeight=716&originWidth=2172&search=&status=done&width=2172)
+If every stage of the pipeline runs successfully, the Docker image will be automatically built and pushed to your DockerHub account. Finally, the project is deployed to the Kubernetes with a deployment and a service automatically.
 
-**View test quality report at SonarQube**
+9.1. Enter the project `kubesphere-sample-dev`, click **Application Workloads → Workloads** to see that `ks-sample-dev` has been created successfully.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514163017.png#align=left&display=inline&height=1444&originHeight=1444&originWidth=2362&search=&status=done&width=2362)
-
-
-### View Articraft
-
-Click `Activity` and select `Product`, you can view the articraft Jar package saved by the pipeline during the running process, and click to download it to the local.
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514163948.png#align=left&display=inline&height=596&originHeight=596&originWidth=2156&search=&status=done&width=2156)
-
-
-### Verify the results of the process
-
-If every step of the pipeline can be successfully executed, the Docker image of the final build of the pipeline will also be successfully pushed to DockerHub. We have configured the Docker mirror repository in Jenkinsfile, log in to DockerHub to see the mirror's push result, and you can see the tag. The image for SNAPSHOT-xxx has been pushed to DockerHub. It was finally deployed to the development environment as a deployment and service in KubeSphere.
-
-1. Login KubeSphere as `project-regular` , enter `kubesphere-sample-dev`, click **Workload → Deployment** on the menu bar on the left to see that ks-sample-dev has been created successfully.
-| Environment | URL | Namespace | Deployment | Service |
+| Environment | Address | Namespace | Deployment | Service |
 | --- | --- | --- | --- | --- |
-| Dev | `http://{$Virtual IP}:{$8080}` 
-or `http://{$Intranet/Public IP}:{$30861}` | kubesphere-sample-dev | ks-sample-dev | ks-sample-dev |
+| Dev | `http://{$Virtual IP}:{$8080}` or `http://{$Intranet/Public IP}:{$30861}` | kubesphere-sample-dev | ks-sample-dev | ks-sample-dev |
 
+#### View Deployment
 
+![View Deployment](https://pek3b.qingstor.com/kubesphere-docs/png/20200222173254.png)
 
-**View Deployment**![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514164023.png#align=left&display=inline&height=666&originHeight=666&originWidth=2792&search=&status=done&width=2792)
+9.2. Navigate to **Service** list, you can find the corresponding service has been created. The NodePort exposed by the service is`30861` in this example.
 
-2. In the menu bar, select **Network & Services → Service**. You can also view the corresponding created service. You can see that the NodePort exposed by the service is`30861`.
+#### View Service
 
-**View Service**
+![View Service](https://pek3b.qingstor.com/kubesphere-docs/png/20200222173213.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514165026.png#align=left&display=inline&height=770&originHeight=770&originWidth=2820&search=&status=done&width=2820)
+9.3. Now verify the images pushed to DockerHub. You can see that `devops-sample` is the value of **APP_NAME**, while the tag is the value of `SNAPSHOT-$BUILD_NUMBER`, and `$BUILD_NUMBER` is the serial number of the activity within pipeline. This tag has also been used in deployment `ks-sample-dev`.
 
-3. Check the mirror pushed to DockerHub you can see that `devops-sample` is the value of **APP_NAME**, while Tag is the value of `SNAPSHOT-$BUILD_NUMBER`  (`$BUILD_NUMBER`, running number of the according activity),  in which tag is the mirror of `SNAPSHOT-1` , also used in `ks-sample-dev`.
+![View DockerHub](https://pek3b.qingstor.com/kubesphere-docs/png/20200222173907.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514164245.png#align=left&display=inline&height=1206&originHeight=1206&originWidth=2208&search=&status=done&width=2208)
+![View DockerHub](https://pek3b.qingstor.com/kubesphere-docs/png/20200222173802.png)
 
-4. Since we have set up email notifications in the final phase of the pipeline, we can verify the received build notification emails in the mailbox.
+9.4. Since we set an email notification in the pipeline, thus we can verify the email in the mailbox.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514200639.png#align=left&display=inline&height=458&originHeight=458&originWidth=1448&search=&status=done&width=1448)
+![Email notification](https://pek3b.qingstor.com/kubesphere-docs/png/20200222173444.png)
 
+### Step 10: Access the Sample Service
 
-### Access sample service
+We can access the sample service using command or access in browser. For example, you can use the web kubectl by using account `admin` as follows:
 
-If you access to the deployed HelloWorld sample service in the intranet environment, you can log in to the cluster node through SSH. In another way, you can use the cluster administrator to log in to KubeSphere and enter the following command in web kubectl to verify access. The Virtual IP and node port (NodePort) can pass the corresponding project. View in the service:
-
-```shell
-# curl {$Virtual IP}:{$Port} or curl {$Intranet IP}:{$NodePort}
+```bash
+# curl {$Virtual IP}:{$Port} or curl {$Node IP}:{$NodePort}
 curl 10.233.4.154:8080
-Hello,World!
+Really appreciate your star, that's the power of our life.
 ```
 
-At this point, the example of the graphical build pipeline has been completed. If you encounter problems during the creation process, you can refer to [FAQ](../../devops/devops-faq).
-
+Congratulation! You have been familiar with using graphical editing panel to visualize your CI/CD workflow.

@@ -1,5 +1,5 @@
 ---
-title: "CI/CD 流水线示例 (离线版)" 
+title: "CI/CD 流水线示例 (离线版)"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -8,13 +8,15 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 
 ## 目的
 
-本示例演示通过内置 GitLab 仓库中的 Jenkinsfile 来创建流水线，流水线共包含 7 个阶段，首先会将 GitLab 中的源码构建成镜像，然后推送到 Harbor 私有仓库，最终将一个输出 “Hello,World!” 的Web示例部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。
+本示例演示通过内置 GitLab 仓库中的 Jenkinsfile 来创建流水线，流水线共包含 7 个阶段，首先会将 GitLab 中的源码构建成镜像，然后推送到 Harbor 私有仓库，最终演示示例部署到 KubeSphere 集群中的开发环境 (Dev) 和生产环境 (Production) 且能够通过公网访问，这两个环境在底层的 Kubernetes 是以项目 (Namespace) 为单位进行资源隔离的。
 
 ## 前提条件
 
+- 开启安装了 DevOps 功能组件，参考 [安装 DevOps 系统](../../installation/install-devops)；
 - 本示例以 GitLab 和 Harbor 为例，请确保已安装 [内置 Harbor](../../installation/harbor-installation/) 和 [内置 GitLab](../../installation/gitlab-installation/)，已准备了基础镜像 `java:openjdk-8-jre-alpine`；
 - 已创建了企业空间和 DevOps 工程并且创建了项目普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
 - 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
+- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为流水线选择执行构建的节点。
 
 
 ## 预估时间
@@ -80,11 +82,11 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 
 ### 第二步：修改 Jenkinsfile
 
-​	1、在 **根目录** 进入 **Jenkinsfile-on-prem**。
+1、在 **根目录** 进入 **Jenkinsfile-on-prem**。
 
 ![jenkins](https://kubesphere-docs.pek3b.qingstor.com/png/jenkins.png)
 
-​	2、在 GitLab UI 点击编辑 `Edit`，需要修改如下环境变量 (environment) 的值。
+2、在 GitLab UI 点击编辑 `Edit`，需要修改如下环境变量 (environment) 的值。
 
 ![edit](https://kubesphere-docs.pek3b.qingstor.com/png/edit.png)
 
@@ -98,6 +100,8 @@ KubeSphere Installer 集成了 Harbor 和 GitLab，内置的 Harbor 和 GitLab �
 | GITLAB_ACCOUNT           | admin1                               | GitLab用户，默认为admin1                                     |
 | APP_NAME                 | devops-docs-sample                   | 应用名称                                                     |
 | SONAR\_CREDENTIAL\_ID      | sonar-token                          | 填写创建凭证步骤中的 sonarQube token凭证 ID，用于代码质量检测 |
+
+**注：`master` 分支 Jenkinsfile 中 `mvn` 命令的参数 `-o`，表示开启离线模式。本示例为适应某些环境下网络的干扰，以及避免在下载依赖时耗时太长，已事先完成相关依赖的下载，默认开启离线模式。示例仓库中的 `dependency` 分支主要用于缓存测试，离线环境中可忽略该分支的构建。**
 
 ## 创建两个项目
 
@@ -233,7 +237,7 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 4、在菜单栏中选择 **网络与服务 → 服务** 也可以查看对应创建的服务，可以看到该服务对外暴露的节点端口 (NodePort) 是 `30961`。
 
-**查看服务** 
+**查看服务**
 ![service](https://kubesphere-docs.pek3b.qingstor.com/png/service.png)
 
 5、查看推送到您个人的 Harbor 中的镜像，可以看到 `devops-java-sample` 就是 APP_NAME 的值，而 tag也是在 Jenkinsfile-on-prem 中定义的 tag。
@@ -244,11 +248,11 @@ input(id: 'release-image-with-tag', message: 'release image with tag?', submitte
 
 **Dev 环境**
 
-例如，浏览器访问 `http://192.168.0.20:30861/` (即 `http://IP:NodePort/`) 可访问到 `Hello,World!` 页面，或通过后台命令验证：
+例如，浏览器访问 `http://192.168.0.20:30861/` (即 `http://IP:NodePort/`) 可访问到示例页面，或通过后台命令验证：
 
 ```bash
 curl http://192.168.0.20:30861
-Hello,World!
+Really appreaciate your star, that's the power of our life.
 ```
 
 **Prodcution 环境**

@@ -1,123 +1,149 @@
 ---
-title: "Deploying a WordPress Web Application" 
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+title: "Publish WordPress App to Kubernetes"
+keywords: 'kubesphere, kubernetes, docker, wordpress'
+description: 'How to deploy WordPress into Kubernetes on KubeSphere'
 ---
+
+## WordPress Introduction
+
+WordPress is an online, open source website creation tool written in PHP, with a back-end MySQL database and a front-end component. We can deploy WordPress to Kubernetes using Kubernetes object resources.
+
+![WordPress](https://pek3b.qingstor.com/kubesphere-docs/png/20200105181908.png)
 
 ## Objective
 
-In this tutorial we will create a Deployment as an example, demonstrating how to deploy [Wordpress](https://wordpress.org/) web application to KubeSphere, which is based on the last tutorial [Deploy a MySQL StatefulSet](mysql-statefulset.md). The password between WordPress and MySQL will be created and saved as a ConfigMap.
+In this tutorial we will create a WordPress application as an example, demonstrating how to deploy application with multiple components to Kubernetes through KubeSphere console.
 
-## Prerequisites
+## Estimated Time
 
-- You need to create a MySQL StatefulSet, see the [Tutorial 3](mysql-statefulset.md) if not yet.
-- You need to sign in with `project-regular` and enter into the corresponding project.
-
-##Estimated Time
-
-About 15 minutes.
+About 15 minutes
 
 ## Hands-on Lab
 
-### Step 1: Create a ConfigMap
+### Step 1: Create Secrets
 
-The environment variable `WORDPRESS_DB_PASSWORD` is the password to connect the database in Wordpress. In this presentation, create a ConfigMap to replace the environment variable. A ConfigMap will be written as an environment variable when create Wordpress container group setting.
+#### Create a MySQL Secret
 
-1.1. Login KubeSphere as `project-regular`. Enter `demo-project`, navigate to **Configuration Center → ConfigMaps**, then click **Create ConfigMap**.
+The environment variable `WORDPRESS_DB_PASSWORD` is the password to connect the database in WordPress. In this step, we create a ConfigMap to store the environment variable that is used in MySQL Pod template.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716201555.png#alt=)
+1.1 Log in KubeSphere console using the account `project-regular`. Enter `demo-project`, navigate to **Configuration Center → Secrets**, then click **Create**.
 
-1.2. Fill in the basic information, e.g. `Name : wordpress-configmap`, then click **Next**
+![Secrets List](https://pek3b.qingstor.com/kubesphere-docs/png/20200105182525.png)
 
-1.3. ConfigMap parameter is composed of a set of key-value pairs, fill in the blanks with the following values and click **Create** button when you've done.
+1.2. Fill in the basic information, e.g. name it `mysql-secret`, then click **Next**. Click **Add data** and fill in the secret settings as shown in the following screenshot, save it and click **Create**.
 
-- key: WORDPRESS_DB_PASSWORD
-- value: 123456
+- Key: `MYSQL_ROOT_PASSWORD`
+- Value: `123456`
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716201840.png#alt=)
+![Create MySQL Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200105182805.png)
 
-#### Step 2: Create a Volume
+#### Create a WordPress Secret
 
-2.1. Navigate to **Volumes**, and click **Create**. Then fill in the basic information, e.g. `Name : wordpress-pvc`, click **Next** when you've done.
+Same steps as above, create a WordPress secret `wordpress-secret` with Key `WORDPRESS_DB_PASSWORD` and Data `123456`.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716201942.png#alt=)
+![Create WordPress Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200105183314.png)
 
-2.2. Leave the default values in Volume Settings, click **Next** and choose **Create**. You will be able to see the volume `wordpress-pvc` has been created successfully.
+### Step 2: Create a Volume
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716202259.png#alt=)
+Choose **Volumes** and click **Create**, name it `wordpress-pvc`, click **Next** to Volume Settings where you need to choose an available `Storage Class`, `ReadWriteOnce` of access mode and 10G of storage size. Click **Next** to Advanced Settings. No configuration is for this page, so click **Create** to finish volume creation.
 
-> Reminder: The volume will display `Pending` if it is not yet mounted, actually it's normal since local volume doesn't suppor [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/). It will change to `Bound` when it has been mounted to the workload.
+![Create Volume](https://pek3b.qingstor.com/kubesphere-docs/png/20200106000543.png)
 
+### Step 3: Create an Application
 
-#### Step 3: Create a Deployment
+#### Add MySQL back-end component
 
-3.1. Navigate to **Workloads → Deployments**, then click **Create** button.
+In this step, we will choose the way of composing app to create a complete microservice app.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716202607.png#alt=)
+3.1. Select **Application Workloads → Applications → Deploy New Application**, and choose **Composing App**.
 
-3.2. Fill in the basic information, e.g. `Name : wordpress`, then choose **Next**.
+![New Application](https://pek3b.qingstor.com/kubesphere-docs/png/20200106000851.png)
 
-3.3. Click **Add Container**, then fill in the table according to the following hints.
+3.2. Fill in the pop-up table as follows:
 
-- Image: `wordpress:4.8-apache`
-- Container Name: wordpress
-- Service Settings:
+- Application Name: `wordpress`
+- Then click **Add Component**
+- Name: `mysql`
+- Component Version: `v1`
+- Workload Type: Stateful service (StatefulSet)
 
-  - Name: port
-  - Protocol: TCP
-  - Port: 80
+![Compose Application](https://pek3b.qingstor.com/kubesphere-docs/png/20200106001425.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716203151.png#alt=)
+3.3. Scroll down and click **Add Container Image**, enter `mysql:5.6` into the Image edit box, press the return key and click `Use Default Ports`.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716203427.png#alt=)
+![Fill Application Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106002012.png)
 
-3.4. Check the box for **Environmental Variable**, and fill in the blanks with follow values:
+3.4. Scroll down to the Environment Variables, check **Environment Variable** and click **Use ConfigMap or Secret**, then input the name `MYSQL_ROOT_PASSWORD` and choose the resource `mysql-secret` and the key `MYSQL_ROOT_PASSWORD` we created in previous step.
 
-- Environmental Variables (It requires to create 2 environmental variables in this section)
+Click `√` to save it when you have finished.
 
-  - Click **Reference Config Center**
-  - Fill in the name with `WORDPRESS_DB_PASSWORD`
-  - Select resource: select `wordpress-configmap`
-  - Select Key: `WORDPRESS_DB_PASSWORD`
-  - Click **Add Environmental Variable**
-  - Name: `WORDPRESS_DB_HOST`
-  - Value: `mysql-service`
+![Fill More Application Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106002450.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716203500.png#alt=)
+3.5. Continue scrolling down and click **Add Volume Template** to create a PVC for MySQL according to the following screenshot.
 
-3.5. Other blanks could be remained default values, choose **Save → Next** when you've done.
+![Add Volume to Application](https://pek3b.qingstor.com/kubesphere-docs/png/20200106003738.png)
 
-3.6. Choose **Add Existing Volume**, select the `wordpress-pvc` which was created in Step 2.
+3.6. Click `√` to save it. At this point you have added the MySQL component.
 
-3.7. Select `ReadAndWrite` and set the Mount Path to `/var/www/html`. Then click **Save → Next → Create** when you've done. Now we've created the Wordpress Deployment succeessfully.
+![Save Application info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106004012.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716232832.png#alt=)
+#### Add WordPress front-end component
 
-#### Step 4: Create a Service
+3.7. Click **Add Component** again, fill in the Name and Component Version refer to the following screenshot:
 
-4.1. Navigate to **Network & Service** → **Service**, then click **Create** button.
+![Add Front End](https://pek3b.qingstor.com/kubesphere-docs/png/20200106004302.png)
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716204610.png#alt=)
+3.8. Click **Add Container Image**, enter `wordpress:4.8-apache` into the Image edit box, press the return key and click `Use Default Ports`.
 
-4.2. Fill in the basic information, e.g. `Name : wordpress-service`, click **Next** and reference the following list to complete the Service Settings:
+![Choose Container Image](https://pek3b.qingstor.com/kubesphere-docs/png/20200106004543.png)
 
-- Service Type: choose the first item `Virtual IP: Access the service through the internal IP of the cluster`
-- Selector: Click **Specify Workload**, then select `wordpress` and click **Save**.
-- Ports:
+3.9. Scroll down to the Environment Variables, check **Environment Variable** and click **Use ConfigMap or Secret**, then enter the values according to the following screenshot.
 
-  - Name: port
-  - Protocol: TCP
-  - Port: 80
-  - Target port: 80
+- `WORDPRESS_DB_PASSWORD`, choose `wordpress-secret` and `WORDPRESS_DB_PASSWORD`
+- Click **Add Environment Variable**, then fill its key & value with `WORDPRESS_DB_HOST` and `mysql`.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716204854.png#alt=)
+![Add Env Variables](https://pek3b.qingstor.com/kubesphere-docs/png/20200106004841.png)
 
-4.3. Click **Next → Next** to skip the Label Settings. We are going to expose this service via NodePort, so choose `NodePort` and click **Create**, the `wordpress-service` has been created successfully. We got the NodePort `30204` from the Service list.
+3.10. Click `√` to save it.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716205229.png#alt=)
+3.11. Continue scrolling down and click **Add Volume** to attach the existed volume to WordPress.
+
+![Add Volume](https://pek3b.qingstor.com/kubesphere-docs/png/20200106005242.png)
+
+3.12. Select `wordpress-pvc` that we created in the previous step, and select `ReadAndWrite`, then input `/var/www/html` as its mount path. Click `√` to save it.
+
+![Fill Volume Info](https://pek3b.qingstor.com/kubesphere-docs/png/20200106005431.png)
+
+3.13. Again, click `√` to save it. Ensure both mysql and wordpress application components have been added into the table, then you can click **Create**.
+
+![Save Application](https://pek3b.qingstor.com/kubesphere-docs/png/20200106005705.png)
+
+![Application List](https://pek3b.qingstor.com/kubesphere-docs/png/20200106010011.png)
+
+### Step 4: Verify the Resources
+
+#### Deployment
+
+![WordPress Deployment](https://pek3b.qingstor.com/kubesphere-docs/png/20200106010223.png)
+
+#### StatefulSet
+
+![WordPress StatefulSet](https://pek3b.qingstor.com/kubesphere-docs/png/20200106010244.png)
+
+#### Services
+
+![WordPress Services](https://pek3b.qingstor.com/kubesphere-docs/png/20200106010312.png)
 
 ### Step 5: Access the WordPress Application
 
-At this point, WordPress is exposed to the outside by the Service, thus we can access this application in your browser via `{$Node IP}:{$NodePort}`, for example `http://192.168.0.88:30204` since we selected http protocol previously.
+5.1. Enter `wordpress` service, and click **Edit Internet Access**.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190716205640.png#alt=)
+![WordPress Internet Access](https://pek3b.qingstor.com/kubesphere-docs/png/20200106010404.png)
+
+5.2. Choose `NodePort` as its service type.
+
+![Service Status](https://pek3b.qingstor.com/kubesphere-docs/png/20200106010644.png)
+
+At this point, WordPress is exposed to outside through the service, thus we can access this application in browser via `{$Node IP}:{$NodePort}`, for example `http://192.168.0.88:30048` since we selected http protocol previously.
+
+![WordPress Page](https://pek3b.qingstor.com/kubesphere-docs/png/20190716205640.png#alt=)

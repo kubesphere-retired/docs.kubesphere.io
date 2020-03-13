@@ -1,21 +1,22 @@
 ---
-title: "图形化构建流水线 (Jenkinsfile out of SCM)" 
+title: "图形化构建流水线 (Jenkinsfile out of SCM)"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: '图形化构建 CI/CD 流水线'
 ---
 
-上一篇文档示例十是通过代码仓库中的 Jenkinsfile 构建流水线，需要对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../devops-online)，其代码仓库中可以无需 Jenkinsfile，支持用户在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，用户操作界面更友好。
+在之前的示例中，我们演示了通过代码仓库中的 Jenkinsfile 构建流水线，此模式需要您对声明式的 Jenkinsfile 有一定的基础。而 Jenkinsfile out of SCM 不同于 [Jenkinsfile in SCM](../devops-online)，其代码仓库中可以没有 Jenkinsfile，您可以在控制台通过可视化的方式构建流水线或编辑 Jenkinsfile 生成流水线，操作界面更友好。
 
 ## 目的
 
-本示例演示基于 [示例十 - Jenkinsfile in SCM](../devops-online)，通过可视化构建流水线最终将一个 HelloWorld 示例服务部署到 KubeSphere 集群中的开发环境且能够允许用户访问，这里所谓的开发环境在底层的 Kubernetes 里是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例十的流程后，对于示例七的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 为例。
+本示例演示基于 [示例九 - Jenkinsfile in SCM](../devops-online)，通过可视化构建流水线最终将示例服务部署到 KubeSphere 集群中的开发环境且能够允许用户访问，这里所谓的开发环境在底层的 Kubernetes 里是以项目 (Namespace) 为单位进行资源隔离的。若熟悉了示例九的流程后，对于本示例的手动构建步骤就很好理解了。为方便演示，本示例仍然以 GitHub 代码仓库 [devops-java-sample](https://github.com/kubesphere/devops-java-sample) 为例。
 
 ## 前提条件
 
+- 开启安装了 DevOps 功能组件，参考 [安装 DevOps 系统](../../installation/install-devops)；
 - 已有 [DockerHub](http://www.dockerhub.com/) 的账号；
-- 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
-- 使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)。
-- 邮件发送需安装前在 Installer 中配置，请参考 [集群组件配置释义](../../installation/vars) (下一版本将支持安装后在 UI 统一配置邮件服务器)。
+- 已创建了企业空间和 DevOps 工程并且创建了普通用户 `project-regular` 的账号，使用项目管理员 `project-admin` 邀请普通用户 `project-regular` 加入 DevOps 工程并授予 `maintainer` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员)；
+- 邮件通知需要单独配置 Jenkins 邮件设置，具体请参考文档 [配置 Jenkins 邮件发送](../../devops/jenkins-email)；
+- 参考 [配置 ci 节点](../../system-settings/edit-system-settings/#如何配置-ci-节点进行构建) 为流水线选择执行构建的节点。
 
 ## 预估时间
 
@@ -23,11 +24,11 @@ description: ''
 
 ## 操作示例
 
-<!-- ### 演示视频
+### 演示视频
 
 <video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docsvideo.gd2.qingstor.com/demo7-jenkinsfile-out-of-scm.mp4">
-</video> -->
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_10-graphical-pipeline.mp4">
+</video>
 
 ### 流水线概览
 
@@ -213,7 +214,7 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 1、在 `Build and Push` 阶段右侧点击 **“+”** 继续增加一个阶段用于保存制品，本示例用于保存项目的 jar 包，命名为 `Artifacts`。
 
-2、点击 `添加步骤`，选择 `保存制品`，在弹窗中输入 `target/*.jar`，用于捕获构建包含模式匹配的文件 (target/*.jar) 并保存到 Jenkins，点击「确定」。
+2、点击 `添加步骤`，选择 `保存制品`，在弹窗中输入 `target/*.jar`，用于设置 .jar 文件最终的保存路径 `(target/*.jar)` 并保存到 Jenkins，点击「确定」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232447.png)
 
@@ -230,7 +231,7 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 4、同上再添加一个步骤，用于在这一步部署和流水线执行成功后给用户发送通知邮件。点击 `添加步骤`，选择 `邮件`，自定义收件人、抄送、主题和内容。
 
-> 注意，在流水线中发送邮件需要在安装前预先在 Installer 中配置邮件服务器，配置请参考 [集群组件配置释义](../../installation/vars)，若还未配置请跳过第 4 步 (下一版本将支持安装后在 UI 统一配置邮件服务器)。
+> 注意，配置邮件服务请参考 [配置 Jenkins 邮件发送](../../devops/jenkins-email)，若还未配置可跳过第 4 步 (下一版本将支持流水线共用 KubeSphere 平台统一配置的通知服务)。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190529232706.png)
 
@@ -244,7 +245,6 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 2、在 **活动** 列表中可以看到流水线的运行状态，点击 `活动` 可查看其运行活动的具体情况。
 
-> 说明：流水线刚启动时无法看到其图形化运行的页面，这是因为它有个初始化的过程，流水线刚开始运行时，Jenkins slave 启动并开始解析和执行流水线自动生成的 Jenkinsfile，待初始化完成即可看到图形化流水线运行的页面。
 
 3、在活动列表点击运行序号 `1`，进入序号 `1` 的活动详情页查看流水线的具体运行情况。
 
@@ -257,9 +257,9 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514160931.png)
 
 ### 查看流水线
-   
+
 1、几分钟后，流水线将运行成功。点击流水线中 `活动` 列表下查看当前正在运行的流水线序列号，页面展示了流水线中每一步骤的运行状态。黑色框标注了流水线的步骤名称，示例中流水线的 6 个 stage 就是以上创建的六个阶段。
-   
+
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190514161723.png)
 
 2、当前页面中点击右上方的 `查看日志`，查看流水线运行日志。页面展示了每一步的具体日志、运行状态及时间等信息，点击左侧某个具体的阶段可展开查看其具体的日志，若出现错误可根据日志信息来分析定位问题，日志支持下载至本地查看。
@@ -312,19 +312,14 @@ docker push $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:SNAPSHOT-$BUILD_NUMBER
 
 ### 访问示例服务
 
-若在内网环境访问部署的 HelloWorld 示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问，其中 Virtual IP 和节点端口 (NodePort) 可通过对应项目下的服务中查看：
+若在内网环境访问部署的演示示例服务，可通过 SSH 登陆集群节点，或使用集群管理员登陆 KubeSphere 在 web kubectl 中输入以下命令验证访问，其中 Virtual IP 和节点端口 (NodePort) 可通过对应项目下的服务中查看：
 
 ```shell
 # curl {$Virtual IP}:{$Port} 或者 curl {$内网 IP}:{$NodePort}
 curl 10.233.4.154:8080
-Hello,World!
+Really appreaciate your star, that's the power of our life.
 ```
 
 > 提示：若需要在外网访问该服务，可能需要绑定公网 EIP 并配置端口转发和防火墙规则。在端口转发规则中将**内网端口** 30861 转发到**源端口** 30861，然后在防火墙开放这个**源端口**，保证外网流量可以通过该端口，外部才能够访问。例如在 QingCloud 云平台进行上述操作，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 至此，图形化构建流水线的示例已经完成了，若创建过程中遇到问题，可参考 [常见问题](../../devops/devops-faq)。
-
-
-
-
-

@@ -1,51 +1,45 @@
 ---
 title: "Architecture"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+keywords: "kubesphere, kubernetes, docker, helm, jenkins, istio, prometheus, devops, service mesh"
+description: "KubeSphere architecture"
 ---
 
-## Separation of front and back ends
+## Separation of frontend and backend
 
-KubeSphere adopts the separation of front and back ends, also realizes a cloud native design, the back ends' service components can communicate with external systems through the REST API, see [API documentation](/api/kubesphere) for more details. All component are included in the architecture diagram below. KubeSphere can run anywhere from on-premise datacenter to any cloud to edge. In addition, it can be deployed on any Kubernetes distribution.
+KubeSphere separates [frontend](https://github.com/kubesphere/console) from [backend](https://github.com/kubesphere/kubesphere), and it itself is a cloud native application and provides open standard REST APIs for external systems to use. Please see [API documentation](../../api-reference/api-docs) for details. The following figure is the system architecture. KubeSphere can run anywhere from on-premise datacenter to any cloud to edge. In addition, it can be deployed on any Kubernetes distribution.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190810073322.png)
+![Architecture](https://pek3b.qingstor.com/kubesphere-docs/png/20190810073322.png)
 
 ## Components List
 
 | Back-end component | Function description |
 |---|---|
-|Ks-account| provides API relating to the user and the privilege management|
-|Ks-apiserver| The API interface of the entire cluster management, the communication hub between the modules within the cluster, and the cluster security control |
-|Ks-apigateway| isresponsible for handling service requests and all tasks | during API calls
-|Ks-console| offers KubeSphere console service |
-|Ks-controller-manager| implements business logic, such as creating corresponding permissions for enterprise space; Or when creating a service policy, generate the corresponding | such as the Istio configuration
-|Metrics-server| Kubernetes’ monitoring component collects Metrics information from Kubelet of each node. |
-|Prometheus| provides clusters, nodes, workloads, API objects and other related monitoring data and services |
-|Elasticsearch| provides cluster log indexing, querying, data management and other services, which can also be used to reduce resource consumption at the time of installation against your existing ES
-| Fluent Bit | enables log receiving and forwarding. Collected information can be send to ElasticSearch, Kafka |
-Jenkins| provides CI/CD pipeline service |
-|SonarQube| is an optional installation that provides code static checking and quality analysis |
-| source-to-image | will automatically compile and package the Source code into Docker Image, which is convenient to quickly build Image |
-|Istio| provides microservice governance and traffic control, such as grayscale publishing, canary publishing, fuse, traffic mirror and so on |
-|Jaeger | collects Sidecar data and provided the distributed Tracing service |
-|OpenPitrix | provides application templates, application deployment and management services 
-|Alert | provides custom Alert service | at the cluster, Workload, Pod, and container levels
-|Notification| is an universal Notification service; it currently supports mail Notification|
-|redis| stores the data of ks-console and ks-account in the memory storage system |
-|MySQL| is the cluster back-end component database for monitoring, alarm, DevOps, OpenPitrix Shared MySQL service |
-|PostgreSQL |SonarQube and Harbor's back-end database |
-|OpenLDAP| is responsible for centralized storage and management of user account information and docking with external LDAP|
-| Storage | built-in CSI plug-in docking cloud platform storage services, have optional installation of open source NFS/Ceph/Gluster client |
-| Network | can optionally install Calico/Flannel and other open source network plug-ins to support docking with cloud platform SDN|
-
-## 3rd Party Tools
-
-In addition to the components listed above, KubeSphere also supports [Harbor](https://github.com/goharbor/harbor) and [GitLab](https://about.gitlab.com/) as optional installations that you can install according to your project requires.
+| ks-account | Account service provides APIs for account and role management |
+| ks-apiserver | The KubeSphere API server validates and configures data for the API objects which include Kubernetes objects. The API Server services REST operations and provides the frontend to the cluster's shared state through which all other components interact. |
+| ks-apigateway | The API gateway is responsible for handling external requests for KubeSphere services. |
+| ks-console | KubeSphere console offers KubeSphere console service |
+| ks-controller-manager | KubeSphere controller takes care of business logic, for example, when create a workspace, the controller will automatically create corresponding permissions and configurations for it. |
+| metrics-server | Kubernetes monitoring component collects metrics from Kubelet on each node. |
+| Prometheus | provides monitoring metrics and services of clusters, nodes, workloads, API objects. |
+| Elasticsearch | provides log indexing, querying and data management. Besides the built-in service, KubeSphere supports the integration of external Elasticsearch service. |
+| Fluent Bit | collects logs and forwarding them to ElasticSearch or Kafka. |
+| Jenkins | provides CI/CD pipeline service. |
+| SonarQube | is an optional component that provides code static checking and quality analysis. |
+| Source-to-Image | automatically compiles and packages source code into Docker image. |
+| Istio | provides microservice governance and traffic control, such as grayscale release, canary release, circuit break, traffic mirroring and so on. |
+| Jaeger | collects sidecar data and provides distributed tracing service. |
+| OpenPitrix | provides application lifecycle management such as template management, deployment, app store management, etc. |
+| Alert | provides configurable alert service for cluster, workload, Pod, and container etc. |
+| Notification | is an integrated notification service; it currently supports mail delivery method. |
+| Redis | caches the data of ks-console and ks-account. |
+| MySQL | is the shared database for cluster back-end components including monitoring, alarm, DevOps, OpenPitrix etc. |
+| PostgreSQL | SonarQube and Harbor's back-end database |
+| OpenLDAP | is responsible for centralized storage and management of user account and integrates with external LDAP server. |
+| Storage | built-in CSI plug-in collecting cloud platform storage services. It supports open source NFS/Ceph/Gluster client. |
+| Network | supports Calico/Flannel and other open source network plug-ins to integrate with cloud platform SDN. |
 
 ## Service Components
 
-Each component has many service components, see [Service Components](../../infrastructure/components) for more details.
+Each component has many services, see [Service Components](../../infrastructure/components) for more details.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191017163549.png)
-
-
+![Service Components](https://pek3b.qingstor.com/kubesphere-docs/png/20191017163549.png)

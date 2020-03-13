@@ -15,100 +15,69 @@ KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，
 
 ## 前提条件
 
-- 已创建了企业空间、项目和普通用户 `project-regular` 账号，并开启了外网访问，请参考 [多租户管理快速入门](../admin-quick-start)；
-- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
+已创建了企业空间、项目和普通用户 `project-regular` 账号（该已账号已被邀请至示例项目），并开启了外网访问，请参考 [多租户管理快速入门](../admin-quick-start)；
 
 
 ## 预估时间
 
 约 20 分钟。
 
-## 操作示例
+## 示例视频
 
-### 创建部署 
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_2-service-ingress.mp4">
+</video>
 
-#### 创建 tea
+## 创建 tea 服务
 
-1. 以用户 project-regular 登录，进入 demo-namespace 项目后，选择 「工作负载」→「部署」，点击 「创建部署」。
+1. 以用户 **project-regular** 登录，进入 demo-project 项目后，选择 「应用负载」→「服务」，点击 「创建服务」。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424094607.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027164326.png)
 
-2. 参考如下提示填写基本信息，完成后点击 「下一步」。
+2. 选择 `无状态服务`，基本信息参考如下，完成后点击 `下一步`。
 
 
-- 名称：必填，填写 `tea`，一个简洁明了的名称可便于用户浏览和搜索；
-- 别名：可选，支持中文帮助更好的区分资源，例如填写 `茶水点餐系统`；
+- 名称：必填，填写 **tea-svc**，一个简洁明了的名称可便于用户浏览和搜索；
+- 别名：可选，支持中文帮助更好的区分资源，例如填写 **茶水点餐系统**；
 - 描述信息：简单介绍该工作负载，方便用户进一步了解。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424095100.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027164508.png)
 
-3. 副本数增加至 2，点击 「添加容器」，在容器组模板的表单中，参考如下提示填写镜像和服务设置，其它信息默认即可：
-
-
-- 镜像：nginxdemos/hello:plain-text ；
-- 容器名称：tea
-- 服务设置：名称输入 port，协议默认 TCP，端口号输入 80 (容器端口)；
+3. 点击 「添加容器镜像」，镜像为 `nginxdemos/hello:plain-text`（输入后敲回车键确认），然后点击 `使用默认端口`。
 
 
-完成后点击 「保存」，选择 「下一步」。
+完成后点击 「√」，选择 「下一步」。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424095701.png)
 
-4. 无需设置存储卷，点击 「下一步」。标签设置保留默认即可，点击 「创建」，即可看到 tea 已创建成功。
+4. 无需设置存储卷，点击 「下一步」。高级设置保留默认，点击 「创建」，即可看到 tea 服务已创建成功。上述步骤以创建无状态服务的形式，最终将创建一个 Service 和 Deployment。
 
-#### 创建 coffee
+**查看 tea-svc Service**
 
-1. 同上，点击「创建」，参考以上步骤创建一个名为 coffee 的咖啡点餐系统的部署 (deployment)。
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027165311.png)
 
-2. 副本数增加至 2，点击 「添加容器」，在容器组模板的表单中，参考如下提示填写 coffee 的镜像和服务设置，其它信息默认即可：
+**查看 tea-svc Deployment**
 
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027165418.png)
 
-- 镜像：nginxdemos/hello:plain-text ；
-- 容器名称：coffee
-- 服务设置：名称输入 port，协议默认 TCP，端口号输入 80 (容器端口)；
+## 创建 coffee 服务
 
+1. 同上，点击「创建」，参考以上步骤创建一个名为 **coffee-svc** 的咖啡点餐系统的无状态服务。
 
-3. 完成后点击 「保存」，选择 「下一步」。无需设置存储卷，点击 「下一步」，然后点击 「创建」，即可看到 coffee 已创建成功，至此一共创建了如下两个部署。
+2. 在容器镜像中，点击 「添加容器镜像」，镜像为 `nginxdemos/hello:plain-text`（输入后敲回车键确认），然后点击 `使用默认端口`。其它步骤均与上一步一致，最终会再创建一个 coffee-svc 的 Service 和 Deployment。
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424100912.png)
 
-### 创建服务
 
-为 tea 和 coffee 分别创建两个服务，选择 「网络与服务」→ 「服务」，点击 「创建服务」。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424101135.png)
-
-#### 创建 tea-svc
-
-1. 名称填写 `tea-svc`，点击 「下一步」。
-
-2. 选择第一项 `通过集群内 IP 来访问服务 Virtual IP`，参考如下提示填写服务设置：
-
-
-- 点击 「指定工作负载」，选择 tea，点击保存；
-- 端口：名称为 port，默认 TCP 协议，端口和目标端口都填写 80 (前者表示暴露在 Cluster IP 上的端口，仅提供给集群内部访问服务的入口，目标端口是当前的服务后端 Pod 上的端口)。
-
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507203902.png)
-
-
-3. 点击 「下一步」，标签设置保留默认，点击 「创建」，tea-svc 即可创建成功。
-
-#### 创建 coffee-svc
-
-同上，点击「创建」，参考以上步骤创建一个名为 coffee-svc 的服务，工作负载指定为 coffee，其它信息与 tea-svc 服务相同，完成后点击 「创建」。至此已成功创建了两个服务。
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424103423.png)
-
-### 创建 TLS 证书密钥
+## 创建 TLS 证书密钥
 
 由于在应用路由中绑定的域名为 https 协议，因此需要预先在密钥中创建 TLS 证书。
 
 1. 点击 「配置中心」→ 「密钥」，点击 「创建」。
 
-2. 密钥名称填写 `cafe-secret`，点击 「下一步」。
+2. 密钥名称填写 **cafe-secret**，点击 「下一步」。
 
-3. 类型选择 `TLS`，凭证和私钥填写如下，完成后点击 「创建」。
+3. 类型选择 **TLS**，凭证和私钥填写如下，完成后点击 「创建」。
 
 ```bash
 #凭证
@@ -165,11 +134,11 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
 -----END RSA PRIVATE KEY-----
 ```
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190522114545.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027165938.png)
 
-### 创建应用路由 cafe-ingress
+## 创建应用路由 cafe-ingress
 
-1. 选择 「网络与服务」→ 「应用路由」，点击 「创建应用路由」。
+1. 选择 「应用负载」→ 「应用路由」，点击 「创建应用路由」。
 
 2. 输入名称 `cafe-ingress`，点击 「下一步」，点击 「添加路由规则」。
 
@@ -183,74 +152,46 @@ cpLlHMAqbLJ8WYGJCkhiWxyal6hYTyWY4cVkC0xtTl/hUE9IeNKo
    - 输入 `/coffee`，服务选择 coffee-svc，选择 80 端口作为服务端口，点击 「添加 Path」
    - 输入 `/tea`，服务选择 tea-svc，选择 80 端口作为服务端口
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424153059.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027170242.png)
 
-4. 完成路由规则设置后点击「保存」，无需设置注解，选择 「下一步」，点击 「创建」，cafe-ingress 创建成功。
+4. 完成路由规则设置后点击「√」，选择 「下一步」，点击 「创建」，cafe-ingress 创建成功。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190424110313.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027170323.png)
 
-### 访问应用路由
+## 访问应用路由
 
-在云平台需要把应用路由在外网访问的 **https** 端口 (比如本示例是 31198)，在端口转发规则中将**内网端口** 31198 转发到**源端口** 31198，然后在防火墙开放这个**源端口**，确保外网流量可以通过该端口，即可通过 curl 命令进行访问测试。例如在 QingCloud 平台配置端口转发和防火墙规则，可参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
+进入新建的应用路由，在云平台需要把应用路由在外网访问的 **https** 端口 (比如本示例是 31641)，在端口转发规则中将 **内网端口** 31641 转发到 **源端口** 31641，然后在防火墙开放这个 **源端口**，确保外网流量可以通过该端口，即可通过 curl 命令进行访问测试。
+
+> 提示：例如在 QingCloud 平台配置端口转发和防火墙规则，可参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
 
 至此，即可通过外网分别访问 “咖啡点餐系统” 和 “茶水点餐系统”，即访问应用路由下不同的服务。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190507222447.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027170715.png)
 
-
-> 提示：如果在内网环境可登录集群中的任意节点或通过 web kubectl，通过以下 curl 命令进行访问测试，需要将公网 IP 替换为网关地址。
+> 提示：可使用 admin 账号登录后，在 `工具箱 → kubectl` 打开 web kubectl，使用 curl 命令访问验证 Ingress；或在本地配置 hosts 然后在浏览器访问。
 
 比如，我们访问 `https://cafe.example.com:{$HTTPS_PORT}/coffee` 时，应该是 coffee 的部署负责响应请求，访问这个 URL 得到的返回信息是：Server name: coffee-6cbd8b965c-9659v，即 coffee 这个 Deployment 的名字。
 
 ```bash
-# curl --resolve {$HOSTNAME}:{$HTTPS_PORT}:{$IP} https://{$hostname}:{$HTTPS_PORT}/{$PATH} --insecure
-$ curl --resolve cafe.example.com:31198:139.198.100.100 https://cafe.example.com:31198/coffee --insecure
-Server address: 10.233.122.100:80
-Server name: coffee-6cbd8b965c-9659v
-Date: 23/Apr/2019:03:17:43 +0000
+# curl --resolve {$HOSTNAME}:{$HTTPS_PORT}:{$网关地址} https://{$hostname}:{$HTTPS_PORT}/{$PATH} --insecure
+$ curl --resolve cafe.example.com:31641:192.168.0.21 https://cafe.example.com:31641/coffee --insecure
+Server address: 10.233.99.31:80
+Server name: coffee-svc-v1-645dd585b7-zx6jv
+Date: 27/Oct/2019:09:22:47 +0000
 URI: /coffee
-Request ID: 1dcb8794548dd6013439b85bbaef0dd6
+Request ID: 1e6fe4427333c23d797f31acb7d55b13
 ```
 
 而访问 `https://cafe.example.com:{$HTTPS_PORT}/tea` 的时候，则应该是 tea 的部署负责响应我的请求（Server name: tea-588dbb89d5-bgxqn），说明应用路由已经成功将不同的请求转发给了对应的后端服务。
 
 ```bash
 # curl --resolve {$HOSTNAME}:{$HTTPS_PORT}:{$IP} https://{$hostname}:{$HTTPS_PORT}/{$PATH} --insecure
-curl --resolve cafe.example.com:31198:139.198.100.100 https://cafe.example.com:31198/tea --insecure
-Server address: 10.233.122.97:80
-Server name: tea-588dbb89d5-bgxqn
-Date: 23/Apr/2019:03:16:23 +0000
+$ curl --resolve cafe.example.com:31641:192.168.0.21 https://cafe.example.com:31641/tea --insecure
+Server address: 10.233.99.30:80
+Server name: tea-svc-v1-7846685886-5s7zp
+Date: 27/Oct/2019:09:22:50 +0000
 URI: /tea
-Request ID: 98db6b03aabd0b6ab29c26ba37ab2ba2
+Request ID: 19ccc36c1964d641418dfa39c7530e82
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191027172300.png)

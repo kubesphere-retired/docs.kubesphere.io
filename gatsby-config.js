@@ -4,6 +4,10 @@ module.exports = {
     title: 'KubeSphere Documents',
     versions: [
       {
+        label: 'v2.1',
+        value: 'v2.1',
+      },
+      {
         label: 'v2.0',
         value: 'v2.0',
       },
@@ -16,11 +20,15 @@ module.exports = {
       { name: '简体中文', value: 'zh-CN' },
       { name: 'English', value: 'en' },
     ],
-    defaultLocale: 'en',
+    defaultLocale: process.env.DEFAULT_LANG || 'en',
     swaggerUrls: [
       {
         name: 'kubesphere',
         url: 'data/kubesphere.api.json',
+      },
+      {
+        name: 'kubesphere-crd',
+        url: 'data/crd.api.json',
       },
       {
         name: 'notification',

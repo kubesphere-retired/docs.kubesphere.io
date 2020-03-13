@@ -34,34 +34,37 @@ reviews 微服务有 3 个版本：
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190414172945.png)
 <center>(Bookinfo 架构图与示例说明参考自 https://istio.io/docs/examples/bookinfo/)</center>
 
+## 视频教程
+
+<video controls="controls" style="width: 100% !important; height: auto !important;">
+  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/website/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/KS2.1_8-bookinfo-grayscale-release-on-istio.mp4">
+</video>
+
 ## 预估时间
 
 约 20 ~ 30 分钟。
 
 ## 前提条件
 
-<!-- - 使用 `project-regular` 账号登录 KubeSphere，进入已创建的企业空间下的项目 `demo-namespace`，若还未创建请参考 [多租户管理快速入门](../admin-quick-start)；
-- 请确保当前项目已在外网访问中开启了应用治理，若还未开启请参考 [设置外网访问](../admin-quick-start/#%E8%AE%BE%E7%BD%AE%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE)； -->
-
-- 已创建了企业空间、项目和普通用户 `project-regular` 账号，请参考 [多租户管理快速入门](../admin-quick-start)；
-- 查看 Tracing 需在当前项目下选择 「项目设置」→「外网访问」→「设置网关」，点击「应用治理」的开启按钮 (注意访问方式为 `NodePort`)；
-- 使用项目管理员 `project-admin` 邀请项目普通用户 `project-regular` 加入项目并授予 `operator` 角色，若还未邀请请参考 [多租户管理快速入门 - 邀请成员](../admin-quick-start/#邀请成员) 。
+- 开启了 Service Mesh 的安装，参考 [开启微服务治理（Service Mesh）](../../installation/install-service)；
+- 已创建了企业空间、项目和普通用户 `project-regular` 账号，且已邀请 `project-regular` 加入项目并授予 `operator` 角色，请参考 [多租户管理快速入门](../admin-quick-start)；
+- 使用管理员账号 `admin` 在示例项目 `demo-project` 下选择 「项目设置」→「高级设置」→「设置网关」，点击「应用治理」的开启按钮。
 
 
 ## 操作示例
 
 ### 创建自制应用
 
-1. 使用项目普通用户 `project-regular` 账号进入项目 demo-namespace 后，点击 「应用」，选择 「自制应用」，点击 「部署示例应用」。
+1. 使用项目普通用户 `project-regular` 账号进入项目 demo-project 后，选择 `应用负载` → `应用`，点击 「部署示例应用」。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190426215359.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191108093544.png)
 
 2. 在弹窗中，点击 「确定」 部署 bookinfo 示例应用。
 
 
-3. 确认应用状态显示 `Ready`，则说明 bookinfo 微服务创建成功。
+3. 确认应用工作负载的所有部署状态显示 `运行中`，则说明 bookinfo 微服务创建成功（约 2 分钟）。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20190426215609.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20191108100459.png)
 
 ### 访问 Bookinfo 应用
 
@@ -79,7 +82,7 @@ reviews 微服务有 3 个版本：
 
 ```shell
 #{公网 IP} {hostname}
-139.198.111.111 productpage.demo-namespace.192.168.0.8.nip.io
+139.198.111.111 productpage.demo-project.192.168.0.8.nip.io
 ```
 
 4. 完成上述步骤后，在应用路由下选择 「点击访问」，可以看到 bookinfo 的 details 页面。
@@ -108,7 +111,7 @@ reviews 微服务有 3 个版本：
 
 
 - 灰度版本号：v2；
-- 镜像：kubesphere/examples-bookinfo-reviews-v2:1.13.0 (将 原镜像TAG中的 v1 改为 v2)。
+- 镜像：istio/examples-bookinfo-reviews-v2:1.10.1 (将 v1 改为 v2)。
 
 
 6. 金丝雀发布允许按流量比例下发与按请求内容下发等两种发布策略，来控制用户对新老版本的请求规则。本示例选择 **按流量比例下发**，流量比例选择 v1 与 v2 各占 **50 %**，点击 「创建」。
@@ -126,7 +129,7 @@ reviews 微服务有 3 个版本：
 打开命令行窗口输入以下命令，引入真实的访问流量，模拟对 bookinfo 应用每 0.5 秒访问一次。注意以下命令是模拟 `Normal user` 访问，需要输入完整的命令访问到具体的服务在链路图中才有流量数据。
 
 ```shell
-$ watch -n 0.5 "curl http://productpage.demo-namespace.139.198.111.111.nip.io:31680/productpage?u=normal"
+$ watch -n 0.5 "curl http://productpage.demo-project.139.198.111.111.nip.io:31680/productpage?u=normal"
 ```
 
 从流量治理的链路图中，可以看到各个微服务之间的服务调用和依赖、健康状况、性能等情况。
@@ -175,6 +178,3 @@ $ watch -n 0.5 "curl http://productpage.demo-namespace.139.198.111.111.nip.io:31
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20190418125851.png)
 
 至此，Bookinfo 微服务以金丝雀发布作为发布策略，演示了灰度发布的基本功能。
-
-
-

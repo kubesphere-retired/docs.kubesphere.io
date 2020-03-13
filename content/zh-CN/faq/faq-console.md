@@ -1,5 +1,5 @@
 ---
-title: "控制台使用常见问题" 
+title: "控制台使用常见问题"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -47,7 +47,7 @@ $ kubectl scale --replicas=0 deployment/ks-console -n kubesphere-system
 
 答：
 
-如果还没安装，安装前在 installer 可以修改 vars.yml 配置文件中的 kubelet_max_pods。
+如果还没安装，安装前在 installer 可以修改 common.yaml 配置文件中的 `kubelet_max_pods`。
 
 KubeSphere 安装后，可以在后台手工修改 master 节点 `/etc/kubernetes/kubelet.env` 中的 `max-pods` 参数，然后执行`systemctl restart kubelet` 重启 kubelet 服务。
 
@@ -74,6 +74,7 @@ namespace/echo-production labeled
 apk add curl && curl -X PUT http://localhost:9090/kapis/iam.kubesphere.io/v1alpha2/users/admin -H 'Content-Type: application/json' -d '{"username": "admin","email":"admin@kubesphere.io","cluster_role": "cluster-admin","password":"xxxxxx"}'
 ```
 
+
 > 说明：
 > 若您在使用中遇到任何产品相关的问题，欢迎在 [GitHub Issue](https://github.com/kubesphere/docs.kubesphere.io/issues) 提问。
- 
+
