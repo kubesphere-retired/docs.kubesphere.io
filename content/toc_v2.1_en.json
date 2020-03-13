@@ -167,6 +167,25 @@
           ]
         },
         {
+          "title": "Upgrade",
+          "icon": "/admin_reffer.svg",
+          "desc": "Guides for upgrading KubeSphere to 2.1.1",
+          "entries": [
+            {
+              "title": "Overview",
+              "entry": "./v2.1/en/installation/upgrade.md"
+            },
+            {
+              "title": "All-in-One",
+              "entry": "./v2.1/en/installation/upgrade-allinone.md"
+            },
+            {
+              "title": "Multi-node",
+              "entry": "./v2.1/en/installation/upgrade-multi-node.md"
+            }
+          ]
+        },
+        {
           "title": "Third-Party Tools",
           "entries": [
             {
@@ -212,25 +231,6 @@
               "entry": "./v2.1/en/installation/uninstall.md"
             }
           ]
-        }
-      ]
-    },
-    {
-      "title": "Upgrade",
-      "icon": "/admin_reffer.svg",
-      "desc": "Guides for upgrading KubeSphere to 2.1.1",
-      "chapters": [
-        {
-          "title": "Upgrade Overview",
-          "entry": "./v2.1/en/installation/upgrade.md"
-        },
-        {
-          "title": "Upgrade All-in-One",
-          "entry": "./v2.1/en/installation/upgrade-allinone.md"
-        },
-        {
-          "title": "Upgrade Multi-node",
-          "entry": "./v2.1/en/installation/upgrade-multi-node.md"
         }
       ]
     },
@@ -284,12 +284,12 @@
           "entry": "./v2.1/en/quick-start/bookinfo-canary.md"
         },
         {
-          "title": "12. Application Store",
-          "entry": "./v2.1/en/quick-start/app-store.md"
+          "title": "12. Canary Release based on Ingress-Nginx",
+          "entry": "./v2.1/en/quick-start/ingress-canary.md"
         },
         {
-          "title": "13. Canary Release based on Ingress-Nginx",
-          "entry": "./v2.1/en/quick-start/ingress-canary.md"
+          "title": "13. Application Store",
+          "entry": "./v2.1/en/quick-start/app-store.md"
         }
       ]
     },
@@ -337,7 +337,7 @@
       "desc": "KubeSphere Developer Guide",
       "chapters": [
         {
-          "title": "Principle and Workflow to S2I",
+          "title": "Introduction to S2I",
           "entry": "./v2.1/en/developer/s2i-introduction.md"
         },
         {
