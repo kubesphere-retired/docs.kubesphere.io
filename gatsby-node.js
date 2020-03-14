@@ -24,7 +24,7 @@ const { availableLocales, defaultLocale } = config.siteMetadata
 exports.onCreatePage = async props => {
   const {
     page,
-    actions: { createPage },
+    actions: { createPage, createRedirect },
   } = props
 
   if (page.path.indexOf('404') !== -1) {
@@ -49,6 +49,21 @@ exports.onCreatePage = async props => {
       },
     }
     createPage(localePage)
+
+    if (value === defaultLocale) {
+      createRedirect({
+        fromPath: `/${value}${page.path}`,
+        isPermanent: true,
+        redirectInBrowser: true,
+        toPath: page.path,
+      })
+      createRedirect({
+        fromPath: `/${value}`,
+        isPermanent: true,
+        redirectInBrowser: true,
+        toPath: '/',
+      })
+    }
   })
 }
 

@@ -55,9 +55,15 @@ class IndexPage extends React.Component {
     }
   }
 
-  handleVersionChange = value => {
-    const pathPrefix = this.props.data.site.pathPrefix
-    window.location.href = pathPrefix.replace(this.state.selectVersion, value)
+  handleVersionChange = version => {
+    const { locale } = this.props.pageContext
+    const { versions } = this.props.data.site.siteMetadata
+    const latestVersion = versions[0].value
+    let host = 'kubesphere.io/docs/'
+    if (version.value !== latestVersion) {
+      host = version.value.replace('.', '-') + '.docs.' + host
+    }
+    window.location.href = `${window.location.protocol}//${host}${locale}`
   }
 
   render() {
@@ -136,7 +142,10 @@ const Documents = ({ tableOfContent, pathPrefix, defaultLocale }) => (
             <li key={index}>
               <h3>
                 {chapter.icon && (
-                  <img src={`${pathPrefix}${chapter.icon}`.replace(/\/\//g, '/')} alt="" />
+                  <img
+                    src={`${pathPrefix}${chapter.icon}`.replace(/\/\//g, '/')}
+                    alt=""
+                  />
                 )}
                 <Link to={getTitleLink(chapter, defaultLocale)}>
                   {chapter.title}
