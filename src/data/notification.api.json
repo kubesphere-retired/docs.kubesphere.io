@@ -13,7 +13,7 @@
 	},
 	"externalDocs": {
     "description": "> Read KubeSphere API documents.",
-    "url": "/docs/v2.1/api/kubesphere"
+    "url": "/docs/api/kubesphere"
   },
   "schemes": ["http", "https"],
   "consumes": ["application/json"],

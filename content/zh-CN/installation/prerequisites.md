@@ -10,7 +10,7 @@ KubeSphere 支持离线和在线的方式部署至现有的 Kubernetes 集群，
 > - `Kubernetes` 版本： `1.15.x ≤ K8s version ≤ 1.17.x`；
 > - `Helm`版本： `2.10.0 ≤ Helm Version ＜ 3.0.0`（不支持 helm 2.16.0 [#6894](https://github.com/helm/helm/issues/6894)），且已安装了 Tiller，参考 [如何安装与配置 Helm](https://devopscube.com/install-configure-helm-kubernetes/) （预计 3.0 支持 Helm v3）；
 > - 集群已有默认的存储类型（StorageClass），若还没有准备存储请参考 [安装 OpenEBS 创建 LocalPV 存储类型](../../appendix/install-openebs) 用作开发测试环境。
-> - 集群能够访问外网，若无外网请参考 [在 Kubernetes 离线安装 KubeSphere](https://kubesphere.com.cn/docs/v2.1/en/installation/install-on-k8s-airgapped/)。
+> - 集群能够访问外网，若无外网请参考 [在 Kubernetes 离线安装 KubeSphere](https://kubesphere.com.cn/docs/installation/install-on-k8s-airgapped/)。
 - CSR signing 在 kube-apiserver 被开启，参考 [RKE 安装 KubeSphere Issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309)。
 
 ## 验证环境

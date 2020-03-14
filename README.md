@@ -101,7 +101,7 @@ When PR has been created, you should preview your changes and verify it in the N
 
 ## Edit navigation
 
-Navigation is corresponding to the directory on the left, if you'd like to add a new document or modify the title within directory, just modify the  content in `content/toc_v2.1_en.json` or `content/toc_v2.1_zh-CN.json`.
+Navigation is corresponding to the directory on the left, if you'd like to add a new document or modify the title within directory, just modify the  content in `content/toc_en.json` or `content/toc_zh-CN.json`.
 
 > Attention: make sure you can compile it successfully using command `yarn develop` if you change the navigation json file.
 
