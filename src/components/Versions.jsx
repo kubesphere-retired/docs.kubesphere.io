@@ -32,13 +32,14 @@ class Versions extends React.Component {
   }
 
   changeVersion = version => {
-    const { pathPrefix, version: oldVersion } = this.props
+    const { versions } = this.props
     const lang = getLanguage(this.props.lang)
-
-    window.location.href = `${pathPrefix.replace(
-      oldVersion,
-      version
-    )}/${lang}/introduction/intro/`
+    const latestVersion = versions[0].value
+    let host = 'kubesphere.io/docs/'
+    if (version !== latestVersion) {
+      host = version.replace('.', '-') + '.docs.' + host
+    }
+    window.location.href = `${window.location.protocol}//${host}${lang}/introduction/intro/`
   }
 
   renderOptions() {
