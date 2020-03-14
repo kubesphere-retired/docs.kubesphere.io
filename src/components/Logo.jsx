@@ -7,7 +7,7 @@ import { ReactComponent as LogoIcon } from '../assets/logo.svg'
 const Logo = ({ t, pageContext: { locale, defaultLocale }, pathPrefix }) => (
   <Wrapper>
     <a
-      href="/"
+      href="https://kubesphere.io"
       target="_blank"
       rel="noopener noreferrer"
     >
