@@ -123,7 +123,7 @@ const getTitleLink = (chapter, defaultLocale) => {
     get(chapter, 'chapters[0].entries[0].entry') ||
     {}
 
-  return entry.replace(`/${defaultLocale}`, '')
+  return `${entry}/`.replace(`/${defaultLocale}`, '').replace(/\/\//g, '/')
 }
 
 const Documents = ({ tableOfContent, pathPrefix, defaultLocale }) => (
@@ -135,7 +135,10 @@ const Documents = ({ tableOfContent, pathPrefix, defaultLocale }) => (
             <li key={index}>
               <h3>
                 {chapter.icon && (
-                  <img src={`${pathPrefix}${chapter.icon}`.replace(/\/\//g, '/')} alt="" />
+                  <img
+                    src={`${pathPrefix}${chapter.icon}`.replace(/\/\//g, '/')}
+                    alt=""
+                  />
                 )}
                 <Link to={getTitleLink(chapter, defaultLocale)}>
                   {chapter.title}
