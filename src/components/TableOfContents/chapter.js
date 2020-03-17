@@ -12,7 +12,7 @@ const Link = ({ to, ...rest }, { location }) => {
 
   return (
     <GatsbyLink
-      to={to}
+      to={`${to}/`.replace(/\/\//g, '/')}
       {...rest}
       className={classnames({ 'selected-link': selected })}
     />
