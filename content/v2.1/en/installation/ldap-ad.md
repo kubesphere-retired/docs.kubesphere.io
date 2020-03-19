@@ -14,7 +14,6 @@ In this tutorial, we will demonstrate how to configure AD accounts. It also work
 
 Connect to windows server 2016, enter Active Director Administrator, obtain managerDN (**It could be a read-only account**)
 
-![Windows AD](https://pek3b.qingstor.com/kubesphere-docs/png/20191129225035.png)
 
 ## Create and Edit Script
 
@@ -73,6 +72,5 @@ After you created the script, you can run `inject-ks-account.sh` to configure AD
 
 Please note that this script will restart Pod `ks-account`. Your account might be not available for a few minutes. You can log in KubeSphere to check the accounts that read from AD server when the Pod `ks-account` is **running**.
 
-![Account List](https://pek3b.qingstor.com/kubesphere-docs/png/20191113182235.png)
 
 At this point, you need to use cluster admin account to assign roles to the AD users. After the roles have been assigned, these AD accounts are ready to use in KubeSphere.
