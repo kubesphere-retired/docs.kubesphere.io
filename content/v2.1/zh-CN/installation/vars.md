@@ -84,10 +84,15 @@ grafana_enabled: true # 是否额外安装 grafana，若需要自定义监控则
 
 ## GPU 节点配置示例
 
-注意，在安装前可对 GPU 节点在 `common.yaml` 文件中进行设置，例如在 `hosts.ini` 文件配置的两台工作节点 `node1` 是 CPU 节点， `node2` 是 GPU 节点，那么在 `common.yaml` 仅需要在该处填写 node2，注意 "-" 前面需缩进两格。注意，目前 GPU 节点仅支持 Ubuntu 16.04。
+注意，在安装前可对 GPU 节点在 `common.yaml` 文件中进行设置，例如在 `hosts.ini` 文件配置的两台工作节点 `node1` 是 CPU 节点， `node2` 是 GPU 节点，那么在 `common.yaml` 仅需要在该处填写 node2，注意 "-" 前面需缩进两格。注意，目前 GPU 节点仅支持 Ubuntu 16.04 与 Ubuntu 18.04。
 
 ```yaml
  nvidia_accelerator_enabled: true
  nvidia_gpu_nodes:
    - node2
 ```
+
+### 相关参考
+
+- [在 Kubernetes 安装 Orion vGPU 使用 TensorFlow 运行深度学习训练](https://kubesphere.com.cn/blog/kubesphere-orion/)
+- [k8s-device-plugin](https://github.com/NVIDIA/k8s-device-plugin )
