@@ -94,5 +94,5 @@ grafana_enabled: true # 是否额外安装 grafana，若需要自定义监控则
 
 ### 相关参考
 
-- [在 Kubernetes 安装 Orion vGPU 使用 TensorFlow 运行深度学习训练](https://kubesphere.com.cn/blog/kubesphere-orion/)
+- [在 KubeSphere 安装 Orion vGPU 使用 TensorFlow 运行深度学习训练](https://kubesphere.com.cn/blog/kubesphere-orion/)
 - [k8s-device-plugin](https://github.com/NVIDIA/k8s-device-plugin )
