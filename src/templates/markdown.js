@@ -121,7 +121,7 @@ class MarkdownTemplate extends React.Component {
     Array.prototype.forEach.call($links, el => {
       el.setAttribute('target', '_blank')
       const url = el.getAttribute('href')
-      if (url) {
+      if (url && !/^http(s?):\/\//.test(url)) {
         el.setAttribute('href', url.replace(`/${defaultLocale}`, ''))
       }
     })
@@ -239,6 +239,16 @@ class MarkdownTemplate extends React.Component {
         )
       : postNode.html
 
+    const latestVersion = get(
+      this,
+      'props.data.site.siteMetadata.versions[0].value'
+    )
+
+    console.log(slug.slice(
+      1,
+      slug.length - 1
+    ))
+
     return (
       <>
         <Layout data={this.props.data}>
@@ -296,6 +306,16 @@ class MarkdownTemplate extends React.Component {
                     }}
                   >
                     <MarkdownTitle>{post.title}</MarkdownTitle>
+                    <MarkdownEditTip
+                      href={`https://github.com/kubesphere/docs.kubesphere.io/edit/release-${latestVersion.slice(1)}/content/${slug.slice(
+                        1,
+                        slug.length - 1
+                      )}.md`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t('Edit')}
+                    </MarkdownEditTip>
                     <div
                       ref={ref => {
                         this.markdownRef = ref
@@ -387,6 +407,18 @@ const MarkdownWrapper = styled.div`
 
   @media only screen and (max-width: 1280px) {
     padding-right: 0;
+  }
+`
+
+const MarkdownEditTip = styled.a`
+  position: absolute;
+  top: 136px;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 14px !important;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
   }
 `
 
@@ -506,9 +538,7 @@ export const pageQuery = graphql`
         language
       }
     }
-    tableOfContents: allContentJson(
-      filter: { lang: { eq: $lang } }
-    ) {
+    tableOfContents: allContentJson(filter: { lang: { eq: $lang } }) {
       edges {
         node {
           lang

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { graphql } from 'gatsby'
 
 export default function NotFound({ data }) {
