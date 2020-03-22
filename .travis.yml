@@ -24,11 +24,11 @@ before_deploy:
   - yarn build
   - yarn serve
   - sleep 5
-  - prince --javascript --page-margin 0 http://localhost:9000/docs/v2.1/zh-CN/all/ -o public/KubeSphere-v2.1.pdf
-  - docker build -t kubesphere/docs.kubesphere.io .
+  - prince --javascript --page-margin 0 http://localhost:9000/docs/zh-CN/all/ -o public/KubeSphere-v2.1.pdf
+  - docker build -t docs.kubesphere.io .
 
 deploy:
   provider: script
   script: bash docker_push
   on:
-    branch: master
+    branch: release-2.1

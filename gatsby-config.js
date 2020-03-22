@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/docs',
+  pathPrefix: process.env.NODE_ENV === 'development' ? '/' : '/docs/',
   siteMetadata: {
     title: 'KubeSphere Documents',
     versions: [
@@ -15,41 +15,24 @@ module.exports = {
         label: 'v1.0',
         value: 'v1.0',
       },
-      {
-        label: 'Express',
-        value: 'express',
-      },
     ],
-    apiDocuments: [
+    availableLocales: [
+      { name: '简体中文', value: 'zh-CN' },
+      { name: 'English', value: 'en' },
+    ],
+    defaultLocale: process.env.DEFAULT_LANG || 'en',
+    swaggerUrls: [
       {
-        version: 'v2.0',
-        swaggerUrls: [
-          {
-            name: 'kubesphere',
-            url: 'data/v2.0_api.json',
-          },
-          {
-            name: 'notification',
-            url: 'data/notification.api.json',
-          },
-        ],
+        name: 'kubesphere',
+        url: 'data/kubesphere.api.json',
       },
       {
-        version: 'v2.1',
-        swaggerUrls: [
-          {
-            name: 'kubesphere',
-            url: 'data/v2.1_api.json',
-          },
-          {
-            name: 'kubesphere-crd',
-            url: 'data/v2.1_crd_api.json',
-          },
-          {
-            name: 'notification',
-            url: 'data/notification.api.json',
-          },
-        ],
+        name: 'kubesphere-crd',
+        url: 'data/crd.api.json',
+      },
+      {
+        name: 'notification',
+        url: 'data/notification.api.json',
       },
     ],
   },

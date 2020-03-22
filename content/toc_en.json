@@ -1,0 +1,365 @@
+{
+  "version": "v2.1",
+  "lang": "en",
+  "chapters": [
+    {
+      "title": "Release Notes",
+      "icon": "/product.svg",
+      "desc": "Introduce the new features, capabilities and updates for the releases",
+      "chapters": [
+        {
+          "title": "Release Notes - 2.1.1",
+          "entry": "/en/release/release-v211",
+          "tag": "Latest"
+        },
+        {
+          "title": "Release Notes - 2.1.0",
+          "entry": "/en/release/release-v210"
+        },
+        {
+          "title": "Release Notes - 2.0.2",
+          "entry": "/en/release/release-v202"
+        },
+        {
+          "title": "Release Notes - 2.0.1",
+          "entry": "/en/release/release-v201"
+        },
+        {
+          "title": "Release Notes - 2.0.0",
+          "entry": "/en/release/release-v200"
+        }
+      ]
+    },
+    {
+      "title": "Introduction",
+      "icon": "/product.svg",
+      "desc": "Help you to better understand KubeSphere with detailed graphics and contents",
+      "chapters": [
+        {
+          "title": "Introduction",
+          "entry": "/en/introduction/what-is-kubesphere"
+        },
+        {
+          "title": "Features",
+          "entry": "/en/introduction/features"
+        },
+        {
+          "title": "Architecture",
+          "entry": "/en/introduction/architecture"
+        },
+        {
+          "title": "Advantages",
+          "entry": "/en/introduction/advantages"
+        },
+        {
+          "title": "Glossary",
+          "entry": "/en/introduction/glossary"
+        }
+      ]
+    },
+    {
+      "title": "Installation",
+      "icon": "/admin_reffer.svg",
+      "desc": "Reference the installation guide to download and install KubeSphere",
+      "chapters": [
+        {
+          "title": "Introduction",
+          "entries": [
+            {
+              "title": "Intro",
+              "entry": "/en/installation/intro"
+            },
+            {
+              "title": "Port Requirements",
+              "entry": "/en/installation/port-firewall"
+            },
+            {
+              "title": "Kubernetes Cluster Configuration",
+              "entry": "/en/installation/vars"
+            }
+          ]
+        },
+        {
+          "title": "Install on Linux",
+          "entries": [
+            {
+              "title": "All-in-One Installation",
+              "entry": "/en/installation/all-in-one"
+            },
+            {
+              "title": "Multi-Node Installation",
+              "entry": "/en/installation/multi-node"
+            },
+            {
+              "title": "High Availability Configuration",
+              "entry": "/en/installation/master-ha"
+            },
+            {
+              "title": "Air Gapped Installation",
+              "entry": "/en/installation/install-ks-on-linux-airgapped"
+            },
+            {
+              "title": "StorageClass Configuration",
+              "entry": "/en/installation/storage-configuration"
+            },
+            {
+              "title": "Enable All Components",
+              "entry": "/en/installation/complete-installation"
+            }
+          ]
+        },
+        {
+          "title": "Install on Kubernetes",
+          "entries": [
+            {
+              "title": "Prerequisites",
+              "entry": "/en/installation/prerequisites"
+            },
+            {
+              "title": "Install on K8s",
+              "entry": "/en/installation/install-on-k8s"
+            },
+            {
+              "title": "Air Gapped Installation",
+              "entry": "/en/installation/install-on-k8s-airgapped"
+            },
+            {
+              "title": "Install on GKE",
+              "entry": "/en/installation/install-on-gke"
+            }
+          ]
+        },
+        {
+          "title": "Pluggable Components",
+          "entries": [
+            {
+              "title": "Pluggable Components",
+              "entry": "/en/installation/pluggable-components"
+            },
+            {
+              "title": "Enable Application Store",
+              "entry": "/en/installation/install-openpitrix"
+            },
+            {
+              "title": "Enable DevOps System",
+              "entry": "/en/installation/install-devops"
+            },
+            {
+              "title": "Enable Logging System",
+              "entry": "/en/installation/install-logging"
+            },
+            {
+              "title": "Enable Service Mesh",
+              "entry": "/en/installation/install-servicemesh"
+            },
+            {
+              "title": "Enable Alerting and Notification",
+              "entry": "/en/installation/install-alert-notification"
+            },
+            {
+              "title": "Enable Metrics-server for HPA",
+              "entry": "/en/installation/install-metrics-server"
+            },
+            {
+              "title": "Verify Components Installation",
+              "entry": "/en/installation/verify-components"
+            }
+          ]
+        },
+        {
+          "title": "Upgrade",
+          "icon": "/admin_reffer.svg",
+          "desc": "Guides for upgrading KubeSphere to 2.1.1",
+          "entries": [
+            {
+              "title": "Overview",
+              "entry": "/en/installation/upgrade"
+            },
+            {
+              "title": "All-in-One",
+              "entry": "/en/installation/upgrade-allinone"
+            },
+            {
+              "title": "Multi-node",
+              "entry": "/en/installation/upgrade-multi-node"
+            }
+          ]
+        },
+        {
+          "title": "Third-Party Tools",
+          "entries": [
+            {
+              "title": "Configure Harbor",
+              "entry": "/en/installation/integrate-harbor"
+            },
+            {
+              "title": "Access Built-in SonarQube and Jenkins",
+              "entry": "/en/installation/sonarqube-jenkins"
+            },
+            {
+              "title": "Enable built-in Grafana Installation",
+              "entry": "/en/installation/install-grafana"
+            },
+            {
+              "title": "Load Balancer plugin in Bare Metal - Porter",
+              "entry": "/en/installation/install-porter"
+            }
+          ]
+        },
+        {
+          "title": "Authentication Integration",
+          "entries": [
+            {
+              "title": "Configure LDAP/AD",
+              "entry": "/en/installation/ldap-ad"
+            }
+          ]
+        },
+        {
+          "title": "Cluster Operations",
+          "entries": [
+            {
+              "title": "Add or Cordon Nodes",
+              "entry": "/en/installation/add-nodes"
+            },
+            {
+              "title": "High Risk Operations",
+              "entry": "/en/installation/high-risk"
+            },
+            {
+              "title": "Uninstall KubeSphere",
+              "entry": "/en/installation/uninstall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Quick Start",
+      "icon": "/access.svg",
+      "desc": "Get a quick overview of the basic features of KubeSphere with several quick-start examples.",
+      "chapters": [
+        {
+          "title": "1. Getting Started with Multi-tenancy",
+          "entry": "/en/quick-start/admin-quick-start"
+        },
+        {
+          "title": "2. Expose your App Using Ingress",
+          "entry": "/en/quick-start/ingress-demo"
+        },
+        {
+          "title": "3. Compose and Deploy Wordpress to K8s",
+          "entry": "/en/quick-start/wordpress-deployment"
+        },
+        {
+          "title": "4. Deploy Grafana Using App Template",
+          "entry": "/en/quick-start/one-click-deploy"
+        },
+        {
+          "title": "5. Job to Compute π to 2000 Places",
+          "entry": "/en/quick-start/job-quick-start"
+        },
+        {
+          "title": "6. Create Horizontal Pod Autoscaler",
+          "entry": "/en/quick-start/hpa"
+        },
+        {
+          "title": "7. S2I: Publish your App without Dockerfile",
+          "entry": "/en/quick-start/source-to-image"
+        },
+        {
+          "title": "8. B2I: Publish Artifacts to Kubernete",
+          "entry": "/en/quick-start/b2i-war"
+        },
+        {
+          "title": "9. CI/CD based on Spring Boot Project",
+          "entry": "/en/quick-start/devops-online"
+        },
+        {
+          "title": "10. Jenkinsfile-free Pipeline with Graphical Editing Panel",
+          "entry": "/en/quick-start/jenkinsfile-out-of-scm"
+        },
+        {
+          "title": "11. Canary Release of Bookinfo App",
+          "entry": "/en/quick-start/bookinfo-canary"
+        },
+        {
+          "title": "12. Canary Release based on Ingress-Nginx",
+          "entry": "/en/quick-start/ingress-canary"
+        },
+        {
+          "title": "13. Application Store",
+          "entry": "/en/quick-start/app-store"
+        }
+      ]
+    },
+    {
+      "title": "DevOps",
+      "icon": "/problem.svg",
+      "desc": "Introduction to KubeSphere DevOps System",
+      "chapters": [
+        {
+          "title": "Pipeline",
+          "entry": "/en/devops/pipeline"
+        },
+        {
+          "title": "Create SonarQube Token",
+          "entry": "/en/devops/sonarqube"
+        },
+        {
+          "title": "Credentials",
+          "entry": "/en/devops/credential"
+        },
+        {
+          "title": "Set CI Node for Dependency Cache",
+          "entry": "/en/devops/devops-ci-node"
+        },
+        {
+          "title": "Set Email Server for KubeSphere Pipeline",
+          "entry": "/en/devops/jenkins-email"
+        }
+      ]
+    },
+    {
+      "title": "Logging",
+      "icon": "/access.svg",
+      "desc": "Introduction to KubeSphere Logging System",
+      "chapters": [
+        {
+          "title": "Log Query",
+          "entry": "/en/logging/log-query"
+        }
+      ]
+    },
+    {
+      "title": "Developer Guide",
+      "icon": "/problem.svg",
+      "desc": "KubeSphere Developer Guide",
+      "chapters": [
+        {
+          "title": "Introduction to S2I",
+          "entry": "/en/developer/s2i-introduction"
+        },
+        {
+          "title": "Custom S2I Template",
+          "entry": "/en/developer/s2i-template"
+        }
+      ]
+    },
+    {
+      "title": "API Documentation",
+      "icon": "/problem.svg",
+      "desc": "Introduction to KubeSphere API",
+      "chapters": [
+        {
+          "title": "API Guide",
+          "entry": "/en/api-reference/api-docs"
+        },
+        {
+          "title": "How to Access KubeSphere API",
+          "entry": "/en/api-reference/api-guide"
+        }
+      ]
+    }
+  ]
+}

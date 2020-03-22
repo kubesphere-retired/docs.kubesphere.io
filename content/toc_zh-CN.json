@@ -1,0 +1,759 @@
+{
+  "version": "v2.1",
+  "lang": "zh-CN",
+  "chapters": [
+    {
+      "title": "Release Notes",
+      "icon": "/product.svg",
+      "desc": "为您介绍 KubeSphere 已发布的版本功能与更新",
+      "chapters": [
+        {
+          "title": "Release Notes - 2.1.1",
+          "entry": "/zh-CN/release/release-v211",
+          "tag": "最新"
+        },
+        {
+          "title": "Release Notes - 2.1.0",
+          "entry": "/zh-CN/release/release-v210"
+        },
+        {
+          "title": "Release Notes - 2.0.2",
+          "entry": "/zh-CN/release/release-v202"
+        },
+        {
+          "title": "Release Notes - 2.0.1",
+          "entry": "/zh-CN/release/release-v201"
+        },
+        {
+          "title": "Release Notes - 2.0.0",
+          "entry": "/zh-CN/release/release-v200"
+        }
+      ]
+    },
+    {
+      "title": "产品介绍",
+      "icon": "/product.svg",
+      "desc": "通过简单的图文介绍帮助您了解 KubeSphere",
+      "chapters": [
+        {
+          "title": "产品简介",
+          "entry": "/zh-CN/introduction/what-is-kubesphere"
+        },
+        {
+          "title": "产品功能",
+          "entry": "/zh-CN/introduction/features"
+        },
+        {
+          "title": "产品优势",
+          "entry": "/zh-CN/introduction/advantages"
+        },
+        {
+          "title": "架构说明",
+          "entry": "/zh-CN/introduction/architecture"
+        },
+        {
+          "title": "应用场景",
+          "entry": "/zh-CN/introduction/scenarios"
+        },
+        {
+          "title": "名词解释",
+          "entry": "/zh-CN/introduction/glossary"
+        }
+      ]
+    },
+    {
+      "title": "安装指南",
+      "icon": "/admin_reffer.svg",
+      "desc": "帮助用户以多种不同的方式快速安装 KubeSphere",
+      "chapters": [
+        {
+          "title": "安装说明",
+          "entries": [
+            {
+              "title": "概览",
+              "entry": "/zh-CN/installation/intro"
+            },
+            {
+              "title": "网络防火墙配置",
+              "entry": "/zh-CN/installation/port-firewall"
+            },
+            {
+              "title": "集群其它参数配置",
+              "entry": "/zh-CN/installation/vars"
+            }
+          ]
+        },
+        {
+          "title": "在 Linux 快速安装 KubeSphere",
+          "entries": [
+            {
+              "title": "All-in-One 模式",
+              "entry": "/zh-CN/installation/all-in-one"
+            },
+            {
+              "title": "Multi-Node 模式",
+              "entry": "/zh-CN/installation/multi-node"
+            },
+            {
+              "title": "完整安装（开启所有功能组件）",
+              "entry": "/zh-CN/installation/complete-installation"
+            }
+          ]
+        },
+        {
+          "title": "在 Kubernetes 安装 KubeSphere",
+          "entries": [
+            {
+              "title": "准备工作",
+              "entry": "/zh-CN/installation/prerequisites"
+            },
+            {
+              "title": "在 Kubernetes 安装 KubeSphere",
+              "entry": "/zh-CN/installation/install-on-k8s"
+            }
+          ]
+        },
+        {
+          "title": "安装可插拔的功能组件",
+          "entries": [
+            {
+              "title": "可插拔功能组件概览",
+              "entry": "/zh-CN/installation/pluggable-components"
+            },
+            {
+              "title": "安装应用商店",
+              "entry": "/zh-CN/installation/install-openpitrix"
+            },
+            {
+              "title": "安装内置的 DevOps 系统",
+              "entry": "/zh-CN/installation/install-devops"
+            },
+            {
+              "title": "安装内置的日志系统",
+              "entry": "/zh-CN/installation/install-logging"
+            },
+            {
+              "title": "安装微服务治理组件（Service Mesh）",
+              "entry": "/zh-CN/installation/install-servicemesh"
+            },
+            {
+              "title": "安装告警通知系统",
+              "entry": "/zh-CN/installation/install-alert-notification"
+            },
+            {
+              "title": "安装 Metrics-server 开启 HPA",
+              "entry": "/zh-CN/installation/install-metrics-server"
+            },
+            {
+              "title": "验证可插拔功能组件的安装",
+              "entry": "/zh-CN/installation/verify-components"
+            }
+          ]
+        },
+        {
+          "title": "集群高可用配置安装",
+          "entries": [
+            {
+              "title": "在青云安装 HA 集群",
+              "entry": "/zh-CN/installation/master-ha"
+            },
+            {
+              "title": "在华为云安装 HA 集群",
+              "entry": "/zh-CN/installation/install-on-huawei"
+            },
+            {
+              "title": "持久化存储配置说明",
+              "entry": "/zh-CN/installation/storage-configuration"
+            }
+          ]
+        },
+        {
+          "title": "相关工具与插件",
+          "entries": [
+            {
+              "title": "安装内置 Grafana",
+              "entry": "/zh-CN/installation/install-grafana"
+            },
+            {
+              "title": "访问 SonarQube 和 Jenkins 服务端",
+              "entry": "/zh-CN/installation/sonarqube-jenkins"
+            },
+            {
+              "title": "安装 Porter 负载均衡器插件",
+              "entry": "/zh-CN/installation/install-porter"
+            },
+            {
+              "title": "安装 QingCloud 负载均衡器插件",
+              "entry": "/zh-CN/installation/qingcloud-lb"
+            }
+          ]
+        },
+        {
+          "title": "认证配置",
+          "entries": [
+            {
+              "title": "接入 LDAP / AD 域账号（Beta）",
+              "entry": "/zh-CN/installation/ldap-ad"
+            }
+          ]
+        },
+        {
+          "title": "集群运维",
+          "entries": [
+            {
+              "title": "安装后添加新的存储类型",
+              "entry": "/zh-CN/installation/add-storageclass"
+            },
+            {
+              "title": "集群节点扩容",
+              "entry": "/zh-CN/installation/add-nodes"
+            },
+            {
+              "title": "卸载",
+              "entry": "/zh-CN/installation/uninstall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "升级指南",
+      "icon": "/access.svg",
+      "desc": "如何升级 KubeSphere 与 Kubernetes 版本",
+      "chapters": [
+        {
+          "title": "升级必读",
+          "entry": "/zh-CN/installation/upgrade"
+        },
+        {
+          "title": "All-in-One 升级",
+          "entry": "/zh-CN/installation/upgrade-allinone"
+        },
+        {
+          "title": "Multi-node 升级",
+          "entry": "/zh-CN/installation/upgrade-multi-node"
+        }
+      ]
+    },
+    {
+      "title": "快速入门",
+      "icon": "/access.svg",
+      "desc": "通过几个快速入门的示例帮助您了解 KubeSphere 容器平台的基本使用流程，带您快速上手 KubeSphere",
+      "chapters": [
+        {
+          "title": "入门必读",
+          "entry": "/zh-CN/quick-start/quick-start-guide"
+        },
+        {
+          "title": "1. 多租户管理快速入门",
+          "entry": "/zh-CN/quick-start/admin-quick-start"
+        },
+        {
+          "title": "2. 应用路由与服务示例",
+          "entry": "/zh-CN/quick-start/ingress-demo"
+        },
+        {
+          "title": "3. 创建 Wordpress 应用并发布至 K8s",
+          "entry": "/zh-CN/quick-start/wordpress-deployment"
+        },
+        {
+          "title": "4. 一键部署应用",
+          "entry": "/zh-CN/quick-start/one-click-deploy"
+        },
+        {
+          "title": "5. 创建简单任务",
+          "entry": "/zh-CN/quick-start/job-quick-start"
+        },
+        {
+          "title": "6. 设置弹性伸缩 (HPA)",
+          "entry": "/zh-CN/quick-start/hpa"
+        },
+        {
+          "title": "7. Source-to-Image",
+          "entry": "/zh-CN/quick-start/source-to-image"
+        },
+        {
+          "title": "8. Binary-to-Image",
+          "entry": "/zh-CN/quick-start/b2i-war"
+        },
+        {
+          "title": "9. 基于Spring Boot项目构建流水线",
+          "entry": "/zh-CN/quick-start/devops-online"
+        },
+        {
+          "title": "10. 图形化构建流水线",
+          "entry": "/zh-CN/quick-start/jenkinsfile-out-of-scm"
+        },
+        {
+          "title": "11. Bookinfo 微服务的灰度发布",
+          "entry": "/zh-CN/quick-start/bookinfo-canary"
+        },
+        {
+          "title": "12. 使用 Ingress-Nginx 进行灰度发布",
+          "entry": "/zh-CN/quick-start/ingress-canary"
+        },
+        {
+          "title": "13. 应用商店",
+          "entry": "/zh-CN/quick-start/app-store"
+        }
+      ]
+    },
+    {
+      "title": "管理员指南",
+      "icon": "/admin_reffer.svg",
+      "desc": "指导管理员如何使用平台提供的管理功能",
+      "chapters": [
+        {
+          "title": "多租户管理",
+          "entries": [
+            {
+              "title": "多租户管理概述",
+              "entry": "/zh-CN/multi-tenant/intro"
+            },
+            {
+              "title": "角色权限概览",
+              "entry": "/zh-CN/multi-tenant/role-overview"
+            }
+          ]
+        },
+        {
+          "title": "平台管理",
+          "entries": [
+            {
+              "title": "企业空间管理",
+              "entry": "/zh-CN/platform-management/workspace-management"
+            },
+            {
+              "title": "账号管理",
+              "entry": "/zh-CN/platform-management/account-management"
+            },
+            {
+              "title": "平台角色",
+              "entry": "/zh-CN/platform-management/role-management"
+            }
+          ]
+        },
+        {
+          "title": "基础设施",
+          "entries": [
+            {
+              "title": "服务组件",
+              "entry": "/zh-CN/infrastructure/components"
+            },
+            {
+              "title": "主机管理",
+              "entry": "/zh-CN/infrastructure/nodes"
+            },
+            {
+              "title": "存储类型",
+              "entry": "/zh-CN/infrastructure/storageclass"
+            }
+          ]
+        },
+        {
+          "title": "监控中心",
+          "entries": [
+            {
+              "title": "监控概述",
+              "entry": "/zh-CN/monitoring/intro"
+            },
+            {
+              "title": "如何利用监控定位问题",
+              "entry": "/zh-CN/monitoring/monitoring-demo"
+            },
+            {
+              "title": "集群状态监控",
+              "entry": "/zh-CN/monitoring/cluster-resources"
+            },
+            {
+              "title": "应用资源监控",
+              "entry": "/zh-CN/monitoring/application-resources"
+            },
+            {
+              "title": "监控策略 - 节点级别",
+              "entry": "/zh-CN/monitoring/alert-policy"
+            },
+            {
+              "title": "监控消息 - 节点级别",
+              "entry": "/zh-CN/monitoring/alert-message"
+            }
+          ]
+        },
+        {
+          "title": "平台设置",
+          "entries": [
+            {
+              "title": "应用仓库",
+              "entry": "/zh-CN/platform-settings/app-repo"
+            },
+            {
+              "title": "基于本地仓库搭建应用仓库部署Redis",
+              "entry": "/zh-CN/platform-settings/local-repo"
+            },
+            {
+              "title": "上传应用到 KubeSphere 官方仓库",
+              "entry": "/zh-CN/platform-settings/app-hosting-official"
+            },
+            {
+              "title": "基于 GitHub 搭建自有应用仓库",
+              "entry": "/zh-CN/platform-settings/app-hosting-github"
+            },
+            {
+              "title": "邮件服务器",
+              "entry": "/zh-CN/platform-settings/email-server"
+            },
+            {
+              "title": "日志收集",
+              "entry": "/zh-CN/platform-settings/log-gathering"
+            },
+            {
+              "title": "添加 Fluentd 作为日志接收者",
+              "entry": "/zh-CN/platform-settings/output-fluentd"
+            },
+            {
+              "title": "添加 Kafka 作为日志接收者",
+              "entry": "/zh-CN/platform-settings/output-kafka"
+            }
+          ]
+        },
+        {
+          "title": "工具箱",
+          "entries": [
+            {
+              "title": "Web Kubectl",
+              "entry": "/zh-CN/toolbox/kubectl"
+            },
+            {
+              "title": "日志收集",
+              "entry": "/zh-CN/toolbox/log-search"
+            }
+          ]
+        },
+        {
+          "title": "DevOps 配置",
+          "entries": [
+            {
+              "title": "系统配置修改",
+              "entry": "/zh-CN/system-settings/edit-system-settings"
+            },
+            {
+              "title": "上传镜像至 Harbor",
+              "entry": "/zh-CN/system-settings/push-img-harbor"
+            },
+            {
+              "title": "流水线配置邮件服务器",
+              "entry": "/zh-CN/devops/jenkins-email"
+            },
+            {
+              "title": "Jenkins 系统设置",
+              "entry": "/zh-CN/devops/jenkins-setting"
+            }
+          ]
+        },
+        {
+          "title": "FAQ",
+          "entries": [
+            {
+              "title": "DevOps 运维FAQ",
+              "entry": "/zh-CN/devops/devops-admin-faq"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "用户指南",
+      "icon": "/reffer.svg",
+      "desc": "指导用户如何使用平台提供的基本功能",
+      "chapters": [
+        {
+          "title": "应用",
+          "entries": [
+            {
+              "title": "应用模板",
+              "entry": "/zh-CN/application/app-template"
+            },
+            {
+              "title": "自制应用",
+              "entry": "/zh-CN/application/composing-svc"
+            },
+            {
+              "title": "流量治理",
+              "entry": "/zh-CN/application/traffic-gov"
+            },
+            {
+              "title": "熔断",
+              "entry": "/zh-CN/application/circuit-breaking"
+            }
+          ]
+        },
+        {
+          "title": "工作负载",
+          "entries": [
+            {
+              "title": "工作负载概述",
+              "entry": "/zh-CN/workload/workload"
+            },
+            {
+              "title": "部署",
+              "entry": "/zh-CN/workload/deployments"
+            },
+            {
+              "title": "有状态副本集",
+              "entry": "/zh-CN/workload/statefulsets"
+            },
+            {
+              "title": "守护进程集",
+              "entry": "/zh-CN/workload/daemonsets"
+            },
+            {
+              "title": "任务",
+              "entry": "/zh-CN/workload/jobs"
+            },
+            {
+              "title": "定时任务",
+              "entry": "/zh-CN/workload/cronjobs"
+            },
+            {
+              "title": "设置健康检查器",
+              "entry": "/zh-CN/workload/health-check"
+            },
+            {
+              "title": "工作负载管理",
+              "entry": "/zh-CN/workload/workload-management"
+            },
+            {
+              "title": "落盘日志收集",
+              "entry": "/zh-CN/workload/logs-on-disk"
+            }
+          ]
+        },
+        {
+          "title": "存储",
+          "entries": [
+            {
+              "title": "存储概述",
+              "entry": "/zh-CN/storage/volume"
+            },
+            {
+              "title": "存储卷",
+              "entry": "/zh-CN/storage/pvc"
+            },
+            {
+              "title": "Local Volume 使用方法",
+              "entry": "/zh-CN/storage/local-volume"
+            }
+          ]
+        },
+        {
+          "title": "网络与服务",
+          "entries": [
+            {
+              "title": "服务管理",
+              "entry": "/zh-CN/ingress-service/services"
+            },
+            {
+              "title": "灰度发布",
+              "entry": "/zh-CN/ingress-service/grayscale"
+            },
+            {
+              "title": "应用路由",
+              "entry": "/zh-CN/ingress-service/ingress"
+            }
+          ]
+        },
+        {
+          "title": "监控告警",
+          "entries": [
+            {
+              "title": "告警策略 - 工作负载级别",
+              "entry": "/zh-CN/workload-alert/workload-alert-policy"
+            },
+            {
+              "title": "告警消息 - 工作负载级别",
+              "entry": "/zh-CN/workload-alert/workload-alert-message"
+            }
+          ]
+        },
+        {
+          "title": "配置中心",
+          "entries": [
+            {
+              "title": "密钥",
+              "entry": "/zh-CN/configuration/secrets"
+            },
+            {
+              "title": "配置",
+              "entry": "/zh-CN/configuration/configmaps"
+            },
+            {
+              "title": "镜像仓库",
+              "entry": "/zh-CN/configuration/image-registry"
+            }
+          ]
+        },
+        {
+          "title": "项目设置",
+          "entries": [
+            {
+              "title": "基本信息",
+              "entry": "/zh-CN/project-setting/project-quota"
+            },
+            {
+              "title": "成员角色",
+              "entry": "/zh-CN/project-setting/project-roles"
+            },
+            {
+              "title": "项目成员",
+              "entry": "/zh-CN/project-setting/project-members"
+            },
+            {
+              "title": "外网访问",
+              "entry": "/zh-CN/project-setting/project-gateway"
+            }
+          ]
+        },
+        {
+          "title": "DevOps 工程",
+          "entries": [
+            {
+              "title": "DevOps 工程概述",
+              "entry": "/zh-CN/devops/intro"
+            },
+            {
+              "title": "管理 DevOps 工程",
+              "entry": "/zh-CN/devops/devops-project"
+            },
+            {
+              "title": "流水线",
+              "entry": "/zh-CN/devops/pipeline"
+            },
+            {
+              "title": "凭证管理",
+              "entry": "/zh-CN/devops/credential"
+            },
+            {
+              "title": "添加代码仓库",
+              "entry": "/zh-CN/devops/add-scm"
+            },
+            {
+              "title": "访问 SonarQube 并创建 Token",
+              "entry": "/zh-CN/devops/sonarqube"
+            },
+            {
+              "title": "设置自动触发扫描",
+              "entry": "/zh-CN/devops/auto-trigger"
+            },
+            {
+              "title": "Jenkins Agent 说明",
+              "entry": "/zh-CN/devops/jenkins-agent"
+            },
+            {
+              "title": "流水线常见问题",
+              "entry": "/zh-CN/devops/devops-faq"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "开发者指南",
+      "icon": "/admin_reffer.svg",
+      "desc": "帮助用户以多种不同的方式快速安装 KubeSphere",
+      "chapters": [
+        {
+          "title": "Helm 应用开发",
+          "entries": [
+            {
+              "title": "开发模板规范",
+              "entry": "/zh-CN/developer/helm-specification"
+            },
+            {
+              "title": "Helm 应用开发入门",
+              "entry": "/zh-CN/developer/helm-developer-guide"
+            }
+          ]
+        },
+        {
+          "title": "Source to Image(S2I) 自定义模版开发",
+          "entries": [
+            {
+              "title": "S2I 原理及流程介绍",
+              "entry": "/zh-CN/developer/s2i-introduction"
+            },
+            {
+              "title": "自定义 S2I 模版",
+              "entry": "/zh-CN/developer/s2i-template"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "API 文档",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "API 文档",
+          "entry": "/zh-CN/api-reference/api-docs"
+        },
+        {
+          "title": "如何调用 API",
+          "entry": "/zh-CN/api-reference/api-guide"
+        },
+        {
+          "title": "API 常用术语对照",
+          "entry": "/zh-CN/api-reference/api-glossary"
+        },
+        {
+          "title": "监控指标说明",
+          "entry": "/zh-CN/api-reference/monitoring-metrics"
+        }
+      ]
+    },
+    {
+      "title": "常见问题",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "安装常见问题",
+          "entry": "/zh-CN/faq/faq-install"
+        },
+        {
+          "title": "存储常见问题",
+          "entry": "/zh-CN/faq/faq-storage"
+        },
+        {
+          "title": "控制台使用常见问题",
+          "entry": "/zh-CN/faq/faq-console"
+        },
+        {
+          "title": "DevOps 常见问题",
+          "entry": "/zh-CN/faq/faq-devops"
+        }
+      ]
+    },
+    {
+      "title": "附录",
+      "icon": "/problem.svg",
+      "chapters": [
+        {
+          "title": "部署 Ceph 存储服务端",
+          "entry": "/zh-CN/appendix/ceph-ks-install"
+        },
+        {
+          "title": "部署 GlusterFS 存储服务端",
+          "entry": "/zh-CN/appendix/glusterfs-ks-install"
+        },
+        {
+          "title": "安装 OpenEBS 创建 LocalPV 存储类型",
+          "entry": "/zh-CN/appendix/install-openebs"
+        },
+        {
+          "title": "云平台配置端口转发和防火墙",
+          "entry": "/zh-CN/appendix/qingcloud-manipulation"
+        }
+      ]
+    }
+  ]
+}

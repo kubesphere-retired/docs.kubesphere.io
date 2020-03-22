@@ -37,7 +37,6 @@ class Header extends React.Component {
 
   render() {
     const { isExpand, pathPrefix, ...rest } = this.props
-
     return (
       <HeaderWrapper isExpand={isExpand} ref={this.headerRef}>
         <div className="header-expand" onClick={this.handleExpand}>

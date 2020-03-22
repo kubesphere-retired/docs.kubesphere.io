@@ -1,7 +1,7 @@
 import i18n from 'i18next'
-import LanguageDetector from 'i18next-browser-languagedetector'
+import config from '../gatsby-config'
 
-export const defaultLocale = 'zh-CN'
+export const defaultLocale = config.siteMetadata.defaultLocale
 export const defaultNamespace = 'common'
 
 export const options = {
@@ -25,7 +25,7 @@ export const options = {
 }
 
 export default () => {
-  i18n.use(LanguageDetector).init(options)
+  i18n.init(options)
 
   return i18n
 }

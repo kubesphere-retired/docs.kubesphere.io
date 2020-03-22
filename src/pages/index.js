@@ -28,6 +28,7 @@ class IndexPage extends React.Component {
 
   componentDidMount() {
     const lang = getLanguage(this.props.pageContext.locale)
+    const version = get(this, 'props.data.site.siteMetadata.versions[0].value')
     if (typeof docsearch !== 'undefined') {
       /* eslint-disable no-undef */
       docsearch({
@@ -35,10 +36,7 @@ class IndexPage extends React.Component {
         indexName: 'kubesphere',
         inputSelector: '.ks-search > input',
         algoliaOptions: {
-          facetFilters: [
-            `lang:${lang}`,
-            `version:${this.state.selectVersion.value}`,
-          ],
+          facetFilters: [`lang:${lang}`, `version:${version}`],
         },
         transformData: function(hits) {
           hits.forEach(hit => {
@@ -57,13 +55,19 @@ class IndexPage extends React.Component {
     }
   }
 
-  handleVersionChange = value => {
-    this.setState({ selectVersion: value })
+  handleVersionChange = version => {
+    const { locale } = this.props.pageContext
+    const { versions } = this.props.data.site.siteMetadata
+    const latestVersion = versions[0].value
+    let host = 'kubesphere.io/docs/'
+    if (version.value !== latestVersion) {
+      host = version.value.replace('.', '-') + '.docs.' + host
+    }
+    window.location.href = `${window.location.protocol}//${host}${locale}`
   }
 
   render() {
     const { selectVersion } = this.state
-
     const pathPrefix = this.props.data.site.pathPrefix
     const { locale } = this.props.pageContext
     if (!locale) {
@@ -74,7 +78,7 @@ class IndexPage extends React.Component {
         ) {
           window.location.href = `${pathPrefix}/zh-CN/`
         } else {
-          window.location.href = `${pathPrefix}/en/`
+          window.location.href = pathPrefix
         }
       }
 
@@ -84,10 +88,7 @@ class IndexPage extends React.Component {
     return (
       <Layout data={this.props.data}>
         <div>
-          <Header
-            {...this.props}
-            pathPrefix={pathPrefix}
-          />
+          <Header {...this.props} pathPrefix={pathPrefix} />
           <Content
             {...this.props}
             selectVersion={selectVersion}
@@ -119,6 +120,57 @@ const Header = ({ t, pageContext, pathPrefix }) => (
       </div>
     </Wrapper>
   </HeaderWrapper>
+)
+
+const getTitleLink = (chapter, defaultLocale) => {
+  const entry =
+    get(chapter, 'entry') ||
+    get(chapter, 'entries[0].entry') ||
+    get(chapter, 'chapters[0].entry') ||
+    get(chapter, 'chapters[0].entries[0].entry') ||
+    {}
+
+  return `${entry}/`.replace(`/${defaultLocale}`, '').replace(/\/\//g, '/')
+}
+
+const Documents = ({ tableOfContent, pathPrefix, defaultLocale }) => (
+  <DocumentWrapper>
+    <Wrapper>
+      <ul className="chapter-list">
+        {tableOfContent.node.chapters.map((chapter, index) => {
+          return (
+            <li key={index}>
+              <h3>
+                {chapter.icon && (
+                  <img
+                    src={`${pathPrefix}${chapter.icon}`.replace(/\/\//g, '/')}
+                    alt=""
+                  />
+                )}
+                <Link to={getTitleLink(chapter, defaultLocale)}>
+                  {chapter.title}
+                </Link>
+                {chapter.tag && <Tag>{chapter.tag}</Tag>}
+              </h3>
+              {chapter.desc && <p>{chapter.desc}</p>}
+              {chapter.chapters && (
+                <ul className="sub-chapter-list">
+                  {chapter.chapters.map(subChapter => (
+                    <li key={subChapter.title}>
+                      <Link to={getTitleLink(subChapter, defaultLocale)}>
+                        {subChapter.title}
+                      </Link>
+                      {subChapter.tag && <Tag>{subChapter.tag}</Tag>}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </Wrapper>
+  </DocumentWrapper>
 )
 
 const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
@@ -173,59 +225,12 @@ const Versions = ({ t, current, versions, onChange, pathPrefix }) => {
   )
 }
 
-const getTitleLink = chapter => {
-  const entry =
-    get(chapter, 'entry') ||
-    get(chapter, 'entries[0].entry') ||
-    get(chapter, 'chapters[0].entry') ||
-    get(chapter, 'chapters[0].entries[0].entry') ||
-    {}
-
-  return get(entry, 'childMarkdownRemark.fields.slug', '')
-}
-
-const Documents = ({ tableOfContent, pathPrefix }) => (
-  <DocumentWrapper>
-    <Wrapper>
-      <ul className="chapter-list">
-        {tableOfContent.node.chapters.map((chapter, index) => {
-          return (
-            <li key={index}>
-              <h3>
-                {chapter.icon && (
-                  <img src={`${pathPrefix}${chapter.icon}`} alt="" />
-                )}
-                <Link to={getTitleLink(chapter)}>{chapter.title}</Link>
-                {chapter.tag && <Tag>{chapter.tag}</Tag>}
-              </h3>
-              {chapter.desc && <p>{chapter.desc}</p>}
-              {chapter.chapters && (
-                <ul className="sub-chapter-list">
-                  {chapter.chapters.map(subChapter => (
-                    <li key={subChapter.title}>
-                      <Link to={getTitleLink(subChapter)}>
-                        {subChapter.title}
-                      </Link>
-                      {subChapter.tag && <Tag>{subChapter.tag}</Tag>}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          )
-        })}
-      </ul>
-    </Wrapper>
-  </DocumentWrapper>
-)
-
 const Content = props => {
-  const lang = getLanguage(props.pageContext.locale)
+  const { locale, defaultLocale } = props.pageContext
+  const lang = getLanguage(locale)
   const tableOfContent = props.data.allContentJson.edges.find(
-    edge =>
-      edge.node.version === props.selectVersion.value && edge.node.lang === lang
+    edge => edge.node.lang === lang
   )
-
   return (
     <ContentWrapper>
       <Versions
@@ -239,6 +244,7 @@ const Content = props => {
         <Documents
           tableOfContent={tableOfContent}
           pathPrefix={props.data.site.pathPrefix}
+          defaultLocale={defaultLocale}
         />
       )}
     </ContentWrapper>
@@ -258,9 +264,7 @@ const Footer = props => {
             </h3>
             <p>
               {t('Recommend you to download and use the latest free')}{' '}
-              <a href={`/${props.pageContext.locale}/install`}>
-                {t('KubeSphere v2.1.0')}
-              </a>{' '}
+              <a href={`/${props.pageContext.locale}/install`}>KubeSphere</a>{' '}
             </p>
           </li>
           <li>
@@ -378,50 +382,6 @@ const ContentWrapper = styled.div`
   box-shadow: 0 1px 0 0 #e4ebf1;
 `
 
-const VersionsWrapper = styled.div`
-  padding: 16px 0;
-  box-shadow: 0 1px 0 0 #d5dee7, 0 -1px 0 0 #d5dee7;
-  background-color: #ffffff;
-
-  @media only screen and (max-width: 768px) {
-    padding: 12px 0;
-    height: 62px;
-  }
-
-  .version-text {
-    @media only screen and (max-width: 768px) {
-      display: none;
-    }
-
-    div {
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.75;
-      color: #303e5a;
-    }
-
-    p {
-      font-size: 12px;
-      line-height: 2;
-      letter-spacing: 0.4px;
-      color: #657d95;
-      margin-bottom: 0;
-    }
-  }
-
-  .version-select {
-    float: right;
-    margin-top: -42px;
-
-    @media only screen and (max-width: 768px) {
-      float: none;
-      margin-top: 0;
-      margin-right: 24px;
-      text-align: right;
-    }
-  }
-`
-
 const DocumentWrapper = styled.div`
   padding: 80px 0;
   border: solid 0 #e4ebf1;
@@ -512,6 +472,77 @@ const DocumentWrapper = styled.div`
   }
 `
 
+const VersionsWrapper = styled.div`
+  padding: 16px 0;
+  box-shadow: 0 1px 0 0 #d5dee7, 0 -1px 0 0 #d5dee7;
+  background-color: #ffffff;
+
+  @media only screen and (max-width: 768px) {
+    padding: 12px 0;
+    height: 62px;
+  }
+
+  .version-text {
+    @media only screen and (max-width: 768px) {
+      display: none;
+    }
+
+    div {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.75;
+      color: #303e5a;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 2;
+      letter-spacing: 0.4px;
+      color: #657d95;
+      margin-bottom: 0;
+    }
+  }
+
+  .version-select {
+    float: right;
+    margin-top: -42px;
+
+    @media only screen and (max-width: 768px) {
+      float: none;
+      margin-top: 0;
+      margin-right: 24px;
+      text-align: right;
+    }
+  }
+`
+
+const Button = styled.a`
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #1d2b3a;
+  padding: 8px;
+  cursor: pointer;
+
+  & > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+  }
+
+  &:active {
+    & > svg {
+      opacity: 0.5;
+    }
+  }
+`
+
 const FooterWrapper = styled.div`
   ul {
     list-style: none;
@@ -582,33 +613,6 @@ const FooterWrapper = styled.div`
   }
 `
 
-const Button = styled.a`
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  width: 36px;
-  height: 36px;
-  border-radius: 4px;
-  background-color: #1d2b3a;
-  padding: 8px;
-  cursor: pointer;
-
-  & > svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-  }
-
-  &:active {
-    & > svg {
-      opacity: 0.5;
-    }
-  }
-`
-
 const Tag = styled.span`
   display: inline-block;
   height: 20px;
@@ -638,15 +642,6 @@ const LanguageWrapper = styled.div`
 `
 
 export const query = graphql`
-  fragment ChildRemark on MarkdownRemark {
-    fields {
-      slug
-    }
-    frontmatter {
-      title
-    }
-  }
-
   query Index {
     site {
       pathPrefix
@@ -661,42 +656,18 @@ export const query = graphql`
     allContentJson(filter: { lang: { ne: null } }) {
       edges {
         node {
-          version
           lang
           chapters {
             title
             icon
             desc
-            entry {
-              id
-              childMarkdownRemark {
-                ...ChildRemark
-              }
-            }
-            entries {
-              entry {
-                id
-                childMarkdownRemark {
-                  ...ChildRemark
-                }
-              }
-            }
             chapters {
               title
               tag
-              entry {
-                id
-                childMarkdownRemark {
-                  ...ChildRemark
-                }
-              }
+              entry
               entries {
-                entry {
-                  id
-                  childMarkdownRemark {
-                    ...ChildRemark
-                  }
-                }
+                title
+                entry
               }
             }
           }

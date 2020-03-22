@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
 import { graphql } from 'gatsby'
+import get from 'lodash/get'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
@@ -35,7 +36,8 @@ class MarkdownTemplate extends React.Component {
   }
 
   componentDidMount() {
-    const { lang, version } = this.props.pageContext
+    const { lang } = this.props.pageContext
+    const version = get(this, 'props.data.site.siteMetadata.versions[0].value')
 
     document.addEventListener('click', this.handleClick)
 
@@ -114,9 +116,14 @@ class MarkdownTemplate extends React.Component {
   }
 
   setLinkTargetBlank() {
+    const { defaultLocale } = this.props.pageContext
     const $links = document.querySelectorAll('.md-body a')
     Array.prototype.forEach.call($links, el => {
       el.setAttribute('target', '_blank')
+      const url = el.getAttribute('href')
+      if (url && !/^http(s?):\/\//.test(url)) {
+        el.setAttribute('href', url.replace(`/${defaultLocale}`, ''))
+      }
     })
   }
 
@@ -203,7 +210,7 @@ class MarkdownTemplate extends React.Component {
   }
 
   render() {
-    const { slug, lang } = this.props.pageContext
+    const { slug, lang, defaultLocale } = this.props.pageContext
     const postNode = this.props.data.postBySlug
     const pathPrefix = this.props.data.site.pathPrefix
 
@@ -231,6 +238,16 @@ class MarkdownTemplate extends React.Component {
           `"${pathPrefix}$1`
         )
       : postNode.html
+
+    const latestVersion = get(
+      this,
+      'props.data.site.siteMetadata.versions[0].value'
+    )
+
+    console.log(slug.slice(
+      1,
+      slug.length - 1
+    ))
 
     return (
       <>
@@ -266,6 +283,7 @@ class MarkdownTemplate extends React.Component {
                     chapters={
                       this.props.data.tableOfContents.edges[0].node.chapters
                     }
+                    defaultLocale={defaultLocale}
                   />
                   <ICP>KubeSphere®️ 2020 All Rights Reserved.</ICP>
                 </ToCContainer>
@@ -289,7 +307,7 @@ class MarkdownTemplate extends React.Component {
                   >
                     <MarkdownTitle>{post.title}</MarkdownTitle>
                     <MarkdownEditTip
-                      href={`https://github.com/kubesphere/docs.kubesphere.io/edit/master/content/${slug.slice(
+                      href={`https://github.com/kubesphere/docs.kubesphere.io/edit/release-${latestVersion.slice(1)}/content/${slug.slice(
                         1,
                         slug.length - 1
                       )}.md`}
@@ -392,6 +410,18 @@ const MarkdownWrapper = styled.div`
   }
 `
 
+const MarkdownEditTip = styled.a`
+  position: absolute;
+  top: 136px;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 14px !important;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
+`
+
 const MarkdownBody = styled.div`
   position: relative;
   margin: 0 auto;
@@ -466,18 +496,6 @@ const HeadingsWrapper = styled.div`
 
 const MarkdownTitle = styled.h1``
 
-const MarkdownEditTip = styled.a`
-  position: absolute;
-  top: 136px;
-  right: 20px;
-  transform: translateY(-50%);
-  font-size: 14px !important;
-
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`
-
 const FooterWrapper = styled.div`
   max-width: 1217px;
   padding: 0 30px;
@@ -497,15 +515,7 @@ const ICP = styled.div`
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  fragment ChildMarkdownRemark on MarkdownRemark {
-    fields {
-      slug
-    }
-    frontmatter {
-      title
-    }
-  }
-  query MarkdownBySlug($slug: String!, $lang: String!, $version: String!) {
+  query MarkdownBySlug($slug: String!, $lang: String!) {
     site {
       pathPrefix
       siteMetadata {
@@ -525,56 +535,22 @@ export const pageQuery = graphql`
         description
       }
       fields {
-        version
         language
       }
     }
-    languages: allMarkdownRemark(
-      filter: { fields: { version: { eq: $version } } }
-    ) {
-      group(field: fields___language) {
-        fieldValue
-      }
-    }
-    tableOfContents: allContentJson(
-      filter: { version: { eq: $version }, lang: { eq: $lang } }
-    ) {
+    tableOfContents: allContentJson(filter: { lang: { eq: $lang } }) {
       edges {
         node {
-          version
           lang
           chapters {
             title
-            entry {
-              id
-              childMarkdownRemark {
-                ...ChildMarkdownRemark
-              }
-            }
-            entries {
-              entry {
-                id
-                childMarkdownRemark {
-                  ...ChildMarkdownRemark
-                }
-              }
-            }
             chapters {
               title
               tag
-              entry {
-                id
-                childMarkdownRemark {
-                  ...ChildMarkdownRemark
-                }
-              }
+              entry
               entries {
-                entry {
-                  id
-                  childMarkdownRemark {
-                    ...ChildMarkdownRemark
-                  }
-                }
+                title
+                entry
               }
             }
           }

@@ -50,21 +50,20 @@ Then you can preview the documentation website using `http://localhost:8000/`.
 
 ## Contribute
 
-All of documents are left in `content/version/language/folder`, see the tree of this documentation repo:
+All of documents are left in `content/language/folder`, see the tree of this documentation repo:
 
 ```bash
 ├── content                                       // documents directory
-│   ├── v2.1                                     // documents version
-│   │   ├── en                                   // documents language - English version
-│   │   │   └── quick-start                      // document folder
-│   │   │           └── admin-quick-start.md     // document
-│   │   │           └── xxxx.md
-│   │   ├── zh-CN                                // documents language - Chinese version
-│   │   │   └── quick-start                      // document folder
-│   │   │           └── admin-quick-start.md     // document
-│   │   │           └── xxxx.md
-│   ├── toc_v2.1_en.json                         // table of contents, define the page navigation, this json file is for English version of navigation.
-│   └── toc_v2.1_zh-CN.json                      // this json file is for Chinese version of navigation.
+│   ├── en                                   // documents language - English version
+│   │   └── quick-start                      // document folder
+│   │           └── admin-quick-start.md     // document
+│   │           └── xxxx.md
+│   ├── zh-CN                                // documents language - Chinese version
+│   │   └── quick-start                      // document folder
+│   │           └── admin-quick-start.md     // document
+│   │           └── xxxx.md
+│   ├── toc_en.json                         // table of contents, define the page navigation, this json file is for English version of navigation.
+│   └── toc_zh-CN.json                      // this json file is for Chinese version of navigation.
 ├── src                                          // source code
 
 ```
@@ -75,11 +74,11 @@ We hope for your contribution to KubeSphere documentation, also we believe you a
 
 ### Modify document
 
-For example, if we want to modify a quick start guide (e.g. admin-quick-start.md) as following, take a look at the URL of this guide, the path `/v2.1/en/quick-start/admin-quick-start/` means the markdown file location, thus you'll be able to edit it within this repo locally.
+For example, if we want to modify a quick start guide (e.g. admin-quick-start.md) as following, take a look at the URL of this guide, the path `/en/quick-start/admin-quick-start/` means the markdown file location, thus you'll be able to edit it within this repo locally.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123163146.png)
 
-Expand the path `/v2.1/en/quick-start/admin-quick-start/`, then edit the `admin-quick-start.md`, save it after modification, and then using git to commit your changes to remote.
+Expand the path `/en/quick-start/admin-quick-start/`, then edit the `admin-quick-start.md`, save it after modification, and then using git to commit your changes to remote.
 
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123162214.png)
@@ -102,13 +101,12 @@ When PR has been created, you should preview your changes and verify it in the N
 
 ## Edit navigation
 
-Navigation is corresponding to the directory on the left, if you'd like to add a new document or modify the title within directory, just modify the  content in `content/toc_v2.1_en.json` or `content/toc_v2.1_zh-CN.json`.
+Navigation is corresponding to the directory on the left, if you'd like to add a new document or modify the title within directory, just modify the  content in `content/toc_en.json` or `content/toc_zh-CN.json`.
 
 > Attention: make sure you can compile it successfully using command `yarn develop` if you change the navigation json file.
 
 **navigation file example**
 
-> - id: should match the format of ``{version}-{language}``
 > - chapters: nav items
 > - title: nav title
 > - entry: nav entry, path to the document to display
@@ -127,20 +125,20 @@ Navigation is corresponding to the directory on the left, if you'd like to add a
     "chapters": [
       {
         "title": "Release Notes - 2.1.0",
-        "entry": "./v2.1/en/release/release-v210.md",
+        "entry": "/en/release/release-v210",
         "tag": "Latest"
       },
       {
         "title": "Release Notes - 2.0.2",
-        "entry": "./v2.1/en/release/release-v202.md"
+        "entry": "/en/release/release-v202"
       },
       {
         "title": "Release Notes - 2.0.1",
-        "entry": "./v2.1/en/release/release-v201.md"
+        "entry": "/en/release/release-v201"
       },
       {
         "title": "Release Notes - 2.0.0",
-        "entry": "./v2.1/en/release/release-v200.md"
+        "entry": "/en/release/release-v200"
       }
     ]
   }

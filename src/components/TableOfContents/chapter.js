@@ -4,7 +4,6 @@ import GatsbyLink from 'gatsby-link'
 import styled from 'styled-components'
 import classnames from 'classnames'
 
-import { formatAnchor } from '../../utils/index'
 import { ReactComponent as Arrow } from '../../assets/arrow.svg'
 
 const Link = ({ to, ...rest }, { location }) => {
@@ -13,7 +12,7 @@ const Link = ({ to, ...rest }, { location }) => {
 
   return (
     <GatsbyLink
-      to={to}
+      to={`${to}/`.replace(/\/\//g, '/')}
       {...rest}
       className={classnames({ 'selected-link': selected })}
     />
@@ -24,87 +23,34 @@ Link.contextTypes = {
   location: PropTypes.object,
 }
 
-class LinkWithHeadings extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      open: false,
-    }
-  }
-
-  componentDidMount() {
-    const { location } = this.context
-    const { fields } = this.props.entry.childMarkdownRemark
-
-    this.setState({
-      open: location.pathname.indexOf(fields.slug) !== -1,
-    })
-  }
-
-  handleClick = () => {
-    this.setState(({ open }) => ({
-      open: !open,
-    }))
-  }
-
+class LinkWrapper extends React.Component {
   render() {
-    const { entry, tag, level, title } = this.props
-    const { headings, fields, frontmatter } = entry.childMarkdownRemark
-    const { open } = this.state
+    const { entry, tag, level, title, defaultLocale } = this.props
 
-    let heads = []
-
-    if (headings) {
-      heads = headings.filter(head => head.depth === 2)
-    }
+    const url = entry.replace(`/${defaultLocale}`, '')
 
     return (
-      <div>
-        <Link to={fields.slug}>
-          <Title level={level} onClick={this.handleClick}>
-            {heads.length > 0 ? (
-              <Arrow className={classnames({ 'arrow-open': open })} />
-            ) : (
-              level === 0 && <Arrow />
-            )}
-            {title || frontmatter.title}
-            {tag && <Tag>{tag}</Tag>}
-          </Title>
-        </Link>
-        <HeadingsWrapper
-          className={classnames('heads-toggle', { 'heads-open': open })}
-        >
-          {heads.length > 0 && (
-            <Headings heads={heads} prefix={fields.slug} level={level + 1} />
-          )}
-        </HeadingsWrapper>
-      </div>
+      <Link to={url}>
+        <Title level={level} onClick={this.handleClick}>
+          {level === 0 && <Arrow />}
+          {title}
+          {tag && <Tag>{tag}</Tag>}
+        </Title>
+      </Link>
     )
   }
 }
 
-LinkWithHeadings.contextTypes = {
-  location: PropTypes.object,
-}
-
-const Headings = ({ heads, prefix, level }) => (
+const Links = ({ entries, level, defaultLocale }) => (
   <StyledList>
-    {heads.map(({ value }, key) => (
+    {entries.map(({ entry, title }, key) => (
       <ListItem key={key}>
-        <Link to={`${prefix}#${formatAnchor(value)}`}>
-          <Title level={level}>{value}</Title>
-        </Link>
-      </ListItem>
-    ))}
-  </StyledList>
-)
-
-const Links = ({ entries, level }) => (
-  <StyledList>
-    {entries.map(({ entry }, key) => (
-      <ListItem key={key}>
-        <LinkWithHeadings entry={entry} level={level} />
+        <LinkWrapper
+          title={title}
+          entry={entry}
+          level={level}
+          defaultLocale={defaultLocale}
+        />
       </ListItem>
     ))}
   </StyledList>
@@ -121,7 +67,7 @@ class ChapterList extends React.Component {
 
   getOpenState = (props, context) => {
     let open = false
-
+    const locale = props.defaultLocale
     let pathname = context.location.pathname
     if (!/\/$/.test(pathname)) {
       context.location.pathname = context.location.pathname + '/'
@@ -129,25 +75,23 @@ class ChapterList extends React.Component {
     }
 
     if (props.entries) {
-      const slugs = props.entries.map(
-        ({ entry }) => entry.childMarkdownRemark.fields.slug
-      )
+      const slugs = props.entries.map(({ entry }) => entry)
 
-      open = slugs.some(slug => pathname.indexOf(slug) !== -1)
+      open = slugs.some(
+        slug => pathname.indexOf(slug.replace(`/${locale}`, '')) !== -1
+      )
     } else if (props.chapters) {
       const slugs = []
       props.chapters.forEach(chapter => {
         if (chapter.entry) {
-          slugs.push(chapter.entry.childMarkdownRemark.fields.slug)
+          slugs.push(chapter.entry)
         } else if (chapter.entries) {
-          slugs.push(
-            ...chapter.entries.map(
-              ({ entry }) => entry.childMarkdownRemark.fields.slug
-            )
-          )
+          slugs.push(...chapter.entries.map(({ entry }) => entry))
         }
       })
-      open = slugs.some(slug => pathname.indexOf(slug) !== -1)
+      open = slugs.some(
+        slug => pathname.indexOf(slug.replace(`/${locale}`, '')) !== -1
+      )
     }
 
     return open
@@ -160,7 +104,15 @@ class ChapterList extends React.Component {
   }
 
   render() {
-    const { chapters, entry, tag, entries, title, level = 0 } = this.props
+    const {
+      chapters,
+      entry,
+      tag,
+      entries,
+      title,
+      level = 0,
+      defaultLocale,
+    } = this.props
     const { open } = this.state
 
     return (
@@ -168,11 +120,12 @@ class ChapterList extends React.Component {
         {title && (
           <ListItem key={`${title}${level}`}>
             {entry ? (
-              <LinkWithHeadings
+              <LinkWrapper
                 entry={entry}
                 tag={tag}
                 level={level}
                 title={title}
+                defaultLocale={defaultLocale}
               />
             ) : (
               <Title level={level} onClick={this.handleClick}>
@@ -183,12 +136,23 @@ class ChapterList extends React.Component {
           </ListItem>
         )}
         <ListItem className={classnames('list-toggle', { 'list-open': open })}>
-          {entries && <Links entries={entries} level={level + 1} />}
+          {entries && (
+            <Links
+              entries={entries}
+              level={level + 1}
+              defaultLocale={defaultLocale}
+            />
+          )}
         </ListItem>
         <ListItem className={classnames('list-toggle', { 'list-open': open })}>
           {chapters &&
             chapters.map((chapter, index) => (
-              <ChapterList {...chapter} level={level + 1} key={`${index}`} />
+              <ChapterList
+                {...chapter}
+                level={level + 1}
+                key={`${index}`}
+                defaultLocale={defaultLocale}
+              />
             ))}
         </ListItem>
       </StyledList>
@@ -266,17 +230,6 @@ const Title = styled.h5`
     &.arrow-open {
       transform: rotate(0);
     }
-  }
-`
-
-const HeadingsWrapper = styled.div`
-  &.heads-toggle > ol > li {
-    height: 0;
-    overflow: hidden;
-  }
-
-  &.heads-open > ol > li {
-    height: auto;
   }
 `
 
