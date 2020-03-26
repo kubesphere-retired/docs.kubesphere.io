@@ -196,6 +196,14 @@ const style = `
     font-size: 14px;
   }
 
+  .menu-content {
+    position: fixed;
+  }
+
+  .api-content {
+    margin-left: 260px;
+  }
+
   .menu-content img[alt="logo"] {
     width: 160px;
     height: 80px;
