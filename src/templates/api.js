@@ -197,11 +197,11 @@ const style = `
   }
 
   .menu-content {
-    position: fixed;
+    position: fixed !important;
   }
 
   .api-content {
-    margin-left: 260px;
+    margin-left: 260px !important;
   }
 
   .menu-content img[alt="logo"] {
