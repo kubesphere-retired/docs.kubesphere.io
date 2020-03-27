@@ -70,6 +70,14 @@ class MarkdownTemplate extends React.Component {
         algoliaOptions: {
           facetFilters: [`lang:${lang}`],
         },
+        transformData: function(hits) {
+          hits.forEach(hit => {
+            if (typeof window !== undefined) {
+              hit.url = hit.url.replace('kubesphere.io', window.location.host)
+            }
+          })
+          return hits
+        },
         debug: false,
       })
     }
@@ -492,9 +500,7 @@ export const pageQuery = graphql`
         language
       }
     }
-    tableOfContents: allContentJson(
-      filter: { lang: { eq: $lang } }
-    ) {
+    tableOfContents: allContentJson(filter: { lang: { eq: $lang } }) {
       edges {
         node {
           lang
