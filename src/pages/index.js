@@ -37,6 +37,14 @@ class IndexPage extends React.Component {
         algoliaOptions: {
           facetFilters: [`lang:${lang}`],
         },
+        transformData: function(hits) {
+          hits.forEach(hit => {
+            if (typeof window !== undefined) {
+              hit.url = hit.url.replace('kubesphere.io', window.location.host)
+            }
+          })
+          return hits
+        },
         debug: false,
       })
       /* eslint-enable no-undef */
