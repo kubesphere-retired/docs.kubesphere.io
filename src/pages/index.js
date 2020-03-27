@@ -28,7 +28,6 @@ class IndexPage extends React.Component {
 
   componentDidMount() {
     const lang = getLanguage(this.props.pageContext.locale)
-    const version = get(this, 'props.data.site.siteMetadata.versions[0].value')
     if (typeof docsearch !== 'undefined') {
       /* eslint-disable no-undef */
       docsearch({
@@ -36,18 +35,7 @@ class IndexPage extends React.Component {
         indexName: 'kubesphere',
         inputSelector: '.ks-search > input',
         algoliaOptions: {
-          facetFilters: [`lang:${lang}`, `version:${version}`],
-        },
-        transformData: function(hits) {
-          hits.forEach(hit => {
-            if (
-              typeof window !== undefined &&
-              process.env.NODE_ENV !== 'development'
-            ) {
-              hit.url = hit.url.replace('kubesphere.io', window.location.host)
-            }
-          })
-          return hits
+          facetFilters: [`lang:${lang}`],
         },
         debug: false,
       })
