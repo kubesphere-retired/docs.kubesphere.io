@@ -90,7 +90,7 @@ kubectl get pods -n istio-system
 
 ### Verify Metrics-server Installation
 
-If you have enabled [Metrics-server](../install-metrics-server), you can verify the status of Pods  using the following command.
+If you have enabled [Metrics-server](../install-metrics-server), you can verify the status of Pods using the following command.
 
 ```bash
 kubectl get pods -n kube-system | grep metrics-server

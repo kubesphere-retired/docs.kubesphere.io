@@ -360,6 +360,17 @@
           "entry": "/en/api-reference/api-guide"
         }
       ]
+    },
+    {
+      "title": "Troubleshooting",
+      "icon": "/problem.svg",
+      "desc": "Conclusions to troubleshoot issues when installing or using KubeSphere",
+      "chapters": [
+        {
+          "title": "Troubleshooting Guide for Installation",
+          "entry": "/en/Troubleshooting/installation"
+        }
+      ]
     }
   ]
 }
