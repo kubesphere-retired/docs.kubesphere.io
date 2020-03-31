@@ -27,7 +27,7 @@ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=
 You can delete the Pod **ks-installer** or restart the Deployment it to reinstall.
 
 ```bash
-kubectl rollout restart deploy -n kubesphere-system ks-installer-xxx-xxx
+kubectl rollout restart deploy -n kubesphere-system ks-installer
 ```
 
 ## Create client certificate failed

@@ -36,15 +36,15 @@
       "desc": "通过简单的图文介绍帮助您了解 KubeSphere",
       "chapters": [
         {
-          "title": "产品简介",
+          "title": "什么是 KubeSphere",
           "entry": "/zh-CN/introduction/what-is-kubesphere"
         },
         {
-          "title": "产品功能",
+          "title": "平台功能",
           "entry": "/zh-CN/introduction/features"
         },
         {
-          "title": "产品优势",
+          "title": "为什么选择 KubeSphere",
           "entry": "/zh-CN/introduction/advantages"
         },
         {
