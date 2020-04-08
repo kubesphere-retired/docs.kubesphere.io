@@ -82,7 +82,7 @@ class IndexPage extends React.Component {
     }
 
     return (
-      <Layout data={this.props.data}>
+      <Layout data={this.props.data} locale={locale}>
         <div>
           <Header {...this.props} pathPrefix={pathPrefix} />
           <Content
