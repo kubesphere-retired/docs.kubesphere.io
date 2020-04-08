@@ -235,7 +235,7 @@ class MarkdownTemplate extends React.Component {
 
     return (
       <>
-        <Layout data={this.props.data}>
+        <Layout data={this.props.data} locale={lang}>
           <div>
             <Helmet
               title={`${post.title} | ${
