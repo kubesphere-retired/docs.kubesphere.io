@@ -9,14 +9,6 @@ For those who are new to KubeSphere and looking for a quick way to discover the 
 - <font color=red>The following instructions are for the default installation without enabling any optional components as we have made them pluggable since v2.1.0. If you want to enable any one, please see the section [Enable Pluggable Components](../all-in-one#enable-pluggable-components) below.</font>
 - <font color=red>If your machine has >= 8 cores and >= 16G memory, we recommend you to install the full package of KubeSphere by [enabling optional components](../complete-installation)</font>.
 
-## Video Demo
-
-**The video shows how to install KubeSphere on virtual machine created from [QingCloud](https://www.qingcloud.com). It would be same to install on any other machine.**
-
-<video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P001C201912_AllinOne.mp4">
-</video>
-
 ## Prerequisites
 
 If your machine is behind a firewall, you need to open the ports by following the document [Ports Requirement](../port-firewall) for more information.
@@ -65,7 +57,7 @@ You should not do anything except executing one command as follows. The installe
 ./install.sh
 ```
 
-**2.** Enter `1` to select `All-in-one` mode to start:
+**2.** Enter `1` to select `All-in-one` mode and type `yes` if your machine satisfies the requirements to start:
 
 ```bash
 ################################################
@@ -108,7 +100,7 @@ NOTE：Please modify the default password after login.
 
 ## Enable Pluggable Components
 
-The above installation is only used for minimal installation by default. You can execute the following command to open the configure map and enable pluggable components. Make sure your cluster has enough CPU and memory in advance, see [Enable Pluggable Components](../pluggable-components).
+The guide above is only used for minimal installation by default. You can execute the following command to open the configure map and enable pluggable components. Make sure your cluster has enough CPU and memory in advance, see [Enable Pluggable Components](../pluggable-components).
 
 ```bash
 kubectl edit cm -n kubesphere-system ks-installer
@@ -116,6 +108,6 @@ kubectl edit cm -n kubesphere-system ks-installer
 
 ## FAQ
 
-The installer has been tested on Aliyun, Tencent cloud, Huawei Cloud, QingCloud, AWS. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read the [FAQ of installation](../../faq/faq-install).
+The installer has been tested on Aliyun, AWS, Huawei Cloud, QingCloud and Tencent Cloud. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read the [FAQ of installation](../../faq/faq-install).
 
-If you have further questions please do not hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).
+If you have any further questions please do not hesitate to file issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).
