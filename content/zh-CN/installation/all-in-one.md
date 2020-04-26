@@ -27,6 +27,7 @@ description: 'Linux 单节点安装 KubeSphere 与 Kubernetes'
 您可以参考以下节点规格准备一台符合要求的主机节点开始 `all-in-one` 模式的安装，为防止软件版本冲突，**建议您选择一台干净的机器**。
 
 > 说明：
+>
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
 > - 若使用 ubuntu 18.04，则需要使用 root 用户；
 > - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装。
@@ -52,17 +53,16 @@ curl -L https://kubesphere.io/download/stable/v2.1.1 > installer.tar.gz \
 KubeSphere 安装过程中将会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes（默认 v1.16.7）和 etcd 的自动化安装，以及存储的自动化配置，安装成功后可通过 KubeSphere 控制台右上角点击关于查看安装的版本。
 
 > 说明：
+>
 > - 通常情况您不需要修改任何配置，直接安装即可。
 > - 网络插件默认是 `calico`，若您需要自定义安装参数，如网络、存储、负载均衡器插件、可选组件等相关配置需在 **`conf/common.yaml`** 文件中指定或修改，参考 [集群组件配置说明](../vars)。
 > - 存储默认用 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，方便初次安装但没有准备存储服务端的场景下进行**部署测试**，即本地存储设备作为存储类型。
 > - 支持存储类型与存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
 > - 由于 Kubernetes 集群的 Cluster IP 子网网段默认是 `10.233.0.0/18`，Pod 的子网网段默认是 `10.233.64.0/18`，因此安装 KubeSphere 的节点 IP 地址范围不应与以上两个网段有重复，若遇到地址范围冲突可在配置文件 `conf/common.yaml` 修改 `kube_service_addresses` 或 `kube_pods_subnet` 的参数。
 
-
 参考以下步骤开始 all-in-one 安装：
 
-
-3.1. 建议使用 `root` 用户安装，执行 `install.sh` 脚本：
+3.1. 建议使用 `root` 用户安装，执行 `install.sh` 脚本。__再次提醒大陆用户需要配置[镜像加速](https://kubesphere.com.cn/forum/d/149-kubesphere-v2-1-0/15).__
 
 ```bash
 ./install.sh
@@ -100,6 +100,7 @@ Password: P@88w0rd
 NOTE：Please modify the default password after login.
 #####################################################
 ```
+
 > 提示：如需要再次查看以上的界面信息，可参考 [验证安装](../verify-components) 的查看安装日志命令。
 
 **(2)** 若需要在外网访问，在云平台可能需要在端口转发规则中将 **内网端口** 30880 转发到 **源端口** 30880，然后在防火墙开放这个 **源端口**，确保外网流量可以通过该端口。
@@ -108,11 +109,11 @@ NOTE：Please modify the default password after login.
 
 **(3)** 安装成功后，浏览器访问对应的 URL，如 `http://{$NodeIP}:30880`，即可进入 KubeSphere 登录界面，可使用默认的用户名和密码登录 KubeSphere 控制台体验，**登录后请立即修改默认密码**。参阅 [快速入门](../../quick-start/quick-start-guide) 帮助您快速上手 KubeSphere。
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191020153911.png)
+![KubeSphere Login](https://pek3b.qingstor.com/kubesphere-docs/png/20191020153911.png)
 
 <font color=red>注意：登陆 Console 后请在 "集群状态" 查看服务组件的监控状态，待所有组件启动完成后即可开始使用，通常所有服务组件都将在 10 分钟内启动完成。</font>
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191014095317.png)
+![KubeSphere Dashboard](https://pek3b.qingstor.com/kubesphere-docs/png/20191014095317.png)
 
 ## FAQ
 
