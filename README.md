@@ -1,4 +1,4 @@
-# Documentation for [KubeSphere](https://github.com/kubesphere/kubesphere).
+# Documentation for [KubeSphere](https://kubesphere.io/docs/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/eec97cb5-3fa0-4865-ad61-357edc16a145/deploy-status)](https://app.netlify.com/sites/kubesphere-docs/deploys)
 
@@ -6,15 +6,15 @@
 
 ## Prerequisites
 
-We recomend you to install the following 3 dependent softwares:
+Install the following three dependencies first:
 
 > - git
 > - node.js
 > - yarn (or npm, `we recommend yarn`)
 
-Then check if these prerequisites have been installed successfully.
+Check if installed successfully.
 
-```shell
+```bash
 $ git --version
 git version 2.21.0
 $ node -v
@@ -23,37 +23,34 @@ $ yarn -v
 1.15.2
 ```
 
-## Fork it
+## Fork
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123154725.png)
+Fork the docs into your account.
+
+![Fork](https://pek3b.qingstor.com/kubesphere-docs/png/20191123154725.png)
 
 ## Clone to your local
 
-Then you are ready to go:
-
-```shell
-$ git clone https://github.com/{$YOUR_GITHUB_ACCOUNT}/docs.kubesphere.io.git
+```bash
+git clone https://github.com/{$YOUR_GITHUB_ACCOUNT}/docs.kubesphere.io.git
 ```
 
 ## Compile it locally
 
-```
-$ cd docs.kubesphere.io
-
-$ yarn
-
-$ yarn develop
+```bash
+cd docs.kubesphere.io
+yarn
+yarn develop
 ```
 
-Then you can preview the documentation website using `http://localhost:8000/`.
+Then you can preview the documentation website `http://localhost:8000/`.
 
+## Document tree
 
-## Contribute
-
-All of documents are left in `content/language/folder`, see the tree of this documentation repo:
+All documents are placed in `content/` folder, see the document tree below:
 
 ```bash
-├── content                                       // documents directory
+├── content                                  // documents directory
 │   ├── en                                   // documents language - English version
 │   │   └── quick-start                      // document folder
 │   │           └── admin-quick-start.md     // document
@@ -62,58 +59,56 @@ All of documents are left in `content/language/folder`, see the tree of this doc
 │   │   └── quick-start                      // document folder
 │   │           └── admin-quick-start.md     // document
 │   │           └── xxxx.md
-│   ├── toc_en.json                         // table of contents, define the page navigation, this json file is for English version of navigation.
-│   └── toc_zh-CN.json                      // this json file is for Chinese version of navigation.
-├── src                                          // source code
+│   ├── toc_en.json                          // table of contents, define the page navigation, this json file is for English version of navigation.
+│   └── toc_zh-CN.json                       // this json file is for Chinese version of navigation.
+├── src                                      // source code
 
 ```
 
 ## Contribute to documentation
 
-We hope for your contribution to KubeSphere documentation, also we believe you are able to improve the current docs, add your practical guides, or fix mistaken words, it's quite easy to commit your first PR to this repository by following these steps.
+ Your contribution to KubeSphere documentation is highly welcome. Please follow the guide below to improve the current docs, add your practical guides, or fix misspelling words.
 
 ### Modify document
 
-For example, if we want to modify a quick start guide (e.g. admin-quick-start.md) as following, take a look at the URL of this guide, the path `/en/quick-start/admin-quick-start/` means the markdown file location, thus you'll be able to edit it within this repo locally.
+For example, if we want to modify a quick start guide (e.g. admin-quick-start.md) as the following, take a look at the URL of this guide, the path `/en/quick-start/admin-quick-start/` (en is omitted usually) means the markdown file location.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123163146.png)
+![quick start sample](https://pek3b.qingstor.com/kubesphere-docs/png/20191123163146.png)
 
-Expand the path `/en/quick-start/admin-quick-start/`, then edit the `admin-quick-start.md`, save it after modification, and then using git to commit your changes to remote.
+Expand the folder `/en/quick-start/admin-quick-start/`, edit the file `admin-quick-start.md`, save it after modified, then use git to commit your changes to remote repo.
 
-
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123162214.png)
+![File IDE](https://pek3b.qingstor.com/kubesphere-docs/png/20191123162214.png)
 
 ### Commit your PR
 
 ```bash
-$ git add .                                 // Add your local changes
-$ git commit -s -m "comment your changes"  // Commit with your comment
-$ git push origin master                  // Push to your remote repo
+git add .                                 // Add your local changes
+git commit -s -m "comment your changes"   // Commit with your comment
+git push origin master                    // Push to your remote repo
 ```
 
-After above steps done, open a new Pull Request in GitHub:
+After the steps above done, open a new Pull Request in GitHub:
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123163627.png)
+![Create PR](https://pek3b.qingstor.com/kubesphere-docs/png/20191123163627.png)
 
-When PR has been created, you should preview your changes and verify it in the Netlify notification as following, click the `Details` button near `Deploy preview ready!` to preview your changes in browser.
+When PR has been created, you should preview your changes and verify it in the Netlify notification as follows, click the `Details` button near `Deploy preview ready!` to preview your changes in browser.
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191123170208.png)
+![Preview](https://pek3b.qingstor.com/kubesphere-docs/png/20191123170208.png)
 
 ## Edit navigation
 
-Navigation is corresponding to the directory on the left, if you'd like to add a new document or modify the title within directory, just modify the  content in `content/toc_en.json` or `content/toc_zh-CN.json`.
+Navigation is corresponding to the directory on the left of the document website. If you'd like to add a new document or modify the title within directory, just modify the content in `content/toc_en.json` or `content/toc_zh-CN.json`.
 
 > Attention: make sure you can compile it successfully using command `yarn develop` if you change the navigation json file.
 
-**navigation file example**
+### Navigation file example
 
 > - chapters: nav items
 > - title: nav title
 > - entry: nav entry, path to the document to display
 > - entries: sub navs
 
-
-```
+```yaml
 ···
 "version": "v2.1",
 "lang": "en",
@@ -143,3 +138,4 @@ Navigation is corresponding to the directory on the left, if you'd like to add a
     ]
   }
 ```
+
