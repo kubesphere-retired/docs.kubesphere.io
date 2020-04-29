@@ -233,16 +233,6 @@ class MarkdownTemplate extends React.Component {
         )
       : postNode.html
 
-    const latestVersion = get(
-      this,
-      'props.data.site.siteMetadata.versions[0].value'
-    )
-
-    console.log(slug.slice(
-      1,
-      slug.length - 1
-    ))
-
     return (
       <>
         <Layout data={this.props.data} locale={lang}>
@@ -489,18 +479,6 @@ const HeadingsWrapper = styled.div`
 `
 
 const MarkdownTitle = styled.h1``
-
-const MarkdownEditTip = styled.a`
-  position: absolute;
-  top: 136px;
-  right: 20px;
-  transform: translateY(-50%);
-  font-size: 14px !important;
-
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`
 
 const FooterWrapper = styled.div`
   max-width: 1217px;
