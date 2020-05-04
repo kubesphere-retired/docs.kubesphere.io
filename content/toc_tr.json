@@ -1,0 +1,18 @@
+{
+  "version": "v2.1",
+  "lang": "tr",
+  "chapters": [
+    {
+      "title": "Release Notes",
+      "icon": "/product.svg",
+      "desc": "Introduce the new features, capabilities and updates for the releases",
+      "chapters": [
+        {
+          "title": "Release Notes - 2.1.1",
+          "entry": "/tr/release/release-v211",
+          "tag": "Latest"
+        }
+      ]
+    }
+  ]
+}

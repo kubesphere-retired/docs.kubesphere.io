@@ -47,12 +47,10 @@ class Header extends React.Component {
         <LogoWrapper>
           <Logo pageContext={this.props.pageContext} pathPrefix={pathPrefix} />
         </LogoWrapper>
-        <SearchWrapper>
+        <RightWrapper>
           <Search {...rest} />
-        </SearchWrapper>
-        <LanguageWrapper>
           <Language {...this.props} pathPrefix={pathPrefix} noIcon />
-        </LanguageWrapper>
+        </RightWrapper>
       </HeaderWrapper>
     )
   }
@@ -135,7 +133,9 @@ const HeaderWrapper = styled.div`
   }
 `
 
-const LanguageWrapper = styled.div`
+const RightWrapper = styled.div`
+  display: flex;
+  align-items: center;
   position: absolute;
   right: 20px;
   top: 50%;
@@ -144,16 +144,9 @@ const LanguageWrapper = styled.div`
   @media only screen and (max-width: 768px) {
     display: none;
   }
-`
 
-const SearchWrapper = styled.span`
-  position: absolute;
-  right: 140px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  @media only screen and (max-width: 768px) {
-    display: none;
+  & > div + div {
+    margin-left: 12px;
   }
 
   .ks-search {

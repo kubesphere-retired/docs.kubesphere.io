@@ -17,6 +17,12 @@ const localesNSContent = {
       ns: 'common',
     },
   ],
+  tr: [
+    {
+      content: fs.readFileSync(`src/locales/tr/common.json`, 'utf8'),
+      ns: 'common',
+    },
+  ],
 }
 
 const { availableLocales, defaultLocale } = config.siteMetadata

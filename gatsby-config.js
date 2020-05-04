@@ -19,6 +19,7 @@ module.exports = {
     availableLocales: [
       { name: '简体中文', value: 'zh-CN' },
       { name: 'English', value: 'en' },
+      { name: 'Türkçe', value: 'tr' },
     ],
     defaultLocale: process.env.DEFAULT_LANG || 'en',
     swaggerUrls: [

@@ -7,6 +7,9 @@ export function getLanguage(lang) {
     case 'zh-CN':
       formatLang = 'zh-CN'
       break
+    case 'tr':
+      formatLang = 'tr'
+      break
     default:
       break
   }
