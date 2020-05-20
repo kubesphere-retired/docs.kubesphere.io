@@ -1,5 +1,5 @@
 ---
-title: "完整安装（开启所有功能组件）"
+title: "完整安装（安装前开启所有功能组件）"
 keywords: 'Kubernetes, docker, jenkins, devops, istio'
 description: '在 Linux 完整安装 KubeSphere 容器平台'
 ---
@@ -24,11 +24,11 @@ KubeSphere 2.1 默认 **仅开启最小化安装**，Installer 已支持在安�
 
 ## 准备安装包
 
-若您还没有下载 KubeSphere Installer，请先下载 `KubeSphere 2.1.0` 安装包至待安装机器，进入组件配置目录。
+若您还没有下载 KubeSphere Installer，请先下载 `KubeSphere 2.1.1` 安装包至待安装机器，进入组件配置目录。
 
 ```bash
-$ curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/conf
+$ curl -L https://kubesphere.io/download/stable/v2.1.1 > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/conf
 ```
 
 ## 开启所有功能组件

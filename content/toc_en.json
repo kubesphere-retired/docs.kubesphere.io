@@ -352,7 +352,7 @@
       "desc": "Introduction to KubeSphere API",
       "chapters": [
         {
-          "title": "API Guide",
+          "title": "API Documentation",
           "entry": "/en/api-reference/api-docs"
         },
         {

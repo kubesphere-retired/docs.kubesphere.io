@@ -10,6 +10,10 @@ description: '在 Linux 安装多节点 KubeSphere 与 Kubernetes'
 - <font color=red>若您的机器资源配置充足（所有机器总 CPU 不小于 8 核，总内存不小于 16 G），非常建议您在安装前 [将 KubeSphere 所有功能组件都开启](../complete-installation) 后再执行安装，体验 KubeSphere 容器平台端到端完整的容器管理与运维能力。</font>
 - <font color=red>安装时间跟网络情况和带宽、机器配置、安装节点个数等因素有关，可通过调高带宽的方式，或在安装前 [配置镜像加速器](https://kubesphere.com.cn/forum/d/149-kubesphere-v2-1-0) 来加快安装速度。</font>
 
+
+> 提示：本文档提供的一键安装的 Installer 对于符合要求的干净 Linux 操作系统会非常方便，将一键安装所需的软件。但是也可能会因为环境依赖或网络问题造成安装不顺利。因此，我们在论坛提供了 [step-by-step 的安装教程](https://kubesphere.com.cn/forum/d/1272-kubeadm-k8s-kubesphere-2-1-1)，方便理解每一步的安装原理，也能够更容易定位安装问题。
+
+
 > 注意：
 >
 > - 本安装示例仅作为快速测试部署的演示，因此将使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，**方便初次安装但没有准备存储服务端的场景下进行部署测试**，**正式环境建议配置使用 KubeSphere 支持的存储类型**，参考 [持久化存储配置说明](../storage-configuration)。
