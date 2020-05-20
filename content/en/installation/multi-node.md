@@ -10,14 +10,6 @@ description: 'The guide for installing KubeSphere on Multi-Node in development o
 - <font color=red>If your machines in total have >= 8 cores and >= 16G memory, we recommend you to install the full package of KubeSphere by [Enabling Optional Components](../complete-installation)</font>.
 - <font color=red> The installation time depends on your network bandwidth, your computer configuration, the number of nodes, etc. </font>
 
-## Video Demo
-
-The video shows how to install KubeSphere on multiple virtual machines on [QingCloud](https://www.qingcloud.com). It would be same to install on any other machines.
-
-<video controls="controls" style="width: 100% !important; height: auto !important;">
-  <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P002C202001_MultiNode.mp4">
-</video>
-
 ## Prerequisites
 
 If your machine is behind a firewall, you need to open the ports by following the document [Ports Requirements](../port-firewall) for more information.
@@ -177,6 +169,6 @@ NOTE：Please modify the default password after login.
 
 ## FAQ
 
-The installer has been tested on Aliyun, Tencent cloud, Huawei Cloud, QingCloud, AWS. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read the [FAQ of installation](../../faq/faq-install).
+The installer has been tested on Aliyun, AWS, Huawei Cloud, QingCloud, Tencent Cloud. Please check the [results](https://github.com/kubesphere/ks-installer/issues/23) for details. Also please read the [FAQ of installation](../../faq/faq-install).
 
-If you have further questions please do not hesitate to raise issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).
+If you have any further questions please do not hesitate to file issues on [GitHub](https://github.com/kubesphere/kubesphere/issues).

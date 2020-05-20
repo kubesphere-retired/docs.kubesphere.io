@@ -115,7 +115,7 @@ class MarkdownTemplate extends React.Component {
     Array.prototype.forEach.call($links, el => {
       el.setAttribute('target', '_blank')
       const url = el.getAttribute('href')
-      if (url) {
+      if (url && !url.startsWith('http')) {
         el.setAttribute('href', url.replace(`/${defaultLocale}`, ''))
       }
     })
@@ -290,6 +290,16 @@ class MarkdownTemplate extends React.Component {
                     }}
                   >
                     <MarkdownTitle>{post.title}</MarkdownTitle>
+                    <MarkdownEditTip
+                      href={`https://github.com/kubesphere/docs.kubesphere.io/edit/release-2.1/content/${slug.slice(
+                        1,
+                        slug.length - 1
+                      )}.md`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t('Edit')}
+                    </MarkdownEditTip>
                     <div
                       ref={ref => {
                         this.markdownRef = ref
@@ -381,6 +391,18 @@ const MarkdownWrapper = styled.div`
 
   @media only screen and (max-width: 1280px) {
     padding-right: 0;
+  }
+`
+
+const MarkdownEditTip = styled.a`
+  position: absolute;
+  top: 136px;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 14px !important;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
   }
 `
 

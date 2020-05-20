@@ -15,6 +15,7 @@ description: '在 Linux 安装多节点 KubeSphere 与 Kubernetes'
 
 
 > 注意：
+>
 > - 本安装示例仅作为快速测试部署的演示，因此将使用默认的 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，OpenEBS 支持 [动态申请 PV](https://docs.openebs.io/docs/next/uglocalpv.html#Provision-OpenEBS-Local-PV-based-on-hostpath)，**方便初次安装但没有准备存储服务端的场景下进行部署测试**，**正式环境建议配置使用 KubeSphere 支持的存储类型**，参考 [持久化存储配置说明](../storage-configuration)。
 > - Multi-node 支持 Master 和 etcd 节点高可用配置，本示例为了方便多节点的快速测试安装演示，仅部署单个 Master 和单个 etcd，正式环境建议配置多个 Master 节点的高可用，若安装多个 Master 节点，请参阅 [集群高可用部署配置](../master-ha)。
 
@@ -26,11 +27,9 @@ description: '在 Linux 安装多节点 KubeSphere 与 Kubernetes'
   <source type="video/mp4" src="https://kubesphere-docs.pek3b.qingstor.com/video/KSInstall_100P002C202001_MultiNode.mp4">
 </video>
 
-
 ## 前提条件
 
 检查安装机器的网络防火墙是否已关闭，若未关闭防火墙则需要开放相关的指定端口，参考 [需开放的端口](../port-firewall)。
-
 
 ## 第一步: 准备主机
 
@@ -39,12 +38,12 @@ description: '在 Linux 安装多节点 KubeSphere 与 Kubernetes'
 <font color=red>Installer 默认执行最小化安装，下表为最小化安装时的最低配置要求，若希望安装使用 KubeSphere 完整的功能组件，请参考 [可插拔功能组件列表](../intro/#自定义安装可插拔的功能组件)，查看各组件资源占用统计，准备资源更充足的机器开启安装其它功能组件。</font>
 
 > 说明：
+>
 > - 注意！所有节点需要时间同步，否则安装可能会不成功；
 > - 若使用 ubuntu 16.04 建议使用其最新的版本 16.04.5；
 > - 若使用 ubuntu 18.04，则需使用 root 用户；
 > - 若 Debian 系统未安装 sudo 命令，则需要在安装前使用 root 用户执行 `apt update && apt install sudo` 命令安装 sudo 命令后再进行安装；
 > - 若选装 DevOps 功能组件时需保证有一台内存大于 8G 的节点，因为 Jenkins 默认的 JVM 设置会需要 `6~8 G` 的整块内存，若可用内存不足可能会造成该节点崩溃。
-
 
 | 操作系统 | 最小配置（每台） |
 | --- | --- |
@@ -52,7 +51,6 @@ description: '在 Linux 安装多节点 KubeSphere 与 Kubernetes'
 | Ubuntu 16.04/18.04 LTS (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G   |  
 |Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G   |  
 |Debian Stretch 9.5 (64 bit)| CPU：2 核， 内存：4 G， 系统盘：40 G   |  
-
 
 以下用一个示例介绍 multi-node 模式部署多节点环境，本示例准备了 `3` 台 CentOS 7.5 的主机并以 `root` 用户准备安装。登录主机名为 Master 的节点作为任务执行机 **Taskbox** 来执行安装步骤。
 
@@ -79,10 +77,10 @@ curl -L https://kubesphere.io/download/stable/v2.1.1 > installer.tar.gz \
 && tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/conf
 ```
 
-
 2.2. 编辑主机配置文件 `conf/hosts.ini`，为了对目标机器及部署流程进行集中化管理配置，集群中各个节点在主机配置文件 `hosts.ini` 中应参考如下配置，建议使用 `root` 用户进行安装。
 
 > 说明：
+>
 > - 若以非 root 用户 (如 ubuntu 用户) 进行安装，[all] 部分可参考配置文件 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分编辑。
 > - 如果在 taskbox 使用 root 用户无法 ssh 连接到其他机器，也需要参考 `conf/hosts.ini` 的注释中 `non-root` 用户示例部分，但执行安装脚本 `install.sh` 时建议切换到 root 用户，如果对此有疑问可参考 [安装常见问题 - 问题 2](../../faq/faq-install/#multi-node-安装配置相关问题)。
 > - master, node1, node2 作为集群各个节点的主机名，若需要自定义主机名则所有主机名需要都使用小写形式。
@@ -127,12 +125,12 @@ kube-master
 > - `[kube-node]`：将主机名 "node1"，"node2" 填入 [kube-node] 部分，作为 KubeSphere 集群的 node 节点。<br>
 > - `[local-registry]`：离线安装包中该参数值表示设置哪个节点作为本地镜像仓库，默认值为 master 节点。建议给该节点的 `/mnt/registry` 单独挂盘 (参考 fdisk 命令)，使镜像可保存在持久化存储并节省机器空间。
 
-
 ## 第三步: 安装 KubeSphere
 
 KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依赖软件的安装、Kubernetes 和 etcd 集群的自动化部署，以及存储的自动化配置。Installer 默认安装的 **Kubernetes 版本** 是 `v1.16.7`。
 
 > 说明：
+>
 > - 通常情况您不需要修改任何配置，直接安装即可。
 > - 网络插件默认是 `calico`，存储默认用 [OpenEBS](https://openebs.io/) 基于 [Local Volume](https://kubernetes.io/docs/concepts/storage/volumes/#local) 提供持久化存储服务，若您需要自定义安装参数，如网络、存储、负载均衡器插件、可选功能组件等相关配置需在 **`conf/common.yaml`** 文件中指定或修改，参考 [集群组件配置说明](../vars)。
 > - 支持存储类型以及存储配置相关的详细信息请参考 [存储配置说明](../storage-configuration)。
@@ -142,7 +140,7 @@ KubeSphere 多节点部署会自动化地进行环境和文件监测、平台依
 
 > 说明：由于 multi-node 的安装时间跟网络情况和带宽、机器配置、安装节点个数等因素都有关，此处暂不提供时间标准。
 
-3.1. 进入安装目录，建议使用 root 用户执行 `install.sh` 安装脚本：
+3.1. 进入安装目录，建议使用 root 用户执行 `install.sh` 安装脚本。__再次提醒大陆用户需要配置[镜像加速](https://kubesphere.com.cn/forum/d/149-kubesphere-v2-1-0/15).__
 
 ```bash
 cd ..
@@ -185,7 +183,6 @@ NOTE：Please modify the default password after login.
 
 > 提示：如需要再次查看以上的界面信息，可参考 [验证安装](../verify-components) 的查看安装日志命令。
 
-
 **(2)** 若需要在外网访问，在云平台需要在端口转发规则中将**内网端口** 30880 转发到**源端口** 30880，然后在防火墙开放这个**源端口**，确保外网流量可以通过该端口。
 
 例如在 QingCloud 平台配置端口转发和防火墙规则，则可以参考 [云平台配置端口转发和防火墙](../../appendix/qingcloud-manipulation)。
@@ -196,7 +193,7 @@ NOTE：Please modify the default password after login.
 
 <font color=red>注意：登陆 Console 后请在 "集群状态" 查看服务组件的监控状态，待所有组件启动完成后即可开始使用，通常所有服务组件都将在 15 分钟内启动完成。</font>
 
-![](https://pek3b.qingstor.com/kubesphere-docs/png/20191014095317.png)
+![KubeSphere Dashboard](https://pek3b.qingstor.com/kubesphere-docs/png/20191014095317.png)
 
 ## FAQ
 
