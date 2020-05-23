@@ -1,7 +1,7 @@
 ---
 title: "Image Registry"
-keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+keywords: 'kubernetes, docker, registry, harbor'
+description: 'Create a Secret to connect with Image Registry secret'
 ---
 
 A Docker image is a read-only template that can be used to deploy container services, each with a specific unique identifier (i.e. Image name:Tag). For example, an image can contain a full Ubuntu operating system environment with only Apache or other applications that users need. The image registry is used to store and distribute Docker images.
@@ -55,9 +55,9 @@ If you need to add Dokcer Hub as the image registry, first make sure you have al
 
 [Harbor](https://goharbor.io/) is an an open source trusted cloud native registry project that stores, signs, and scans content. Harbor extends the open source Docker Distribution by adding the functionalities usually required by users such as security, identity and management.
 
-#### Add the Internal Harbor
+<!-- #### Add the Internal Harbor
 
-KubeSphere Installer has integrated Harbor's Helm Chart, which is an optional installation item, so it requires to enable the installation in advance, users can configure the installation according to the needs of the teams. Before start installation, you just need to configure in `conf/vars.yml`, see [Integrating Harbor registry](../../installation/harbor-installation).
+KubeSphere Installer has integrated Harbor's Helm Chart, which is an optional installation item, so it requires to enable the installation in advance, users can configure the installation according to the needs of the teams. Before start installation, you just need to configure in `conf/vars.yml`, see [Integrating Harbor registry](../../installation/harbor-installation). -->
 
 #### Connect the External Harbor
 
@@ -85,60 +85,16 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
-3. Configure `/etc/hosts` for IP and domain name:
+3. Log in KubeSphere, enter a project, navigate to **Configuration → Secret**, create a secret by choosing `Image Repositry Secret`, fill in the `Registry Address` with your Harbor IP.
 
-```
-192.168.0.99 harbor.devops.kubesphere.local
-```
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200523091901.png)
 
-4. Log in KubeSphere, enter a project, navigate to **Configuration → Secret**, create a secret with `Image Repositry Secret`, fill in the information as following
-
-![Add Harbor Registry Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200219141059.png)
-
-
+4. If you want to use the domain name instead of IP with Harbor, you may need to configure the CoreDNS and nodelcaldns within the K8s cluster, then follow with the above to create a secret.
 
 ##### https
 
-1. For an image registry of the https protocol, firstly you need to get the image registry certificate, notes as `ca.crt`. Take the URL ` https://harbor.openpitrix.io` as an example, you need to execute following command to all the nodes in the cluster:
-
-```bash
-$ sudo cp ca.crt /etc/docker/certs.d/harbor.openpitrix.io/ca.crt
-```
-
-- If it still reports permission errors, you need to execute following command according to different operating systems:
-
-**UBUNTU**
-
-```bash
-$ sudo cp ca.crt /usr/local/share/ca-certificates/harbor.openpitrix.io.ca.crt
-```
-
-```bash
-$ sudo update-ca-certificates
-```
-**RED HAT ENTERPRISE LINUX**
-
-```bash
-$ sudo cp ca.crt /etc/pki/ca-trust/source/anchors/harbor.openpitrix.io.ca.crt
-```
-```bash
-$ sudo update-ca-trust
-```
-
-2. Next, you need to reload the configuration file and restart Docker when you're done, see [Docker Documentation](https://docs.docker.com/registry/insecure/#troubleshoot-insecure-registry):
-
-```bash
-$ sudo systemctl systemctl daemon-reload
-```
-
-```bash
-$ sudo systemctl restart docker
-```
-
-3. Then fill in the authentication information needed for the image registry in KubeSphere console, and refer to the above steps of adding Docker Hub to create a Harbor image registry.
+As for https type of Harbor registry, you can refer to [Harbor Documentation](https://goharbor.io/docs/1.10/install-config/configure-https/), make sure you use `docker login` to connect with your Harbor. Then the rest steps are the same with http.
 
 ## Using a Image Registry
 
 Take the creation of a deployment as an example to demonstrate how to use the image registry and pull images from the registry. For example, there is a image `mysql:5.6` in QingCloud image registry. When creating a Deployment, enter `dockerhub.qingcloud.com/mysql:5.6` in the Pod template, the format is `image registry address:tag`, this image could be pulled from the pointed registry after the workload has been created.
-
-![Using a Image Registry](https://pek3b.qingstor.com/kubesphere-docs/png/20190320150305.png)

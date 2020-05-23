@@ -321,6 +321,30 @@
       ]
     },
     {
+      "title": "User Guide",
+      "icon": "/admin_reffer.svg",
+      "desc": "Reference the installation guide to download and install KubeSphere",
+      "chapters": [
+        {
+          "title": "Configration Center",
+          "entries": [
+            {
+              "title": "Secrets",
+              "entry": "/en/configuration/secrets"
+            },
+            {
+              "title": "ConfigMap",
+              "entry": "/en/configuration/configmaps"
+            },
+            {
+              "title": "Configure Image Registry",
+              "entry": "/en/configuration/image-registry"
+            }
+          ]
+        }
+            ]
+    },
+    {
       "title": "Logging",
       "icon": "/access.svg",
       "desc": "Introduction to KubeSphere Logging System",
