@@ -69,11 +69,11 @@ Image Repository Secret (kubernetes.io/dockerconfigjson): It is used to store th
 
 >Note: If there is a **json** type of image repository secret, you need to refer to the following steps to create:
 
-Assume the private image repository is `uc.gcr.io`, then you need to input `_json_key` in username, and paste the json content in password. Click **Create** to finish.
+Assume the private image repository is `uc.gcr.io`, then you need to input `_json_key` in **User Name**, and paste the json content in password. Click **Create** to finish.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200523001137.png)
 
-When you create a workload, choose the **Image Repository Secret** that you created at the last step, then input the image name directly, it will return the search result.
+When you create a workload, choose the **Image Repository Secret** that you created in the previous step, then input the image name directly, it will return the search result.
 
 ![](https://pek3b.qingstor.com/kubesphere-docs/png/20200523000214.png)
 
