@@ -1,22 +1,21 @@
 ---
 title: "Secrets"
 keywords: "kubesphere, kubernetes, docker, secret"
-description: "Introduction to Kubernetes Secrets"
+description: "Create a Kubernetes Secrets in KubeSphere"
 ---
 
-A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
+A [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
 
 ## Create a Secret
 
 Sign in with `project-regular` account, enter into one project such as `demo-project` created in [Getting Start with Multi-Tenant Management](../../quick-start/admin-quick-start), then select **Configuration Center → Secrets**.
 
-![Create a Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20190319162656.png)
+![Create a Secret](https://pek3b.qingstor.com/kubesphere-docs/png/20200523002113.png)
 
 ### Step 1: Fill in Basic Information
 
 1.1. Click **Create Secret** button, then fill in basic information in the pop-up window. There are two ways to create a Secret, i.e., **UI Mode** and **Edit Mode**. The following mainly introduces each step of UI mode. If you prefer edit mode, you can click on the **Edit Mode** button, which supports yaml format and json format. Edit mode makes it easy for users who are used to editing yaml-like file directly.
 
-![Edit Mode](https://pek3b.qingstor.com/kubesphere-docs/png/20190319163230.png)
 
 1.2. On the basic information page, enter the name of the Secret. You can also fill in the description as necessary.
 
@@ -32,7 +31,9 @@ Click **Next** when you're done.
 
 In the Secret settings, there are four types of secret as below are supported:
 
-- Default (Opaque): Secret in base 64 encoding format, used to store passwords, sensitive data, etc. See the following example:
+#### Default (Opaque)
+
+Default (Opaque): Secret in base 64 encoding format, used to store passwords, sensitive data, etc. See the following example:
 
 ```yaml
 Data:
@@ -40,7 +41,9 @@ Data:
   Username: guest
 ```
 
-- TLS (kubernetes.io/tls): Commonly used to save information such as TLS certificates and private keys. It can be used to encrypt Ingress. The TLS secret must contain keys named tls.crt and tls.key, saved with Credential and Private Key. See the following example:
+#### TLS (kubernetes.io/tls)
+
+TLS (kubernetes.io/tls): Commonly used to save information such as TLS certificates and private keys. It can be used to encrypt Ingress. The TLS secret must contain keys named tls.crt and tls.key, saved with Credential and Private Key. See the following example:
 
 ```yaml
 apiVersion: v1
@@ -54,14 +57,29 @@ Metadata:
 Type: kubernetes.io/tls
 ```
 
-- Image Repository Secret (kubernetes.io/dockerconfigjson): It is used to store the authentication information of an image registry, such as the following information, see [Image Registry](../image-registry):
+#### Image Repository Secret
+
+Image Repository Secret (kubernetes.io/dockerconfigjson): It is used to store the authentication information of an image registry, such as the following information, see [Image Registry](../image-registry):
 
   - Repository address: `dockerhub.qingcloud.com`
   - Username: `guest`
   - Password: `guest`
   - Email: `123@test.com`
 
-- Custom: Allows users to create a type (type) that is similar to the default (Opaque) type. Both of them are key-value pairs.
+
+>Note: If there is a **json** type of image repository secret, you need to refer to the following steps to create:
+
+Assume the private image repository is `uc.gcr.io`, then you need to input `_json_key` in username, and paste the json content in password. Click **Create** to finish.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200523001137.png)
+
+When you create a workload, choose the **Image Repository Secret** that you created at the last step, then input the image name directly, it will return the search result.
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200523000214.png)
+
+#### Custom:
+
+Custom: Allows users to create a type (type) that is similar to the default (Opaque) type. Both of them are key-value pairs.
 
 ![Secret Settings](https://pek3b.qingstor.com/kubesphere-docs/png/20190319165447.png)
 
@@ -84,7 +102,7 @@ For more information on how to use the Secret, see [Quick-Start - Deploy a MySQL
 
 Enter into **Configuration Center→ Secrets**, click **Create**.
 
-![Secret List](https://pek3b.qingstor.com/kubesphere-docs/png/20200207165442.png)
+![Secret List](https://pek3b.qingstor.com/kubesphere-docs/png/20200523002327.png)
 
 Enter its name, e.g. `dockerhub-id`, then choose **Next**.
 
