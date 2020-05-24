@@ -1,7 +1,7 @@
 ---
 title: "Secrets"
 keywords: "kubesphere, kubernetes, docker, secret"
-description: "Create a Kubernetes Secrets in KubeSphere"
+description: "Create a Kubernetes Secret in KubeSphere"
 ---
 
 A [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
