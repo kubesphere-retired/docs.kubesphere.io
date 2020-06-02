@@ -11,27 +11,6 @@ description: "The guide how to access KubeSphere APIs"
 
 ks-apigatway's service port can be exposed via NodePort. You can do it either through console or through command line:
 
-<div class="md-tabs">
-<input type="radio" name="tabs" id="ui" checked="checked">
-<label for="ui">Using KubeSphere UI</label>
-<span class="md-tab">
-
-### Using KubeSphere UI
-
-1. Log in KubeSphere console and enter into **system-workspace → kubesphere-system → Projects**, click into the project **kubesphere-system**, then go to **Application Workloads → Services**. In the service list, enter into the service's page of `ks-apigateway`.
-
-2. Click **More → Edit Internet Access**. Set the access mode as `NodePort` and click **Confirm**.
-
-3. You can find the generated NodePort in the service page.
-
-![NodePort](https://pek3b.qingstor.com/kubesphere-docs/png/20190704143243.png)
-
-</span>
-<input type="radio" name="tabs" id="cmd">
-<label for="cmd">Using Command Line</label>
-<span class="md-tab">
-
-### Using Command Line
 
 1. Log in to KubeSphere using the `admin` account, open Web Kubectl in the「Toolbox」in the bottom right corner, and execute the following command.
 
@@ -47,17 +26,29 @@ $ kubectl -n kubesphere-system get svc ks-apigateway -o jsonpath='{.spec.ports[0
 31078
 ```
 
-</span>
-</div>
-
 ## Step 2: Get Token
 
 All the KubeSphere's APIs should pass the JWT Bearer token authentication. Before invoking API, you need to get `access_token` from `/kapis/iam.kubesphere.io/v1alpha2/login` port. Then add the `Authorization: Bearer <access_token>` into the immediate next requests.
 
-Open Web Kubectl at the bottom right corner of KubeSphere console. Execute the following commands where `192.168.0.20` is the cluster node IP and `31078` is the ks-apigatway service NodePort exposed in the previous step.
+Execute the following commands where `192.168.0.20` is the cluster node IP and `31078` is the ks-apigatway service NodePort exposed in the previous step.
+
+> Note: Please replace the IP and NodePort with yours.
+
+**Request example**
 
 ```bash
-$ curl -X POST "http://192.168.0.20:31078/kapis/iam.kubesphere.io/v1alpha2/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"password\": \"P@88w0rd\", \"username\": \"admin\"}"
+curl -X POST \
+  http://192.168.0.20:31078/kapis/iam.kubesphere.io/v1alpha2/login \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "username":"admin",
+  "password":"P@88w0rd"
+}'
+```
+
+**Response**
+
+```bash
 {
  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGt1YmVzcGhlcmUuaW8iLCJpYXQiOjE1NzM3Mjg4MDMsInVzZXJuYW1lIjoiYWRtaW4ifQ.uK1KoK1c8MFkm8KnyORFTju31OsZ1ajtGNZQnUS1qk8"
 }
@@ -65,7 +56,7 @@ $ curl -X POST "http://192.168.0.20:31078/kapis/iam.kubesphere.io/v1alpha2/login
 
 ## Step 3: Access KubeSphere API
 
-After the access token retrieved, the KubeSphere API can be invoked in a user-defined request function. For further details, please refer to [API Guide](../api-docs).
+After the access token retrieved, the KubeSphere API can be invoked in a user-defined request function, please note attach the request header `Authorization: Bearer <access_token>` in each API request. For further details, please refer to [API Guide](../api-docs).
 
 For instance, the following request is to get all components status.
 
@@ -75,7 +66,7 @@ curl -X GET \
   -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGt1YmVzcGhlcmUuaW8iLCJpYXQiOjE1NzM3Mjg4MDMsInVzZXJuYW1lIjoiYWRtaW4ifQ.uK1KoK1c8MFkm8KnyORFTju31OsZ1ajtGNZQnUS1qk8'
 ```
 
-返回结果:
+It responses as follows:
 
 ```yaml
 {

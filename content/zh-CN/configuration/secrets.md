@@ -14,7 +14,6 @@ description: ''
 
 创建密钥支持两种方式，**页面创建** 和 **编辑模式** 创建，以下主要介绍页面创建的方式。若选择以编辑模式，可点击右上角编辑模式进入代码界面，支持 yaml 和 json 格式，可以方便习惯命令行操作的用户直接在页面上编辑 yaml 文件创建密钥。
 
-![编辑模式](/secret-cmd.png)
 
 ### 第一步：填写基本信息
 
@@ -23,7 +22,6 @@ description: ''
 - 名称：为密钥起一个简洁明了的名称，便于快速了解、浏览和搜索。
 - 描述信息：详细介绍密钥的特性，当用户想进一步了解该密钥时，描述内容将变得尤为重要。
 
-![基本信息](/secret-basic.png)
 
 ### 第二步：Secret 设置
 
@@ -58,6 +56,17 @@ type: kubernetes.io/tls
    - 用户名: guest
    - 密码: 'guest'
    - 邮箱: 123@test.com
+
+
+> 提示：如果有 json 格式的镜像仓库密钥（Secret）需要添加，则需要参考如下设置：
+
+假设私有仓库的地址为 `uc.gcr.io`，那么在用户名一栏需要填 `_json_key`，然后将 json 内容粘贴到密码，然后创建即可。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200522235722.png)
+
+在创建工作负载时，选择镜像仓库为上一步创建的镜像仓库密钥，然后直接填写镜像名称即可。
+
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200523000214.png)
 
 
 - 账号密码密钥：用来存储系统的账号密码，例如 DockerHub 或 GitHub。
@@ -104,5 +113,3 @@ type: kubernetes.io/tls
 ### 创建 GitHub 密钥
 
 同上，创建一个用于 GitHub 的密钥，凭证 ID 命名为 **github-id**，类型选择 `账号密码密钥`，输入您个人的 GitHub 用户名和密码，完成后点击 **确定**。
-
-

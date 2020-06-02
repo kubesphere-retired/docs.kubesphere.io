@@ -6,7 +6,7 @@ description: '在 Kubernetes 安装 OpenEBS 创建 LocalPV 存储类型'
 
 由于 [在已有 Kubernetes 集群之上安装 KubeSphere](../../installation/install-on-k8s) 需要依赖集群已有的存储类型（StorageClass），若集群还没有准备存储类型（StorageClass），可参考本文档，在 K8s 集群中安装 OpenEBS 并创建 LocalPV 的存储类型，从而可以在集群快速安装测试 KubeSphere。
 
-<font color="red">注意：基于 OpenEBS 创建 LocalPV 的存储类型仅适用于开发测试环境，不建议在生产环境使用。生产环境建议准备 KubeSphere 推荐的持久化存储（如 GlusterFS、Ceph、NFS 或 Neonsan 等分布式存储），然后再创建对应的 StorageClass。</font>
+<font color="red">注意：基于 OpenEBS 创建 LocalPV 的存储类型仅适用于开发测试环境，不建议在生产环境使用。生产环境建议准备符合 Kubernetes 要求的持久化存储（如 GlusterFS、Ceph、NFS、Neonsan 等分布式存储，或云上的块存储），然后再创建对应的 StorageClass。</font>
 
 ## 前提条件
 
@@ -14,7 +14,7 @@ description: '在 Kubernetes 安装 OpenEBS 创建 LocalPV 存储类型'
 - Pod 可以被调度到集群的 master 节点（可临时取消 master 节点的 Taint）
 
 
-关于第二个前提条件，是由于安装 OpenEBS 时它有一个初始化的 Pod 需要在 master 节点启动并创建 PV 给 KubeSphere 的有状态应用挂载。因此，若您的 master 节点存在 Taint，建议在安装 OpenEBS 之前手动取消 Taint，待 OpenEBS 安装完成后再对 master 打上 Taint，以下步骤供参考：
+关于第二个前提条件，是由于安装 OpenEBS 时它有一个初始化的 Pod 需要在 master 节点启动并创建 PV 给 KubeSphere 的有状态应用挂载。因此，若您的 master 节点存在 Taint，建议在安装 OpenEBS 之前手动取消 Taint，待 OpenEBS 与 KubeSphere 安装完成后，再对 master 打上 Taint，以下步骤供参考：
 
 1. 例如本示例有一个 master 节点，节点名称即 `master`，可通过以下命令查看节点名称：
 
@@ -83,20 +83,17 @@ $ kubectl patch storageclass openebs-hostpath -p '{"metadata": {"annotations":{"
 storageclass.storage.k8s.io/openebs-hostpath patched
 ```
 
-5. 至此，OpenEBS 的 LocalPV 已作为默认的存储类型创建成功。由于在文档开头手动去掉了 master 节点的 Taint，我们可以在安装完 OpenEBS 后将 master 节点 Taint 加上，避免业务相关的工作负载调度到 master 节点抢占 master 资源：
+5. 至此，OpenEBS 的 LocalPV 已作为默认的存储类型创建成功。可以通过命令 `kubectl get pod -n openebs` 来查看 OpenEBS 相关 Pod 的状态，若 Pod 的状态都是 running，则说明存储安装成功。
 
-
-```
-$ kubectl taint nodes master node-role.kubernetes.io/master=:NoSchedule
-```
 
 ## 创建工作负载测试 StorageClass
 
 1. 如下创建一个 demo-openebs-hostpath.yaml，其中定义的 Deployment 与 PVC 用作测试，检验 openebs-hostpath 的 StorageClass 是否创建成功：
 
 ```
+## 注意，若您的 K8s 版本是 1.15，这里的 apiVersion 需要改为 apps/v1beta1
 ---
-apiVersion: apps/v1beta1
+apiVersion: v1
 kind: Deployment
 metadata:
   name: percona
@@ -180,4 +177,12 @@ $ kubectl apply -f demo-openebs-hostpath.yaml -n openebs
 $ kubectl get pvc -n openebs
 NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
 demo-vol1-claim   Bound    pvc-a50fbb85-760b-488e-aad4-8aef1ff6b57a   5G         RWO            openebs-hostpath   68m
+```
+
+
+提示：由于在文档开头手动去掉了 master 节点的 Taint，我们可以在安装完 OpenEBS 和 KubeSphere 后，可以将 master 节点 Taint 加上，避免业务相关的工作负载调度到 master 节点抢占 master 资源：
+
+
+```
+$ kubectl taint nodes master node-role.kubernetes.io/master=:NoSchedule
 ```

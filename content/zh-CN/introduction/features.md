@@ -1,5 +1,5 @@
 ---
-title: "产品功能"
+title: "平台功能"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---

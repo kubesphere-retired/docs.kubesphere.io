@@ -1,10 +1,10 @@
 ---
 title: "ConfigMap"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
-description: ''
+description: 'Create a ConfigMap in KubeSphere'
 ---
 
-ConfigMaps allow you to decouple configuration artifacts from image content to keep containerized applications portable. This page demonstrates how to create ConfigMaps and configure Pods using data stored in ConfigMaps.
+[ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/) allow you to decouple configuration artifacts from image content to keep containerized applications portable. This page demonstrates how to create ConfigMaps and configure Pods using data stored in ConfigMaps.
 
 ## Create a ConfigMap
 
@@ -42,7 +42,7 @@ data:
 
 ## Using this ConfigMap
 
-ConfigMaps can be mounted as data volumes or be exposed as environment variables to be used by a container in a pod. 
+ConfigMaps can be mounted as data volumes or be exposed as environment variables to be used by a container in a pod.
 
 - In Volume, click on **Reference Config Center**, then select the created ConfigMap.
 - In the Environment Variables, click **Reference Config Center** then select the created key.
@@ -52,9 +52,3 @@ ConfigMaps can be mounted as data volumes or be exposed as environment variables
 ![Using a ConfigMap](https://pek3b.qingstor.com/kubesphere-docs/png/20190319180017.png)
 
 For more information on how to use the ConfigMap, see [Quick-Start - Deploy a WordPress Web Application](../../quick-start/wordpress-deployment).
-
-
-
-
-
-

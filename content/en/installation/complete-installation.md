@@ -23,11 +23,11 @@ This tutorial will walk you through how to enable all components of KubeSphere.
 
 ## Download Installer Package
 
-If you do not have the package yet, please run the following commands to download Installer 2.1.0 and unpack it, then enter `conf` folder.
+If you do not have the package yet, please run the following commands to download Installer 2.1.1 and unpack it, then enter `conf` folder.
 
 ```bash
-curl -L https://kubesphere.io/download/stable/v2.1.0 > installer.tar.gz \
-&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.0/conf
+$ curl -L https://kubesphere.io/download/stable/v2.1.1 > installer.tar.gz \
+&& tar -zxf installer.tar.gz && cd kubesphere-all-v2.1.1/conf
 ```
 
 ## Enable All Components
