@@ -59,7 +59,7 @@ description: ''
 
 此处是在当前项目中配置容器默认的 CPU 和内存的请求与限额，相当于是给项目创建了一个 Kubernetes 的 LimitRange 对象，建议在此设置默认的请求与限额值。在项目中创建工作负载后填写容器组模板时，若不填写容器 CPU 和内存的请求与限额，则容器会被分配在这里配置的默认的 CPU 和内存请求与限额值。
 
-![高级设置](/namespace-limit-request.png)
+![](https://pek3b.qingstor.com/kubesphere-docs/png/20200524131544.png)
 
 创建项目后，关于项目内的各类资源和成员角色的管理，参见用户指南下各部分的文档。
 
@@ -68,7 +68,7 @@ description: ''
 企业空间下的 admin 和赋予适当权限的用户可以创建和管理 DevOps 工程，详见 [管理 DevOps 工程](../../devops/devops-project)。
 
 ### 企业空间管理
- 
+
 企业空间的 admin 有权限管理基本信息、企业角色和邀请用户加入。
 
 #### 基本信息

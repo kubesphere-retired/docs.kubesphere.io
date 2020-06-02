@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
 import { graphql } from 'gatsby'
-import get from 'lodash/get'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
@@ -37,8 +36,6 @@ class MarkdownTemplate extends React.Component {
 
   componentDidMount() {
     const { lang } = this.props.pageContext
-    const version = get(this, 'props.data.site.siteMetadata.versions[0].value')
-
     document.addEventListener('click', this.handleClick)
 
     if (
@@ -71,14 +68,11 @@ class MarkdownTemplate extends React.Component {
         indexName: 'kubesphere',
         inputSelector: '.ks-search > input',
         algoliaOptions: {
-          facetFilters: [`lang:${lang}`, `version:${version}`],
+          facetFilters: [`lang:${lang}`],
         },
         transformData: function(hits) {
           hits.forEach(hit => {
-            if (
-              typeof window !== undefined &&
-              process.env.NODE_ENV !== 'development'
-            ) {
+            if (typeof window !== undefined) {
               hit.url = hit.url.replace('kubesphere.io', window.location.host)
             }
           })
@@ -121,7 +115,7 @@ class MarkdownTemplate extends React.Component {
     Array.prototype.forEach.call($links, el => {
       el.setAttribute('target', '_blank')
       const url = el.getAttribute('href')
-      if (url && !/^http(s?):\/\//.test(url)) {
+      if (url && !url.startsWith('http')) {
         el.setAttribute('href', url.replace(`/${defaultLocale}`, ''))
       }
     })
@@ -251,7 +245,7 @@ class MarkdownTemplate extends React.Component {
 
     return (
       <>
-        <Layout data={this.props.data}>
+        <Layout data={this.props.data} locale={lang}>
           <div>
             <Helmet
               title={`${post.title} | ${

@@ -1,5 +1,5 @@
 ---
-title: "产品优势"
+title: "为什么选择 KubeSphere"
 keywords: 'kubernetes, docker, helm, jenkins, istio, prometheus'
 description: ''
 ---
@@ -60,6 +60,3 @@ KubeSphere 为企业用户提供高性能可伸缩的容器应用管理服务，
 - 提供按节点、企业空间、项目等资源用量排行
 - 支持基于多租户、多维度的监控指标告警，目前告警策略支持集群节点级别和工作负载级别等两个层级
 - 提供多租户日志管理，在 KubeSphere 的日志查询系统中，不同的租户只能看到属于自己的日志信息
-
-
-

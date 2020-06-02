@@ -21,23 +21,23 @@ KubeSphere 2.1.0 was released on Nov 11th, 2019, which fixes known bugs, adds so
 
 ### Features
 
-Support upload / test / review / deploy / publish/ classify / upgrade / deploy and delete apps, and provides nine built-in applications
+Support upload / test / review / deploy / publish/ classify / upgrade / deploy and delete apps, and provide nine built-in applications
 
 ### Upgrade & Enhancement
 
-- The application repository configuration is migrated from global to each workspace
-- Support add application repository to share applications in a workspace
+- The application repository configuration is moved from global to each workspace
+- Support adding application repository to share applications in a workspace
 
 ## Storage
 
 ### Features
 
-- Support Local Volume with Dynamic provisioning
+- Support Local Volume with dynamic provisioning
 - Provide the real-time monitoring feature for QingCloud block storage
 
 ### Upgrade & Enhancement
 
-QingCloud CSI is adapted to CSI 1.1.0, supports upgrade, topology, create or delete a snapshot, it also supports create PVC based on a snapshot
+QingCloud CSI is adapted to CSI 1.1.0, supports upgrade, topology, create or delete a snapshot. It also supports creating PVC based on a snapshot
 
 ### BUG Fixes
 
@@ -47,20 +47,22 @@ Fix the StorageClass list display problem
 
 ### Features
 
-- Support for collecting the file logs on the disk,  it is used for the Pod which preserve the logs as the file on the disk
+- Support for collecting the file logs on the disk. It is used for the Pod which preserves the logs as the file on the disk
 - Support integrating with external ElasticSearch 7.x
-- Ability to search logs including Chinese words
+- Ability to search logs containing Chinese words
 - Add initContainer log display
 - Ability to export logs
 - Support for canceling the notification from alerting
 
 ### UPGRADE & ENHANCEMENT
-- Optimize the speed of log search
-- Optimize the hints when the logging service is abnormal
+
+- Improve the performance of log search
+- Refine the hints when the logging service is abnormal
 - Optimize the information when the monitoring metrics request is abnormal
 - Support pod anti-affinity rule for Prometheus
 
 ### BUG FIXES
+
 - Fix the mistaken highlights in the logs search result
 - Fix log search not matching phrases correctly
 - Fix the issue that log could not be retrieved for a deleted workload when it is searched by workload name
@@ -81,6 +83,7 @@ Fix the StorageClass list display problem
 - Multi-branch pipeline supports trigger other pipelines when create or delete the branch
 
 ### Upgrades & Enhancement
+
 - Support BitBucket in the pipeline
 - Support Cron script validation in the pipeline
 - Support Jenkinsfile syntax validation
