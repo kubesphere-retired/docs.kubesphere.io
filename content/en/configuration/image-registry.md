@@ -67,13 +67,17 @@ According to the address type of the Harbor, you need to divide into http and ht
 
 1. You need to modify the Docker configuration in all nodes of the cluster. For example, if there is an external harbor registry and its IP is `http://192.168.0.99`, then you need to add a field as `--insecure-registry=192.168.0.99` into `/etc/systemd/system/docker.service.d/docker-options.conf`.
 
-**Sample**
+**Example**
 
 ```bash
 [Service]
-Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --graph=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
+Environment="DOCKER_OPTS=--registry-mirror=https://registry.docker-cn.com --insecure-registry=10.233.0.0/18 --data-root=/var/lib/docker --log-opt max-size=50m --log-opt max-file=5 \
 --insecure-registry=192.168.0.99"
 ```
+Here, the `Environment` string represents the [dockerd options](https://docs.docker.com/engine/reference/commandline/dockerd/).
+
+`--insecure-registry`: In order to communicate with an insecure registry, the Docker daemon requires `--insecure-registry` fields. Refer to the [docker docs](https://docs.docker.com/engine/reference/commandline/dockerd/#insecure-registries) for its syntax.
+
 
 2. Next, you need to reload the configuration file and restart Docker:
 
@@ -93,7 +97,11 @@ $ sudo systemctl restart docker
 
 ##### https
 
-As for https type of Harbor registry, you can refer to [Harbor Documentation](https://goharbor.io/docs/1.10/install-config/configure-https/), make sure you use `docker login` to connect with your Harbor. Then the rest steps are the same with http.
+As for https type of Harbor registry, you can refer to [Harbor Documentation](https://goharbor.io/docs/1.10/install-config/configure-https/), make sure you use `docker login` to connect with your Harbor. 
+
+Then you follow all the steps from the above `http` section to finish the configuration.
+
+
 
 ## Using a Image Registry
 
