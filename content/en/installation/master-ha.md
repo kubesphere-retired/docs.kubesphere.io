@@ -82,15 +82,20 @@ Click **Submit** when you are done.
 
 Go to the taskbox where you downloaded the installer by following the [Multi-node Installation](../multi-node) and complete the following configurations.
 
-- Fill all nodes information in the group **[all]**.
-- Fill masters name (master1, master2 and master3) in the group **[kube-master]** and the group **[etcd]** respectively as follows, which means these three machines will be set to both master role and etcd role. Please note that the number of etcd needs to be set to odd number. Meanwhile, we do not recommend you to install etcd on worker nodes since the memory consumption of etcd is very high.
-- Fill all worker node names in the group **[kube-node]**.
-- Fill the group names of **[kube-master]** and **[kube-node]** in the group **[k8s-cluster:children]** which is the group of the groups [kube-master] and [kube-node].
+| **Parameter**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `[all]`                  | node information. Use the following syntax if you run installation as `root` user: <br> -  `<node_name> ansible_connection=<host> ip=<ip_address>` <br> -  `<node_name> ansible_host=<ip_address> ip=<ip_address> ansible_ssh_pass=<pwd>` <br> If you log in as a non-root user, use the syntax: <br> - `<node_name> ansible_connection=<host> ip=<ip_address> ansible_user=<user>  ansible_become_pass=<pwd>` |
+| `[kube-master]`          | master node names                                                                                                                                                                                                                                                                                                                                                                                              |
+| `[kube-node]`            | worker node names                                                                                                                                                                                                                                                                                                                                                                                                |
+| `[etcd]`                 | etcd node names. The number of `etcd` nodes needs to be odd.                                                                                                                                                                                                                                                                                                                                                   |
+| `[k8s-cluster:children]` | group names of `[kube-master]` and `[kube-node]`                                                                                                                                                                                                                                                                                                                                                               |
+
 
 We use **CentOS 7.5** with `root` user to install an HA cluster. Please see the following configuration as an example:
 
-> - If you run installation using `non-root` user (e.g. on Ubuntu), please refer to sample configuration which is commented out in `conf/hosts.ini`. You need to replace **[all]** blocks with non-root configuration.
-> - If the _taskbox_ cannot establish `ssh` connection with the rest nodes, please also refer to the note of `non-root` user as above.
+> Note:
+> <br>
+> If the _taskbox_ cannot establish `ssh` connection with the rest nodes, try to use the non-root user configuration.
 
 #### host.ini example
 
