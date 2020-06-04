@@ -378,6 +378,17 @@
       ]
     },
     {
+      "title": "Notification Manager",
+      "icon": "/access.svg",
+      "desc": "Introduction to Notification Manager on KubeSphere",
+      "chapters": [
+        {
+          "title": "Notification Manager on KubeSphere",
+          "entry": "/en/notification-manager/notification-manager"
+        }
+      ]
+    },
+    {
       "title": "Developer Guide",
       "icon": "/problem.svg",
       "desc": "KubeSphere Developer Guide",
