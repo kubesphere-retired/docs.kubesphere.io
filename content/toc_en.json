@@ -362,7 +362,7 @@
       "chapters": [
         {
           "title": "Kubernetes Audit Logs on KubeSphere",
-          "entry": "/en/audit/kube-autiting"
+          "entry": "/en/audit/kube-auditing"
         }
       ]
     },
@@ -373,7 +373,7 @@
       "chapters": [
         {
           "title": "Kubernetes Events on KubeSphere",
-          "entry": "/en/audit/kube-autiting"
+          "entry": "/en/events/kube-events"
         }
       ]
     },
