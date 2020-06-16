@@ -356,6 +356,28 @@
       ]
     },
     {
+      "title": "Audit Logs",
+      "icon": "/access.svg",
+      "desc": "Introduction to Kubernetes Audit Logs on KubeSphere",
+      "chapters": [
+        {
+          "title": "Kubernetes Audit Logs on KubeSphere",
+          "entry": "/en/audit/kube-auditing"
+        }
+      ]
+    },
+    {
+      "title": "Events",
+      "icon": "/access.svg",
+      "desc": "Introduction to Kubernetes Events on KubeSphere",
+      "chapters": [
+        {
+          "title": "Kubernetes Events on KubeSphere",
+          "entry": "/en/events/kube-events"
+        }
+      ]
+    },
+    {
       "title": "Developer Guide",
       "icon": "/problem.svg",
       "desc": "KubeSphere Developer Guide",
