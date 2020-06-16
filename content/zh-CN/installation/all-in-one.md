@@ -37,7 +37,7 @@ description: 'Linux 单节点安装 KubeSphere 与 Kubernetes'
 
 | 操作系统 | 最小配置 |
 | --- | --- |
-|CentOS 7.5 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：100 G |
+|CentOS 7.4 ~ 7.7 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：100 G |
 |Ubuntu 16.04/18.04 LTS (64 bit) | CPU：2 核， 内存：4 G， 系统盘：100 G  |
 |Red Hat Enterprise Linux Server 7.4 (64 bit) |  CPU：2 核， 内存：4 G， 系统盘：100 G  |
 |Debian Stretch 9.5 (64 bit)| CPU：2 核， 内存：4 G， 系统盘：100 G  |

@@ -47,7 +47,7 @@ description: '在 Linux 安装多节点 KubeSphere 与 Kubernetes'
 
 | 操作系统 | 最小配置（每台） |
 | --- | --- |
-| CentOS 7.5 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G  |
+| CentOS 7.4 ~ 7.7 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G  |
 | Ubuntu 16.04/18.04 LTS (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G   |  
 |Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：2 核， 内存：4 G， 系统盘：40 G   |  
 |Debian Stretch 9.5 (64 bit)| CPU：2 核， 内存：4 G， 系统盘：40 G   |  
