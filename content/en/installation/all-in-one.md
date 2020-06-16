@@ -25,7 +25,7 @@ The following describes the requirements of hardware and operating system.
 
 | System  | Minimum Requirements |
 | ------- | ----------- |
-| CentOS 7.5 (64 bit) | CPU：2 Core,  Memory：4 G, Disk Space：100 G |
+| CentOS 7.4 ~ 7.7 (64 bit) | CPU：2 Core,  Memory：4 G, Disk Space：100 G |
 | Ubuntu 16.04/18.04 LTS (64 bit)   | CPU：2 Core,  Memory：4 G, Disk Space：100 G |
 | Red Hat Enterprise Linux Server 7.4 (64 bit) | CPU：2 Core,  Memory：4 G, Disk Space：100 G  |
 | Debian Stretch 9.5 (64 bit)| CPU：2 Core,  Memory：4 G, Disk Space：100 G  |
