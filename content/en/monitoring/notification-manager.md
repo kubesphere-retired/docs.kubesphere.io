@@ -59,7 +59,7 @@ To receive Alertmanager alerts, eidt the Secret `alertmanager-main` in the names
     "receivers":
      - "name": "notification-manager"
        "webhook_configs":
-       - "url": "http://notificatio-nmanager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
+       - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
 ```
 
 ### Config receivers
