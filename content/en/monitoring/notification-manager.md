@@ -1,10 +1,10 @@
 ---
 title: "Notification Manager"
-keywords: "kubernetes, kubesphere, notification manager, email, wechat, slack"
+keywords: "kubernetes, KubeSphere, notification manager, email, wechat, slack"
 description: "Multi-tenant notification manager on KubeSphere"
 ---
 
-Notification Manager manages notifications in kubesphere. It receives alerts or notifications from different senders and then send notifications to multi-tenant receivers based on alerts/notifications' tenant label like "namespace". 
+Notification Manager manages notifications in KubeSphere. It receives alerts or notifications from different senders and then send notifications to multi-tenant receivers based on alerts/notifications' tenant label like "namespace". 
 
 Supported senders includes:
 - Prometheus Alertmanager
@@ -55,11 +55,48 @@ Save it and exit. Notification Manager will be installed automatically for you. 
 Notification Manager uses port `19093` and API path `/api/v2/alerts` to receive alerts sending from Prometheus Alertmanager of Kubsphere.
 To receive Alertmanager alerts, eidt the Secret `alertmanager-main` in the namespace `kubesphere-monitoring-system`, add webhook config like below to the `receivers` section of alertmanager.yaml:
 
+Send Prometheus alerts to Notification Manager:
 ```shell
     "receivers":
-     - "name": "notification-manager"
-       "webhook_configs":
-       - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
+    - "name": "prometheus"
+      "webhook_configs":
+      - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
+    "route":
+      "group_interval": "1s"
+      "routes":
+      - "match_re":
+          "prometheus": ".*"
+        "receiver": "prometheus"
+```
+
+Send events alerts to Notification Manager:
+```shell
+    "receivers":
+    - "name": "events"
+      "webhook_configs":
+      - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
+        "send_resolved": false
+    "route":
+      "group_interval": "1s"
+      "routes":
+      - "match":
+          "alerttype": "events"
+        "receiver": "events"
+```
+
+Send auditing alerts to Notification Manager:
+```shell
+    "receivers":
+    - "name": "auditing"
+      "webhook_configs":
+      - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
+        "send_resolved": false
+    "route":
+      "group_interval": "1s"
+      "routes":
+      - "match":
+          "alerttype": "auditing"
+        "receiver": "auditing"
 ```
 
 ### Config receivers
@@ -72,6 +109,18 @@ If a tenant named **test-user** who wants to receive notifications from email, j
 
 ```
 cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  password: dGVzdA==
+kind: Secret
+metadata:
+  labels:
+    app: notification-manager
+  name: test-user-email-secret
+  namespace: kubesphere-monitoring-system
+type: Opaque
+
+---
 apiVersion: notification.kubesphere.io/v1alpha1
 kind: EmailConfig
 metadata:
@@ -84,7 +133,7 @@ metadata:
 spec:
   authPassword:
     key: password
-    name: test-user-secret
+    name: test-user-email-secret
     namespace: kubesphere-monitoring-system
   authUsername: abc1
   from: abc1@xyz.com
@@ -111,18 +160,6 @@ spec:
   to:
   - abc2@xyz.com
   - abc3@xyz.com
-
----
-apiVersion: v1
-data:
-  password: dGVzdA==
-kind: Secret
-metadata:
-  labels:
-    app: notification-manager
-  name: test-user-secret
-  namespace: kubesphere-monitoring-system
-type: Opaque
 EOF
 ```
 
@@ -130,6 +167,18 @@ The emailConfigSelector is a selector to selecte EmailConfig for email receiver,
 
 ```
 cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  password: dGVzdA==
+kind: Secret
+metadata:
+  labels:
+    app: notification-manager
+  name: default-email-secret
+  namespace: kubesphere-monitoring-system
+type: Opaque
+
+---
 apiVersion: notification.kubesphere.io/v1alpha1
 kind: EmailConfig
 metadata:
@@ -149,23 +198,13 @@ spec:
   smartHost:
     host: imap.xyz.com
     port: "25"
-
----
-apiVersion: v1
-data:
-  password: dGVzdA==
-kind: Secret
-metadata:
-  labels:
-    app: notification-manager
-  name: default-email-secret
-  namespace: kubesphere-monitoring-system
-type: Opaque
+EOF
 ```
 
 Email receiver labeled with `type: tenant` only receive notification happend in the namespace which user be in. If you want to receive notification without namespace, you need to create a global email receiver labeled with `type: global` like this.
 
 ```
+cat <<EOF | kubectl apply -f -
 apiVersion: notification.kubesphere.io/v1alpha1
 kind: EmailReceiver
 metadata:
@@ -189,6 +228,18 @@ If a tenant named **test-user** who wants to receive notifications from Wechat W
 
 ```
 cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  wechat: dGVzdA==
+kind: Secret
+metadata:
+  labels:
+    app: notification-manager
+  name: test-user-wechat-secret
+  namespace: kubesphere-monitoring-system
+type: Opaque
+
+---
 apiVersion: notification.kubesphere.io/v1alpha1
 kind: WechatConfig
 metadata:
@@ -202,7 +253,7 @@ spec:
   wechatApiUrl: https://qyapi.weixin.qq.com/cgi-bin/
   wechatApiSecret:
     key: wechat
-    name: test-user-secret
+    name: test-user-wehat-secret
   wechatApiCorpId: wwfd76b24f06513578
   wechatApiAgentId: "1000002"
 
@@ -226,18 +277,6 @@ spec:
   toUser: user1 | user2
   toParty: party1 | party2
   toTag: tag1 | tag2
-
----
-apiVersion: v1
-data:
-  wechat: dGVzdA==
-kind: Secret
-metadata:
-  labels:
-    app: notification-manager
-  name: test-user-secret
-  namespace: kubesphere-monitoring-system
-type: Opaque
 EOF
 ```
 
@@ -247,6 +286,18 @@ The wechatConfigSelector is a selector to selecte WechatConfig for wechat receiv
 
 ```
 cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  wechat: dGVzdA==
+kind: Secret
+metadata:
+  labels:
+    app: notification-manager
+  name: default-wechat-secret
+  namespace: kubesphere-monitoring-system
+type: Opaque
+
+---
 apiVersion: notification.kubesphere.io/v1alpha1
 kind: WechatConfig
 metadata:
@@ -262,24 +313,13 @@ spec:
     name: default-wechat-secret
   wechatApiCorpId: wwfd76b24f06513578
   wechatApiAgentId: "1000002"
-
----
-apiVersion: v1
-data:
-  wechat: dGVzdA==
-kind: Secret
-metadata:
-  labels:
-    app: notification-manager
-  name: default-wechat-secret
-  namespace: kubesphere-monitoring-system
-type: Opaque
 EOF
 ```
 
 Wechat receiver labeled with `type: tenant` only receive notification happend in the namespace which user be in. If you want to receive notification without namespace, you need to create a global wechat receiver labeled with `type: global` like this.
 
 ```
+cat <<EOF | kubectl apply -f -
 apiVersion: notification.kubesphere.io/v1alpha1
 kind: WechatReceiver
 metadata:
@@ -305,6 +345,18 @@ Notification Manager supports sending notification to slack channels. If a tenan
 
 ```
 cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  token: dGVzdA==
+kind: Secret
+metadata:
+  labels:
+    app: notification-manager
+  name: test-user-slack-secret
+  namespace: kubesphere-monitoring-system
+type: Opaque
+
+---
 apiVersion: notification.kubesphere.io/v1alpha1
 kind: SlackConfig
 metadata:
@@ -317,7 +369,7 @@ metadata:
 spec:
   slackTokenSecret: 
     key: token
-    name: test-user-secret
+    name: test-user-slack-secret
 
 ---
 apiVersion: notification.kubesphere.io/v1alpha1
@@ -335,18 +387,6 @@ spec:
       type: tenant
       user: test-user
   channel: alert
-
----
-apiVersion: v1
-data:
-  token: dGVzdA==
-kind: Secret
-metadata:
-  labels:
-    app: notification-manager
-  name: test-user-secret
-  namespace: kubesphere-monitoring-system
-type: Opaque
 EOF
 ```
 
@@ -356,6 +396,18 @@ The slackConfigSelector is a selector to selecte SlackConfig for slack receiver,
 
 ```
 cat <<EOF | kubectl apply -f -
+apiVersion: v1
+data:
+  token: dGVzdA==
+kind: Secret
+metadata:
+  labels:
+    app: notification-manager
+  name: default-slack-secret
+  namespace: kubesphere-monitoring-system
+type: Opaque
+
+---
 apiVersion: notification.kubesphere.io/v1alpha1
 kind: SlackConfig
 metadata:
@@ -368,18 +420,6 @@ spec:
   slackTokenSecret: 
     key: token
     name: default-slack-secret
-
----
-apiVersion: v1
-data:
-  token: dGVzdA==
-kind: Secret
-metadata:
-  labels:
-    app: notification-manager
-  name: default-slack-secret
-  namespace: kubesphere-monitoring-system
-type: Opaque
 EOF
 ```
 
@@ -394,8 +434,7 @@ metadata:
   namespace: kubesphere-monitoring-system
   labels:
     app: notification-manager
-    type: tenant
-    user: test-user
+    type: global
 spec:
   channel: global
 EOF
