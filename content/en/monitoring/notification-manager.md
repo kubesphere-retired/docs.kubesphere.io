@@ -62,7 +62,6 @@ Send Prometheus alerts to Notification Manager:
       "webhook_configs":
       - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
     "route":
-      "group_interval": "1s"
       "routes":
       - "match_re":
           "prometheus": ".*"
@@ -77,11 +76,11 @@ Send events alerts to Notification Manager:
       - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
         "send_resolved": false
     "route":
-      "group_interval": "1s"
       "routes":
       - "match":
           "alerttype": "events"
         "receiver": "events"
+        "group_interval": "1s"
 ```
 
 Send auditing alerts to Notification Manager:
@@ -92,11 +91,11 @@ Send auditing alerts to Notification Manager:
       - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
         "send_resolved": false
     "route":
-      "group_interval": "1s"
       "routes":
       - "match":
           "alerttype": "auditing"
         "receiver": "auditing"
+        "group_interval": "1s"
 ```
 
 ### Config receivers
