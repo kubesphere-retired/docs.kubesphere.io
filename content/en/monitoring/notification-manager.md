@@ -80,7 +80,7 @@ Send events alerts to Notification Manager:
       - "match":
           "alerttype": "events"
         "receiver": "events"
-        "group_interval": "1s"
+        "group_interval": "30s"
 ```
 
 Send auditing alerts to Notification Manager:
@@ -95,7 +95,7 @@ Send auditing alerts to Notification Manager:
       - "match":
           "alerttype": "auditing"
         "receiver": "auditing"
-        "group_interval": "1s"
+        "group_interval": "30s"
 ```
 
 ### Config receivers
