@@ -18,38 +18,6 @@ Supported receivers includes:
 
 ## QuickStart
 
-### Enable Notification Manager before Installation
-
-> Note: This guide is only used for installing KubeSphere on Linux machines. If you are going to install KubeSphere and Notification Manager on your own Kubernetes cluster, please see [ks-installer](https://github.com/kubesphere/ks-installer).
-
-Before starting the installation, you need to change the value of `monitoring.notification-manager.enabled` to `true` in `conf/common.yaml` as follows, then you can go back to [All-in-One](../all-in-one) or [Multi-Node](../multi-node) guide to continue your installation.
-
-```yaml
-# Following components are all optional for KubeSphere,
-# Which could be turned on to install it before installation or later by updating its value to true
-    monitoring:
-      notification:
-        enabled: true
-```
-
-### Enable Notification Manager after Installation
-
-If you already have a minimal KubeSphere setup, you still can enable notification manager by editing the ConfigMap of ks-installer using the following command.
-
-```bash
-kubectl edit cm -n kubesphere-system ks-installer
-```
-
-Then set Notification Manager from `False` to `True`.
-
-```yaml
-    monitoring:
-      notification:
-        enabled: true
-```
-
-Save it and exit. Notification Manager will be installed automatically for you. You can inspect the logs of ks-installer Pod to [verify the installation status](../verify-components), and wait for the successful result logs output.
-
 ### Config Prometheus Alertmanager to send alerts to Notification Manager
 
 Notification Manager uses port `19093` and API path `/api/v2/alerts` to receive alerts sending from Prometheus Alertmanager of Kubsphere.
