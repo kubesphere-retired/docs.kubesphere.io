@@ -12,7 +12,7 @@ When you use KubeSphere for a certain time, most likely you need to scale out yo
 
 ### Step 1: Modify the Host Configuration
 
-KubeSphere supports hybrid environment, that is, the newly added host OS can be CentOS or Ubuntu. When a new machine is ready, add a line of parameters about the new machine information in the groups `all` and `kube-node` of the file `conf/hosts.ini`. If you are going to add multiple hosts, add corresponding lines of parameters to the file. It is not allowed to modify the host name of the original nodes (e.g. master, node1, and node2) when adding a new node.
+KubeSphere supports hybrid environment, which means the newly added host OS can be CentOS or Ubuntu. When a new machine is ready, add a line of parameters about the new machine information in the group `all` and `kube-node` of the file `conf/hosts.ini`. More specifically, please list all nodes under [all] and put the new node under [kube-node] as well. If you are going to add multiple hosts, add corresponding lines of parameters to the file. It is not allowed to modify the host name of the existing nodes (e.g. master, node1, and node2) when you add a new node.
 
 The following section shows adding a new node (i.e. node3) using `root` user as an example.
 
@@ -24,12 +24,10 @@ node2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD
 node3  ansible_host=192.168.0.4  ip=192.168.0.4  ansible_ssh_pass=PASSWORD  
 ···
 [kube-node]
-master
-node1
-node2
 node3
 ···
 ```
+Note: You need to turn off `firewall` yourself for new nodes.
 
 ### Step 2: Execute the script
 
