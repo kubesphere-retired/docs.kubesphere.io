@@ -10,7 +10,7 @@ description: ''
 
 ### 第一步：修改主机配置文件
 
-KubeSphere 支持混合扩容，即扩容新增的主机系统可以是 CentOS，也可以是 Ubuntu。当申请完新的主机后，在主机配置文件 `conf/hosts.ini` 根据需要增加的主机信息在 [all] 和 [kube-node] 部分对应添加一行参数，若扩容多台主机则依次添加多行参数。需要注意的是，扩容新的节点时不能修改原节点的主机名如 master、node1 和 node2，如下添加新节点 node3：
+KubeSphere 支持混合扩容，即扩容新增的主机系统可以是 CentOS，也可以是 Ubuntu。当申请完新的主机后，在主机配置文件 `conf/hosts.ini` 根据需要增加的主机信息在 [all] 和 [kube-node] 部分对应添加一行参数，若扩容多台主机则依次添加多行参数。需要注意的是，扩容新的节点时不能修改原节点的主机名如 master、node1 和 node2。此外，请在 [all] 部分列出所有 Node，同时将新增的 Node 列于 [kube-node] 下。请参考以下添加新节点 node3 的示例：
 
 ```
 [all]
@@ -19,13 +19,11 @@ node1  ansible_host=192.168.0.2  ip=192.168.0.2  ansible_ssh_pass=PASSWORD
 node2  ansible_host=192.168.0.3  ip=192.168.0.3  ansible_ssh_pass=PASSWORD    
 node3  ansible_host=192.168.0.4  ip=192.168.0.4  ansible_ssh_pass=PASSWORD  
 ···
-[kube-node]
-master
-node1
-node2 
+[kube-node] 
 node3
 ···
 ```
+注：新节点添加后，您需要自行关闭其 `firewall`。
 
 ### 第二步：执行扩容脚本
 

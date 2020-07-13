@@ -146,15 +146,6 @@ metrics_server_enabled: true   # For KubeSphere HPA to use
 servicemesh_enabled: true      # KubeSphere service mesh system(Istio-based)
 notification_enabled: true     # KubeSphere notification system
 alerting_enabled: true         # KubeSphere alerting system
-
-# Harbor is a 3rd-party component.
-# Which could be turned on to install it before installation or later by updating its value to true
-harbor_enabled: true           # Whether to install Harbor registry
-harbor_domain: harbor.devops.kubesphere.local
-# GitLab is a 3rd-party component.
-# Which could be turned on to install it before installation or later by updating its value to true
-gitlab_enabled: true           # Whether to install GitLab
-gitlab_hosts_domain: devops.kubesphere.local
 ```
 
 ## Step 5: Install KubeSphere to Linux Machines
