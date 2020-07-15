@@ -36,18 +36,18 @@ Send Prometheus alerts to Notification Manager:
         "receiver": "prometheus"
 ```
 
-Send events alerts to Notification Manager:
+Send event alerts to Notification Manager:
 ```shell
     "receivers":
-    - "name": "events"
+    - "name": "event"
       "webhook_configs":
       - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
         "send_resolved": false
     "route":
       "routes":
       - "match":
-          "alerttype": "events"
-        "receiver": "events"
+          "alerttype": "event"
+        "receiver": "event"
         "group_interval": "30s"
 ```
 
