@@ -101,7 +101,6 @@ spec:
   authPassword:
     key: password
     name: test-user-email-secret
-    namespace: kubesphere-monitoring-system
   authUsername: abc1
   from: abc1@xyz.com
   requireTLS: true
@@ -158,7 +157,6 @@ spec:
   authPassword:
     key: password
     name: default-email-secret
-    namespace: kubesphere-monitoring-system
   authUsername: default
   from: default@xyz.com
   requireTLS: true
