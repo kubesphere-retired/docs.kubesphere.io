@@ -21,7 +21,7 @@ Supported receivers includes:
 ### Config Prometheus Alertmanager to send alerts to Notification Manager
 
 Notification Manager uses port `19093` and API path `/api/v2/alerts` to receive alerts sending from Prometheus Alertmanager of Kubesphere.
-To receive Alertmanager alerts, edit the Secret `alertmanager-main` in the namespace `kubesphere-monitoring-system`, add webhook config and route like below to the alertmanager.yaml:
+To receive Alertmanager alerts, KubeSphere already added Alertmanager webhook and route configurations like below ( by editing the Secret alertmanager-main in the namespace `kubesphere-monitoring-system ):
 
 Send Prometheus alerts to Notification Manager:
 ```shell
@@ -66,7 +66,7 @@ Send auditing alerts to Notification Manager:
         "group_interval": "30s"
 ```
 
-> These configurations are the default configuration. If you do not want to receive a certain type of alert, you can delete the corresponding configuration.
+> The above is the default configuration. If you do not want to receive a certain type of alert, you can delete the corresponding configuration.
 
 ### Config receivers
 
@@ -168,7 +168,7 @@ spec:
 EOF
 ```
 
-Email receiver labeled with `type: tenant` only receive notification happened in the namespace which user be in. If you want to receive notification without namespace, you need to create a global email receiver labeled with `type: global` like this.
+The email receiver labeled with `type: tenant` only receives notifications that happen in the namespace where the tenant has already existed. If you want them to receive notifications regardless of the namespace, you can create a global email receiver labeled with type: global as follows:
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -283,7 +283,7 @@ spec:
 EOF
 ```
 
-Wechat receiver labeled with `type: tenant` only receive notification happened in the namespace which user be in. If you want to receive notification without namespace, you need to create a global wechat receiver labeled with `type: global` like this.
+The wechat receiver labeled with `type: tenant` only receives notifications that happen in the namespace where the tenant has already existed. If you want them to receive notifications regardless of the namespace, you can create a global wechat receiver labeled with type: global as follows:
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -390,7 +390,7 @@ spec:
 EOF
 ```
 
-Slack receiver labeled with `type: tenant` only receive notification happened in the namespace which user be in. If you want to receive notification without namespace, you can create a global slack receiver labeled with `type: global` like this.
+The slack receiver labeled with `type: tenant` only receives notifications that happen in the namespace where the tenant has already existed. If you want them to receive notifications regardless of the namespace, you can create a global slack receiver labeled with type: global as follows:
 
 ```
 cat <<EOF | kubectl apply -f -
