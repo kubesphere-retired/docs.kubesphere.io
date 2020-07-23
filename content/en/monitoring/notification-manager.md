@@ -20,8 +20,8 @@ Supported receivers includes:
 
 ### Config Prometheus Alertmanager to send alerts to Notification Manager
 
-Notification Manager uses port `19093` and API path `/api/v2/alerts` to receive alerts sending from Prometheus Alertmanager of Kubsphere.
-To receive Alertmanager alerts, eidt the Secret `alertmanager-main` in the namespace `kubesphere-monitoring-system`, add webhook config like below to the `receivers` section of alertmanager.yaml:
+Notification Manager uses port `19093` and API path `/api/v2/alerts` to receive alerts sending from Prometheus Alertmanager of Kubesphere.
+To receive Alertmanager alerts, edit the Secret `alertmanager-main` in the namespace `kubesphere-monitoring-system`, add webhook config and route like below to the alertmanager.yaml:
 
 Send Prometheus alerts to Notification Manager:
 ```shell
@@ -31,8 +31,8 @@ Send Prometheus alerts to Notification Manager:
       - "url": "http://notification-manager-svc.kubesphere-monitoring-system.svc:19093/api/v2/alerts"
     "route":
       "routes":
-      - "match_re":
-          "prometheus": ".*"
+      - "match":
+          "alerttype": ""
         "receiver": "prometheus"
 ```
 
@@ -66,13 +66,15 @@ Send auditing alerts to Notification Manager:
         "group_interval": "30s"
 ```
 
+> These configurations are the default configuration. If you do not want to receive a certain type of alert, you can delete the corresponding configuration.
+
 ### Config receivers
 
 Notification Manager now supports three type receivers, email, Wechat Work, slack. Only administrator can config receivers.
 
 #### Email
 
-If a tenant named **test-user** who wants to receive notifications from email, just create a email receiver like this.
+If a tenant named **test-user** who wants to receive notifications from email, just create an email receiver like this.
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -129,7 +131,7 @@ spec:
 EOF
 ```
 
-The emailConfigSelector is a selector to selecte EmailConfig for email receiver, if the emailConfigSelector is nil, receiver will use the default email config. You can create a default email config like this.
+The emailConfigSelector is a selector to select EmailConfig for email receiver, if the emailConfigSelector is nil, receiver will use the default email config. You can create a default email config like this.
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -166,7 +168,7 @@ spec:
 EOF
 ```
 
-Email receiver labeled with `type: tenant` only receive notification happend in the namespace which user be in. If you want to receive notification without namespace, you need to create a global email receiver labeled with `type: global` like this.
+Email receiver labeled with `type: tenant` only receive notification happened in the namespace which user be in. If you want to receive notification without namespace, you need to create a global email receiver labeled with `type: global` like this.
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -184,7 +186,7 @@ spec:
 EOF
 ```
 
->Global email receiver use the default email config.
+> Global email receiver use the default email config.
 
 #### Wechat Work
 
@@ -245,9 +247,9 @@ spec:
 EOF
 ```
 
->WechatApiCorpId is the id of your Wechat Work. WechatApiAgentId is the id of app which sending message to user in your Wechat Work, wechatApiSecret is the secret of this app, you can get these two parameters in App Managerment of your Wechat Work. Note that any user, party or tag who wants to rerceive notifications must be in the allowed users list of this app.
+> WechatApiCorpId is the id of your Wechat Work. WechatApiAgentId is the id of app which sending message to user in your Wechat Work, wechatApiSecret is the secret of this app, you can get these two parameters in App Management of your Wechat Work. Note that any user, party or tag who wants to receive notifications must be in the allowed users list of this app.
 
-The wechatConfigSelector is a selector to selecte WechatConfig for wechat receiver, if the wechatConfigSelector is nil, wechat receiver will use the default wechat config. You can create a default wechat config like this.
+The wechatConfigSelector is a selector to select WechatConfig for wechat receiver, if the wechatConfigSelector is nil, wechat receiver will use the default wechat config. You can create a default wechat config like this.
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -281,7 +283,7 @@ spec:
 EOF
 ```
 
-Wechat receiver labeled with `type: tenant` only receive notification happend in the namespace which user be in. If you want to receive notification without namespace, you need to create a global wechat receiver labeled with `type: global` like this.
+Wechat receiver labeled with `type: tenant` only receive notification happened in the namespace which user be in. If you want to receive notification without namespace, you need to create a global wechat receiver labeled with `type: global` like this.
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -302,7 +304,7 @@ spec:
 EOF
 ```
 
->Global wechat receiver use the default wechat config.
+> Global wechat receiver use the default wechat config.
 
 #### Slack
 
@@ -355,9 +357,9 @@ spec:
 EOF
 ```
 
->Slack token is the OAuth Access Token or Bot User OAuth Access Token when you create a slack app. This app must have the scope chat:write. The user who created the app or bot user must be in the channel which you want to send notification to.
+> Slack token is the OAuth Access Token or Bot User OAuth Access Token when you create a slack app. This app must have the scope chat:write. The user who created the app or bot user must be in the channel which you want to send notification to.
 
-The slackConfigSelector is a selector to selecte SlackConfig for slack receiver, if the slackConfigSelector is nil, slack receiver will use the default slack config. You can create a default slack config like this.
+The slackConfigSelector is a selector to select SlackConfig for slack receiver, if the slackConfigSelector is nil, slack receiver will use the default slack config. You can create a default slack config like this.
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -388,7 +390,7 @@ spec:
 EOF
 ```
 
-Slack receiver labeled with `type: tenant` only receive notification happend in the namespace which user be in. If you want to receive notification without namespace, you can create a global slack receiver labeled with `type: global` like this.
+Slack receiver labeled with `type: tenant` only receive notification happened in the namespace which user be in. If you want to receive notification without namespace, you can create a global slack receiver labeled with `type: global` like this.
 
 ```
 cat <<EOF | kubectl apply -f -
@@ -405,4 +407,4 @@ spec:
 EOF
 ```
 
->Global slack receiver use the default slack config.
+> Global slack receiver use the default slack config.
