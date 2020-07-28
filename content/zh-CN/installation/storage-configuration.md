@@ -231,7 +231,7 @@ $ heketi-cli cluster list
 ### QingCloud 云平台块存储
 
 
-KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务，**并且支持扩容、拓扑、创建/删除快照以及基于快照创建 PVC**。
+KubeSphere 支持使用 QingCloud 云平台块存储作为平台的存储服务，如果希望体验动态分配 (Dynamic Provisioning) 方式创建存储卷，推荐使用 [QingCloud 云平台块存储](https://www.qingcloud.com/products/volume/)，平台已集成 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/) 块存储插件支持对接块存储，仅需简单配置即可使用 QingCloud 云平台各种性能的块存储服务，**并且支持扩容、拓扑、创建/删除快照以及基于快照创建 PVC**。
 
 [QingCloud-CSI](https://github.com/yunify/qingcloud-csi/blob/master/README_zh.md) 块存储插件实现了 CSI 接口，并且支持 KubeSphere 使用 QingCloud 云平台的存储资源。块存储插件部署后，用户在 QingCloud 云平台可创建访问模式 (Access Mode) 为 **单节点读写（ReadWriteOnce）** 的存储卷并挂载至工作负载，包括以下几种类型：
 
