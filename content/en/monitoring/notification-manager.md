@@ -21,7 +21,7 @@ Supported receivers includes:
 ### Config Prometheus Alertmanager to send alerts to Notification Manager
 
 Notification Manager uses port `19093` and API path `/api/v2/alerts` to receive alerts sending from Prometheus Alertmanager of Kubesphere.
-To receive Alertmanager alerts, KubeSphere already added Alertmanager webhook and route configurations like below ( by editing the Secret alertmanager-main in the namespace `kubesphere-monitoring-system ):
+To receive Alertmanager alerts, KubeSphere already added Alertmanager webhook and route configurations like below ( by editing the Secret alertmanager-main in the namespace `kubesphere-monitoring-system` ):
 
 Send Prometheus alerts to Notification Manager:
 ```shell
