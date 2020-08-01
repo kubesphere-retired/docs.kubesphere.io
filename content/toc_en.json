@@ -395,6 +395,17 @@
           "entry": "/en/troubleshooting/installation"
         }
       ]
+    },
+    {
+      "title": "FAQ",
+      "icon": "/problem.svg",
+      "desc": "Frequently Asked Questions",
+      "chapters": [
+        {
+          "title": "Telemetry",
+          "entry": "/en/faq/telemetry"
+        }
+      ]
     }
   ]
 }
