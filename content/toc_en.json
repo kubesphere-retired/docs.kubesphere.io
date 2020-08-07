@@ -74,6 +74,10 @@
               "entry": "/en/installation/port-firewall"
             },
             {
+              "title": "Multi-node Installation",
+              "entry": "/en/installation/multioverview"
+            },
+            {
               "title": "Kubernetes Cluster Configuration",
               "entry": "/en/installation/vars"
             }
