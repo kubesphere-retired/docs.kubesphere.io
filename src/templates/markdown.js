@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
 import { graphql } from 'gatsby'
+import { get } from 'lodash'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
@@ -238,11 +239,6 @@ class MarkdownTemplate extends React.Component {
       'props.data.site.siteMetadata.versions[0].value'
     )
 
-    console.log(slug.slice(
-      1,
-      slug.length - 1
-    ))
-
     return (
       <>
         <Layout data={this.props.data} locale={lang}>
@@ -301,10 +297,9 @@ class MarkdownTemplate extends React.Component {
                   >
                     <MarkdownTitle>{post.title}</MarkdownTitle>
                     <MarkdownEditTip
-                      href={`https://github.com/kubesphere/docs.kubesphere.io/edit/release-${latestVersion.slice(1)}/content/${slug.slice(
-                        1,
-                        slug.length - 1
-                      )}.md`}
+                      href={`https://github.com/kubesphere/docs.kubesphere.io/edit/release-${latestVersion.slice(
+                        1
+                      )}/content/${slug.slice(1, slug.length - 1)}.md`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
