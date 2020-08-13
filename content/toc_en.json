@@ -92,7 +92,7 @@
             },
             {
               "title": "High Availability Configuration",
-              "entry": "/en/installation/master-ha"
+              "entry": "/en/installation/kubesphere-on-qingcloud-instance"
             },
             {
               "title": "Air Gapped Installation",
