@@ -14,7 +14,7 @@ This tutorial walks you through an example of how to create two [QingCloud Load 
 
 - Please make sure that you already know how to install KubeSphere with a multi-node cluster by following the [guide](https://github.com/kubesphere/kubekey). For the detailed information about the config yaml file that is used for installation, see Multi-node Installation. This tutorial focuses more on how to configure load balancers.
 - You need a [QingCloud](https://console.qingcloud.com/login) account to create load balancers, or follow the guide of any other cloud provider to create load balancers.
-- Considering the data persistence, for production environment, we recommend you to prepare the persist storage and create a StorageClass in advance. For development and testing, you can use the integrated OpenEBS to provision LocalPV as the storage service directly.
+- Considering data persistence, for a production environment, we recommend you to prepare persistent storage and create a StorageClass in advance. For development and testing, you can use the integrated OpenEBS to provision LocalPV as the storage service directly.
 
 ## Architecture
 
@@ -22,7 +22,7 @@ This example prepares six machines of **Ubuntu 16.04.6**. We will create two loa
 
 ![Master and etcd node high availability architecture](https://pek3b.qingstor.com/kubesphere-docs/png/20200307215924.png)
 
-> Attention: As the Kubernetes document [Options for Highly Available topology](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/) demonstrated that there are two options for configuring the topology of a highly available (HA) Kubernetes cluster, i.e. stacked etcd topology and external etcd topology. You should carefully consider the advantages and disadvantages of each topology before setting up an HA cluster by reference [this guide]((https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/)). In this guide, we adopt  stacked etcd topology to bootstrap an HA cluster for convenient demonstration.
+> Attention: The Kubernetes document [Options for Highly Available topology](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/) demonstrates that there are two options for configuring the topology of a highly available (HA) Kubernetes cluster, i.e. stacked etcd topology and external etcd topology. You should carefully consider the advantages and disadvantages of each topology before setting up an HA cluster according to [this document](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/). In this guide, we adopt stacked etcd topology to bootstrap an HA cluster for convenient demonstration.
 
 ## Install HA Cluster
 
@@ -95,7 +95,7 @@ Click **Submit** when you finish.
 
 [Kubekey](https://github.com/kubesphere/kubekey) is the next-gen installer which is used for installing Kubernetes and KubeSphere v3.0.0 fastly, flexibly and easily.
 
-1. First, download it and generate a configuration file to custom the installation as follows.
+1. First, download it and generate a configuration file to customize the installation as follows.
 
 ```
 curl -O -k https://kubernetes.pek3b.qingstor.com/tools/kubekey/kk
@@ -120,7 +120,7 @@ As we adopt the HA topology with stacked control plane nodes, where etcd nodes a
 | `master`     | Master node names                 |
 | `worker`     | Worker node names                 |
 
-- Put the master node name (master1, master2 and master3) under `etcd` and `master` respectively as below, which means these three machines will be assigned with both the master and etcd role. Please note that the number of etcd needs to be odd. Meanwhile, we do not recommend you to install etcd on worker nodes since the memory consumption of etcd is very high. Edit the configuration file, we use **Ubuntu 16.04.6** in this example.
+- Put the master node name (master1, master2 and master3) under `etcd` and `master` respectively as below, which means these three machines will be assigned with both the master and etcd role. Please note that the number of etcd needs to be odd. Meanwhile, we do not recommend you to install etcd on worker nodes since the memory consumption of etcd is very high. Edit the configuration file, and we use **Ubuntu 16.04.6** in this example.
 
 #### config-sample.yaml Example
 
@@ -152,7 +152,7 @@ For a complete configuration sample explanation, please see [this file](https://
 
 ### Configure the Load Balancer
 
-In addition to the node information, you need to provide the load balancer information in the same yaml file. For the Intranet VIP address, you can find it in 1.5. mentioned above. Assume the VIP address and listening port of the **internal load balancer** are `192.168.0.253` and `6443` respectively, and you can refer to the following example.
+In addition to the node information, you need to provide the load balancer information in the same yaml file. For the Intranet VIP address, you can find it in step 5 mentioned above. Assume the VIP address and listening port of the **internal load balancer** are `192.168.0.253` and `6443` respectively, and you can refer to the following example.
 
 #### The configuration example in config-sample.yaml
 
@@ -172,34 +172,34 @@ After that, you can enable any components you need by following **Enable Pluggab
 
 ### Kubernetes Cluster Configuration (Optional)
 
-Kubekey provides some fields and parameters to allow cluster administrator to custom Kubernetes installation, including Kubernetes version, network plugins, image registry, etc. There are some default values provided in `config-example.yaml`. Optionally, you can modify the Kubernetes related configuration in `config-example.yaml` according to your needs. See [config-example.md](https://github.com/kubesphere/kubekey/blob/master/docs/config-example.md) for detailed explanation.
+Kubekey provides some fields and parameters to allow the cluster administrator to customize Kubernetes installation, including Kubernetes version, network plugins and image registry. There are some default values provided in `config-example.yaml`. Optionally, you can modify the Kubernetes related configuration in `config-example.yaml` according to your needs. See [config-example.md](https://github.com/kubesphere/kubekey/blob/master/docs/config-example.md) for detailed explanation.
 
 ### Persistent Storage Plugin Configuration
 
-As we mentioned in the prerequisites, Considering the data persistence in a production environment, you need to prepare the persist storage and configure the storage plugin (e.g. CSI) in `config-sample.yaml` to point which storage service you want.
+As we mentioned in the prerequisites, considering data persistence in a production environment, you need to prepare persistent storage and configure the storage plugin (e.g. CSI) in `config-sample.yaml` to define which storage service you want.
 
-> For testing or development, you can skip this section, KubeKey will use the integrated OpenEBS to provision LocalPV as the storage service directly.
+> For testing or development, you can skip this part. KubeKey will use the integrated OpenEBS to provision LocalPV as the storage service directly.
 
-**Available Storage Plugins Plugins & Clients**
+**Available Storage Plugins & Clients**
 
 - Ceph RBD & CephFS
 - GlusterFS
 - NFS
 - QingCloud CSI
 - QingStor CSI
-- More plugins are WIP, will be added soon
+- More plugins are WIP, which will be added soon
 
-For each storage plugin configuration, you can refer to [config-example.md](https://github.com/kubesphere/kubekey/blob/master/docs/config-example.md) to get detailed explanation. Make sure you have configured the storage plugin before you get started, KubeKey will create a StorageClass and persistent volumes for related workloads during the installation.
+For each storage plugin configuration, you can refer to [config-example.md](https://github.com/kubesphere/kubekey/blob/master/docs/config-example.md) to get detailed explanation. Make sure you have configured the storage plugin before you get started. KubeKey will create a StorageClass and persistent volumes for related workloads during the installation.
 
 ### Enable Pluggable Components (Optional)
 
 KubeSphere has decoupled some core feature components since v2.1.0. These components are designed to be pluggable which means you can enable them either before or after installation. By default, KubeSphere will be started with a minimal installation if you do not enable them.
 
-You can enable any of them according to your demands. It is highly recommended that you install these pluggable components to discover the full-stack features and capabilities provided by KubeSphere. Please ensure your machines have sufficient CPU and memory before enabling them. See [Enable Pluggable Components](https://github.com/kubesphere/ks-installer#enable-pluggable-components) for the details.
+You can enable any of them according to your demands. It is highly recommended that you install these pluggable components to discover the full-stack features and capabilities provided by KubeSphere. Please ensure your machines have sufficient CPU and memory before enabling them. See [Enable Pluggable Components](https://github.com/kubesphere/ks-installer#enable-pluggable-components) for details.
 
 ### Start to Bootstrap a Cluster
 
-After you have completed the configuration, you can execute the following command to start the installation:
+After you complete the configuration, you can execute the following command to start the installation:
 
 ```
 ./kk create cluster -f config-sample.yaml
@@ -207,7 +207,7 @@ After you have completed the configuration, you can execute the following comman
 
 ### Verify the Installation
 
-Inspect the logs of installation, when you see the successful logs as follows, congratulation and enjoy it!
+Inspect the logs of installation. When you see the successful logs as follows, congratulations and enjoy it!
 
 ```
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l app=ks-install -o jsonpath='{.items[0].metadata.name}') -f
