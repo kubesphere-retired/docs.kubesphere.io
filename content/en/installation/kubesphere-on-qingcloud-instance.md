@@ -20,7 +20,7 @@ This tutorial walks you through an example of how to create two [QingCloud Load 
 
 This example prepares six machines of **Ubuntu 16.04.6**. We will create two load balancers, and deploy three master and etcd nodes on three of the machines. You can configure these master and etcd nodes in `config-sample.yaml` of KubeKey (Please note that this is the default name, which can be changed by yourself).
 
-![Master and etcd node high availability architecture](https://pek3b.qingstor.com/kubesphere-docs/png/20200307215924.png)
+![kubesphere-ha-architecture](https://ap3.qingstor.com/kubesphere-website/docs/ha-architecture.png)
 
 > Attention: The Kubernetes document [Options for Highly Available topology](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/) demonstrates that there are two options for configuring the topology of a highly available (HA) Kubernetes cluster, i.e. stacked etcd topology and external etcd topology. You should carefully consider the advantages and disadvantages of each topology before setting up an HA cluster according to [this document](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/). In this guide, we adopt stacked etcd topology to bootstrap an HA cluster for convenient demonstration.
 
