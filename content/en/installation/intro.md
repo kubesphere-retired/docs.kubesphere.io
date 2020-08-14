@@ -1,10 +1,10 @@
 ---
 title: "Introduction"
-keywords: 'Kubernetes, KubeSphere, Installation on Linux'
+keywords: 'Kubernetes, KubeSphere, Installation, Linux'
 description: 'The Overview of KubeSphere Installation on Linux'
 ---
 
-For the installation on Linux, KubeSphere can be installed both in clouds and in on-premises environments, such as AWS EC2, Azure VM and bare metal. Users can install KubeSphere on Linux hosts as they provision fresh Kubernetes clusters. The installation process is easy and friendly. Meanwhile, KubeSphere offers not only the online installer, or [KubeKey](https://github.com/kubesphere/kubekey), but also an air-gapped installer for the environment with no Internet access.
+For the installation on Linux, KubeSphere can be installed both in clouds and in on-premises environments, such as AWS EC2, Azure VM and bare metal. Users can install KubeSphere on Linux hosts as they provision fresh Kubernetes clusters. The installation process is easy and friendly. Meanwhile, KubeSphere offers not only the online installer, or [KubeKey](https://github.com/kubesphere/kubekey), but also an air-gapped installation solution for the environment with no Internet access.
 
 As an open-source project on [GitHub](https://github.com/kubesphere), KubeSphere is home to a community with thousands of users. Many of them are running KubeSphere for their production workloads.
 
