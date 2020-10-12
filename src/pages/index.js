@@ -31,19 +31,22 @@ class IndexPage extends React.Component {
     if (typeof docsearch !== 'undefined') {
       /* eslint-disable no-undef */
       docsearch({
-        apiKey: '221332a85783d16a5b930969fe4a934a',
-        indexName: 'kubesphere',
+        apiKey: 'bba5624e99f7c4950b399fec0c6af3c5',
+        indexName: 'kubesphere_v2-1',
         inputSelector: '.ks-search > input',
         algoliaOptions: {
-          facetFilters: [`lang:${lang}`],
+          hitsPerPage: 10,
         },
         transformData: function(hits) {
           hits.forEach(hit => {
             if (typeof window !== undefined) {
-              hit.url = hit.url.replace('kubesphere.io', window.location.host)
+              hit.url = hit.url.replace('v2-1.docs.kubesphere.io', window.location.host)
             }
           })
-          return hits
+          return hits.filter(hit => {
+            var check = hit.url.includes('zh-CN')
+            return lang === 'zh-CN' ? check : !check
+          })
         },
         debug: false,
       })
