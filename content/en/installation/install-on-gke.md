@@ -77,8 +77,11 @@ kubectl get deployment tiller-deploy -n kube-system
 
 Install KubeSphere using kubectl. The following command is only to start the default minimal installation.
 
+> Note: If you are not able to use these two yaml files from GitHub directly, you can manually copy it from [GitHub repository](https://github.com/kubesphere/ks-installer/tree/v2.1.1).
+
+
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-minimal.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/v2.1.1/kubesphere-minimal.yaml
 ```
 
 Verify the real-time logs, when you see the following outputs, congratulation! You can access KubeSphere in your browser.

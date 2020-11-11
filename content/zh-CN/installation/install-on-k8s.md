@@ -26,7 +26,7 @@ KubeSphere 支持在已有 Kubernetes 集群之上在线安装 [KubeSphere](http
 若集群可用 CPU > 1 Core 且可用内存 > 2 G，可以使用以下命令最小化安装 KubeSphere：
 
 ```yaml
-kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-minimal.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/v2.1.1/kubesphere-minimal.yaml
 ```
 ### 完整安装 KubeSphere
 
@@ -35,7 +35,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/maste
 > 注意，应确保集群中有一个节点的可用内存大于 8 G。
 
 ```yaml
-kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-complete-setup.yaml
+kubectl apply -f https://github.com/kubesphere/ks-installer/blob/v2.1.1/kubesphere-complete-setup.yaml
 ```
 
 > 提示：若您的服务器提示无法访问 GitHub，可将 [kubesphere-minimal.yaml](https://github.com/kubesphere/ks-installer/blob/master/kubesphere-minimal.yaml) 或 [kubesphere-complete-setup.yaml](https://github.com/kubesphere/ks-installer/blob/master/kubesphere-complete-setup.yaml) 文件保存到本地作为本地的静态文件，再参考上述命令进行安装。
