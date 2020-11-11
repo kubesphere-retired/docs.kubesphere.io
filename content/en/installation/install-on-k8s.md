@@ -12,18 +12,20 @@ description: "How to deploy KubeSphere on an existing Kubernetes cluster"
 
 ## Deploy KubeSphere
 
-Install KubeSphere using kubectl.
+Install KubeSphere using kubectl. 
+
+> Note: If you are not able to use these two yaml files from GitHub directly, you can manually copy it from [GitHub repository](https://github.com/kubesphere/ks-installer/tree/v2.1.1).
 
 - If there are 1 Core and 2 GB RAM available in your cluster, use the command below to trigger a default minimal installation only:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-minimal.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/v2.1.1/kubesphere-minimal.yaml
 ```
 
 - If there are 8 Cores and 16 GB RAM available in your cluster, use the command below to install a complete KubeSphere, i.e. with all components enabled:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-complete-setup.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/v2.1.1/kubesphere-complete-setup.yaml
 ```
 
 Verify the real-time logs. When you see the following outputs, congratulation! You can access KubeSphere console in your browser now.
