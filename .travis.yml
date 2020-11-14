@@ -22,9 +22,6 @@ script:
 before_deploy:
   - bash ./princexml/install.sh
   - yarn build
-  - yarn serve
-  - sleep 5
-  - prince --javascript --page-margin 0 http://localhost:9000/docs/zh-CN/all/ -o public/KubeSphere-v2.1.pdf
   - docker build -t docs.kubesphere.io .
 
 deploy:
