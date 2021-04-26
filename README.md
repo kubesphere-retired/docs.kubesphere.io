@@ -1,5 +1,7 @@
 # Documentation for [KubeSphere](https://kubesphere.io/docs/)
 
+## [Deprecation] This repo used to be hosting repo for KubeSphere website, but we are moving to [website](https://github.com/kubesphere/website) since v3.0. 
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/eec97cb5-3fa0-4865-ad61-357edc16a145/deploy-status)](https://app.netlify.com/sites/kubesphere-docs/deploys)
 
 [![Build Status](https://travis-ci.org/kubesphere/docs.kubesphere.io.svg)](https://travis-ci.org/kubesphere/docs.kubesphere.io)
