@@ -6,7 +6,7 @@ description: ''
 
 KubeSphere 在项目中为用户项目内置了一个全局的负载均衡器，即应用路由控制器 (Ingress Controller)，为了代理不同后端服务 (Service) 而设置的负载均衡服务，用户访问 URL 时，应用路由控制器可以把请求转发给不同的后端服务。因此，应用路由的功能其实可以理解为 Service 的 “Service”。
 
-[Kubernetes Ingress](https://github.com/nginxinc/kubernetes-ingress/tree/master/examples/complete-example) 官方提供了这样一个例子：对于 `https://cafe.example.com`，如果访问 `https://cafe.example.com/coffee` 则返回 “咖啡点餐系统”，如果访问 `https://cafe.example.com/tea`，则返回 “茶水点餐系统”。这两个系统分别由后端的 coffee 和 tea 这两个部署 (Deployment) 来提供服务。
+[Kubernetes Ingress](https://github.com/nginxinc/kubernetes-ingress/tree/main/examples/ingress-resources/complete-example) 官方提供了这样一个例子：对于 `https://cafe.example.com`，如果访问 `https://cafe.example.com/coffee` 则返回 “咖啡点餐系统”，如果访问 `https://cafe.example.com/tea`，则返回 “茶水点餐系统”。这两个系统分别由后端的 coffee 和 tea 这两个部署 (Deployment) 来提供服务。
 
 以下将在 KubeSphere 创建相关资源来说明这个应用路由的示例。
 

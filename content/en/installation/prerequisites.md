@@ -22,9 +22,9 @@ Client Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.1", GitCom
 Server Version: version.Info{Major:"1", Minor:"15", GitVersion:"v1.15.1", GitCommit:"4485c6f18cee9a5d3c3b4e523bd27972b1b53892", GitTreeState:"clean", BuildDate:"2019-07-18T09:09:21Z", GoVersion:"go1.12.5", Compiler:"gc", Platform:"linux/amd64"}
 ```
 
-> Note: Pay attention to `Server Version` line. If `GitVersion` shows an older one, you need to upgrade the kubernetes first. Please refer to [Upgrading kubeadm clusters from v1.14 to v1.15](https://v1-15.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade-1-15/).
+> Note: Pay attention to `Server Version` line. If `GitVersion` shows an older one, you need to upgrade the kubernetes first.
 
-2. Make sure you have installed `Helm`, and the version is >= `2.10.0` and < `3.0`. You can run `helm version` to check. The output looks like below.
+1. Make sure you have installed `Helm`, and the version is >= `2.10.0` and < `3.0`. You can run `helm version` to check. The output looks like below.
 
 ```bash
 $ helm version
@@ -32,7 +32,7 @@ Client: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7
 Server: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7f8c37a5d39fbb4", GitTreeState:"clean"}
 ```
 
-> Note: If you get `helm: command not found`, it means `Helm` is not installed yet. You can refer to the [guide](https://helm.sh/docs/using_helm/#from-the-binary-releases) to find out how to install it, and remember to run `helm init` first after installation. If you use an older version (<2.10.0), you need to  [Upgrade Helm and Tiller](https://github.com/helm/helm/blob/master/docs/install.md#upgrading-tiller).
+> Note: If you get `helm: command not found`, it means `Helm` is not installed yet. You can refer to the [guide](https://helm.sh/docs/using_helm/#from-the-binary-releases) to find out how to install it, and remember to run `helm init` first after installation. If you use an older version (<2.10.0), you need to  [Upgrade Helm and Tiller](https://v2.helm.sh/docs/install/#UPGRADING TILLER).
 
 3. Check if the available resources in your cluster meet the minimal prerequisites.
 

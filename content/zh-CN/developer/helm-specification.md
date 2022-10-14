@@ -2,7 +2,7 @@
 title: "开发模板规范"
 ---
 
-Helm Chart 是一种打包规范，将各种 Kubernetes 资源以配置文件的形式组织。更详细的介绍请参考 [Chart 官网文档](https://github.com/helm/helm/blob/master/docs/charts.md)
+Helm Chart 是一种打包规范，将各种 Kubernetes 资源以配置文件的形式组织。更详细的介绍请参考 [Chart 官网文档](https://github.com/helm)。
 
 ## Chart 文件结构
 
