@@ -10,7 +10,7 @@ KubeSphere 支持离线和在线的方式部署至现有的 Kubernetes 集群，
 > - `Kubernetes` 版本： `1.15.x ≤ K8s version ≤ 1.17.x`；
 > - `Helm`版本： `2.10.0 ≤ Helm Version ＜ 3.0.0`，建议使用 `Helm 2.16.2`（不支持 helm 2.16.0 [#6894](https://github.com/helm/helm/issues/6894)），且已安装了 Tiller，参考 [如何安装与配置 Helm](https://devopscube.com/install-configure-helm-kubernetes/) （预计 3.0 支持 Helm v3）；
 > - 集群已有默认的存储类型（StorageClass），若还没有准备存储请参考 [安装 OpenEBS 创建 LocalPV 存储类型](../../appendix/install-openebs) 用作开发测试环境。
-> - 集群能够访问外网，若无外网请参考 [在 Kubernetes 离线安装 KubeSphere](https://kubesphere.com.cn/docs/installation/install-on-k8s-airgapped/)。
+> - 集群能够访问外网，若无外网请参考 [在 Kubernetes 离线安装 KubeSphere](https://v2-1.docs.kubesphere.io/docs/installation/install-on-k8s-airgapped/)。
 - CSR signing 在 kube-apiserver 被开启，参考 [RKE 安装 KubeSphere Issue](https://github.com/kubesphere/kubesphere/issues/1925#issuecomment-591698309)。
 
 ## 验证环境
@@ -22,7 +22,7 @@ $ kubectl version | grep Server
 Server Version: version.Info{Major:"1", Minor:"13", GitVersion:"v1.13.5", GitCommit:"2166946f41b36dea2c4626f90a77706f426cdea2", GitTreeState:"clean", BuildDate:"2019-03-25T15:19:22Z", GoVersion:"go1.11.5", Compiler:"gc", Platform:"linux/amd64"}
 ```
 
-> 说明：注意输出结果中的 `Server Version` 这行，如果显示 `GitVersion` 大于 `v1.13.0`，Kubernetes 的版本是可以安装的。如果低于 `v1.13.0` ，可以查看 [Upgrading kubeadm clusters from v1.12 to v1.13](https://v1-13.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade-1-13/) 先升级下 K8s 版本。
+> 说明：注意输出结果中的 `Server Version` 这行，如果显示 `GitVersion` 大于 `v1.13.0`，Kubernetes 的版本是可以安装的。如果低于 `v1.13.0` ，可以先升级下 K8s 版本。
 
 2. 确认已安装 `Helm`，并且 `Helm` 的版本至少为 `2.10.0`。在终端执行 `helm version`，得到类似下面的输出：
 
@@ -34,7 +34,7 @@ Server: &version.Version{SemVer:"v2.13.1", GitCommit:"618447cbf203d147601b4b9bd7
 
 > 说明：
 > - 如果提示 `helm: command not found`, 表示还未安装 `Helm`。参考这篇 [Install Helm](https://helm.sh/docs/using_helm/#from-the-binary-releases) 安装 `Helm`, 安装完成后执行  `helm init`；
-> - 如果 `helm` 的版本比较老 (<2.10.0), 需要首先升级，参考 [Upgrading Tiller](https://github.com/helm/helm/blob/master/docs/install.md#upgrading-tiller) 升级。
+> - 如果 `helm` 的版本比较老 (<2.10.0), 需要首先升级，参考 [Upgrading Tiller](https://v2.helm.sh/docs/install/#UPGRADING TILLER) 升级。
 
 3. 集群现有的可用内存至少在 `2G` 以上，那么执行 `free -g` 可以看下可用资源：
 
